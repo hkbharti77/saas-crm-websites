@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, Phone, MapPin, Mail } from 'lucide-react';
+import { ArrowRight, Phone, MapPin, Mail, Facebook } from 'lucide-react';
 import './Footer.css';
 
 export default function Footer() {
@@ -19,6 +19,7 @@ export default function Footer() {
               <a href="#" className="social-icon"><Phone size={20} /></a>
               <a href="#" className="social-icon"><MapPin size={20} /></a>
               <a href="mailto:contact@gyanvaniai.online" className="social-icon"><Mail size={20} /></a>
+              <a href="https://www.facebook.com/gyanvaniai/" target="_blank" rel="noopener noreferrer" className="social-icon"><Facebook size={20} /></a>
             </div>
           </div>
           
