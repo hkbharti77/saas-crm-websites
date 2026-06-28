@@ -1,0 +1,10 @@
+/* Component specific styles will go here or in modules, keeping it clean for now */
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
