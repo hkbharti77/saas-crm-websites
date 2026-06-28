@@ -309,6 +309,18 @@ img {
   flex-direction: column;
 }
 
+.contact-grid {
+  display: grid;
+  gap: 3rem;
+  align-items: start;
+}
+
+@media (min-width: 768px) {
+  .contact-grid {
+    grid-template-columns: 1fr 2fr;
+  }
+}
+
 .char-counter {
   position: absolute;
   bottom: 0.75rem;

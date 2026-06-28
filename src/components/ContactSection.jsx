@@ -73,7 +73,7 @@ export default function ContactSection() {
   return (
     <section className="contact-section" id="contact" style={{ padding: '6rem 0', background: 'var(--bg-alt)' }}>
       <div className="container" style={{ maxWidth: '900px' }}>
-        <div className="contact-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '3rem', alignItems: 'start' }}>
+        <div className="contact-grid">
           
           <div className="contact-info premium-card">
             <h3 className="h3" style={{ marginBottom: '1rem', fontSize: '1.5rem' }}>Get in Touch</h3>
