@@ -5,6 +5,8 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import PolicyPage from './pages/PolicyPage';
 import TermsConditions from './pages/TermsConditions';
+import Blog from './pages/Blog';
+import BlogPost from './pages/BlogPost';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import './App.css';
@@ -24,6 +26,8 @@ function App() {
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:id" element={<BlogPost />} />
           <Route path="/privacy" element={<PolicyPage />} />
           <Route path="/terms" element={<TermsConditions />} />
         </Routes>

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Menu, X, Moon, Sun } from 'lucide-react';
 import './Header.css';
 
@@ -50,6 +51,7 @@ export default function Header() {
         <nav className={`nav ${isOpen ? 'nav-open' : ''}`}>
           <a href="/#features" className="nav-link" onClick={() => setIsOpen(false)}>Features</a>
           <a href="/#portfolio" className="nav-link" onClick={() => setIsOpen(false)}>Portfolio</a>
+          <Link to="/blog" className="nav-link" onClick={() => setIsOpen(false)}>Blog</Link>
           
           <button className="theme-toggle" onClick={() => setIsDark(!isDark)} aria-label="Toggle theme">
             {isDark ? <Sun size={20} /> : <Moon size={20} />}
