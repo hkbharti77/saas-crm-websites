@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { CheckCircle, Check, XCircle } from 'lucide-react';
 import 'react-phone-number-input/style.css';
 import PhoneInput, { isValidPhoneNumber } from 'react-phone-number-input';
@@ -6,6 +6,22 @@ import PhoneInput, { isValidPhoneNumber } from 'react-phone-number-input';
 export default function ContactSection() {
   const [phone, setPhone] = useState();
   const [values, setValues] = useState({ name: '', email: '', message: '' });
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const service = params.get('service');
+    if (service && !values.message) {
+       const serviceNames = {
+         'crm-development': 'CRM Development',
+         'ai-chatbots': 'AI Chatbots',
+         'whatsapp-automation': 'WhatsApp Automation'
+       };
+       if(serviceNames[service]) {
+          setValues(prev => ({...prev, message: `I am interested in your ${serviceNames[service]} services. Please provide more information.`}));
+       }
+    }
+  }, []);
+
   const [touched, setTouched] = useState({ name: false, email: false, phone: false });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);

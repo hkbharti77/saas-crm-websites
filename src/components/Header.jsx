@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Menu, X, Moon, Sun } from 'lucide-react';
 import './Header.css';
 
@@ -44,18 +45,19 @@ export default function Header() {
       <div className="container header-container">
         <a href="/" className="logo">
           <img src="/logo.webp" alt="Gyan VaniAi" className="logo-img" />
-          <span className="logo-text">Gyan VaniAi</span>
+          <span className="logo-text gradient-text-premium">Gyan VaniAi</span>
         </a>
         
         <nav className={`nav ${isOpen ? 'nav-open' : ''}`}>
           <a href="/#features" className="nav-link" onClick={() => setIsOpen(false)}>Features</a>
           <a href="/#portfolio" className="nav-link" onClick={() => setIsOpen(false)}>Portfolio</a>
+          <Link to="/blog" className="nav-link" onClick={() => setIsOpen(false)}>Blog</Link>
           
           <button className="theme-toggle" onClick={() => setIsDark(!isDark)} aria-label="Toggle theme">
             {isDark ? <Sun size={20} /> : <Moon size={20} />}
           </button>
           
-          <a href="/#contact-form-section" className="btn btn-primary nav-btn" onClick={() => setIsOpen(false)}>Get Started</a>
+          <a href="/#contact" className="btn btn-primary nav-btn" onClick={() => setIsOpen(false)}>Get Started</a>
         </nav>
         
         <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>

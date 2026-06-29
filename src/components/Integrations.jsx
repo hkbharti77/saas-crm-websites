@@ -13,24 +13,26 @@ export default function Integrations() {
           Connect AutoCRM with the tools your team already uses every day.
         </p>
         
-        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '2rem', maxWidth: '800px', margin: '0 auto' }}>
-          {tools.map((tool, index) => (
-            <div 
-              key={index} 
-              style={{ 
-                background: 'var(--bg-color)', 
-                padding: '1rem 2rem', 
-                borderRadius: 'var(--radius-md)',
-                fontWeight: 600,
-                border: '1px solid var(--border-color)',
-                boxShadow: 'var(--shadow-sm)'
-              }}
-              data-aos="zoom-in"
-              data-aos-delay={index * 50}
-            >
-              {tool}
-            </div>
-          ))}
+        <div className="marquee-wrapper">
+          <div className="marquee-content">
+            {[...tools, ...tools].map((tool, index) => (
+              <div 
+                key={index} 
+                style={{ 
+                  background: 'var(--glass-bg)', 
+                  padding: '1rem 3rem', 
+                  borderRadius: 'var(--radius-full)',
+                  fontWeight: 600,
+                  border: '1px solid var(--glass-border)',
+                  boxShadow: 'var(--shadow-sm)',
+                  backdropFilter: 'blur(10px)',
+                  whiteSpace: 'nowrap'
+                }}
+              >
+                {tool}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

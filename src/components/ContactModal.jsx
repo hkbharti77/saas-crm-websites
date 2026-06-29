@@ -3,9 +3,9 @@ import { X, CheckCircle, Check, XCircle } from 'lucide-react';
 import 'react-phone-number-input/style.css';
 import PhoneInput, { isValidPhoneNumber } from 'react-phone-number-input';
 
-export default function ContactModal({ isOpen, onClose }) {
+export default function ContactModal({ isOpen, onClose, prefillMessage = '' }) {
   const [phone, setPhone] = useState();
-  const [values, setValues] = useState({ name: '', email: '', message: '' });
+  const [values, setValues] = useState({ name: '', email: '', message: prefillMessage });
   const [touched, setTouched] = useState({ name: false, email: false, phone: false });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -14,7 +14,7 @@ export default function ContactModal({ isOpen, onClose }) {
     if (isOpen) {
       setIsSuccess(false);
       setPhone();
-      setValues({ name: '', email: '', message: '' });
+      setValues({ name: '', email: '', message: prefillMessage });
       setTouched({ name: false, email: false, phone: false });
     }
   }, [isOpen]);
