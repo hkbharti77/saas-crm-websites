@@ -44,6 +44,13 @@ export default function BlogPost() {
       <Helmet>
         <title>{post.title} - Gyan VaniAi</title>
         <meta name="description" content={post.excerpt} />
+        <meta property="og:title" content={`${post.title} - Gyan VaniAi`} />
+        <meta property="og:description" content={post.excerpt} />
+        <meta property="og:image" content={post.imageUrl} />
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content={`https://gyanvania.ai/blog/${id}`} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <link rel="canonical" href={`https://gyanvania.ai/blog/${id}`} />
       </Helmet>
 
       <article className="section" style={{ paddingTop: '8rem', paddingBottom: '6rem', minHeight: '80vh' }}>

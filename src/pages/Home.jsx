@@ -18,6 +18,19 @@ export default function Home() {
       <Helmet>
         <title>Gyan VaniAi | Enterprise AI Solutions & WhatsApp Automation</title>
         <meta name="description" content="Gyan VaniAi offers Enterprise AI systems, RAG pipelines, and automated WhatsApp CRM solutions to scale your business operations." />
+        <link rel="canonical" href="https://gyanvania.ai/" />
+        <script type="application/ld+json">
+          {`
+            {
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "Gyan VaniAi",
+              "url": "https://gyanvania.ai",
+              "logo": "https://gyanvania.ai/logo.png",
+              "description": "Enterprise AI Systems & Full-Stack Development. Specializing in multi-agent orchestration, WhatsApp automation, and intelligent CRM solutions."
+            }
+          `}
+        </script>
       </Helmet>
       <main>
       <div data-aos="fade-in"><Hero onBookDemo={() => setIsModalOpen(true)} /></div>

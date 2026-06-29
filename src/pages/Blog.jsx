@@ -36,6 +36,13 @@ export default function Blog() {
       <Helmet>
         <title>Blog - Gyan VaniAi | Insights on AI & CRM</title>
         <meta name="description" content="Discover the latest trends in AI orchestration, secure RAG pipelines, and automated CRM workflows on the Gyan VaniAi blog." />
+        <meta property="og:title" content="Blog - Gyan VaniAi | Insights on AI & CRM" />
+        <meta property="og:description" content="Discover the latest trends in AI orchestration, secure RAG pipelines, and automated CRM workflows on the Gyan VaniAi blog." />
+        <meta property="og:image" content="https://gyanvania.ai/logo.png" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://gyanvania.ai/blog" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <link rel="canonical" href="https://gyanvania.ai/blog" />
       </Helmet>
 
       <section className="section" style={{ paddingTop: '8rem', minHeight: '80vh' }}>
