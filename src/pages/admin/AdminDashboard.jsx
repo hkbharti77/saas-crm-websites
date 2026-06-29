@@ -90,7 +90,8 @@ const AdminDashboard = () => {
                 <h3>{blog.title}</h3>
                 <p>{blog.date} | {blog.category}</p>
               </div>
-              <div className="blog-actions">
+              <div className="blog-actions" style={{ display: 'flex', gap: '0.5rem' }}>
+                <button onClick={() => navigate(`/admin/edit/${blog.id}`)} className="btn-edit" style={{ background: '#2563eb', color: 'white' }}>Edit</button>
                 <button onClick={() => handleDeleteClick(blog.id)} className="btn-delete">Delete</button>
               </div>
             </div>

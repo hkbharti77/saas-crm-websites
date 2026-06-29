@@ -11,6 +11,7 @@ import ServicePage from './pages/ServicePage';
 import AdminLogin from './pages/admin/AdminLogin';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import AdminCreatePost from './pages/admin/AdminCreatePost';
+import AdminEditPost from './pages/admin/AdminEditPost';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import './App.css';
@@ -41,6 +42,7 @@ function App() {
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
           <Route path="/admin/create" element={<AdminCreatePost />} />
+          <Route path="/admin/edit/:id" element={<AdminEditPost />} />
         </Routes>
       </main>
       <Footer />
