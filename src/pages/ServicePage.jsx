@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Navigate } from 'react-router-dom';
 import { ArrowRight, CheckCircle } from 'lucide-react';
 import ContactModal from '../components/ContactModal';
+import { Helmet } from 'react-helmet-async';
 
 const serviceData = {
   'crm-development': {
@@ -56,10 +57,22 @@ export default function ServicePage() {
   }
 
   return (
-    <div className="service-page" style={{ background: 'var(--bg-main)' }}>
-      <div className="container" style={{ padding: '8rem 1rem 6rem', maxWidth: '900px', margin: '0 auto', minHeight: '80vh' }}>
+    <>
+      <Helmet>
+        <title>{service.title} | Gyan VaniAi Services</title>
+        <meta name="description" content={service.description} />
+        <meta property="og:title" content={`${service.title} | Gyan VaniAi`} />
+        <meta property="og:description" content={service.description} />
+        <meta property="og:image" content={`https://gyanvania.ai${service.imageUrl}`} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={`https://gyanvania.ai/services/${serviceId}`} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <link rel="canonical" href={`https://gyanvania.ai/services/${serviceId}`} />
+      </Helmet>
+      <div className="service-page" style={{ background: 'var(--bg-main)' }}>
+        <div className="container" style={{ padding: '8rem 1rem 6rem', maxWidth: '900px', margin: '0 auto', minHeight: '80vh' }}>
         <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-          <h1 className="h1" style={{ marginBottom: '1.5rem', color: 'white' }}>{service.title}</h1>
+          <h1 className="h1" style={{ marginBottom: '1.5rem', color: 'var(--text-primary)' }}>{service.title}</h1>
           <p className="text-lg text-muted" style={{ maxWidth: '700px', margin: '0 auto' }}>
             {service.description}
           </p>
@@ -69,20 +82,20 @@ export default function ServicePage() {
           <img src={service.imageUrl} alt={service.title} style={{ width: '100%', height: 'auto', display: 'block' }} />
         </div>
 
-        <div className="premium-card" style={{ padding: '3rem', marginBottom: '4rem', background: 'rgba(255, 255, 255, 0.05)', backdropFilter: 'blur(10px)', border: '1px solid rgba(255, 255, 255, 0.1)', borderRadius: '16px' }}>
-          <h2 className="h3" style={{ marginBottom: '2.5rem', color: 'white', textAlign: 'center' }}>Key Features</h2>
+        <div className="premium-card" style={{ padding: '3rem', marginBottom: '4rem', background: 'var(--glass-bg)', backdropFilter: 'blur(10px)', border: '1px solid var(--border-color)', borderRadius: '16px' }}>
+          <h2 className="h3" style={{ marginBottom: '2.5rem', color: 'var(--text-primary)', textAlign: 'center' }}>Key Features</h2>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
             {service.features.map((feature, i) => (
               <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
                 <CheckCircle size={24} color="var(--primary-color)" style={{ flexShrink: 0, marginTop: '2px' }} />
-                <span style={{ fontSize: '1.1rem', color: 'rgba(255,255,255,0.85)', lineHeight: '1.5' }}>{feature}</span>
+                <span style={{ fontSize: '1.1rem', color: 'var(--text-secondary)', lineHeight: '1.5' }}>{feature}</span>
               </div>
             ))}
           </div>
         </div>
 
         <div style={{ textAlign: 'center' }}>
-          <h2 className="h3" style={{ marginBottom: '1.5rem', color: 'white' }}>Ready to get started?</h2>
+          <h2 className="h3" style={{ marginBottom: '1.5rem', color: 'var(--text-primary)' }}>Ready to get started?</h2>
           <button 
             onClick={() => setIsModalOpen(true)}
             className="btn btn-primary" 
@@ -99,5 +112,6 @@ export default function ServicePage() {
         prefillMessage={`I am interested in your ${service.title} services. Please provide more information.`}
       />
     </div>
+    </>
   );
 }
