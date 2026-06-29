@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Phone, MapPin, Mail } from 'lucide-react';
 import './Footer.css';
@@ -24,6 +24,37 @@ const LinkedinIcon = ({ size = 20 }) => (
 );
 
 export default function Footer() {
+  const [email, setEmail] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+
+  const handleSubscribe = async (e) => {
+    e.preventDefault();
+    if (!email) return;
+    
+    setIsSubmitting(true);
+    const formData = new FormData();
+    formData.append("email", email);
+    formData.append("_subject", "New Newsletter Subscription!");
+    
+    try {
+      const response = await fetch("https://formspree.io/f/mzdqyerw", {
+        method: "POST",
+        body: formData,
+        headers: { Accept: "application/json" },
+      });
+      if (response.ok) {
+        setIsSuccess(true);
+        setEmail('');
+      } else {
+        alert("Oops! There was a problem subscribing.");
+      }
+    } catch (error) {
+      alert("Oops! There was a problem subscribing.");
+    }
+    setIsSubmitting(false);
+  };
+
   return (
     <footer className="footer" id="contact">
       <div className="container footer-container">
@@ -48,9 +79,9 @@ export default function Footer() {
           <div className="footer-links">
             <div className="link-group">
               <h4 className="link-title">Services</h4>
-              <a href="#" className="footer-link">CRM Development</a>
-              <a href="#" className="footer-link">AI Chatbots</a>
-              <a href="#" className="footer-link">WhatsApp Automation</a>
+              <Link to="/services/crm-development" className="footer-link" onClick={() => window.scrollTo(0,0)}>CRM Development</Link>
+              <Link to="/services/ai-chatbots" className="footer-link" onClick={() => window.scrollTo(0,0)}>AI Chatbots</Link>
+              <Link to="/services/whatsapp-automation" className="footer-link" onClick={() => window.scrollTo(0,0)}>WhatsApp Automation</Link>
             </div>
             <div className="link-group">
               <h4 className="link-title">Company</h4>
@@ -59,18 +90,32 @@ export default function Footer() {
               <a href="#" className="footer-link">Careers</a>
               <a href="/privacy" className="footer-link">Privacy Policy</a>
               <a href="/terms" className="footer-link">Terms & Conditions</a>
-              <a href="/#contact-form-section" className="footer-link">Contact</a>
+              <a href="/#contact" className="footer-link">Contact</a>
             </div>
           </div>
           
           <div className="footer-cta">
             <h4 className="link-title">Ready to scale?</h4>
-            <div className="newsletter-form">
-              <input type="email" placeholder="Enter your email" className="input-field" />
-              <button className="btn btn-primary" style={{ padding: '0.5rem' }}>
-                <ArrowRight size={20} />
-              </button>
-            </div>
+            {isSuccess ? (
+              <div style={{ padding: '0.75rem', background: 'rgba(16, 185, 129, 0.1)', color: '#10b981', borderRadius: '8px', fontSize: '0.9rem', border: '1px solid rgba(16, 185, 129, 0.2)' }}>
+                Thanks for subscribing!
+              </div>
+            ) : (
+              <form onSubmit={handleSubscribe} className="newsletter-form">
+                <input 
+                  type="email" 
+                  placeholder="Enter your email" 
+                  className="input-field" 
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  disabled={isSubmitting}
+                />
+                <button type="submit" className="btn btn-primary" style={{ padding: '0.5rem', opacity: isSubmitting ? 0.7 : 1 }} disabled={isSubmitting}>
+                  <ArrowRight size={20} />
+                </button>
+              </form>
+            )}
           </div>
         </div>
         

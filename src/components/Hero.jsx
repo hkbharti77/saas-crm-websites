@@ -11,7 +11,7 @@ export default function Hero({ onBookDemo }) {
           <div className="hero-badge">New: WhatsApp Business API Integration</div>
           <h1 className="h1 hero-title">
             Enterprise AI Systems & <br />
-            <span className="text-gradient">Full-Stack</span> Development
+            <span className="gradient-text-premium">Full-Stack</span> Development
           </h1>
           <p className="hero-subtitle text-lg text-muted">
             Specializing in multi-agent orchestration, high-performance RAG pipelines, and secure backend systems to transform your business data into automated workflows.

@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { ArrowLeft, Calendar, Clock, User } from 'lucide-react';
-import { blogPosts } from '../data/blogData';
+import { db } from '../firebase';
+import { collection, query, where, getDocs } from 'firebase/firestore';
 import './BlogPost.css';
 
 export default function BlogPost() {
@@ -12,10 +13,23 @@ export default function BlogPost() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    const foundPost = blogPosts.find(p => p.id === id);
-    setPost(foundPost);
-    setLoading(false);
+    fetchPost();
   }, [id]);
+
+  const fetchPost = async () => {
+    try {
+      const q = query(collection(db, 'blogs'), where('slugId', '==', id));
+      const querySnapshot = await getDocs(q);
+      
+      if (!querySnapshot.empty) {
+        setPost({ id: querySnapshot.docs[0].id, ...querySnapshot.docs[0].data() });
+      }
+    } catch (error) {
+      console.error("Error fetching post: ", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   if (loading) {
     return <div style={{ minHeight: '80vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Loading...</div>;

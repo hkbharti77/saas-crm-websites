@@ -248,6 +248,59 @@ img {
   border-radius: 12px;
   background: var(--input-bg);
   color: var(--text-primary);
+}
+
+/* Premium Utilities */
+.gradient-text-premium {
+  background: linear-gradient(to right, #FF6B9D, #9C27B0, #2196F3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
+}
+
+/* Marquee Carousel */
+.marquee-wrapper {
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  width: 100%;
+  padding: 2rem 0;
+}
+
+.marquee-wrapper::before, .marquee-wrapper::after {
+  position: absolute;
+  top: 0;
+  width: 150px;
+  height: 100%;
+  content: "";
+  z-index: 2;
+}
+.marquee-wrapper::before {
+  left: 0;
+  background: linear-gradient(to right, var(--bg-gradient) 0%, transparent 100%);
+}
+.marquee-wrapper::after {
+  right: 0;
+  background: linear-gradient(to left, var(--bg-gradient) 0%, transparent 100%);
+}
+
+.marquee-content {
+  display: inline-flex;
+  gap: 2rem;
+  animation: scroll 30s linear infinite;
+}
+
+.marquee-content:hover {
+  animation-play-state: paused;
+}
+
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-50% - 1rem)); }
+}
+.form-input, .form-textarea {
   font-family: inherit;
   outline: none;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;

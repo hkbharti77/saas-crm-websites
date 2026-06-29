@@ -45,7 +45,7 @@ export default function Header() {
       <div className="container header-container">
         <a href="/" className="logo">
           <img src="/logo.webp" alt="Gyan VaniAi" className="logo-img" />
-          <span className="logo-text">Gyan VaniAi</span>
+          <span className="logo-text gradient-text-premium">Gyan VaniAi</span>
         </a>
         
         <nav className={`nav ${isOpen ? 'nav-open' : ''}`}>
@@ -57,7 +57,7 @@ export default function Header() {
             {isDark ? <Sun size={20} /> : <Moon size={20} />}
           </button>
           
-          <a href="/#contact-form-section" className="btn btn-primary nav-btn" onClick={() => setIsOpen(false)}>Get Started</a>
+          <a href="/#contact" className="btn btn-primary nav-btn" onClick={() => setIsOpen(false)}>Get Started</a>
         </nav>
         
         <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
