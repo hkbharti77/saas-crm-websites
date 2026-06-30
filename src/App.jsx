@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import BlobBackground from './components/BlobBackground';
+import CustomCursor from './components/CustomCursor';
 import Home from './pages/Home';
 import PolicyPage from './pages/PolicyPage';
 import TermsConditions from './pages/TermsConditions';
@@ -28,6 +30,8 @@ function App() {
 
   return (
     <div className="app-container">
+      <BlobBackground />
+      <CustomCursor />
       <Header />
       <main>
         <Routes>
