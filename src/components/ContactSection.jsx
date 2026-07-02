@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { CheckCircle, Check, XCircle } from 'lucide-react';
+import { CheckCircle, Check, XCircle, MessageCircle, Mail } from 'lucide-react';
 import 'react-phone-number-input/style.css';
 import PhoneInput, { isValidPhoneNumber } from 'react-phone-number-input';
+import { trackContactFormSubmit, trackWhatsAppClick, trackEmailClick } from '../utils/analytics';
 
 export default function ContactSection() {
   const [phone, setPhone] = useState();
@@ -77,6 +78,7 @@ export default function ContactSection() {
       });
       if (response.ok) {
         setIsSuccess(true);
+        trackContactFormSubmit();
       } else {
         alert("Oops! There was a problem submitting your form");
       }
@@ -99,9 +101,31 @@ export default function ContactSection() {
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
               <div>
                 <h4 className="h4" style={{ marginBottom: '0.25rem', fontSize: '1rem', color: 'var(--text-secondary)' }}>Email</h4>
-                <p className="text-muted"><a href="mailto:contact@gyanvaniai.online" style={{ color: 'var(--text-primary)', textDecoration: 'none', fontWeight: '500' }}>contact@gyanvaniai.online</a></p>
+                <p className="text-muted">
+                  <a
+                    href="mailto:contact@gyanvaniai.online"
+                    id="link-email-contact"
+                    style={{ color: 'var(--text-primary)', textDecoration: 'none', fontWeight: '500' }}
+                    onClick={() => trackEmailClick('contact-section')}
+                  >
+                    contact@gyanvaniai.online
+                  </a>
+                </p>
               </div>
             </div>
+
+            {/* WhatsApp Quick Contact */}
+            <a
+              id="btn-whatsapp-contact"
+              href="https://wa.me/917000000000"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-primary"
+              style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', marginTop: '1.5rem', textDecoration: 'none', width: '100%', justifyContent: 'center' }}
+              onClick={() => trackWhatsAppClick('contact-section')}
+            >
+              <MessageCircle size={18} /> Chat on WhatsApp
+            </a>
           </div>
           
           <div className="contact-form-container premium-card">

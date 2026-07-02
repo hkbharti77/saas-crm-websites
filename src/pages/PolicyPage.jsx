@@ -30,6 +30,7 @@ export default function PolicyPage() {
       <Helmet>
         <title>Privacy Policy | Gyan VaniAi</title>
         <meta name="description" content="Privacy Policy and Data Handling practices for Gyan VaniAi." />
+        <link rel="canonical" href="https://gyanvania.ai/privacy" />
       </Helmet>
       <div className="legal-hero">
         <div className="container legal-hero-content">

@@ -6,19 +6,19 @@ const projects = [
   {
     title: 'AI Stock Kundli',
     category: 'Enterprise Investment Platform',
-    image: 'url("/portfolio_stock.webp") center/cover',
+    image: '/portfolio_stock.webp',
     stats: '8 Parallel AI Agents'
   },
   {
     title: 'CRMLite',
     category: 'Multi-Tenant WhatsApp CRM',
-    image: 'url("/portfolio_crm.webp") center/cover',
+    image: '/portfolio_crm.webp',
     stats: 'React Native & Spring'
   },
   {
     title: 'Enterprise AI Platform',
     category: 'RAG & Workflow Automation',
-    image: 'url("/portfolio_ai.webp") center/cover',
+    image: '/portfolio_ai.webp',
     stats: 'Secure PII Masking'
   }
 ];
@@ -38,7 +38,14 @@ export default function Portfolio() {
         <div className="portfolio-grid">
           {projects.map((project, index) => (
             <div className="portfolio-card" key={index}>
-              <div className="portfolio-image" style={{ background: project.image }}>
+              <div className="portfolio-image" style={{ overflow: 'hidden' }}>
+                <img 
+                  src={project.image} 
+                  alt={`${project.title} - ${project.category} built by Gyan VaniAi`} 
+                  loading="lazy"
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transition: 'transform 0.3s ease' }}
+                  className="portfolio-img-el"
+                />
                 <div className="portfolio-stats-badge">{project.stats}</div>
               </div>
               <div className="portfolio-content">

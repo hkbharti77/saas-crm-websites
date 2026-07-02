@@ -18,8 +18,11 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import './App.css';
 import { Analytics } from "@vercel/analytics/react";
+import { useScrollDepth } from './hooks/useScrollDepth';
 
 function App() {
+  useScrollDepth();
+
   useEffect(() => {
     AOS.init({
       duration: 800,

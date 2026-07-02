@@ -71,3 +71,8 @@
   color: var(--primary-color);
   transform: translate(2px, -2px);
 }
+
+.portfolio-card:hover .portfolio-img-el {
+  transform: scale(1.05) !important;
+}
+

@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Check } from 'lucide-react';
+import { trackPricingPlanClick, trackPricingView } from '../utils/analytics';
 import './Pricing.css';
 
 const plans = [
@@ -33,8 +34,26 @@ const plans = [
 ];
 
 export default function Pricing({ onSelectPlan }) {
+  const sectionRef = useRef(null);
+  const hasFiredView = useRef(false);
+
+  // Fire pricing_view event when section enters viewport
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && !hasFiredView.current) {
+          hasFiredView.current = true;
+          trackPricingView();
+        }
+      },
+      { threshold: 0.3 }
+    );
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section className="section pricing" id="pricing">
+    <section className="section pricing" id="pricing" ref={sectionRef}>
       <div className="container">
         <div className="section-header" style={{ textAlign: 'center', marginBottom: '4rem' }}>
           <h2 className="h2">Transparent Pricing</h2>
@@ -63,9 +82,13 @@ export default function Pricing({ onSelectPlan }) {
               </div>
               <div className="pricing-footer">
                 <button 
+                  id={`btn-pricing-${plan.name.toLowerCase()}`}
                   className={`btn ${plan.isPopular ? 'btn-primary' : 'btn-outline'}`} 
                   style={{ width: '100%' }}
-                  onClick={onSelectPlan}
+                  onClick={() => {
+                    trackPricingPlanClick(plan.name);
+                    onSelectPlan && onSelectPlan(plan.name);
+                  }}
                 >
                   {plan.cta}
                 </button>

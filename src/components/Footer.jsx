@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Phone, MapPin, Mail } from 'lucide-react';
+import { trackWhatsAppClick, trackEmailClick, trackNewsletterSubscribe } from '../utils/analytics';
 import './Footer.css';
 
 const FacebookIcon = ({ size = 20 }) => (
@@ -46,6 +47,7 @@ export default function Footer() {
       if (response.ok) {
         setIsSuccess(true);
         setEmail('');
+        trackNewsletterSubscribe();
       } else {
         alert("Oops! There was a problem subscribing.");
       }
@@ -68,9 +70,25 @@ export default function Footer() {
               We build intelligent CRM solutions, AI Chatbots, and automated workflows to scale your business.
             </p>
             <div className="social-links">
-              <a href="https://wa.me/" target="_blank" rel="noopener noreferrer" className="social-icon"><WhatsappIcon size={20} /></a>
+              <a
+                href="https://wa.me/917000000000"
+                id="link-footer-whatsapp"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="social-icon"
+                onClick={() => trackWhatsAppClick('footer')}
+              >
+                <WhatsappIcon size={20} />
+              </a>
               <a href="#" className="social-icon"><MapPin size={20} /></a>
-              <a href="mailto:contact@gyanvaniai.online" className="social-icon"><Mail size={20} /></a>
+              <a
+                href="mailto:contact@gyanvaniai.online"
+                id="link-footer-email"
+                className="social-icon"
+                onClick={() => trackEmailClick('footer')}
+              >
+                <Mail size={20} />
+              </a>
               <a href="https://www.facebook.com/gyanvaniai/" target="_blank" rel="noopener noreferrer" className="social-icon"><FacebookIcon size={20} /></a>
               <a href="https://www.linkedin.com/company/gyan-vaniai" target="_blank" rel="noopener noreferrer" className="social-icon"><LinkedinIcon size={20} /></a>
             </div>
