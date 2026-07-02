@@ -30,6 +30,7 @@ export default function TermsConditions() {
       <Helmet>
         <title>Terms & Conditions | Gyan VaniAi</title>
         <meta name="description" content="Terms of Service and API usage guidelines for Gyan VaniAi platforms." />
+        <link rel="canonical" href="https://gyanvania.ai/terms" />
       </Helmet>
       <div className="legal-hero">
         <div className="container legal-hero-content">

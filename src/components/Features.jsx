@@ -1,5 +1,6 @@
 import React from 'react';
-import { Database, Users, MessageCircle, Bot, GitMerge, Code, Smartphone, Layout, Calendar } from 'lucide-react';
+import { Database, Users, MessageCircle, Bot, GitMerge, Code, Smartphone, Layout, Calendar, ArrowRight } from 'lucide-react';
+import { trackBookDemo } from '../utils/analytics';
 import './Features.css';
 
 const features = [
@@ -23,7 +24,7 @@ const features = [
   },
   {
     icon: <Code size={24} />,
-    title: 'Enterprise APIs & Securtiy',
+    title: 'Enterprise APIs & Security',
     description: 'Secure RESTful APIs protected by JWT, OAuth2, and Role-Based Access Control (RBAC).',
     color: '#ef4444'
   },
@@ -59,7 +60,7 @@ const features = [
   }
 ];
 
-export default function Features() {
+export default function Features({ onBookDemo }) {
   return (
     <section className="section bg-alt" id="features">
       <div className="container">
@@ -80,6 +81,20 @@ export default function Features() {
               <p className="text-muted">{feature.description}</p>
             </div>
           ))}
+        </div>
+
+        {/* Section CTA */}
+        <div style={{ textAlign: 'center', marginTop: '3.5rem' }}>
+          <p className="text-muted" style={{ marginBottom: '1rem' }}>
+            Ready to see these features in action?
+          </p>
+          <button
+            id="btn-features-book-demo"
+            className="btn btn-primary"
+            onClick={() => { trackBookDemo('features'); onBookDemo && onBookDemo(); }}
+          >
+            Book a Free Demo <ArrowRight size={18} />
+          </button>
         </div>
       </div>
     </section>

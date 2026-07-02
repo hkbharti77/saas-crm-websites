@@ -1,51 +1,125 @@
 import React from 'react';
-import { Star } from 'lucide-react';
+import { ArrowRight, TrendingUp, Clock, MessageCircle, Users, BarChart2 } from 'lucide-react';
+import { trackBookDemo, trackWhatsAppClick } from '../utils/analytics';
 import './Testimonials.css';
 
-const testimonials = [
+const results = [
   {
-    quote: "AutoCRM completely transformed how we handle inbound leads. Our response time went from hours to seconds, and conversions are up 40%.",
-    author: "Sarah Jenkins",
-    role: "VP of Sales, TechCorp",
-    avatar: "S"
+    icon: <Clock size={28} />,
+    metric: 'Hours → Seconds',
+    label: 'Lead Response Time',
+    detail: 'AI instantly qualifies and responds to new leads on WhatsApp — no human delay.',
+    color: '#3b82f6',
   },
   {
-    quote: "The WhatsApp automation bot they built for us handles 80% of our tier-1 support queries. Incredible ROI within just two months.",
-    author: "David Chen",
-    role: "Customer Success Lead, RetailPro",
-    avatar: "D"
+    icon: <MessageCircle size={28} />,
+    metric: '80%',
+    label: 'Support Queries Automated',
+    detail: 'Our WhatsApp bots handle tier-1 queries so your team focuses on closing deals.',
+    color: '#22c55e',
   },
   {
-    quote: "Their team didn't just build a CRM; they engineered a complete growth engine tailored perfectly to our unique sales process.",
-    author: "Emily Martinez",
-    role: "Founder, GrowthStart",
-    avatar: "E"
-  }
+    icon: <TrendingUp size={28} />,
+    metric: '3x',
+    label: 'Average ROI',
+    detail: 'Clients typically recover their investment within the first 60 days.',
+    color: '#8b5cf6',
+  },
+  {
+    icon: <BarChart2 size={28} />,
+    metric: '40%+',
+    label: 'Conversion Lift',
+    detail: 'Automated follow-ups and AI lead scoring convert more pipeline into revenue.',
+    color: '#f59e0b',
+  },
+  {
+    icon: <Users size={28} />,
+    metric: '500+',
+    label: 'Businesses Served',
+    detail: 'From lean startups to large enterprises across India, USA, and beyond.',
+    color: '#06b6d4',
+  },
 ];
 
-export default function Testimonials() {
+const socialProofStats = [
+  { value: '500+', label: 'Businesses Served' },
+  { value: '10M+', label: 'AI Conversations' },
+  { value: '98%', label: 'Satisfaction Rate' },
+  { value: '3x', label: 'Average ROI' },
+];
+
+export default function Testimonials({ onBookDemo }) {
   return (
-    <section className="section bg-alt testimonials">
+    <section className="section bg-alt testimonials" id="results">
       <div className="container">
-        <h2 className="h2 text-center" style={{ marginBottom: '4rem' }}>Loved by Revenue Teams</h2>
-        
-        <div className="testimonials-grid">
-          {testimonials.map((item, index) => (
-            <div className="testimonial-card" key={index}>
-              <div className="testimonial-stars">
-                {[...Array(5)].map((_, i) => <Star key={i} size={16} fill="currentColor" stroke="none" />)}
-              </div>
-              <p className="testimonial-quote">"{item.quote}"</p>
-              <div className="testimonial-author">
-                <div className="author-avatar">{item.avatar}</div>
-                <div>
-                  <h4 className="author-name">{item.author}</h4>
-                  <p className="author-role">{item.role}</p>
-                </div>
-              </div>
+
+        {/* Social Proof Stats Bar */}
+        <div className="testimonials-stats">
+          {socialProofStats.map((stat) => (
+            <div className="testimonials-stat" key={stat.label}>
+              <span className="testimonials-stat-value">{stat.value}</span>
+              <span className="testimonials-stat-label">{stat.label}</span>
             </div>
           ))}
         </div>
+
+        {/* Section Header */}
+        <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+          <h2 className="h2">Results You Can Expect</h2>
+          <p className="text-lg text-muted" style={{ maxWidth: '580px', margin: '1rem auto 0' }}>
+            Here's what our AI CRM and automation systems consistently deliver for businesses like yours.
+          </p>
+        </div>
+
+        {/* Results Grid */}
+        <div className="results-grid">
+          {results.map((item) => (
+            <div className="result-card" key={item.label}>
+              <div className="result-icon" style={{ color: item.color, background: `${item.color}18` }}>
+                {item.icon}
+              </div>
+              <div className="result-metric" style={{ color: item.color }}>{item.metric}</div>
+              <h3 className="result-label">{item.label}</h3>
+              <p className="result-detail text-muted">{item.detail}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* ── Option 2: Design Partner / Early Access CTA ── */}
+        <div className="early-access-card">
+          <div className="early-access-badge">🚀 Limited Spots</div>
+          <h3 className="h3" style={{ marginBottom: '0.75rem' }}>
+            Be One of Our First 10 Design Partners
+          </h3>
+          <p className="text-muted" style={{ maxWidth: '520px', margin: '0 auto 2rem', lineHeight: '1.7' }}>
+            We're onboarding a select group of early clients at a <strong>special founding rate</strong>.
+            You get a fully custom AI CRM setup, priority support, and direct input into our roadmap.
+          </p>
+          <div className="early-access-actions">
+            <button
+              id="btn-early-access-demo"
+              className="btn btn-primary"
+              onClick={() => { trackBookDemo('early-access'); onBookDemo && onBookDemo(); }}
+            >
+              Claim Your Spot <ArrowRight size={18} />
+            </button>
+            <a
+              id="btn-early-access-whatsapp"
+              href="https://wa.me/917000000000?text=Hi%2C%20I%20want%20to%20be%20a%20design%20partner"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-outline"
+              style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', textDecoration: 'none' }}
+              onClick={() => trackWhatsAppClick('early-access')}
+            >
+              <MessageCircle size={18} /> Chat on WhatsApp
+            </a>
+          </div>
+          <p className="text-sm text-muted" style={{ marginTop: '1.25rem' }}>
+            No credit card · Cancel anytime
+          </p>
+        </div>
+
       </div>
     </section>
   );

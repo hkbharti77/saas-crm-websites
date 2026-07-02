@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { X, CheckCircle, Check, XCircle } from 'lucide-react';
 import 'react-phone-number-input/style.css';
 import PhoneInput, { isValidPhoneNumber } from 'react-phone-number-input';
+import { trackContactFormSubmit } from '../utils/analytics';
 
 export default function ContactModal({ isOpen, onClose, prefillMessage = '' }) {
   const [phone, setPhone] = useState();
@@ -70,6 +71,7 @@ export default function ContactModal({ isOpen, onClose, prefillMessage = '' }) {
       });
       if (response.ok) {
         setIsSuccess(true);
+        trackContactFormSubmit();
       } else {
         alert("Oops! There was a problem submitting your form");
       }
