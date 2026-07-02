@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { CheckCircle, Check, XCircle, MessageCircle, Mail } from 'lucide-react';
+import { CheckCircle, Check, XCircle, Mail } from 'lucide-react';
 import 'react-phone-number-input/style.css';
 import PhoneInput, { isValidPhoneNumber } from 'react-phone-number-input';
-import { trackContactFormSubmit, trackWhatsAppClick, trackEmailClick } from '../utils/analytics';
+import { trackContactFormSubmit, trackEmailClick } from '../utils/analytics';
 
 export default function ContactSection() {
   const [phone, setPhone] = useState();
@@ -113,19 +113,6 @@ export default function ContactSection() {
                 </p>
               </div>
             </div>
-
-            {/* WhatsApp Quick Contact */}
-            <a
-              id="btn-whatsapp-contact"
-              href="https://wa.me/917000000000"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-primary"
-              style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', marginTop: '1.5rem', textDecoration: 'none', width: '100%', justifyContent: 'center' }}
-              onClick={() => trackWhatsAppClick('contact-section')}
-            >
-              <MessageCircle size={18} /> Chat on WhatsApp
-            </a>
           </div>
           
           <div className="contact-form-container premium-card">
