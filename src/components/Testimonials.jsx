@@ -1,6 +1,6 @@
 import React from 'react';
 import { ArrowRight, TrendingUp, Clock, MessageCircle, Users, BarChart2 } from 'lucide-react';
-import { trackBookDemo, trackWhatsAppClick } from '../utils/analytics';
+import { trackBookDemo } from '../utils/analytics';
 import './Testimonials.css';
 
 const results = [
@@ -103,17 +103,6 @@ export default function Testimonials({ onBookDemo }) {
             >
               Claim Your Spot <ArrowRight size={18} />
             </button>
-            <a
-              id="btn-early-access-whatsapp"
-              href="https://wa.me/917000000000?text=Hi%2C%20I%20want%20to%20be%20a%20design%20partner"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-outline"
-              style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', textDecoration: 'none' }}
-              onClick={() => trackWhatsAppClick('early-access')}
-            >
-              <MessageCircle size={18} /> Chat on WhatsApp
-            </a>
           </div>
           <p className="text-sm text-muted" style={{ marginTop: '1.25rem' }}>
             No credit card · Cancel anytime

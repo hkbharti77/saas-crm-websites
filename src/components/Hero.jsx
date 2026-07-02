@@ -1,6 +1,6 @@
 import React from 'react';
-import { ArrowRight, PlayCircle, MessageCircle, Bot, Users, Mic } from 'lucide-react';
-import { trackBookDemo, trackWhatsAppClick } from '../utils/analytics';
+import { ArrowRight, MessageCircle, Bot, Users, Mic } from 'lucide-react';
+import { trackBookDemo } from '../utils/analytics';
 import './Hero.css';
 
 const featurePills = [
@@ -46,16 +46,6 @@ export default function Hero({ onBookDemo }) {
               onClick={() => handleBookDemo('hero')}
             >
               Book Free Demo <ArrowRight size={20} />
-            </button>
-            <button
-              id="btn-whatsapp-hero"
-              className="btn btn-outline"
-              onClick={() => {
-                trackWhatsAppClick('hero');
-                window.open('https://wa.me/917000000000', '_blank');
-              }}
-            >
-              <PlayCircle size={20} /> Chat on WhatsApp
             </button>
           </div>
           <div className="hero-trust">
