@@ -13,6 +13,22 @@ const AdminDashboard = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    async function fetchBlogs() {
+      try {
+        const q = query(collection(db, 'blogs'), orderBy('createdAt', 'desc'));
+        const querySnapshot = await getDocs(q);
+        const blogsList = querySnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }));
+        setBlogs(blogsList);
+      } catch (error) {
+        console.error("Error fetching blogs: ", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
     // Check if user is logged in
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (!user) {
@@ -24,21 +40,7 @@ const AdminDashboard = () => {
     return () => unsubscribe();
   }, [navigate]);
 
-  const fetchBlogs = async () => {
-    try {
-      const q = query(collection(db, 'blogs'), orderBy('createdAt', 'desc'));
-      const querySnapshot = await getDocs(q);
-      const blogsList = querySnapshot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data()
-      }));
-      setBlogs(blogsList);
-    } catch (error) {
-      console.error("Error fetching blogs: ", error);
-    } finally {
-      setLoading(false);
-    }
-  };
+
 
   const handleDeleteClick = (id) => {
     setBlogToDelete(id);

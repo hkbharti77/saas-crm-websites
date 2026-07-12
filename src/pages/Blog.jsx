@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { ArrowRight, Calendar, Clock } from 'lucide-react';
+import { ArrowRight, Calendar } from 'lucide-react';
 import { db } from '../firebase';
 import { collection, getDocs, query, orderBy } from 'firebase/firestore';
 import ContactModal from '../components/ContactModal';
@@ -15,24 +15,27 @@ export default function Blog() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    
+    async function fetchBlogs() {
+      try {
+        const q = query(collection(db, 'blogs'), orderBy('createdAt', 'desc'));
+        const querySnapshot = await getDocs(q);
+        const blogsList = querySnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }));
+        setBlogs(blogsList);
+      } catch (error) {
+        console.error("Error fetching blogs: ", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    
     fetchBlogs();
   }, []);
 
-  const fetchBlogs = async () => {
-    try {
-      const q = query(collection(db, 'blogs'), orderBy('createdAt', 'desc'));
-      const querySnapshot = await getDocs(q);
-      const blogsList = querySnapshot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data()
-      }));
-      setBlogs(blogsList);
-    } catch (error) {
-      console.error("Error fetching blogs: ", error);
-    } finally {
-      setLoading(false);
-    }
-  };
+
 
   return (
     <>

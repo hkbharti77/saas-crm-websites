@@ -9,6 +9,7 @@ export default function CustomCursor() {
   useEffect(() => {
     // Check if on mobile
     if (window.matchMedia("(max-width: 768px)").matches || 'ontouchstart' in window) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setIsMobile(true);
       return;
     }

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Phone, MapPin, Mail } from 'lucide-react';
+import { ArrowRight, MapPin, Mail } from 'lucide-react';
 import { trackEmailClick, trackNewsletterSubscribe } from '../utils/analytics';
 import './Footer.css';
 
@@ -45,7 +45,7 @@ export default function Footer() {
       } else {
         alert("Oops! There was a problem subscribing.");
       }
-    } catch (error) {
+    } catch {
       alert("Oops! There was a problem subscribing.");
     }
     setIsSubmitting(false);
@@ -64,35 +64,50 @@ export default function Footer() {
               We build intelligent CRM solutions, AI Chatbots, and automated workflows to scale your business.
             </p>
             <div className="social-links">
-              <a href="#" className="social-icon"><MapPin size={20} /></a>
+              <a href="#" className="social-icon" aria-label="Our Location"><MapPin size={20} /></a>
               <a
                 href="mailto:contact@gyanvaniai.online"
                 id="link-footer-email"
                 className="social-icon"
                 onClick={() => trackEmailClick('footer')}
+                aria-label="Email Us"
               >
                 <Mail size={20} />
               </a>
-              <a href="https://www.facebook.com/gyanvaniai/" target="_blank" rel="noopener noreferrer" className="social-icon"><FacebookIcon size={20} /></a>
-              <a href="https://www.linkedin.com/company/gyan-vaniai" target="_blank" rel="noopener noreferrer" className="social-icon"><LinkedinIcon size={20} /></a>
+              <a href="https://www.facebook.com/gyanvaniai/" target="_blank" rel="noopener noreferrer" className="social-icon" aria-label="Visit our Facebook page"><FacebookIcon size={20} /></a>
+              <a href="https://www.linkedin.com/company/gyan-vaniai" target="_blank" rel="noopener noreferrer" className="social-icon" aria-label="Visit our LinkedIn page"><LinkedinIcon size={20} /></a>
             </div>
           </div>
           
-          <div className="footer-links">
+          <div className="footer-links" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: '2rem', flex: 1, minWidth: '60%' }}>
             <div className="link-group">
               <h4 className="link-title">Services</h4>
-              <Link to="/services/crm-development" className="footer-link" onClick={() => window.scrollTo(0,0)}>CRM Development</Link>
-              <Link to="/services/ai-chatbots" className="footer-link" onClick={() => window.scrollTo(0,0)}>AI Chatbots</Link>
-              <Link to="/services/whatsapp-automation" className="footer-link" onClick={() => window.scrollTo(0,0)}>WhatsApp Automation</Link>
+              <Link to="/services/ai-development" className="footer-link">AI Development</Link>
+              <Link to="/services/crm-development" className="footer-link">CRM Development</Link>
+              <Link to="/services/hrms-development" className="footer-link">HRMS Solutions</Link>
+              <Link to="/services/erp-development" className="footer-link">ERP Solutions</Link>
+              <Link to="/services/web-development" className="footer-link">Website Development</Link>
+              <Link to="/services/mobile-app-development" className="footer-link">Mobile Apps</Link>
+            </div>
+            <div className="link-group">
+              <h4 className="link-title">Industries</h4>
+              <Link to="/industries/healthcare" className="footer-link">Healthcare</Link>
+              <Link to="/industries/education" className="footer-link">Education</Link>
+              <Link to="/industries/manufacturing" className="footer-link">Manufacturing</Link>
+              <Link to="/industries/finance" className="footer-link">Finance</Link>
+              <Link to="/industries/enterprise" className="footer-link">Enterprise IT</Link>
             </div>
             <div className="link-group">
               <h4 className="link-title">Company</h4>
               <Link to="/blog" className="footer-link">Blog</Link>
               <a href="#" className="footer-link">About Us</a>
               <a href="#" className="footer-link">Careers</a>
+              <a href="/#contact" className="footer-link">Contact</a>
+            </div>
+            <div className="link-group">
+              <h4 className="link-title">Legal</h4>
               <a href="/privacy" className="footer-link">Privacy Policy</a>
               <a href="/terms" className="footer-link">Terms & Conditions</a>
-              <a href="/#contact" className="footer-link">Contact</a>
             </div>
           </div>
           
@@ -113,7 +128,7 @@ export default function Footer() {
                   required
                   disabled={isSubmitting}
                 />
-                <button type="submit" className="btn btn-primary" style={{ padding: '0.5rem', opacity: isSubmitting ? 0.7 : 1 }} disabled={isSubmitting}>
+                <button type="submit" className="btn btn-primary" style={{ padding: '0.5rem', opacity: isSubmitting ? 0.7 : 1 }} disabled={isSubmitting} aria-label="Subscribe to newsletter">
                   <ArrowRight size={20} />
                 </button>
               </form>

@@ -21,6 +21,34 @@ const AdminEditPost = () => {
   const [content, setContent] = useState('');
 
   useEffect(() => {
+    async function fetchPost() {
+      try {
+        const docRef = doc(db, 'blogs', id);
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+          const data = docSnap.data();
+          setFormData({
+            title: data.title || '',
+            excerpt: data.excerpt || '',
+            author: data.author || '',
+            category: data.category || '',
+            readTime: data.readTime || '',
+            imageUrl: data.imageUrl || '',
+            date: data.date || ''
+          });
+          setContent(data.content || '');
+        } else {
+          alert("Post not found!");
+          navigate('/admin/dashboard');
+        }
+      } catch (error) {
+        console.error("Error fetching post: ", error);
+        alert("Failed to fetch post.");
+      } finally {
+        setFetching(false);
+      }
+    }
+
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (!user) {
         navigate('/admin/login');
@@ -31,33 +59,7 @@ const AdminEditPost = () => {
     return () => unsubscribe();
   }, [navigate, id]);
 
-  const fetchPost = async () => {
-    try {
-      const docRef = doc(db, 'blogs', id);
-      const docSnap = await getDoc(docRef);
-      if (docSnap.exists()) {
-        const data = docSnap.data();
-        setFormData({
-          title: data.title || '',
-          excerpt: data.excerpt || '',
-          author: data.author || '',
-          category: data.category || '',
-          readTime: data.readTime || '',
-          imageUrl: data.imageUrl || '',
-          date: data.date || ''
-        });
-        setContent(data.content || '');
-      } else {
-        alert("Post not found!");
-        navigate('/admin/dashboard');
-      }
-    } catch (error) {
-      console.error("Error fetching post: ", error);
-      alert("Failed to fetch post.");
-    } finally {
-      setFetching(false);
-    }
-  };
+
 
   const handleChange = (e) => {
     setFormData({

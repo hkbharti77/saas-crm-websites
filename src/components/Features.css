@@ -18,9 +18,9 @@
 }
 
 .feature-card:hover {
-  box-shadow: var(--shadow-hover);
-  transform: translateY(-5px);
-  border-color: var(--primary-color);
+  box-shadow: 0 20px 40px -10px rgba(168, 85, 247, 0.2);
+  transform: translateY(-8px);
+  border-color: rgba(168, 85, 247, 0.5);
 }
 
 .feature-icon {
@@ -31,6 +31,11 @@
   justify-content: center;
   border-radius: var(--radius-md);
   margin-bottom: 1.5rem;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.feature-card:hover .feature-icon {
+  transform: scale(1.15) rotate(5deg);
 }
 
 .feature-title {

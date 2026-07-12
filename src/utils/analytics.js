@@ -17,7 +17,7 @@ import { track } from '@vercel/analytics';
 export function trackEvent(eventName, properties = {}) {
   try {
     track(eventName, properties);
-  } catch (err) {
+  } catch {
     // Never let analytics errors break the UI
     if (process.env.NODE_ENV === 'development') {
       console.debug('[Analytics]', eventName, properties);

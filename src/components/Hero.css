@@ -10,7 +10,8 @@
   right: -5%;
   width: 600px;
   height: 600px;
-  background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, rgba(255, 255, 255, 0) 70%);
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.3) 0%, rgba(59, 130, 246, 0.2) 40%, rgba(255, 255, 255, 0) 70%);
+  filter: blur(60px);
   border-radius: 50%;
   z-index: -1;
 }
@@ -93,15 +94,17 @@
 .hero-mockup {
   background: white;
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-lg);
+  box-shadow: 0 30px 60px -12px rgba(168, 85, 247, 0.25), 0 18px 36px -18px rgba(0, 0, 0, 0.3);
   border: 1px solid var(--border-color);
   overflow: hidden;
   transform: perspective(1000px) rotateY(-5deg) rotateX(5deg);
-  transition: transform 0.5s ease;
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+  animation: float 8s ease-in-out infinite;
 }
 
 .hero-mockup:hover {
   transform: perspective(1000px) rotateY(0deg) rotateX(0deg);
+  box-shadow: 0 40px 80px -15px rgba(168, 85, 247, 0.3), 0 25px 50px -20px rgba(0, 0, 0, 0.4);
 }
 
 .mockup-header {

@@ -1,35 +1,48 @@
 import React from 'react';
 
-const technologies = [
-  'Python', 'Java', 'TypeScript', 'FastAPI', 'Spring Boot', 'React', 'Next.js', 'LangChain', 'AWS', 'GCP Vertex AI', 'Docker', 'PostgreSQL'
+const techCategories = [
+  {
+    name: 'Frontend',
+    techs: ['React', 'Next.js']
+  },
+  {
+    name: 'Backend',
+    techs: ['FastAPI', 'Spring Boot', 'Node.js']
+  },
+  {
+    name: 'AI',
+    techs: ['OpenAI', 'LangChain', 'Pinecone']
+  },
+  {
+    name: 'Database',
+    techs: ['PostgreSQL', 'MongoDB', 'Redis']
+  },
+  {
+    name: 'Cloud',
+    techs: ['AWS', 'Docker', 'Kubernetes']
+  }
 ];
 
 export default function TechStack() {
   return (
-    <section className="section bg-alt" id="tech-stack">
-      <div className="container text-center">
-        <h2 className="h2" style={{ marginBottom: '1rem' }} data-aos="fade-up">Enterprise Tech Stack</h2>
-        <p className="text-lg text-muted" style={{ marginBottom: '3rem' }} data-aos="fade-up" data-aos-delay="100">
-          Built with scalable, high-performance, and secure technologies.
-        </p>
+    <section className="section" id="tech-stack">
+      <div className="container">
+        <div className="section-header" style={{ textAlign: 'center', marginBottom: '4rem' }}>
+          <h2 className="h2">Technologies We Use</h2>
+          <p className="text-lg text-muted" style={{ maxWidth: '600px', margin: '1rem auto 0' }}>
+            We leverage modern, scalable, and secure technologies to build your solutions.
+          </p>
+        </div>
         
-        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '1.5rem', maxWidth: '900px', margin: '0 auto' }}>
-          {technologies.map((tech, index) => (
-            <div 
-              key={index} 
-              className="glass-panel"
-              style={{ 
-                padding: '0.75rem 1.5rem', 
-                borderRadius: 'var(--radius-full)',
-                fontWeight: 600,
-                color: 'var(--text-primary)',
-                display: 'flex',
-                alignItems: 'center'
-              }}
-              data-aos="zoom-in"
-              data-aos-delay={index * 50}
-            >
-              {tech}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '2rem' }}>
+          {techCategories.map((category, index) => (
+            <div key={index} className="premium-card" style={{ padding: '1.5rem', textAlign: 'center' }}>
+              <h3 style={{ fontSize: '1.25rem', marginBottom: '1rem', color: 'var(--primary-color)' }}>{category.name}</h3>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                {category.techs.map((tech, i) => (
+                  <span key={i} style={{ fontWeight: '500', color: 'var(--text-primary)' }}>{tech}</span>
+                ))}
+              </div>
             </div>
           ))}
         </div>

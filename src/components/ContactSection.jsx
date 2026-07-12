@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { CheckCircle, Check, XCircle, Mail } from 'lucide-react';
+import { CheckCircle, Check, XCircle } from 'lucide-react';
 import 'react-phone-number-input/style.css';
 import PhoneInput, { isValidPhoneNumber } from 'react-phone-number-input';
 import { trackContactFormSubmit, trackEmailClick } from '../utils/analytics';
@@ -18,9 +18,11 @@ export default function ContactSection() {
          'whatsapp-automation': 'WhatsApp Automation'
        };
        if(serviceNames[service]) {
+          // eslint-disable-next-line react-hooks/set-state-in-effect
           setValues(prev => ({...prev, message: `I am interested in your ${serviceNames[service]} services. Please provide more information.`}));
        }
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const [touched, setTouched] = useState({ name: false, email: false, phone: false });
@@ -82,21 +84,21 @@ export default function ContactSection() {
       } else {
         alert("Oops! There was a problem submitting your form");
       }
-    } catch (error) {
+    } catch {
       alert("Oops! There was a problem submitting your form");
     }
     setIsSubmitting(false);
   };
 
   return (
-    <section className="contact-section" id="contact" style={{ padding: '6rem 0', background: 'var(--bg-alt)' }}>
+    <section className="contact-section section" id="contact" style={{ background: 'transparent' }}>
       <div className="container" style={{ maxWidth: '900px' }}>
         <div className="contact-grid">
           
           <div className="contact-info premium-card">
-            <h3 className="h3" style={{ marginBottom: '1rem', fontSize: '1.5rem' }}>Get in Touch</h3>
-            <p className="text-muted" style={{ marginBottom: '2rem', fontSize: '1rem', lineHeight: '1.6' }}>
-              Ready to transform your business with AI? Contact us to discuss your specific needs.
+            <h3 className="h3" style={{ marginBottom: '1rem', fontSize: '2rem' }}>Ready to Transform Your Business?</h3>
+            <p className="text-muted" style={{ marginBottom: '2rem', fontSize: '1.1rem', lineHeight: '1.6' }}>
+              Let's build software that helps your business grow faster, automate operations, and deliver exceptional customer experiences.
             </p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
               <div>

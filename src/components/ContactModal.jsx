@@ -13,11 +13,13 @@ export default function ContactModal({ isOpen, onClose, prefillMessage = '' }) {
 
   React.useEffect(() => {
     if (isOpen) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setIsSuccess(false);
       setPhone();
       setValues({ name: '', email: '', message: prefillMessage });
       setTouched({ name: false, email: false, phone: false });
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen]);
 
   const handleChange = (e) => {
@@ -75,7 +77,7 @@ export default function ContactModal({ isOpen, onClose, prefillMessage = '' }) {
       } else {
         alert("Oops! There was a problem submitting your form");
       }
-    } catch (error) {
+    } catch {
       alert("Oops! There was a problem submitting your form");
     }
     setIsSubmitting(false);

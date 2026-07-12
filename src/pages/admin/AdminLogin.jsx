@@ -19,7 +19,7 @@ const AdminLogin = () => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       navigate('/admin/dashboard');
-    } catch (err) {
+    } catch {
       setError('Invalid email or password. Please try again.');
     } finally {
       setLoading(false);

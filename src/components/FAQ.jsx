@@ -4,20 +4,36 @@ import './FAQ.css';
 
 const faqs = [
   {
-    question: 'How long does implementation take?',
-    answer: 'Most standard CRM setups and chatbot integrations are completed within 2 weeks. Custom workflow development may take 4-6 weeks depending on complexity.'
+    question: 'How long does a CRM project take?',
+    answer: 'Timelines vary based on complexity. Standard CRM implementations take 2-4 weeks, while custom enterprise CRM systems with complex workflows can take 2-3 months.'
   },
   {
-    question: 'Do you integrate with my existing tools?',
-    answer: 'Yes! We offer native integrations for over 50 popular tools including Salesforce, Hubspot, Zapier, Slack, and Shopify. We can also build custom API connectors.'
+    question: 'Do you build custom software?',
+    answer: 'Yes! We specialize in custom software development, including AI agents, HRMS, ERP systems, and business portals tailored to your exact operational needs.'
   },
   {
-    question: 'How does the WhatsApp Automation work?',
-    answer: 'We connect directly to the official WhatsApp Business API. This allows us to build chatbots that automatically answer FAQs, qualify leads, and route complex queries to your human agents.'
+    question: 'Can you integrate with existing systems?',
+    answer: 'Absolutely. Our solutions are designed to seamlessly integrate with your existing databases, legacy software, and third-party APIs like Salesforce, Stripe, or SAP.'
   },
   {
-    question: 'Can I cancel my subscription anytime?',
-    answer: 'Absolutely. All our standard plans are month-to-month with no long-term lock-in contracts unless you opt for an annual discount.'
+    question: 'Do you provide post-launch support?',
+    answer: 'Yes, we view deployment as the beginning of our partnership. We offer comprehensive maintenance, updates, security patching, and ongoing support.'
+  },
+  {
+    question: 'Which industries do you specialize in?',
+    answer: 'We have delivered solutions across Healthcare, Education, Manufacturing, Real Estate, Logistics, Finance, and Enterprise IT.'
+  },
+  {
+    question: 'Can you develop mobile apps?',
+    answer: 'Yes, we build high-performance native (iOS/Android) and cross-platform (React Native/Flutter) mobile applications for businesses and consumers.'
+  },
+  {
+    question: 'Do you offer AI automation services?',
+    answer: 'Yes. We build intelligent chatbots, voice agents, and multi-agent workflows that automate customer support, sales qualification, and internal operations.'
+  },
+  {
+    question: 'How do I get a project estimate?',
+    answer: 'Simply book a free consultation with our team. We will discuss your requirements, perform a technical feasibility check, and provide a detailed estimate.'
   }
 ];
 
@@ -36,7 +52,7 @@ export default function FAQ() {
               className={`faq-item ${openIndex === index ? 'open' : ''}`}
               onClick={() => setOpenIndex(index === openIndex ? -1 : index)}
               data-aos="fade-up"
-              data-aos-delay={index * 100}
+              data-aos-delay={index * 50}
             >
               <div className="faq-question">
                 <h4 style={{ fontWeight: 600, fontSize: '1.125rem' }}>{faq.question}</h4>

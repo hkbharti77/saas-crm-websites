@@ -1,17 +1,19 @@
 import React from 'react';
 
 const tools = [
-  'Salesforce', 'HubSpot', 'Zapier', 'Shopify', 'Slack', 'WhatsApp', 'Mailchimp', 'Stripe'
+  'WhatsApp CRM', 'Facebook', 'Slack', 'Salesforce', 'HubSpot', 'Zapier', 'Shopify', 'Mailchimp', 'Stripe', 'Google Workspace'
 ];
 
 export default function Integrations() {
   return (
     <section className="section" id="integrations">
       <div className="container text-center">
-        <h2 className="h2" style={{ marginBottom: '1rem' }} data-aos="fade-up">Seamless Integrations</h2>
-        <p className="text-lg text-muted" style={{ marginBottom: '3rem' }} data-aos="fade-up" data-aos-delay="100">
-          Connect AutoCRM with the tools your team already uses every day.
-        </p>
+        <div className="section-header" style={{ textAlign: 'center', marginBottom: '3rem' }}>
+          <h2 className="h2" data-aos="fade-up">Seamless Integrations</h2>
+          <p className="text-lg text-muted" data-aos="fade-up" data-aos-delay="100" style={{ maxWidth: '600px', margin: '1rem auto 0' }}>
+            We seamlessly connect our custom solutions with the tools your team already uses every day.
+          </p>
+        </div>
         
         <div className="marquee-wrapper">
           <div className="marquee-content">

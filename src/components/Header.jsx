@@ -61,7 +61,7 @@ export default function Header() {
         </nav>
         
         <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-          <button className="mobile-menu-btn" onClick={() => setIsOpen(!isOpen)}>
+          <button className="mobile-menu-btn" onClick={() => setIsOpen(!isOpen)} aria-label="Toggle navigation menu" aria-expanded={isOpen}>
             {isOpen ? <X /> : <Menu />}
           </button>
         </div>

@@ -1,62 +1,44 @@
 import React from 'react';
-import { Database, Users, MessageCircle, Bot, GitMerge, Code, Smartphone, Layout, Calendar, ArrowRight } from 'lucide-react';
+import { Database, Users, Bot, GitMerge, Smartphone, Layout, ArrowRight } from 'lucide-react';
 import { trackBookDemo } from '../utils/analytics';
 import './Features.css';
 
-const features = [
-  {
-    icon: <Database size={24} />,
-    title: 'Multi-Tenant Backends',
-    description: 'Scalable Spring Boot and FastAPI architectures ensuring strict data isolation and ACID compliance.',
-    color: '#3b82f6'
-  },
-  {
-    icon: <MessageCircle size={24} />,
-    title: 'Omnichannel Automation',
-    description: 'WhatsApp Business and Slack integrations with Agent Handoff triggers to reduce support times.',
-    color: '#22c55e'
-  },
+const services = [
   {
     icon: <Bot size={24} />,
-    title: 'RAG Knowledge Systems',
-    description: 'Optimized hybrid search pipelines (FAISS/LangChain) reducing query latency to sub-300ms.',
+    title: 'AI Solutions',
+    description: 'AI Chatbots, AI Voice Agents, AI Sales Agents, AI Customer Support, AI Workflow Automation.',
     color: '#8b5cf6'
   },
   {
-    icon: <Code size={24} />,
-    title: 'Enterprise APIs & Security',
-    description: 'Secure RESTful APIs protected by JWT, OAuth2, and Role-Based Access Control (RBAC).',
-    color: '#ef4444'
-  },
-  {
-    icon: <Smartphone size={24} />,
-    title: 'Mobile Engineering',
-    description: 'Robust React Native applications built for cross-platform scalability and native device performance.',
-    color: '#ec4899'
-  },
-  {
-    icon: <Layout size={24} />,
-    title: 'Scalable Frontends',
-    description: 'High-performance React and Next.js applications engineered for maximum UX and SEO visibility.',
-    color: '#06b6d4'
-  },
-  {
-    icon: <Calendar size={24} />,
-    title: 'Distributed Systems',
-    description: 'High-concurrency logic using Redis distributed locking to prevent data races during traffic spikes.',
-    color: '#84cc16'
-  },
-  {
     icon: <Users size={24} />,
-    title: 'Secure Data Pipelines',
-    description: 'Automated PII masking and document ingestion ensuring strict zero cross-tenant data exposure.',
-    color: '#10b981'
+    title: 'CRM Development',
+    description: 'Sales CRM, Healthcare CRM, Education CRM, Manufacturing CRM, Custom CRM.',
+    color: '#3b82f6'
   },
   {
     icon: <GitMerge size={24} />,
-    title: 'Agentic AI Orchestration',
-    description: 'Multi-agent orchestration systems performing complex parallel tasks under strict SLAs.',
+    title: 'HRMS',
+    description: 'Employee Management, Payroll, Attendance, Leave Management, Recruitment.',
+    color: '#22c55e'
+  },
+  {
+    icon: <Database size={24} />,
+    title: 'ERP Solutions',
+    description: 'Inventory, Finance, Procurement, Operations, Asset Management.',
     color: '#f59e0b'
+  },
+  {
+    icon: <Layout size={24} />,
+    title: 'Website Development',
+    description: 'Business Websites, Corporate Websites, E-commerce, Landing Pages, SEO-Friendly Sites.',
+    color: '#06b6d4'
+  },
+  {
+    icon: <Smartphone size={24} />,
+    title: 'Mobile App Development',
+    description: 'Android, iOS, Flutter, React Native.',
+    color: '#ec4899'
   }
 ];
 
@@ -65,20 +47,20 @@ export default function Features({ onBookDemo }) {
     <section className="section bg-alt" id="features">
       <div className="container">
         <div className="section-header" style={{ textAlign: 'center', marginBottom: '4rem' }}>
-          <h2 className="h2">Everything you need to scale</h2>
-          <p className="text-lg text-muted" style={{ maxWidth: '600px', margin: '1rem auto 0' }}>
-            Our comprehensive suite of AI and CRM tools helps you close more deals and build better customer relationships.
+          <h2 className="h2">Complete Digital Solutions for Modern Businesses</h2>
+          <p className="text-lg text-muted" style={{ maxWidth: '700px', margin: '1rem auto 0' }}>
+            Whether you're a startup, SME, or enterprise, we build intelligent software that automates operations, streamlines workflows, and accelerates business growth.
           </p>
         </div>
         
         <div className="features-grid">
-          {features.map((feature, index) => (
+          {services.map((service, index) => (
             <div className="feature-card" key={index}>
-              <div className="feature-icon" style={{ backgroundColor: `${feature.color}15`, color: feature.color }}>
-                {feature.icon}
+              <div className="feature-icon" style={{ backgroundColor: `${service.color}15`, color: service.color }}>
+                {service.icon}
               </div>
-              <h3 className="h3 feature-title">{feature.title}</h3>
-              <p className="text-muted">{feature.description}</p>
+              <h3 className="h3 feature-title">{service.title}</h3>
+              <p className="text-muted">{service.description}</p>
             </div>
           ))}
         </div>

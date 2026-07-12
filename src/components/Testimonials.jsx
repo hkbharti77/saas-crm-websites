@@ -1,114 +1,62 @@
 import React from 'react';
-import { ArrowRight, TrendingUp, Clock, MessageCircle, Users, BarChart2 } from 'lucide-react';
-import { trackBookDemo } from '../utils/analytics';
+import { Quote } from 'lucide-react';
 import './Testimonials.css';
 
-const results = [
+const testimonials = [
   {
-    icon: <Clock size={28} />,
-    metric: 'Hours → Seconds',
-    label: 'Lead Response Time',
-    detail: 'AI instantly qualifies and responds to new leads on WhatsApp — no human delay.',
-    color: '#3b82f6',
+    name: 'Rajesh Kumar',
+    company: 'Apex Healthcare',
+    role: 'Operations Director',
+    review: 'Gyan VaniAi transformed our patient booking system. The custom CRM they built completely automated our appointment scheduling and reduced our staff workload by half.',
+    image: 'https://ui-avatars.com/api/?name=Rajesh+Kumar&background=0D8ABC&color=fff'
   },
   {
-    icon: <MessageCircle size={28} />,
-    metric: '80%',
-    label: 'Support Queries Automated',
-    detail: 'Our WhatsApp bots handle tier-1 queries so your team focuses on closing deals.',
-    color: '#22c55e',
+    name: 'Priya Sharma',
+    company: 'EduTech Solutions',
+    role: 'Founder',
+    review: 'Their team delivered an exceptional AI learning platform. The chatbot integration has been a game-changer for student engagement, resolving queries instantly 24/7.',
+    image: 'https://ui-avatars.com/api/?name=Priya+Sharma&background=10B981&color=fff'
   },
   {
-    icon: <TrendingUp size={28} />,
-    metric: '3x',
-    label: 'Average ROI',
-    detail: 'Clients typically recover their investment within the first 60 days.',
-    color: '#8b5cf6',
-  },
-  {
-    icon: <BarChart2 size={28} />,
-    metric: '40%+',
-    label: 'Conversion Lift',
-    detail: 'Automated follow-ups and AI lead scoring convert more pipeline into revenue.',
-    color: '#f59e0b',
-  },
-  {
-    icon: <Users size={28} />,
-    metric: '500+',
-    label: 'Businesses Served',
-    detail: 'From lean startups to large enterprises across India, USA, and beyond.',
-    color: '#06b6d4',
-  },
+    name: 'Amit Patel',
+    company: 'Global Logistics',
+    role: 'Supply Chain Manager',
+    review: 'We were struggling with legacy ERP systems. Gyan VaniAi migrated us to a modern, cloud-based solution that gave us real-time visibility and saved us countless hours.',
+    image: 'https://ui-avatars.com/api/?name=Amit+Patel&background=F59E0B&color=fff'
+  }
 ];
 
-const socialProofStats = [
-  { value: '500+', label: 'Businesses Served' },
-  { value: '10M+', label: 'AI Conversations' },
-  { value: '98%', label: 'Satisfaction Rate' },
-  { value: '3x', label: 'Average ROI' },
-];
-
-export default function Testimonials({ onBookDemo }) {
+export default function Testimonials() {
   return (
-    <section className="section bg-alt testimonials" id="results">
+    <section className="section bg-alt" id="testimonials">
       <div className="container">
-
-        {/* Social Proof Stats Bar */}
-        <div className="testimonials-stats">
-          {socialProofStats.map((stat) => (
-            <div className="testimonials-stat" key={stat.label}>
-              <span className="testimonials-stat-value">{stat.value}</span>
-              <span className="testimonials-stat-label">{stat.label}</span>
-            </div>
-          ))}
-        </div>
-
-        {/* Section Header */}
-        <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-          <h2 className="h2">Results You Can Expect</h2>
-          <p className="text-lg text-muted" style={{ maxWidth: '580px', margin: '1rem auto 0' }}>
-            Here's what our AI CRM and automation systems consistently deliver for businesses like yours.
+        <div className="section-header" style={{ textAlign: 'center', marginBottom: '4rem' }}>
+          <h2 className="h2">What Our Clients Say</h2>
+          <p className="text-lg text-muted" style={{ maxWidth: '600px', margin: '1rem auto 0' }}>
+            Don't just take our word for it. Read how we've helped businesses achieve real results.
           </p>
         </div>
 
-        {/* Results Grid */}
-        <div className="results-grid">
-          {results.map((item) => (
-            <div className="result-card" key={item.label}>
-              <div className="result-icon" style={{ color: item.color, background: `${item.color}18` }}>
-                {item.icon}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
+          {testimonials.map((item, index) => (
+            <div className="premium-card" key={index} style={{ padding: '2.5rem', display: 'flex', flexDirection: 'column' }}>
+              <Quote size={40} style={{ color: 'var(--primary-color)', opacity: 0.2, marginBottom: '1.5rem' }} />
+              <p style={{ fontSize: '1.1rem', color: 'var(--text-primary)', fontStyle: 'italic', marginBottom: '2rem', flex: 1, lineHeight: '1.7' }}>
+                "{item.review}"
+              </p>
+              
+              <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', borderTop: '1px solid var(--border-color)', paddingTop: '1.5rem' }}>
+                <img src={item.image} alt={item.name} style={{ width: '50px', height: '50px', borderRadius: '50%' }} />
+                <div>
+                  <h4 style={{ fontWeight: '600', color: 'var(--text-primary)', margin: 0 }}>{item.name}</h4>
+                  <div style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>
+                    {item.role}, <span style={{ color: 'var(--primary-color)', fontWeight: '500' }}>{item.company}</span>
+                  </div>
+                </div>
               </div>
-              <div className="result-metric" style={{ color: item.color }}>{item.metric}</div>
-              <h3 className="result-label">{item.label}</h3>
-              <p className="result-detail text-muted">{item.detail}</p>
             </div>
           ))}
         </div>
-
-        {/* ── Option 2: Design Partner / Early Access CTA ── */}
-        <div className="early-access-card">
-          <div className="early-access-badge">🚀 Limited Spots</div>
-          <h3 className="h3" style={{ marginBottom: '0.75rem' }}>
-            Be One of Our First 10 Design Partners
-          </h3>
-          <p className="text-muted" style={{ maxWidth: '520px', margin: '0 auto 2rem', lineHeight: '1.7' }}>
-            We're onboarding a select group of early clients at a <strong>special founding rate</strong>.
-            You get a fully custom AI CRM setup, priority support, and direct input into our roadmap.
-          </p>
-          <div className="early-access-actions">
-            <button
-              id="btn-early-access-demo"
-              className="btn btn-primary"
-              onClick={() => { trackBookDemo('early-access'); onBookDemo && onBookDemo(); }}
-            >
-              Claim Your Spot <ArrowRight size={18} />
-            </button>
-          </div>
-          <p className="text-sm text-muted" style={{ marginTop: '1.25rem' }}>
-            No credit card · Cancel anytime
-          </p>
-        </div>
-
       </div>
     </section>
   );
