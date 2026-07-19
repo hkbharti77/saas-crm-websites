@@ -19,6 +19,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import './App.css';
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 import { useScrollDepth } from './hooks/useScrollDepth';
 
 function App() {
@@ -58,6 +59,7 @@ function App() {
       </main>
       <Footer />
       <Analytics />
+      <SpeedInsights />
     </div>
   );
 }
