@@ -22,7 +22,7 @@ export default defineConfig({
         '/services/web-development',
         '/services/mobile-app-development'
       ],
-      renderer: '@prerenderer/renderer-puppeteer',
+      renderer: '@prerenderer/renderer-jsdom',
       server: {
         port: 3000,
         host: 'localhost'
