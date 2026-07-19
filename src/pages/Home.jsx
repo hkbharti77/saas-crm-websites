@@ -55,15 +55,15 @@ export default function Home() {
       <Helmet>
         <title>Enterprise AI & Software Development Solutions | Gyan VaniAi</title>
         <meta name="description" content="We design and develop AI Agents, CRM, HRMS, ERP, Business Websites, Mobile Apps, and Enterprise Software that automate operations and generate revenue." />
-        <link rel="canonical" href="https://gyanvania.ai/" />
+        <link rel="canonical" href="https://gyanvaniai.online/" />
         <script type="application/ld+json">
           {`
             {
               "@context": "https://schema.org",
               "@type": "Organization",
               "name": "Gyan VaniAi",
-              "url": "https://gyanvania.ai",
-              "logo": "https://gyanvania.ai/logo.png",
+              "url": "https://gyanvaniai.online",
+              "logo": "https://gyanvaniai.online/logo.png",
               "description": "Enterprise software development company specializing in AI, CRM, HRMS, ERP, and Mobile Apps.",
               "numberOfEmployees": "10+",
               "foundingDate": "2023"

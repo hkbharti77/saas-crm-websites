@@ -92,9 +92,9 @@ export default function BlogPost() {
         <meta property="og:description" content={post.excerpt} />
         <meta property="og:image" content={post.imageUrl} />
         <meta property="og:type" content="article" />
-        <meta property="og:url" content={`https://gyanvania.ai/blog/${id}`} />
+        <meta property="og:url" content={`https://gyanvaniai.online/blog/${id}`} />
         <meta name="twitter:card" content="summary_large_image" />
-        <link rel="canonical" href={`https://gyanvania.ai/blog/${id}`} />
+        <link rel="canonical" href={`https://gyanvaniai.online/blog/${id}`} />
         <script type="application/ld+json">
           {`
             {
@@ -111,7 +111,7 @@ export default function BlogPost() {
                 "name": "Gyan VaniAi",
                 "logo": {
                   "@type": "ImageObject",
-                  "url": "https://gyanvania.ai/logo.png"
+                  "url": "https://gyanvaniai.online/logo.png"
                 }
               },
               "datePublished": "${post.date || ''}",
@@ -145,13 +145,15 @@ export default function BlogPost() {
             </div>
           </header>
 
-          <img 
-            src={post.imageUrl} 
-            alt={post.title} 
-            className="blog-post-image" 
-            data-aos="fade-up" 
-            data-aos-delay="100"
-          />
+          {post.imageUrl && (
+            <img 
+              src={post.imageUrl} 
+              alt={post.title} 
+              className="blog-post-image" 
+              data-aos="fade-up" 
+              data-aos-delay="100"
+            />
+          )}
 
           <div 
             className="blog-post-content" 

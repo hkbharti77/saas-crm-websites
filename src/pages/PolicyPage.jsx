@@ -30,7 +30,7 @@ export default function PolicyPage() {
       <Helmet>
         <title>Privacy Policy | Gyan VaniAi</title>
         <meta name="description" content="Privacy Policy and Data Handling practices for Gyan VaniAi." />
-        <link rel="canonical" href="https://gyanvania.ai/privacy" />
+        <link rel="canonical" href="https://gyanvaniai.online/privacy" />
       </Helmet>
       <div className="legal-hero">
         <div className="container legal-hero-content">
@@ -49,7 +49,8 @@ export default function PolicyPage() {
           <a href="#whatsapp" className={`legal-nav-link ${activeSection === 'whatsapp' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('whatsapp'); }}>2. WhatsApp & Comm Consent</a>
           <a href="#thirdparty" className={`legal-nav-link ${activeSection === 'thirdparty' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('thirdparty'); }}>3. Meta & Third-Party APIs</a>
           <a href="#security" className={`legal-nav-link ${activeSection === 'security' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('security'); }}>4. Security & Storage</a>
-          <a href="#contact" className={`legal-nav-link ${activeSection === 'contact' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('contact'); }}>5. Contact Us</a>
+          <a href="#deletion" className={`legal-nav-link ${activeSection === 'deletion' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('deletion'); }}>5. Data Deletion</a>
+          <a href="#contact" className={`legal-nav-link ${activeSection === 'contact' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('contact'); }}>6. Contact Us</a>
         </aside>
         
         <main className="legal-content glass-panel" style={{ padding: '3rem', borderRadius: 'var(--radius-lg)' }}>
@@ -76,8 +77,21 @@ export default function PolicyPage() {
             <p className="text-muted">We implement enterprise-grade security, including JWT authentication and secure PII masking, to protect your personal information against unauthorized access, alteration, disclosure, or destruction.</p>
           </section>
 
+          <section id="deletion" className="legal-section">
+            <h2 className="h2">5. User Data Deletion & GDPR Compliance</h2>
+            <p className="text-muted">In strict compliance with international and national data protection laws, including the <strong>General Data Protection Regulation (GDPR)</strong> (Article 17: Right to Erasure / "Right to be forgotten") and applicable local privacy frameworks (such as CCPA), you have the absolute right to request the complete deletion of your personal data stored within our systems.</p>
+            <h3 className="h3" style={{ fontSize: '1.25rem', marginTop: '1.5rem', marginBottom: '0.75rem' }}>How to Request Data Deletion</h3>
+            <p className="text-muted">To exercise your right to erasure, please submit a formal data deletion request by emailing our Data Protection Officer at <a href="mailto:contact@gyanvaniai.online">contact@gyanvaniai.online</a> with the subject line "Data Deletion Request".</p>
+            <h3 className="h3" style={{ fontSize: '1.25rem', marginTop: '1.5rem', marginBottom: '0.75rem' }}>Our Deletion Process</h3>
+            <ul className="text-muted" style={{ paddingLeft: '1.5rem', marginBottom: '1rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+              <li><strong>Verification:</strong> We will verify your identity within 7 business days to prevent unauthorized data removal.</li>
+              <li><strong>Complete Erasure:</strong> Upon verification, we will permanently delete or cryptographically anonymize your personal data across all our active databases, internal systems, and third-party sub-processors within a maximum of <strong>30 days</strong>.</li>
+              <li><strong>Legal Exceptions:</strong> Data will be completely erased except where strict retention is explicitly mandated by national/international financial laws, legal obligations, or active dispute resolutions.</li>
+            </ul>
+          </section>
+
           <section id="contact" className="legal-section">
-            <h2 className="h2">5. Contact Us</h2>
+            <h2 className="h2">6. Contact Us</h2>
             <p className="text-muted">If you have any questions about this Privacy Policy or wish to exercise your data rights, please contact our Data Protection Officer via the contact form at the bottom of our website.</p>
           </section>
         </main>

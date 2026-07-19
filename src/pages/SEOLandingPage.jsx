@@ -81,11 +81,43 @@ export default function SEOLandingPage() {
     window.scrollTo(0, 0);
   }, [pageId]);
 
+  const pathPrefix = industryId ? 'industries' : 'services';
+  const pageUrl = `https://gyanvaniai.online/${pathPrefix}/${pageId}`;
+
   return (
     <>
       <Helmet>
         <title>{pageData.title} | Gyan VaniAi</title>
         <meta name="description" content={pageData.subtitle} />
+        <link rel="canonical" href={pageUrl} />
+        <meta property="og:title" content={`${pageData.title} | Gyan VaniAi`} />
+        <meta property="og:description" content={pageData.subtitle} />
+        <meta property="og:image" content={`https://gyanvaniai.online${pageData.image}`} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={pageUrl} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={`${pageData.title} | Gyan VaniAi`} />
+        <meta name="twitter:description" content={pageData.subtitle} />
+        <meta name="twitter:image" content={`https://gyanvaniai.online${pageData.image}`} />
+        <script type="application/ld+json">
+          {`
+            {
+              "@context": "https://schema.org",
+              "@type": "Service",
+              "serviceType": "${pageData.title.replace(/"/g, '\\"')}",
+              "provider": {
+                "@type": "Organization",
+                "name": "Gyan VaniAi",
+                "logo": {
+                  "@type": "ImageObject",
+                  "url": "https://gyanvaniai.online/logo.png"
+                }
+              },
+              "description": "${pageData.subtitle.replace(/"/g, '\\"')}",
+              "url": "${pageUrl}"
+            }
+          `}
+        </script>
       </Helmet>
       
       <main>

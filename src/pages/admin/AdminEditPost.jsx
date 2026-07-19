@@ -164,11 +164,10 @@ const AdminEditPost = () => {
             <input
               type="url"
               name="imageUrl"
-              placeholder="Featured Image URL"
+              placeholder="Featured Image URL (Optional)"
               className="admin-input"
               value={formData.imageUrl}
               onChange={handleChange}
-              required
             />
           </div>
 

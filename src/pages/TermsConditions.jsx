@@ -30,7 +30,7 @@ export default function TermsConditions() {
       <Helmet>
         <title>Terms & Conditions | Gyan VaniAi</title>
         <meta name="description" content="Terms of Service and API usage guidelines for Gyan VaniAi platforms." />
-        <link rel="canonical" href="https://gyanvania.ai/terms" />
+        <link rel="canonical" href="https://gyanvaniai.online/terms" />
       </Helmet>
       <div className="legal-hero">
         <div className="container legal-hero-content">
@@ -49,6 +49,7 @@ export default function TermsConditions() {
           <a href="#messaging" className={`legal-nav-link ${activeSection === 'messaging' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('messaging'); }}>2. Messaging Opt-in Rules</a>
           <a href="#usage" className={`legal-nav-link ${activeSection === 'usage' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('usage'); }}>3. Platform Usage</a>
           <a href="#liability" className={`legal-nav-link ${activeSection === 'liability' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('liability'); }}>4. Limitation of Liability</a>
+          <a href="#deletion" className={`legal-nav-link ${activeSection === 'deletion' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('deletion'); }}>5. Data Deletion</a>
         </aside>
         
         <main className="legal-content glass-panel" style={{ padding: '3rem', borderRadius: 'var(--radius-lg)' }}>
@@ -72,6 +73,11 @@ export default function TermsConditions() {
           <section id="liability" className="legal-section">
             <h2 className="h2">4. Limitation of Liability ⚖️</h2>
             <p className="text-muted">While our AI agents are highly optimized, Gyan VaniAi does not guarantee 100% uptime or completely error-free AI generations. We shall not be held liable for any indirect, incidental, or consequential business damages arising from the use of our software or platforms.</p>
+          </section>
+
+          <section id="deletion" className="legal-section">
+            <h2 className="h2">5. User Data Deletion 🗑️</h2>
+            <p className="text-muted">In accordance with our Privacy Policy, users have the right to request the deletion of their personal data. By requesting data deletion, you acknowledge that access to certain services, accounts, and historical data will be permanently revoked.</p>
           </section>
         </main>
       </div>

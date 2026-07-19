@@ -63,11 +63,11 @@ export default function ServicePage() {
         <meta name="description" content={service.description} />
         <meta property="og:title" content={`${service.title} | Gyan VaniAi`} />
         <meta property="og:description" content={service.description} />
-        <meta property="og:image" content={`https://gyanvania.ai${service.imageUrl}`} />
+        <meta property="og:image" content={`https://gyanvaniai.online${service.imageUrl}`} />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content={`https://gyanvania.ai/services/${serviceId}`} />
+        <meta property="og:url" content={`https://gyanvaniai.online/services/${serviceId}`} />
         <meta name="twitter:card" content="summary_large_image" />
-        <link rel="canonical" href={`https://gyanvania.ai/services/${serviceId}`} />
+        <link rel="canonical" href={`https://gyanvaniai.online/services/${serviceId}`} />
       </Helmet>
       <div className="service-page" style={{ background: 'var(--bg-main)' }}>
         <div className="container" style={{ padding: '8rem 1rem 6rem', maxWidth: '900px', margin: '0 auto', minHeight: '80vh' }}>

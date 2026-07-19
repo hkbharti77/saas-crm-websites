@@ -44,11 +44,11 @@ export default function Blog() {
         <meta name="description" content="Discover the latest trends in AI orchestration, secure RAG pipelines, and automated CRM workflows on the Gyan VaniAi blog." />
         <meta property="og:title" content="Blog - Gyan VaniAi | Insights on AI & CRM" />
         <meta property="og:description" content="Discover the latest trends in AI orchestration, secure RAG pipelines, and automated CRM workflows on the Gyan VaniAi blog." />
-        <meta property="og:image" content="https://gyanvania.ai/logo.png" />
+        <meta property="og:image" content="https://gyanvaniai.online/logo.png" />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://gyanvania.ai/blog" />
+        <meta property="og:url" content="https://gyanvaniai.online/blog" />
         <meta name="twitter:card" content="summary_large_image" />
-        <link rel="canonical" href="https://gyanvania.ai/blog" />
+        <link rel="canonical" href="https://gyanvaniai.online/blog" />
       </Helmet>
 
       <section className="section" style={{ paddingTop: '8rem', minHeight: '80vh' }}>
@@ -73,7 +73,9 @@ export default function Blog() {
                     data-aos="fade-up"
                     data-aos-delay={index * 100}
                   >
-                    <img src={post.imageUrl} alt={post.title} className="blog-card-image" loading="lazy" />
+                    {post.imageUrl && (
+                      <img src={post.imageUrl} alt={post.title} className="blog-card-image" loading="lazy" />
+                    )}
                     <div className="blog-card-content">
                       <div className="blog-meta">
                         <span className="blog-category">{post.category}</span>
