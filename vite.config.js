@@ -8,7 +8,6 @@ export default defineConfig({
     react(),
     prerender({
       routes: [
-        '/',
         '/blog',
         '/privacy',
         '/terms',
