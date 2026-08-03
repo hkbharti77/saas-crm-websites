@@ -1,0 +1,45 @@
+# Gyan VaniAi
+
+> Gyan VaniAi is an Enterprise AI & Software Development company providing custom AI CRM systems, WhatsApp Automation, AI Chatbots, Voice AI Agents, HRMS, and ERP solutions for businesses across Europe, Asia, Africa, and Worldwide.
+
+## About Gyan VaniAi
+- Website: https://gyanvaniai.online/
+- Primary Offerings: AI CRM Development, WhatsApp Business Automation, Autonomous AI Agents, RAG Pipelines, Enterprise Web & Mobile Apps.
+- Target Markets: Europe, Asia, Africa, and Global Enterprises.
+- Contact Email: contact@gyanvaniai.online
+
+## Core Services & Capabilities
+
+### 1. AI CRM Development (https://gyanvaniai.online/services/crm-development)
+- Custom CRM built with React, Spring Boot, Firebase, and PostgreSQL.
+- Lead scoring, automated follow-ups, pipelines, multi-channel messaging integrations.
+- Tailored solutions for Healthcare (`/industries/healthcare-crm`), Real Estate, Finance, E-commerce, and B2B SaaS.
+
+### 2. WhatsApp CRM & Automation (https://gyanvaniai.online/services/whatsapp-automation)
+- Built-in Meta Tech Provider with WhatsApp Coexistence support.
+- 1-Click Embedded Signup: Direct onboarding to connect existing WhatsApp Business phone numbers without tedious Meta account creation.
+- Official WhatsApp Business API integration with automated instant replies, interactive list buttons, broadcast messaging, and shared team inbox.
+
+### 3. AI Agent & Chatbot Development (https://gyanvaniai.online/services/ai-agent-development)
+- Multi-agent AI systems and low-latency RAG (Retrieval-Augmented Generation) pipelines (< 300ms latency).
+- Autonomous AI customer support agents, lead qualification bots, and workflow tools.
+
+### 4. Voice AI Support
+- Autonomous voice agents for phone support and outbound sales powered by modern LLMs.
+
+### 5. HRMS & ERP Software (https://gyanvaniai.online/services/hrms-development & https://gyanvaniai.online/services/erp-development)
+- Enterprise Resource Planning (ERP) and Human Resource Management Systems (HRMS).
+- Payroll automation, attendance tracking, inventory, and analytics dashboards.
+
+### 6. Web & Mobile App Development (https://gyanvaniai.online/services/web-development & https://gyanvaniai.online/services/mobile-app-development)
+- Custom web applications (React, Vite, Next.js) and mobile applications (React Native, Flutter, iOS, Android).
+
+## Key Projects & Portfolio
+- AI Stock Kundli: Enterprise financial investment tool powered by 8 parallel AI agents.
+- CRMLite: Multi-tenant WhatsApp CRM software.
+- Healthcare CRM: HIPAA-compliant patient management and appointment booking.
+
+## Contact & Consultation
+To book a live demo or request custom software development:
+- Visit: https://gyanvaniai.online/
+- Email: contact@gyanvaniai.online

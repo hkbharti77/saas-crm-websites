@@ -22,20 +22,20 @@ const seoDataMap = {
   },
   'crm-development': {
     title: 'Custom CRM Development Company',
-    subtitle: 'Tailor-made CRM solutions to manage your leads, automate follow-ups, and close more deals.',
-    benefits: ['Custom Workflows', 'WhatsApp Integration', 'Lead Scoring', 'Advanced Analytics'],
+    subtitle: 'Tailor-made CRM with built-in WhatsApp Coexistence & Meta Tech Provider support to connect and grow instantly.',
+    benefits: ['Meta Tech Provider Coexistence', '1-Click Embedded Signup', 'Custom Sales Workflows', 'Advanced Lead Analytics'],
     image: '/portfolio_crm.webp'
   },
   'healthcare-crm': {
     title: 'Healthcare CRM Solutions',
-    subtitle: 'HIPAA-compliant CRM systems for patient management, appointment scheduling, and telemedicine.',
+    subtitle: 'HIPAA-compliant CRM systems with WhatsApp appointment automation & patient management.',
     benefits: ['Patient Portals', 'Appointment Automation', 'Data Security', 'EMR Integration'],
     image: '/portfolio_crm.webp'
   },
   'whatsapp-automation': {
-    title: 'WhatsApp CRM & Automation',
-    subtitle: 'Turn WhatsApp into your primary revenue channel with automated replies and lead capture.',
-    benefits: ['Instant Replies', 'Bulk Broadcasting', 'Chatbot Integration', 'Analytics Dashboard'],
+    title: 'WhatsApp CRM & Meta Coexistence Automation',
+    subtitle: 'Built-in Meta Tech Provider with WhatsApp Coexistence & 1-Click Embedded Signup. Connect your existing WhatsApp number in minutes without complex Meta setup.',
+    benefits: ['Built-in WhatsApp Coexistence', '1-Click Embedded Signup', 'Official Meta API Integration', 'Instant Replies & Broadcasts'],
     image: '/portfolio_crm.webp'
   },
   'hrms-development': {
@@ -101,21 +101,48 @@ export default function SEOLandingPage() {
         <meta name="twitter:image" content={`https://gyanvaniai.online${pageData.image}`} />
         <script type="application/ld+json">
           {`
-            {
-              "@context": "https://schema.org",
-              "@type": "Service",
-              "serviceType": "${pageData.title.replace(/"/g, '\\"')}",
-              "provider": {
-                "@type": "Organization",
-                "name": "Gyan VaniAi",
-                "logo": {
-                  "@type": "ImageObject",
-                  "url": "https://gyanvaniai.online/logo.png"
-                }
+            [
+              {
+                "@context": "https://schema.org",
+                "@type": "Service",
+                "serviceType": "${pageData.title.replace(/"/g, '\\"')}",
+                "provider": {
+                  "@type": "Organization",
+                  "name": "Gyan VaniAi",
+                  "logo": {
+                    "@type": "ImageObject",
+                    "url": "https://gyanvaniai.online/logo.png"
+                  }
+                },
+                "areaServed": ["Europe", "Asia", "Africa", "Worldwide"],
+                "description": "${pageData.subtitle.replace(/"/g, '\\"')}",
+                "url": "${pageUrl}"
               },
-              "description": "${pageData.subtitle.replace(/"/g, '\\"')}",
-              "url": "${pageUrl}"
-            }
+              {
+                "@context": "https://schema.org",
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                  {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Home",
+                    "item": "https://gyanvaniai.online/"
+                  },
+                  {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "${pathPrefix === 'industries' ? 'Industries' : 'Services'}",
+                    "item": "https://gyanvaniai.online/"
+                  },
+                  {
+                    "@type": "ListItem",
+                    "position": 3,
+                    "name": "${pageData.title.replace(/"/g, '\\"')}",
+                    "item": "${pageUrl}"
+                  }
+                ]
+              }
+            ]
           `}
         </script>
       </Helmet>

@@ -100,11 +100,16 @@ export default function BlogPost() {
             {
               "@context": "https://schema.org",
               "@type": "BlogPosting",
+              "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "https://gyanvaniai.online/blog/${id}"
+              },
               "headline": "${post.title.replace(/"/g, '\\"')}",
               "image": "${post.imageUrl}",
+              "inLanguage": "en",
               "author": {
                 "@type": "Person",
-                "name": "${post.author}"
+                "name": "${post.author || 'Gyan VaniAi Team'}"
               },
               "publisher": {
                 "@type": "Organization",
@@ -114,7 +119,7 @@ export default function BlogPost() {
                   "url": "https://gyanvaniai.online/logo.png"
                 }
               },
-              "datePublished": "${post.date || ''}",
+              "datePublished": "${post.date || '2026-08-03'}",
               "description": "${post.excerpt ? post.excerpt.replace(/"/g, '\\"') : ''}"
             }
           `}

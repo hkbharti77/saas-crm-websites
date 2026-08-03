@@ -54,19 +54,51 @@ export default function Home() {
     <>
       <Helmet>
         <title>Enterprise AI & Software Development Solutions | Gyan VaniAi</title>
-        <meta name="description" content="We design and develop AI Agents, CRM, HRMS, ERP, Business Websites, Mobile Apps, and Enterprise Software that automate operations and generate revenue." />
+        <meta name="description" content="We design and develop AI Agents, CRM, HRMS, ERP, Business Websites, Mobile Apps, and Enterprise Software for businesses across Europe, Asia, Africa, and Worldwide." />
         <link rel="canonical" href="https://gyanvaniai.online/" />
+
+        {/* OpenGraph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://gyanvaniai.online/" />
+        <meta property="og:title" content="Enterprise AI & Software Development Solutions | Gyan VaniAi" />
+        <meta property="og:description" content="AI CRM, WhatsApp Automation, Autonomous AI Agents, HRMS, and ERP development serving clients in Europe, Asia, Africa, and Worldwide." />
+        <meta property="og:image" content="https://gyanvaniai.online/hero_dashboard.png" />
+
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content="https://gyanvaniai.online/" />
+        <meta name="twitter:title" content="Enterprise AI & Software Development Solutions | Gyan VaniAi" />
+        <meta name="twitter:description" content="AI CRM, WhatsApp Automation, Autonomous AI Agents, HRMS, and ERP development serving clients in Europe, Asia, Africa, and Worldwide." />
+        <meta name="twitter:image" content="https://gyanvaniai.online/hero_dashboard.png" />
+
+        {/* Structured Schema with Global & Regional GEO Targets */}
         <script type="application/ld+json">
           {`
             {
               "@context": "https://schema.org",
-              "@type": "Organization",
+              "@type": "ProfessionalService",
               "name": "Gyan VaniAi",
               "url": "https://gyanvaniai.online",
               "logo": "https://gyanvaniai.online/logo.png",
-              "description": "Enterprise software development company specializing in AI, CRM, HRMS, ERP, and Mobile Apps.",
-              "numberOfEmployees": "10+",
-              "foundingDate": "2023"
+              "image": "https://gyanvaniai.online/hero_dashboard.png",
+              "description": "Enterprise software development company specializing in AI CRM, WhatsApp Automation, AI Agents, HRMS, and ERP development.",
+              "areaServed": ["Europe", "Asia", "Africa", "Worldwide"],
+              "priceRange": "$$",
+              "knowsAbout": [
+                "Artificial Intelligence",
+                "CRM Development",
+                "WhatsApp Automation",
+                "Autonomous AI Agents",
+                "HRMS Software",
+                "ERP Software",
+                "Full Stack Web Development"
+              ],
+              "contactPoint": {
+                "@type": "ContactPoint",
+                "email": "contact@gyanvaniai.online",
+                "contactType": "customer service",
+                "availableLanguage": ["English"]
+              }
             }
           `}
         </script>

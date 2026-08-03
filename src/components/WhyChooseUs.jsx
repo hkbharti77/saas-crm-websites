@@ -3,14 +3,14 @@ import { CheckCircle2 } from 'lucide-react';
 import './Features.css';
 
 const reasons = [
+  'Built-in Meta Tech Provider & WhatsApp Coexistence Support',
+  '1-Click Embedded Signup (Instant WhatsApp Connection)',
   'AI-First Development Approach',
   'Custom Solutions Tailored to Your Business',
   'Enterprise-Grade Security',
   'Scalable Cloud Architecture',
   'Modern UI/UX Design',
-  'Dedicated Development Team',
-  'Fast Project Delivery',
-  'Long-Term Maintenance & Support'
+  'Dedicated Development Team & Support'
 ];
 
 export default function WhyChooseUs() {

@@ -61,6 +61,52 @@ const AdminEditPost = () => {
 
 
 
+  const [uploadingImage, setUploadingImage] = useState(false);
+
+  const handleFileUpload = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    setUploadingImage(true);
+    try {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onloadend = async () => {
+        const imageBase64 = reader.result;
+        const res = await fetch('/api/upload', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            imageBase64,
+            fileName: file.name,
+            contentType: file.type
+          })
+        });
+
+        if (!res.ok) {
+          const text = await res.text();
+          let errData;
+          try { errData = JSON.parse(text); } catch (err) {}
+          alert(errData?.error || `Upload failed with HTTP status ${res.status}`);
+          setUploadingImage(false);
+          return;
+        }
+
+        const data = await res.json();
+        if (data.url) {
+          setFormData(prev => ({ ...prev, imageUrl: data.url }));
+        } else {
+          alert(data.error || 'Failed to upload image to S3');
+        }
+        setUploadingImage(false);
+      };
+    } catch (err) {
+      console.error("Upload error:", err);
+      alert("Error uploading image file.");
+      setUploadingImage(false);
+    }
+  };
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -161,14 +207,31 @@ const AdminEditPost = () => {
               onChange={handleChange}
               required
             />
-            <input
-              type="url"
-              name="imageUrl"
-              placeholder="Featured Image URL (Optional)"
-              className="admin-input"
-              value={formData.imageUrl}
-              onChange={handleChange}
-            />
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+              <input
+                type="text"
+                name="imageUrl"
+                placeholder="Featured Image URL (or upload below)"
+                className="admin-input"
+                value={formData.imageUrl}
+                onChange={handleChange}
+              />
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <label className="btn-edit" style={{ cursor: 'pointer', display: 'inline-block', padding: '0.4rem 0.8rem', fontSize: '0.9rem', textAlign: 'center' }}>
+                  {uploadingImage ? 'Uploading to S3...' : '📁 Upload Image to S3'}
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleFileUpload}
+                    style={{ display: 'none' }}
+                    disabled={uploadingImage}
+                  />
+                </label>
+                {formData.imageUrl && (
+                  <span style={{ color: '#10b981', fontSize: '0.85rem' }}>✓ Image ready (Masked URL)</span>
+                )}
+              </div>
+            </div>
           </div>
 
           <div style={{ marginTop: '1rem', marginBottom: '3rem' }}>

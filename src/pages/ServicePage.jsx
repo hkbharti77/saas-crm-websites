@@ -30,14 +30,15 @@ const serviceData = {
     imageUrl: '/whatsapp-features-new.png'
   },
   'whatsapp-automation': {
-    title: 'WhatsApp Automation',
-    description: 'Engage customers where they already are. Automate notifications, marketing campaigns, and customer service directly on WhatsApp.',
+    title: 'WhatsApp Automation & Meta Coexistence',
+    description: 'Built-in Meta Tech Provider support with WhatsApp Coexistence and 1-Click Embedded Signup. Connect your existing WhatsApp Business number directly without complex Meta setup.',
     features: [
+      'Built-in Meta Tech Provider & WhatsApp Coexistence Support',
+      '1-Click Embedded Signup (No complex Meta account creation process)',
       'Official WhatsApp Business API integration',
-      'Automated onboarding and drip campaigns',
-      'Interactive messages (buttons, lists, products)',
-      'Shared team inbox for manual interventions',
-      'High deliverability and open rates (up to 98%)'
+      'Automated onboarding, drip campaigns, and instant replies',
+      'Interactive messages (buttons, lists, catalog products)',
+      'Shared team inbox for multi-agent support'
     ],
     imageUrl: '/ai-chatbots-hero-new.png'
   }
