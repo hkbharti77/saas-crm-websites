@@ -67,8 +67,16 @@ export default function Hero({ onBookDemo }) {
               <div className="dot yellow"></div>
               <div className="dot green"></div>
             </div>
-            <div className="mockup-body" style={{ padding: 0 }}>
-              <img src="/hero_dashboard.webp" alt="AI CRM Dashboard – WhatsApp Automation & Lead Management" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            <div className="mockup-body" style={{ padding: 0, aspectRatio: '16/9' }}>
+              <img 
+                src="/hero_dashboard.webp" 
+                alt="AI CRM Dashboard – WhatsApp Automation & Lead Management" 
+                width="600"
+                height="337"
+                fetchPriority="high"
+                decoding="async"
+                style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} 
+              />
             </div>
           </div>
         </div>

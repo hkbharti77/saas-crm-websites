@@ -44,7 +44,7 @@ export default function Header() {
     <header className="header">
       <div className="container header-container">
         <a href="/" className="logo">
-          <img src="/logo.webp" alt="Gyan VaniAi" className="logo-img" />
+          <img src="/logo.webp" alt="Gyan VaniAi" width="40" height="40" className="logo-img" style={{ display: 'block' }} />
           <span className="logo-text gradient-text-premium">Gyan VaniAi</span>
         </a>
         

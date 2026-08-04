@@ -57,7 +57,7 @@ export default function Footer() {
         <div className="footer-top">
           <div className="footer-brand">
             <div className="logo" style={{ marginBottom: '1rem' }}>
-              <img src="/logo.webp" alt="Gyan VaniAi" className="logo-img" />
+              <img src="/logo.webp" alt="Gyan VaniAi" width="40" height="40" className="logo-img" style={{ display: 'block' }} />
               <span className="logo-text">Gyan VaniAi</span>
             </div>
             <p className="text-muted text-sm" style={{ maxWidth: '300px' }}>
