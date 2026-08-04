@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Gyan VaniAi - AI CRM &amp; Software Development</title>
+    <link>https://gyanvaniai.online/</link>
+    <description>Enterprise AI CRM systems, WhatsApp Coexistence mode, AI Chatbots, HRMS, and ERP solutions.</description>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 04 Aug 2026 08:00:00 GMT</lastBuildDate>
+    <atom:link href="https://gyanvaniai.online/rss.xml" rel="self" type="application/rss+xml" />
+
+    <item>
+      <title>WhatsApp Coexistence Mode: Run Phone App and AI CRM on Same Number</title>
+      <link>https://gyanvaniai.online/services/whatsapp-coexistence</link>
+      <description>Meta's official Coexistence mode shipped by Gyan VaniAi. Run your WhatsApp Business mobile app and AI CRM simultaneously with real-time bidirectional sync.</description>
+      <pubDate>Tue, 04 Aug 2026 08:00:00 GMT</pubDate>
+      <guid>https://gyanvaniai.online/services/whatsapp-coexistence</guid>
+    </item>
+
+    <item>
+      <title>WhatsApp Automation &amp; Meta Tech Provider Embedded Signup</title>
+      <link>https://gyanvaniai.online/services/whatsapp-automation</link>
+      <description>Automate customer support with sub-300ms LLM AI agents, broadcast campaigns, and 1-Click Meta Embedded Signup.</description>
+      <pubDate>Tue, 04 Aug 2026 08:00:00 GMT</pubDate>
+      <guid>https://gyanvaniai.online/services/whatsapp-automation</guid>
+    </item>
+
+    <item>
+      <title>Custom AI CRM Development Services</title>
+      <link>https://gyanvaniai.online/services/crm-development</link>
+      <description>Custom sales CRM software for Healthcare, Real Estate, E-Commerce, and B2B SaaS enterprises across Europe, Asia, Africa, and Worldwide.</description>
+      <pubDate>Tue, 04 Aug 2026 08:00:00 GMT</pubDate>
+      <guid>https://gyanvaniai.online/services/crm-development</guid>
+    </item>
+
+    <item>
+      <title>Autonomous AI Agent &amp; RAG Pipeline Systems</title>
+      <link>https://gyanvaniai.online/services/ai-agent-development</link>
+      <description>Enterprise multi-agent AI systems, low-latency RAG pipelines, and automated customer support bots.</description>
+      <pubDate>Tue, 04 Aug 2026 08:00:00 GMT</pubDate>
+      <guid>https://gyanvaniai.online/services/ai-agent-development</guid>
+    </item>
+  </channel>
+</rss>
