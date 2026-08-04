@@ -11,6 +11,7 @@ const TermsConditions = lazy(() => import('./pages/TermsConditions'));
 const Blog = lazy(() => import('./pages/Blog'));
 const BlogPost = lazy(() => import('./pages/BlogPost'));
 const SEOLandingPage = lazy(() => import('./pages/SEOLandingPage'));
+const WhatsAppCoexistencePage = lazy(() => import('./pages/WhatsAppCoexistencePage'));
 const AdminLogin = lazy(() => import('./pages/admin/AdminLogin'));
 const AdminDashboard = lazy(() => import('./pages/admin/AdminDashboard'));
 const AdminCreatePost = lazy(() => import('./pages/admin/AdminCreatePost'));
@@ -44,6 +45,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:id" element={<BlogPost />} />
+            <Route path="/services/whatsapp-coexistence" element={<WhatsAppCoexistencePage />} />
             <Route path="/services/:serviceId" element={<SEOLandingPage />} />
             <Route path="/industries/:industryId" element={<SEOLandingPage />} />
             <Route path="/privacy" element={<PolicyPage />} />

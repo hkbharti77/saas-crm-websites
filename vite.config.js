@@ -134,6 +134,7 @@ export default defineConfig(({ mode }) => {
           '/services/crm-development',
           '/industries/healthcare-crm',
           '/services/whatsapp-automation',
+          '/services/whatsapp-coexistence',
           '/services/hrms-development',
           '/services/erp-development',
           '/services/web-development',

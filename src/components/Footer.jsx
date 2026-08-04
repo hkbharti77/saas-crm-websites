@@ -82,6 +82,7 @@ export default function Footer() {
           <div className="footer-links" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: '2rem', flex: 1, minWidth: '60%' }}>
             <div className="link-group">
               <h4 className="link-title">Services</h4>
+              <Link to="/services/whatsapp-coexistence" className="footer-link">WhatsApp Coexistence</Link>
               <Link to="/services/ai-development" className="footer-link">AI Development</Link>
               <Link to="/services/crm-development" className="footer-link">CRM Development</Link>
               <Link to="/services/hrms-development" className="footer-link">HRMS Solutions</Link>

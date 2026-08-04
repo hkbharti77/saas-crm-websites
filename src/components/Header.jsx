@@ -50,6 +50,7 @@ export default function Header() {
         
         <nav className={`nav ${isOpen ? 'nav-open' : ''}`}>
           <a href="/#features" className="nav-link" onClick={() => setIsOpen(false)}>Features</a>
+          <Link to="/services/whatsapp-coexistence" className="nav-link" onClick={() => setIsOpen(false)}>WhatsApp Coexistence</Link>
           <a href="/#portfolio" className="nav-link" onClick={() => setIsOpen(false)}>Portfolio</a>
           <Link to="/blog" className="nav-link" onClick={() => setIsOpen(false)}>Blog</Link>
           
