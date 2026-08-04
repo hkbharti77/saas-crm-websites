@@ -5,6 +5,7 @@ import Footer from './components/Footer';
 import BlobBackground from './components/BlobBackground';
 import CustomCursor from './components/CustomCursor';
 import Home from './pages/Home';
+import { ThemeProvider } from './context/ThemeContext';
 
 const PolicyPage = lazy(() => import('./pages/PolicyPage'));
 const TermsConditions = lazy(() => import('./pages/TermsConditions'));
@@ -35,34 +36,36 @@ function App() {
   }, []);
 
   return (
-    <div className="app-container">
-      <BlobBackground />
-      <CustomCursor />
-      <Header />
-      <main>
-        <Suspense fallback={<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '60vh' }}><div className="loading-spinner">Loading...</div></div>}>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/blog/:id" element={<BlogPost />} />
-            <Route path="/services/whatsapp-coexistence" element={<WhatsAppCoexistencePage />} />
-            <Route path="/services/:serviceId" element={<SEOLandingPage />} />
-            <Route path="/industries/:industryId" element={<SEOLandingPage />} />
-            <Route path="/privacy" element={<PolicyPage />} />
-            <Route path="/terms" element={<TermsConditions />} />
-            
-            {/* Admin Routes */}
-            <Route path="/admin/login" element={<AdminLogin />} />
-            <Route path="/admin/dashboard" element={<AdminDashboard />} />
-            <Route path="/admin/create" element={<AdminCreatePost />} />
-            <Route path="/admin/edit/:id" element={<AdminEditPost />} />
-          </Routes>
-        </Suspense>
-      </main>
-      <Footer />
-      <Analytics />
-      <SpeedInsights />
-    </div>
+    <ThemeProvider>
+      <div className="app-container">
+        <BlobBackground />
+        <CustomCursor />
+        <Header />
+        <main>
+          <Suspense fallback={<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '60vh' }}><div className="loading-spinner">Loading...</div></div>}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/blog" element={<Blog />} />
+              <Route path="/blog/:id" element={<BlogPost />} />
+              <Route path="/services/whatsapp-coexistence" element={<WhatsAppCoexistencePage />} />
+              <Route path="/services/:serviceId" element={<SEOLandingPage />} />
+              <Route path="/industries/:industryId" element={<SEOLandingPage />} />
+              <Route path="/privacy" element={<PolicyPage />} />
+              <Route path="/terms" element={<TermsConditions />} />
+              
+              {/* Admin Routes */}
+              <Route path="/admin/login" element={<AdminLogin />} />
+              <Route path="/admin/dashboard" element={<AdminDashboard />} />
+              <Route path="/admin/create" element={<AdminCreatePost />} />
+              <Route path="/admin/edit/:id" element={<AdminEditPost />} />
+            </Routes>
+          </Suspense>
+        </main>
+        <Footer />
+        <Analytics />
+        <SpeedInsights />
+      </div>
+    </ThemeProvider>
   );
 }
 

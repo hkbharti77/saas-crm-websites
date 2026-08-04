@@ -1,44 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X, Moon, Sun } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import './Header.css';
 
 export default function Header() {
-  const [isOpen, setIsOpen] = React.useState(false);
-  const [isDark, setIsDark] = useState(() => {
-    if (typeof window !== 'undefined') {
-      const savedTheme = localStorage.getItem('theme');
-      if (savedTheme) {
-        return savedTheme === 'dark';
-      }
-      return window.matchMedia('(prefers-color-scheme: dark)').matches;
-    }
-    return false;
-  });
-
-  useEffect(() => {
-    if (isDark) {
-      document.body.classList.add('dark-theme');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      document.body.classList.remove('dark-theme');
-      localStorage.setItem('theme', 'light');
-    }
-  }, [isDark]);
-
-  useEffect(() => {
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    const handleChange = (e) => {
-      // Only auto-switch if the user hasn't explicitly set a preference
-      if (!localStorage.getItem('theme')) {
-        setIsDark(e.matches);
-      }
-    };
-    
-    // Add listener for system theme changes
-    mediaQuery.addEventListener('change', handleChange);
-    return () => mediaQuery.removeEventListener('change', handleChange);
-  }, []);
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <header className="header">
@@ -54,14 +20,10 @@ export default function Header() {
           <a href="/#portfolio" className="nav-link" onClick={() => setIsOpen(false)}>Portfolio</a>
           <Link to="/blog" className="nav-link" onClick={() => setIsOpen(false)}>Blog</Link>
           
-          <button className="theme-toggle" onClick={() => setIsDark(!isDark)} aria-label="Toggle theme">
-            {isDark ? <Sun size={20} /> : <Moon size={20} />}
-          </button>
-          
           <a href="/#contact" className="btn btn-primary nav-btn" onClick={() => setIsOpen(false)}>Get Started</a>
         </nav>
         
-        <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+        <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}>
           <button className="mobile-menu-btn" onClick={() => setIsOpen(!isOpen)} aria-label="Toggle navigation menu" aria-expanded={isOpen}>
             {isOpen ? <X /> : <Menu />}
           </button>

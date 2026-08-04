@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { auth, db } from '../../firebase';
 import { collection, getDocs, deleteDoc, doc, query, orderBy } from 'firebase/firestore';
 import { signOut } from 'firebase/auth';
+import ThemeSwitcher from '../../components/ThemeSwitcher';
 import './Admin.css';
 
 const AdminDashboard = () => {
@@ -40,8 +41,6 @@ const AdminDashboard = () => {
     return () => unsubscribe();
   }, [navigate]);
 
-
-
   const handleDeleteClick = (id) => {
     setBlogToDelete(id);
     setShowDeleteModal(true);
@@ -51,7 +50,7 @@ const AdminDashboard = () => {
     if (!blogToDelete) return;
     
     try {
-      await deleteDoc(doc(db, 'blogs', blogToDelete));
+      await deleteDoc(doc(doc(db, 'blogs'), blogToDelete));
       setBlogs(blogs.filter(blog => blog.id !== blogToDelete));
     } catch (error) {
       console.error("Error deleting blog: ", error);
@@ -73,13 +72,20 @@ const AdminDashboard = () => {
   return (
     <div className="admin-container">
       <div className="admin-header">
-        <h2>Blog Dashboard</h2>
+        <h2>Admin Dashboard</h2>
         <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
           <Link to="/admin/create" className="admin-button" style={{ textDecoration: 'none' }}>
             + Create New Post
           </Link>
           <button onClick={handleLogout} className="btn-delete">Logout</button>
         </div>
+      </div>
+
+      {/* Admin Enterprise Theme Management Panel */}
+      <ThemeSwitcher />
+
+      <div className="admin-header" style={{ marginTop: '2rem' }}>
+        <h3>Blog Posts Management</h3>
       </div>
 
       <div className="blog-list">

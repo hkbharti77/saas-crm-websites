@@ -2,9 +2,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
+  --bg-base: #f8fafc;
   --bg-gradient: linear-gradient(-45deg, #f8fafc, #eff6ff, #f3e8ff, #e0e7ff);
-  --glass-bg: rgba(255, 255, 255, 0.65);
-  --glass-border: rgba(255, 255, 255, 0.4);
+  --glass-bg: rgba(255, 255, 255, 0.75);
+  --glass-border: rgba(226, 232, 240, 0.8);
   
   --text-primary: #0f172a;
   --text-secondary: #475569;
@@ -13,38 +14,214 @@
   --primary-hover: #2563eb;
   --gradient-primary: linear-gradient(135deg, #3b82f6 0%, #a855f7 50%, #ec4899 100%);
   
-  --border-color: rgba(0, 0, 0, 0.05);
+  --border-color: rgba(0, 0, 0, 0.08);
   
   --radius-sm: 8px;
   --radius-md: 16px;
   --radius-lg: 24px;
   --radius-full: 9999px;
   
-  --shadow-sm: 0 4px 15px 0 rgba(0, 0, 0, 0.02);
-  --shadow-md: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+  --shadow-sm: 0 4px 15px 0 rgba(0, 0, 0, 0.03);
+  --shadow-md: 0 8px 32px 0 rgba(31, 38, 135, 0.08);
   --shadow-hover: 0 15px 45px 0 rgba(31, 38, 135, 0.15);
   
   --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   
-  --input-bg: rgba(255, 255, 255, 0.8);
+  --input-bg: rgba(255, 255, 255, 0.9);
   --input-border: rgba(0, 0, 0, 0.15);
+
+  --grid-line-color: rgba(99, 102, 241, 0.06);
+  --mesh-color-1: rgba(99, 102, 241, 0.35);
+  --mesh-color-2: rgba(236, 72, 153, 0.3);
+  --mesh-color-3: rgba(59, 130, 246, 0.35);
 }
 
-body.dark-theme {
-  --bg-gradient: linear-gradient(-45deg, #020617, #0f172a, #1e1b4b, #2e1065);
-  --glass-bg: rgba(15, 23, 42, 0.5);
-  --glass-border: rgba(255, 255, 255, 0.05);
-  
+/* --- ENTERPRISE THEMES --- */
+
+/* 1. Enterprise Midnight (Deep Obsidian Dark) */
+[data-theme="midnight"] {
+  --bg-base: #050811;
+  --bg-gradient: radial-gradient(ellipse at 50% 0%, #111827 0%, #050811 75%);
+  --grid-size: 40px 40px;
+  --bg-radial-mask: radial-gradient(ellipse at 50% 30%, black 20%, transparent 80%);
+  --glass-bg: rgba(13, 20, 36, 0.65);
+  --glass-border: rgba(255, 255, 255, 0.08);
   --text-primary: #f8fafc;
   --text-secondary: #94a3b8;
-  --border-color: rgba(255, 255, 255, 0.05);
-  
-  --shadow-sm: 0 4px 15px 0 rgba(0, 0, 0, 0.2);
-  --shadow-md: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
-  --shadow-hover: 0 15px 45px 0 rgba(0, 0, 0, 0.6);
-  
-  --input-bg: rgba(0, 0, 0, 0.3);
+  --border-color: rgba(255, 255, 255, 0.08);
+  --primary-color: #6366f1;
+  --primary-hover: #4f46e5;
+  --gradient-primary: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #d946ef 100%);
+  --shadow-sm: 0 4px 15px 0 rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 10px 35px 0 rgba(0, 0, 0, 0.6);
+  --shadow-hover: 0 20px 50px 0 rgba(99, 102, 241, 0.25);
+  --input-bg: rgba(15, 23, 42, 0.6);
   --input-border: rgba(255, 255, 255, 0.15);
+  --grid-line-color: rgba(99, 102, 241, 0.12);
+  --mesh-color-1: rgba(99, 102, 241, 0.45);
+  --mesh-color-2: rgba(139, 92, 246, 0.4);
+  --mesh-color-3: rgba(59, 130, 246, 0.4);
+}
+
+/* 2. Aurora AI Glass (Glowing Emerald & Indigo Mesh) */
+[data-theme="aurora"] {
+  --bg-base: #031816;
+  --bg-gradient: radial-gradient(circle at 20% 20%, #08332e 0%, #031816 80%);
+  --grid-size: 32px 32px;
+  --bg-radial-mask: radial-gradient(circle at 20% 20%, black 30%, transparent 85%);
+  --glass-bg: rgba(15, 33, 45, 0.65);
+  --glass-border: rgba(45, 212, 191, 0.18);
+  --text-primary: #f0fdf4;
+  --text-secondary: #94a3b8;
+  --border-color: rgba(45, 212, 191, 0.12);
+  --primary-color: #10b981;
+  --primary-hover: #059669;
+  --gradient-primary: linear-gradient(135deg, #10b981 0%, #06b6d4 50%, #6366f1 100%);
+  --shadow-sm: 0 4px 15px 0 rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 10px 35px 0 rgba(0, 0, 0, 0.6);
+  --shadow-hover: 0 20px 50px 0 rgba(16, 185, 129, 0.25);
+  --input-bg: rgba(15, 33, 45, 0.6);
+  --input-border: rgba(45, 212, 191, 0.2);
+  --grid-line-color: rgba(16, 185, 129, 0.12);
+  --mesh-color-1: rgba(16, 185, 129, 0.45);
+  --mesh-color-2: rgba(6, 182, 212, 0.4);
+  --mesh-color-3: rgba(99, 102, 241, 0.35);
+}
+
+/* 3. Corporate Slate (Clean Titanium Steel Tech) */
+[data-theme="slate"] {
+  --bg-base: #0f172a;
+  --bg-gradient: linear-gradient(135deg, #1e293b 0%, #0f172a 60%, #0284c7 100%);
+  --grid-size: 50px 50px;
+  --bg-radial-mask: radial-gradient(ellipse at 80% 50%, black 25%, transparent 75%);
+  --glass-bg: rgba(30, 41, 59, 0.7);
+  --glass-border: rgba(56, 189, 248, 0.2);
+  --text-primary: #f8fafc;
+  --text-secondary: #bae6fd;
+  --border-color: rgba(56, 189, 248, 0.12);
+  --primary-color: #38bdf8;
+  --primary-hover: #0284c7;
+  --gradient-primary: linear-gradient(135deg, #38bdf8 0%, #0284c7 50%, #6366f1 100%);
+  --shadow-sm: 0 4px 15px 0 rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 10px 35px 0 rgba(0, 0, 0, 0.5);
+  --shadow-hover: 0 20px 50px 0 rgba(56, 189, 248, 0.3);
+  --input-bg: rgba(30, 41, 59, 0.7);
+  --input-border: rgba(56, 189, 248, 0.25);
+  --grid-line-color: rgba(56, 189, 248, 0.12);
+  --mesh-color-1: rgba(56, 189, 248, 0.4);
+  --mesh-color-2: rgba(2, 132, 199, 0.35);
+  --mesh-color-3: rgba(99, 102, 241, 0.35);
+}
+
+/* 4. Sunset Amber Tech (Warm Amber Gold & Obsidian Bronze) */
+[data-theme="amber"] {
+  --bg-base: #180d04;
+  --bg-gradient: radial-gradient(circle at 75% 80%, #3d1f08 0%, #180d04 80%);
+  --grid-size: 45px 45px;
+  --bg-radial-mask: radial-gradient(circle at 75% 80%, black 30%, transparent 80%);
+  --glass-bg: rgba(46, 22, 7, 0.65);
+  --glass-border: rgba(245, 158, 11, 0.22);
+  --text-primary: #fffbeb;
+  --text-secondary: #fcd34d;
+  --border-color: rgba(245, 158, 11, 0.15);
+  --primary-color: #f59e0b;
+  --primary-hover: #d97706;
+  --gradient-primary: linear-gradient(135deg, #f59e0b 0%, #ef4444 50%, #ec4899 100%);
+  --shadow-sm: 0 4px 15px 0 rgba(0, 0, 0, 0.45);
+  --shadow-md: 0 10px 35px 0 rgba(0, 0, 0, 0.65);
+  --shadow-hover: 0 20px 50px 0 rgba(245, 158, 11, 0.35);
+  --input-bg: rgba(46, 22, 7, 0.6);
+  --input-border: rgba(245, 158, 11, 0.25);
+  --grid-line-color: rgba(245, 158, 11, 0.14);
+  --mesh-color-1: rgba(245, 158, 11, 0.5);
+  --mesh-color-2: rgba(239, 68, 68, 0.45);
+  --mesh-color-3: rgba(217, 70, 239, 0.35);
+}
+
+/* 5. Light Pearl Enterprise (Modern Light) */
+[data-theme="light"] {
+  --bg-base: #f8fafc;
+  --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 40%, #e0e7ff 100%);
+  --grid-size: 40px 40px;
+  --bg-radial-mask: radial-gradient(ellipse at 50% 50%, black 40%, transparent 90%);
+  --glass-bg: rgba(255, 255, 255, 0.75);
+  --glass-border: rgba(226, 232, 240, 0.9);
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --border-color: rgba(0, 0, 0, 0.08);
+  --primary-color: #2563eb;
+  --primary-hover: #1d4ed8;
+  --gradient-primary: linear-gradient(135deg, #2563eb 0%, #7c3aed 50%, #db2777 100%);
+  --shadow-sm: 0 4px 15px 0 rgba(0, 0, 0, 0.03);
+  --shadow-md: 0 8px 32px 0 rgba(31, 38, 135, 0.08);
+  --shadow-hover: 0 15px 45px 0 rgba(37, 99, 235, 0.15);
+  --input-bg: rgba(255, 255, 255, 0.9);
+  --input-border: rgba(0, 0, 0, 0.15);
+  --grid-line-color: rgba(37, 99, 235, 0.06);
+  --mesh-color-1: rgba(99, 102, 241, 0.3);
+  --mesh-color-2: rgba(236, 72, 153, 0.25);
+  --mesh-color-3: rgba(59, 130, 246, 0.3);
+}
+
+/* 6. Quantum Cyan (Cyberpunk Tech) */
+[data-theme="quantum"] {
+  --bg-base: #021820;
+  --bg-gradient: radial-gradient(ellipse at 80% 10%, #083e4d 0%, #021820 85%);
+  --grid-size: 28px 28px;
+  --bg-radial-mask: radial-gradient(ellipse at 80% 20%, black 30%, transparent 80%);
+  --glass-bg: rgba(6, 43, 56, 0.65);
+  --glass-border: rgba(6, 182, 212, 0.22);
+  --text-primary: #ecfeff;
+  --text-secondary: #67e8f9;
+  --border-color: rgba(6, 182, 212, 0.15);
+  --primary-color: #06b6d4;
+  --primary-hover: #0891b2;
+  --gradient-primary: linear-gradient(135deg, #06b6d4 0%, #3b82f6 50%, #8b5cf6 100%);
+  --shadow-sm: 0 4px 15px 0 rgba(0, 0, 0, 0.45);
+  --shadow-md: 0 10px 35px 0 rgba(0, 0, 0, 0.65);
+  --shadow-hover: 0 20px 50px 0 rgba(6, 182, 212, 0.3);
+  --input-bg: rgba(6, 43, 56, 0.6);
+  --input-border: rgba(6, 182, 212, 0.25);
+  --grid-line-color: rgba(6, 182, 212, 0.14);
+  --mesh-color-1: rgba(6, 182, 212, 0.5);
+  --mesh-color-2: rgba(14, 165, 233, 0.45);
+  --mesh-color-3: rgba(99, 102, 241, 0.4);
+}
+
+/* 7. Sapphire Amethyst Tech (Deep Royal Amethyst & Cobalt Purple) */
+[data-theme="sapphire"] {
+  --bg-base: #0c071e;
+  --bg-gradient: radial-gradient(ellipse at 30% 70%, #281459 0%, #0c071e 80%);
+  --grid-size: 36px 36px;
+  --bg-radial-mask: radial-gradient(ellipse at 30% 70%, black 25%, transparent 80%);
+  --glass-bg: rgba(30, 16, 69, 0.65);
+  --glass-border: rgba(139, 92, 246, 0.25);
+  --text-primary: #f5f3ff;
+  --text-secondary: #ddd6fe;
+  --border-color: rgba(139, 92, 246, 0.15);
+  --primary-color: #8b5cf6;
+  --primary-hover: #7c3aed;
+  --gradient-primary: linear-gradient(135deg, #8b5cf6 0%, #6366f1 50%, #d946ef 100%);
+  --shadow-sm: 0 4px 15px 0 rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 10px 35px 0 rgba(0, 0, 0, 0.7);
+  --shadow-hover: 0 20px 50px 0 rgba(139, 92, 246, 0.35);
+  --input-bg: rgba(30, 16, 69, 0.6);
+  --input-border: rgba(139, 92, 246, 0.25);
+  --grid-line-color: rgba(139, 92, 246, 0.14);
+  --mesh-color-1: rgba(139, 92, 246, 0.5);
+  --mesh-color-2: rgba(99, 102, 241, 0.45);
+  --mesh-color-3: rgba(217, 70, 239, 0.4);
+}
+
+/* Legacy fallback for body.dark-theme when data-theme is unset */
+body.dark-theme:not([data-theme]) {
+  --bg-base: #060913;
+  --bg-gradient: radial-gradient(circle at 50% 0%, #0d1527 0%, #060913 70%);
+  --glass-bg: rgba(13, 20, 36, 0.65);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --border-color: rgba(255, 255, 255, 0.08);
 }
 
 /* Glassmorphism utility */
