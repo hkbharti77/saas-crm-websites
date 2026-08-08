@@ -54,10 +54,14 @@ export default function Portfolio() {
                 <p className="text-muted" style={{ fontSize: '0.95rem' }}>{project.solution}</p>
               </div>
               
-              <div style={{ padding: '1rem', background: 'rgba(59, 130, 246, 0.05)', borderRadius: '8px', borderLeft: '3px solid var(--primary-color)' }}>
+              <div style={{ padding: '1rem', background: 'rgba(59, 130, 246, 0.05)', borderRadius: '8px', borderLeft: '3px solid var(--primary-color)', marginBottom: '1.5rem' }}>
                 <strong style={{ display: 'block', color: 'var(--primary-color)', marginBottom: '0.25rem', fontSize: '0.9rem' }}>Outcome:</strong>
                 <p style={{ color: 'var(--text-primary)', fontSize: '0.95rem', margin: 0, fontWeight: '500' }}>{project.outcome}</p>
               </div>
+              
+              <a href={index === 0 ? '/services/crm-development' : index === 1 ? '/services/ai-development' : '/services/erp-development'} style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', color: 'var(--primary-color)', fontWeight: '600', fontSize: '0.9rem', textDecoration: 'none' }}>
+                View {index === 0 ? 'CRM' : index === 1 ? 'AI' : 'ERP'} Services →
+              </a>
             </div>
           ))}
         </div>

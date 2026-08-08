@@ -46,7 +46,7 @@ export default function Testimonials() {
               </p>
               
               <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', borderTop: '1px solid var(--border-color)', paddingTop: '1.5rem' }}>
-                <img src={item.image} alt={item.name} style={{ width: '50px', height: '50px', borderRadius: '50%' }} />
+                <img src={item.image} alt={`Photo of ${item.name}`} width="50" height="50" style={{ width: '50px', height: '50px', borderRadius: '50%' }} loading="lazy" decoding="async" />
                 <div>
                   <h4 style={{ fontWeight: '600', color: 'var(--text-primary)', margin: 0 }}>{item.name}</h4>
                   <div style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>

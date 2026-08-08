@@ -31,10 +31,43 @@ export default function PolicyPage() {
         <title>Privacy Policy | Gyan VaniAi</title>
         <meta name="description" content="Privacy Policy and Data Handling practices for Gyan VaniAi." />
         <link rel="canonical" href="https://gyanvaniai.online/privacy" />
+        <script type="application/ld+json">
+          {`
+            [
+              {
+                "@context": "https://schema.org",
+                "@type": "WebPage",
+                "name": "Privacy Policy | Gyan VaniAi",
+                "url": "https://gyanvaniai.online/privacy",
+                "publisher": {
+                  "@id": "https://gyanvaniai.online/#organization"
+                }
+              },
+              {
+                "@context": "https://schema.org",
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                  {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Home",
+                    "item": "https://gyanvaniai.online/"
+                  },
+                  {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "Privacy Policy",
+                    "item": "https://gyanvaniai.online/privacy"
+                  }
+                ]
+              }
+            ]
+          `}
+        </script>
       </Helmet>
       <div className="legal-hero">
         <div className="container legal-hero-content">
-          <img src="/privacy_image.webp" alt="Privacy Policy Graphic" className="legal-hero-img" />
+          <img src="/privacy_image.webp" alt="" width="400" height="400" className="legal-hero-img" fetchpriority="high" decoding="sync" />
           <div>
             <h1 className="h1">Privacy Policy</h1>
             <p className="text-lg text-muted" style={{ marginTop: '0.5rem' }}>Effective Date: June 14, 2026</p>

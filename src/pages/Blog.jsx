@@ -49,6 +49,43 @@ export default function Blog() {
         <meta property="og:url" content="https://gyanvaniai.online/blog" />
         <meta name="twitter:card" content="summary_large_image" />
         <link rel="canonical" href="https://gyanvaniai.online/blog" />
+        <script type="application/ld+json">
+          {`
+            [
+              {
+                "@context": "https://schema.org",
+                "@type": "Blog",
+                "name": "Gyan VaniAi Blog",
+                "url": "https://gyanvaniai.online/blog",
+                "description": "Insights on AI & CRM by Gyan VaniAi.",
+                "publisher": {
+                  "@id": "https://gyanvaniai.online/#organization"
+                },
+                "isPartOf": {
+                  "@id": "https://gyanvaniai.online/#website"
+                }
+              },
+              {
+                "@context": "https://schema.org",
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                  {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Home",
+                    "item": "https://gyanvaniai.online/"
+                  },
+                  {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "Blog",
+                    "item": "https://gyanvaniai.online/blog"
+                  }
+                ]
+              }
+            ]
+          `}
+        </script>
       </Helmet>
 
       <section className="section" style={{ paddingTop: '8rem', minHeight: '80vh' }}>
@@ -74,7 +111,7 @@ export default function Blog() {
                     data-aos-delay={index * 100}
                   >
                     {post.imageUrl && (
-                      <img src={post.imageUrl} alt={post.title} className="blog-card-image" loading="lazy" />
+                      <img src={post.imageUrl} alt={post.title} width="600" height="400" className="blog-card-image" loading="lazy" decoding="async" />
                     )}
                     <div className="blog-card-content">
                       <div className="blog-meta">

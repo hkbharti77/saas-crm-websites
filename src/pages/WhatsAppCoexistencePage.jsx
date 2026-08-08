@@ -63,22 +63,22 @@ export default function WhatsAppCoexistencePage() {
   return (
     <>
       <Helmet>
-        <title>WhatsApp Coexistence CRM & AI Automation | Gyan VaniAi</title>
-        <meta name="description" content="Run the WhatsApp Business mobile app and Gyan VaniAi AI CRM on the exact same number simultaneously. Meta Tech Provider with 1-Click Embedded Signup." />
+        <title>WhatsApp Business Automation & Coexistence | Gyan VaniAi</title>
+        <meta name="description" content="Unlock WhatsApp Business automation using the official Cloud API. Integrate WhatsApp CRM and Coexistence mode without losing your mobile app access." />
         <link rel="canonical" href={pageUrl} />
         
         {/* OpenGraph */}
         <meta property="og:type" content="website" />
         <meta property="og:url" content={pageUrl} />
-        <meta property="og:title" content="WhatsApp Coexistence CRM & AI Automation | Gyan VaniAi" />
-        <meta property="og:description" content="Keep your WhatsApp Business phone app AND run AI auto-replies, broadcasts, and CRM tracking on the same number. Zero downtime." />
+        <meta property="og:title" content="WhatsApp Business Automation & Coexistence | Gyan VaniAi" />
+        <meta property="og:description" content="Unlock WhatsApp Business automation using the official Cloud API. Integrate WhatsApp CRM and Coexistence mode without losing your mobile app access." />
         <meta property="og:image" content="https://gyanvaniai.online/portfolio_crm.webp" />
 
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:url" content={pageUrl} />
-        <meta name="twitter:title" content="WhatsApp Coexistence CRM & AI Automation | Gyan VaniAi" />
-        <meta name="twitter:description" content="Run the WhatsApp Business mobile app and Gyan VaniAi AI CRM on the exact same number simultaneously." />
+        <meta name="twitter:title" content="WhatsApp Business Automation & Coexistence | Gyan VaniAi" />
+        <meta name="twitter:description" content="Unlock WhatsApp Business automation using the official Cloud API. Integrate WhatsApp CRM and Coexistence mode without losing your mobile app access." />
         <meta name="twitter:image" content="https://gyanvaniai.online/portfolio_crm.webp" />
 
         {/* Structured Schema */}
@@ -90,12 +90,7 @@ export default function WhatsAppCoexistencePage() {
                 "@type": "Service",
                 "serviceType": "WhatsApp Coexistence CRM & Meta API Automation",
                 "provider": {
-                  "@type": "Organization",
-                  "name": "Gyan VaniAi",
-                  "logo": {
-                    "@type": "ImageObject",
-                    "url": "https://gyanvaniai.online/logo.png"
-                  }
+                  "@id": "https://gyanvaniai.online/#organization"
                 },
                 "areaServed": ["Europe", "Asia", "Africa", "Worldwide"],
                 "description": "Native Meta Tech Provider WhatsApp Coexistence mode enabling mobile app and AI CRM integration on the same phone number.",
@@ -154,7 +149,7 @@ export default function WhatsAppCoexistencePage() {
             </div>
             
             <h1 className="h1" style={{ fontSize: '3.2rem', lineHeight: '1.2', marginBottom: '1.5rem' }}>
-              WhatsApp Coexistence Mode:<br />
+              WhatsApp Business Automation<br />
               <span style={{ background: 'linear-gradient(135deg, #6366f1 0%, #38bdf8 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
                 Phone App + AI CRM on the Same Number
               </span>
@@ -428,6 +423,26 @@ export default function WhatsAppCoexistencePage() {
             >
               Book a Free Live Demo <ArrowRight size={20} style={{ marginLeft: '8px' }} />
             </button>
+          </div>
+        </section>
+
+        {/* Internal Linking Section */}
+        <section className="container" style={{ padding: '2rem 0', textAlign: 'center', marginTop: '2rem' }}>
+          <div style={{ padding: '2rem', background: 'var(--card-bg, rgba(99, 102, 241, 0.05))', borderRadius: '1rem' }}>
+            <h2 className="h3" style={{ marginBottom: '1rem', fontSize: '1.5rem' }}>Related Services</h2>
+            <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap' }}>
+              <a href="/services/crm-development" style={{ color: 'var(--primary-color)', fontWeight: '600', textDecoration: 'none', borderBottom: '1px solid transparent', transition: 'border-color 0.2s' }} onMouseEnter={(e) => e.target.style.borderBottom = '1px solid var(--primary-color)'} onMouseLeave={(e) => e.target.style.borderBottom = '1px solid transparent'}>
+                Custom CRM Software Development →
+              </a>
+              <span style={{ color: 'var(--text-muted)' }}>|</span>
+              <a href="/services/ai-development" style={{ color: 'var(--primary-color)', fontWeight: '600', textDecoration: 'none', borderBottom: '1px solid transparent', transition: 'border-color 0.2s' }} onMouseEnter={(e) => e.target.style.borderBottom = '1px solid var(--primary-color)'} onMouseLeave={(e) => e.target.style.borderBottom = '1px solid transparent'}>
+                AI Software Development →
+              </a>
+              <span style={{ color: 'var(--text-muted)' }}>|</span>
+              <a href="/blog" style={{ color: 'var(--primary-color)', fontWeight: '600', textDecoration: 'none', borderBottom: '1px solid transparent', transition: 'border-color 0.2s' }} onMouseEnter={(e) => e.target.style.borderBottom = '1px solid var(--primary-color)'} onMouseLeave={(e) => e.target.style.borderBottom = '1px solid transparent'}>
+                WhatsApp Automation Insights (Blog) →
+              </a>
+            </div>
           </div>
         </section>
 

@@ -126,19 +126,31 @@ export default defineConfig(({ mode }) => {
       },
       prerender({
         routes: [
+          '/about',
           '/blog',
           '/privacy',
           '/terms',
           '/services/ai-development',
           '/services/ai-agent-development',
           '/services/crm-development',
-          '/industries/healthcare-crm',
           '/services/whatsapp-automation',
           '/services/whatsapp-coexistence',
           '/services/hrms-development',
           '/services/erp-development',
           '/services/web-development',
           '/services/mobile-app-development',
+          '/industries/healthcare',
+          '/industries/education',
+          '/industries/finance',
+          '/industries/manufacturing',
+          '/industries/enterprise',
+          '/industries/real-estate',
+          '/industries/retail',
+          '/industries/logistics',
+          '/industries/hospitality',
+          '/industries/legal',
+          '/industries/travel',
+          '/industries/government'
         ],
         renderer: '@prerenderer/renderer-jsdom',
         server: {
@@ -147,5 +159,17 @@ export default defineConfig(({ mode }) => {
         },
       }),
     ],
+    build: {
+      rollupOptions: {
+        output: {
+          manualChunks(id) {
+            if (id.includes('node_modules')) {
+              if (id.includes('firebase')) return 'vendor-firebase';
+              if (id.includes('react-phone-number-input') || id.includes('libphonenumber-js')) return 'vendor-phone';
+            }
+          }
+        }
+      }
+    }
   };
 });

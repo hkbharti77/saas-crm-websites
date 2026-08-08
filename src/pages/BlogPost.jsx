@@ -97,31 +97,52 @@ export default function BlogPost() {
         <link rel="canonical" href={`https://gyanvaniai.online/blog/${id}`} />
         <script type="application/ld+json">
           {`
-            {
-              "@context": "https://schema.org",
-              "@type": "BlogPosting",
-              "mainEntityOfPage": {
-                "@type": "WebPage",
-                "@id": "https://gyanvaniai.online/blog/${id}"
+            [
+              {
+                "@context": "https://schema.org",
+                "@type": "BlogPosting",
+                "mainEntityOfPage": {
+                  "@type": "WebPage",
+                  "@id": "https://gyanvaniai.online/blog/${id}"
+                },
+                "headline": "${post.title.replace(/"/g, '\\"')}",
+                "image": "${post.imageUrl}",
+                "inLanguage": "en",
+                "author": {
+                  "@type": "Person",
+                  "name": "${post.author || 'Gyan VaniAi Team'}"
+                },
+                "publisher": {
+                  "@id": "https://gyanvaniai.online/#organization"
+                },
+                "datePublished": "${post.date || '2026-08-03'}",
+                "description": "${post.excerpt ? post.excerpt.replace(/"/g, '\\"') : ''}"
               },
-              "headline": "${post.title.replace(/"/g, '\\"')}",
-              "image": "${post.imageUrl}",
-              "inLanguage": "en",
-              "author": {
-                "@type": "Person",
-                "name": "${post.author || 'Gyan VaniAi Team'}"
-              },
-              "publisher": {
-                "@type": "Organization",
-                "name": "Gyan VaniAi",
-                "logo": {
-                  "@type": "ImageObject",
-                  "url": "https://gyanvaniai.online/logo.png"
-                }
-              },
-              "datePublished": "${post.date || '2026-08-03'}",
-              "description": "${post.excerpt ? post.excerpt.replace(/"/g, '\\"') : ''}"
-            }
+              {
+                "@context": "https://schema.org",
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                  {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Home",
+                    "item": "https://gyanvaniai.online/"
+                  },
+                  {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "Blog",
+                    "item": "https://gyanvaniai.online/blog"
+                  },
+                  {
+                    "@type": "ListItem",
+                    "position": 3,
+                    "name": "${post.title.replace(/"/g, '\\"')}",
+                    "item": "https://gyanvaniai.online/blog/${id}"
+                  }
+                ]
+              }
+            ]
           `}
         </script>
       </Helmet>
@@ -154,6 +175,10 @@ export default function BlogPost() {
             <img 
               src={post.imageUrl} 
               alt={post.title} 
+              width="800"
+              height="450"
+              fetchpriority="high"
+              decoding="sync"
               className="blog-post-image" 
               data-aos="fade-up" 
               data-aos-delay="100"
@@ -193,6 +218,11 @@ export default function BlogPost() {
             >
               Book a Free Demo <ArrowRight size={18} style={{ marginLeft: '6px', verticalAlign: 'middle' }} />
             </button>
+            <div style={{ marginTop: '1.5rem', display: 'flex', justifyContent: 'center', gap: '1.5rem', flexWrap: 'wrap', fontSize: '0.9rem' }}>
+              <a href="/services/ai-development" style={{ color: 'var(--primary-color)', textDecoration: 'none', fontWeight: '500' }}>Explore our AI Development Services →</a>
+              <span style={{ color: 'var(--text-muted)' }}>|</span>
+              <a href="/services/whatsapp-coexistence" style={{ color: 'var(--primary-color)', textDecoration: 'none', fontWeight: '500' }}>Learn about WhatsApp Coexistence →</a>
+            </div>
           </div>
         </div>
       </article>

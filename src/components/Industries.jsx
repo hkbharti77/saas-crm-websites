@@ -34,27 +34,33 @@ export default function Industries() {
           gap: '1.5rem'
         }}>
           {industries.map((industry, index) => (
-            <div 
-              key={index} 
-              className="premium-card" 
-              style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '1.5rem' }}
+            <a 
+              key={index}
+              href={`/industries/${industry.name.toLowerCase().replace(' ', '-')}`}
+              style={{ textDecoration: 'none', color: 'inherit' }}
             >
               <div 
-                style={{ 
-                  backgroundColor: `${industry.color}15`, 
-                  color: industry.color, 
-                  width: '40px', 
-                  height: '40px', 
-                  borderRadius: '8px', 
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  justifyContent: 'center' 
-                }}
+                className="premium-card industry-card" 
+                style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '1.5rem', height: '100%', transition: 'transform 0.2s ease, box-shadow 0.2s ease' }}
               >
-                {industry.icon}
+                <div 
+                  style={{ 
+                    backgroundColor: `${industry.color}15`, 
+                    color: industry.color, 
+                    width: '40px', 
+                    height: '40px', 
+                    borderRadius: '8px', 
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    justifyContent: 'center',
+                    flexShrink: 0
+                  }}
+                >
+                  {industry.icon}
+                </div>
+                <h3 style={{ fontSize: '1.1rem', fontWeight: '600', margin: 0 }}>{industry.name}</h3>
               </div>
-              <h3 style={{ fontSize: '1.1rem', fontWeight: '600', margin: 0 }}>{industry.name}</h3>
-            </div>
+            </a>
           ))}
         </div>
       </div>

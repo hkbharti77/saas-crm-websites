@@ -10,11 +10,12 @@ export default function Header() {
     <header className="header">
       <div className="container header-container">
         <a href="/" className="logo">
-          <img src="/logo.webp" alt="Gyan VaniAi" width="40" height="40" className="logo-img" style={{ display: 'block' }} />
+          <img src="/logo.webp" alt="Gyan VaniAi Logo" width="40" height="40" className="logo-img" style={{ display: 'block' }} fetchpriority="high" />
           <span className="logo-text gradient-text-premium">Gyan VaniAi</span>
         </a>
         
         <nav className={`nav ${isOpen ? 'nav-open' : ''}`}>
+          <Link to="/about" className="nav-link" onClick={() => setIsOpen(false)}>About</Link>
           <a href="/#features" className="nav-link" onClick={() => setIsOpen(false)}>Features</a>
           <Link to="/services/whatsapp-coexistence" className="nav-link" onClick={() => setIsOpen(false)}>WhatsApp Coexistence</Link>
           <a href="/#portfolio" className="nav-link" onClick={() => setIsOpen(false)}>Portfolio</a>

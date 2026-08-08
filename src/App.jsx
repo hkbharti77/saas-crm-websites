@@ -17,6 +17,8 @@ const AdminLogin = lazy(() => import('./pages/admin/AdminLogin'));
 const AdminDashboard = lazy(() => import('./pages/admin/AdminDashboard'));
 const AdminCreatePost = lazy(() => import('./pages/admin/AdminCreatePost'));
 const AdminEditPost = lazy(() => import('./pages/admin/AdminEditPost'));
+const NotFound = lazy(() => import('./pages/NotFound'));
+const About = lazy(() => import('./pages/About'));
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import './App.css';
@@ -52,12 +54,16 @@ function App() {
               <Route path="/industries/:industryId" element={<SEOLandingPage />} />
               <Route path="/privacy" element={<PolicyPage />} />
               <Route path="/terms" element={<TermsConditions />} />
+              <Route path="/about" element={<About />} />
               
               {/* Admin Routes */}
               <Route path="/admin/login" element={<AdminLogin />} />
               <Route path="/admin/dashboard" element={<AdminDashboard />} />
               <Route path="/admin/create" element={<AdminCreatePost />} />
               <Route path="/admin/edit/:id" element={<AdminEditPost />} />
+              
+              {/* 404 Route */}
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>
         </main>

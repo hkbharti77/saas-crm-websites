@@ -57,7 +57,7 @@ export default function Footer() {
         <div className="footer-top">
           <div className="footer-brand">
             <div className="logo" style={{ marginBottom: '1rem' }}>
-              <img src="/logo.webp" alt="Gyan VaniAi" width="40" height="40" className="logo-img" style={{ display: 'block' }} />
+              <img src="/logo.webp" alt="Gyan VaniAi Logo" width="40" height="40" className="logo-img" style={{ display: 'block' }} loading="lazy" />
               <span className="logo-text">Gyan VaniAi</span>
             </div>
             <p className="text-muted text-sm" style={{ maxWidth: '300px' }}>
@@ -101,7 +101,7 @@ export default function Footer() {
             <div className="link-group">
               <h4 className="link-title">Company</h4>
               <Link to="/blog" className="footer-link">Blog</Link>
-              <a href="#" className="footer-link">About Us</a>
+              <Link to="/about" className="footer-link">About Us</Link>
               <a href="#" className="footer-link">Careers</a>
               <a href="/#contact" className="footer-link">Contact</a>
             </div>

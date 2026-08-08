@@ -10,7 +10,7 @@ const Portfolio = lazy(() => import('../components/Portfolio'));
 
 const FAQ = lazy(() => import('../components/FAQ'));
 const ContactSection = lazy(() => import('../components/ContactSection'));
-import ContactModal from '../components/ContactModal';
+const ContactModal = lazy(() => import('../components/ContactModal'));
 import { Helmet } from 'react-helmet-async';
 import { trackEvent } from '../utils/analytics';
 
@@ -52,54 +52,67 @@ export default function Home() {
 
   return (
     <>
-      <Helmet>
-        <title>Enterprise AI & Software Development Solutions | Gyan VaniAi</title>
-        <meta name="description" content="We design and develop AI Agents, CRM, HRMS, ERP, Business Websites, Mobile Apps, and Enterprise Software for businesses across Europe, Asia, Africa, and Worldwide." />
+      <Helmet htmlAttributes={{ lang: 'en' }}>
+        <title>Enterprise AI, CRM & Automation Solutions | Gyan VaniAi</title>
+        <meta name="description" content="Gyan VaniAi builds AI software, CRM, WhatsApp automation, chatbots and custom business solutions to automate operations, generate leads and scale growth." />
         <link rel="canonical" href="https://gyanvaniai.online/" />
 
         {/* OpenGraph / Facebook */}
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://gyanvaniai.online/" />
-        <meta property="og:title" content="Enterprise AI & Software Development Solutions | Gyan VaniAi" />
-        <meta property="og:description" content="AI CRM, WhatsApp Automation, Autonomous AI Agents, HRMS, and ERP development serving clients in Europe, Asia, Africa, and Worldwide." />
+        <meta property="og:title" content="Enterprise AI, CRM & Automation Solutions | Gyan VaniAi" />
+        <meta property="og:description" content="Gyan VaniAi builds AI software, CRM, WhatsApp automation, chatbots and custom business solutions to automate operations, generate leads and scale growth." />
         <meta property="og:image" content="https://gyanvaniai.online/hero_dashboard.png" />
 
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:url" content="https://gyanvaniai.online/" />
-        <meta name="twitter:title" content="Enterprise AI & Software Development Solutions | Gyan VaniAi" />
-        <meta name="twitter:description" content="AI CRM, WhatsApp Automation, Autonomous AI Agents, HRMS, and ERP development serving clients in Europe, Asia, Africa, and Worldwide." />
+        <meta name="twitter:title" content="Enterprise AI, CRM & Automation Solutions | Gyan VaniAi" />
+        <meta name="twitter:description" content="Gyan VaniAi builds AI software, CRM, WhatsApp automation, chatbots and custom business solutions to automate operations, generate leads and scale growth." />
         <meta name="twitter:image" content="https://gyanvaniai.online/hero_dashboard.png" />
 
         {/* Structured Schema with Global & Regional GEO Targets */}
         <script type="application/ld+json">
           {`
-            {
-              "@context": "https://schema.org",
-              "@type": "ProfessionalService",
-              "name": "Gyan VaniAi",
-              "url": "https://gyanvaniai.online",
-              "logo": "https://gyanvaniai.online/logo.png",
-              "image": "https://gyanvaniai.online/hero_dashboard.png",
-              "description": "Enterprise software development company specializing in AI CRM, WhatsApp Automation, AI Agents, HRMS, and ERP development.",
-              "areaServed": ["Europe", "Asia", "Africa", "Worldwide"],
-              "priceRange": "$$",
-              "knowsAbout": [
-                "Artificial Intelligence",
-                "CRM Development",
-                "WhatsApp Automation",
-                "Autonomous AI Agents",
-                "HRMS Software",
-                "ERP Software",
-                "Full Stack Web Development"
-              ],
-              "contactPoint": {
-                "@type": "ContactPoint",
-                "email": "contact@gyanvaniai.online",
-                "contactType": "customer service",
-                "availableLanguage": ["English"]
+            [
+              {
+                "@context": "https://schema.org",
+                "@type": "WebSite",
+                "@id": "https://gyanvaniai.online/#website",
+                "url": "https://gyanvaniai.online/",
+                "name": "Gyan VaniAi",
+                "publisher": {
+                  "@id": "https://gyanvaniai.online/#organization"
+                }
+              },
+              {
+                "@context": "https://schema.org",
+                "@type": ["ProfessionalService", "Organization"],
+                "@id": "https://gyanvaniai.online/#organization",
+                "name": "Gyan VaniAi",
+                "url": "https://gyanvaniai.online/",
+                "logo": "https://gyanvaniai.online/logo.png",
+                "image": "https://gyanvaniai.online/hero_dashboard.png",
+                "description": "Enterprise software development company specializing in AI CRM, WhatsApp Automation, AI Agents, HRMS, and ERP development.",
+                "areaServed": ["Europe", "Asia", "Africa", "Worldwide"],
+                "priceRange": "$$",
+                "knowsAbout": [
+                  "Artificial Intelligence",
+                  "CRM Development",
+                  "WhatsApp Automation",
+                  "Autonomous AI Agents",
+                  "HRMS Software",
+                  "ERP Software",
+                  "Full Stack Web Development"
+                ],
+                "contactPoint": {
+                  "@type": "ContactPoint",
+                  "email": "contact@gyanvaniai.online",
+                  "contactType": "customer service",
+                  "availableLanguage": ["English"]
+                }
               }
-            }
+            ]
           `}
         </script>
       </Helmet>
@@ -134,7 +147,9 @@ export default function Home() {
         </Suspense>
       </main>
       
-      <ContactModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      <Suspense fallback={null}>
+        <ContactModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      </Suspense>
     </>
   );
 }

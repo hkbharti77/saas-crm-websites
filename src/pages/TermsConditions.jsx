@@ -31,10 +31,43 @@ export default function TermsConditions() {
         <title>Terms & Conditions | Gyan VaniAi</title>
         <meta name="description" content="Terms of Service and API usage guidelines for Gyan VaniAi platforms." />
         <link rel="canonical" href="https://gyanvaniai.online/terms" />
+        <script type="application/ld+json">
+          {`
+            [
+              {
+                "@context": "https://schema.org",
+                "@type": "WebPage",
+                "name": "Terms & Conditions | Gyan VaniAi",
+                "url": "https://gyanvaniai.online/terms",
+                "publisher": {
+                  "@id": "https://gyanvaniai.online/#organization"
+                }
+              },
+              {
+                "@context": "https://schema.org",
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                  {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Home",
+                    "item": "https://gyanvaniai.online/"
+                  },
+                  {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "Terms & Conditions",
+                    "item": "https://gyanvaniai.online/terms"
+                  }
+                ]
+              }
+            ]
+          `}
+        </script>
       </Helmet>
       <div className="legal-hero">
         <div className="container legal-hero-content">
-          <img src="/terms_image.webp" alt="Terms of Service" className="legal-hero-img" />
+          <img src="/terms_image.webp" alt="" width="400" height="400" className="legal-hero-img" fetchpriority="high" decoding="sync" />
           <div>
             <h1 className="h1">Terms and Conditions</h1>
             <p className="text-lg text-muted" style={{ marginTop: '0.5rem' }}>Effective Date: June 14, 2026</p>

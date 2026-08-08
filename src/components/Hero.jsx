@@ -70,11 +70,11 @@ export default function Hero({ onBookDemo }) {
             <div className="mockup-body" style={{ padding: 0, aspectRatio: '16/9' }}>
               <img 
                 src="/hero_dashboard.webp" 
-                alt="AI CRM Dashboard – WhatsApp Automation & Lead Management" 
-                width="600"
-                height="337"
+                alt="Gyan VaniAi CRM and AI Agent dashboard interface" 
+                width="1280"
+                height="720"
                 fetchPriority="high"
-                decoding="async"
+                decoding="sync"
                 style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} 
               />
             </div>
