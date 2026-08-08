@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../firebase';
+import { Helmet } from 'react-helmet-async';
 import './Admin.css';
 
 const AdminLogin = () => {
@@ -28,6 +29,9 @@ const AdminLogin = () => {
 
   return (
     <div className="admin-container">
+      <Helmet>
+        <meta name="robots" content="noindex, nofollow" />
+      </Helmet>
       <div className="admin-login">
         <h2>Admin Login</h2>
         {error && <div className="admin-error">{error}</div>}

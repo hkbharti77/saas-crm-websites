@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { auth, db } from '../../firebase';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { Helmet } from 'react-helmet-async';
 import './Admin.css';
 
 const AdminCreatePost = () => {
@@ -109,6 +110,9 @@ const AdminCreatePost = () => {
 
   return (
     <div className="admin-container">
+      <Helmet>
+        <meta name="robots" content="noindex, nofollow" />
+      </Helmet>
       <div className="admin-header">
         <h2>Create New Blog Post</h2>
         <button onClick={() => navigate('/admin/dashboard')} className="btn-edit">

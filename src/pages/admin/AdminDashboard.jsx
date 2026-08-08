@@ -4,6 +4,7 @@ import { auth, db } from '../../firebase';
 import { collection, getDocs, deleteDoc, doc, query, orderBy } from 'firebase/firestore';
 import { signOut } from 'firebase/auth';
 import ThemeSwitcher from '../../components/ThemeSwitcher';
+import { Helmet } from 'react-helmet-async';
 import './Admin.css';
 
 const AdminDashboard = () => {
@@ -71,6 +72,9 @@ const AdminDashboard = () => {
 
   return (
     <div className="admin-container">
+      <Helmet>
+        <meta name="robots" content="noindex, nofollow" />
+      </Helmet>
       <div className="admin-header">
         <h2>Admin Dashboard</h2>
         <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>

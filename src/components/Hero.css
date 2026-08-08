@@ -129,7 +129,6 @@
 
 .mockup-body {
   display: flex;
-  height: 400px;
   background: #f1f5f9;
   padding: 1rem;
   gap: 1rem;
@@ -184,9 +183,5 @@
   
   .hero-actions {
     flex-direction: column;
-  }
-  
-  .mockup-body {
-    height: 300px;
   }
 }

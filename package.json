@@ -22,6 +22,7 @@
     "react-router-dom": "^7.17.0"
   },
   "devDependencies": {
+    "@aws-sdk/client-s3": "^3.1106.0",
     "@eslint/js": "^10.0.1",
     "@prerenderer/renderer-jsdom": "^1.1.9",
     "@prerenderer/rollup-plugin": "^0.3.12",
