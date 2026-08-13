@@ -5,7 +5,6 @@ import './ThemeSwitcher.css';
 
 export default function ThemeSwitcher() {
   const {
-    theme,
     themeMode,
     setThemeMode,
     fixedTheme,

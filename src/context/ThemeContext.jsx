@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
-export const THEMES = [
+const THEMES = [
   { id: 'midnight', name: 'Enterprise Midnight', color: '#070b12', accent: '#2dd4bf', description: 'Deep ink with teal accents' },
   { id: 'aurora', name: 'Aurora AI Glass', color: '#031816', accent: '#10b981', description: 'Forest green operational mesh' },
   { id: 'slate', name: 'Corporate Slate', color: '#0f172a', accent: '#38bdf8', description: 'Steel slate with sky accents' },
@@ -11,7 +11,7 @@ export const THEMES = [
 ];
 
 // 7-day automatic daily theme rotation schedule (Sun = 0 to Sat = 6) - 7 distinct themes for 7 days
-export const DAILY_SCHEDULE = [
+const DAILY_SCHEDULE = [
   { day: 'Sunday', themeId: 'amber', name: 'Sunset Amber Tech' },
   { day: 'Monday', themeId: 'aurora', name: 'Aurora AI Glass' },
   { day: 'Tuesday', themeId: 'slate', name: 'Corporate Slate' },
@@ -21,7 +21,7 @@ export const DAILY_SCHEDULE = [
   { day: 'Saturday', themeId: 'sapphire', name: 'Cobalt Enterprise' }
 ];
 
-export function getTodayAutoTheme() {
+function getTodayAutoTheme() {
   const dayIndex = new Date().getDay();
   return DAILY_SCHEDULE[dayIndex].themeId;
 }
@@ -100,6 +100,7 @@ export function ThemeProvider({ children }) {
   );
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function useTheme() {
   const context = useContext(ThemeContext);
   if (!context) {

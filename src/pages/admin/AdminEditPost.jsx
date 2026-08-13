@@ -88,7 +88,7 @@ const AdminEditPost = () => {
         if (!res.ok) {
           const text = await res.text();
           let errData;
-          try { errData = JSON.parse(text); } catch (err) {}
+          try { errData = JSON.parse(text); } catch (err) { console.error(err); }
           alert(errData?.error || `Upload failed with HTTP status ${res.status}`);
           setUploadingImage(false);
           return;

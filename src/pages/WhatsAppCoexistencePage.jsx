@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { 
-  CheckCircle2, 
   ArrowRight, 
   RefreshCw, 
   Zap, 
