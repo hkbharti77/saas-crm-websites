@@ -80,7 +80,7 @@ export default function ServicePage() {
         </div>
 
         <div style={{ width: '100%', maxWidth: '800px', margin: '0 auto 4rem auto', borderRadius: '16px', overflow: 'hidden', boxShadow: '0 20px 40px rgba(0,0,0,0.3)', display: 'flex', justifyContent: 'center' }}>
-          <img src={service.imageUrl} alt={service.title} width="800" height="600" style={{ width: '100%', height: 'auto', display: 'block' }} fetchpriority="high" decoding="sync" />
+          <img src={service.imageUrl} alt={service.title} width="800" height="600" style={{ width: '100%', height: 'auto', display: 'block' }} fetchPriority="high" decoding="sync" />
         </div>
 
         <div className="premium-card" style={{ padding: '3rem', marginBottom: '4rem', background: 'var(--glass-bg)', backdropFilter: 'blur(10px)', border: '1px solid var(--border-color)', borderRadius: '16px' }}>

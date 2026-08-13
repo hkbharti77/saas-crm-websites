@@ -10,7 +10,7 @@ export default function Header() {
     <header className="header">
       <div className="container header-container">
         <a href="/" className="logo">
-          <img src="/logo.webp" alt="Gyan VaniAi Logo" width="40" height="40" className="logo-img" style={{ display: 'block' }} fetchpriority="high" />
+          <img src="/logo.webp" alt="Gyan VaniAi Logo" width="40" height="40" className="logo-img" style={{ display: 'block' }} fetchPriority="high" />
           <span className="logo-text">Gyan VaniAi</span>
         </a>
         

@@ -70,7 +70,7 @@ export default function TermsConditions() {
       </Helmet>
       <div className="legal-hero">
         <div className="container legal-hero-content">
-          <img src="/terms_image.webp" alt="" width="400" height="400" className="legal-hero-img" fetchpriority="high" decoding="sync" />
+          <img src="/terms_image.webp" alt="" width="400" height="400" className="legal-hero-img" fetchPriority="high" decoding="sync" />
           <div>
             <h1 className="h1">Terms and Conditions</h1>
             <p className="text-lg text-muted" style={{ marginTop: '0.5rem' }}>Effective Date: June 14, 2026</p>
