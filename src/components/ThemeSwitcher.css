@@ -48,10 +48,10 @@
 }
 
 .theme-mode-btn.active {
-  background: var(--gradient-primary);
+  background: var(--primary-color);
   border-color: transparent;
   color: white;
-  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.35);
+  box-shadow: 0 4px 15px color-mix(in srgb, var(--primary-color) 28%, transparent);
 }
 
 .auto-theme-schedule {
@@ -82,7 +82,7 @@
 
 .schedule-day-card.today {
   border-color: var(--primary-color);
-  background: rgba(99, 102, 241, 0.15);
+  background: color-mix(in srgb, var(--primary-color) 12%, transparent);
 }
 
 .schedule-day-name {
@@ -130,8 +130,8 @@
 
 .fixed-theme-card.active {
   border-color: var(--primary-color);
-  background: rgba(99, 102, 241, 0.15);
-  box-shadow: 0 0 20px rgba(99, 102, 241, 0.25);
+  background: color-mix(in srgb, var(--primary-color) 12%, transparent);
+  box-shadow: 0 0 20px color-mix(in srgb, var(--primary-color) 18%, transparent);
 }
 
 .fixed-theme-dots {

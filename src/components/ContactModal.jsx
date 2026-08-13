@@ -109,25 +109,25 @@ export default function ContactModal({ isOpen, onClose, prefillMessage = '' }) {
               <label className="form-label" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                 Name
                 {touched.name && !errors.name && <Check size={16} color="#10b981" />}
-                {touched.name && errors.name && <XCircle size={16} color="#ec4899" />}
+                {touched.name && errors.name && <XCircle size={16} color="#ef4444" />}
               </label>
               <input type="text" name="name" value={values.name} onChange={handleChange} onBlur={handleBlur} className={`form-input ${errors.name ? 'error' : ''}`} placeholder="Your name" maxLength={66} required />
-              {errors.name && <span style={{ color: '#ec4899', fontSize: '0.8rem', marginTop: '0.25rem', display: 'block' }}>{errors.name}</span>}
+              {errors.name && <span style={{ color: '#ef4444', fontSize: '0.8rem', marginTop: '0.25rem', display: 'block' }}>{errors.name}</span>}
             </div>
             <div className="form-group">
               <label className="form-label" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                 Work Email
                 {touched.email && !errors.email && <Check size={16} color="#10b981" />}
-                {touched.email && errors.email && <XCircle size={16} color="#ec4899" />}
+                {touched.email && errors.email && <XCircle size={16} color="#ef4444" />}
               </label>
               <input type="email" name="email" value={values.email} onChange={handleChange} onBlur={handleBlur} className={`form-input ${errors.email ? 'error' : ''}`} placeholder="name@company.com" maxLength={266} required />
-              {errors.email && <span style={{ color: '#ec4899', fontSize: '0.8rem', marginTop: '0.25rem', display: 'block' }}>{errors.email}</span>}
+              {errors.email && <span style={{ color: '#ef4444', fontSize: '0.8rem', marginTop: '0.25rem', display: 'block' }}>{errors.email}</span>}
             </div>
             <div className="form-group">
               <label className="form-label" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                 Phone Number (Optional)
                 {touched.phone && phone && !errors.phone && <Check size={16} color="#10b981" />}
-                {touched.phone && errors.phone && <XCircle size={16} color="#ec4899" />}
+                {touched.phone && errors.phone && <XCircle size={16} color="#ef4444" />}
               </label>
               <PhoneInput
                 international
@@ -138,7 +138,7 @@ export default function ContactModal({ isOpen, onClose, prefillMessage = '' }) {
                 name="phone"
                 className={`form-input-phone ${errors.phone ? 'error' : ''}`}
               />
-              {errors.phone && <span style={{ color: '#ec4899', fontSize: '0.8rem', marginTop: '0.25rem', display: 'block' }}>{errors.phone}</span>}
+              {errors.phone && <span style={{ color: '#ef4444', fontSize: '0.8rem', marginTop: '0.25rem', display: 'block' }}>{errors.phone}</span>}
             </div>
             <div className="form-group">
               <label className="form-label" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
@@ -146,7 +146,7 @@ export default function ContactModal({ isOpen, onClose, prefillMessage = '' }) {
               </label>
               <div className="textarea-wrapper">
                 <textarea name="message" value={values.message} onChange={handleChange} onBlur={handleBlur} className="form-textarea" rows="3" placeholder="Tell us about your current workflow challenges..." maxLength={1000} required></textarea>
-                <span className="char-counter" style={{ color: values.message.length > 1000 ? '#ec4899' : 'var(--text-muted)' }}>
+                <span className="char-counter" style={{ color: values.message.length > 1000 ? '#ef4444' : 'var(--text-muted)' }}>
                   {values.message.length}/1000
                 </span>
               </div>

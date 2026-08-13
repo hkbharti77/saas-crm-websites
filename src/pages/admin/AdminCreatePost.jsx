@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { auth, db } from '../../firebase';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { Helmet } from 'react-helmet-async';
+import { pingBlogIndexNow } from '../../utils/pingBlogIndexNow';
 import './Admin.css';
 
 const AdminCreatePost = () => {
@@ -96,8 +97,11 @@ const AdminCreatePost = () => {
         ...formData,
         slugId,
         content,
-        createdAt: serverTimestamp()
+        createdAt: serverTimestamp(),
+        updatedAt: serverTimestamp()
       });
+
+      pingBlogIndexNow(slugId);
       
       navigate('/admin/dashboard');
     } catch (error) {

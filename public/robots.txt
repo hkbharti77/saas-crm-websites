@@ -18,4 +18,9 @@ Allow: /
 User-agent: Bytespider
 Allow: /
 
-Sitemap: https://gyanvaniai.online/sitemap.xml
+Sitemap: https://www.gyanvaniai.online/sitemap.xml
+Sitemap: https://www.gyanvaniai.online/api/blog-sitemap
+
+# AI / LLM discovery (GEO)
+# https://www.gyanvaniai.online/llms.txt
+# https://www.gyanvaniai.online/llms-full.txt

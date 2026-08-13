@@ -1,14 +1,7 @@
 import React from 'react';
-import { ArrowRight, MessageCircle, Bot, Users, Mic } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { trackBookDemo } from '../utils/analytics';
 import './Hero.css';
-
-const featurePills = [
-  { icon: <Bot size={14} />, label: 'AI Agents' },
-  { icon: <Users size={14} />, label: 'CRM & HRMS' },
-  { icon: <MessageCircle size={14} />, label: 'Web & Mobile' },
-  { icon: <Mic size={14} />, label: 'Enterprise Software' },
-];
 
 export default function Hero({ onBookDemo }) {
   const handleBookDemo = (source) => {
@@ -18,66 +11,39 @@ export default function Hero({ onBookDemo }) {
 
   return (
     <section className="hero">
-      <div className="hero-background"></div>
+      <div className="hero-media">
+        <img
+          src="/hero_dashboard.webp"
+          alt="Gyan VaniAi enterprise CRM and AI operations dashboard"
+          width="1280"
+          height="720"
+          fetchPriority="high"
+          decoding="sync"
+          className="hero-media-img"
+        />
+        <div className="hero-media-veil"></div>
+      </div>
+
       <div className="container hero-container">
         <div className="hero-content">
-          <div className="hero-badge">🚀 Enterprise Software Solutions</div>
-          <h1 className="h1 hero-title">
-            Build AI-Powered Software That{' '}
-            <span className="gradient-text-premium">Grows Your Business</span>
+          <p className="hero-brand">Gyan VaniAi</p>
+          <h1 className="hero-title">
+            Software that runs the business — not the other way around
           </h1>
-          <p className="hero-subtitle text-lg text-muted">
-            We design and develop AI Agents, CRM, HRMS, ERP, Business Websites, Mobile Apps, and Enterprise Software that automate operations, increase productivity, and generate more revenue.
+          <p className="hero-subtitle">
+            AI agents, CRM, HRMS, and enterprise systems built for operators who need clarity, automation, and measurable growth.
           </p>
-
-          <div className="hero-feature-pills">
-            {featurePills.map((pill) => (
-              <span key={pill.label} className="hero-pill">
-                {pill.icon} {pill.label}
-              </span>
-            ))}
-          </div>
-
           <div className="hero-actions">
             <button
               id="btn-book-demo"
               className="btn btn-primary"
               onClick={() => handleBookDemo('hero')}
             >
-              Book Free Consultation <ArrowRight size={20} />
+              Book a consultation <ArrowRight size={18} />
             </button>
-            <a href="#portfolio" className="btn btn-outline">
-              View Our Portfolio
+            <a href="#portfolio" className="btn btn-outline hero-btn-secondary">
+              See our work
             </a>
-          </div>
-          <div className="hero-trust">
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', marginTop: '1rem', color: 'var(--text-secondary)', fontSize: '0.9rem', fontWeight: '500' }}>
-              <span>✓ Enterprise-Grade Experience</span>
-              <span>✓ AI-First Development</span>
-              <span>✓ End-to-End Software Solutions</span>
-              <span>✓ Global Standards</span>
-              <span>✓ Dedicated Support</span>
-            </div>
-          </div>
-        </div>
-        <div className="hero-visual">
-          <div className="hero-mockup">
-            <div className="mockup-header">
-              <div className="dot red"></div>
-              <div className="dot yellow"></div>
-              <div className="dot green"></div>
-            </div>
-            <div className="mockup-body" style={{ padding: 0, aspectRatio: '16/9' }}>
-              <img 
-                src="/hero_dashboard.webp" 
-                alt="Gyan VaniAi CRM and AI Agent dashboard interface" 
-                width="1280"
-                height="720"
-                fetchPriority="high"
-                decoding="sync"
-                style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} 
-              />
-            </div>
           </div>
         </div>
       </div>

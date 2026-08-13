@@ -29,10 +29,11 @@ export default function Portfolio() {
   return (
     <section className="section bg-alt" id="portfolio">
       <div className="container">
-        <div className="section-header" style={{ textAlign: 'center', marginBottom: '4rem' }}>
-          <h2 className="h2">Our Team's Experience</h2>
-          <p className="text-lg text-muted" style={{ maxWidth: '700px', margin: '1rem auto 0' }}>
-            Our developers bring years of enterprise experience. Here are examples of complex solutions we've built in our careers.
+        <div className="section-header section-header--center">
+          <span className="section-eyebrow">Experience</span>
+          <h2 className="h2">Work that held up in production</h2>
+          <p className="text-lg text-muted" style={{ marginTop: '0.85rem' }}>
+            Examples from enterprise builds our team has shipped — real constraints, measurable outcomes.
           </p>
         </div>
         

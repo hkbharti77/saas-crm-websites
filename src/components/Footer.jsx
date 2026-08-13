@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, MapPin, Mail } from 'lucide-react';
+import { ArrowRight, Mail } from 'lucide-react';
 import { trackEmailClick, trackNewsletterSubscribe } from '../utils/analytics';
 import './Footer.css';
 
@@ -52,7 +52,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="footer" id="contact">
+    <footer className="footer" id="footer">
       <div className="container footer-container">
         <div className="footer-top">
           <div className="footer-brand">
@@ -64,7 +64,6 @@ export default function Footer() {
               We build intelligent CRM solutions, AI Chatbots, and automated workflows to scale your business.
             </p>
             <div className="social-links">
-              <a href="#" className="social-icon" aria-label="Our Location"><MapPin size={20} /></a>
               <a
                 href="mailto:contact@gyanvaniai.online"
                 id="link-footer-email"
@@ -84,6 +83,7 @@ export default function Footer() {
               <h4 className="link-title">Services</h4>
               <Link to="/services/whatsapp-coexistence" className="footer-link">WhatsApp Coexistence</Link>
               <Link to="/services/ai-development" className="footer-link">AI Development</Link>
+              <Link to="/services/ai-chatbots" className="footer-link">AI Chatbots</Link>
               <Link to="/services/crm-development" className="footer-link">CRM Development</Link>
               <Link to="/services/hrms-development" className="footer-link">HRMS Solutions</Link>
               <Link to="/services/erp-development" className="footer-link">ERP Solutions</Link>
@@ -97,12 +97,14 @@ export default function Footer() {
               <Link to="/industries/manufacturing" className="footer-link">Manufacturing</Link>
               <Link to="/industries/finance" className="footer-link">Finance</Link>
               <Link to="/industries/enterprise" className="footer-link">Enterprise IT</Link>
+              <Link to="/industries/real-estate" className="footer-link">Real Estate</Link>
+              <Link to="/industries/retail" className="footer-link">Retail</Link>
+              <Link to="/industries/logistics" className="footer-link">Logistics</Link>
             </div>
             <div className="link-group">
               <h4 className="link-title">Company</h4>
               <Link to="/blog" className="footer-link">Blog</Link>
               <Link to="/about" className="footer-link">About Us</Link>
-              <a href="#" className="footer-link">Careers</a>
               <a href="/#contact" className="footer-link">Contact</a>
             </div>
             <div className="link-group">

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
+import SeoHead from '../components/SeoHead';
 
 export default function PolicyPage() {
   const [activeSection, setActiveSection] = useState('data');
@@ -27,10 +28,12 @@ export default function PolicyPage() {
 
   return (
     <div style={{ minHeight: '100vh' }}>
+      <SeoHead
+        title="Privacy Policy | Gyan VaniAi"
+        description="Privacy Policy and Data Handling practices for Gyan VaniAi."
+        canonical="https://www.gyanvaniai.online/privacy"
+      />
       <Helmet>
-        <title>Privacy Policy | Gyan VaniAi</title>
-        <meta name="description" content="Privacy Policy and Data Handling practices for Gyan VaniAi." />
-        <link rel="canonical" href="https://gyanvaniai.online/privacy" />
         <script type="application/ld+json">
           {`
             [
@@ -38,9 +41,9 @@ export default function PolicyPage() {
                 "@context": "https://schema.org",
                 "@type": "WebPage",
                 "name": "Privacy Policy | Gyan VaniAi",
-                "url": "https://gyanvaniai.online/privacy",
+                "url": "https://www.gyanvaniai.online/privacy",
                 "publisher": {
-                  "@id": "https://gyanvaniai.online/#organization"
+                  "@id": "https://www.gyanvaniai.online/#organization"
                 }
               },
               {
@@ -51,13 +54,13 @@ export default function PolicyPage() {
                     "@type": "ListItem",
                     "position": 1,
                     "name": "Home",
-                    "item": "https://gyanvaniai.online/"
+                    "item": "https://www.gyanvaniai.online/"
                   },
                   {
                     "@type": "ListItem",
                     "position": 2,
                     "name": "Privacy Policy",
-                    "item": "https://gyanvaniai.online/privacy"
+                    "item": "https://www.gyanvaniai.online/privacy"
                   }
                 ]
               }
@@ -83,10 +86,10 @@ export default function PolicyPage() {
           <a href="#thirdparty" className={`legal-nav-link ${activeSection === 'thirdparty' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('thirdparty'); }}>3. Meta & Third-Party APIs</a>
           <a href="#security" className={`legal-nav-link ${activeSection === 'security' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('security'); }}>4. Security & Storage</a>
           <a href="#deletion" className={`legal-nav-link ${activeSection === 'deletion' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('deletion'); }}>5. Data Deletion</a>
-          <a href="#contact" className={`legal-nav-link ${activeSection === 'contact' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('contact'); }}>6. Contact Us</a>
+          <a href="#privacy-contact" className={`legal-nav-link ${activeSection === 'privacy-contact' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('privacy-contact'); }}>6. Contact Us</a>
         </aside>
         
-        <main className="legal-content glass-panel" style={{ padding: '3rem', borderRadius: 'var(--radius-lg)' }}>
+        <div className="legal-content glass-panel" style={{ padding: '3rem', borderRadius: 'var(--radius-lg)' }}>
           <section id="data" className="legal-section">
             <h2 className="h2">1. Data Collection</h2>
             <p className="text-muted">We collect information you provide directly to us when you request a demo, sign up for our CRM, or communicate with our automated agents. This includes your name, email, phone number, and business details.</p>
@@ -123,11 +126,11 @@ export default function PolicyPage() {
             </ul>
           </section>
 
-          <section id="contact" className="legal-section">
+          <section id="privacy-contact" className="legal-section">
             <h2 className="h2">6. Contact Us</h2>
             <p className="text-muted">If you have any questions about this Privacy Policy or wish to exercise your data rights, please contact our Data Protection Officer via the contact form at the bottom of our website.</p>
           </section>
-        </main>
+        </div>
       </div>
     </div>
   );

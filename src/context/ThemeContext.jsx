@@ -1,13 +1,13 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
 export const THEMES = [
-  { id: 'midnight', name: 'Enterprise Midnight', color: '#050811', accent: '#6366f1', description: 'Pure obsidian black tech dark theme with indigo glow' },
-  { id: 'aurora', name: 'Aurora AI Glass', color: '#041a18', accent: '#10b981', description: 'Cosmic glowing emerald & mint AI mesh gradient' },
-  { id: 'slate', name: 'Corporate Slate', color: '#0f172a', accent: '#38bdf8', description: 'Clean titanium slate finish with steel sky blue accents' },
-  { id: 'quantum', name: 'Quantum Cyan Tech', color: '#021820', accent: '#06b6d4', description: 'Cyberpunk deep aqua & electric cyan glow gradient' },
-  { id: 'amber', name: 'Sunset Amber Tech', color: '#140b04', accent: '#f59e0b', description: 'Warm obsidian amber gold & bronze tech gradient' },
-  { id: 'light', name: 'Light Pearl Enterprise', color: '#f8fafc', accent: '#2563eb', description: 'Modern pearl white & ice blue light theme' },
-  { id: 'sapphire', name: 'Sapphire Amethyst Tech', color: '#0c071e', accent: '#8b5cf6', description: 'High-security royal amethyst purple & cobalt glow' }
+  { id: 'midnight', name: 'Enterprise Midnight', color: '#070b12', accent: '#2dd4bf', description: 'Deep ink with teal accents' },
+  { id: 'aurora', name: 'Aurora AI Glass', color: '#031816', accent: '#10b981', description: 'Forest green operational mesh' },
+  { id: 'slate', name: 'Corporate Slate', color: '#0f172a', accent: '#38bdf8', description: 'Steel slate with sky accents' },
+  { id: 'quantum', name: 'Quantum Cyan Tech', color: '#021820', accent: '#22d3ee', description: 'Deep aqua for technical focus' },
+  { id: 'amber', name: 'Sunset Amber Tech', color: '#140d06', accent: '#f59e0b', description: 'Warm amber on dark bronze' },
+  { id: 'light', name: 'Light Pearl Enterprise', color: '#f0f3f6', accent: '#0f766e', description: 'Clean light with teal primary' },
+  { id: 'sapphire', name: 'Cobalt Enterprise', color: '#07101f', accent: '#60a5fa', description: 'Deep cobalt for formal brand surfaces' }
 ];
 
 // 7-day automatic daily theme rotation schedule (Sun = 0 to Sat = 6) - 7 distinct themes for 7 days
@@ -18,7 +18,7 @@ export const DAILY_SCHEDULE = [
   { day: 'Wednesday', themeId: 'quantum', name: 'Quantum Cyan Tech' },
   { day: 'Thursday', themeId: 'light', name: 'Light Pearl Enterprise' },
   { day: 'Friday', themeId: 'midnight', name: 'Enterprise Midnight' },
-  { day: 'Saturday', themeId: 'sapphire', name: 'Sapphire Amethyst Tech' }
+  { day: 'Saturday', themeId: 'sapphire', name: 'Cobalt Enterprise' }
 ];
 
 export function getTodayAutoTheme() {

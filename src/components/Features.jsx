@@ -1,81 +1,83 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Database, Users, Bot, GitMerge, Smartphone, Layout, ArrowRight } from 'lucide-react';
 import { trackBookDemo } from '../utils/analytics';
 import './Features.css';
 
 const services = [
   {
-    icon: <Bot size={24} />,
+    icon: <Bot size={22} strokeWidth={1.75} />,
     title: 'AI Solutions',
-    description: 'AI Chatbots, AI Voice Agents, AI Sales Agents, AI Customer Support, AI Workflow Automation.',
-    color: '#8b5cf6'
+    description: 'Chatbots, voice agents, sales agents, support flows, and workflow automation that fit how your teams already work.',
+    to: '/services/ai-development',
   },
   {
-    icon: <Users size={24} />,
+    icon: <Users size={22} strokeWidth={1.75} />,
     title: 'CRM Development',
-    description: 'Sales CRM, Healthcare CRM, Education CRM, Manufacturing CRM, Custom CRM.',
-    color: '#3b82f6'
+    description: 'Sales, healthcare, education, and manufacturing CRMs — shaped around your pipeline, not a generic template.',
+    to: '/services/crm-development',
   },
   {
-    icon: <GitMerge size={24} />,
+    icon: <GitMerge size={22} strokeWidth={1.75} />,
     title: 'HRMS',
-    description: 'Employee Management, Payroll, Attendance, Leave Management, Recruitment.',
-    color: '#22c55e'
+    description: 'Employee records, payroll, attendance, leave, and recruitment in one operational system.',
+    to: '/services/hrms-development',
   },
   {
-    icon: <Database size={24} />,
+    icon: <Database size={22} strokeWidth={1.75} />,
     title: 'ERP Solutions',
-    description: 'Inventory, Finance, Procurement, Operations, Asset Management.',
-    color: '#f59e0b'
+    description: 'Inventory, finance, procurement, operations, and asset management connected end to end.',
+    to: '/services/erp-development',
   },
   {
-    icon: <Layout size={24} />,
+    icon: <Layout size={22} strokeWidth={1.75} />,
     title: 'Website Development',
-    description: 'Business Websites, Corporate Websites, E-commerce, Landing Pages, SEO-Friendly Sites.',
-    color: '#06b6d4'
+    description: 'Corporate sites, ecommerce, and landing pages built for performance, SEO, and conversion.',
+    to: '/services/web-development',
   },
   {
-    icon: <Smartphone size={24} />,
+    icon: <Smartphone size={22} strokeWidth={1.75} />,
     title: 'Mobile App Development',
-    description: 'Android, iOS, Flutter, React Native.',
-    color: '#ec4899'
-  }
+    description: 'Android, iOS, Flutter, and React Native apps designed for daily use — not demo day.',
+    to: '/services/mobile-app-development',
+  },
 ];
 
 export default function Features({ onBookDemo }) {
   return (
     <section className="section bg-alt" id="features">
       <div className="container">
-        <div className="section-header" style={{ textAlign: 'center', marginBottom: '4rem' }}>
-          <h2 className="h2">Complete Digital Solutions for Modern Businesses</h2>
-          <p className="text-lg text-muted" style={{ maxWidth: '700px', margin: '1rem auto 0' }}>
-            Whether you're a startup, SME, or enterprise, we build intelligent software that automates operations, streamlines workflows, and accelerates business growth.
+        <div className="section-header section-header--center">
+          <span className="section-eyebrow">What we build</span>
+          <h2 className="h2">Systems for modern operations</h2>
+          <p className="text-lg text-muted" style={{ marginTop: '0.85rem' }}>
+            From startups to enterprises — software that automates work, tightens workflows, and gives leadership a clear picture.
           </p>
         </div>
-        
+
         <div className="features-grid">
-          {services.map((service, index) => (
-            <div className="feature-card" key={index}>
-              <div className="feature-icon" style={{ backgroundColor: `${service.color}15`, color: service.color }}>
-                {service.icon}
-              </div>
-              <h3 className="h3 feature-title">{service.title}</h3>
-              <p className="text-muted">{service.description}</p>
-            </div>
+          {services.map((service) => (
+            <Link to={service.to} className="feature-card-link" key={service.title}>
+              <article className="feature-card">
+                <div className="feature-icon">{service.icon}</div>
+                <h3 className="h3 feature-title">{service.title}</h3>
+                <p className="text-muted feature-desc">{service.description}</p>
+              </article>
+            </Link>
           ))}
         </div>
 
-        {/* Section CTA */}
-        <div style={{ textAlign: 'center', marginTop: '3.5rem' }}>
-          <p className="text-muted" style={{ marginBottom: '1rem' }}>
-            Ready to see these features in action?
-          </p>
+        <div className="features-cta">
+          <p className="text-muted">Want to walk through a fit for your team?</p>
           <button
             id="btn-features-book-demo"
             className="btn btn-primary"
-            onClick={() => { trackBookDemo('features'); onBookDemo && onBookDemo(); }}
+            onClick={() => {
+              trackBookDemo('features');
+              onBookDemo && onBookDemo();
+            }}
           >
-            Book a Free Demo <ArrowRight size={18} />
+            Book a free demo <ArrowRight size={18} />
           </button>
         </div>
       </div>

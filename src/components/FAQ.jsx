@@ -39,7 +39,7 @@ const faqs = [
 
 import { Helmet } from 'react-helmet-async';
 
-export default function FAQ() {
+export default function FAQ({ includeSchema = true }) {
   const [openIndex, setOpenIndex] = useState(0);
 
   // Generate FAQ JSON-LD Schema
@@ -58,11 +58,13 @@ export default function FAQ() {
 
   return (
     <section className="section bg-alt" id="faq">
-      <Helmet>
-        <script type="application/ld+json">
-          {JSON.stringify(faqSchema)}
-        </script>
-      </Helmet>
+      {includeSchema && (
+        <Helmet>
+          <script type="application/ld+json">
+            {JSON.stringify(faqSchema)}
+          </script>
+        </Helmet>
+      )}
       <div className="container" style={{ maxWidth: '800px' }}>
         <h2 className="h2 text-center" style={{ marginBottom: '3rem' }} data-aos="fade-up">Frequently Asked Questions</h2>
         

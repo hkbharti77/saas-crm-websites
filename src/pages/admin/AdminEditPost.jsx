@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { auth, db } from '../../firebase';
-import { doc, getDoc, updateDoc } from 'firebase/firestore';
+import { doc, getDoc, updateDoc, serverTimestamp } from 'firebase/firestore';
 import { Helmet } from 'react-helmet-async';
+import { pingBlogIndexNow } from '../../utils/pingBlogIndexNow';
 import './Admin.css';
 
 const AdminEditPost = () => {
@@ -130,8 +131,11 @@ const AdminEditPost = () => {
       await updateDoc(docRef, {
         ...formData,
         slugId,
-        content
+        content,
+        updatedAt: serverTimestamp()
       });
+
+      pingBlogIndexNow(slugId);
       
       navigate('/admin/dashboard');
     } catch (error) {

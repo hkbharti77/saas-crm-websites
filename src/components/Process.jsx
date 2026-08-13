@@ -16,10 +16,11 @@ export default function Process() {
   return (
     <section className="section" id="process">
       <div className="container">
-        <div className="section-header" style={{ textAlign: 'center', marginBottom: '4rem' }}>
-          <h2 className="h2">Our Development Process</h2>
-          <p className="text-lg text-muted" style={{ maxWidth: '700px', margin: '1rem auto 0' }}>
-            A proven, transparent methodology that guarantees high-quality software delivered on time and within budget.
+        <div className="section-header section-header--center">
+          <span className="section-eyebrow">Process</span>
+          <h2 className="h2">How we ship</h2>
+          <p className="text-lg text-muted" style={{ marginTop: '0.85rem' }}>
+            A clear path from discovery to long-term support — so scope, quality, and timelines stay visible.
           </p>
         </div>
         
@@ -36,7 +37,7 @@ export default function Process() {
                   color: 'white', 
                   width: '50px', 
                   height: '50px', 
-                  borderRadius: '50%', 
+                  borderRadius: '10px', 
                   display: 'flex', 
                   alignItems: 'center', 
                   justifyContent: 'center',

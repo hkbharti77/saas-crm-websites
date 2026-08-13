@@ -58,7 +58,7 @@ export default function WhatsAppCoexistencePage() {
     trackEvent('faq_toggle', { index, question: faqs[index].q });
   };
 
-  const pageUrl = "https://gyanvaniai.online/services/whatsapp-coexistence";
+  const pageUrl = "https://www.gyanvaniai.online/services/whatsapp-coexistence";
 
   return (
     <>
@@ -72,14 +72,14 @@ export default function WhatsAppCoexistencePage() {
         <meta property="og:url" content={pageUrl} />
         <meta property="og:title" content="WhatsApp Business Automation & Coexistence | Gyan VaniAi" />
         <meta property="og:description" content="Unlock WhatsApp Business automation using the official Cloud API. Integrate WhatsApp CRM and Coexistence mode without losing your mobile app access." />
-        <meta property="og:image" content="https://gyanvaniai.online/portfolio_crm.webp" />
+        <meta property="og:image" content="https://www.gyanvaniai.online/portfolio_crm.webp" />
 
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:url" content={pageUrl} />
         <meta name="twitter:title" content="WhatsApp Business Automation & Coexistence | Gyan VaniAi" />
         <meta name="twitter:description" content="Unlock WhatsApp Business automation using the official Cloud API. Integrate WhatsApp CRM and Coexistence mode without losing your mobile app access." />
-        <meta name="twitter:image" content="https://gyanvaniai.online/portfolio_crm.webp" />
+        <meta name="twitter:image" content="https://www.gyanvaniai.online/portfolio_crm.webp" />
 
         {/* Structured Schema */}
         <script type="application/ld+json">
@@ -90,7 +90,7 @@ export default function WhatsAppCoexistencePage() {
                 "@type": "Service",
                 "serviceType": "WhatsApp Coexistence CRM & Meta API Automation",
                 "provider": {
-                  "@id": "https://gyanvaniai.online/#organization"
+                  "@id": "https://www.gyanvaniai.online/#organization"
                 },
                 "areaServed": ["Europe", "Asia", "Africa", "Worldwide"],
                 "description": "Native Meta Tech Provider WhatsApp Coexistence mode enabling mobile app and AI CRM integration on the same phone number.",
@@ -104,13 +104,13 @@ export default function WhatsAppCoexistencePage() {
                     "@type": "ListItem",
                     "position": 1,
                     "name": "Home",
-                    "item": "https://gyanvaniai.online/"
+                    "item": "https://www.gyanvaniai.online/"
                   },
                   {
                     "@type": "ListItem",
                     "position": 2,
                     "name": "Services",
-                    "item": "https://gyanvaniai.online/"
+                    "item": "https://www.gyanvaniai.online/"
                   },
                   {
                     "@type": "ListItem",
@@ -139,18 +139,18 @@ export default function WhatsAppCoexistencePage() {
         </script>
       </Helmet>
 
-      <main style={{ paddingTop: '130px', paddingBottom: '80px' }}>
+      <div style={{ paddingTop: '130px', paddingBottom: '80px' }}>
         
         {/* HERO SECTION */}
         <section className="container" style={{ marginBottom: '5rem' }}>
           <div style={{ textAlign: 'center', maxWidth: '850px', margin: '0 auto' }}>
-            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '6px 16px', borderRadius: '50px', background: 'rgba(99, 102, 241, 0.1)', color: 'var(--primary-color)', fontSize: '0.9rem', fontWeight: '600', marginBottom: '1.5rem' }}>
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '6px 16px', borderRadius: '999px', background: 'color-mix(in srgb, var(--primary-color) 12%, transparent)', color: 'var(--primary-color)', fontSize: '0.9rem', fontWeight: '600', marginBottom: '1.5rem' }}>
               <ShieldCheck size={18} /> Official Meta Tech Provider Feature
             </div>
             
-            <h1 className="h1" style={{ fontSize: '3.2rem', lineHeight: '1.2', marginBottom: '1.5rem' }}>
+            <h1 className="h1" style={{ fontSize: 'clamp(2.2rem, 4vw, 3.2rem)', lineHeight: '1.2', marginBottom: '1.5rem' }}>
               WhatsApp Business Automation<br />
-              <span style={{ background: 'linear-gradient(135deg, #6366f1 0%, #38bdf8 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+              <span style={{ color: 'var(--primary-color)' }}>
                 Phone App + AI CRM on the Same Number
               </span>
             </h1>
@@ -182,9 +182,9 @@ export default function WhatsAppCoexistencePage() {
         {/* 8 UNLOCKED SUPERPOWERS GRID */}
         <section className="section bg-alt" style={{ padding: '5rem 0' }}>
           <div className="container">
-            <div className="section-header" style={{ textAlign: 'center', marginBottom: '4rem' }}>
+            <div className="section-header section-header--center">
               <h2 className="h2">What Coexistence Unlocks On Top of Your Phone App</h2>
-              <p className="text-lg text-muted" style={{ maxWidth: '700px', margin: '1rem auto 0' }}>
+              <p className="text-lg text-muted" style={{ marginTop: '0.85rem' }}>
                 Keep your existing workflow while unlocking 8 powerful enterprise capabilities your phone app cannot do alone.
               </p>
             </div>
@@ -192,7 +192,7 @@ export default function WhatsAppCoexistencePage() {
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem' }}>
               
               <div className="premium-card" style={{ padding: '2rem' }}>
-                <Smartphone size={32} color="#6366f1" style={{ marginBottom: '1rem' }} />
+                <Smartphone size={32} color="var(--primary-color)" style={{ marginBottom: '1rem' }} />
                 <h3 className="h3" style={{ fontSize: '1.25rem', marginBottom: '0.75rem' }}>1. Single Number, Dual Surface</h3>
                 <p className="text-muted" style={{ fontSize: '0.95rem', lineHeight: '1.6' }}>
                   Customers reach your one official number. Your team sees messages on the mobile app AND the Gyan VaniAi web dashboard simultaneously.
@@ -200,7 +200,7 @@ export default function WhatsAppCoexistencePage() {
               </div>
 
               <div className="premium-card" style={{ padding: '2rem' }}>
-                <RefreshCw size={32} color="#38bdf8" style={{ marginBottom: '1rem' }} />
+                <RefreshCw size={32} color="var(--primary-color)" style={{ marginBottom: '1rem' }} />
                 <h3 className="h3" style={{ fontSize: '1.25rem', marginBottom: '0.75rem' }}>2. Real-Time Bidirectional Sync</h3>
                 <p className="text-muted" style={{ fontSize: '0.95rem', lineHeight: '1.6' }}>
                   Customer pings show up instantly on both surfaces. Replies sent from the phone app reflect in the CRM web inbox immediately.
@@ -208,7 +208,7 @@ export default function WhatsAppCoexistencePage() {
               </div>
 
               <div className="premium-card" style={{ padding: '2rem' }}>
-                <Bot size={32} color="#8b5cf6" style={{ marginBottom: '1rem' }} />
+                <Bot size={32} color="var(--primary-color)" style={{ marginBottom: '1rem' }} />
                 <h3 className="h3" style={{ fontSize: '1.25rem', marginBottom: '0.75rem' }}>3. 24/7 AI Auto-Replies</h3>
                 <p className="text-muted" style={{ fontSize: '0.95rem', lineHeight: '1.6' }}>
                   AI agents answer FAQs overnight under 300ms latency. The conversation appears on your phone app next morning for seamless hand-off.
@@ -216,7 +216,7 @@ export default function WhatsAppCoexistencePage() {
               </div>
 
               <div className="premium-card" style={{ padding: '2rem' }}>
-                <Send size={32} color="#10b981" style={{ marginBottom: '1rem' }} />
+                <Send size={32} color="var(--primary-color)" style={{ marginBottom: '1rem' }} />
                 <h3 className="h3" style={{ fontSize: '1.25rem', marginBottom: '0.75rem' }}>4. Unlimited Bulk Broadcasts</h3>
                 <p className="text-muted" style={{ fontSize: '0.95rem', lineHeight: '1.6' }}>
                   Bypass the phone app's 256 recipient limit. Send broadcasts to 10,000+ contacts via Cloud API while keeping one-on-one phone chats free.
@@ -224,7 +224,7 @@ export default function WhatsAppCoexistencePage() {
               </div>
 
               <div className="premium-card" style={{ padding: '2rem' }}>
-                <Users size={32} color="#f59e0b" style={{ marginBottom: '1rem' }} />
+                <Users size={32} color="var(--primary-color)" style={{ marginBottom: '1rem' }} />
                 <h3 className="h3" style={{ fontSize: '1.25rem', marginBottom: '0.75rem' }}>5. Shared Team Inbox & SLA</h3>
                 <p className="text-muted" style={{ fontSize: '0.95rem', lineHeight: '1.6' }}>
                   Multiple agents handle conversations from individual logins with chat assignments, while the owner mirrors everything on mobile.
@@ -232,7 +232,7 @@ export default function WhatsAppCoexistencePage() {
               </div>
 
               <div className="premium-card" style={{ padding: '2rem' }}>
-                <Zap size={32} color="#ec4899" style={{ marginBottom: '1rem' }} />
+                <Zap size={32} color="var(--primary-color)" style={{ marginBottom: '1rem' }} />
                 <h3 className="h3" style={{ fontSize: '1.25rem', marginBottom: '0.75rem' }}>6. Click-to-WhatsApp Ad Capture</h3>
                 <p className="text-muted" style={{ fontSize: '0.95rem', lineHeight: '1.6' }}>
                   Leads from Meta ads receive instant automated welcome messages via API, then pop up on your mobile app for personal follow-up.
@@ -240,7 +240,7 @@ export default function WhatsAppCoexistencePage() {
               </div>
 
               <div className="premium-card" style={{ padding: '2rem' }}>
-                <Layers size={32} color="#06b6d4" style={{ marginBottom: '1rem' }} />
+                <Layers size={32} color="var(--primary-color)" style={{ marginBottom: '1rem' }} />
                 <h3 className="h3" style={{ fontSize: '1.25rem', marginBottom: '0.75rem' }}>7. Automatic CRM Lead Logging</h3>
                 <p className="text-muted" style={{ fontSize: '0.95rem', lineHeight: '1.6' }}>
                   Every chat auto-logs into Gyan VaniAi CRM pipelines, capturing lead data, stage changes, and deal amounts without manual typing.
@@ -248,7 +248,7 @@ export default function WhatsAppCoexistencePage() {
               </div>
 
               <div className="premium-card" style={{ padding: '2rem' }}>
-                <ShieldCheck size={32} color="#14b8a6" style={{ marginBottom: '1rem' }} />
+                <ShieldCheck size={32} color="var(--primary-color)" style={{ marginBottom: '1rem' }} />
                 <h3 className="h3" style={{ fontSize: '1.25rem', marginBottom: '0.75rem' }}>8. 100% Reversible</h3>
                 <p className="text-muted" style={{ fontSize: '0.95rem', lineHeight: '1.6' }}>
                   No lock-in door. You can disconnect the API integration from Meta Business Manager anytime. Your phone app and chats remain intact.
@@ -261,15 +261,17 @@ export default function WhatsAppCoexistencePage() {
 
         {/* COMPARISON TABLE */}
         <section className="section container" style={{ padding: '5rem 0' }}>
-          <div className="section-header" style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
+          <div className="section-header section-header--center">
             <h2 className="h2">Comparing Setup Paths</h2>
-            <p className="text-lg text-muted">Why WhatsApp Coexistence with Gyan VaniAi is the best setup for growing businesses.</p>
+            <p className="text-lg text-muted" style={{ marginTop: '0.85rem' }}>
+              Why WhatsApp Coexistence with Gyan VaniAi is the best setup for growing businesses.
+            </p>
           </div>
 
           <div style={{ overflowX: 'auto' }}>
             <table style={{ width: '100%', borderCollapse: 'collapse', borderRadius: '1rem', overflow: 'hidden', border: '1px solid var(--border-color)' }}>
               <thead>
-                <tr style={{ background: 'rgba(99, 102, 241, 0.15)', color: 'var(--text-primary)', textAlign: 'left' }}>
+                <tr style={{ background: 'color-mix(in srgb, var(--primary-color) 12%, transparent)', color: 'var(--text-primary)', textAlign: 'left' }}>
                   <th style={{ padding: '1.2rem', borderBottom: '1px solid var(--border-color)' }}>Feature / Capability</th>
                   <th style={{ padding: '1.2rem', borderBottom: '1px solid var(--border-color)' }}>Mobile App Only</th>
                   <th style={{ padding: '1.2rem', borderBottom: '1px solid var(--border-color)' }}>Old API Migration</th>
@@ -315,33 +317,35 @@ export default function WhatsAppCoexistencePage() {
         {/* 3-STEP SETUP GUIDE */}
         <section className="section bg-alt" style={{ padding: '5rem 0' }}>
           <div className="container">
-            <div className="section-header" style={{ textAlign: 'center', marginBottom: '4rem' }}>
+            <div className="section-header section-header--center">
               <h2 className="h2">Enable Coexistence in 3 Simple Steps</h2>
-              <p className="text-lg text-muted">No app reinstall, no phone reset, no complicated Meta forms.</p>
+              <p className="text-lg text-muted" style={{ marginTop: '0.85rem' }}>
+                No app reinstall, no phone reset, no complicated Meta forms.
+              </p>
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '2rem', maxWidth: '1000px', margin: '0 auto' }}>
+            <div className="coexistence-steps">
               
-              <div className="premium-card" style={{ padding: '2.5rem', textAlign: 'center' }}>
-                <div style={{ width: '48px', height: '48px', borderRadius: '50%', background: 'var(--primary-color)', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.25rem', fontWeight: 'bold', margin: '0 auto 1.5rem' }}>1</div>
-                <h3 className="h3" style={{ fontSize: '1.2rem', marginBottom: '0.75rem' }}>Open Meta Embedded Signup</h3>
-                <p className="text-muted" style={{ fontSize: '0.95rem' }}>
+              <div className="premium-card coexistence-step">
+                <div className="coexistence-step-num">1</div>
+                <h3 className="h3 coexistence-step-title">Open Meta Embedded Signup</h3>
+                <p className="text-muted coexistence-step-desc">
                   Log in with your Facebook business manager directly inside the Gyan VaniAi dashboard.
                 </p>
               </div>
 
-              <div className="premium-card" style={{ padding: '2.5rem', textAlign: 'center' }}>
-                <div style={{ width: '48px', height: '48px', borderRadius: '50%', background: 'var(--primary-color)', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.25rem', fontWeight: 'bold', margin: '0 auto 1.5rem' }}>2</div>
-                <h3 className="h3" style={{ fontSize: '1.2rem', marginBottom: '0.75rem' }}>Select "Coexistence Mode"</h3>
-                <p className="text-muted" style={{ fontSize: '0.95rem' }}>
+              <div className="premium-card coexistence-step">
+                <div className="coexistence-step-num">2</div>
+                <h3 className="h3 coexistence-step-title">Select &quot;Coexistence Mode&quot;</h3>
+                <p className="text-muted coexistence-step-desc">
                   Select Coexistence when prompted by Meta. This keeps your phone app installed and active.
                 </p>
               </div>
 
-              <div className="premium-card" style={{ padding: '2.5rem', textAlign: 'center' }}>
-                <div style={{ width: '48px', height: '48px', borderRadius: '50%', background: 'var(--primary-color)', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.25rem', fontWeight: 'bold', margin: '0 auto 1.5rem' }}>3</div>
-                <h3 className="h3" style={{ fontSize: '1.2rem', marginBottom: '0.75rem' }}>Instant Bidirectional Sync</h3>
-                <p className="text-muted" style={{ fontSize: '0.95rem' }}>
+              <div className="premium-card coexistence-step">
+                <div className="coexistence-step-num">3</div>
+                <h3 className="h3 coexistence-step-title">Instant Bidirectional Sync</h3>
+                <p className="text-muted coexistence-step-desc">
                   Send a test message. It reflects immediately on both your mobile phone and Gyan VaniAi CRM.
                 </p>
               </div>
@@ -352,9 +356,11 @@ export default function WhatsAppCoexistencePage() {
 
         {/* FREQUENTLY ASKED QUESTIONS */}
         <section className="section container" style={{ padding: '5rem 0' }}>
-          <div className="section-header" style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
+          <div className="section-header section-header--center">
             <h2 className="h2">Frequently Asked Questions</h2>
-            <p className="text-lg text-muted">Everything you need to know about WhatsApp Coexistence Mode.</p>
+            <p className="text-lg text-muted" style={{ marginTop: '0.85rem' }}>
+              Everything you need to know about WhatsApp Coexistence Mode.
+            </p>
           </div>
 
           <div style={{ maxWidth: '800px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
@@ -410,7 +416,7 @@ export default function WhatsAppCoexistencePage() {
 
         {/* BOTTOM CTA */}
         <section className="container" style={{ textAlign: 'center', marginTop: '3rem' }}>
-          <div className="blog-cta-box" style={{ padding: '4rem 2rem', background: 'linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(56, 189, 248, 0.15) 100%)', borderRadius: '1.5rem', border: '1px solid rgba(99, 102, 241, 0.3)' }}>
+          <div className="blog-cta-box" style={{ padding: '4rem 2rem', background: 'color-mix(in srgb, var(--primary-color) 10%, transparent)', borderRadius: '1.5rem', border: '1px solid color-mix(in srgb, var(--primary-color) 28%, transparent)' }}>
             <h2 className="h2" style={{ marginBottom: '1rem' }}>Ready to Enable WhatsApp Coexistence?</h2>
             <p className="text-muted" style={{ maxWidth: '600px', margin: '0 auto 2rem', lineHeight: '1.6', fontSize: '1.1rem' }}>
               Connect your official WhatsApp number in under 5 minutes with our Meta Embedded Signup integration. Get a free tailored demo today.
@@ -428,7 +434,7 @@ export default function WhatsAppCoexistencePage() {
 
         {/* Internal Linking Section */}
         <section className="container" style={{ padding: '2rem 0', textAlign: 'center', marginTop: '2rem' }}>
-          <div style={{ padding: '2rem', background: 'var(--card-bg, rgba(99, 102, 241, 0.05))', borderRadius: '1rem' }}>
+          <div style={{ padding: '2rem', background: 'color-mix(in srgb, var(--primary-color) 6%, transparent)', borderRadius: '1rem' }}>
             <h2 className="h3" style={{ marginBottom: '1rem', fontSize: '1.5rem' }}>Related Services</h2>
             <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap' }}>
               <a href="/services/crm-development" style={{ color: 'var(--primary-color)', fontWeight: '600', textDecoration: 'none', borderBottom: '1px solid transparent', transition: 'border-color 0.2s' }} onMouseEnter={(e) => e.target.style.borderBottom = '1px solid var(--primary-color)'} onMouseLeave={(e) => e.target.style.borderBottom = '1px solid transparent'}>
@@ -446,7 +452,7 @@ export default function WhatsAppCoexistencePage() {
           </div>
         </section>
 
-      </main>
+      </div>
 
       <ContactModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </>

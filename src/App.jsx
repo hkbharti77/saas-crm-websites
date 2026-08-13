@@ -2,8 +2,7 @@ import React, { useEffect, Suspense, lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import BlobBackground from './components/BlobBackground';
-import CustomCursor from './components/CustomCursor';
+import EnterpriseBackground from './components/EnterpriseBackground';
 import Home from './pages/Home';
 import { ThemeProvider } from './context/ThemeContext';
 
@@ -25,23 +24,25 @@ import './App.css';
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import { useScrollDepth } from './hooks/useScrollDepth';
+import { useGAPageViews } from './hooks/useGAPageViews';
 
 function App() {
   useScrollDepth();
+  useGAPageViews();
 
   useEffect(() => {
     AOS.init({
-      duration: 800,
+      duration: 650,
       once: true,
-      easing: 'ease-out-cubic'
+      easing: 'ease-out-cubic',
+      offset: 60,
     });
   }, []);
 
   return (
     <ThemeProvider>
       <div className="app-container">
-        <BlobBackground />
-        <CustomCursor />
+        <EnterpriseBackground />
         <Header />
         <main>
           <Suspense fallback={<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '60vh' }}><div className="loading-spinner">Loading...</div></div>}>
@@ -55,14 +56,12 @@ function App() {
               <Route path="/privacy" element={<PolicyPage />} />
               <Route path="/terms" element={<TermsConditions />} />
               <Route path="/about" element={<About />} />
-              
-              {/* Admin Routes */}
+
               <Route path="/admin/login" element={<AdminLogin />} />
               <Route path="/admin/dashboard" element={<AdminDashboard />} />
               <Route path="/admin/create" element={<AdminCreatePost />} />
               <Route path="/admin/edit/:id" element={<AdminEditPost />} />
-              
-              {/* 404 Route */}
+
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>

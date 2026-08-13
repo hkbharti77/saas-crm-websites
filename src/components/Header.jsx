@@ -11,7 +11,7 @@ export default function Header() {
       <div className="container header-container">
         <a href="/" className="logo">
           <img src="/logo.webp" alt="Gyan VaniAi Logo" width="40" height="40" className="logo-img" style={{ display: 'block' }} fetchpriority="high" />
-          <span className="logo-text gradient-text-premium">Gyan VaniAi</span>
+          <span className="logo-text">Gyan VaniAi</span>
         </a>
         
         <nav className={`nav ${isOpen ? 'nav-open' : ''}`}>

@@ -126,12 +126,14 @@ export default defineConfig(({ mode }) => {
       },
       prerender({
         routes: [
+          '/',
           '/about',
           '/blog',
           '/privacy',
           '/terms',
           '/services/ai-development',
           '/services/ai-agent-development',
+          '/services/ai-chatbots',
           '/services/crm-development',
           '/services/whatsapp-automation',
           '/services/whatsapp-coexistence',

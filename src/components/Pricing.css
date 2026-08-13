@@ -31,10 +31,10 @@
   top: -12px;
   left: 50%;
   transform: translateX(-50%);
-  background: var(--gradient-primary);
+  background: var(--primary-color);
   color: white;
   padding: 0.25rem 1rem;
-  border-radius: var(--radius-full);
+  border-radius: var(--radius-md);
   font-size: 0.875rem;
   font-weight: 600;
   white-space: nowrap;

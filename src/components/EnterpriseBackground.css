@@ -1,9 +1,6 @@
 .enterprise-bg-container {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
+  inset: 0;
   z-index: -1;
   overflow: hidden;
   pointer-events: none;
@@ -15,172 +12,96 @@
 .cyber-grid-overlay {
   position: absolute;
   inset: 0;
-  opacity: 0.85;
-  transition: all 0.6s ease;
-}
-
-/* --- PURELY UNIQUE BACKGROUND PATTERNS PER THEME --- */
-
-/* 1. Midnight: Tech Square Circuit Matrix Grid */
-[data-theme="midnight"] .cyber-grid-overlay {
-  background-image: 
+  opacity: 0.55;
+  background-image:
     linear-gradient(to right, var(--grid-line-color) 1px, transparent 1px),
     linear-gradient(to bottom, var(--grid-line-color) 1px, transparent 1px);
-  background-size: 48px 48px;
-  mask-image: radial-gradient(ellipse at 50% 30%, black 20%, transparent 80%);
-  -webkit-mask-image: radial-gradient(ellipse at 50% 30%, black 20%, transparent 80%);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse at 50% 20%, black 15%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse at 50% 20%, black 15%, transparent 70%);
 }
 
-/* 2. Aurora: AI Polka Dot Matrix Grid */
 [data-theme="aurora"] .cyber-grid-overlay {
-  background-image: radial-gradient(var(--grid-line-color) 1.75px, transparent 1.75px);
-  background-size: 24px 24px;
-  mask-image: radial-gradient(circle at 20% 20%, black 30%, transparent 85%);
-  -webkit-mask-image: radial-gradient(circle at 20% 20%, black 30%, transparent 85%);
+  background-image: radial-gradient(var(--grid-line-color) 1.25px, transparent 1.25px);
+  background-size: 28px 28px;
+  mask-image: radial-gradient(circle at 20% 15%, black 20%, transparent 70%);
+  -webkit-mask-image: radial-gradient(circle at 20% 15%, black 20%, transparent 70%);
 }
 
-/* 3. Slate: 45-Degree Diagonal Tech Stripes */
 [data-theme="slate"] .cyber-grid-overlay {
-  background-image: repeating-linear-gradient(45deg, var(--grid-line-color) 0, var(--grid-line-color) 1.25px, transparent 0, transparent 38px);
-  mask-image: radial-gradient(ellipse at 80% 50%, black 25%, transparent 75%);
-  -webkit-mask-image: radial-gradient(ellipse at 80% 50%, black 25%, transparent 75%);
+  background-image: repeating-linear-gradient(
+    45deg,
+    var(--grid-line-color) 0,
+    var(--grid-line-color) 1px,
+    transparent 0,
+    transparent 42px
+  );
+  mask-image: radial-gradient(ellipse at 80% 40%, black 20%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse at 80% 40%, black 20%, transparent 70%);
 }
 
-/* 4. Amber: Hexagonal Amber Honeycomb Matrix */
 [data-theme="amber"] .cyber-grid-overlay {
-  background-image: 
-    radial-gradient(circle at 50% 50%, var(--grid-line-color) 2px, transparent 2px),
-    radial-gradient(circle at 0% 0%, var(--grid-line-color) 1.5px, transparent 1.5px);
-  background-size: 36px 36px, 18px 18px;
-  mask-image: radial-gradient(circle at 75% 80%, black 30%, transparent 80%);
-  -webkit-mask-image: radial-gradient(circle at 75% 80%, black 30%, transparent 80%);
+  background-image: radial-gradient(circle at 50% 50%, var(--grid-line-color) 1.5px, transparent 1.5px);
+  background-size: 40px 40px;
+  mask-image: radial-gradient(circle at 75% 75%, black 20%, transparent 70%);
+  -webkit-mask-image: radial-gradient(circle at 75% 75%, black 20%, transparent 70%);
 }
 
-/* 5. Light Pearl: Clean Architectural Grid */
-[data-theme="light"] .cyber-grid-overlay {
-  background-image: 
-    linear-gradient(to right, var(--grid-line-color) 1px, transparent 1px),
-    linear-gradient(to bottom, var(--grid-line-color) 1px, transparent 1px);
-  background-size: 60px 60px;
-  mask-image: radial-gradient(ellipse at 50% 50%, black 40%, transparent 90%);
-  -webkit-mask-image: radial-gradient(ellipse at 50% 50%, black 40%, transparent 90%);
-}
-
-/* 6. Quantum: Cyber Diamond Crosshatch Mesh */
 [data-theme="quantum"] .cyber-grid-overlay {
-  background-image: 
+  background-image:
     linear-gradient(45deg, var(--grid-line-color) 1px, transparent 1px),
     linear-gradient(-45deg, var(--grid-line-color) 1px, transparent 1px);
-  background-size: 32px 32px;
-  mask-image: radial-gradient(ellipse at 80% 20%, black 30%, transparent 80%);
-  -webkit-mask-image: radial-gradient(ellipse at 80% 20%, black 30%, transparent 80%);
+  background-size: 40px 40px;
+  mask-image: radial-gradient(ellipse at 80% 15%, black 20%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse at 80% 15%, black 20%, transparent 70%);
 }
 
-/* 7. Sapphire: Dual-Layered Cosmic Star Motes & Concentric Ring Mesh */
 [data-theme="sapphire"] .cyber-grid-overlay {
-  background-image: 
-    radial-gradient(circle at 50% 50%, var(--grid-line-color) 1.5px, transparent 1.5px),
-    radial-gradient(circle at 100% 0%, var(--grid-line-color) 1px, transparent 1px);
-  background-size: 44px 44px, 88px 88px;
-  mask-image: radial-gradient(ellipse at 30% 70%, black 25%, transparent 80%);
-  -webkit-mask-image: radial-gradient(ellipse at 30% 70%, black 25%, transparent 80%);
+  background-image: radial-gradient(circle at 50% 50%, var(--grid-line-color) 1.25px, transparent 1.25px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse at 30% 70%, black 18%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse at 30% 70%, black 18%, transparent 70%);
 }
 
-/* Ambient Radial Mesh Orbs */
 .mesh-orb {
   position: absolute;
   border-radius: 50%;
-  filter: blur(80px);
-  will-change: transform;
-  opacity: 0.85;
+  filter: blur(100px);
+  opacity: 0.45;
   transition: background 0.8s ease;
 }
 
 .mesh-orb-1 {
-  top: -15%;
-  left: -10%;
-  width: 55vw;
-  height: 55vw;
+  top: -20%;
+  left: -12%;
+  width: 48vw;
+  height: 48vw;
   background: radial-gradient(circle, var(--mesh-color-1) 0%, transparent 70%);
-  animation: orbFloat1 22s ease-in-out infinite alternate;
+  animation: orbFloat1 28s ease-in-out infinite alternate;
 }
 
 .mesh-orb-2 {
-  top: 35%;
-  right: -15%;
-  width: 60vw;
-  height: 60vw;
+  top: 40%;
+  right: -18%;
+  width: 42vw;
+  height: 42vw;
   background: radial-gradient(circle, var(--mesh-color-2) 0%, transparent 70%);
-  animation: orbFloat2 26s ease-in-out infinite alternate;
+  animation: orbFloat2 34s ease-in-out infinite alternate;
 }
 
-.mesh-orb-3 {
-  bottom: -20%;
-  left: 15%;
-  width: 50vw;
-  height: 50vw;
-  background: radial-gradient(circle, var(--mesh-color-3) 0%, transparent 70%);
-  animation: orbFloat3 20s ease-in-out infinite alternate;
-}
-
-/* Ambient Ray Beam */
-.ambient-ray-beam {
-  position: absolute;
-  top: -20%;
-  left: 30%;
-  width: 40vw;
-  height: 120vh;
-  background: radial-gradient(ellipse at top, var(--mesh-color-1) 0%, transparent 60%);
-  transform: rotate(-15deg);
-  opacity: 0.35;
-  pointer-events: none;
-  animation: rayPulse 12s ease-in-out infinite alternate;
-}
-
-/* Particle Motes */
-.particle-mote {
-  position: absolute;
-  width: 4px;
-  height: 4px;
-  background: var(--primary-color);
-  border-radius: 50%;
-  box-shadow: 0 0 10px var(--primary-color);
-  opacity: 0.3;
-  animation: moteFloat 15s infinite linear;
-}
-
-.particle-mote:nth-child(1) { top: 20%; left: 15%; animation-duration: 18s; }
-.particle-mote:nth-child(2) { top: 60%; left: 80%; animation-duration: 22s; animation-delay: -4s; }
-.particle-mote:nth-child(3) { top: 80%; left: 25%; animation-duration: 16s; animation-delay: -8s; }
-.particle-mote:nth-child(4) { top: 30%; left: 70%; animation-duration: 25s; animation-delay: -2s; }
-.particle-mote:nth-child(5) { top: 45%; left: 40%; animation-duration: 19s; animation-delay: -6s; }
-
-/* Animations */
 @keyframes orbFloat1 {
-  0% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(6vw, 4vh) scale(1.15); }
-  100% { transform: translate(-4vw, 8vh) scale(0.95); }
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(4vw, 5vh); }
 }
 
 @keyframes orbFloat2 {
-  0% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(-8vw, -5vh) scale(1.1); }
-  100% { transform: translate(4vw, 6vh) scale(0.9); }
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(-5vw, -3vh); }
 }
 
-@keyframes orbFloat3 {
-  0% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(5vw, -6vh) scale(1.2); }
-  100% { transform: translate(-6vw, -3vh) scale(0.85); }
-}
-
-@keyframes rayPulse {
-  0% { opacity: 0.2; transform: rotate(-15deg) scale(0.95); }
-  100% { opacity: 0.45; transform: rotate(-12deg) scale(1.05); }
-}
-
-@keyframes moteFloat {
-  0% { transform: translateY(0) scale(1); opacity: 0.2; }
-  50% { transform: translateY(-40px) scale(1.3); opacity: 0.5; }
-  100% { transform: translateY(-80px) scale(1); opacity: 0.1; }
+@media (prefers-reduced-motion: reduce) {
+  .mesh-orb-1,
+  .mesh-orb-2 {
+    animation: none;
+  }
 }

@@ -27,10 +27,11 @@ export default function TechStack() {
   return (
     <section className="section" id="tech-stack">
       <div className="container">
-        <div className="section-header" style={{ textAlign: 'center', marginBottom: '4rem' }}>
-          <h2 className="h2">Technologies We Use</h2>
-          <p className="text-lg text-muted" style={{ maxWidth: '600px', margin: '1rem auto 0' }}>
-            We leverage modern, scalable, and secure technologies to build your solutions.
+        <div className="section-header section-header--center">
+          <span className="section-eyebrow">Stack</span>
+          <h2 className="h2">Proven technology</h2>
+          <p className="text-lg text-muted" style={{ marginTop: '0.85rem' }}>
+            Modern, maintainable tools chosen for reliability — not trend chasing.
           </p>
         </div>
         

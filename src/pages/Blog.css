@@ -22,7 +22,7 @@
 
 .blog-card:hover {
   transform: translateY(-5px);
-  border-color: rgba(99, 102, 241, 0.4);
+  border-color: color-mix(in srgb, var(--primary-color) 40%, transparent);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
 }
 
@@ -50,9 +50,7 @@
 }
 
 .blog-category {
-  background: var(--gradient-primary);
-  -webkit-background-clip: text;
-  color: transparent;
+  color: var(--primary-color);
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;

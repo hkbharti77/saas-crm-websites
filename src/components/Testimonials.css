@@ -93,8 +93,8 @@
   text-align: center;
   padding: 3.5rem 2.5rem;
   border-radius: var(--radius-lg);
-  background: linear-gradient(135deg, rgba(99, 102, 241, 0.08) 0%, rgba(56, 189, 248, 0.08) 100%);
-  border: 1px solid rgba(99, 102, 241, 0.2);
+  background: color-mix(in srgb, var(--primary-color) 8%, transparent);
+  border: 1px solid color-mix(in srgb, var(--primary-color) 22%, transparent);
   position: relative;
   overflow: hidden;
 }
@@ -106,7 +106,7 @@
   right: -60px;
   width: 200px;
   height: 200px;
-  background: radial-gradient(circle, rgba(99, 102, 241, 0.12), transparent 70%);
+  background: radial-gradient(circle, color-mix(in srgb, var(--primary-color) 14%, transparent), transparent 70%);
   border-radius: 50%;
   pointer-events: none;
 }

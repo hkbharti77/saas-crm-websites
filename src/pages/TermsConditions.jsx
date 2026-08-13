@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
+import SeoHead from '../components/SeoHead';
 
 export default function TermsConditions() {
   const [activeSection, setActiveSection] = useState('agreement');
@@ -27,10 +28,12 @@ export default function TermsConditions() {
 
   return (
     <div style={{ minHeight: '100vh' }}>
+      <SeoHead
+        title="Terms & Conditions | Gyan VaniAi"
+        description="Terms of Service and API usage guidelines for Gyan VaniAi platforms."
+        canonical="https://www.gyanvaniai.online/terms"
+      />
       <Helmet>
-        <title>Terms & Conditions | Gyan VaniAi</title>
-        <meta name="description" content="Terms of Service and API usage guidelines for Gyan VaniAi platforms." />
-        <link rel="canonical" href="https://gyanvaniai.online/terms" />
         <script type="application/ld+json">
           {`
             [
@@ -38,9 +41,9 @@ export default function TermsConditions() {
                 "@context": "https://schema.org",
                 "@type": "WebPage",
                 "name": "Terms & Conditions | Gyan VaniAi",
-                "url": "https://gyanvaniai.online/terms",
+                "url": "https://www.gyanvaniai.online/terms",
                 "publisher": {
-                  "@id": "https://gyanvaniai.online/#organization"
+                  "@id": "https://www.gyanvaniai.online/#organization"
                 }
               },
               {
@@ -51,13 +54,13 @@ export default function TermsConditions() {
                     "@type": "ListItem",
                     "position": 1,
                     "name": "Home",
-                    "item": "https://gyanvaniai.online/"
+                    "item": "https://www.gyanvaniai.online/"
                   },
                   {
                     "@type": "ListItem",
                     "position": 2,
                     "name": "Terms & Conditions",
-                    "item": "https://gyanvaniai.online/terms"
+                    "item": "https://www.gyanvaniai.online/terms"
                   }
                 ]
               }
@@ -85,7 +88,7 @@ export default function TermsConditions() {
           <a href="#deletion" className={`legal-nav-link ${activeSection === 'deletion' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('deletion'); }}>5. Data Deletion</a>
         </aside>
         
-        <main className="legal-content glass-panel" style={{ padding: '3rem', borderRadius: 'var(--radius-lg)' }}>
+        <div className="legal-content glass-panel" style={{ padding: '3rem', borderRadius: 'var(--radius-lg)' }}>
           <section id="agreement" className="legal-section">
             <h2 className="h2">1. Agreement to Terms 🤝</h2>
             <p className="text-muted">By accessing our website and utilizing our AI platforms (including CRMLite and AI Stock Kundli), you agree to be bound by these Terms and Conditions. If you disagree with any part of the terms, please do not use our services.</p>
@@ -112,7 +115,7 @@ export default function TermsConditions() {
             <h2 className="h2">5. User Data Deletion 🗑️</h2>
             <p className="text-muted">In accordance with our Privacy Policy, users have the right to request the deletion of their personal data. By requesting data deletion, you acknowledge that access to certain services, accounts, and historical data will be permanently revoked.</p>
           </section>
-        </main>
+        </div>
       </div>
     </div>
   );

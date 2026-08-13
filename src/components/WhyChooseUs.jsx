@@ -3,42 +3,35 @@ import { CheckCircle2 } from 'lucide-react';
 import './Features.css';
 
 const reasons = [
-  'Built-in Meta Tech Provider & WhatsApp Coexistence Support',
-  '1-Click Embedded Signup (Instant WhatsApp Connection)',
-  'AI-First Development Approach',
-  'Custom Solutions Tailored to Your Business',
-  'Enterprise-Grade Security',
-  'Scalable Cloud Architecture',
-  'Modern UI/UX Design',
-  'Dedicated Development Team & Support'
+  'Meta Tech Provider & WhatsApp Coexistence',
+  '1-click Embedded Signup for WhatsApp',
+  'AI-first development approach',
+  'Solutions shaped to your operations',
+  'Enterprise-grade security practices',
+  'Scalable cloud architecture',
+  'Clear UI/UX for daily operators',
+  'Dedicated team and ongoing support',
 ];
 
 export default function WhyChooseUs() {
   return (
     <section className="section bg-alt" id="why-choose-us">
       <div className="container">
-        <div className="section-header" style={{ textAlign: 'center', marginBottom: '4rem' }}>
-          <h2 className="h2">Why Choose Gyan VaniAi</h2>
-          <p className="text-lg text-muted" style={{ maxWidth: '700px', margin: '1rem auto 0' }}>
-            We don't just write code—we partner with you to build strategic software assets that drive real business outcomes.
+        <div className="section-header section-header--center">
+          <span className="section-eyebrow">Why Gyan VaniAi</span>
+          <h2 className="h2">A partner, not a ticket queue</h2>
+          <p className="text-lg text-muted" style={{ marginTop: '0.85rem' }}>
+            We build software assets that operators can trust — with the delivery discipline enterprises expect.
           </p>
         </div>
-        
-        <div className="premium-card" style={{ maxWidth: '900px', margin: '0 auto', padding: '3rem' }}>
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-            gap: '2rem'
-          }}>
-            {reasons.map((reason, index) => (
-              <div key={index} style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                <CheckCircle2 size={24} style={{ color: 'var(--primary-color)' }} />
-                <span style={{ fontSize: '1.1rem', fontWeight: '500', color: 'var(--text-primary)' }}>
-                  {reason}
-                </span>
-              </div>
-            ))}
-          </div>
+
+        <div className="why-grid">
+          {reasons.map((reason) => (
+            <div key={reason} className="why-item">
+              <CheckCircle2 size={20} strokeWidth={1.75} className="why-check" />
+              <span>{reason}</span>
+            </div>
+          ))}
         </div>
       </div>
     </section>
