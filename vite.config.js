@@ -126,7 +126,6 @@ export default defineConfig(({ mode }) => {
       },
       prerender({
         routes: [
-          '/',
           '/about',
           '/blog',
           '/privacy',
