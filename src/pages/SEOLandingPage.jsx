@@ -187,6 +187,101 @@ const seoDataMap = {
       { q: 'How do you prevent chatbot hallucinations?', a: 'We use Retrieval-Augmented Generation (RAG) with tenant-isolated vector stores so the model answers from your approved knowledge base.' }
     ]
   },
+  'voice-bot-assistant': {
+    metaTitle: 'AI Voice Bot Assistant | Conversational AI Voice Agents | Gyan VaniAi',
+    metaDescription: 'Deploy human-like conversational AI voice bots for customer support, sales, and appointment booking with seamless CRM integration.',
+    h1: 'AI Voice Bot Assistants',
+    subtitle: 'Human-like conversational AI voice bots for customer support, sales, and appointment booking.',
+    overview: 'Gyan VaniAi builds intelligent Voice Bot Assistants that understand natural language, handle interruptions, and provide instant resolutions over voice channels without wait times. Our voice agents are designed for natural conversational flow and minimal latency.',
+    whoFor: 'Customer support teams and sales departments looking to automate inbound queries, outbound campaigns, and appointment bookings 24/7.',
+    deliverables: ['Conversational AI models', 'Multi-language support', 'CRM integration', 'Transcription & analytics'],
+    benefits: ['No Wait Times', 'Natural Conversations', 'Scalable Support', 'Real-time CRM Updates'],
+    image: '/portfolio_ai.webp',
+    imageAlt: 'AI Voice Bot Assistant dashboard by Gyan VaniAi',
+    relatedLinks: [
+      { url: '/services/ai-chatbots', text: 'AI Chatbot Development' },
+      { url: '/services/phone-call-agent', text: 'Phone Call Agent Assistant' }
+    ],
+    faqs: [
+      { q: 'Can the voice bot handle interruptions?', a: 'Yes. Our advanced voice AI models support full duplex communication, meaning users can interrupt the bot naturally, just like a human conversation.' }
+    ]
+  },
+  'whatsapp-calling-agent': {
+    metaTitle: 'WhatsApp Calling Agent Bot | WhatsApp Voice AI | Gyan VaniAi',
+    metaDescription: 'Automate customer interactions directly over WhatsApp voice calls with AI agents for support, sales, and proactive outreach.',
+    h1: 'WhatsApp Calling Agent Bots',
+    subtitle: 'Automate customer interactions directly over WhatsApp voice calls with conversational AI.',
+    overview: 'Reach your customers where they are. Our WhatsApp Calling Agent Bots handle inbound and outbound voice calls natively within WhatsApp, providing seamless support and sales automation without requiring traditional telecom infrastructure.',
+    whoFor: 'Retail, Real Estate, and Service businesses that interact heavily with their user base on WhatsApp and want to scale voice communications globally.',
+    deliverables: ['WhatsApp Voice API integration', 'Outbound campaign dialing', 'Inbound call routing', 'Contextual AI responses'],
+    benefits: ['Native WhatsApp Experience', 'Global Reach', 'Reduced Telecom Costs', 'Automated Campaigns'],
+    image: '/portfolio_crm.webp',
+    imageAlt: 'WhatsApp Calling Agent interface by Gyan VaniAi',
+    relatedLinks: [
+      { url: '/services/whatsapp-automation', text: 'WhatsApp CRM Automation' },
+      { url: '/services/voice-bot-assistant', text: 'AI Voice Bot Assistants' }
+    ],
+    faqs: [
+      { q: 'Does this use standard WhatsApp numbers?', a: 'We utilize official WhatsApp Business APIs that support voice calling capabilities for authorized business numbers.' }
+    ]
+  },
+  'phone-call-agent': {
+    metaTitle: 'Phone Call AI Agent Assistant | AI Calling System | Gyan VaniAi',
+    metaDescription: '24/7 AI phone agents that sound human and resolve complex customer inquiries over standard phone lines and SIP.',
+    h1: 'Phone Call AI Agent Assistants',
+    subtitle: '24/7 AI phone agents that sound human and resolve complex customer inquiries.',
+    overview: 'Replace rigid phone menus with natural, conversational AI agents that can qualify leads, troubleshoot issues, and take reservations over standard phone lines. We integrate directly with your existing PBX or cloud telephony provider.',
+    whoFor: 'Call centers, clinics, and enterprises drowning in repetitive inbound calls who want to provide zero-wait-time resolutions.',
+    deliverables: ['SIP/PSTN trunking integration', 'Natural voice synthesis (TTS)', 'Intent recognition', 'Automated follow-up texts'],
+    benefits: ['Zero Hold Times', 'High Intent Recognition', 'Human-like Voices', 'Telephony Integration'],
+    image: '/hero_dashboard.webp',
+    imageAlt: 'Phone Call AI Agent telephony dashboard by Gyan VaniAi',
+    relatedLinks: [
+      { url: '/services/ivr-solutions', text: 'Smart IVR Solutions' },
+      { url: '/services/human-handoff-systems', text: 'AI to Human Handoff' }
+    ],
+    faqs: [
+      { q: 'Can it transfer calls to a real human?', a: 'Absolutely. If the AI detects a complex issue or an angry customer, it can instantly route the call to a live human agent via SIP transfer.' }
+    ]
+  },
+  'ivr-solutions': {
+    metaTitle: 'Smart IVR Solutions | Intelligent Call Routing | Gyan VaniAi',
+    metaDescription: 'Intelligent Interactive Voice Response systems built for modern customer journeys with CRM data-dips and speech recognition.',
+    h1: 'Smart IVR Solutions',
+    subtitle: 'Intelligent Interactive Voice Response systems built for modern customer journeys.',
+    overview: 'Gyan VaniAi develops dynamic IVR systems that use voice recognition and data-dips into your CRM to personalize routing, drastically reducing customer frustration. Skip the "Press 1 for Sales" menus and let customers speak naturally.',
+    whoFor: 'Medium to large enterprises that want to modernize their aging IVR trees and improve first-call resolution (FCR) rates.',
+    deliverables: ['Dynamic call routing', 'CRM database integration', 'Multi-level menus', 'Speech recognition (ASR)'],
+    benefits: ['Personalized Routing', 'Speech Recognition', 'CRM Data-Dips', 'Improved FCR'],
+    image: '/portfolio_stock.webp',
+    imageAlt: 'Smart IVR call routing flow by Gyan VaniAi',
+    relatedLinks: [
+      { url: '/services/phone-call-agent', text: 'Phone Call AI Agents' },
+      { url: '/services/crm-development', text: 'CRM Development' }
+    ],
+    faqs: [
+      { q: 'Can the IVR identify callers automatically?', a: 'Yes. By dipping into your CRM database, the IVR can recognize the caller ID, greet them by name, and predict why they are calling based on recent tickets or orders.' }
+    ]
+  },
+  'human-handoff-systems': {
+    metaTitle: 'AI to Human Handoff Systems | Agent Escalation | Gyan VaniAi',
+    metaDescription: 'Seamless escalation from AI bots to human agents with full context retention. Connect chat, voice, and WhatsApp to live support.',
+    h1: 'AI to Human Handoff Systems',
+    subtitle: 'Seamless escalation from AI bots to human agents with full context retention.',
+    overview: 'Provide the perfect balance of automation and human empathy. Our handoff systems detect frustration or complex queries and route the chat or call to the right human agent instantly, along with the full conversation history.',
+    whoFor: 'Customer experience teams that use AI for deflection but require a fail-safe escalation path for high-value clients or complex issues.',
+    deliverables: ['Sentiment analysis triggers', 'Skill-based agent routing', 'Omnichannel shared inbox', 'Live supervisor dashboards'],
+    benefits: ['Context Retention', 'Sentiment Detection', 'Skill-based Routing', 'Omnichannel Inbox'],
+    image: '/portfolio_crm.webp',
+    imageAlt: 'Human handoff agent inbox by Gyan VaniAi',
+    relatedLinks: [
+      { url: '/services/ai-chatbots', text: 'AI Chatbots' },
+      { url: '/services/whatsapp-automation', text: 'WhatsApp Automation' }
+    ],
+    faqs: [
+      { q: 'Do agents see what the AI discussed?', a: 'Yes. The entire AI conversation transcript is passed to the human agent’s interface before they even accept the chat or call, ensuring the customer never has to repeat themselves.' }
+    ]
+  },
 
   // Industries
   healthcare: {

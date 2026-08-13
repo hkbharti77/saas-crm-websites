@@ -6,7 +6,7 @@
 
 .footer-top {
   display: grid;
-  grid-template-columns: 2fr 2fr 1.5fr;
+  grid-template-columns: 1.5fr 3.5fr 1.5fr;
   gap: 3rem;
   margin-bottom: 4rem;
 }

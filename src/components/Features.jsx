@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Database, Users, Bot, GitMerge, Smartphone, Layout, ArrowRight } from 'lucide-react';
+import { Database, Users, Bot, GitMerge, Smartphone, Layout, ArrowRight, Mic, PhoneCall, Phone, Headset, UserCheck } from 'lucide-react';
 import { trackBookDemo } from '../utils/analytics';
 import './Features.css';
 
@@ -40,6 +40,36 @@ const services = [
     title: 'Mobile App Development',
     description: 'Android, iOS, Flutter, and React Native apps designed for daily use — not demo day.',
     to: '/services/mobile-app-development',
+  },
+  {
+    icon: <Mic size={22} strokeWidth={1.75} />,
+    title: 'Voice Bot Assistant',
+    description: 'Human-like conversational AI voice bots for support, sales, and automated appointment booking.',
+    to: '/services/voice-bot-assistant',
+  },
+  {
+    icon: <Phone size={22} strokeWidth={1.75} />,
+    title: 'WhatsApp Calling Bot',
+    description: 'Automate customer interactions directly over WhatsApp voice calls with conversational AI.',
+    to: '/services/whatsapp-calling-agent',
+  },
+  {
+    icon: <PhoneCall size={22} strokeWidth={1.75} />,
+    title: 'Phone Call Agent',
+    description: '24/7 AI phone agents that sound human and resolve complex customer inquiries instantly.',
+    to: '/services/phone-call-agent',
+  },
+  {
+    icon: <Headset size={22} strokeWidth={1.75} />,
+    title: 'Smart IVR',
+    description: 'Intelligent routing using voice recognition and CRM data-dips to reduce customer frustration.',
+    to: '/services/ivr-solutions',
+  },
+  {
+    icon: <UserCheck size={22} strokeWidth={1.75} />,
+    title: 'AI Human Handoff',
+    description: 'Seamless escalation from AI bots to human agents with full context and conversation history.',
+    to: '/services/human-handoff-systems',
   },
 ];
 
