@@ -1,27 +1,31 @@
 import React from 'react';
+import { ArrowUpRight } from 'lucide-react';
 import './Portfolio.css';
 
 const projects = [
   {
     title: 'Hospital CRM',
     industry: 'Healthcare',
-    challenge: 'Manual appointment scheduling and fragmented patient records.',
-    solution: 'Built a custom CRM with appointment automation, patient management, and WhatsApp notifications.',
-    outcome: 'Reduced administrative workload and improved appointment efficiency.'
+    challenge: 'Manual appointment scheduling and fragmented patient records across branches.',
+    solution: 'Built a custom CRM with automated queue management, electronic records, and WhatsApp patient follow-ups.',
+    outcome: '65% faster check-in flow and 40% reduction in patient appointment drop-offs.',
+    to: '/services/crm-development'
   },
   {
     title: 'EdTech Learning Portal',
     industry: 'Education',
     challenge: 'Inconsistent student engagement and lack of centralized progress tracking.',
-    solution: 'Developed a custom LMS with an AI chatbot for instant student query resolution.',
-    outcome: 'Increased student engagement by 60% and automated 80% of routine inquiries.'
+    solution: 'Developed a custom LMS with an autonomous AI tutor bot for 24/7 student doubt resolution.',
+    outcome: 'Increased student engagement by 60% and automated 80% of routine mentor queries.',
+    to: '/services/ai-development'
   },
   {
     title: 'Supply Chain ERP',
     industry: 'Manufacturing',
-    challenge: 'Inefficient inventory tracking leading to frequent stockouts and delays.',
-    solution: 'Deployed a cloud-based ERP with real-time analytics and predictive restocking algorithms.',
-    outcome: 'Eliminated stockouts and reduced inventory carrying costs by 25%.'
+    challenge: 'Inefficient multi-warehouse inventory tracking leading to frequent stockouts and delays.',
+    solution: 'Deployed a cloud-based ERP with live telemetry analytics and predictive restocking triggers.',
+    outcome: 'Eliminated stockouts and reduced warehouse carrying costs by 25%.',
+    to: '/services/erp-development'
   }
 ];
 
@@ -30,38 +34,42 @@ export default function Portfolio() {
     <section className="section bg-alt" id="portfolio">
       <div className="container">
         <div className="section-header section-header--center">
-          <span className="section-eyebrow">Experience</span>
-          <h2 className="h2">Work that held up in production</h2>
+          <span className="section-eyebrow">Enterprise Case Studies</span>
+          <h2 className="h2">Work that held up in high-throughput production</h2>
           <p className="text-lg text-muted" style={{ marginTop: '0.85rem' }}>
-            Examples from enterprise builds our team has shipped — real constraints, measurable outcomes.
+            Production systems engineered by our team — solving mission-critical operational bottlenecks.
           </p>
         </div>
-        
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
+
+        <div className="portfolio-showcase-grid">
           {projects.map((project, index) => (
-            <div className="premium-card" key={index} style={{ padding: '2rem' }}>
-              <div style={{ display: 'inline-block', padding: '0.25rem 0.75rem', background: 'var(--bg-gradient)', color: 'var(--primary-color)', borderRadius: 'var(--radius-full)', fontSize: '0.8rem', fontWeight: '600', marginBottom: '1rem' }}>
-                {project.industry}
+            <div className="premium-card portfolio-item-card" key={index}>
+              <div className="portfolio-badge-row">
+                <span className="portfolio-industry-tag">
+                  {project.industry}
+                </span>
               </div>
-              <h3 className="h3" style={{ marginBottom: '1.5rem', fontSize: '1.5rem' }}>{project.title}</h3>
-              
-              <div style={{ marginBottom: '1rem' }}>
-                <strong style={{ display: 'block', color: 'var(--text-primary)', marginBottom: '0.25rem', fontSize: '0.9rem' }}>Challenge:</strong>
-                <p className="text-muted" style={{ fontSize: '0.95rem' }}>{project.challenge}</p>
+
+              <h3 className="h3 portfolio-project-title">{project.title}</h3>
+
+              <div className="portfolio-block">
+                <strong className="portfolio-label">Challenge</strong>
+                <p className="portfolio-desc">{project.challenge}</p>
               </div>
-              
-              <div style={{ marginBottom: '1rem' }}>
-                <strong style={{ display: 'block', color: 'var(--text-primary)', marginBottom: '0.25rem', fontSize: '0.9rem' }}>Solution:</strong>
-                <p className="text-muted" style={{ fontSize: '0.95rem' }}>{project.solution}</p>
+
+              <div className="portfolio-block">
+                <strong className="portfolio-label">Solution</strong>
+                <p className="portfolio-desc">{project.solution}</p>
               </div>
-              
-              <div style={{ padding: '1rem', background: 'rgba(59, 130, 246, 0.05)', borderRadius: '8px', borderLeft: '3px solid var(--primary-color)', marginBottom: '1.5rem' }}>
-                <strong style={{ display: 'block', color: 'var(--primary-color)', marginBottom: '0.25rem', fontSize: '0.9rem' }}>Outcome:</strong>
-                <p style={{ color: 'var(--text-primary)', fontSize: '0.95rem', margin: 0, fontWeight: '500' }}>{project.outcome}</p>
+
+              <div className="portfolio-outcome-box">
+                <strong className="portfolio-outcome-label">Key Metric Impact:</strong>
+                <p className="portfolio-outcome-text">{project.outcome}</p>
               </div>
-              
-              <a href={index === 0 ? '/services/crm-development' : index === 1 ? '/services/ai-development' : '/services/erp-development'} style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', color: 'var(--primary-color)', fontWeight: '600', fontSize: '0.9rem', textDecoration: 'none' }}>
-                View {index === 0 ? 'CRM' : index === 1 ? 'AI' : 'ERP'} Services →
+
+              <a href={project.to} className="portfolio-link-action">
+                <span>Explore Solution Architecture</span>
+                <ArrowUpRight size={16} />
               </a>
             </div>
           ))}

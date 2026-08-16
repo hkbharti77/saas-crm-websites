@@ -6,9 +6,10 @@
   flex-wrap: wrap;
   padding: 2rem;
   margin-bottom: 3rem;
-  background: rgba(56, 189, 248, 0.05);
-  border: 1px solid rgba(56, 189, 248, 0.12);
-  border-radius: var(--radius-lg);
+  background: color-mix(in srgb, var(--primary-color) 8%, transparent);
+  border: 1px solid color-mix(in srgb, var(--primary-color) 18%, transparent);
+  border-radius: var(--radius-lg, 18px);
+  backdrop-filter: blur(14px);
 }
 
 .testimonials-stat {
@@ -19,19 +20,20 @@
 }
 
 .testimonials-stat-value {
-  font-size: 2rem;
+  font-size: 2.2rem;
   font-weight: 800;
   background: var(--gradient-primary);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   line-height: 1;
+  letter-spacing: -0.03em;
 }
 
 .testimonials-stat-label {
   font-size: 0.85rem;
   color: var(--text-muted);
-  font-weight: 500;
+  font-weight: 600;
 }
 
 /* ── Results Grid ─────────────────────────────────────── */
@@ -43,48 +45,58 @@
 }
 
 .result-card {
-  background: var(--bg-color);
+  background: var(--bg-card, var(--glass-bg));
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--border-color);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-lg, 18px);
   padding: 2rem;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transition: var(--transition);
+  color: var(--text-primary);
 }
 
 .result-card:hover {
   transform: translateY(-4px);
-  box-shadow: var(--shadow-md);
+  border-color: color-mix(in srgb, var(--primary-color) 40%, var(--border-color));
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.35);
 }
 
 .result-icon {
   width: 52px;
   height: 52px;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-md, 12px);
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 0.5rem;
+  background: color-mix(in srgb, var(--primary-color) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--primary-color) 25%, transparent);
+  color: var(--primary-color);
 }
 
 .result-metric {
-  font-size: 2rem;
+  font-size: 2.2rem;
   font-weight: 800;
   line-height: 1.1;
   letter-spacing: -0.03em;
+  color: var(--primary-color);
 }
 
 .result-label {
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: 1.05rem;
+  font-weight: 700;
   color: var(--text-primary);
   margin: 0;
+  letter-spacing: -0.01em;
 }
 
 .result-detail {
-  font-size: 0.9rem;
+  font-size: 0.925rem;
   line-height: 1.6;
+  color: var(--text-secondary);
   margin: 0;
 }
 
@@ -92,11 +104,12 @@
 .early-access-card {
   text-align: center;
   padding: 3.5rem 2.5rem;
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-lg, 18px);
   background: color-mix(in srgb, var(--primary-color) 8%, transparent);
   border: 1px solid color-mix(in srgb, var(--primary-color) 22%, transparent);
   position: relative;
   overflow: hidden;
+  backdrop-filter: blur(16px);
 }
 
 .early-access-card::before {
@@ -106,7 +119,7 @@
   right: -60px;
   width: 200px;
   height: 200px;
-  background: radial-gradient(circle, color-mix(in srgb, var(--primary-color) 14%, transparent), transparent 70%);
+  background: radial-gradient(circle, color-mix(in srgb, var(--primary-color) 16%, transparent), transparent 70%);
   border-radius: 50%;
   pointer-events: none;
 }
@@ -114,7 +127,7 @@
 .early-access-badge {
   display: inline-block;
   padding: 0.35rem 1rem;
-  background: rgba(239, 68, 68, 0.1);
+  background: rgba(239, 68, 68, 0.12);
   color: #ef4444;
   border: 1px solid rgba(239, 68, 68, 0.25);
   border-radius: var(--radius-full);

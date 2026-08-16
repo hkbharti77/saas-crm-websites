@@ -29,13 +29,13 @@ function getTodayAutoTheme() {
 const ThemeContext = createContext();
 
 export function ThemeProvider({ children }) {
-  // Theme mode: 'auto' (7-day daily rotation) or 'fixed' (admin choice)
+  // Theme mode: 'auto' (7-day daily rotation) or 'fixed' (admin/user choice)
   const [themeMode, setThemeMode] = useState(() => {
     if (typeof window !== 'undefined') {
       const savedMode = localStorage.getItem('app-theme-mode');
-      return savedMode ? savedMode : 'auto';
+      return savedMode ? savedMode : 'fixed';
     }
-    return 'auto';
+    return 'fixed';
   });
 
   const [fixedTheme, setFixedTheme] = useState(() => {
@@ -50,6 +50,11 @@ export function ThemeProvider({ children }) {
 
   // Calculate effective active theme
   const activeTheme = themeMode === 'auto' ? getTodayAutoTheme() : fixedTheme;
+
+  const selectTheme = (themeId) => {
+    setThemeMode('fixed');
+    setFixedTheme(themeId);
+  };
 
   useEffect(() => {
     const root = document.documentElement;
@@ -90,6 +95,7 @@ export function ThemeProvider({ children }) {
         setThemeMode,
         fixedTheme,
         setFixedTheme,
+        selectTheme,
         themes: THEMES,
         dailySchedule: DAILY_SCHEDULE,
         todayAutoTheme: getTodayAutoTheme()
@@ -108,3 +114,4 @@ export function useTheme() {
   }
   return context;
 }
+

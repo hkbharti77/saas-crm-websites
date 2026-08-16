@@ -1,78 +1,115 @@
-.portfolio-grid {
+.portfolio-showcase-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.75rem;
 }
 
-.portfolio-card {
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  background: var(--bg-color);
-  border: 1px solid var(--border-color);
-  transition: var(--transition);
-  cursor: pointer;
-}
-
-.portfolio-card:hover {
-  box-shadow: var(--shadow-lg);
-  transform: translateY(-5px);
-  border-color: var(--primary-color);
-}
-
-.portfolio-image {
-  height: 240px;
-  position: relative;
+.portfolio-item-card {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  padding: 2rem 1.85rem;
+  background: var(--bg-card, var(--glass-bg));
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg, 18px);
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
 }
 
-.portfolio-stats-badge {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  background: white;
-  padding: 0.5rem 1rem;
-  border-radius: var(--radius-full);
-  font-weight: 600;
-  font-size: 0.875rem;
+.portfolio-item-card:hover {
+  transform: translateY(-4px);
+  border-color: color-mix(in srgb, var(--primary-color) 40%, var(--border-color));
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4), 0 0 0 1px color-mix(in srgb, var(--primary-color) 25%, transparent);
+}
+
+.portfolio-badge-row {
+  margin-bottom: 1.15rem;
+}
+
+.portfolio-industry-tag {
+  display: inline-flex;
+  padding: 0.3rem 0.85rem;
+  background: color-mix(in srgb, var(--primary-color) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--primary-color) 25%, transparent);
   color: var(--primary-color);
-  box-shadow: var(--shadow-md);
+  border-radius: var(--radius-full, 99px);
+  font-size: 0.775rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
-.portfolio-content {
-  padding: 1.5rem;
+.portfolio-project-title {
+  font-size: 1.4rem;
+  font-weight: 750;
+  margin-bottom: 1.25rem;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
 }
 
-.portfolio-category {
-  font-size: 0.875rem;
-  color: var(--primary-color);
-  font-weight: 600;
+.portfolio-block {
+  margin-bottom: 1.15rem;
+}
+
+.portfolio-label {
+  display: block;
+  font-size: 0.825rem;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  margin-bottom: 0.5rem;
-  display: block;
+  color: var(--text-muted);
+  margin-bottom: 0.3rem;
 }
 
-.portfolio-title {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 0;
-  font-size: 1.25rem;
-}
-
-.portfolio-icon {
+.portfolio-desc {
+  font-size: 0.935rem;
+  line-height: 1.55;
   color: var(--text-secondary);
+  margin: 0;
+}
+
+.portfolio-outcome-box {
+  padding: 1.1rem 1.25rem;
+  background: color-mix(in srgb, var(--primary-color) 8%, transparent);
+  border-radius: var(--radius-md, 12px);
+  border-left: 3px solid var(--primary-color);
+  border-top: 1px solid color-mix(in srgb, var(--primary-color) 15%, transparent);
+  border-right: 1px solid color-mix(in srgb, var(--primary-color) 15%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--primary-color) 15%, transparent);
+  margin: 0.5rem 0 1.5rem 0;
+}
+
+.portfolio-outcome-label {
+  display: block;
+  color: var(--primary-color);
+  font-size: 0.825rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.portfolio-outcome-text {
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  font-weight: 550;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.portfolio-link-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--primary-color);
+  font-weight: 650;
+  font-size: 0.9rem;
+  text-decoration: none;
+  margin-top: auto;
   transition: var(--transition);
 }
 
-.portfolio-card:hover .portfolio-icon {
-  color: var(--primary-color);
-  transform: translate(2px, -2px);
+.portfolio-link-action:hover {
+  color: var(--primary-hover);
+  transform: translateX(4px);
 }
-
-.portfolio-card:hover .portfolio-img-el {
-  transform: scale(1.05) !important;
-}
-

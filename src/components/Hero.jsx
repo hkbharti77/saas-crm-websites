@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Sparkles } from 'lucide-react';
 import { trackBookDemo } from '../utils/analytics';
 import './Hero.css';
 
@@ -26,24 +26,49 @@ export default function Hero({ onBookDemo }) {
 
       <div className="container hero-container">
         <div className="hero-content">
-          <p className="hero-brand">Gyan VaniAi</p>
+          <div className="hero-badge">
+            <span className="badge-pulse"></span>
+            <span>Next-Gen AI & CRM Coexistence Suite</span>
+          </div>
+
           <h1 className="hero-title">
-            Software that runs the business — not the other way around
+            Software that runs the business — <span className="text-gradient">not the other way around</span>
           </h1>
+
           <p className="hero-subtitle">
-            AI agents, CRM, HRMS, and enterprise systems built for operators who need clarity, automation, and measurable growth.
+            Autonomous AI agents, WhatsApp Coexistence, CRM, HRMS, and enterprise automation built for operators who demand clarity, speed, and measurable revenue growth.
           </p>
+
           <div className="hero-actions">
             <button
               id="btn-book-demo"
-              className="btn btn-primary"
+              className="btn btn-primary hero-btn-primary"
               onClick={() => handleBookDemo('hero')}
             >
-              Book a consultation <ArrowRight size={18} />
+              <span>Book a Consultation</span>
+              <ArrowRight size={18} />
             </button>
             <a href="#portfolio" className="btn btn-outline hero-btn-secondary">
-              See our work
+              <span>See Our Work</span>
+              <span className="btn-arrow">→</span>
             </a>
+          </div>
+
+          <div className="hero-trust-bar">
+            <div className="trust-item">
+              <span className="trust-dot"></span>
+              <span>Sub-300ms AI Latency</span>
+            </div>
+            <div className="trust-divider"></div>
+            <div className="trust-item">
+              <span className="trust-dot"></span>
+              <span>Official WhatsApp Cloud API</span>
+            </div>
+            <div className="trust-divider"></div>
+            <div className="trust-item">
+              <span className="trust-dot"></span>
+              <span>Enterprise SOC2 / PII Masking</span>
+            </div>
           </div>
         </div>
       </div>

@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import EnterpriseBackground from './components/EnterpriseBackground';
+import CookieConsentBanner from './components/CookieConsentBanner';
 import Home from './pages/Home';
 import { ThemeProvider } from './context/ThemeContext';
 
@@ -100,6 +101,7 @@ function App() {
           </ChunkErrorBoundary>
         </main>
         <Footer />
+        <CookieConsentBanner />
         <Analytics />
         <SpeedInsights />
       </div>
