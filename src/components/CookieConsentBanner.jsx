@@ -1,10 +1,34 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { db } from '../firebase';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import './CookieConsentBanner.css';
 
 const COOKIE_CONSENT_KEY = 'gyanvaniai_cookie_consent';
+
+// Fetch IP + geo — cached for the session so we only call the API once
+let _geoCache = null;
+async function getGeoInfo() {
+  if (_geoCache) return _geoCache;
+  try {
+    const res = await fetch('https://ipapi.co/json/', { signal: AbortSignal.timeout(4000) });
+    if (!res.ok) throw new Error('geo fetch failed');
+    const data = await res.json();
+    _geoCache = {
+      ip:       data.ip       || null,
+      city:     data.city     || null,
+      region:   data.region   || null,
+      country:  data.country_name || data.country || null,
+      countryCode: data.country || null,
+      latitude: data.latitude  || null,
+      longitude: data.longitude || null,
+      org:      data.org      || null,
+    };
+  } catch {
+    _geoCache = { ip: null, city: null, region: null, country: null };
+  }
+  return _geoCache;
+}
 
 const CookieConsentBanner = () => {
   const [visible, setVisible] = useState(false);
@@ -34,7 +58,7 @@ const CookieConsentBanner = () => {
     }
   }, []);
 
-  const saveConsent = (status, customPrefs = null) => {
+  const saveConsent = async (status, customPrefs = null) => {
     const finalPrefs = customPrefs || {
       necessary: true,
       functional: status === 'all',
@@ -43,7 +67,7 @@ const CookieConsentBanner = () => {
     };
 
     const consentData = {
-      status, // 'all', 'essential', 'rejected', 'custom'
+      status,
       preferences: finalPrefs,
       timestamp: new Date().toISOString(),
     };
@@ -54,20 +78,33 @@ const CookieConsentBanner = () => {
       console.warn('Could not save cookie consent:', e);
     }
 
-    // Write analytics event to Firestore
+    // Hide banner immediately — geo lookup happens in background
+    setVisible(false);
+    setShowPreferences(false);
+
+    // Write analytics event to Firestore with IP + location
     try {
-      addDoc(collection(db, 'cookie_consents'), {
+      const geo = await getGeoInfo();
+      await addDoc(collection(db, 'cookie_consents'), {
         status,
         preferences: finalPrefs,
         userAgent: navigator.userAgent,
+        language: navigator.language || null,
+        referrer: document.referrer || null,
+        pageUrl: window.location.href,
+        ip:        geo.ip,
+        city:      geo.city,
+        region:    geo.region,
+        country:   geo.country,
+        countryCode: geo.countryCode,
+        latitude:  geo.latitude,
+        longitude: geo.longitude,
+        isp:       geo.org,
         createdAt: serverTimestamp(),
       });
     } catch (e) {
       console.warn('Could not log consent to Firestore:', e);
     }
-
-    setVisible(false);
-    setShowPreferences(false);
   };
 
   const handleAcceptAll = () => saveConsent('all');

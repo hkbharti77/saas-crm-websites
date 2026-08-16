@@ -102,6 +102,9 @@ export default function CookieConsentAnalytics() {
                 <tr>
                   <th>#</th>
                   <th>Status</th>
+                  <th>IP Address</th>
+                  <th>Location</th>
+                  <th>ISP / Org</th>
                   <th>Analytics</th>
                   <th>Marketing</th>
                   <th>Date / Time</th>
@@ -121,6 +124,11 @@ export default function CookieConsentAnalytics() {
                           {STATUS_LABELS[r.status] || r.status}
                         </span>
                       </td>
+                      <td className="cca-mono">{r.ip || '—'}</td>
+                      <td className="cca-location">
+                        {[r.city, r.region, r.country].filter(Boolean).join(', ') || '—'}
+                      </td>
+                      <td className="cca-isp">{r.isp ? r.isp.replace(/^AS\d+\s+/, '') : '—'}</td>
                       <td className={r.preferences?.analytics ? 'cca-yes' : 'cca-no'}>
                         {r.preferences?.analytics ? '✓ Yes' : '✗ No'}
                       </td>
