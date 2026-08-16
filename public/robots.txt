@@ -2,8 +2,11 @@ User-agent: *
 Allow: /
 Disallow: /admin/
 
-# Allow AI Search Crawlers for Generative Engine Optimization (GEO)
+# Allow AI Search & Retrieval Crawlers for Generative Engine Optimization (GEO)
 User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
 Allow: /
 
 User-agent: PerplexityBot
@@ -15,7 +18,19 @@ Allow: /
 User-agent: Google-Extended
 Allow: /
 
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
 User-agent: Bytespider
+Allow: /
+
+User-agent: Cohere-ai
+Allow: /
+
+User-agent: Diffbot
 Allow: /
 
 Sitemap: https://www.gyanvaniai.online/sitemap.xml

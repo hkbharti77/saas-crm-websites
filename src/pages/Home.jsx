@@ -49,9 +49,11 @@ export default function Home() {
                 "@id": "https://www.gyanvaniai.online/#website",
                 "url": "https://www.gyanvaniai.online/",
                 "name": "Gyan VaniAi",
+                "description": "Enterprise AI, CRM, WhatsApp Coexistence and Custom Software Development",
                 "publisher": {
                   "@id": "https://www.gyanvaniai.online/#organization"
-                }
+                },
+                "inLanguage": "en-US"
               },
               {
                 "@context": "https://schema.org",
@@ -59,26 +61,48 @@ export default function Home() {
                 "@id": "https://www.gyanvaniai.online/#organization",
                 "name": "Gyan VaniAi",
                 "url": "https://www.gyanvaniai.online/",
-                "logo": "https://www.gyanvaniai.online/logo.png",
+                "logo": {
+                  "@type": "ImageObject",
+                  "url": "https://www.gyanvaniai.online/logo.png",
+                  "width": "512",
+                  "height": "512"
+                },
                 "image": "https://www.gyanvaniai.online/hero_dashboard.webp",
-                "description": "Enterprise software development company specializing in AI CRM, WhatsApp Automation, AI Agents, HRMS, and ERP development.",
-                "areaServed": ["Europe", "Asia", "Africa", "Worldwide"],
+                "description": "Enterprise software development company specializing in AI CRM, WhatsApp Automation & Coexistence, AI Agents, Voice Calling Bots, HRMS, and ERP development.",
+                "email": "contact@gyanvaniai.online",
+                "areaServed": ["Europe", "Asia", "Africa", "North America", "Worldwide"],
                 "priceRange": "$$",
+                "sameAs": [
+                  "https://www.facebook.com/gyanvaniai/",
+                  "https://www.linkedin.com/company/gyan-vaniai"
+                ],
                 "knowsAbout": [
                   "Artificial Intelligence",
+                  "WhatsApp Coexistence",
+                  "WhatsApp Business Cloud API",
                   "CRM Development",
-                  "WhatsApp Automation",
+                  "Voice AI Bots",
                   "Autonomous AI Agents",
+                  "Smart IVR Solutions",
+                  "Retrieval Augmented Generation",
                   "HRMS Software",
                   "ERP Software",
                   "Full Stack Web Development"
                 ],
-                "contactPoint": {
-                  "@type": "ContactPoint",
-                  "email": "contact@gyanvaniai.online",
-                  "contactType": "customer service",
-                  "availableLanguage": ["English"]
-                }
+                "contactPoint": [
+                  {
+                    "@type": "ContactPoint",
+                    "email": "contact@gyanvaniai.online",
+                    "contactType": "customer service",
+                    "availableLanguage": ["English", "Hindi"]
+                  },
+                  {
+                    "@type": "ContactPoint",
+                    "email": "contact@gyanvaniai.online",
+                    "contactType": "sales",
+                    "availableLanguage": ["English", "Hindi"]
+                  }
+                ]
               }
             ]
           `}

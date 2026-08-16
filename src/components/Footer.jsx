@@ -117,8 +117,8 @@ export default function Footer() {
             </div>
             <div className="link-group">
               <h4 className="link-title">Legal</h4>
-              <a href="/privacy" className="footer-link">Privacy Policy</a>
-              <a href="/terms" className="footer-link">Terms & Conditions</a>
+              <Link to="/privacy" className="footer-link">Privacy Policy</Link>
+              <Link to="/terms" className="footer-link">Terms & Conditions</Link>
             </div>
           </div>
           
