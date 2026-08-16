@@ -1,50 +1,47 @@
-import { S3Client, GetObjectCommand } from '@aws-sdk/client-s3';
+﻿import { v2 as cloudinary } from 'cloudinary';
 
-const s3Client = new S3Client({
-  region: process.env.AWS_REGION || 'ap-south-1',
-  credentials: {
-    accessKeyId: process.env.AWS_ACCESS_KEY_ID || '',
-    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY || '',
-  },
-});
+if (process.env.CLOUDINARY_URL) {
+  cloudinary.config({
+    cloudinary_url: process.env.CLOUDINARY_URL,
+    secure: true,
+  });
+}
 
 export default async function handler(req, res) {
   const { path: rawPath } = req.query || {};
-  let s3Key = rawPath;
+  let mediaKey = rawPath;
 
-  if (!s3Key) {
+  if (!mediaKey) {
     const urlParts = (req.url || '').split('/media/');
-    s3Key = urlParts[1] || '';
+    mediaKey = urlParts[1] || '';
   }
 
-  if (!s3Key) {
+  if (!mediaKey) {
     return res.status(400).json({ error: 'Missing media path' });
   }
 
-  s3Key = s3Key.replace(/^\/+/, '');
+  mediaKey = mediaKey.replace(/^\/+/, '').split('?')[0];
 
   try {
-    const bucketName = process.env.AWS_S3_BUCKET_NAME || 'gyanvaniai-prod-bucket';
-
-    const getCommand = new GetObjectCommand({
-      Bucket: bucketName,
-      Key: s3Key,
+    const secureUrl = cloudinary.url(mediaKey, {
+      secure: true,
+      resource_type: 'image',
     });
 
-    const s3Response = await s3Client.send(getCommand);
+    const response = await fetch(secureUrl);
 
-    if (s3Response.ContentType) {
-      res.setHeader('Content-Type', s3Response.ContentType);
-    } else {
-      res.setHeader('Content-Type', 'image/png');
+    if (!response.ok) {
+      return res.status(response.status).json({ error: 'Media asset not found' });
     }
 
+    const contentType = response.headers.get('content-type') || 'image/png';
+    res.setHeader('Content-Type', contentType);
     res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
 
-    const byteArray = await s3Response.Body.transformToByteArray();
-    return res.status(200).send(Buffer.from(byteArray));
+    const arrayBuffer = await response.arrayBuffer();
+    return res.status(200).send(Buffer.from(arrayBuffer));
   } catch (error) {
-    console.error('Server S3 Fetch Error:', error);
+    console.error('Server Media Fetch Error');
     return res.status(404).json({ error: 'Media asset not found' });
   }
 }

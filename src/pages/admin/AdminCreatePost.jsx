@@ -64,7 +64,7 @@ const AdminCreatePost = () => {
         if (data.url) {
           setFormData(prev => ({ ...prev, imageUrl: data.url }));
         } else {
-          alert(data.error || 'Failed to upload image to S3');
+          alert(data.error || 'Failed to upload image');
         }
         setUploadingImage(false);
       };
@@ -188,7 +188,7 @@ const AdminCreatePost = () => {
               />
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                 <label className="btn-edit" style={{ cursor: 'pointer', display: 'inline-block', padding: '0.4rem 0.8rem', fontSize: '0.9rem', textAlign: 'center' }}>
-                  {uploadingImage ? 'Uploading to S3...' : '📁 Upload Image to S3'}
+                  {uploadingImage ? 'Uploading...' : '📁 Upload Image'}
                   <input
                     type="file"
                     accept="image/*"
@@ -198,7 +198,7 @@ const AdminCreatePost = () => {
                   />
                 </label>
                 {formData.imageUrl && (
-                  <span style={{ color: '#10b981', fontSize: '0.85rem' }}>✓ Image ready (Masked URL)</span>
+                  <span style={{ color: '#10b981', fontSize: '0.85rem' }}>✓ Image ready</span>
                 )}
               </div>
             </div>

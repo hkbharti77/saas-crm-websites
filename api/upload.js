@@ -1,12 +1,11 @@
-import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
+import { v2 as cloudinary } from 'cloudinary';
 
-const s3Client = new S3Client({
-  region: process.env.AWS_REGION || 'ap-south-1',
-  credentials: {
-    accessKeyId: process.env.AWS_ACCESS_KEY_ID || '',
-    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY || '',
-  },
-});
+if (process.env.CLOUDINARY_URL) {
+  cloudinary.config({
+    cloudinary_url: process.env.CLOUDINARY_URL,
+    secure: true,
+  });
+}
 
 export const config = {
   api: {
@@ -32,44 +31,39 @@ export default async function handler(req, res) {
   try {
     const { imageBase64, fileName, contentType } = req.body || {};
 
-    if (!imageBase64 || !fileName) {
-      return res.status(400).json({ error: 'Missing required image parameters (imageBase64, fileName)' });
+    if (!imageBase64) {
+      return res.status(400).json({ error: 'Missing required image parameters (imageBase64)' });
     }
 
-    const base64Data = imageBase64.replace(/^data:image\/\w+;base64,/, '');
-    const buffer = Buffer.from(base64Data, 'base64');
+    const dataUri = imageBase64.startsWith('data:')
+      ? imageBase64
+      : `data:${contentType || 'image/png'};base64,${imageBase64}`;
 
-    const timestamp = Date.now();
-    const cleanFileName = fileName.toLowerCase().replace(/[^a-z0-9.]/g, '-');
-    const s3Key = `blog/${timestamp}-${cleanFileName}`;
+    const cleanFileName = (fileName || 'image')
+      .toLowerCase()
+      .replace(/\.[^/.]+$/, '')
+      .replace(/[^a-z0-9]/g, '-');
 
-    const bucketName = process.env.AWS_S3_BUCKET_NAME || 'gyanvaniai-prod-bucket';
-
-    const uploadCommand = new PutObjectCommand({
-      Bucket: bucketName,
-      Key: s3Key,
-      Body: buffer,
-      ContentType: contentType || 'image/png',
-      CacheControl: 'public, max-age=31536000',
+    const uploadResponse = await cloudinary.uploader.upload(dataUri, {
+      folder: 'blog',
+      public_id: `${Date.now()}-${cleanFileName}`,
+      resource_type: 'auto',
     });
-
-    await s3Client.send(uploadCommand);
 
     const host = req.headers.host || 'gyanvaniai.online';
     const protocol = host.includes('localhost') ? 'http' : 'https';
-    const maskedUrl = `${protocol}://${host}/media/${s3Key}`;
+    const maskedUrl = `${protocol}://${host}/media/${uploadResponse.public_id}`;
 
     return res.status(200).json({
       success: true,
       url: maskedUrl,
-      key: s3Key,
+      key: uploadResponse.public_id,
     });
   } catch (error) {
-    console.error('Server S3 Upload Error:', error);
-    const cleanMsg = (error.message || '').replace(/gyanvaniai-[a-z0-9-]*|amazonaws\.com/gi, 'storage');
+    console.error('Server Upload Error');
     return res.status(500).json({
-      error: 'Failed to upload image to storage server',
-      details: cleanMsg,
+      error: 'Failed to upload image',
     });
   }
 }
+
