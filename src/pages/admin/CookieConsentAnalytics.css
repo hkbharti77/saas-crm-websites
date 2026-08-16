@@ -1,0 +1,223 @@
+.cca-card {
+  background: var(--bg-card, var(--glass-bg));
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg, 18px);
+  padding: 2rem 2.25rem;
+  margin-bottom: 2.5rem;
+}
+
+/* Header */
+.cca-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.75rem;
+}
+
+.cca-title-group {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.cca-icon {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.cca-title {
+  font-size: 1.25rem;
+  font-weight: 750;
+  color: var(--text-primary);
+  margin: 0 0 0.2rem;
+  letter-spacing: -0.02em;
+}
+
+.cca-subtitle {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* Loading / Error / Empty */
+.cca-loading,
+.cca-error,
+.cca-empty {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  padding: 1.5rem 0;
+  text-align: center;
+}
+.cca-error {
+  color: #ef4444;
+}
+
+/* Stats Grid */
+.cca-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 900px) {
+  .cca-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 480px) {
+  .cca-stats-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.cca-stat-card {
+  background: color-mix(in srgb, var(--accent, var(--primary-color)) 8%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent, var(--primary-color)) 22%, transparent);
+  border-radius: var(--radius-md, 14px);
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  transition: var(--transition);
+}
+
+.cca-stat-card:hover {
+  border-color: var(--accent, var(--primary-color));
+  transform: translateY(-2px);
+}
+
+.cca-stat-count {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--accent, var(--primary-color));
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.cca-stat-label {
+  font-size: 0.82rem;
+  font-weight: 650;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-top: 0.1rem;
+}
+
+.cca-stat-pct {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-top: 0.35rem;
+}
+
+.cca-bar-track {
+  height: 4px;
+  background: color-mix(in srgb, var(--accent, var(--primary-color)) 18%, transparent);
+  border-radius: 99px;
+  overflow: hidden;
+  margin-top: 0.6rem;
+}
+
+.cca-bar-fill {
+  height: 100%;
+  background: var(--accent, var(--primary-color));
+  border-radius: 99px;
+  transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Recent Events */
+.cca-recent-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.cca-recent-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+/* Table */
+.cca-table-wrapper {
+  overflow-x: auto;
+  border-radius: var(--radius-md, 12px);
+  border: 1px solid var(--border-color);
+}
+
+.cca-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.cca-table thead {
+  background: color-mix(in srgb, var(--primary-color) 8%, transparent);
+}
+
+.cca-table th {
+  padding: 0.85rem 1.1rem;
+  text-align: left;
+  font-weight: 700;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border-color);
+  white-space: nowrap;
+}
+
+.cca-table td {
+  padding: 0.85rem 1.1rem;
+  color: var(--text-secondary);
+  border-bottom: 1px solid color-mix(in srgb, var(--border-color) 60%, transparent);
+}
+
+.cca-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.cca-table tbody tr:hover td {
+  background: color-mix(in srgb, var(--primary-color) 4%, transparent);
+  color: var(--text-primary);
+}
+
+.cca-row-num {
+  color: var(--text-muted) !important;
+  font-size: 0.8rem;
+  width: 2.5rem;
+}
+
+.cca-status-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.65rem;
+  background: color-mix(in srgb, var(--accent, #64748b) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent, #64748b) 28%, transparent);
+  color: var(--accent, var(--text-secondary));
+  border-radius: 99px;
+  font-size: 0.775rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.cca-yes {
+  color: #10b981 !important;
+  font-weight: 600;
+}
+
+.cca-no {
+  color: var(--text-muted) !important;
+}
+
+.cca-date {
+  white-space: nowrap;
+  font-size: 0.82rem;
+}

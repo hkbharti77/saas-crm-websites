@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { db } from '../firebase';
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import './CookieConsentBanner.css';
 
 const COOKIE_CONSENT_KEY = 'gyanvaniai_cookie_consent';
@@ -50,6 +52,18 @@ const CookieConsentBanner = () => {
       localStorage.setItem(COOKIE_CONSENT_KEY, JSON.stringify(consentData));
     } catch (e) {
       console.warn('Could not save cookie consent:', e);
+    }
+
+    // Write analytics event to Firestore
+    try {
+      addDoc(collection(db, 'cookie_consents'), {
+        status,
+        preferences: finalPrefs,
+        userAgent: navigator.userAgent,
+        createdAt: serverTimestamp(),
+      });
+    } catch (e) {
+      console.warn('Could not log consent to Firestore:', e);
     }
 
     setVisible(false);

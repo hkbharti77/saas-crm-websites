@@ -4,6 +4,7 @@ import { auth, db } from '../../firebase';
 import { collection, getDocs, deleteDoc, doc, query, orderBy } from 'firebase/firestore';
 import { signOut } from 'firebase/auth';
 import ThemeSwitcher from '../../components/ThemeSwitcher';
+import CookieConsentAnalytics from './CookieConsentAnalytics';
 import { Helmet } from 'react-helmet-async';
 import './Admin.css';
 
@@ -87,6 +88,12 @@ const AdminDashboard = () => {
 
       {/* Admin Enterprise Theme Management Panel */}
       <ThemeSwitcher />
+
+      {/* Cookie Consent Analytics — admin-only */}
+      <div className="admin-header" style={{ marginTop: '2rem' }}>
+        <h3>Cookie Consent Analytics</h3>
+      </div>
+      <CookieConsentAnalytics />
 
       <div className="admin-header" style={{ marginTop: '2rem' }}>
         <h3>Blog Posts Management</h3>
