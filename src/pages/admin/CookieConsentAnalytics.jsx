@@ -29,8 +29,12 @@ export default function CookieConsentAnalytics() {
         const snap = await getDocs(q);
         setRecords(snap.docs.map(d => ({ id: d.id, ...d.data() })));
       } catch (err) {
-        setError('Failed to load consent data.');
-        console.error(err);
+        if (err.code === 'permission-denied' || err.message?.includes('permission')) {
+          setError('permission-denied');
+        } else {
+          setError('Failed to load consent data.');
+        }
+        console.warn('CookieConsentAnalytics warning:', err);
       } finally {
         setLoading(false);
       }
@@ -50,6 +54,45 @@ export default function CookieConsentAnalytics() {
     return (
       <div className="cca-card">
         <div className="cca-loading">Loading consent analytics…</div>
+      </div>
+    );
+  }
+
+  if (error === 'permission-denied') {
+    return (
+      <div className="cca-card">
+        <div className="cca-card-header">
+          <div className="cca-title-group">
+            <span className="cca-icon">🔒</span>
+            <div>
+              <h3 className="cca-title">Firestore Security Rules Setup Required</h3>
+              <p className="cca-subtitle">Your Firebase Firestore rules need to permit reading the <code>cookie_consents</code> collection.</p>
+            </div>
+          </div>
+        </div>
+        <div style={{ background: 'rgba(239, 68, 68, 0.08)', border: '1px solid rgba(239, 68, 68, 0.25)', borderRadius: '12px', padding: '1.25rem', marginTop: '0.5rem' }}>
+          <p style={{ color: '#ef4444', fontWeight: '600', marginBottom: '0.75rem', fontSize: '0.95rem' }}>
+            To enable analytics, add this rule to your Firebase Console &gt; Firestore Database &gt; Rules:
+          </p>
+          <pre style={{ background: '#0a0f1d', color: '#38bdf8', padding: '1rem', borderRadius: '8px', overflowX: 'auto', fontSize: '0.85rem', lineHeight: '1.5' }}>
+{`rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Cookie consent logging & analytics
+    match /cookie_consents/{docId} {
+      allow create: if true;                     // Allows visitors to record consent
+      allow read, write: if request.auth != null; // Allows logged-in admins to view
+    }
+    
+    // Existing rules for blogs & other collections
+    match /{document=**} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+  }
+}`}
+          </pre>
+        </div>
       </div>
     );
   }
