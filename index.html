@@ -40,9 +40,10 @@
 
     <title data-rh="true">Enterprise AI, CRM & Automation Solutions | Gyan VaniAi</title>
 
-    <!-- Microsoft Clarity (Deferred to prevent main thread blocking) -->
+    <!-- Microsoft Clarity (Only on production) -->
     <script type="text/javascript" defer>
       window.addEventListener('load', function() {
+        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') return;
         (function(c,l,a,r,i,t,y){
           c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
           t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
@@ -50,14 +51,16 @@
         })(window,document,"clarity","script","xfxahvnxk7");
       });
     </script>
-    <!-- Google tag (gtag.js) (Deferred to prevent rendering delay) -->
+    <!-- Google tag (gtag.js) (Only on production) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-RN6FQWDQ6M"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', 'G-RN6FQWDQ6M', { 'send_page_view': true });
+      if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+        gtag('config', 'G-RN6FQWDQ6M', { 'send_page_view': true });
+      }
     </script>
   </head>
   <body>
