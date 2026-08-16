@@ -82,11 +82,12 @@ export default function PolicyPage() {
         <aside className="legal-sidebar">
           <h4 className="h4" style={{ marginBottom: '1.5rem' }}>Table of Contents</h4>
           <a href="#data" className={`legal-nav-link ${activeSection === 'data' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('data'); }}>1. Data Collection</a>
-          <a href="#whatsapp" className={`legal-nav-link ${activeSection === 'whatsapp' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('whatsapp'); }}>2. WhatsApp & Comm Consent</a>
-          <a href="#thirdparty" className={`legal-nav-link ${activeSection === 'thirdparty' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('thirdparty'); }}>3. Meta & Third-Party APIs</a>
-          <a href="#security" className={`legal-nav-link ${activeSection === 'security' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('security'); }}>4. Security & Storage</a>
-          <a href="#deletion" className={`legal-nav-link ${activeSection === 'deletion' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('deletion'); }}>5. Data Deletion</a>
-          <a href="#privacy-contact" className={`legal-nav-link ${activeSection === 'privacy-contact' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('privacy-contact'); }}>6. Contact Us</a>
+          <a href="#cookie-consent-data" className={`legal-nav-link ${activeSection === 'cookie-consent-data' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('cookie-consent-data'); }}>2. Cookie Consent Data</a>
+          <a href="#whatsapp" className={`legal-nav-link ${activeSection === 'whatsapp' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('whatsapp'); }}>3. WhatsApp &amp; Comm Consent</a>
+          <a href="#thirdparty" className={`legal-nav-link ${activeSection === 'thirdparty' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('thirdparty'); }}>4. Meta &amp; Third-Party APIs</a>
+          <a href="#security" className={`legal-nav-link ${activeSection === 'security' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('security'); }}>5. Security &amp; Storage</a>
+          <a href="#deletion" className={`legal-nav-link ${activeSection === 'deletion' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('deletion'); }}>6. Data Deletion</a>
+          <a href="#privacy-contact" className={`legal-nav-link ${activeSection === 'privacy-contact' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('privacy-contact'); }}>7. Contact Us</a>
         </aside>
         
         <div className="legal-content glass-panel" style={{ padding: '3rem', borderRadius: 'var(--radius-lg)' }}>
@@ -94,6 +95,28 @@ export default function PolicyPage() {
             <h2 className="h2">1. Data Collection</h2>
             <p className="text-muted">We collect information you provide directly to us when you request a demo, sign up for our CRM, or communicate with our automated agents. This includes your name, email, phone number, and business details.</p>
             <p className="text-muted">We may also automatically collect metadata related to your usage of our AI platforms to improve response latency and model accuracy.</p>
+          </section>
+
+          <section id="cookie-consent-data" className="legal-section">
+            <h2 className="h2">2. Cookie Consent Data &amp; IP Address Collection 🍪</h2>
+            <p className="text-muted">When you interact with our cookie consent banner by clicking <strong>Accept All</strong>, <strong>Reject All</strong>, <strong>Essential Cookies</strong>, or <strong>Manage Preferences</strong>, we automatically record the following data solely for the purpose of maintaining a legally required audit trail of your consent decision:</p>
+            <ul className="text-muted" style={{ paddingLeft: '1.5rem', margin: '1rem 0', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+              <li><strong>IP Address:</strong> Your public IP address at the time of your consent decision.</li>
+              <li><strong>Approximate Location:</strong> City, region, and country derived from your IP address via a third-party geolocation service (ipapi.co).</li>
+              <li><strong>ISP / Organisation:</strong> The internet service provider or organisation associated with your IP.</li>
+              <li><strong>Browser &amp; Device:</strong> Your browser type, operating system, and preferred language.</li>
+              <li><strong>Consent Choice:</strong> Which option you selected (Accept All / Reject All / Essential / Custom) and which individual cookie categories you enabled or disabled.</li>
+              <li><strong>Page URL &amp; Referrer:</strong> The page you were visiting and the source URL when you made your consent decision.</li>
+              <li><strong>Timestamp:</strong> The exact date and time (UTC) of your consent action.</li>
+            </ul>
+            <h3 className="h3" style={{ fontSize: '1.2rem', marginTop: '1.25rem', marginBottom: '0.75rem' }}>Legal Basis</h3>
+            <p className="text-muted">This data is collected under the legal basis of <strong>Legal Obligation</strong> and <strong>Legitimate Interest</strong> (GDPR Article 6(1)(c) and 6(1)(f); India DPDP Act 2023 Section 6). As a Data Fiduciary, we are required by law to be able to demonstrate that valid, informed consent was obtained. Recording your IP and timestamp is the industry-standard method for this proof.</p>
+            <h3 className="h3" style={{ fontSize: '1.2rem', marginTop: '1.25rem', marginBottom: '0.75rem' }}>How We Use This Data</h3>
+            <p className="text-muted">This consent audit data is <strong>used exclusively</strong> for compliance verification and legal evidence purposes. It is <strong>never</strong> used for advertising, marketing profiling, or sold to any third party.</p>
+            <h3 className="h3" style={{ fontSize: '1.2rem', marginTop: '1.25rem', marginBottom: '0.75rem' }}>Retention Period</h3>
+            <p className="text-muted">Consent audit records, including IP address and location data, are retained for a maximum of <strong>12 months</strong> from the date of collection, after which they are permanently deleted.</p>
+            <h3 className="h3" style={{ fontSize: '1.2rem', marginTop: '1.25rem', marginBottom: '0.75rem' }}>Your Rights</h3>
+            <p className="text-muted">You have the right to request access to, correction of, or deletion of your consent record at any time by contacting us at <a href="mailto:contact@gyanvaniai.online">contact@gyanvaniai.online</a> with the subject line <em>"Consent Data Request"</em>.</p>
           </section>
 
           <section id="whatsapp" className="legal-section">

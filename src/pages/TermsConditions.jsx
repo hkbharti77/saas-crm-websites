@@ -83,9 +83,10 @@ export default function TermsConditions() {
           <h4 className="h4" style={{ marginBottom: '1.5rem' }}>Table of Contents</h4>
           <a href="#agreement" className={`legal-nav-link ${activeSection === 'agreement' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('agreement'); }}>1. Agreement to Terms</a>
           <a href="#messaging" className={`legal-nav-link ${activeSection === 'messaging' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('messaging'); }}>2. Messaging Opt-in Rules</a>
-          <a href="#usage" className={`legal-nav-link ${activeSection === 'usage' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('usage'); }}>3. Platform Usage</a>
-          <a href="#liability" className={`legal-nav-link ${activeSection === 'liability' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('liability'); }}>4. Limitation of Liability</a>
-          <a href="#deletion" className={`legal-nav-link ${activeSection === 'deletion' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('deletion'); }}>5. Data Deletion</a>
+          <a href="#cookie-processing" className={`legal-nav-link ${activeSection === 'cookie-processing' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('cookie-processing'); }}>3. Cookie &amp; Consent Data</a>
+          <a href="#usage" className={`legal-nav-link ${activeSection === 'usage' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('usage'); }}>4. Platform Usage</a>
+          <a href="#liability" className={`legal-nav-link ${activeSection === 'liability' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('liability'); }}>5. Limitation of Liability</a>
+          <a href="#deletion" className={`legal-nav-link ${activeSection === 'deletion' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('deletion'); }}>6. Data Deletion</a>
         </aside>
         
         <div className="legal-content glass-panel" style={{ padding: '3rem', borderRadius: 'var(--radius-lg)' }}>
@@ -95,9 +96,22 @@ export default function TermsConditions() {
           </section>
 
           <section id="messaging" className="legal-section">
-            <h2 className="h2">2. Messaging Opt-in & Compliance 💬</h2>
+            <h2 className="h2">2. Messaging Opt-in &amp; Compliance 💬</h2>
             <p className="text-muted">Gyan VaniAi utilizes WhatsApp and SMS automation to deliver core services. By opting in via our forms, you agree to receive automated interactions.</p>
             <p className="text-muted">You acknowledge that you are the authorized user of the phone number provided. We do not tolerate spam; if you use our CRM tools to automate messaging to your own clients, you are strictly responsible for ensuring you have obtained explicit opt-in consent from your end-users in accordance with WhatsApp Business API policies and local telecommunication laws.</p>
+          </section>
+
+          <section id="cookie-processing" className="legal-section">
+            <h2 className="h2">3. Cookie Consent Data Processing 🍪</h2>
+            <p className="text-muted">By using this website and interacting with our cookie consent banner, you acknowledge and agree to the following:</p>
+            <ul className="text-muted" style={{ paddingLeft: '1.5rem', margin: '1rem 0', display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
+              <li><strong>Consent Audit Logging:</strong> When you click any option on the cookie consent banner (Accept All, Reject All, Essential Only, or Save Preferences), we record your decision alongside your public IP address, approximate geographic location (city, region, country), browser type, language, the page URL, and a timestamp. This is strictly for legal compliance purposes.</li>
+              <li><strong>Legal Basis:</strong> This processing is carried out under Legitimate Interest and Legal Obligation (GDPR Art. 6(1)(c) &amp; 6(1)(f); India DPDP Act 2023 Section 6), as we are required to maintain verifiable evidence of consent.</li>
+              <li><strong>No Profiling:</strong> The IP address and location data recorded during consent logging is never used for behavioural profiling, advertising targeting, or sold to any third party. It is held in a private, access-controlled database visible only to authorised administrators.</li>
+              <li><strong>Third-Party Geolocation:</strong> Geographic location data is resolved from your IP address using the ipapi.co API. By using this site, you acknowledge that your IP address may be processed by this third-party service for this purpose.</li>
+              <li><strong>Retention:</strong> Consent audit records are retained for a maximum of 12 months and then permanently deleted.</li>
+              <li><strong>Your Right to Access &amp; Delete:</strong> You may request access to or deletion of your consent record at any time by emailing <a href="mailto:contact@gyanvaniai.online">contact@gyanvaniai.online</a> with the subject line <em>"Consent Data Request"</em>.</li>
+            </ul>
           </section>
 
           <section id="usage" className="legal-section">
