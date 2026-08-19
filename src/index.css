@@ -881,6 +881,7 @@ img {
   --bubble-bot-border: #e8edf3 !important;
   --surface-muted: #f4f6f9 !important;
   --border-subtle: #e8edf3 !important;
+  z-index: 9999 !important;
 }
 
 #crm-chat-widget .chat-tooltip {
@@ -901,4 +902,28 @@ img {
 #crm-chat-widget .message.bot {
   color: #0f172a !important;
 }
+
+/* Mobile optimizations for floating chat widget */
+@media (max-width: 640px) {
+  #crm-chat-widget {
+    left: auto !important;
+    right: calc(14px + env(safe-area-inset-right, 0px)) !important;
+    bottom: calc(14px + env(safe-area-inset-bottom, 0px)) !important;
+    pointer-events: none !important;
+  }
+
+  #crm-chat-widget > * {
+    pointer-events: auto !important;
+  }
+
+  #crm-chat-widget .chat-button {
+    margin-left: auto !important;
+  }
+
+  /* Tooltip shows on PC, but is hidden on mobile view to avoid blocking screen content */
+  #crm-chat-widget .chat-tooltip {
+    display: none !important;
+  }
+}
+
 

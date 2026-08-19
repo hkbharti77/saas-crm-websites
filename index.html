@@ -82,6 +82,23 @@
         color: #0f172a !important;
         font-weight: 600 !important;
       }
+      @media (max-width: 640px) {
+        #crm-chat-widget {
+          left: auto !important;
+          right: calc(14px + env(safe-area-inset-right, 0px)) !important;
+          bottom: calc(14px + env(safe-area-inset-bottom, 0px)) !important;
+          pointer-events: none !important;
+        }
+        #crm-chat-widget > * {
+          pointer-events: auto !important;
+        }
+        #crm-chat-widget .chat-button {
+          margin-left: auto !important;
+        }
+        #crm-chat-widget .chat-tooltip {
+          display: none !important;
+        }
+      }
     </style>
   </head>
   <body>
