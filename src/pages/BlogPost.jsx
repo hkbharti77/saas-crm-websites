@@ -8,6 +8,7 @@ import ContactModal from '../components/ContactModal';
 import { trackBookDemo } from '../utils/analytics';
 import SeoHead from '../components/SeoHead';
 import NotFound from './NotFound';
+import { blogPosts } from '../data/blogData';
 import {
   blogPostUrl,
   resolveDescription,
@@ -19,8 +20,9 @@ import './BlogPost.css';
 
 export default function BlogPost() {
   const { id } = useParams();
-  const [post, setPost] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const staticPost = blogPosts.find((p) => p.id === id || p.slugId === id);
+  const [post, setPost] = useState(staticPost || null);
+  const [loading, setLoading] = useState(!staticPost);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
@@ -33,19 +35,21 @@ export default function BlogPost() {
 
         if (!querySnapshot.empty) {
           setPost({ id: querySnapshot.docs[0].id, ...querySnapshot.docs[0].data() });
-        } else {
+        } else if (!staticPost) {
           setPost(null);
         }
       } catch (error) {
         console.error('Error fetching post: ', error);
-        setPost(null);
+        if (!staticPost) {
+          setPost(null);
+        }
       } finally {
         setLoading(false);
       }
     }
 
     fetchPost();
-  }, [id]);
+  }, [id, staticPost]);
 
   if (loading) {
     return (

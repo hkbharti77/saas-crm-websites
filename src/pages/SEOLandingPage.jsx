@@ -589,11 +589,21 @@ export default function SEOLandingPage() {
     ]
   };
 
+  const pageKeywords = pageData.keywords || [
+    pageData.h1,
+    ...(pageData.benefits || []),
+    ...(pageData.deliverables || []).slice(0, 3),
+    isIndustry ? `${pageData.h1} Software` : `${pageData.h1} Solutions`,
+    'Enterprise AI',
+    'Gyan VaniAi'
+  ].join(', ');
+
   return (
     <>
       <Helmet>
         <title>{pageData.metaTitle}</title>
         <meta name="description" content={pageData.metaDescription} />
+        <meta name="keywords" content={pageKeywords} />
         <link rel="canonical" href={pageUrl} />
         <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
         <meta property="og:site_name" content="Gyan VaniAi" />

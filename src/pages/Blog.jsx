@@ -8,11 +8,12 @@ import ContactModal from '../components/ContactModal';
 import { trackBookDemo } from '../utils/analytics';
 import SeoHead from '../components/SeoHead';
 import { buildBlogIndexSchema } from '../utils/blogSeo';
+import { blogPosts } from '../data/blogData';
 import './Blog.css';
 
 export default function Blog() {
-  const [blogs, setBlogs] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [blogs, setBlogs] = useState(blogPosts || []);
+  const [loading, setLoading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
@@ -22,11 +23,13 @@ export default function Blog() {
       try {
         const q = query(collection(db, 'blogs'), orderBy('createdAt', 'desc'));
         const querySnapshot = await getDocs(q);
-        const blogsList = querySnapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-        setBlogs(blogsList);
+        if (!querySnapshot.empty) {
+          const blogsList = querySnapshot.docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data(),
+          }));
+          setBlogs(blogsList);
+        }
       } catch (error) {
         console.error('Error fetching blogs: ', error);
       } finally {

@@ -64,6 +64,7 @@ export default function WhatsAppCoexistencePage() {
       <Helmet>
         <title>WhatsApp Business Automation & Coexistence | Gyan VaniAi</title>
         <meta name="description" content="Unlock WhatsApp Business automation using the official Cloud API. Integrate WhatsApp CRM and Coexistence mode without losing your mobile app access." />
+        <meta name="keywords" content="WhatsApp Coexistence, WhatsApp Business Automation, Meta Tech Provider, WhatsApp CRM, Cloud API Coexistence, Dual Surface WhatsApp, WhatsApp Broadcasts" />
         <link rel="canonical" href={pageUrl} />
         
         {/* OpenGraph */}

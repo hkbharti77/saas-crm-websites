@@ -18,6 +18,7 @@ export default function About() {
         title="About Gyan VaniAi | Enterprise AI & Software Development"
         description={description}
         canonical="https://www.gyanvaniai.online/about"
+        keywords="About Gyan VaniAi, Enterprise AI Company, Software Development Agency, WhatsApp Coexistence Meta Provider, AI CRM Developers, India, Global"
         image="https://www.gyanvaniai.online/hero_dashboard.webp"
       />
       <Helmet>

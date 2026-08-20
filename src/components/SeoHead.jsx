@@ -12,6 +12,7 @@ export default function SeoHead({
   title,
   description,
   canonical,
+  keywords,
   image = DEFAULT_IMAGE,
   type = 'website',
   twitterCard = 'summary_large_image',
@@ -24,6 +25,7 @@ export default function SeoHead({
     <Helmet>
       <title>{title}</title>
       <meta name="description" content={description} />
+      {keywords && <meta name="keywords" content={keywords} />}
       <link rel="canonical" href={canonical} />
 
       <meta property="og:type" content={type} />

@@ -1,6 +1,5 @@
 import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
-import prerender from '@prerenderer/rollup-plugin';
 import { v2 as cloudinary } from 'cloudinary';
 
 export default defineConfig(({ mode }) => {
@@ -116,46 +115,6 @@ export default defineConfig(({ mode }) => {
           });
         },
       },
-      prerender({
-        routes: [
-          '/about',
-          '/blog',
-          '/privacy',
-          '/terms',
-          '/services/ai-development',
-          '/services/ai-agent-development',
-          '/services/ai-chatbots',
-          '/services/voice-bot-assistant',
-          '/services/whatsapp-calling-agent',
-          '/services/phone-call-agent',
-          '/services/ivr-solutions',
-          '/services/human-handoff-systems',
-          '/services/crm-development',
-          '/services/whatsapp-automation',
-          '/services/whatsapp-coexistence',
-          '/services/hrms-development',
-          '/services/erp-development',
-          '/services/web-development',
-          '/services/mobile-app-development',
-          '/industries/healthcare',
-          '/industries/education',
-          '/industries/finance',
-          '/industries/manufacturing',
-          '/industries/enterprise',
-          '/industries/real-estate',
-          '/industries/retail',
-          '/industries/logistics',
-          '/industries/hospitality',
-          '/industries/legal',
-          '/industries/travel',
-          '/industries/government'
-        ],
-        renderer: '@prerenderer/renderer-jsdom',
-        server: {
-          port: 3000,
-          host: 'localhost',
-        },
-      }),
     ],
     build: {
       chunkSizeWarningLimit: 1500,
