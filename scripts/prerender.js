@@ -44,7 +44,11 @@ const routes = [
   '/industries/government',
   '/blog/multi-agent-orchestration-future',
   '/blog/secure-rag-pipelines-enterprise',
-  '/blog/whatsapp-business-api-automation'
+  '/blog/whatsapp-business-api-automation',
+  '/admin/login',
+  '/admin/dashboard',
+  '/admin/create',
+  '/404'
 ];
 
 async function prerender() {
@@ -142,6 +146,8 @@ async function prerender() {
     let filePath;
     if (url === '/') {
       filePath = path.resolve(distDir, 'index.html');
+    } else if (url === '/404') {
+      filePath = path.resolve(distDir, '404.html');
     } else {
       const cleanUrl = url.replace(/^\/+/, '');
       const routeDir = path.resolve(distDir, cleanUrl);

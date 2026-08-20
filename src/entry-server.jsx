@@ -16,6 +16,10 @@ import PolicyPage from './pages/PolicyPage';
 import TermsConditions from './pages/TermsConditions';
 import SEOLandingPage from './pages/SEOLandingPage';
 import WhatsAppCoexistencePage from './pages/WhatsAppCoexistencePage';
+import AdminLogin from './pages/admin/AdminLogin';
+import AdminDashboard from './pages/admin/AdminDashboard';
+import AdminCreatePost from './pages/admin/AdminCreatePost';
+import AdminEditPost from './pages/admin/AdminEditPost';
 import NotFound from './pages/NotFound';
 
 function ServerApp() {
@@ -35,6 +39,10 @@ function ServerApp() {
             <Route path="/privacy" element={<PolicyPage />} />
             <Route path="/terms" element={<TermsConditions />} />
             <Route path="/about" element={<About />} />
+            <Route path="/admin/login" element={<AdminLogin />} />
+            <Route path="/admin/dashboard" element={<AdminDashboard />} />
+            <Route path="/admin/create" element={<AdminCreatePost />} />
+            <Route path="/admin/edit/:id" element={<AdminEditPost />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>

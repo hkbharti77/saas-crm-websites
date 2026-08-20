@@ -26,6 +26,11 @@ for (const file of allFiles) {
   const html = fs.readFileSync(file, 'utf8');
   const route = file.replace('dist', '').replace(/\\/g, '/').replace(/\/index\.html$/, '') || '/';
 
+  // Admin routes and 404 page are intentionally non-indexed
+  if (route.startsWith('/admin') || route.includes('404')) {
+    continue;
+  }
+
   const titleMatch = html.match(/<title[^>]*>(.*?)<\/title>/i);
   const title = titleMatch ? titleMatch[1] : null;
 
