@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Mail } from 'lucide-react';
+import { Mail } from 'lucide-react';
 import { trackEmailClick, trackNewsletterSubscribe } from '../utils/analytics';
 import './Footer.css';
 

@@ -44,7 +44,6 @@ for (const file of allFiles) {
   const rootEnd = html.indexOf('</body>');
   const rootLen = rootStart !== -1 && rootEnd !== -1 ? rootEnd - rootStart : 0;
 
-  const hasSchema = html.includes('application/ld+json');
   const isNoindex = html.includes('noindex');
   const expectedCanon = 'https://www.gyanvaniai.online' + (route === '/' ? '/' : route);
 

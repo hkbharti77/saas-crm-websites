@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { Menu, X, Sparkles } from 'lucide-react';
 import ThemePicker from './ThemePicker';
 import './Header.css';

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { db } from '../firebase';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
@@ -33,29 +33,40 @@ async function getGeoInfo() {
 const CookieConsentBanner = () => {
   const [visible, setVisible] = useState(false);
   const [showPreferences, setShowPreferences] = useState(false);
-  const [preferences, setPreferences] = useState({
-    necessary: true,
-    functional: true,
-    analytics: true,
-    marketing: false,
+  const [preferences, setPreferences] = useState(() => {
+    try {
+      if (typeof window !== 'undefined') {
+        const saved = localStorage.getItem(COOKIE_CONSENT_KEY);
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          if (parsed.preferences) return parsed.preferences;
+        }
+      }
+    } catch {
+      // ignore
+    }
+    return {
+      necessary: true,
+      functional: true,
+      analytics: true,
+      marketing: false,
+    };
   });
 
   useEffect(() => {
+    let timer;
     try {
       const saved = localStorage.getItem(COOKIE_CONSENT_KEY);
       if (!saved) {
         // Show after a short delay for smooth entrance
-        const timer = setTimeout(() => setVisible(true), 800);
-        return () => clearTimeout(timer);
-      } else {
-        const parsed = JSON.parse(saved);
-        if (parsed.preferences) {
-          setPreferences(parsed.preferences);
-        }
+        timer = setTimeout(() => setVisible(true), 800);
       }
     } catch {
-      setVisible(true);
+      timer = setTimeout(() => setVisible(true), 800);
     }
+    return () => {
+      if (timer) clearTimeout(timer);
+    };
   }, []);
 
   const saveConsent = async (status, customPrefs = null) => {

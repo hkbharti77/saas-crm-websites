@@ -79,7 +79,7 @@ export default defineConfig(({ mode }) => {
                   url: maskedUrl,
                   key: uploadResponse.public_id
                 }));
-              } catch (err) {
+              } catch {
                 console.error('Dev Upload Error');
                 res.statusCode = 500;
                 res.setHeader('Content-Type', 'application/json');
@@ -109,7 +109,7 @@ export default defineConfig(({ mode }) => {
 
               const arrayBuffer = await response.arrayBuffer();
               return res.end(Buffer.from(arrayBuffer));
-            } catch (err) {
+            } catch {
               return next();
             }
           });

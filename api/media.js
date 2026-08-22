@@ -1,4 +1,4 @@
-﻿import { v2 as cloudinary } from 'cloudinary';
+import { v2 as cloudinary } from 'cloudinary';
 
 if (process.env.CLOUDINARY_URL) {
   cloudinary.config({
@@ -40,7 +40,7 @@ export default async function handler(req, res) {
 
     const arrayBuffer = await response.arrayBuffer();
     return res.status(200).send(Buffer.from(arrayBuffer));
-  } catch (error) {
+  } catch {
     console.error('Server Media Fetch Error');
     return res.status(404).json({ error: 'Media asset not found' });
   }

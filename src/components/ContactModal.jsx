@@ -20,10 +20,6 @@ export default function ContactModal({ isOpen, onClose, prefillMessage = '' }) {
   React.useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
-      setIsSuccess(false);
-      setPhone();
-      setValues({ name: '', email: '', message: prefillMessage });
-      setTouched({ name: false, email: false, phone: false });
     } else {
       document.body.style.overflow = '';
     }
@@ -31,7 +27,15 @@ export default function ContactModal({ isOpen, onClose, prefillMessage = '' }) {
     return () => {
       document.body.style.overflow = '';
     };
-  }, [isOpen, prefillMessage]);
+  }, [isOpen]);
+
+  const handleClose = () => {
+    setIsSuccess(false);
+    setPhone();
+    setValues({ name: '', email: '', message: prefillMessage });
+    setTouched({ name: false, email: false, phone: false });
+    onClose();
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -97,9 +101,9 @@ export default function ContactModal({ isOpen, onClose, prefillMessage = '' }) {
   if (!isOpen) return null;
 
   return (
-    <div className="modal-overlay" onClick={onClose}>
+    <div className="modal-overlay" onClick={handleClose}>
       <div className="modal-content" onClick={e => e.stopPropagation()}>
-        <button className="modal-close" onClick={onClose} aria-label="Close modal">
+        <button className="modal-close" onClick={handleClose} aria-label="Close modal">
           <X size={24} />
         </button>
         <h3 className="h3" style={{ marginBottom: '0.2rem', fontSize: '1.35rem' }}>Book a Demo</h3>
@@ -112,7 +116,7 @@ export default function ContactModal({ isOpen, onClose, prefillMessage = '' }) {
             <CheckCircle size={48} color="var(--primary-color)" style={{ margin: '0 auto 1rem' }} />
             <h4 className="h4" style={{ marginBottom: '0.5rem' }}>Thank You!</h4>
             <p className="text-muted">Your request has been sent successfully. We will be in touch shortly.</p>
-            <button className="btn btn-primary" onClick={onClose} style={{ marginTop: '1.5rem' }}>Close</button>
+            <button className="btn btn-primary" onClick={handleClose} style={{ marginTop: '1.5rem' }}>Close</button>
           </div>
         ) : (
           <form onSubmit={handleSubmit}>

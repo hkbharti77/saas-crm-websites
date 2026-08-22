@@ -59,7 +59,7 @@ export default async function handler(req, res) {
       url: maskedUrl,
       key: uploadResponse.public_id,
     });
-  } catch (error) {
+  } catch {
     console.error('Server Upload Error');
     return res.status(500).json({
       error: 'Failed to upload image',
