@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { Menu, X, Sparkles } from 'lucide-react';
 import ThemePicker from './ThemePicker';
 import './Header.css';
@@ -24,21 +24,34 @@ export default function Header() {
         </a>
 
         <nav className={`nav ${isOpen ? 'nav-open' : ''}`}>
-          <Link to="/about" className="nav-link" onClick={() => setIsOpen(false)}>
+          <NavLink
+            to="/about"
+            className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
+            onClick={() => setIsOpen(false)}
+          >
             About
-          </Link>
+          </NavLink>
           <a href="/#features" className="nav-link" onClick={() => setIsOpen(false)}>
             Features
           </a>
-          <Link to="/services/whatsapp-coexistence" className="nav-link" onClick={() => setIsOpen(false)}>
-            WhatsApp Coexistence
-          </Link>
+          <NavLink
+            to="/services/whatsapp-coexistence"
+            className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
+            title="WhatsApp Coexistence Platform"
+            onClick={() => setIsOpen(false)}
+          >
+            WhatsApp
+          </NavLink>
           <a href="/#portfolio" className="nav-link" onClick={() => setIsOpen(false)}>
             Portfolio
           </a>
-          <Link to="/blog" className="nav-link" onClick={() => setIsOpen(false)}>
+          <NavLink
+            to="/blog"
+            className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
+            onClick={() => setIsOpen(false)}
+          >
             Blog
-          </Link>
+          </NavLink>
 
           <a href="/#contact" className="btn btn-primary nav-btn" onClick={() => setIsOpen(false)}>
             <span>Get Started</span>

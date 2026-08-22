@@ -98,17 +98,17 @@ export default function ContactSection() {
 
   return (
     <section className="contact-section section" id="contact" style={{ background: 'transparent' }}>
-      <div className="container" style={{ maxWidth: '900px' }}>
+      <div className="container" style={{ maxWidth: '1120px' }}>
         <div className="contact-grid">
           
           <div className="contact-info premium-card">
-            <h3 className="h3" style={{ marginBottom: '1rem', fontSize: '2rem' }}>Ready to Transform Your Business?</h3>
-            <p className="text-muted" style={{ marginBottom: '2rem', fontSize: '1.1rem', lineHeight: '1.6' }}>
+            <h2 className="h2" style={{ marginBottom: '1rem', lineHeight: '1.25' }}>Ready to Transform Your Business?</h2>
+            <p className="text-muted" style={{ marginBottom: '2rem', fontSize: '1.05rem', lineHeight: '1.6' }}>
               Let's build software that helps your business grow faster, automate operations, and deliver exceptional customer experiences.
             </p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
               <div>
-                <h4 className="h4" style={{ marginBottom: '0.25rem', fontSize: '1rem', color: 'var(--text-secondary)' }}>WhatsApp Direct</h4>
+                <h3 className="h3" style={{ marginBottom: '0.25rem', fontSize: '1rem', color: 'var(--text-secondary)' }}>WhatsApp Direct</h3>
                 <p className="text-muted">
                   <a
                     href="https://wa.me/919534597981?text=Hi%20Gyan%20VaniAi%2C%20I%20would%20like%20to%20connect%20regarding%20your%20AI%20CRM%20solutions."
@@ -123,7 +123,7 @@ export default function ContactSection() {
                 </p>
               </div>
               <div>
-                <h4 className="h4" style={{ marginBottom: '0.25rem', fontSize: '1rem', color: 'var(--text-secondary)' }}>Email</h4>
+                <h3 className="h3" style={{ marginBottom: '0.25rem', fontSize: '1rem', color: 'var(--text-secondary)' }}>Email</h3>
                 <p className="text-muted">
                   <a
                     href="mailto:contact@gyanvaniai.online"

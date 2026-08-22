@@ -13,8 +13,9 @@
 
 .footer-top {
   display: grid;
-  grid-template-columns: 1.5fr 3.5fr 1.6fr;
+  grid-template-columns: 280px 1fr 300px;
   gap: 3.5rem;
+  align-items: start;
   margin-bottom: 4rem;
 }
 
@@ -51,8 +52,10 @@
 
 .footer-links {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(135px, 1fr));
   gap: 2rem;
+  align-items: start;
+  width: 100%;
 }
 
 .link-group {
@@ -92,6 +95,12 @@
   margin-top: 1rem;
 }
 
+.btn-subscribe {
+  padding: 0.65rem 1.15rem;
+  font-size: 0.875rem;
+  white-space: nowrap;
+}
+
 .input-field {
   padding: 0.75rem 1rem;
   border: 1px solid var(--input-border, var(--border-color));
@@ -102,6 +111,7 @@
   font-family: inherit;
   font-size: 0.885rem;
   flex: 1;
+  min-width: 0;
   transition: var(--transition);
 }
 

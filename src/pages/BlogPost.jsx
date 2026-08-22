@@ -95,22 +95,24 @@ export default function BlogPost() {
       </Helmet>
 
       <article className="section" style={{ paddingTop: '8rem', paddingBottom: '6rem', minHeight: '80vh' }}>
-        <div className="container" style={{ maxWidth: '900px' }}>
-          <nav aria-label="Breadcrumb" style={{ marginBottom: '1.25rem', fontSize: '0.9rem' }}>
-            <ol style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', listStyle: 'none', padding: 0, margin: 0, color: 'var(--text-muted)' }}>
+        <div className="container" style={{ maxWidth: '780px' }}>
+          <nav aria-label="Breadcrumb" className="blog-breadcrumb">
+            <ol className="breadcrumb-list">
               <li>
-                <Link to="/" style={{ color: 'inherit' }}>
+                <Link to="/" className="breadcrumb-link">
                   Home
                 </Link>
               </li>
-              <li aria-hidden="true">/</li>
+              <li aria-hidden="true" className="breadcrumb-separator">/</li>
               <li>
-                <Link to="/blog" style={{ color: 'inherit' }}>
+                <Link to="/blog" className="breadcrumb-link">
                   Blog
                 </Link>
               </li>
-              <li aria-hidden="true">/</li>
-              <li style={{ color: 'var(--text-primary)' }}>{post.title}</li>
+              <li aria-hidden="true" className="breadcrumb-separator">/</li>
+              <li aria-current="page" className="breadcrumb-current">
+                Article
+              </li>
             </ol>
           </nav>
 
@@ -120,28 +122,28 @@ export default function BlogPost() {
 
           <header className="blog-post-header" data-aos="fade-up">
             {post.category && (
-              <span className="blog-category" style={{ fontSize: '1rem' }}>
+              <span className="blog-category">
                 {post.category}
               </span>
             )}
-            <h1 className="h1" style={{ marginTop: '1rem', marginBottom: '0' }}>
+            <h1 className="h1 blog-post-title">
               {post.title}
             </h1>
 
             <div className="blog-post-meta">
               {post.author && (
                 <div className="blog-post-meta-item">
-                  <User size={16} /> {post.author}
+                  <User size={15} /> {post.author}
                 </div>
               )}
               {post.date && (
                 <div className="blog-post-meta-item">
-                  <Calendar size={16} /> {post.date}
+                  <Calendar size={15} /> {post.date}
                 </div>
               )}
               {post.readTime && (
                 <div className="blog-post-meta-item">
-                  <Clock size={16} /> {post.readTime}
+                  <Clock size={15} /> {post.readTime}
                 </div>
               )}
             </div>

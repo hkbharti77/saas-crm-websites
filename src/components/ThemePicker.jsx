@@ -20,9 +20,9 @@ export default function ThemePicker() {
       title={isLight ? 'Switch to Dark mode' : 'Switch to Light mode'}
     >
       {isLight ? (
-        <Sun size={18} className="theme-toggle-icon sun-icon" />
-      ) : (
         <Moon size={18} className="theme-toggle-icon moon-icon" />
+      ) : (
+        <Sun size={18} className="theme-toggle-icon sun-icon" />
       )}
     </button>
   );

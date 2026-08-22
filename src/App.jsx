@@ -1,9 +1,10 @@
-import React, { useEffect, Suspense, lazy, Component } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import React, { useEffect, useState, useRef, Suspense, lazy, Component } from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import EnterpriseBackground from './components/EnterpriseBackground';
 import CookieConsentBanner from './components/CookieConsentBanner';
+import ContactModal from './components/ContactModal';
 import Home from './pages/Home';
 import { ThemeProvider } from './context/ThemeContext';
 
@@ -59,6 +60,11 @@ class ChunkErrorBoundary extends Component {
 }
 
 function App() {
+  const location = useLocation();
+  const [isDemoModalOpen, setIsDemoModalOpen] = useState(false);
+  const [modalPrefill, setModalPrefill] = useState('');
+  const hasTriggeredRef = useRef({});
+
   useScrollDepth();
   useGAPageViews();
 
@@ -69,6 +75,52 @@ function App() {
       easing: 'ease-out-cubic',
       offset: 60,
     });
+  }, []);
+
+  // Auto-open Book a Demo modal when user scrolls past 75% on any page
+  useEffect(() => {
+    // Exclude admin dashboard/editor pages
+    if (location.pathname.startsWith('/admin')) return;
+
+    const currentPath = location.pathname;
+
+    const handleScroll = () => {
+      if (hasTriggeredRef.current[currentPath]) return;
+
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const docHeight =
+        document.documentElement.scrollHeight -
+        document.documentElement.clientHeight;
+
+      if (docHeight <= 100) return; // Ignore very short pages
+
+      const scrollPct = (scrollTop / docHeight) * 100;
+
+      if (scrollPct >= 75) {
+        hasTriggeredRef.current[currentPath] = true;
+        const sessionKey = `demo_modal_75_${currentPath}`;
+        if (!sessionStorage.getItem(sessionKey)) {
+          sessionStorage.setItem(sessionKey, 'true');
+          setIsDemoModalOpen(true);
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [location.pathname]);
+
+  // Global listener for custom demo modal triggers
+  useEffect(() => {
+    const handleCustomOpen = (e) => {
+      if (e.detail?.prefill) {
+        setModalPrefill(e.detail.prefill);
+      }
+      setIsDemoModalOpen(true);
+    };
+
+    window.addEventListener('open-demo-modal', handleCustomOpen);
+    return () => window.removeEventListener('open-demo-modal', handleCustomOpen);
   }, []);
 
   return (
@@ -102,6 +154,14 @@ function App() {
         </main>
         <Footer />
         <CookieConsentBanner />
+        <ContactModal
+          isOpen={isDemoModalOpen}
+          onClose={() => {
+            setIsDemoModalOpen(false);
+            setModalPrefill('');
+          }}
+          prefillMessage={modalPrefill}
+        />
         <Analytics />
         <SpeedInsights />
       </div>

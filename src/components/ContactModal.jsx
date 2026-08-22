@@ -19,14 +19,19 @@ export default function ContactModal({ isOpen, onClose, prefillMessage = '' }) {
 
   React.useEffect(() => {
     if (isOpen) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
+      document.body.style.overflow = 'hidden';
       setIsSuccess(false);
       setPhone();
       setValues({ name: '', email: '', message: prefillMessage });
       setTouched({ name: false, email: false, phone: false });
+    } else {
+      document.body.style.overflow = '';
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isOpen]);
+
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen, prefillMessage]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -97,8 +102,8 @@ export default function ContactModal({ isOpen, onClose, prefillMessage = '' }) {
         <button className="modal-close" onClick={onClose} aria-label="Close modal">
           <X size={24} />
         </button>
-        <h3 className="h3" style={{ marginBottom: '0.25rem', fontSize: '1.5rem' }}>Book a Demo</h3>
-        <p className="text-muted" style={{ marginBottom: '1rem', fontSize: '0.9rem' }}>
+        <h3 className="h3" style={{ marginBottom: '0.2rem', fontSize: '1.35rem' }}>Book a Demo</h3>
+        <p className="text-muted" style={{ marginBottom: '0.75rem', fontSize: '0.85rem', lineHeight: '1.45' }}>
           Schedule a tailored walkthrough of our CRM and AI Chatbot solutions.
         </p>
         
@@ -107,33 +112,33 @@ export default function ContactModal({ isOpen, onClose, prefillMessage = '' }) {
             <CheckCircle size={48} color="var(--primary-color)" style={{ margin: '0 auto 1rem' }} />
             <h4 className="h4" style={{ marginBottom: '0.5rem' }}>Thank You!</h4>
             <p className="text-muted">Your request has been sent successfully. We will be in touch shortly.</p>
-            <button className="btn btn-primary" onClick={onClose} style={{ marginTop: '2rem' }}>Close</button>
+            <button className="btn btn-primary" onClick={onClose} style={{ marginTop: '1.5rem' }}>Close</button>
           </div>
         ) : (
           <form onSubmit={handleSubmit}>
             <div className="form-group">
               <label className="form-label" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                 Name
-                {touched.name && !errors.name && <Check size={16} color="#10b981" />}
-                {touched.name && errors.name && <XCircle size={16} color="#ef4444" />}
+                {touched.name && !errors.name && <Check size={15} color="#10b981" />}
+                {touched.name && errors.name && <XCircle size={15} color="#ef4444" />}
               </label>
               <input type="text" name="name" value={values.name} onChange={handleChange} onBlur={handleBlur} className={`form-input ${errors.name ? 'error' : ''}`} placeholder="Your name" maxLength={66} required />
-              {errors.name && <span style={{ color: '#ef4444', fontSize: '0.8rem', marginTop: '0.25rem', display: 'block' }}>{errors.name}</span>}
+              {errors.name && <span style={{ color: '#ef4444', fontSize: '0.78rem', marginTop: '0.2rem', display: 'block' }}>{errors.name}</span>}
             </div>
             <div className="form-group">
               <label className="form-label" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                 Work Email
-                {touched.email && !errors.email && <Check size={16} color="#10b981" />}
-                {touched.email && errors.email && <XCircle size={16} color="#ef4444" />}
+                {touched.email && !errors.email && <Check size={15} color="#10b981" />}
+                {touched.email && errors.email && <XCircle size={15} color="#ef4444" />}
               </label>
               <input type="email" name="email" value={values.email} onChange={handleChange} onBlur={handleBlur} className={`form-input ${errors.email ? 'error' : ''}`} placeholder="name@company.com" maxLength={266} required />
-              {errors.email && <span style={{ color: '#ef4444', fontSize: '0.8rem', marginTop: '0.25rem', display: 'block' }}>{errors.email}</span>}
+              {errors.email && <span style={{ color: '#ef4444', fontSize: '0.78rem', marginTop: '0.2rem', display: 'block' }}>{errors.email}</span>}
             </div>
             <div className="form-group">
               <label className="form-label" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                 Phone Number (Optional)
-                {touched.phone && phone && !errors.phone && <Check size={16} color="#10b981" />}
-                {touched.phone && errors.phone && <XCircle size={16} color="#ef4444" />}
+                {touched.phone && phone && !errors.phone && <Check size={15} color="#10b981" />}
+                {touched.phone && errors.phone && <XCircle size={15} color="#ef4444" />}
               </label>
               <PhoneInput
                 international
@@ -144,31 +149,31 @@ export default function ContactModal({ isOpen, onClose, prefillMessage = '' }) {
                 name="phone"
                 className={`form-input-phone ${errors.phone ? 'error' : ''}`}
               />
-              {errors.phone && <span style={{ color: '#ef4444', fontSize: '0.8rem', marginTop: '0.25rem', display: 'block' }}>{errors.phone}</span>}
+              {errors.phone && <span style={{ color: '#ef4444', fontSize: '0.78rem', marginTop: '0.2rem', display: 'block' }}>{errors.phone}</span>}
             </div>
             <div className="form-group">
               <label className="form-label" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                 <span>How can we help?</span>
               </label>
               <div className="textarea-wrapper">
-                <textarea name="message" value={values.message} onChange={handleChange} onBlur={handleBlur} className="form-textarea" rows="3" placeholder="Tell us about your current workflow challenges..." maxLength={1000} required></textarea>
+                <textarea name="message" value={values.message} onChange={handleChange} onBlur={handleBlur} className="form-textarea" rows="2" placeholder="Tell us about your current workflow challenges..." maxLength={1000} required></textarea>
                 <span className="char-counter" style={{ color: values.message.length > 1000 ? '#ef4444' : 'var(--text-muted)' }}>
                   {values.message.length}/1000
                 </span>
               </div>
             </div>
-            <button type="submit" className="btn btn-primary" style={{ width: '100%' }} disabled={isSubmitting}>
+            <button type="submit" className="btn btn-primary" style={{ width: '100%', padding: '0.68rem 1rem', fontSize: '0.92rem' }} disabled={isSubmitting}>
               {isSubmitting ? 'Sending...' : 'Request Demo'}
             </button>
-            <div style={{ marginTop: '1rem', textAlign: 'center', paddingTop: '0.75rem', borderTop: '1px solid var(--border-color)' }}>
-              <span style={{ fontSize: '0.825rem', color: 'var(--text-secondary)' }}>Prefer instant chat? </span>
+            <div style={{ marginTop: '0.75rem', textAlign: 'center', paddingTop: '0.6rem', borderTop: '1px solid var(--border-color)' }}>
+              <span style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Prefer instant chat? </span>
               <a
                 href="https://wa.me/919534597981?text=Hi%20Gyan%20VaniAi%2C%20I%20would%20like%20to%20book%20a%20consultation."
                 target="_blank"
                 rel="noopener noreferrer"
-                style={{ color: '#25D366', fontWeight: '600', fontSize: '0.85rem', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '4px', verticalAlign: 'middle' }}
+                style={{ color: '#25D366', fontWeight: '600', fontSize: '0.82rem', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '4px', verticalAlign: 'middle' }}
               >
-                <WhatsAppIcon size={15} color="#25D366" />
+                <WhatsAppIcon size={14} color="#25D366" />
                 Chat on WhatsApp (+91 95345 97981)
               </a>
             </div>

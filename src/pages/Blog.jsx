@@ -93,17 +93,23 @@ export default function Blog() {
                       data-aos="fade-up"
                       data-aos-delay={index * 100}
                     >
-                      {post.imageUrl && (
-                        <img
-                          src={post.imageUrl}
-                          alt={`${post.title} — Gyan VaniAi Blog`}
-                          width="600"
-                          height="400"
-                          className="blog-card-image"
-                          loading="lazy"
-                          decoding="async"
-                        />
-                      )}
+                      <div className="blog-card-image-wrap">
+                        {post.imageUrl ? (
+                          <img
+                            src={post.imageUrl}
+                            alt={`${post.title} — Gyan VaniAi Blog`}
+                            width="600"
+                            height="400"
+                            className="blog-card-image"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                        ) : (
+                          <div className="blog-card-image-fallback">
+                            <span className="blog-fallback-tag">Gyan VaniAi Insights</span>
+                          </div>
+                        )}
+                      </div>
                       <div className="blog-card-content">
                         <div className="blog-meta">
                           <span className="blog-category">{post.category}</span>

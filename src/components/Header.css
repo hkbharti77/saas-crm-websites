@@ -55,10 +55,27 @@
   color: var(--text-secondary);
   transition: var(--transition);
   position: relative;
+  padding: 0.35rem 0.15rem;
 }
 
 .nav-link:hover {
   color: var(--text-primary);
+}
+
+.nav-link.active {
+  color: var(--primary-color);
+  font-weight: 650;
+}
+
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--primary-color);
+  border-radius: 2px;
 }
 
 .nav-btn {

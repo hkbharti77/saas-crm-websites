@@ -62,17 +62,17 @@ export default function About() {
       </Helmet>
 
       <div>
-        <section className="section" style={{ paddingTop: '8rem', paddingBottom: '4rem', background: 'var(--bg-gradient)' }}>
+        <section className="section" style={{ paddingTop: '5.5rem', paddingBottom: '3.5rem', background: 'var(--bg-gradient)' }}>
           <div className="container" style={{ textAlign: 'center' }}>
-            <h1 className="h1" style={{ marginBottom: '1.5rem' }}>About Gyan VaniAi</h1>
+            <h1 className="h1" style={{ marginBottom: '1.25rem' }}>About Gyan VaniAi</h1>
             <p className="text-lg text-muted" style={{ maxWidth: '800px', margin: '0 auto' }}>
               We build intelligent software for operators who need CRM, WhatsApp automation, AI agents, and enterprise systems that run the business — not the other way around.
             </p>
           </div>
         </section>
 
-        <section className="section">
-          <div className="container" style={{ maxWidth: '820px' }}>
+        <section className="section" style={{ padding: '3.5rem 0' }}>
+          <div className="container-readable">
             <h2 className="h2" style={{ marginBottom: '1.25rem' }}>Who we are</h2>
             <p className="text-muted" style={{ marginBottom: '1rem', lineHeight: '1.7' }}>
               Gyan VaniAi is an enterprise AI and software development company. We design and ship custom AI CRMs, Meta WhatsApp Coexistence platforms, RAG pipelines, HRMS, ERP, web, and mobile applications for teams that outgrow off-the-shelf tools.
@@ -82,15 +82,15 @@ export default function About() {
             </p>
             <p className="text-muted" style={{ lineHeight: '1.7' }}>
               Contact:{' '}
-              <a href="mailto:contact@gyanvaniai.online">contact@gyanvaniai.online</a>
+              <a href="mailto:contact@gyanvaniai.online" className="link-inline">contact@gyanvaniai.online</a>
               {' · '}
-              <Link to="/#contact">Book a free consultation</Link>
+              <Link to="/#contact" className="link-inline">Book a free consultation</Link>
             </p>
           </div>
         </section>
 
-        <section className="section bg-alt">
-          <div className="container" style={{ maxWidth: '820px' }}>
+        <section className="section bg-alt" style={{ padding: '3.5rem 0' }}>
+          <div className="container-readable">
             <h2 className="h2" style={{ marginBottom: '1.25rem' }}>What makes us different</h2>
             <p className="text-muted" style={{ marginBottom: '1rem', lineHeight: '1.7' }}>
               We are especially known for <strong>WhatsApp Coexistence</strong>: keep the WhatsApp Business mobile app on your phone while running AI auto-replies, bulk broadcasts, and multi-agent CRM on the same number — with real-time sync and no chat wipe.
@@ -98,16 +98,18 @@ export default function About() {
             <p className="text-muted" style={{ marginBottom: '1.5rem', lineHeight: '1.7' }}>
               Beyond messaging, we build secure RAG agents, industry-shaped CRMs, and operational systems (HRMS/ERP) that connect sales, support, and back-office workflows.
             </p>
-            <Link to="/services/whatsapp-coexistence" className="btn btn-primary" style={{ display: 'inline-flex', marginRight: '0.75rem' }}>
-              WhatsApp Coexistence <ArrowRight size={18} />
-            </Link>
-            <Link to="/services/ai-development" className="btn btn-outline" style={{ display: 'inline-flex' }}>
-              Explore AI services <ArrowRight size={18} />
-            </Link>
+            <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+              <Link to="/services/whatsapp-coexistence" className="btn btn-primary">
+                WhatsApp Coexistence <ArrowRight size={18} />
+              </Link>
+              <Link to="/services/ai-development" className="btn btn-outline">
+                Explore AI services <ArrowRight size={18} />
+              </Link>
+            </div>
           </div>
         </section>
 
-        <section className="section">
+        <section className="section" style={{ padding: '3.5rem 0' }}>
           <div className="container">
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '3rem', alignItems: 'center' }}>
               <div>
@@ -146,17 +148,14 @@ export default function About() {
           </div>
         </section>
 
-        <section className="section bg-alt" style={{ padding: '4rem 0', borderTop: '1px solid var(--border-color)', borderBottom: '1px solid var(--border-color)' }}>
+        <section className="section bg-alt" style={{ padding: '3.5rem 0', borderTop: '1px solid var(--border-color)', borderBottom: '1px solid var(--border-color)' }}>
           <div className="container">
-            <h2 className="h3" style={{ textAlign: 'center', marginBottom: '2rem' }}>Explore our work</h2>
-            <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap', alignItems: 'center' }}>
-              <Link to="/services/crm-development" style={{ padding: '0.5rem 1rem', background: 'var(--glass-bg)', borderRadius: 'var(--radius-full)', fontWeight: '500' }}>Services</Link>
-              <ArrowRight size={16} color="var(--text-muted)" />
-              <Link to="/industries/healthcare" style={{ padding: '0.5rem 1rem', background: 'var(--glass-bg)', borderRadius: 'var(--radius-full)', fontWeight: '500' }}>Industries</Link>
-              <ArrowRight size={16} color="var(--text-muted)" />
-              <a href="/#portfolio" style={{ padding: '0.5rem 1rem', background: 'var(--glass-bg)', borderRadius: 'var(--radius-full)', fontWeight: '500' }}>Case Studies</a>
-              <ArrowRight size={16} color="var(--text-muted)" />
-              <a href="/#contact" style={{ padding: '0.5rem 1rem', background: 'var(--primary-color)', color: 'white', borderRadius: 'var(--radius-full)', fontWeight: '500' }}>Contact Us</a>
+            <h2 className="h3" style={{ textAlign: 'center', marginBottom: '1.5rem' }}>Explore our work</h2>
+            <div style={{ display: 'flex', justifyContent: 'center', gap: '0.75rem', flexWrap: 'wrap', alignItems: 'center' }} role="navigation" aria-label="Explore categories">
+              <Link to="/services/crm-development" className="btn btn-outline" style={{ borderRadius: 'var(--radius-full)', padding: '0.5rem 1.25rem', fontSize: '0.9rem' }}>Services</Link>
+              <Link to="/industries/healthcare" className="btn btn-outline" style={{ borderRadius: 'var(--radius-full)', padding: '0.5rem 1.25rem', fontSize: '0.9rem' }}>Industries</Link>
+              <a href="/#portfolio" className="btn btn-outline" style={{ borderRadius: 'var(--radius-full)', padding: '0.5rem 1.25rem', fontSize: '0.9rem' }}>Case Studies</a>
+              <a href="/#contact" className="btn btn-primary" style={{ borderRadius: 'var(--radius-full)', padding: '0.5rem 1.25rem', fontSize: '0.9rem' }}>Contact Us</a>
             </div>
           </div>
         </section>
