@@ -147,6 +147,9 @@ export default function PolicyPage() {
               <li><strong>Complete Erasure:</strong> Upon verification, we will permanently delete or cryptographically anonymize your personal data across all our active databases, internal systems, and third-party sub-processors within a maximum of <strong>30 days</strong>.</li>
               <li><strong>Legal Exceptions:</strong> Data will be completely erased except where strict retention is explicitly mandated by national/international financial laws, legal obligations, or active dispute resolutions.</li>
             </ul>
+
+            <h3 className="h3" style={{ fontSize: '1.25rem', marginTop: '1.5rem', marginBottom: '0.75rem' }}>Demo Platform 7-Day Data Retention Policy</h3>
+            <p className="text-muted">For users interacting with our live demo environment at <a href="https://connect.gyanvaniai.online/" target="_blank" rel="noopener noreferrer">https://connect.gyanvaniai.online/</a>, your demo account is provided for evaluation and testing purposes for a 7-day evaluation period. If you do not upgrade to a paid plan before the evaluation period ends, demo data associated with your account may be permanently deleted from active systems. Please export or preserve any information you wish to keep before the evaluation period ends. Except where required by applicable law, Gyan VaniAi is not responsible for data permanently deleted in accordance with this policy.</p>
           </section>
 
           <section id="privacy-contact" className="legal-section">

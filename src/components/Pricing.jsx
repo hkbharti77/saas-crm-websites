@@ -96,6 +96,22 @@ export default function Pricing({ onSelectPlan }) {
             </div>
           ))}
         </div>
+
+        <div style={{ marginTop: '3rem', padding: '1.75rem', background: 'rgba(99, 102, 241, 0.08)', border: '1px solid rgba(99, 102, 241, 0.25)', borderRadius: '16px', textAlign: 'center' }}>
+          <h4 className="h4" style={{ fontSize: '1.2rem', color: '#818cf8', marginBottom: '0.5rem' }}>Want to test before buying? Try Live Demo</h4>
+          <p className="text-muted" style={{ fontSize: '0.9rem', maxWidth: '720px', margin: '0 auto 1.25rem', lineHeight: '1.5' }}>
+            Access our live software demo at <code>https://connect.gyanvaniai.online/</code> for a 7-day evaluation.
+            <br />
+            <strong style={{ color: '#818cf8' }}>Demo Data Policy:</strong> Demo data associated with un-upgraded accounts may be deleted after the 7-day evaluation period subject to our Demo Data Retention Policy.
+          </p>
+          <button
+            className="btn btn-primary"
+            onClick={() => window.dispatchEvent(new CustomEvent('open-live-demo'))}
+            style={{ background: 'linear-gradient(135deg, #6366f1 0%, #a855f7 100%)', border: 'none' }}
+          >
+            Launch Live Demo (connect.gyanvaniai.online)
+          </button>
+        </div>
       </div>
     </section>
   );

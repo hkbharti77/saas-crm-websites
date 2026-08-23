@@ -97,6 +97,13 @@ export default function Footer() {
           <div className="footer-links">
             <div className="link-group">
               <h3 className="link-title">AI & Automation</h3>
+              <button
+                className="footer-link"
+                onClick={() => window.dispatchEvent(new CustomEvent('open-live-demo'))}
+                style={{ background: 'none', border: 'none', padding: 0, color: '#818cf8', cursor: 'pointer', textAlign: 'left', fontWeight: '600' }}
+              >
+                ⚡ Live CRM Demo (7-Day Trial)
+              </button>
               <Link to="/services/voice-bot-assistant" className="footer-link">Voice Bot Assistant</Link>
               <Link to="/services/whatsapp-calling-agent" className="footer-link">WhatsApp Calling Bot</Link>
               <Link to="/services/phone-call-agent" className="footer-link">Phone Call Agent</Link>
@@ -135,6 +142,7 @@ export default function Footer() {
               <h3 className="link-title">Legal</h3>
               <Link to="/privacy" className="footer-link">Privacy Policy</Link>
               <Link to="/terms" className="footer-link">Terms & Conditions</Link>
+              <Link to="/terms#demo-policy" className="footer-link">7-Day Demo Data Policy</Link>
             </div>
           </div>
 

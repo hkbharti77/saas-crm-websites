@@ -53,6 +53,18 @@ export default function Header() {
             Blog
           </NavLink>
 
+          <button
+            className="nav-link demo-nav-trigger"
+            onClick={() => {
+              setIsOpen(false);
+              window.dispatchEvent(new CustomEvent('open-live-demo'));
+            }}
+            style={{ background: 'none', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px', color: '#6366f1', fontWeight: '600' }}
+          >
+            <span>Try Live Demo</span>
+            <span style={{ fontSize: '0.68rem', padding: '0.1rem 0.35rem', borderRadius: '4px', background: 'rgba(99, 102, 241, 0.15)', color: '#818cf8', border: '1px solid rgba(99, 102, 241, 0.3)' }}>7-Day Trial</span>
+          </button>
+
           <a href="/#contact" className="btn btn-primary nav-btn" onClick={() => setIsOpen(false)}>
             <span>Get Started</span>
             <Sparkles size={15} />

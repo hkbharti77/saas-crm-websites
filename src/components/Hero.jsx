@@ -41,28 +41,32 @@ export default function Hero({ onBookDemo }) {
 
           <div className="hero-actions">
             <button
-              id="btn-book-demo"
+              id="btn-try-live-demo"
               className="btn btn-primary hero-btn-primary"
-              onClick={() => handleBookDemo('hero')}
+              onClick={() => window.dispatchEvent(new CustomEvent('open-live-demo'))}
+              style={{ background: 'linear-gradient(135deg, #6366f1 0%, #a855f7 100%)', boxShadow: '0 4px 20px rgba(99, 102, 241, 0.4)' }}
             >
-              <span>Book a Consultation</span>
+              <span>Try Live Demo</span>
               <ArrowRight size={18} />
             </button>
-            <a href="#portfolio" className="btn btn-outline hero-btn-secondary">
-              <span>See Our Work</span>
-              <span className="btn-arrow">→</span>
-            </a>
+            <button
+              id="btn-book-demo"
+              className="btn btn-outline hero-btn-secondary"
+              onClick={() => handleBookDemo('hero')}
+            >
+              <span>Book Consultation</span>
+            </button>
           </div>
 
           <div className="hero-trust-bar">
-            <div className="trust-item">
-              <span className="trust-dot"></span>
-              <span>Sub-300ms AI Latency</span>
+            <div className="trust-item" onClick={() => window.dispatchEvent(new CustomEvent('open-live-demo'))} style={{ cursor: 'pointer' }} title="Click to view 7-Day Demo Terms">
+              <span className="trust-dot" style={{ background: '#6366f1' }}></span>
+              <span><strong>Live Demo:</strong> connect.gyanvaniai.online (7-Day Purge Policy)</span>
             </div>
             <div className="trust-divider"></div>
             <div className="trust-item">
               <span className="trust-dot"></span>
-              <span>Official WhatsApp Cloud API</span>
+              <span>Official WhatsApp API</span>
             </div>
             <div className="trust-divider"></div>
             <div className="trust-item">

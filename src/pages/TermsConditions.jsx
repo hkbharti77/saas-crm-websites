@@ -86,7 +86,8 @@ export default function TermsConditions() {
           <a href="#cookie-processing" className={`legal-nav-link ${activeSection === 'cookie-processing' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('cookie-processing'); }}>3. Cookie &amp; Consent Data</a>
           <a href="#usage" className={`legal-nav-link ${activeSection === 'usage' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('usage'); }}>4. Platform Usage</a>
           <a href="#liability" className={`legal-nav-link ${activeSection === 'liability' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('liability'); }}>5. Limitation of Liability</a>
-          <a href="#deletion" className={`legal-nav-link ${activeSection === 'deletion' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('deletion'); }}>6. Data Deletion</a>
+          <a href="#demo-policy" className={`legal-nav-link ${activeSection === 'demo-policy' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('demo-policy'); }}>6. 7-Day Demo &amp; Data Purge</a>
+          <a href="#deletion" className={`legal-nav-link ${activeSection === 'deletion' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('deletion'); }}>7. Data Deletion</a>
         </aside>
         
         <div className="legal-content glass-panel" style={{ padding: '3rem', borderRadius: 'var(--radius-lg)' }}>
@@ -115,18 +116,29 @@ export default function TermsConditions() {
           </section>
 
           <section id="usage" className="legal-section">
-            <h2 className="h2">3. Platform Usage 🚀</h2>
+            <h2 className="h2">4. Platform Usage 🚀</h2>
             <p className="text-muted">Our Enterprise AI and WhatsApp automation services must be used for lawful purposes only. You are strictly prohibited from utilizing our API endpoints or RAG pipelines to generate or distribute illicit, harmful, or spam content.</p>
             <p className="text-muted">All software, designs, algorithms, and logic developed by Gyan VaniAi remain our intellectual property unless explicitly transferred in a separate enterprise agreement.</p>
           </section>
 
           <section id="liability" className="legal-section">
-            <h2 className="h2">4. Limitation of Liability ⚖️</h2>
+            <h2 className="h2">5. Limitation of Liability ⚖️</h2>
             <p className="text-muted">While our AI agents are highly optimized, Gyan VaniAi does not guarantee 100% uptime or completely error-free AI generations. We shall not be held liable for any indirect, incidental, or consequential business damages arising from the use of our software or platforms.</p>
           </section>
 
+          <section id="demo-policy" className="legal-section">
+            <h2 className="h2">6. Live Demo Platform &amp; 7-Day Data Retention Policy (connect.gyanvaniai.online) ⏳</h2>
+            <p className="text-muted">Gyan VaniAi provides access to a live software demo environment hosted at <a href="https://connect.gyanvaniai.online/" target="_blank" rel="noopener noreferrer">https://connect.gyanvaniai.online/</a>. By creating a demo account or utilizing this environment, you agree to the following Demo Data Retention Policy:</p>
+            <ul className="text-muted" style={{ paddingLeft: '1.5rem', margin: '1rem 0', display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
+              <li><strong>7-Day Evaluation Period:</strong> Your demo account is provided for evaluation and testing purposes. The 7-day evaluation period begins when your demo account is created.</li>
+              <li><strong>Automatic Data Deletion:</strong> If you do not upgrade to a paid plan before the evaluation period ends, demo data associated with your account may be permanently deleted from active systems, including your profile, test records, configurations, and other demo-generated data.</li>
+              <li><strong>Data Retention &amp; Backups:</strong> Data deleted under this policy may remain temporarily in system backups or security logs until their applicable retention periods expire. Certain information may be retained where required by applicable law, security requirements, dispute resolution, or other legitimate purposes.</li>
+              <li><strong>Your Responsibility:</strong> Please export or otherwise preserve any information you wish to keep before the 7-day evaluation period ends. Except where required by applicable law, Gyan VaniAi is not responsible for data permanently deleted in accordance with this policy.</li>
+            </ul>
+          </section>
+
           <section id="deletion" className="legal-section">
-            <h2 className="h2">5. User Data Deletion 🗑️</h2>
+            <h2 className="h2">7. User Data Deletion 🗑️</h2>
             <p className="text-muted">In accordance with our Privacy Policy, users have the right to request the deletion of their personal data. By requesting data deletion, you acknowledge that access to certain services, accounts, and historical data will be permanently revoked.</p>
           </section>
         </div>

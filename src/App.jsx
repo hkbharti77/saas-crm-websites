@@ -28,6 +28,8 @@ import { SpeedInsights } from "@vercel/speed-insights/react";
 import { useScrollDepth } from './hooks/useScrollDepth';
 import { useGAPageViews } from './hooks/useGAPageViews';
 
+const DemoModal = lazy(() => import('./components/DemoModal'));
+
 class ChunkErrorBoundary extends Component {
   constructor(props) {
     super(props);
@@ -62,6 +64,7 @@ class ChunkErrorBoundary extends Component {
 function App() {
   const location = useLocation();
   const [isDemoModalOpen, setIsDemoModalOpen] = useState(false);
+  const [isLiveDemoOpen, setIsLiveDemoOpen] = useState(false);
   const [modalPrefill, setModalPrefill] = useState('');
   const hasTriggeredRef = useRef({});
 
@@ -119,8 +122,16 @@ function App() {
       setIsDemoModalOpen(true);
     };
 
+    const handleLiveDemoOpen = () => {
+      setIsLiveDemoOpen(true);
+    };
+
     window.addEventListener('open-demo-modal', handleCustomOpen);
-    return () => window.removeEventListener('open-demo-modal', handleCustomOpen);
+    window.addEventListener('open-live-demo', handleLiveDemoOpen);
+    return () => {
+      window.removeEventListener('open-demo-modal', handleCustomOpen);
+      window.removeEventListener('open-live-demo', handleLiveDemoOpen);
+    };
   }, []);
 
   return (
@@ -162,6 +173,12 @@ function App() {
           }}
           prefillMessage={modalPrefill}
         />
+        <Suspense fallback={null}>
+          <DemoModal
+            isOpen={isLiveDemoOpen}
+            onClose={() => setIsLiveDemoOpen(false)}
+          />
+        </Suspense>
         <Analytics />
         <SpeedInsights />
       </div>
