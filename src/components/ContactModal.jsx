@@ -172,13 +172,13 @@ export default function ContactModal({ isOpen, onClose, prefillMessage = '' }) {
             <div style={{ marginTop: '0.75rem', textAlign: 'center', paddingTop: '0.6rem', borderTop: '1px solid var(--border-color)' }}>
               <span style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Prefer instant chat? </span>
               <a
-                href="https://wa.me/919534597981?text=Hi%20Gyan%20VaniAi%2C%20I%20would%20like%20to%20book%20a%20consultation."
+                href="https://wa.me/918700620913?text=Hi%20Gyan%20VaniAi%2C%20I%20would%20like%20to%20book%20a%20consultation."
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{ color: '#25D366', fontWeight: '600', fontSize: '0.82rem', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '4px', verticalAlign: 'middle' }}
               >
                 <WhatsAppIcon size={14} color="#25D366" />
-                Chat on WhatsApp (+91 95345 97981)
+                Chat on WhatsApp (+91 87006 20913)
               </a>
             </div>
           </form>

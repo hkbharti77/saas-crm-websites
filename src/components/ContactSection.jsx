@@ -111,14 +111,14 @@ export default function ContactSection() {
                 <h3 className="h3" style={{ marginBottom: '0.25rem', fontSize: '1rem', color: 'var(--text-secondary)' }}>WhatsApp Direct</h3>
                 <p className="text-muted">
                   <a
-                    href="https://wa.me/919534597981?text=Hi%20Gyan%20VaniAi%2C%20I%20would%20like%20to%20connect%20regarding%20your%20AI%20CRM%20solutions."
+                    href="https://wa.me/918700620913?text=Hi%20Gyan%20VaniAi%2C%20I%20would%20like%20to%20connect%20regarding%20your%20AI%20CRM%20solutions."
                     target="_blank"
                     rel="noopener noreferrer"
                     id="link-whatsapp-contact"
                     style={{ color: '#25D366', textDecoration: 'none', fontWeight: '600', display: 'inline-flex', alignItems: 'center', gap: '0.45rem' }}
                   >
                     <WhatsAppIcon size={18} color="#25D366" />
-                    <span>+91 95345 97981</span>
+                    <span>+91 87006 20913</span>
                   </a>
                 </p>
               </div>

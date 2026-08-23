@@ -71,7 +71,7 @@ export default function Footer() {
             </p>
             <div className="social-links">
               <a
-                href="https://wa.me/919534597981?text=Hi%20Gyan%20VaniAi%2C%20I%20would%20like%20to%20connect%20regarding%20your%20AI%20CRM%20solutions."
+                href="https://wa.me/918700620913?text=Hi%20Gyan%20VaniAi%2C%20I%20would%20like%20to%20connect%20regarding%20your%20AI%20CRM%20solutions."
                 target="_blank"
                 rel="noopener noreferrer"
                 id="link-footer-whatsapp"
