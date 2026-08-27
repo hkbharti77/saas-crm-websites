@@ -89,7 +89,7 @@ const AdminDashboard = () => {
       {/* Admin Enterprise Theme Management Panel */}
       <ThemeSwitcher />
 
-      {/* Cookie Consent Analytics — admin-only */}
+      {/* Cookie Consent Analytics - admin-only */}
       <div className="admin-header" style={{ marginTop: '2rem' }}>
         <h3>Cookie Consent Analytics</h3>
       </div>

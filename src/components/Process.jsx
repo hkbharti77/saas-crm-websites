@@ -1,62 +1,127 @@
-import React from 'react';
-import { Search, LineChart, PenTool, Code2, ShieldCheck, Rocket, Wrench } from 'lucide-react';
-import './Features.css';
+import React, { useState } from 'react';
+import { UserPlus, Sparkles, BrainCircuit, Activity, Users, Bot, Headset, CheckCircle2, ArrowRight } from 'lucide-react';
+import './Process.css';
 
-const steps = [
-  { icon: <Search size={24} />, name: 'Discovery', desc: 'Understanding your business needs' },
-  { icon: <LineChart size={24} />, name: 'Business Analysis', desc: 'Defining the optimal solution' },
-  { icon: <PenTool size={24} />, name: 'UI/UX Design', desc: 'Crafting intuitive user experiences' },
-  { icon: <Code2 size={24} />, name: 'Development', desc: 'Building scalable software' },
-  { icon: <ShieldCheck size={24} />, name: 'Testing', desc: 'Ensuring zero defects' },
-  { icon: <Rocket size={24} />, name: 'Deployment', desc: 'Smooth, secure launch' },
-  { icon: <Wrench size={24} />, name: 'Support & Maintenance', desc: 'Long-term partnership' },
+const workflowSteps = [
+  {
+    stepNum: '01',
+    category: 'Capture',
+    icon: <UserPlus size={20} />,
+    title: 'Inbound Capture',
+    desc: 'Capture leads across WhatsApp, website forms, ad campaigns, and direct phone calls in real time.'
+  },
+  {
+    stepNum: '02',
+    category: 'AI Enrichment',
+    icon: <Sparkles size={20} />,
+    title: 'Profile Enrichment',
+    desc: 'Instant lookup attaches company size, revenue, industry, and contact firmographics automatically.'
+  },
+  {
+    stepNum: '03',
+    category: 'Intent Detection',
+    icon: <BrainCircuit size={20} />,
+    title: 'Buyer Intent NLP',
+    desc: 'Natural language analysis classifies buyer purchase urgency, budget signals, and specific pain points.'
+  },
+  {
+    stepNum: '04',
+    category: 'Lead Scoring',
+    icon: <Activity size={20} />,
+    title: 'Propensity Scoring',
+    desc: 'Predictive algorithm assigns real-time deal conversion score from 1 to 100.'
+  },
+  {
+    stepNum: '05',
+    category: 'Smart Routing',
+    icon: <Users size={20} />,
+    title: 'Intelligent Assignment',
+    desc: 'Instant rule and skill-based matching assigns the opportunity to the ideal sales representative.'
+  },
+  {
+    stepNum: '06',
+    category: '24/7 AI Agent',
+    icon: <Bot size={20} />,
+    title: 'Autonomous Outreach',
+    desc: 'AI agent responds in seconds, answers questions from approved playbooks, and books calendar meetings.'
+  },
+  {
+    stepNum: '07',
+    category: 'Human Handoff',
+    icon: <Headset size={20} />,
+    title: 'Seamless Rep Handoff',
+    desc: 'Sales reps take over with full conversation summary, customer history, and objection preparation.'
+  },
+  {
+    stepNum: '08',
+    category: 'Closed-Won',
+    icon: <CheckCircle2 size={20} />,
+    title: 'Revenue Conversion',
+    desc: 'Deal closed with automated contract triggers, ERP synchronization, and client onboarding sequences.'
+  },
 ];
 
 export default function Process() {
+  const [activeStep, setActiveStep] = useState(0);
+
   return (
-    <section className="section" id="process">
+    <section className="section bg-tinted" id="how-it-works">
       <div className="container">
         <div className="section-header section-header--center">
-          <span className="section-eyebrow">Process</span>
-          <h2 className="h2">How we ship</h2>
+          <span className="section-eyebrow">Visual Workflow</span>
+          <h2 className="h2">How intelligent revenue automation works</h2>
           <p className="text-lg text-muted" style={{ marginTop: '0.85rem' }}>
-            A clear path from discovery to long-term support — so scope, quality, and timelines stay visible.
+            From raw prospect capture to closed-won revenue in seconds.
           </p>
         </div>
-        
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '800px', margin: '0 auto' }}>
-          {steps.map((step, index) => (
-            <div 
-              key={index} 
-              className="premium-card" 
-              style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', padding: '1.5rem', margin: 0 }}
-            >
-              <div 
-                style={{ 
-                  backgroundColor: 'var(--primary-color)', 
-                  color: 'white', 
-                  width: '50px', 
-                  height: '50px', 
-                  borderRadius: '10px', 
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  justifyContent: 'center',
-                  fontWeight: 'bold',
-                  fontSize: '1.2rem',
-                  flexShrink: 0
-                }}
+
+        {/* Visual Pipeline Progression Ribbon */}
+        <div className="workflow-pipeline-wrapper">
+          <div className="workflow-responsive-grid">
+            {workflowSteps.map((step, idx) => (
+              <article
+                key={step.stepNum}
+                className={`workflow-card ${activeStep === idx ? 'active' : ''}`}
+                onClick={() => setActiveStep(idx)}
               >
-                {index + 1}
-              </div>
-              <div style={{ flex: 1 }}>
-                <h3 className="h3" style={{ fontSize: '1.25rem', marginBottom: '0.25rem' }}>{step.name}</h3>
-                <p className="text-muted" style={{ margin: 0 }}>{step.desc}</p>
-              </div>
-              <div style={{ color: 'var(--primary-color)', opacity: 0.8, display: 'none' }}>
-                {step.icon}
-              </div>
-            </div>
-          ))}
+                <div className="workflow-card-top">
+                  <div className="workflow-step-badge-wrap">
+                    <span className="workflow-step-badge">{step.stepNum}</span>
+                    <span className="workflow-cat-tag">{step.category}</span>
+                  </div>
+                  {idx < workflowSteps.length - 1 && (
+                    <span className="workflow-flow-arrow" aria-hidden="true">
+                      <ArrowRight size={15} />
+                    </span>
+                  )}
+                </div>
+                <div className="workflow-icon-box">
+                  {step.icon}
+                </div>
+                <h3 className="workflow-card-title">{step.title}</h3>
+                <p className="workflow-card-desc">{step.desc}</p>
+                <div className="workflow-card-progress-bar">
+                  <div
+                    className="workflow-card-progress-fill"
+                    style={{ width: `${((idx + 1) / workflowSteps.length) * 100}%` }}
+                  ></div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+
+        {/* Selected Stage Detail Banner */}
+        <div className="workflow-status-footer">
+          <div className="workflow-status-left">
+            <span className="workflow-status-pill">Step {workflowSteps[activeStep].stepNum} · {workflowSteps[activeStep].category}</span>
+            <h4 className="workflow-status-heading">{workflowSteps[activeStep].title}</h4>
+            <p className="workflow-status-text">{workflowSteps[activeStep].desc}</p>
+          </div>
+          <a href="/services/crm-development" className="btn btn-outline workflow-status-btn">
+            <span>Explore Pipeline Architecture</span>
+            <ArrowRight size={15} />
+          </a>
         </div>
       </div>
     </section>

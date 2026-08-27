@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { CheckCircle, Check, XCircle } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { CheckCircle, Check, XCircle, CheckCircle2, Lock } from 'lucide-react';
 import 'react-phone-number-input/style.css';
 import PhoneInput, { isValidPhoneNumber } from 'react-phone-number-input';
 import { trackContactFormSubmit, trackEmailClick } from '../utils/analytics';
+import './ContactSection.css';
 
 const WhatsAppIcon = ({ size = 18, color = "currentColor" }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill={color}>
@@ -12,7 +14,7 @@ const WhatsAppIcon = ({ size = 18, color = "currentColor" }) => (
 
 export default function ContactSection() {
   const [phone, setPhone] = useState();
-  const [values, setValues] = useState({ name: '', email: '', message: '' });
+  const [values, setValues] = useState({ name: '', email: '', company: '', message: '' });
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -31,7 +33,7 @@ export default function ContactSection() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const [touched, setTouched] = useState({ name: false, email: false, phone: false });
+  const [touched, setTouched] = useState({ name: false, email: false, company: false, phone: false });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
@@ -48,13 +50,13 @@ export default function ContactSection() {
   const getErrors = () => {
     const newErrors = {};
     if (touched.name && (values.name.trim().length < 2 || values.name.length > 66)) {
-      newErrors.name = 'Name must be between 2 and 66 characters';
+      newErrors.name = 'Please enter your full name';
     }
     if (touched.email && (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email) || values.email.length > 266)) {
-      newErrors.email = 'Invalid email format or too long';
+      newErrors.email = 'Please enter a valid work email';
     }
     if (touched.phone && phone && !isValidPhoneNumber(phone)) {
-      newErrors.phone = 'Invalid phone number';
+      newErrors.phone = 'Please enter a valid phone number';
     }
     return newErrors;
   };
@@ -64,12 +66,12 @@ export default function ContactSection() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    setTouched({ name: true, email: true, phone: true });
+    setTouched({ name: true, email: true, company: true, phone: true });
     
     const submitErrors = {};
-    if (values.name.trim().length < 2 || values.name.length > 66) submitErrors.name = 'Name must be between 2 and 66 characters';
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email) || values.email.length > 266) submitErrors.email = 'Invalid email format or too long';
-    if (phone && !isValidPhoneNumber(phone)) submitErrors.phone = 'Invalid phone number';
+    if (values.name.trim().length < 2 || values.name.length > 66) submitErrors.name = 'Please enter your full name';
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email) || values.email.length > 266) submitErrors.email = 'Please enter a valid work email';
+    if (phone && !isValidPhoneNumber(phone)) submitErrors.phone = 'Please enter a valid phone number';
     if (values.message.length > 1000) submitErrors.message = 'Message exceeds 1000 characters';
 
     if (Object.keys(submitErrors).length > 0) {
@@ -88,34 +90,59 @@ export default function ContactSection() {
         setIsSuccess(true);
         trackContactFormSubmit();
       } else {
-        alert("Oops! There was a problem submitting your form");
+        alert("Oops! There was a problem submitting your demo request. Please try again.");
       }
     } catch {
-      alert("Oops! There was a problem submitting your form");
+      alert("Oops! There was a problem submitting your demo request. Please try again.");
     }
     setIsSubmitting(false);
   };
 
   return (
     <section className="contact-section section" id="contact" style={{ background: 'transparent' }}>
-      <div className="container" style={{ maxWidth: '1120px' }}>
+      <div className="container" style={{ maxWidth: '1220px' }}>
         <div className="contact-grid">
           
+          {/* Left Column: Heading, Description, Benefits, Direct Channels */}
           <div className="contact-info premium-card">
-            <h2 className="h2" style={{ marginBottom: '1rem', lineHeight: '1.25' }}>Ready to Transform Your Business?</h2>
-            <p className="text-muted" style={{ marginBottom: '2rem', fontSize: '1.05rem', lineHeight: '1.6' }}>
-              Let's build software that helps your business grow faster, automate operations, and deliver exceptional customer experiences.
-            </p>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+            <div>
+              <span className="section-eyebrow" style={{ textAlign: 'left', margin: '0 0 0.4rem 0' }}>Get in Touch</span>
+              <h2 className="contact-main-heading">Ready to transform your revenue operations?</h2>
+              <p className="contact-main-desc">
+                See how AI can automate your lead management, qualification, enrichment and customer conversations.
+              </p>
+
+              {/* Core Value Checklist */}
+              <div className="contact-checklist">
+                <div className="contact-check-item">
+                  <CheckCircle2 size={18} className="contact-check-icon" />
+                  <span>AI Lead Enrichment & Scoring</span>
+                </div>
+                <div className="contact-check-item">
+                  <CheckCircle2 size={18} className="contact-check-icon" />
+                  <span>Intelligent Skill-Based Assignment</span>
+                </div>
+                <div className="contact-check-item">
+                  <CheckCircle2 size={18} className="contact-check-icon" />
+                  <span>24/7 Autonomous AI Sales Agent</span>
+                </div>
+                <div className="contact-check-item">
+                  <CheckCircle2 size={18} className="contact-check-icon" />
+                  <span>Omnichannel Communication Hub</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="contact-direct-channels">
               <div>
-                <h3 className="h3" style={{ marginBottom: '0.25rem', fontSize: '1rem', color: 'var(--text-secondary)' }}>WhatsApp Direct</h3>
-                <p className="text-muted">
+                <h3 className="h3 contact-channel-label">WhatsApp Direct</h3>
+                <p style={{ margin: 0 }}>
                   <a
                     href="https://wa.me/918700620913?text=Hi%20Gyan%20VaniAi%2C%20I%20would%20like%20to%20connect%20regarding%20your%20AI%20CRM%20solutions."
                     target="_blank"
                     rel="noopener noreferrer"
                     id="link-whatsapp-contact"
-                    style={{ color: '#25D366', textDecoration: 'none', fontWeight: '600', display: 'inline-flex', alignItems: 'center', gap: '0.45rem' }}
+                    className="contact-channel-link contact-channel-whatsapp"
                   >
                     <WhatsAppIcon size={18} color="#25D366" />
                     <span>+91 87006 20913</span>
@@ -123,12 +150,12 @@ export default function ContactSection() {
                 </p>
               </div>
               <div>
-                <h3 className="h3" style={{ marginBottom: '0.25rem', fontSize: '1rem', color: 'var(--text-secondary)' }}>Email</h3>
-                <p className="text-muted">
+                <h3 className="h3 contact-channel-label">Email</h3>
+                <p style={{ margin: 0 }}>
                   <a
                     href="mailto:contact@gyanvaniai.online"
                     id="link-email-contact"
-                    style={{ color: 'var(--text-primary)', textDecoration: 'none', fontWeight: '500' }}
+                    className="contact-channel-link contact-channel-email"
                     onClick={() => trackEmailClick('contact-section')}
                   >
                     contact@gyanvaniai.online
@@ -138,64 +165,142 @@ export default function ContactSection() {
             </div>
           </div>
           
+          {/* Right Column: Compact, Content-Driven Form Card */}
           <div className="contact-form-container premium-card">
             {isSuccess ? (
-              <div style={{ textAlign: 'center', padding: '3rem 0' }}>
-                <CheckCircle size={64} color="var(--primary-color)" style={{ margin: '0 auto 1.5rem' }} />
-                <h3 className="h3" style={{ marginBottom: '1rem' }}>Message Sent!</h3>
-                <p className="text-muted">Thank you for reaching out. A member of our team will get back to you within 24 hours.</p>
+              <div className="contact-success-box">
+                <CheckCircle size={56} color="var(--primary-color)" style={{ margin: '0 auto 1rem' }} />
+                <h3 className="h3" style={{ marginBottom: '0.5rem', fontSize: '1.35rem' }}>Demo Request Received!</h3>
+                <p className="text-muted" style={{ fontSize: '0.98rem', lineHeight: '1.55' }}>
+                  Thank you for reaching out. A senior solutions architect will review your workflow and get back to you within 24 hours.
+                </p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={handleSubmit} noValidate>
+                {/* 1. Full Name */}
                 <div className="form-group">
-                  <label className="form-label" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    Name
-                    {touched.name && !errors.name && <Check size={16} color="#10b981" />}
-                    {touched.name && errors.name && <XCircle size={16} color="#ef4444" />}
+                  <label htmlFor="input-contact-name" className="form-label">
+                    <span>Full Name</span>
+                    {touched.name && !errors.name && <Check size={15} color="#10b981" />}
+                    {touched.name && errors.name && <XCircle size={15} color="#ef4444" />}
                   </label>
-                  <input type="text" name="name" value={values.name} onChange={handleChange} onBlur={handleBlur} className={`form-input ${errors.name ? 'error' : ''}`} placeholder="Your name" maxLength={66} required />
-                  {errors.name && <span style={{ color: '#ef4444', fontSize: '0.8rem', marginTop: '0.25rem', display: 'block' }}>{errors.name}</span>}
-                </div>
-                <div className="form-group">
-                  <label className="form-label" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    Work Email
-                    {touched.email && !errors.email && <Check size={16} color="#10b981" />}
-                    {touched.email && errors.email && <XCircle size={16} color="#ef4444" />}
-                  </label>
-                  <input type="email" name="email" value={values.email} onChange={handleChange} onBlur={handleBlur} className={`form-input ${errors.email ? 'error' : ''}`} placeholder="name@company.com" maxLength={266} required />
-                  {errors.email && <span style={{ color: '#ef4444', fontSize: '0.8rem', marginTop: '0.25rem', display: 'block' }}>{errors.email}</span>}
-                </div>
-                <div className="form-group">
-                  <label className="form-label" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    Phone Number (Optional)
-                    {touched.phone && phone && !errors.phone && <Check size={16} color="#10b981" />}
-                    {touched.phone && errors.phone && <XCircle size={16} color="#ef4444" />}
-                  </label>
-                  <PhoneInput
-                    international
-                    defaultCountry="IN"
-                    value={phone}
-                    onChange={(val) => { setPhone(val); setTouched(prev => ({...prev, phone: true})); }}
-                    onBlur={() => setTouched(prev => ({...prev, phone: true}))}
-                    name="phone"
-                    className={`form-input-phone ${errors.phone ? 'error' : ''}`}
+                  <input
+                    id="input-contact-name"
+                    type="text"
+                    name="name"
+                    value={values.name}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    className={`form-input ${errors.name ? 'error' : ''}`}
+                    placeholder="Jane Doe"
+                    maxLength={66}
+                    required
                   />
-                  {errors.phone && <span style={{ color: '#ef4444', fontSize: '0.8rem', marginTop: '0.25rem', display: 'block' }}>{errors.phone}</span>}
+                  {errors.name && <span className="form-error-msg">{errors.name}</span>}
                 </div>
+
+                {/* 2. Work Email */}
                 <div className="form-group">
-                  <label className="form-label" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                    <span>How can we help?</span>
+                  <label htmlFor="input-contact-email" className="form-label">
+                    <span>Work Email</span>
+                    {touched.email && !errors.email && <Check size={15} color="#10b981" />}
+                    {touched.email && errors.email && <XCircle size={15} color="#ef4444" />}
+                  </label>
+                  <input
+                    id="input-contact-email"
+                    type="email"
+                    name="email"
+                    value={values.email}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    className={`form-input ${errors.email ? 'error' : ''}`}
+                    placeholder="name@company.com"
+                    maxLength={266}
+                    required
+                  />
+                  {errors.email && <span className="form-error-msg">{errors.email}</span>}
+                </div>
+
+                {/* 3. Company Name */}
+                <div className="form-group">
+                  <label htmlFor="input-contact-company" className="form-label">
+                    <span>Company Name</span>
+                  </label>
+                  <input
+                    id="input-contact-company"
+                    type="text"
+                    name="company"
+                    value={values.company}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    className="form-input"
+                    placeholder="Acme Corp"
+                    maxLength={100}
+                  />
+                </div>
+
+                {/* 4. Phone Number (Optional) with Integrated Country Selector */}
+                <div className="form-group">
+                  <label htmlFor="input-contact-phone" className="form-label">
+                    <span>Phone Number <span className="form-label-opt">(Optional)</span></span>
+                    {touched.phone && phone && !errors.phone && <Check size={15} color="#10b981" />}
+                    {touched.phone && errors.phone && <XCircle size={15} color="#ef4444" />}
+                  </label>
+                  <div className={`phone-input-unified ${errors.phone ? 'error' : ''}`}>
+                    <PhoneInput
+                      id="input-contact-phone"
+                      international
+                      defaultCountry="IN"
+                      value={phone}
+                      onChange={(val) => { setPhone(val); setTouched(prev => ({...prev, phone: true})); }}
+                      onBlur={() => setTouched(prev => ({...prev, phone: true}))}
+                      name="phone"
+                      placeholder="Enter phone number"
+                      className="form-input-phone"
+                    />
+                  </div>
+                  {errors.phone && <span className="form-error-msg">{errors.phone}</span>}
+                </div>
+
+                {/* 5. What are you looking for? */}
+                <div className="form-group">
+                  <label htmlFor="input-contact-message" className="form-label" style={{ justifyContent: 'space-between' }}>
+                    <span>What are you looking for?</span>
                   </label>
                   <div className="textarea-wrapper">
-                    <textarea name="message" value={values.message} onChange={handleChange} onBlur={handleBlur} className="form-textarea" rows="4" placeholder="Tell us about your current workflow challenges..." maxLength={1000} required></textarea>
+                    <textarea
+                      id="input-contact-message"
+                      name="message"
+                      value={values.message}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      className="form-textarea"
+                      rows="3"
+                      placeholder="Tell us about your team, CRM requirements, or automation goals..."
+                      maxLength={1000}
+                      required
+                    ></textarea>
                     <span className="char-counter" style={{ color: values.message.length > 1000 ? '#ef4444' : 'var(--text-muted)' }}>
                       {values.message.length}/1000
                     </span>
                   </div>
                 </div>
-                <button type="submit" className="btn btn-primary" style={{ width: '100%' }} disabled={isSubmitting}>
-                  {isSubmitting ? 'Sending...' : 'Send Message'}
+
+                {/* 6. CTA Button */}
+                <button
+                  id="btn-submit-contact-demo"
+                  type="submit"
+                  className="btn btn-primary contact-submit-btn"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? 'Booking Demo...' : 'Book a Demo →'}
                 </button>
+
+                {/* 7. Trust Microcopy */}
+                <p className="contact-trust-microcopy">
+                  <Lock size={12} className="microcopy-lock-icon" />
+                  <span>Your information is kept private under our <Link to="/privacy" style={{ color: 'var(--primary-color)', textDecoration: 'underline', fontWeight: '550' }}>Privacy Policy</Link>. No spam.</span>
+                </p>
               </form>
             )}
           </div>

@@ -6,7 +6,7 @@ import './CookieConsentBanner.css';
 
 const COOKIE_CONSENT_KEY = 'gyanvaniai_cookie_consent';
 
-// Fetch IP + geo — cached for the session so we only call the API once
+// Fetch IP + geo - cached for the session so we only call the API once
 let _geoCache = null;
 async function getGeoInfo() {
   if (_geoCache) return _geoCache;
@@ -89,7 +89,7 @@ const CookieConsentBanner = () => {
       console.warn('Could not save cookie consent:', e);
     }
 
-    // Hide banner immediately — geo lookup happens in background
+    // Hide banner immediately: geo lookup happens in background
     setVisible(false);
     setShowPreferences(false);
 

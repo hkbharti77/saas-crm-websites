@@ -67,7 +67,7 @@ export default function Footer() {
               <span className="logo-text">Gyan VaniAi</span>
             </div>
             <p className="text-muted text-sm" style={{ maxWidth: '300px' }}>
-              We build intelligent CRM solutions, AI Chatbots, and automated workflows to scale your business.
+              Autonomous AI CRM and revenue operations software engineered for high-velocity teams.
             </p>
             <div className="social-links">
               <a
@@ -96,58 +96,49 @@ export default function Footer() {
 
           <div className="footer-links">
             <div className="link-group">
-              <h3 className="link-title">AI & Automation</h3>
-              <button
-                className="footer-link"
-                onClick={() => window.dispatchEvent(new CustomEvent('open-live-demo'))}
-                style={{ background: 'none', border: 'none', padding: 0, color: '#818cf8', cursor: 'pointer', textAlign: 'left', fontWeight: '600' }}
-              >
-                ⚡ Live CRM Demo (7-Day Trial)
-              </button>
-              <Link to="/services/voice-bot-assistant" className="footer-link">Voice Bot Assistant</Link>
-              <Link to="/services/whatsapp-calling-agent" className="footer-link">WhatsApp Calling Bot</Link>
-              <Link to="/services/phone-call-agent" className="footer-link">Phone Call Agent</Link>
-              <Link to="/services/ivr-solutions" className="footer-link">Smart IVR</Link>
-              <Link to="/services/human-handoff-systems" className="footer-link">AI Human Handoff</Link>
-              <Link to="/services/ai-chatbots" className="footer-link">AI Chatbots</Link>
+              <h3 className="link-title">Product</h3>
+              <a href="/#capabilities" className="footer-link">Platform</a>
+              <Link to="/services/ai-agent-development" className="footer-link">AI Agents</Link>
+              <Link to="/services/crm-development" className="footer-link">Lead Management</Link>
               <Link to="/services/whatsapp-coexistence" className="footer-link">WhatsApp Coexistence</Link>
+              <Link to="/services/voice-bot-assistant" className="footer-link">Voice AI</Link>
+              <button
+                type="button"
+                className="footer-link footer-demo-link"
+                onClick={() => window.dispatchEvent(new CustomEvent('open-live-demo'))}
+              >
+                Live CRM Demo (7-Day Trial)
+              </button>
             </div>
             <div className="link-group">
-              <h3 className="link-title">Custom Software</h3>
-              <Link to="/services/ai-development" className="footer-link">AI Development</Link>
-              <Link to="/services/crm-development" className="footer-link">CRM Development</Link>
-              <Link to="/services/hrms-development" className="footer-link">HRMS Solutions</Link>
-              <Link to="/services/erp-development" className="footer-link">ERP Solutions</Link>
-              <Link to="/services/web-development" className="footer-link">Website Development</Link>
-              <Link to="/services/mobile-app-development" className="footer-link">Mobile Apps</Link>
-            </div>
-            <div className="link-group">
-              <h3 className="link-title">Industries</h3>
-              <Link to="/industries/healthcare" className="footer-link">Healthcare</Link>
-              <Link to="/industries/education" className="footer-link">Education</Link>
-              <Link to="/industries/manufacturing" className="footer-link">Manufacturing</Link>
-              <Link to="/industries/finance" className="footer-link">Finance</Link>
-              <Link to="/industries/enterprise" className="footer-link">Enterprise IT</Link>
+              <h3 className="link-title">Solutions</h3>
+              <Link to="/services/crm-development" className="footer-link">Sales Automation</Link>
+              <Link to="/services/ai-chatbots" className="footer-link">Inbound Qualification</Link>
+              <Link to="/industries/enterprise" className="footer-link">Enterprise CRM</Link>
               <Link to="/industries/real-estate" className="footer-link">Real Estate</Link>
-              <Link to="/industries/retail" className="footer-link">Retail</Link>
-              <Link to="/industries/logistics" className="footer-link">Logistics</Link>
+              <Link to="/industries/healthcare" className="footer-link">Healthcare</Link>
+              <Link to="/industries/retail" className="footer-link">E-commerce & Retail</Link>
             </div>
             <div className="link-group">
               <h3 className="link-title">Company</h3>
-              <Link to="/blog" className="footer-link">Blog</Link>
               <Link to="/about" className="footer-link">About Us</Link>
               <a href="/#contact" className="footer-link">Contact</a>
-            </div>
-            <div className="link-group">
-              <h3 className="link-title">Legal</h3>
+              <a href="/#security" className="footer-link">Security</a>
               <Link to="/privacy" className="footer-link">Privacy Policy</Link>
               <Link to="/terms" className="footer-link">Terms & Conditions</Link>
-              <Link to="/terms#demo-policy" className="footer-link">7-Day Demo Data Policy</Link>
+            </div>
+            <div className="link-group">
+              <h3 className="link-title">Resources</h3>
+              <Link to="/blog" className="footer-link">Blog & Insights</Link>
+              <Link to="/services/ai-development" className="footer-link">Documentation</Link>
+              <a href="/#how-it-works" className="footer-link">How It Works</a>
+              <a href="/#results" className="footer-link">Case Studies</a>
+              <a href="mailto:contact@gyanvaniai.online" className="footer-link">Support</a>
             </div>
           </div>
 
           <div className="footer-cta">
-            <h3 className="link-title">Ready to scale?</h3>
+            <h3 className="link-title">Stay updated</h3>
             {isSuccess ? (
               <div style={{ padding: '0.75rem', background: 'rgba(16, 185, 129, 0.1)', color: '#10b981', borderRadius: '8px', fontSize: '0.9rem', border: '1px solid rgba(16, 185, 129, 0.2)' }}>
                 Thanks for subscribing!
@@ -156,7 +147,7 @@ export default function Footer() {
               <form onSubmit={handleSubscribe} className="newsletter-form">
                 <input
                   type="email"
-                  placeholder="Enter your email"
+                  placeholder="Enter work email"
                   className="input-field"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -173,7 +164,9 @@ export default function Footer() {
         </div>
 
         <div className="footer-bottom">
-          <p className="text-sm text-muted">© 2026 Gyan VaniAi. All rights reserved.</p>
+          <p className="text-sm text-muted">
+            © 2026 Gyan VaniAi. All rights reserved. · <Link to="/privacy" className="link-inline">Privacy</Link> · <Link to="/terms" className="link-inline">Terms</Link> · <a href="/#security" className="link-inline">Security</a>
+          </p>
         </div>
       </div>
     </footer>

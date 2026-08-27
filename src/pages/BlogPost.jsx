@@ -152,7 +152,7 @@ export default function BlogPost() {
           {post.imageUrl && (
             <img
               src={post.imageUrl}
-              alt={`${post.title} — Gyan VaniAi`}
+              alt={`${post.title} | Gyan VaniAi`}
               width="800"
               height="450"
               fetchPriority="high"

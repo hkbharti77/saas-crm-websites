@@ -88,10 +88,9 @@ export default function FAQ({ includeSchema = true }) {
           </script>
         </Helmet>
       )}
-      <div className="container" style={{ maxWidth: '820px' }}>
+      <div className="container" style={{ maxWidth: '920px' }}>
         <div className="faq-header-row" data-aos="fade-up">
           <div className="section-header section-header--center" style={{ marginBottom: '1.5rem' }}>
-            <span className="section-eyebrow">Help & Guidance</span>
             <h2 className="h2">Frequently Asked Questions</h2>
             <p className="text-muted" style={{ marginTop: '0.5rem', fontSize: '1.05rem' }}>
               Everything you need to know about our AI CRMs, integrations, and deployment timelines.

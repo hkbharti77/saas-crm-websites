@@ -28,50 +28,58 @@ export default function Hero({ onBookDemo }) {
         <div className="hero-content">
           <div className="hero-badge">
             <span className="badge-pulse"></span>
-            <span>Next-Gen AI & CRM Coexistence Suite</span>
+            <span>AI-POWERED REVENUE PLATFORM</span>
           </div>
 
           <h1 className="hero-title">
-            Software that runs the business — <span className="text-gradient">not the other way around</span>
+            Autonomous AI CRM for <span className="text-gradient">high-velocity revenue teams</span>
           </h1>
 
           <p className="hero-subtitle">
-            Autonomous AI agents, WhatsApp Coexistence, CRM, HRMS, and enterprise automation built for operators who demand clarity, speed, and measurable revenue growth.
+            Capture, enrich, qualify, assign and convert leads with intelligent AI-powered workflows.
           </p>
 
           <div className="hero-actions">
             <button
-              id="btn-try-live-demo"
+              id="btn-hero-book-demo"
+              type="button"
               className="btn btn-primary hero-btn-primary"
-              onClick={() => window.dispatchEvent(new CustomEvent('open-live-demo'))}
-              style={{ background: 'linear-gradient(135deg, #6366f1 0%, #a855f7 100%)', boxShadow: '0 4px 20px rgba(99, 102, 241, 0.4)' }}
+              onClick={() => handleBookDemo('hero-primary')}
             >
-              <span>Try Live Demo</span>
+              <span>Book a Demo</span>
               <ArrowRight size={18} />
             </button>
-            <button
-              id="btn-book-demo"
+            <a
+              id="btn-hero-explore"
+              href="#capabilities"
               className="btn btn-outline hero-btn-secondary"
-              onClick={() => handleBookDemo('hero')}
             >
-              <span>Book Consultation</span>
-            </button>
+              <span>Explore Platform</span>
+              <ArrowRight size={18} />
+            </a>
           </div>
 
           <div className="hero-trust-bar">
-            <div className="trust-item" onClick={() => window.dispatchEvent(new CustomEvent('open-live-demo'))} style={{ cursor: 'pointer' }} title="Click to view 7-Day Demo Terms">
-              <span className="trust-dot" style={{ background: '#6366f1' }}></span>
-              <span><strong>Live Demo:</strong> connect.gyanvaniai.online (7-Day Purge Policy)</span>
+            <div
+              className="trust-item"
+              onClick={() => window.dispatchEvent(new CustomEvent('open-live-demo'))}
+              title="Click to view 7-Day Demo Terms"
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => e.key === 'Enter' && window.dispatchEvent(new CustomEvent('open-live-demo'))}
+            >
+              <span className="trust-dot"></span>
+              <span><strong>Live Demo:</strong> 7-Day Sandbox</span>
             </div>
             <div className="trust-divider"></div>
             <div className="trust-item">
               <span className="trust-dot"></span>
-              <span>Official WhatsApp API</span>
+              <span>Official WhatsApp Cloud API</span>
             </div>
             <div className="trust-divider"></div>
             <div className="trust-item">
               <span className="trust-dot"></span>
-              <span>Enterprise SOC2 / PII Masking</span>
+              <span>Enterprise SOC2 Ready</span>
             </div>
           </div>
         </div>

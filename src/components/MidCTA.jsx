@@ -11,7 +11,7 @@ export default function MidCTA({ onBookDemo }) {
           Let&apos;s build something great together
         </h2>
         <p className="mid-cta-text">
-          Tell us what you need to automate — we&apos;ll map the stack, timeline, and first win.
+          Tell us what you need to automate. We&apos;ll map the stack, timeline, and first win.
         </p>
         <button
           id="btn-mid-cta-demo"

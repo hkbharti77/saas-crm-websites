@@ -8,7 +8,7 @@ export const blogPosts = [
       <p>For the past few years, the standard approach to AI in business has been the deployment of a single, monolithic language model. While impressive, these systems often struggle with context switching and complex, multi-step workflows. Enter Multi-Agent Orchestration.</p>
       
       <h3>What is Multi-Agent Orchestration?</h3>
-      <p>Imagine a corporate office. You wouldn't hire one person to do the marketing, sales, customer support, and accounting. You hire specialists. Multi-agent systems apply this exact logic to AI. By deploying specific models fine-tuned for distinct tasks—and allowing them to communicate with one another—businesses achieve unprecedented efficiency.</p>
+      <p>Imagine a corporate office. You wouldn't hire one person to do the marketing, sales, customer support, and accounting. You hire specialists. Multi-agent systems apply this exact logic to AI. By deploying specific models fine-tuned for distinct tasks and allowing them to communicate with one another, businesses achieve unprecedented efficiency.</p>
       
       <h3>How Gyan VaniAi Implements This</h3>
       <p>At Gyan VaniAi, our CRM platform doesn't just use AI; it is built on a foundation of communicating agents. When a new lead enters the system:</p>
@@ -26,7 +26,7 @@ export const blogPosts = [
     date: "June 25, 2026",
     category: "AI Technology",
     readTime: "4 min read",
-    imageUrl: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=800&auto=format&fit=crop"
+    imageUrl: "/portfolio_crm.webp"
   },
   {
     id: "secure-rag-pipelines-enterprise",
@@ -49,7 +49,7 @@ export const blogPosts = [
     date: "June 20, 2026",
     category: "Data Security",
     readTime: "5 min read",
-    imageUrl: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=800&auto=format&fit=crop"
+    imageUrl: "/portfolio_ai.webp"
   },
   {
     id: "whatsapp-business-api-automation",
@@ -57,7 +57,7 @@ export const blogPosts = [
     excerpt: "Learn how integrating AI directly into WhatsApp can boost your customer satisfaction scores to 98% through instantaneous, 24/7 resolution.",
     content: `
       <h2>Meeting Customers Where They Are</h2>
-      <p>Email is slow. Live chat requires the user to stay on your website. WhatsApp is where your customers actually live. With over 2 billion active users, integrating your CRM directly into WhatsApp is no longer optional—it's a baseline requirement for modern customer experience.</p>
+      <p>Email is slow. Live chat requires the user to stay on your website. WhatsApp is where your customers actually live. With over 2 billion active users, integrating your CRM directly into WhatsApp is no longer optional - it is a baseline requirement for modern customer experience.</p>
       
       <h3>The Power of the WhatsApp Business API</h3>
       <p>By utilizing the WhatsApp Business API, Gyan VaniAi enables businesses to deploy intelligent agents directly into their customers' pockets. These agents can handle everything from FAQ resolution to complex onboarding workflows, all within the WhatsApp interface.</p>
@@ -72,6 +72,6 @@ export const blogPosts = [
     date: "June 12, 2026",
     category: "Product Updates",
     readTime: "3 min read",
-    imageUrl: "https://images.unsplash.com/photo-1614680376408-81e91ffe3db7?q=80&w=800&auto=format&fit=crop"
+    imageUrl: "/whatsapp-features-new.webp"
   }
 ];

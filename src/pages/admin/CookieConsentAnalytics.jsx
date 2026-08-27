@@ -167,11 +167,11 @@ service cloud.firestore {
                           {STATUS_LABELS[r.status] || r.status}
                         </span>
                       </td>
-                      <td className="cca-mono">{r.ip || '—'}</td>
+                      <td className="cca-mono">{r.ip || '-'}</td>
                       <td className="cca-location">
-                        {[r.city, r.region, r.country].filter(Boolean).join(', ') || '—'}
+                        {[r.city, r.region, r.country].filter(Boolean).join(', ') || '-'}
                       </td>
-                      <td className="cca-isp">{r.isp ? r.isp.replace(/^AS\d+\s+/, '') : '—'}</td>
+                      <td className="cca-isp">{r.isp ? r.isp.replace(/^AS\d+\s+/, '') : '-'}</td>
                       <td className={r.preferences?.analytics ? 'cca-yes' : 'cca-no'}>
                         {r.preferences?.analytics ? '✓ Yes' : '✗ No'}
                       </td>
@@ -181,7 +181,7 @@ service cloud.firestore {
                       <td className="cca-date">
                         {ts
                           ? ts.toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short' })
-                          : '—'}
+                          : '-'}
                       </td>
                     </tr>
                   );

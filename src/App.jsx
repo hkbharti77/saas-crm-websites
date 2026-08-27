@@ -29,6 +29,7 @@ import { useScrollDepth } from './hooks/useScrollDepth';
 import { useGAPageViews } from './hooks/useGAPageViews';
 
 const DemoModal = lazy(() => import('./components/DemoModal'));
+import MobileStickyCTA from './components/MobileStickyCTA';
 
 class ChunkErrorBoundary extends Component {
   constructor(props) {
@@ -179,6 +180,7 @@ function App() {
             onClose={() => setIsLiveDemoOpen(false)}
           />
         </Suspense>
+        <MobileStickyCTA />
         <Analytics />
         <SpeedInsights />
       </div>

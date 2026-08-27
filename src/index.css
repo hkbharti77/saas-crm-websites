@@ -27,15 +27,15 @@
   --radius-lg: 16px;
   --radius-full: 9999px;
 
-  /* Modular Typography Scale */
-  --text-xs: 0.75rem;
-  --text-sm: 0.875rem;
-  --text-base: 1rem;
-  --text-lg: 1.125rem;
-  --text-xl: 1.25rem;
-  --text-2xl: 1.5rem;
-  --text-3xl: 2rem;
-  --text-4xl: 2.75rem;
+  /* Modular Typography Scale (Anti-Compression Polish) */
+  --text-xs: 0.8125rem;
+  --text-sm: 0.9375rem;
+  --text-base: 1.0625rem;
+  --text-lg: 1.1875rem;
+  --text-xl: 1.35rem;
+  --text-2xl: 1.65rem;
+  --text-3xl: 2.35rem;
+  --text-4xl: 3.5rem;
 
   --shadow-sm: 0 1px 3px rgba(12, 21, 36, 0.05), 0 4px 12px rgba(12, 21, 36, 0.03);
   --shadow-md: 0 8px 28px rgba(12, 21, 36, 0.08);
@@ -295,7 +295,7 @@ body.dark-theme:not([data-theme]) {
 }
 
 
-/* Surfaces — restrained, not heavy glass on everything */
+/* Surfaces: restrained, not heavy glass on everything */
 .glass-panel,
 .faq-item,
 .modal-content {
@@ -394,27 +394,27 @@ img {
 /* Typography */
 .h1, h1 {
   font-family: var(--font-display);
-  font-size: clamp(2.25rem, 5vw, var(--text-4xl));
-  font-weight: 750;
-  line-height: 1.12;
-  letter-spacing: -0.03em;
+  font-size: clamp(2.6rem, 5.2vw, 3.85rem);
+  font-weight: 800;
+  line-height: 1.06;
+  letter-spacing: -0.035em;
   color: var(--text-primary);
 }
 
 .h2, h2 {
   font-family: var(--font-display);
-  font-size: clamp(1.75rem, 3.5vw, var(--text-3xl));
-  font-weight: 700;
-  line-height: 1.22;
+  font-size: clamp(2.1rem, 3.8vw, 2.75rem);
+  font-weight: 750;
+  line-height: 1.16;
   letter-spacing: -0.025em;
   color: var(--text-primary);
 }
 
 .h3, h3 {
   font-family: var(--font-sans);
-  font-size: var(--text-2xl);
-  font-weight: 650;
-  line-height: 1.35;
+  font-size: clamp(1.2rem, 2vw, 1.45rem);
+  font-weight: 700;
+  line-height: 1.32;
   letter-spacing: -0.015em;
   color: var(--text-primary);
 }
@@ -422,30 +422,60 @@ img {
 .h4, h4 {
   font-family: var(--font-sans);
   font-size: var(--text-xl);
-  font-weight: 600;
-  line-height: 1.4;
+  font-weight: 650;
+  line-height: 1.38;
   letter-spacing: -0.01em;
   color: var(--text-primary);
 }
 
 .text-lg {
   font-size: var(--text-lg);
+  line-height: 1.6;
 }
 
 .text-base {
   font-size: var(--text-base);
+  line-height: 1.6;
 }
 
 .text-sm {
   font-size: var(--text-sm);
+  line-height: 1.55;
 }
 
 .text-xs {
   font-size: var(--text-xs);
+  line-height: 1.45;
 }
 
 .text-muted {
   color: var(--text-secondary);
+}
+
+/* Section Header Spacing & Hierarchy */
+.section-header {
+  margin-bottom: 2.75rem;
+}
+
+.section-header--center {
+  text-align: center;
+  max-width: 780px;
+  margin-inline: auto;
+  margin-bottom: 3rem;
+}
+
+.section-header--center p {
+  margin-inline: auto;
+}
+
+.section-eyebrow {
+  display: inline-block;
+  font-size: 0.8125rem;
+  font-weight: 750;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--primary-color);
+  margin-bottom: 0.65rem;
 }
 
 /* Inline text link affordance (Issue 11) */
@@ -467,33 +497,44 @@ img {
 
 @media (max-width: 768px) {
   .h1, h1 {
-    font-size: 2.25rem;
+    font-size: 2.35rem;
   }
 
   .h2, h2 {
-    font-size: 1.75rem;
+    font-size: 1.85rem;
+  }
+
+  .section-header,
+  .section-header--center {
+    margin-bottom: 2rem;
   }
 }
 
 .container {
-  max-width: 1180px;
-  margin: 0 auto;
-  padding: 0 1.5rem;
+  max-width: 1220px;
+  margin-inline: auto;
+  padding-inline: 24px;
 }
 
 .container-readable {
-  max-width: 820px;
-  margin: 0 auto;
-  padding: 0 1.5rem;
+  max-width: 860px;
+  margin-inline: auto;
+  padding-inline: 24px;
 }
 
 .section {
-  padding: 5.5rem 0;
+  padding: 5.25rem 0;
+}
+
+@media (max-width: 992px) {
+  .section {
+    padding: 4.25rem 0;
+  }
 }
 
 @media (max-width: 768px) {
   .section {
-    padding: 3.5rem 0;
+    padding: 3.25rem 0;
   }
 }
 
@@ -501,13 +542,17 @@ img {
   background: transparent;
 }
 
+.bg-tinted {
+  background: color-mix(in srgb, var(--bg-base) 96%, var(--primary-color) 4%);
+}
+
 .logo-img {
-  height: 36px;
+  height: 38px;
   width: auto;
   border-radius: var(--radius-sm);
 }
 
-/* Buttons — enterprise, not pill candy */
+/* Buttons: enterprise, not pill candy */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -641,7 +686,7 @@ img {
   resize: vertical;
 }
 
-/* Brand accent — single solid tone */
+/* Brand accent: single solid tone */
 .brand-accent {
   color: var(--primary-color);
 }

@@ -20,7 +20,6 @@ export default function Integrations() {
     <section className="section" id="integrations">
       <div className="container text-center">
         <div className="section-header section-header--center">
-          <span className="section-eyebrow">Integrations</span>
           <h2 className="h2">Works with your stack</h2>
           <p className="text-lg text-muted" style={{ marginTop: '0.85rem' }}>
             Connect custom systems to the tools your teams already open every morning.

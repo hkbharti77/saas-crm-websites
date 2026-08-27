@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { ArrowRight, Calendar } from 'lucide-react';
+import { ArrowRight, Calendar, Sparkles } from 'lucide-react';
 import { db } from '../firebase';
 import { collection, getDocs, query, orderBy } from 'firebase/firestore';
 import ContactModal from '../components/ContactModal';
@@ -15,6 +15,7 @@ export default function Blog() {
   const [blogs, setBlogs] = useState(blogPosts || []);
   const [loading, setLoading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [brokenImages, setBrokenImages] = useState({});
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -40,13 +41,17 @@ export default function Blog() {
     fetchBlogs();
   }, []);
 
+  const handleImageError = (postId) => {
+    setBrokenImages((prev) => ({ ...prev, [postId]: true }));
+  };
+
   const indexSchema = buildBlogIndexSchema(blogs);
 
   return (
     <>
       <SeoHead
         title="Blog - Gyan VaniAi | Insights on AI & CRM"
-        description="Discover the latest trends in AI orchestration, secure RAG pipelines, WhatsApp automation, and CRM workflows on the Gyan VaniAi blog."
+        description="Deep dives into multi-agent orchestration, enterprise AI security, WhatsApp Coexistence, and customer experience automation, written for operators building with Gyan VaniAi."
         canonical="https://www.gyanvaniai.online/blog"
         image="https://www.gyanvaniai.online/hero_dashboard.webp"
       />
@@ -55,23 +60,33 @@ export default function Blog() {
         <script type="application/ld+json">{JSON.stringify(indexSchema)}</script>
       </Helmet>
 
-      <section className="section" style={{ paddingTop: '8rem', minHeight: '80vh' }}>
-        <div className="container">
-          <div className="blog-header" data-aos="fade-up">
-            <h1 className="h1">Latest Insights & Updates</h1>
-            <p className="text-muted" style={{ fontSize: '1.125rem', marginTop: '1rem', maxWidth: '720px' }}>
-              Deep dives into multi-agent orchestration, enterprise AI security, WhatsApp Coexistence, and customer experience automation — written for operators building with Gyan VaniAi.
+      <div className="blog-page">
+        {/* 1. HERO / BLOG HEADER */}
+        <section className="blog-hero-section">
+          <div className="container">
+            <div className="blog-eyebrow">
+              <Sparkles size={15} />
+              <span>GYAN VANI AI INSIGHTS</span>
+            </div>
+            <h1 className="blog-hero-title">Latest Insights & Updates</h1>
+            <p className="blog-hero-sub">
+              Deep dives into multi-agent orchestration, enterprise AI security, WhatsApp Coexistence, and customer experience automation, written for operators building with Gyan VaniAi.
             </p>
           </div>
+        </section>
 
+        {/* 2. BLOG CONTENT GRID */}
+        <div className="blog-grid-container">
           {loading ? (
-            <div style={{ textAlign: 'center', padding: '4rem' }}>Loading posts...</div>
+            <div style={{ textAlign: 'center', padding: '4rem', color: 'var(--text-muted)' }}>
+              Loading posts...
+            </div>
           ) : blogs.length === 0 ? (
-            <div data-aos="fade-up" style={{ padding: '3rem 0', maxWidth: '640px' }}>
+            <div style={{ padding: '3rem 0', maxWidth: '640px', margin: '0 auto', textAlign: 'center' }}>
               <p className="text-muted" style={{ lineHeight: 1.7, marginBottom: '1.5rem' }}>
                 New articles are publishing soon. Meanwhile, explore our flagship guides on WhatsApp Coexistence and custom AI CRM development.
               </p>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
+              <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '1rem' }}>
                 <Link to="/services/whatsapp-coexistence" className="btn btn-primary">
                   WhatsApp Coexistence
                 </Link>
@@ -85,24 +100,29 @@ export default function Blog() {
               <div className="blog-grid">
                 {blogs.map((post, index) => {
                   const slug = post.slugId || post.id;
+                  const isFirst = index === 0;
+                  const hasImage = post.imageUrl && !brokenImages[post.id];
+
                   return (
                     <Link
                       to={`/blog/${slug}`}
                       key={post.id}
-                      className="blog-card premium-card"
-                      data-aos="fade-up"
-                      data-aos-delay={index * 100}
+                      className={`blog-card ${isFirst ? 'featured-card' : ''}`}
                     >
                       <div className="blog-card-image-wrap">
-                        {post.imageUrl ? (
+                        {isFirst && (
+                          <span className="blog-card-featured-badge">Featured</span>
+                        )}
+                        {hasImage ? (
                           <img
                             src={post.imageUrl}
-                            alt={`${post.title} — Gyan VaniAi Blog`}
+                            alt={`${post.title} | Gyan VaniAi Blog`}
                             width="600"
-                            height="400"
+                            height="338"
                             className="blog-card-image"
                             loading="lazy"
                             decoding="async"
+                            onError={() => handleImageError(post.id)}
                           />
                         ) : (
                           <div className="blog-card-image-fallback">
@@ -113,8 +133,8 @@ export default function Blog() {
                       <div className="blog-card-content">
                         <div className="blog-meta">
                           <span className="blog-category">{post.category}</span>
-                          <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-                            <Calendar size={14} />
+                          <span className="blog-date">
+                            <Calendar size={13} />
                             {post.date}
                           </span>
                         </div>
@@ -125,7 +145,7 @@ export default function Blog() {
                         <div className="blog-footer">
                           <span className="blog-author">{post.author}</span>
                           <span className="blog-read-more">
-                            Read Article <ArrowRight size={16} />
+                            Read Article <ArrowRight size={15} />
                           </span>
                         </div>
                       </div>
@@ -134,22 +154,12 @@ export default function Blog() {
                 })}
               </div>
 
-              <div
-                className="blog-feed-cta"
-                style={{
-                  marginTop: '5rem',
-                  padding: '4rem 2rem',
-                  textAlign: 'center',
-                  background: 'color-mix(in srgb, var(--primary-color) 8%, transparent)',
-                  border: '1px solid color-mix(in srgb, var(--primary-color) 22%, transparent)',
-                  borderRadius: 'var(--radius-lg)',
-                }}
-                data-aos="fade-up"
-              >
-                <h2 className="h2" style={{ marginBottom: '1rem', fontSize: '1.75rem' }}>
+              {/* 3. BLOG CTA BANNER */}
+              <div className="blog-feed-cta">
+                <h2 className="blog-feed-cta-title">
                   Want to See What We Can Build for You?
                 </h2>
-                <p className="text-muted" style={{ maxWidth: '560px', margin: '0 auto 2.5rem', lineHeight: '1.6' }}>
+                <p className="blog-feed-cta-sub">
                   Get a personalized, live demo showing how Gyan VaniAi can configure WhatsApp automation and AI CRM pipelines specifically for your workflow.
                 </p>
                 <button
@@ -159,14 +169,16 @@ export default function Blog() {
                     trackBookDemo('blog-feed-bottom');
                     setIsModalOpen(true);
                   }}
+                  style={{ padding: '0.9rem 2.25rem', fontSize: '1.025rem', fontWeight: '700' }}
                 >
-                  Book a Free Demo <ArrowRight size={18} style={{ marginLeft: '6px', verticalAlign: 'middle' }} />
+                  <span>Book a Free Demo</span>
+                  <ArrowRight size={17} style={{ marginLeft: '6px', verticalAlign: 'middle' }} />
                 </button>
               </div>
             </>
           )}
         </div>
-      </section>
+      </div>
 
       <ContactModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </>

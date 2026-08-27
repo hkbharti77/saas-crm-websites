@@ -1,8 +1,48 @@
 import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { ArrowRight, Code2, Server, Database, MessageSquare } from 'lucide-react';
+import { 
+  ArrowRight, 
+  Code2, 
+  Server, 
+  Database, 
+  MessageSquare, 
+  ShieldCheck, 
+  Bot, 
+  Layers, 
+  Cpu, 
+  Mail,
+  Zap
+} from 'lucide-react';
 import { Link } from 'react-router-dom';
 import SeoHead from '../components/SeoHead';
+import './About.css';
+
+const diffPillars = [
+  {
+    num: '01',
+    icon: <MessageSquare size={22} />,
+    title: 'WhatsApp Coexistence',
+    desc: 'Keep the WhatsApp Business mobile app on your phone while running AI auto-replies, bulk broadcasts, and CRM on the same number.'
+  },
+  {
+    num: '02',
+    icon: <Bot size={22} />,
+    title: 'AI-First Operations',
+    desc: 'Autonomous RAG agents, predictive lead property scoring, and sub-300ms conversational automation that run 24/7.'
+  },
+  {
+    num: '03',
+    icon: <Layers size={22} />,
+    title: 'Enterprise Systems',
+    desc: 'Custom CRM, HRMS, and ERP architecture tailored specifically to sales, operations, and back-office pipelines.'
+  },
+  {
+    num: '04',
+    icon: <ShieldCheck size={22} />,
+    title: 'Secure & Scalable',
+    desc: 'Multi-tenant data isolation, role-based access control, SOC-2 compliant Meta Cloud API, and high-availability cloud infrastructure.'
+  }
+];
 
 export default function About() {
   useEffect(() => {
@@ -61,104 +101,242 @@ export default function About() {
         </script>
       </Helmet>
 
-      <div>
-        <section className="section" style={{ paddingTop: '5.5rem', paddingBottom: '3.5rem', background: 'var(--bg-gradient)' }}>
-          <div className="container" style={{ textAlign: 'center' }}>
-            <h1 className="h1" style={{ marginBottom: '1.25rem' }}>About Gyan VaniAi</h1>
-            <p className="text-lg text-muted" style={{ maxWidth: '800px', margin: '0 auto' }}>
-              We build intelligent software for operators who need CRM, WhatsApp automation, AI agents, and enterprise systems that run the business — not the other way around.
-            </p>
+      <div className="about-page">
+        
+        {/* 1. HERO SECTION */}
+        <section className="about-hero">
+          <div className="container">
+            <div className="about-hero-grid">
+              
+              {/* Left Column: Heading & Mission */}
+              <div className="about-hero-left">
+                <div className="about-eyebrow">
+                  <Cpu size={15} />
+                  <span>Enterprise AI & Software Engineering</span>
+                </div>
+                
+                <h1 className="about-hero-title">
+                  About <span className="brand-accent">Gyan VaniAi</span>
+                </h1>
+                
+                <p className="about-hero-desc">
+                  We build intelligent software for operators who need CRM, WhatsApp automation, AI agents, and enterprise systems that run the business efficiently without overhead.
+                </p>
+
+                <div style={{ display: 'flex', gap: '0.85rem', flexWrap: 'wrap' }}>
+                  <Link to="/#contact" className="btn btn-primary" style={{ padding: '0.85rem 1.65rem', fontSize: '0.98rem', fontWeight: '700' }}>
+                    <span>Book a Free Consultation</span>
+                    <ArrowRight size={16} />
+                  </Link>
+                  <Link to="/services/crm-development" className="btn btn-outline" style={{ padding: '0.85rem 1.65rem', fontSize: '0.98rem', fontWeight: '600' }}>
+                    <span>Explore Solutions</span>
+                  </Link>
+                </div>
+              </div>
+
+              {/* Right Column: Lightweight Ecosystem Architecture Visual */}
+              <div className="about-hero-visual">
+                <div className="about-visual-header">
+                  <span className="about-visual-badge">Gyan VaniAi Technology Core</span>
+                  <span className="about-visual-live">
+                    <span className="about-live-dot"></span>
+                    <span>GLOBAL OPS</span>
+                  </span>
+                </div>
+
+                <div className="about-visual-nodes">
+                  <div className="about-node-card">
+                    <div className="about-node-icon">
+                      <Bot size={17} />
+                    </div>
+                    <div className="about-node-text">
+                      <h5>AI CRM & RAG</h5>
+                      <p>Pipeline telemetry</p>
+                    </div>
+                  </div>
+
+                  <div className="about-node-card">
+                    <div className="about-node-icon">
+                      <MessageSquare size={17} />
+                    </div>
+                    <div className="about-node-text">
+                      <h5>WhatsApp Mode</h5>
+                      <p>Official Dual Sync</p>
+                    </div>
+                  </div>
+
+                  <div className="about-node-card">
+                    <div className="about-node-icon">
+                      <Zap size={17} />
+                    </div>
+                    <div className="about-node-text">
+                      <h5>AI Agents</h5>
+                      <p>Sub-300ms SLA</p>
+                    </div>
+                  </div>
+
+                  <div className="about-node-card">
+                    <div className="about-node-icon">
+                      <Layers size={17} />
+                    </div>
+                    <div className="about-node-text">
+                      <h5>HRMS & ERP</h5>
+                      <p>Enterprise Scale</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
           </div>
         </section>
 
-        <section className="section" style={{ padding: '3.5rem 0' }}>
-          <div className="container-readable">
-            <h2 className="h2" style={{ marginBottom: '1.25rem' }}>Who we are</h2>
-            <p className="text-muted" style={{ marginBottom: '1rem', lineHeight: '1.7' }}>
-              Gyan VaniAi is an enterprise AI and software development company. We design and ship custom AI CRMs, Meta WhatsApp Coexistence platforms, RAG pipelines, HRMS, ERP, web, and mobile applications for teams that outgrow off-the-shelf tools.
-            </p>
-            <p className="text-muted" style={{ marginBottom: '1rem', lineHeight: '1.7' }}>
-              Our work spans startups, SMEs, and enterprises across <strong>Europe, Asia, Africa, North America, and worldwide</strong>. Engagements typically start with a consultation, then move into architecture, build, launch, and ongoing support.
-            </p>
-            <p className="text-muted" style={{ lineHeight: '1.7' }}>
-              Contact:{' '}
-              <a href="mailto:contact@gyanvaniai.online" className="link-inline">contact@gyanvaniai.online</a>
-              {' · '}
-              <Link to="/#contact" className="link-inline">Book a free consultation</Link>
-            </p>
+        {/* 2. WHO WE ARE (EDITORIAL TWO-COLUMN LAYOUT) */}
+        <section className="section" style={{ padding: '4.75rem 0' }}>
+          <div className="container">
+            <div className="about-editorial-grid">
+              
+              <div className="about-editorial-sidebar">
+                <span className="about-section-label">01 / WHO WE ARE</span>
+                <h2 className="about-editorial-heading">Engineering intelligent systems for high-growth teams.</h2>
+              </div>
+
+              <div className="about-editorial-content">
+                <p>
+                  Gyan VaniAi is an enterprise AI and software development company. We design and ship custom AI CRMs, Meta WhatsApp Coexistence platforms, RAG pipelines, HRMS, ERP, web, and mobile applications for teams that outgrow off-the-shelf tools.
+                </p>
+                <p>
+                  Our work spans startups, SMEs, and enterprises across <strong>Europe, Asia, Africa, North America, and worldwide</strong>. Engagements typically start with a consultation, then move into architecture, build, launch, and ongoing support.
+                </p>
+                
+                <div className="about-contact-callout">
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
+                    <Mail size={17} color="var(--primary-color)" />
+                    <span>Direct: <a href="mailto:contact@gyanvaniai.online">contact@gyanvaniai.online</a></span>
+                  </div>
+                  <span>·</span>
+                  <Link to="/#contact">Book a free consultation →</Link>
+                </div>
+              </div>
+
+            </div>
           </div>
         </section>
 
-        <section className="section bg-alt" style={{ padding: '3.5rem 0' }}>
-          <div className="container-readable">
-            <h2 className="h2" style={{ marginBottom: '1.25rem' }}>What makes us different</h2>
-            <p className="text-muted" style={{ marginBottom: '1rem', lineHeight: '1.7' }}>
-              We are especially known for <strong>WhatsApp Coexistence</strong>: keep the WhatsApp Business mobile app on your phone while running AI auto-replies, bulk broadcasts, and multi-agent CRM on the same number — with real-time sync and no chat wipe.
-            </p>
-            <p className="text-muted" style={{ marginBottom: '1.5rem', lineHeight: '1.7' }}>
-              Beyond messaging, we build secure RAG agents, industry-shaped CRMs, and operational systems (HRMS/ERP) that connect sales, support, and back-office workflows.
-            </p>
-            <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
-              <Link to="/services/whatsapp-coexistence" className="btn btn-primary">
-                WhatsApp Coexistence <ArrowRight size={18} />
+        {/* 3. WHY GYAN VANIAI / WHAT MAKES US DIFFERENT */}
+        <section className="section bg-tinted" style={{ padding: '5rem 0' }}>
+          <div className="container">
+            <div className="section-header section-header--center">
+              <span className="section-eyebrow">WHY GYAN VANIAI</span>
+              <h2 className="h2">What makes us different</h2>
+              <p className="text-lg text-muted" style={{ marginTop: '0.85rem' }}>
+                We combine deep enterprise software engineering with specialized Meta infrastructure and AI automation.
+              </p>
+            </div>
+
+            <div className="about-pillars-grid">
+              {diffPillars.map((pillar) => (
+                <article key={pillar.num} className="about-pillar-card">
+                  <div className="about-pillar-top">
+                    <span className="about-pillar-num">{pillar.num}</span>
+                    <div className="about-pillar-icon">{pillar.icon}</div>
+                  </div>
+                  <h3 className="about-pillar-title">{pillar.title}</h3>
+                  <p className="about-pillar-desc">{pillar.desc}</p>
+                </article>
+              ))}
+            </div>
+
+            <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap' }}>
+              <Link to="/services/whatsapp-coexistence" className="btn btn-primary" style={{ padding: '0.85rem 1.75rem', fontSize: '0.98rem', fontWeight: '700' }}>
+                <span>WhatsApp Coexistence</span>
+                <ArrowRight size={16} />
               </Link>
-              <Link to="/services/ai-development" className="btn btn-outline">
-                Explore AI services <ArrowRight size={18} />
+              <Link to="/services/ai-agent-development" className="btn btn-outline" style={{ padding: '0.85rem 1.75rem', fontSize: '0.98rem', fontWeight: '600' }}>
+                <span>Explore AI Services</span>
+                <ArrowRight size={16} />
               </Link>
             </div>
           </div>
         </section>
 
-        <section className="section" style={{ padding: '3.5rem 0' }}>
+        {/* 4. TECHNICAL EXPERTISE */}
+        <section className="section" style={{ padding: '5rem 0' }}>
           <div className="container">
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '3rem', alignItems: 'center' }}>
+            <div className="about-tech-layout">
+              
               <div>
-                <h2 className="h2" style={{ marginBottom: '1.5rem' }}>Technical expertise</h2>
-                <p className="text-muted" style={{ marginBottom: '1rem', lineHeight: '1.7' }}>
-                  We deliver high-performance applications — multi-tenant SaaS, custom CRM, and autonomous AI agents — on modern stacks with secure, scalable architectures and official Meta API integrations.
+                <span className="section-eyebrow" style={{ textAlign: 'left', margin: '0 0 0.5rem 0' }}>ENGINEERING CAPABILITIES</span>
+                <h2 className="h2" style={{ marginBottom: '1.15rem' }}>Technical expertise</h2>
+                <p className="text-muted" style={{ fontSize: '1.025rem', lineHeight: '1.65', marginBottom: '1rem' }}>
+                  We deliver high-performance applications (multi-tenant SaaS, custom CRM, and autonomous AI agents) on modern stacks with secure, scalable architectures and official Meta API integrations.
                 </p>
-                <p className="text-muted" style={{ marginBottom: '2rem', lineHeight: '1.7' }}>
-                  Typical stack: React / React Native on the frontend; Spring Boot and Node.js on the backend; Firebase and cloud infrastructure for delivery and ops.
+                <p className="text-muted" style={{ fontSize: '1.025rem', lineHeight: '1.65' }}>
+                  Typical stack: React / React Native on the frontend; Spring Boot and Node.js on the backend; Firebase and secure cloud infrastructure for delivery and ops.
                 </p>
               </div>
 
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-                <div className="premium-card" style={{ padding: '1.5rem', textAlign: 'center' }}>
-                  <Code2 size={32} color="var(--primary-color)" style={{ margin: '0 auto 1rem' }} />
-                  <h3 className="h3" style={{ fontSize: '1.2rem', marginBottom: '0.5rem' }}>Frontend</h3>
-                  <p className="text-sm text-muted">React, React Native, Vite</p>
+              <div className="about-tech-cards-grid">
+                <div className="about-tech-card">
+                  <div className="about-tech-card-icon">
+                    <Code2 size={24} />
+                  </div>
+                  <h3 className="about-tech-card-title">Frontend</h3>
+                  <p className="about-tech-card-desc">React, React Native, Vite</p>
                 </div>
-                <div className="premium-card" style={{ padding: '1.5rem', textAlign: 'center' }}>
-                  <Server size={32} color="var(--primary-color)" style={{ margin: '0 auto 1rem' }} />
-                  <h3 className="h3" style={{ fontSize: '1.2rem', marginBottom: '0.5rem' }}>Backend</h3>
-                  <p className="text-sm text-muted">Spring Boot, Node.js</p>
+
+                <div className="about-tech-card">
+                  <div className="about-tech-card-icon">
+                    <Server size={24} />
+                  </div>
+                  <h3 className="about-tech-card-title">Backend</h3>
+                  <p className="about-tech-card-desc">Spring Boot, Node.js</p>
                 </div>
-                <div className="premium-card" style={{ padding: '1.5rem', textAlign: 'center' }}>
-                  <MessageSquare size={32} color="var(--primary-color)" style={{ margin: '0 auto 1rem' }} />
-                  <h3 className="h3" style={{ fontSize: '1.2rem', marginBottom: '0.5rem' }}>Automation</h3>
-                  <p className="text-sm text-muted">WhatsApp API, AI Agents</p>
+
+                <div className="about-tech-card">
+                  <div className="about-tech-card-icon">
+                    <MessageSquare size={24} />
+                  </div>
+                  <h3 className="about-tech-card-title">Automation</h3>
+                  <p className="about-tech-card-desc">WhatsApp API, AI Agents</p>
                 </div>
-                <div className="premium-card" style={{ padding: '1.5rem', textAlign: 'center' }}>
-                  <Database size={32} color="var(--primary-color)" style={{ margin: '0 auto 1rem' }} />
-                  <h3 className="h3" style={{ fontSize: '1.2rem', marginBottom: '0.5rem' }}>Infrastructure</h3>
-                  <p className="text-sm text-muted">Firebase, Secure Cloud</p>
+
+                <div className="about-tech-card">
+                  <div className="about-tech-card-icon">
+                    <Database size={24} />
+                  </div>
+                  <h3 className="about-tech-card-title">Infrastructure</h3>
+                  <p className="about-tech-card-desc">Firebase, Secure Cloud</p>
                 </div>
               </div>
+
             </div>
           </div>
         </section>
 
-        <section className="section bg-alt" style={{ padding: '3.5rem 0', borderTop: '1px solid var(--border-color)', borderBottom: '1px solid var(--border-color)' }}>
+        {/* 5. EXPLORE OUR WORK */}
+        <section className="about-explore-section">
           <div className="container">
-            <h2 className="h3" style={{ textAlign: 'center', marginBottom: '1.5rem' }}>Explore our work</h2>
-            <div style={{ display: 'flex', justifyContent: 'center', gap: '0.75rem', flexWrap: 'wrap', alignItems: 'center' }} role="navigation" aria-label="Explore categories">
-              <Link to="/services/crm-development" className="btn btn-outline" style={{ borderRadius: 'var(--radius-full)', padding: '0.5rem 1.25rem', fontSize: '0.9rem' }}>Services</Link>
-              <Link to="/industries/healthcare" className="btn btn-outline" style={{ borderRadius: 'var(--radius-full)', padding: '0.5rem 1.25rem', fontSize: '0.9rem' }}>Industries</Link>
-              <a href="/#portfolio" className="btn btn-outline" style={{ borderRadius: 'var(--radius-full)', padding: '0.5rem 1.25rem', fontSize: '0.9rem' }}>Case Studies</a>
-              <a href="/#contact" className="btn btn-primary" style={{ borderRadius: 'var(--radius-full)', padding: '0.5rem 1.25rem', fontSize: '0.9rem' }}>Contact Us</a>
+            <div className="about-explore-bar">
+              <h3 className="about-explore-title">Explore our work and solutions</h3>
+              <nav className="about-explore-nav" aria-label="Explore categories">
+                <Link to="/services/crm-development" className="explore-nav-pill outline">
+                  Services
+                </Link>
+                <Link to="/industries/healthcare" className="explore-nav-pill outline">
+                  Industries
+                </Link>
+                <a href="/#portfolio" className="explore-nav-pill outline">
+                  Case Studies
+                </a>
+                <a href="/#contact" className="explore-nav-pill primary">
+                  Contact Us →
+                </a>
+              </nav>
             </div>
           </div>
         </section>
+
       </div>
     </>
   );

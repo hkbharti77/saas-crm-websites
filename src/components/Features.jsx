@@ -1,171 +1,111 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { Database, Users, Bot, GitMerge, Smartphone, Layout, ArrowRight, Mic, PhoneCall, Phone, Headset, UserCheck } from 'lucide-react';
+import { Sparkles, UserCheck, Activity, Bot, MessageSquare, Workflow, Target, BarChart3, ArrowRight } from 'lucide-react';
 import { trackBookDemo } from '../utils/analytics';
 import './Features.css';
 
-const services = [
+const capabilities = [
   {
-    category: 'ai',
-    icon: <Bot size={22} strokeWidth={1.75} />,
-    title: 'AI Solutions',
-    description: 'Chatbots, voice agents, sales agents, support flows, and workflow automation that fit how your teams already work.',
-    to: '/services/ai-development',
-  },
-  {
-    category: 'software',
-    icon: <Users size={22} strokeWidth={1.75} />,
-    title: 'CRM Development',
-    description: 'Sales, healthcare, education, and manufacturing CRMs — shaped around your pipeline, not a generic template.',
+    icon: <Sparkles size={22} strokeWidth={1.75} />,
+    title: 'AI Lead Enrichment',
+    description: 'Auto-enrich prospect profiles with verified business intelligence, company size, and technographics.',
     to: '/services/crm-development',
+    tag: 'Intelligence'
   },
   {
-    category: 'software',
-    icon: <GitMerge size={22} strokeWidth={1.75} />,
-    title: 'HRMS',
-    description: 'Employee records, payroll, attendance, leave, and recruitment in one operational system.',
-    to: '/services/hrms-development',
-  },
-  {
-    category: 'software',
-    icon: <Database size={22} strokeWidth={1.75} />,
-    title: 'ERP Solutions',
-    description: 'Inventory, finance, procurement, operations, and asset management connected end to end.',
-    to: '/services/erp-development',
-  },
-  {
-    category: 'software',
-    icon: <Layout size={22} strokeWidth={1.75} />,
-    title: 'Website Development',
-    description: 'Corporate sites, ecommerce, and landing pages built for performance, SEO, and conversion.',
-    to: '/services/web-development',
-  },
-  {
-    category: 'software',
-    icon: <Smartphone size={22} strokeWidth={1.75} />,
-    title: 'Mobile App Development',
-    description: 'Android, iOS, Flutter, and React Native apps designed for daily use — not demo day.',
-    to: '/services/mobile-app-development',
-  },
-  {
-    category: 'voice',
-    icon: <Mic size={22} strokeWidth={1.75} />,
-    title: 'Voice Bot Assistant',
-    description: 'Human-like conversational AI voice bots for support, sales, and automated appointment booking.',
-    to: '/services/voice-bot-assistant',
-  },
-  {
-    category: 'voice',
-    icon: <Phone size={22} strokeWidth={1.75} />,
-    title: 'WhatsApp Calling Bot',
-    description: 'Automate customer interactions directly over WhatsApp voice calls with conversational AI.',
-    to: '/services/whatsapp-calling-agent',
-  },
-  {
-    category: 'voice',
-    icon: <PhoneCall size={22} strokeWidth={1.75} />,
-    title: 'Phone Call Agent',
-    description: '24/7 AI phone agents that sound human and resolve complex customer inquiries instantly.',
-    to: '/services/phone-call-agent',
-  },
-  {
-    category: 'voice',
-    icon: <Headset size={22} strokeWidth={1.75} />,
-    title: 'Smart IVR',
-    description: 'Intelligent routing using voice recognition and CRM data-dips to reduce customer frustration.',
-    to: '/services/ivr-solutions',
-  },
-  {
-    category: 'ai',
     icon: <UserCheck size={22} strokeWidth={1.75} />,
-    title: 'AI Human Handoff',
-    description: 'Seamless escalation from AI bots to human agents with full context and conversation history.',
-    to: '/services/human-handoff-systems',
+    title: 'Intelligent Lead Assignment',
+    description: 'Route high-value leads to the best-suited reps instantly using dynamic skill-based matching.',
+    to: '/services/crm-development',
+    tag: 'Routing'
   },
-];
-
-const categories = [
-  { id: 'all', label: 'All Solutions' },
-  { id: 'ai', label: 'AI & Automation' },
-  { id: 'software', label: 'Custom Software' },
-  { id: 'voice', label: 'Voice & Calling' },
+  {
+    icon: <Activity size={22} strokeWidth={1.75} />,
+    title: 'AI Intent Scoring',
+    description: 'Analyze buyer sentiment and engagement signals in real-time to rank conversion readiness.',
+    to: '/services/ai-development',
+    tag: 'Scoring'
+  },
+  {
+    icon: <Bot size={22} strokeWidth={1.75} />,
+    title: 'RAG-Based AI Assistant',
+    description: 'Query company knowledge, sales playbooks, and docs with zero hallucination and tenant isolation.',
+    to: '/services/ai-chatbots',
+    tag: 'RAG Knowledge'
+  },
+  {
+    icon: <MessageSquare size={22} strokeWidth={1.75} />,
+    title: 'Omnichannel Communication',
+    description: 'Engage prospects seamlessly across WhatsApp, voice calls, email, and web chat from a unified inbox.',
+    to: '/services/whatsapp-automation',
+    tag: 'Omnichannel'
+  },
+  {
+    icon: <Workflow size={22} strokeWidth={1.75} />,
+    title: 'Sales Automation',
+    description: 'Automate multi-step drip campaigns, task reminders, and deal pipeline status updates.',
+    to: '/services/crm-development',
+    tag: 'Automation'
+  },
+  {
+    icon: <Target size={22} strokeWidth={1.75} />,
+    title: 'Lead Qualification',
+    description: 'Autonomous AI agents qualify inbound traffic 24/7 before booking meetings on rep calendars.',
+    to: '/services/ai-agent-development',
+    tag: '24/7 Agents'
+  },
+  {
+    icon: <BarChart3 size={22} strokeWidth={1.75} />,
+    title: 'Revenue Analytics',
+    description: 'Gain real-time visibility into conversion velocity, rep performance, and pipeline revenue forecasts.',
+    to: '/services/crm-development',
+    tag: 'Analytics'
+  },
 ];
 
 export default function Features({ onBookDemo }) {
-  const [activeTab, setActiveTab] = useState('all');
-  const [showAll, setShowAll] = useState(false);
-
-  const displayedServices = activeTab === 'all' && !showAll
-    ? services.slice(0, 6)
-    : activeTab === 'all'
-      ? services
-      : services.filter(s => s.category === activeTab);
-
   return (
-    <section className="section bg-alt" id="features">
+    <section className="section bg-alt" id="capabilities">
       <div className="container">
         <div className="section-header section-header--center">
-          <span className="section-eyebrow">What we build</span>
-          <h2 className="h2">Systems for modern operations</h2>
+          <span className="section-eyebrow">Core Platform</span>
+          <h2 className="h2">Everything your revenue team needs, powered by AI</h2>
           <p className="text-lg text-muted" style={{ marginTop: '0.85rem' }}>
-            From startups to enterprises — software that automates work, tightens workflows, and gives leadership a clear picture.
+            Autonomous intelligence across the entire sales cycle, from first contact to deal closure.
           </p>
         </div>
 
-        <div className="features-tabs-wrapper" role="tablist" aria-label="Solutions category tabs">
-          {categories.map((cat) => (
-            <button
-              key={cat.id}
-              role="tab"
-              aria-selected={activeTab === cat.id}
-              className={`features-tab-btn ${activeTab === cat.id ? 'active' : ''}`}
-              onClick={() => {
-                setActiveTab(cat.id);
-                setShowAll(false);
-              }}
-            >
-              {cat.label}
-            </button>
-          ))}
-        </div>
-
-        <div className="features-grid">
-          {displayedServices.map((service) => (
-            <Link to={service.to} className="feature-card-link" key={service.title}>
-              <article className="feature-card">
-                <div className="feature-icon">{service.icon}</div>
-                <h3 className="h3 feature-title">{service.title}</h3>
-                <p className="text-muted feature-desc">{service.description}</p>
+        <div className="capabilities-grid">
+          {capabilities.map((item) => (
+            <Link to={item.to} className="feature-card-link" key={item.title}>
+              <article className="feature-card capability-card">
+                <div className="capability-top">
+                  <div className="feature-icon">{item.icon}</div>
+                  <span className="capability-tag">{item.tag}</span>
+                </div>
+                <h3 className="h3 feature-title">{item.title}</h3>
+                <p className="text-muted feature-desc">{item.description}</p>
+                <div className="capability-action">
+                  <span>Learn more</span>
+                  <ArrowRight size={15} />
+                </div>
               </article>
             </Link>
           ))}
         </div>
 
-        {activeTab === 'all' && (
-          <div style={{ textAlign: 'center', marginTop: '2rem' }}>
-            <button
-              type="button"
-              className="btn btn-outline"
-              onClick={() => setShowAll(!showAll)}
-              aria-expanded={showAll}
-              style={{ borderRadius: 'var(--radius-full)', padding: '0.6rem 1.4rem' }}
-            >
-              {showAll ? 'Show top 6 solutions' : `View all ${services.length} solutions`}
-            </button>
-          </div>
-        )}
-
         <div className="features-cta">
-          <p className="text-muted">Want to walk through a fit for your team?</p>
+          <p className="text-muted">Need a custom AI pipeline shaped for your sales org?</p>
           <button
-            id="btn-features-book-demo"
+            id="btn-capabilities-book-demo"
             className="btn btn-primary"
             onClick={() => {
-              trackBookDemo('features');
+              trackBookDemo('capabilities');
               onBookDemo && onBookDemo();
             }}
           >
-            Book a free demo <ArrowRight size={18} />
+            <span>Book a Demo</span>
+            <ArrowRight size={18} />
           </button>
         </div>
       </div>

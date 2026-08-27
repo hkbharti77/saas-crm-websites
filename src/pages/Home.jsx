@@ -1,13 +1,12 @@
 import React, { useState, Suspense, lazy } from 'react';
 import Hero from '../components/Hero';
+import TrustBar from '../components/TrustBar';
 import Features from '../components/Features';
-import Industries from '../components/Industries';
-import WhyChooseUs from '../components/WhyChooseUs';
 import Process from '../components/Process';
-import TechStack from '../components/TechStack';
-const Integrations = lazy(() => import('../components/Integrations'));
+import Industries from '../components/Industries';
+import OmnichannelSection from '../components/OmnichannelSection';
+import WhyChooseUs from '../components/WhyChooseUs';
 const Portfolio = lazy(() => import('../components/Portfolio'));
-
 const FAQ = lazy(() => import('../components/FAQ'));
 const ContactSection = lazy(() => import('../components/ContactSection'));
 const ContactModal = lazy(() => import('../components/ContactModal'));
@@ -19,15 +18,15 @@ export default function Home() {
   return (
     <>
       <Helmet htmlAttributes={{ lang: 'en' }}>
-        <title>Enterprise AI, CRM & Automation Solutions | Gyan VaniAi</title>
-        <meta name="description" content="Gyan VaniAi builds AI software, CRM, WhatsApp automation, chatbots and custom business solutions to automate operations, generate leads and scale growth." />
+        <title>Autonomous AI CRM & Revenue Operations | Gyan VaniAi</title>
+        <meta name="description" content="Autonomous AI CRM platform for high-velocity revenue teams. Capture, enrich, qualify, assign and convert leads with intelligent AI-powered workflows." />
         <link rel="canonical" href="https://www.gyanvaniai.online/" />
 
         {/* OpenGraph / Facebook */}
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://www.gyanvaniai.online/" />
-        <meta property="og:title" content="Enterprise AI, CRM & Automation Solutions | Gyan VaniAi" />
-        <meta property="og:description" content="Gyan VaniAi builds AI software, CRM, WhatsApp automation, chatbots and custom business solutions to automate operations, generate leads and scale growth." />
+        <meta property="og:title" content="Autonomous AI CRM & Revenue Operations | Gyan VaniAi" />
+        <meta property="og:description" content="Autonomous AI CRM platform for high-velocity revenue teams. Capture, enrich, qualify, assign and convert leads with intelligent AI-powered workflows." />
         <meta property="og:image" content="https://www.gyanvaniai.online/hero_dashboard.webp" />
         <meta property="og:site_name" content="Gyan VaniAi" />
         <meta property="og:locale" content="en_US" />
@@ -35,11 +34,11 @@ export default function Home() {
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:url" content="https://www.gyanvaniai.online/" />
-        <meta name="twitter:title" content="Enterprise AI, CRM & Automation Solutions | Gyan VaniAi" />
-        <meta name="twitter:description" content="Gyan VaniAi builds AI software, CRM, WhatsApp automation, chatbots and custom business solutions to automate operations, generate leads and scale growth." />
+        <meta name="twitter:title" content="Autonomous AI CRM & Revenue Operations | Gyan VaniAi" />
+        <meta name="twitter:description" content="Autonomous AI CRM platform for high-velocity revenue teams. Capture, enrich, qualify, assign and convert leads with intelligent AI-powered workflows." />
         <meta name="twitter:image" content="https://www.gyanvaniai.online/hero_dashboard.webp" />
 
-        {/* Structured Schema with Global & Regional GEO Targets */}
+        {/* Structured Schema */}
         <script type="application/ld+json">
           {`
             [
@@ -49,7 +48,7 @@ export default function Home() {
                 "@id": "https://www.gyanvaniai.online/#website",
                 "url": "https://www.gyanvaniai.online/",
                 "name": "Gyan VaniAi",
-                "description": "Enterprise AI, CRM, WhatsApp Coexistence and Custom Software Development",
+                "description": "Enterprise AI CRM, Autonomous Revenue Operations, and WhatsApp Coexistence Platform",
                 "publisher": {
                   "@id": "https://www.gyanvaniai.online/#organization"
                 },
@@ -68,75 +67,65 @@ export default function Home() {
                   "height": "512"
                 },
                 "image": "https://www.gyanvaniai.online/hero_dashboard.webp",
-                "description": "Enterprise software development company specializing in AI CRM, WhatsApp Automation & Coexistence, AI Agents, Voice Calling Bots, HRMS, and ERP development.",
+                "description": "Autonomous AI CRM and revenue operations platform with lead scoring, auto-enrichment, intelligent assignment, and WhatsApp Coexistence.",
                 "email": "contact@gyanvaniai.online",
                 "areaServed": ["Europe", "Asia", "Africa", "North America", "Worldwide"],
                 "priceRange": "$$",
                 "sameAs": [
                   "https://www.facebook.com/gyanvaniai/",
                   "https://www.linkedin.com/company/gyan-vaniai"
-                ],
-                "knowsAbout": [
-                  "Artificial Intelligence",
-                  "WhatsApp Coexistence",
-                  "WhatsApp Business Cloud API",
-                  "CRM Development",
-                  "Voice AI Bots",
-                  "Autonomous AI Agents",
-                  "Smart IVR Solutions",
-                  "Retrieval Augmented Generation",
-                  "HRMS Software",
-                  "ERP Software",
-                  "Full Stack Web Development"
-                ],
-                "contactPoint": [
-                  {
-                    "@type": "ContactPoint",
-                    "email": "contact@gyanvaniai.online",
-                    "contactType": "customer service",
-                    "availableLanguage": ["English", "Hindi"]
-                  },
-                  {
-                    "@type": "ContactPoint",
-                    "email": "contact@gyanvaniai.online",
-                    "contactType": "sales",
-                    "availableLanguage": ["English", "Hindi"]
-                  }
                 ]
               }
             ]
           `}
         </script>
       </Helmet>
+
       <div>
+        {/* 1 & 2. Hero Section */}
         <Hero onBookDemo={() => setIsModalOpen(true)} />
+
+        {/* 3. Trust & Integrations Bar */}
+        <TrustBar />
+
+        {/* 4. AI CRM Capabilities */}
         <div data-aos="fade-up">
           <Features onBookDemo={() => setIsModalOpen(true)} />
         </div>
+
+        {/* 5. How It Works (Visual Workflow) */}
+        <div data-aos="fade-up">
+          <Process />
+        </div>
+
+        {/* 6. Industries Grid */}
         <div data-aos="fade-up">
           <Industries />
         </div>
+
+        {/* 7. Omnichannel & AI Agent Section */}
+        <div data-aos="fade-up">
+          <OmnichannelSection onBookDemo={() => setIsModalOpen(true)} />
+        </div>
+
+        {/* 8. Enterprise Security */}
         <div data-aos="fade-up">
           <WhyChooseUs />
         </div>
+
+        {/* 9. Results / Social Proof & Case Studies */}
         <Suspense fallback={<div style={{ minHeight: '300px' }}></div>}>
           <div data-aos="fade-up">
             <Portfolio />
           </div>
-          <div data-aos="fade-up">
-            <Process />
-          </div>
-          <div data-aos="fade-up">
-            <TechStack />
-          </div>
-          <div data-aos="fade-up">
-            <Integrations />
-          </div>
+
           <FAQ />
+
+          {/* 10 & 11. Final CTA & Lead Form */}
           <ContactSection />
         </Suspense>
       </div>
-      
+
       <Suspense fallback={null}>
         <ContactModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
       </Suspense>
