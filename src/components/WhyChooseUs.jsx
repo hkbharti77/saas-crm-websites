@@ -1,5 +1,6 @@
 import React from 'react';
-import { ShieldCheck, Lock, Database, FileText, KeyRound, Server } from 'lucide-react';
+import { ShieldCheck, Lock, Database, FileText, KeyRound, Server, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import './WhyChooseUs.css';
 
 const securityCards = [
@@ -59,6 +60,12 @@ export default function WhyChooseUs() {
               </div>
             </div>
           ))}
+        </div>
+        
+        <div style={{ textAlign: 'center', marginTop: '3rem' }}>
+          <Link to="/security" className="btn btn-outline">
+            Explore Security <ArrowRight size={18} style={{ marginLeft: '8px' }} />
+          </Link>
         </div>
       </div>
     </section>

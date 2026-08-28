@@ -94,7 +94,7 @@ export default function BlogPost() {
         <script type="application/ld+json">{JSON.stringify(schema)}</script>
       </Helmet>
 
-      <article className="section" style={{ paddingTop: '8rem', paddingBottom: '6rem', minHeight: '80vh' }}>
+      <article className="section" style={{ paddingTop: '6rem', paddingBottom: '4rem', minHeight: '80vh' }}>
         <div className="container" style={{ maxWidth: '780px' }}>
           <nav aria-label="Breadcrumb" className="blog-breadcrumb">
             <ol className="breadcrumb-list">

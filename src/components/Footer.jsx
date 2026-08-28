@@ -99,7 +99,7 @@ export default function Footer() {
               <h3 className="link-title">Product</h3>
               <a href="/#capabilities" className="footer-link">Platform</a>
               <Link to="/services/ai-agent-development" className="footer-link">AI Agents</Link>
-              <Link to="/services/crm-development" className="footer-link">Lead Management</Link>
+              <Link to="/services/lead-management" className="footer-link">Lead Management</Link>
               <Link to="/services/whatsapp-coexistence" className="footer-link">WhatsApp Coexistence</Link>
               <Link to="/services/voice-bot-assistant" className="footer-link">Voice AI</Link>
               <button
@@ -112,7 +112,7 @@ export default function Footer() {
             </div>
             <div className="link-group">
               <h3 className="link-title">Solutions</h3>
-              <Link to="/services/crm-development" className="footer-link">Sales Automation</Link>
+              <Link to="/services/sales-automation" className="footer-link">Sales Automation</Link>
               <Link to="/services/ai-chatbots" className="footer-link">Inbound Qualification</Link>
               <Link to="/industries/enterprise" className="footer-link">Enterprise CRM</Link>
               <Link to="/industries/real-estate" className="footer-link">Real Estate</Link>
@@ -123,14 +123,14 @@ export default function Footer() {
               <h3 className="link-title">Company</h3>
               <Link to="/about" className="footer-link">About Us</Link>
               <a href="/#contact" className="footer-link">Contact</a>
-              <a href="/#security" className="footer-link">Security</a>
+              <Link to="/security" className="footer-link">Security</Link>
               <Link to="/privacy" className="footer-link">Privacy Policy</Link>
               <Link to="/terms" className="footer-link">Terms & Conditions</Link>
             </div>
             <div className="link-group">
               <h3 className="link-title">Resources</h3>
               <Link to="/blog" className="footer-link">Blog & Insights</Link>
-              <Link to="/services/ai-development" className="footer-link">Documentation</Link>
+              <Link to="/documentation" className="footer-link">Documentation</Link>
               <a href="/#how-it-works" className="footer-link">How It Works</a>
               <a href="/#results" className="footer-link">Case Studies</a>
               <a href="mailto:contact@gyanvaniai.online" className="footer-link">Support</a>

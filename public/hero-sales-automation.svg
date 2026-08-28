@@ -1,0 +1,148 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 750" width="100%" height="100%">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b1329"/>
+      <stop offset="50%" stop-color="#0d1b38"/>
+      <stop offset="100%" stop-color="#070c1a"/>
+    </linearGradient>
+    <linearGradient id="primaryGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0ea5e9"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#0f172a" stop-opacity="0.95"/>
+    </linearGradient>
+    <linearGradient id="accentGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#34d399"/>
+    </linearGradient>
+    <linearGradient id="metricGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e3a8a" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#0f172a" stop-opacity="0.8"/>
+    </linearGradient>
+    <filter id="dropShadow" x="-10%" y="-10%" width="120%" height="125%">
+      <feDropShadow dx="0" dy="16" stdDeviation="24" flood-color="#000000" flood-opacity="0.6"/>
+    </filter>
+    <filter id="cardGlow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="12" flood-color="#0ea5e9" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+
+  <!-- Background Base Window -->
+  <rect x="20" y="20" width="960" height="710" rx="20" fill="url(#bgGrad)" stroke="#1e293b" stroke-width="2" filter="url(#dropShadow)"/>
+
+  <!-- Window Header Bar -->
+  <path d="M 20 40 Q 20 20 40 20 L 960 20 Q 980 20 980 40 L 980 75 L 20 75 Z" fill="#0f172a" stroke="#1e293b" stroke-width="1"/>
+  <circle cx="50" cy="48" r="6" fill="#ef4444"/>
+  <circle cx="70" cy="48" r="6" fill="#f59e0b"/>
+  <circle cx="90" cy="48" r="6" fill="#10b981"/>
+  <text x="120" y="53" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="600">Gyan VaniAi · Autonomous Sales &amp; Revenue Automation</text>
+  
+  <!-- Live Signal Pill -->
+  <rect x="790" y="38" width="165" height="26" rx="13" fill="#064e3b" stroke="#059669" stroke-width="1"/>
+  <circle cx="806" cy="51" r="4" fill="#34d399"/>
+  <text x="818" y="55" fill="#a7f3d0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700">● 148 ACTIVE FLOWS</text>
+
+  <!-- Metric Panels (Top 3 Cards) -->
+  <g transform="translate(50, 95)">
+    <!-- Metric 1 -->
+    <rect x="0" y="0" width="280" height="90" rx="12" fill="url(#metricGrad1)" stroke="#334155" stroke-width="1"/>
+    <text x="18" y="28" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="600" letter-spacing="0.5">PIPELINE VELOCITY</text>
+    <text x="18" y="62" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="28" font-weight="800">+38.4%</text>
+    <rect x="180" y="42" width="85" height="24" rx="12" fill="#065f46"/>
+    <text x="192" y="58" fill="#34d399" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700">↑ Accelerated</text>
+
+    <!-- Metric 2 -->
+    <rect x="310" y="0" width="280" height="90" rx="12" fill="url(#metricGrad1)" stroke="#334155" stroke-width="1"/>
+    <text x="328" y="28" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="600" letter-spacing="0.5">AVG RESPONSE TIME</text>
+    <text x="328" y="62" fill="#38bdf8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="28" font-weight="800">4.2s</text>
+    <rect x="490" y="42" width="85" height="24" rx="12" fill="#0c4a6e"/>
+    <text x="502" y="58" fill="#38bdf8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700">Sub-Second</text>
+
+    <!-- Metric 3 -->
+    <rect x="620" y="0" width="280" height="90" rx="12" fill="url(#metricGrad1)" stroke="#334155" stroke-width="1"/>
+    <text x="638" y="28" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="600" letter-spacing="0.5">QUALIFICATION RATE</text>
+    <text x="638" y="62" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="28" font-weight="800">89.2%</text>
+    <rect x="800" y="42" width="85" height="24" rx="12" fill="#065f46"/>
+    <text x="812" y="58" fill="#34d399" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700">High Intent</text>
+  </g>
+
+  <!-- Live In-Flight Opportunity Card (Main Centerpiece) -->
+  <g transform="translate(50, 205)">
+    <rect x="0" y="0" width="900" height="275" rx="16" fill="url(#cardGrad)" stroke="#0ea5e9" stroke-width="1.5" filter="url(#cardGlow)"/>
+    
+    <!-- Header of Lead Card -->
+    <rect x="25" y="25" width="48" height="48" rx="12" fill="url(#primaryGrad)"/>
+    <text x="49" y="56" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="20" font-weight="800" text-anchor="middle">AC</text>
+    
+    <text x="88" y="45" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="18" font-weight="750">Acme Enterprise Systems · Inbound Inflight Lead</text>
+    <text x="88" y="65" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13">CTO · 250+ Employees · $120,000 Estimated ARR · High Velocity Lead</text>
+
+    <!-- Score Badge -->
+    <rect x="710" y="28" width="165" height="38" rx="19" fill="#064e3b" stroke="#10b981" stroke-width="1.5"/>
+    <text x="792" y="52" fill="#34d399" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="800" text-anchor="middle">SCORE: 96 / 100</text>
+
+    <!-- 4 Stage Revenue Pipeline Progression Bar -->
+    <g transform="translate(25, 95)">
+      <!-- Stage 1: Capture -->
+      <rect x="0" y="0" width="200" height="42" rx="8" fill="#065f46" stroke="#10b981" stroke-width="1"/>
+      <text x="18" y="26" fill="#a7f3d0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700">✓ 01 Inbound Capture</text>
+
+      <!-- Stage 2: Enrich & Qualify -->
+      <rect x="215" y="0" width="200" height="42" rx="8" fill="#065f46" stroke="#10b981" stroke-width="1"/>
+      <text x="233" y="26" fill="#a7f3d0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700">✓ 02 AI Enriched</text>
+
+      <!-- Stage 3: SDR Assigned -->
+      <rect x="430" y="0" width="200" height="42" rx="8" fill="url(#primaryGrad)"/>
+      <text x="448" y="26" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700">⚡ 03 Auto-Assigned</text>
+
+      <!-- Stage 4: Conversion -->
+      <rect x="645" y="0" width="205" height="42" rx="8" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+      <text x="663" y="26" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="600">04 Demo Booked</text>
+    </g>
+
+    <!-- Meta Details Grid -->
+    <g transform="translate(25, 160)">
+      <rect x="0" y="0" width="265" height="85" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+      <text x="16" y="28" fill="#64748b" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700">ENRICHMENT SOURCES</text>
+      <text x="16" y="52" fill="#e2e8f0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="600">Clearbit, LinkedIn, GitHub</text>
+      <text x="16" y="72" fill="#38bdf8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12">14 Verified Data Points</text>
+
+      <rect x="285" y="0" width="275" height="85" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+      <text x="301" y="28" fill="#64748b" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700">ASSIGNED REVENUE SDR</text>
+      <text x="301" y="52" fill="#e2e8f0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="600">Sarah Jenkins (Enterprise Lead)</text>
+      <text x="301" y="72" fill="#34d399" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12">Round-Robin SLA: &lt; 2 min</text>
+
+      <rect x="580" y="0" width="270" height="85" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+      <text x="596" y="28" fill="#64748b" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700">AUTOMATED OUTREACH</text>
+      <text x="596" y="52" fill="#e2e8f0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="600">WhatsApp &amp; Email Sequence #4</text>
+      <text x="596" y="72" fill="#a7f3d0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12">Personalized Context Injected</text>
+    </g>
+  </g>
+
+  <!-- Live Automated Event Stream (Bottom Feed) -->
+  <g transform="translate(50, 500)">
+    <rect x="0" y="0" width="900" height="195" rx="14" fill="#0f172a" stroke="#1e293b" stroke-width="1"/>
+    <text x="25" y="32" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" letter-spacing="0.5">REAL-TIME AUTOMATION EVENT STREAM</text>
+    
+    <!-- Event 1 -->
+    <rect x="25" y="48" width="850" height="38" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+    <circle cx="45" cy="67" r="4" fill="#38bdf8"/>
+    <text x="65" y="71" fill="#f1f5f9" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="500">Lead enriched via Clearbit: $120k ARR pipeline potential flagged</text>
+    <text x="820" y="71" fill="#64748b" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12">14:02:18</text>
+
+    <!-- Event 2 -->
+    <rect x="25" y="94" width="850" height="38" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+    <circle cx="45" cy="113" r="4" fill="#34d399"/>
+    <text x="65" y="117" fill="#f1f5f9" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="500">Skill-based routing matched Enterprise Tier SDR (Sarah Jenkins)</text>
+    <text x="820" y="117" fill="#64748b" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12">14:02:22</text>
+
+    <!-- Event 3 -->
+    <rect x="25" y="140" width="850" height="38" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+    <circle cx="45" cy="159" r="4" fill="#10b981"/>
+    <text x="65" y="163" fill="#f1f5f9" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="500">Personalized WhatsApp follow-up sequence triggered (Template #7)</text>
+    <text x="820" y="163" fill="#64748b" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12">14:02:25</text>
+  </g>
+</svg>

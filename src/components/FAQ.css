@@ -40,21 +40,21 @@
   border: 1px solid var(--border-color);
   border-radius: var(--radius-md, 14px);
   overflow: hidden;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
   transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
   color: var(--text-primary);
 }
 
 .faq-item:hover {
   border-color: color-mix(in srgb, var(--primary-color) 40%, var(--border-color));
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   transform: translateY(-1px);
 }
 
 .faq-item.open {
   border-color: color-mix(in srgb, var(--primary-color) 50%, var(--border-color));
-  background: color-mix(in srgb, var(--primary-color) 4%, var(--bg-card));
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  background: color-mix(in srgb, var(--primary-color) 6%, var(--bg-card));
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .faq-question-btn {
@@ -80,8 +80,8 @@
 .faq-question-title {
   margin: 0;
   font-family: var(--font-sans);
-  font-weight: 700;
-  font-size: 1.125rem; /* ~18px */
+  font-weight: 650;
+  font-size: 1.05rem; /* ~17px */
   color: var(--text-primary);
   letter-spacing: -0.015em;
   line-height: 1.4;

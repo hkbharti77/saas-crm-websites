@@ -13,13 +13,17 @@ const TermsConditions = lazy(() => import('./pages/TermsConditions'));
 const Blog = lazy(() => import('./pages/Blog'));
 const BlogPost = lazy(() => import('./pages/BlogPost'));
 const SEOLandingPage = lazy(() => import('./pages/SEOLandingPage'));
+const Documentation = lazy(() => import('./pages/Documentation'));
 const WhatsAppCoexistencePage = lazy(() => import('./pages/WhatsAppCoexistencePage'));
+const SalesAutomationPage = lazy(() => import('./pages/SalesAutomationPage'));
+const AIChatbotsPage = lazy(() => import('./pages/AIChatbotsPage'));
 const AdminLogin = lazy(() => import('./pages/admin/AdminLogin'));
 const AdminDashboard = lazy(() => import('./pages/admin/AdminDashboard'));
 const AdminCreatePost = lazy(() => import('./pages/admin/AdminCreatePost'));
 const AdminEditPost = lazy(() => import('./pages/admin/AdminEditPost'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 const About = lazy(() => import('./pages/About'));
+const Security = lazy(() => import('./pages/Security'));
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import './App.css';
@@ -148,11 +152,15 @@ function App() {
                 <Route path="/blog" element={<Blog />} />
                 <Route path="/blog/:id" element={<BlogPost />} />
                 <Route path="/services/whatsapp-coexistence" element={<WhatsAppCoexistencePage />} />
+                <Route path="/services/sales-automation" element={<SalesAutomationPage />} />
+                <Route path="/services/ai-chatbots" element={<AIChatbotsPage />} />
+                <Route path="/documentation" element={<Documentation />} />
                 <Route path="/services/:serviceId" element={<SEOLandingPage />} />
                 <Route path="/industries/:industryId" element={<SEOLandingPage />} />
                 <Route path="/privacy" element={<PolicyPage />} />
                 <Route path="/terms" element={<TermsConditions />} />
                 <Route path="/about" element={<About />} />
+                <Route path="/security" element={<Security />} />
 
                 <Route path="/admin/login" element={<AdminLogin />} />
                 <Route path="/admin/dashboard" element={<AdminDashboard />} />

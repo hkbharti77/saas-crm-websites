@@ -16,6 +16,8 @@ const routes = [
   '/privacy',
   '/terms',
   '/services/whatsapp-coexistence',
+  '/services/sales-automation',
+  '/services/lead-management',
   '/services/crm-development',
   '/services/ai-chatbots',
   '/services/whatsapp-automation',

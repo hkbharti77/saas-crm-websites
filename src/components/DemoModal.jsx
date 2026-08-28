@@ -101,6 +101,9 @@ export default function DemoModal({ isOpen, onClose }) {
           </label>
 
           <div className="demo-modal-actions">
+            {!agreed && (
+              <span className="demo-consent-helper">Accept the demo data policy to continue.</span>
+            )}
             <button
               className={`btn btn-primary demo-launch-btn ${!agreed ? 'disabled' : ''}`}
               onClick={handleLaunch}

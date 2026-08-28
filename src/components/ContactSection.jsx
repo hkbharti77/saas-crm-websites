@@ -12,7 +12,14 @@ const WhatsAppIcon = ({ size = 18, color = "currentColor" }) => (
   </svg>
 );
 
-export default function ContactSection() {
+export default function ContactSection({ 
+  eyebrow = "Get in Touch",
+  title = "Ready to transform your revenue operations?", 
+  subtitle = "See how AI can automate your lead management, qualification, enrichment and customer conversations.",
+  checklist = null,
+  ctaImage = null,
+  ctaImageAlt = "AI Agent Solution Architecture"
+}) {
   const [phone, setPhone] = useState();
   const [values, setValues] = useState({ name: '', email: '', company: '', message: '' });
 
@@ -106,31 +113,39 @@ export default function ContactSection() {
           {/* Left Column: Heading, Description, Benefits, Direct Channels */}
           <div className="contact-info premium-card">
             <div>
-              <span className="section-eyebrow" style={{ textAlign: 'left', margin: '0 0 0.4rem 0' }}>Get in Touch</span>
-              <h2 className="contact-main-heading">Ready to transform your revenue operations?</h2>
+              <span className="section-eyebrow" style={{ textAlign: 'left', margin: '0 0 0.4rem 0' }}>{eyebrow}</span>
+              <h2 className="contact-main-heading">{title}</h2>
               <p className="contact-main-desc">
-                See how AI can automate your lead management, qualification, enrichment and customer conversations.
+                {subtitle}
               </p>
 
               {/* Core Value Checklist */}
               <div className="contact-checklist">
-                <div className="contact-check-item">
-                  <CheckCircle2 size={18} className="contact-check-icon" />
-                  <span>AI Lead Enrichment & Scoring</span>
-                </div>
-                <div className="contact-check-item">
-                  <CheckCircle2 size={18} className="contact-check-icon" />
-                  <span>Intelligent Skill-Based Assignment</span>
-                </div>
-                <div className="contact-check-item">
-                  <CheckCircle2 size={18} className="contact-check-icon" />
-                  <span>24/7 Autonomous AI Sales Agent</span>
-                </div>
-                <div className="contact-check-item">
-                  <CheckCircle2 size={18} className="contact-check-icon" />
-                  <span>Omnichannel Communication Hub</span>
-                </div>
+                {(checklist || [
+                  'AI Lead Enrichment & Scoring',
+                  'Intelligent Skill-Based Assignment',
+                  '24/7 Autonomous AI Sales Agent',
+                  'Omnichannel Communication Hub'
+                ]).map((item, idx) => (
+                  <div key={idx} className="contact-check-item">
+                    <CheckCircle2 size={18} className="contact-check-icon" />
+                    <span>{item}</span>
+                  </div>
+                ))}
               </div>
+
+              {ctaImage && (
+                <div className="seo-diagram-card" style={{ marginBottom: '1.25rem' }}>
+                  <img 
+                    src={ctaImage} 
+                    alt={ctaImageAlt} 
+                    width="540" 
+                    height="405" 
+                    style={{ width: '100%', height: 'auto', display: 'block', objectFit: 'cover' }} 
+                    loading="lazy" 
+                  />
+                </div>
+              )}
             </div>
 
             <div className="contact-direct-channels">

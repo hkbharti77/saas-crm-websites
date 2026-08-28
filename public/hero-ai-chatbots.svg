@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 750" width="100%" height="100%">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="chatBgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#091428"/>
+      <stop offset="50%" stop-color="#0a1e36"/>
+      <stop offset="100%" stop-color="#060c18"/>
+    </linearGradient>
+    <linearGradient id="userMsgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0284c7"/>
+      <stop offset="100%" stop-color="#0ea5e9"/>
+    </linearGradient>
+    <linearGradient id="aiCardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#0f172a" stop-opacity="0.98"/>
+    </linearGradient>
+    <linearGradient id="toolCardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f2b3e"/>
+      <stop offset="100%" stop-color="#071926"/>
+    </linearGradient>
+    <filter id="chatShadow" x="-10%" y="-10%" width="120%" height="125%">
+      <feDropShadow dx="0" dy="16" stdDeviation="24" flood-color="#000000" flood-opacity="0.65"/>
+    </filter>
+    <filter id="glowCyan" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="12" flood-color="#38bdf8" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <!-- Base App Window -->
+  <rect x="20" y="20" width="960" height="710" rx="20" fill="url(#chatBgGrad)" stroke="#1e293b" stroke-width="2" filter="url(#chatShadow)"/>
+
+  <!-- Window Header Bar -->
+  <path d="M 20 40 Q 20 20 40 20 L 960 20 Q 980 20 980 40 L 980 75 L 20 75 Z" fill="#0f172a" stroke="#1e293b" stroke-width="1"/>
+  <circle cx="50" cy="48" r="6" fill="#ef4444"/>
+  <circle cx="70" cy="48" r="6" fill="#f59e0b"/>
+  <circle cx="90" cy="48" r="6" fill="#10b981"/>
+  <text x="120" y="53" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="600">Gyan VaniAi · Enterprise AI Chatbot &amp; Autonomous RAG Assistant</text>
+  
+  <!-- Active RAG Pill -->
+  <rect x="780" y="38" width="175" height="26" rx="13" fill="#0c4a6e" stroke="#0284c7" stroke-width="1"/>
+  <circle cx="796" cy="51" r="4" fill="#38bdf8"/>
+  <text x="808" y="55" fill="#bae6fd" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700">⚡ RAG &amp; TOOLS ACTIVE</text>
+
+  <!-- Top Real-time Metrics (3 Stat Chips) -->
+  <g transform="translate(50, 95)">
+    <rect x="0" y="0" width="280" height="80" rx="12" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+    <text x="20" y="28" fill="#64748b" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700">RESPONSE LATENCY</text>
+    <text x="20" y="58" fill="#38bdf8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="24" font-weight="800">180ms <tspan fill="#34d399" font-size="12" font-weight="600">Sub-Second</tspan></text>
+
+    <rect x="310" y="0" width="280" height="80" rx="12" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+    <text x="330" y="28" fill="#64748b" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700">FIRST-CONTACT RESOLUTION</text>
+    <text x="330" y="58" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="24" font-weight="800">94.8% <tspan fill="#34d399" font-size="12" font-weight="600">Autonomous</tspan></text>
+
+    <rect x="620" y="0" width="280" height="80" rx="12" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+    <text x="640" y="28" fill="#64748b" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700">ACCURACY &amp; GUARDRAILS</text>
+    <text x="640" y="58" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="24" font-weight="800">100% <tspan fill="#38bdf8" font-size="12" font-weight="600">Zero Hallucination</tspan></text>
+  </g>
+
+  <!-- Live Chat Interface (Center Container) -->
+  <g transform="translate(50, 195)">
+    <!-- User Message Bubble (Right Aligned) -->
+    <g transform="translate(180, 0)">
+      <rect x="0" y="0" width="720" height="65" rx="14" fill="url(#userMsgGrad)" stroke="#38bdf8" stroke-width="1"/>
+      <text x="24" y="32" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="600">Can you check enterprise plan pricing and book a 15-min discovery demo with your</text>
+      <text x="24" y="52" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="600">solutions team for tomorrow afternoon?</text>
+    </g>
+
+    <!-- AI Response Bubble (Left Aligned) -->
+    <g transform="translate(0, 85)">
+      <rect x="0" y="0" width="800" height="155" rx="16" fill="url(#aiCardGrad)" stroke="#0284c7" stroke-width="1.5" filter="url(#glowCyan)"/>
+      
+      <!-- RAG Ingestion Badge -->
+      <rect x="25" y="20" width="275" height="26" rx="13" fill="#0c4a6e" stroke="#38bdf8" stroke-width="1"/>
+      <text x="38" y="37" fill="#38bdf8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700">⚡ Grounded in Enterprise Policy KB v3.2</text>
+
+      <text x="25" y="72" fill="#e2e8f0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="500">Our Enterprise tier includes custom multi-team workflows, dedicated SLA, and unlimited RAG</text>
+      <text x="25" y="94" fill="#e2e8f0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="500">knowledge queries. I found an opening with our Solutions Architect tomorrow at 2:00 PM EST.</text>
+      <text x="25" y="125" fill="#38bdf8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700">✓ I have held the calendar slot and synced your requirements with our CRM.</text>
+    </g>
+
+    <!-- Autonomous Tool Action & Event Execution Card -->
+    <g transform="translate(0, 260)">
+      <rect x="0" y="0" width="900" height="235" rx="14" fill="url(#toolCardGrad)" stroke="#0ea5e9" stroke-width="1.5"/>
+      
+      <text x="25" y="32" fill="#38bdf8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="800" letter-spacing="0.5">AUTONOMOUS TOOL &amp; API EXECUTION SUMMARY</text>
+      <rect x="760" y="16" width="115" height="24" rx="12" fill="#065f46"/>
+      <text x="774" y="32" fill="#34d399" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700">✓ 3 Actions Exec</text>
+
+      <!-- Action 1 -->
+      <rect x="25" y="48" width="850" height="52" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+      <circle cx="48" cy="74" r="8" fill="#0284c7"/>
+      <text x="48" y="78" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="800" text-anchor="middle">📅</text>
+      <text x="72" y="68" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700">Google Calendar Hold Placed</text>
+      <text x="72" y="87" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12">Reserved: Tomorrow at 2:00 PM EST with Solutions Team (Invite sent to prospect)</text>
+      <text x="780" y="78" fill="#34d399" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700">SUCCESS</text>
+
+      <!-- Action 2 -->
+      <rect x="25" y="108" width="850" height="52" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+      <circle cx="48" cy="134" r="8" fill="#059669"/>
+      <text x="48" y="138" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="800" text-anchor="middle">📁</text>
+      <text x="72" y="128" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700">CRM Lead &amp; Deal Stage Updated</text>
+      <text x="72" y="147" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12">Stage: Demo Scheduled · Value: $36,000 ARR · Intent Score: 94/100</text>
+      <text x="780" y="138" fill="#34d399" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700">SYNCED</text>
+
+      <!-- Action 3 -->
+      <rect x="25" y="168" width="850" height="52" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+      <circle cx="48" cy="194" r="8" fill="#d97706"/>
+      <text x="48" y="198" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="800" text-anchor="middle">👥</text>
+      <text x="72" y="188" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700">Human Representative Context Brief Created</text>
+      <text x="72" y="207" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12">Full conversation summary, prospect tech stack, and pain points attached for rep</text>
+      <text x="780" y="198" fill="#f59e0b" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700">READY</text>
+    </g>
+  </g>
+</svg>

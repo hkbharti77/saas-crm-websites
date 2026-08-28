@@ -82,28 +82,28 @@ export default function TermsConditions() {
         <aside className="legal-sidebar">
           <h4 className="h4" style={{ marginBottom: '1.5rem' }}>Table of Contents</h4>
           <a href="#agreement" className={`legal-nav-link ${activeSection === 'agreement' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('agreement'); }}>1. Agreement to Terms</a>
-          <a href="#messaging" className={`legal-nav-link ${activeSection === 'messaging' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('messaging'); }}>2. Messaging Opt-in Rules</a>
-          <a href="#cookie-processing" className={`legal-nav-link ${activeSection === 'cookie-processing' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('cookie-processing'); }}>3. Cookie &amp; Consent Data</a>
+          <a href="#messaging" className={`legal-nav-link ${activeSection === 'messaging' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('messaging'); }}>2. Messaging Opt-in &amp; Compliance</a>
+          <a href="#cookie-processing" className={`legal-nav-link ${activeSection === 'cookie-processing' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('cookie-processing'); }}>3. Cookie Consent Data Processing</a>
           <a href="#usage" className={`legal-nav-link ${activeSection === 'usage' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('usage'); }}>4. Platform Usage</a>
           <a href="#liability" className={`legal-nav-link ${activeSection === 'liability' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('liability'); }}>5. Limitation of Liability</a>
-          <a href="#demo-policy" className={`legal-nav-link ${activeSection === 'demo-policy' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('demo-policy'); }}>6. 7-Day Demo &amp; Data Purge</a>
-          <a href="#deletion" className={`legal-nav-link ${activeSection === 'deletion' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('deletion'); }}>7. Data Deletion</a>
+          <a href="#demo-policy" className={`legal-nav-link ${activeSection === 'demo-policy' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('demo-policy'); }}>6. Live Demo Platform &amp; 7-Day Data Retention Policy</a>
+          <a href="#deletion" className={`legal-nav-link ${activeSection === 'deletion' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('deletion'); }}>7. User Data Deletion</a>
         </aside>
         
         <div className="legal-content glass-panel" style={{ padding: '3rem', borderRadius: 'var(--radius-lg)' }}>
           <section id="agreement" className="legal-section">
-            <h2 className="h2">1. Agreement to Terms 🤝</h2>
+            <h2 className="h2">1. Agreement to Terms</h2>
             <p className="text-muted">By accessing our website and utilizing our AI platforms (including CRMLite and AI Stock Kundli), you agree to be bound by these Terms and Conditions. If you disagree with any part of the terms, please do not use our services.</p>
           </section>
 
           <section id="messaging" className="legal-section">
-            <h2 className="h2">2. Messaging Opt-in &amp; Compliance 💬</h2>
+            <h2 className="h2">2. Messaging Opt-in &amp; Compliance</h2>
             <p className="text-muted">Gyan VaniAi utilizes WhatsApp and SMS automation to deliver core services. By opting in via our forms, you agree to receive automated interactions.</p>
             <p className="text-muted">You acknowledge that you are the authorized user of the phone number provided. We do not tolerate spam; if you use our CRM tools to automate messaging to your own clients, you are strictly responsible for ensuring you have obtained explicit opt-in consent from your end-users in accordance with WhatsApp Business API policies and local telecommunication laws.</p>
           </section>
 
           <section id="cookie-processing" className="legal-section">
-            <h2 className="h2">3. Cookie Consent Data Processing 🍪</h2>
+            <h2 className="h2">3. Cookie Consent Data Processing</h2>
             <p className="text-muted">By using this website and interacting with our cookie consent banner, you acknowledge and agree to the following:</p>
             <ul className="text-muted" style={{ paddingLeft: '1.5rem', margin: '1rem 0', display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
               <li><strong>Consent Audit Logging:</strong> When you click any option on the cookie consent banner (Accept All, Reject All, Essential Only, or Save Preferences), we record your decision alongside your public IP address, approximate geographic location (city, region, country), browser type, language, the page URL, and a timestamp. This is strictly for legal compliance purposes.</li>
@@ -116,18 +116,19 @@ export default function TermsConditions() {
           </section>
 
           <section id="usage" className="legal-section">
-            <h2 className="h2">4. Platform Usage 🚀</h2>
+            <h2 className="h2">4. Platform Usage</h2>
             <p className="text-muted">Our Enterprise AI and WhatsApp automation services must be used for lawful purposes only. You are strictly prohibited from utilizing our API endpoints or RAG pipelines to generate or distribute illicit, harmful, or spam content.</p>
             <p className="text-muted">All software, designs, algorithms, and logic developed by Gyan VaniAi remain our intellectual property unless explicitly transferred in a separate enterprise agreement.</p>
           </section>
 
           <section id="liability" className="legal-section">
-            <h2 className="h2">5. Limitation of Liability ⚖️</h2>
+            <h2 className="h2">5. Limitation of Liability</h2>
             <p className="text-muted">While our AI agents are highly optimized, Gyan VaniAi does not guarantee 100% uptime or completely error-free AI generations. We shall not be held liable for any indirect, incidental, or consequential business damages arising from the use of our software or platforms.</p>
           </section>
 
           <section id="demo-policy" className="legal-section">
-            <h2 className="h2">6. Live Demo Platform &amp; 7-Day Data Retention Policy (connect.gyanvaniai.online) ⏳</h2>
+            <h2 className="h2">6. Live Demo Platform &amp; 7-Day Data Retention Policy</h2>
+            <a href="https://connect.gyanvaniai.online" target="_blank" rel="noopener noreferrer" className="text-muted" style={{ display: 'inline-block', marginBottom: '1.25rem', marginTop: '-0.75rem', fontSize: '0.9rem' }}>connect.gyanvaniai.online</a>
             <p className="text-muted">Gyan VaniAi provides access to a live software demo environment hosted at <a href="https://connect.gyanvaniai.online/" target="_blank" rel="noopener noreferrer">https://connect.gyanvaniai.online/</a>. By creating a demo account or utilizing this environment, you agree to the following Demo Data Retention Policy:</p>
             <ul className="text-muted" style={{ paddingLeft: '1.5rem', margin: '1rem 0', display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
               <li><strong>7-Day Evaluation Period:</strong> Your demo account is provided for evaluation and testing purposes. The 7-day evaluation period begins when your demo account is created.</li>
@@ -138,7 +139,7 @@ export default function TermsConditions() {
           </section>
 
           <section id="deletion" className="legal-section">
-            <h2 className="h2">7. User Data Deletion 🗑️</h2>
+            <h2 className="h2">7. User Data Deletion</h2>
             <p className="text-muted">In accordance with our Privacy Policy, users have the right to request the deletion of their personal data. By requesting data deletion, you acknowledge that access to certain services, accounts, and historical data will be permanently revoked.</p>
           </section>
         </div>

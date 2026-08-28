@@ -1,0 +1,126 @@
+.docs-page {
+  background: var(--bg-base);
+  min-height: 100vh;
+  padding-top: 2rem;
+}
+
+.docs-hero {
+  text-align: center;
+  padding: 4rem 1.5rem 3rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.docs-hero h1 {
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 1.25rem;
+  letter-spacing: -0.03em;
+}
+
+.docs-subtitle {
+  font-size: 1.15rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.docs-content-section {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1.5rem 6rem;
+}
+
+.docs-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+@media (max-width: 1024px) {
+  .docs-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.doc-category-card {
+  background: var(--bg-card, var(--glass-bg));
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg, 16px);
+  padding: 2rem;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+}
+
+.doc-category-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.doc-icon {
+  width: 28px;
+  height: 28px;
+  color: var(--primary-color);
+}
+
+.doc-category-header h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.doc-items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.doc-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  border-radius: var(--radius-md, 10px);
+  background: color-mix(in srgb, var(--bg-base) 50%, transparent);
+  border: 1px solid transparent;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.doc-item:hover {
+  background: color-mix(in srgb, var(--primary-color) 4%, transparent);
+  border-color: color-mix(in srgb, var(--primary-color) 15%, transparent);
+  transform: translateX(4px);
+}
+
+.doc-item-content h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 0.25rem 0;
+}
+
+.doc-item-content p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.doc-item-arrow {
+  width: 20px;
+  height: 20px;
+  color: var(--text-muted);
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.doc-item:hover .doc-item-arrow {
+  color: var(--primary-color);
+  transform: translateX(2px);
+}

@@ -17,6 +17,8 @@ import PolicyPage from './pages/PolicyPage';
 import TermsConditions from './pages/TermsConditions';
 import SEOLandingPage from './pages/SEOLandingPage';
 import WhatsAppCoexistencePage from './pages/WhatsAppCoexistencePage';
+import SalesAutomationPage from './pages/SalesAutomationPage';
+import AIChatbotsPage from './pages/AIChatbotsPage';
 import AdminLogin from './pages/admin/AdminLogin';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import AdminCreatePost from './pages/admin/AdminCreatePost';
@@ -35,6 +37,8 @@ function ServerApp() {
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:id" element={<BlogPost />} />
             <Route path="/services/whatsapp-coexistence" element={<WhatsAppCoexistencePage />} />
+            <Route path="/services/sales-automation" element={<SalesAutomationPage />} />
+            <Route path="/services/ai-chatbots" element={<AIChatbotsPage />} />
             <Route path="/services/:serviceId" element={<SEOLandingPage />} />
             <Route path="/industries/:industryId" element={<SEOLandingPage />} />
             <Route path="/privacy" element={<PolicyPage />} />

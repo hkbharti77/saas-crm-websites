@@ -1,10 +1,13 @@
 import React, { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { ArrowRight, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, CheckCircle2, X, Check, Inbox, Filter, Star, UserCheck, Mail, Trophy, PhoneCall, Mic, BrainCircuit, Bot, Calendar, Headset, Database, Building2, ShieldCheck, Zap, Layers, BarChart3, Users } from 'lucide-react';
 import ContactSection from '../components/ContactSection';
 import FAQ from '../components/FAQ';
 import Process from '../components/Process';
+import VoiceAIEngineArchitecture from '../components/VoiceAIEngineArchitecture';
+import SalesAutomationPage from './SalesAutomationPage';
+import AIChatbotsPage from './AIChatbotsPage';
 import NotFound from './NotFound';
 
 const SITE = 'https://www.gyanvaniai.online';
@@ -36,20 +39,63 @@ const seoDataMap = {
     metaDescription: 'Deploy autonomous AI agents for sales, support, and operations. Multi-agent systems with RAG, tool use, and CRM/WhatsApp integration by Gyan VaniAi.',
     h1: 'Custom AI Agent Development',
     subtitle: 'Deploy intelligent AI agents that handle sales, support, and operations autonomously, with human oversight when it matters.',
-    overview: 'Gyan VaniAi develops custom AI agents that execute multi-step business tasks: qualifying leads, answering from your knowledge base, updating CRM records, and escalating to humans with full context. Our agents use RAG, tool calling, and workflow orchestration so they act on your systems, not just chat.',
-    whoFor: 'Teams drowning in repetitive support tickets, lead follow-ups, or internal ops tasks who want autonomous agents without sacrificing brand voice or data control.',
-    deliverables: ['Single & multi-agent architectures', 'Tool/API calling agents', 'CRM & WhatsApp-connected agents', 'Escalation & audit trails', 'Latency-optimized RAG retrieval'],
-    benefits: ['Multi-Agent Systems', 'Workflow Automation', 'Natural Language Processing', 'Cost Reduction'],
-    image: '/portfolio_ai.webp',
-    imageAlt: 'AI agent development workflow by Gyan VaniAi',
+    overview: 'Build AI agents that understand business context, use connected tools, and automate repetitive workflows.',
+    whoFor: 'Growing businesses • Operations teams • Sales teams • Customer support teams',
+    deliverables: ['AI agent architecture', 'Workflow automation', 'Knowledge/RAG integration', 'API and tool integrations', 'Human handoff'],
+    benefits: ['Multi-Agent Systems', 'Workflow Automation', 'Natural Language Processing', 'Custom Integrations'],
+    image: '/ai-agent-hero.webp',
+    imageAlt: 'Autonomous AI Agent Orchestration Platform by Gyan VaniAi',
+    capabilitiesVisual: '/ai-agent-capabilities.webp',
+    vsChatbotVisual: '/ai-agent-vs-chatbot.webp',
+    workflowVisual: '/ai-agent-workflow.webp',
+    ctaVisual: '/ai-agent-cta.webp',
     relatedLinks: [
-      { url: '/services/ai-development', text: 'AI Software Development' },
-      { url: '/services/whatsapp-coexistence', text: 'WhatsApp Coexistence Agents' }
+      { url: '/services/crm-development', text: 'CRM Development', icon: '/service-crm-development.webp' },
+      { url: '/services/whatsapp-coexistence', text: 'WhatsApp Coexistence', icon: '/service-whatsapp-coexistence.webp' },
+      { url: '/services/voice-bot-assistant', text: 'Voice AI', icon: '/service-voice-ai.webp' },
+      { url: '/services/ai-chatbots', text: 'AI Chatbot Development', icon: '/service-ai-chatbot.webp' }
     ],
-    faqs: [
-      { q: 'What is an AI agent vs a chatbot?', a: 'A chatbot mainly answers questions. An AI agent can plan steps, call tools/APIs, update records, and complete workflows end-to-end with escalation rules.' },
-      { q: 'Can AI agents connect to our CRM?', a: 'Yes. We connect agents to custom CRMs, WhatsApp Business API, and third-party systems so they can read/write leads, tickets, and customer history.' }
-    ]
+    capabilities: [
+      { title: 'Autonomous Reasoning', desc: 'Agents can break down complex tasks into sequential steps and execute them dynamically.' },
+      { title: 'Workflow Automation', desc: 'Trigger actions across your CRM, email, and messaging platforms without human input.' },
+      { title: 'Natural Language Processing', desc: 'Understand intent, extract entities, and summarize unstructured data accurately.' },
+      { title: 'Tool & API Integration', desc: 'Connect to external APIs, databases, and business tools to read/write real-time data.' },
+      { title: 'Knowledge / RAG', desc: 'Retrieve accurate answers from your secure, tenant-isolated vector databases.' },
+      { title: 'Human Handoff', desc: 'Detect frustration or complex requirements and escalate seamlessly to a live agent.' }
+    ],
+    workflowHeading: 'How AI Agents Power Your Workflows',
+    workflowSubtitle: 'From context analysis to tool execution and verified outcomes in real time.',
+    workflowFooter: {
+      label: 'AI AGENT EXECUTION',
+      title: 'AI Agent Execution Flow',
+      desc: 'Understand the request, retrieve relevant context, reason over the available information, select the right tools, execute the action, and verify the result.',
+      btnText: 'Explore AI Agent Architecture →',
+      btnUrl: '#contact'
+    },
+    customFaqs: [
+      { question: 'What is an AI agent?', answer: 'An AI agent is software that can understand context, plan multi-step workflows, call tools and APIs, update records, and complete business tasks autonomously within defined rules.' },
+      { question: 'How is an AI agent different from a chatbot?', answer: 'Traditional chatbots mainly answer basic questions based on scripts. AI agents can analyze context, retrieve internal knowledge, select and execute tools, and complete multi-step business actions across systems.' },
+      { question: 'Can AI agents integrate with our existing CRM?', answer: 'Yes. We connect AI agents to custom CRMs, WhatsApp Business API, and third-party systems via secure APIs and webhooks to synchronize lead data, conversation context, and customer records.' },
+      { question: 'Can AI agents use our internal business knowledge?', answer: 'Yes. We use Retrieval-Augmented Generation (RAG) with tenant-isolated data pipelines to ensure the agent retrieves accurate answers from your approved documentation, product catalogs, and policies.' },
+      { question: 'Can AI agents connect to external APIs and tools?', answer: 'Yes. We equip agents with function calling and tool integrations so they can query databases, schedule calendar events, trigger webhooks, and execute actions across your business software stack.' },
+      { question: 'Can an AI agent hand conversations to a human?', answer: 'Yes. Our agents detect complex requirements, sentiment shifts, or policy escalations and smoothly transfer the conversation to human team members along with the complete interaction summary.' },
+      { question: 'Can AI agents automate multi-step workflows?', answer: 'Yes. We design multi-agent architectures where specialized agents collaborate to handle intake, qualification, research, data entry, and follow-ups across complex business processes.' },
+      { question: 'How do you monitor AI agent workflows?', answer: 'We implement detailed audit logging, step tracking, and observability tools so your team can monitor every decision, tool call, and execution step with full transparency.' },
+      { question: 'How long does an AI agent project take?', answer: 'Initial MVP deployments typically ship in 3-5 weeks, while comprehensive multi-agent architectures with complex integrations take 6-10 weeks depending on workflow scope.' },
+      { question: 'Can the solution be customized for our business?', answer: 'Every AI agent workflow is custom-architected around your specific business logic, role permissions, integrations, and operational requirements.' }
+    ],
+    customSteps: [
+      { stepNum: '01', category: 'Intent', icon: '/agent-intent-detection.webp', title: 'Intent Detection', desc: "Understand the user's request, intent, and available business context." },
+      { stepNum: '02', category: 'RAG', icon: '/agent-knowledge-retrieval.webp', title: 'Knowledge Retrieval', desc: 'Retrieve relevant information from approved business knowledge sources.' },
+      { stepNum: '03', category: 'Logic', icon: '/agent-reasoning.webp', title: 'Agent Reasoning', desc: 'Determine the next step based on the available context and workflow rules.' },
+      { stepNum: '04', category: 'Tools', icon: '/agent-tool-selection.webp', title: 'Tool Selection', desc: 'Choose the appropriate connected API, CRM action, or business tool.' },
+      { stepNum: '05', category: 'Action', icon: '/agent-action-execution.webp', title: 'Action Execution', desc: 'Perform the required workflow action through connected systems.' },
+      { stepNum: '06', category: 'Escalate', icon: '/agent-human-handoff.webp', title: 'Human Handoff', desc: 'Escalate to a human when the workflow requires review or intervention.' },
+      { stepNum: '07', category: 'Audit', icon: '/agent-data-verification.webp', title: 'Data Verification', desc: 'Check the outcome before completing the workflow.' },
+      { stepNum: '08', category: 'Done', icon: '/agent-workflow-completion.webp', title: 'Workflow Completion', desc: 'Record the result and move the process to its next state.' }
+    ],
+    contactTitle: 'Ready to Build Your AI Agent?',
+    contactSubtitle: "Tell us about your workflows, systems, and automation goals. We'll help identify where AI agents can create the most practical impact."
   },
   'crm-development': {
     metaTitle: 'Custom CRM Software Development | AI CRM Company | Gyan VaniAi',
@@ -70,6 +116,115 @@ const seoDataMap = {
     faqs: [
       { q: 'Why build a custom CRM instead of Salesforce or HubSpot?', a: 'Custom CRM fits your workflow, pricing model, and channels (like WhatsApp Coexistence) without forcing your team into rigid templates or unused modules.' },
       { q: 'Does your CRM support WhatsApp?', a: 'Yes. We offer official WhatsApp Business API integration with Coexistence so mobile app and CRM work on the same number.' }
+    ]
+  },
+  'lead-management': {
+    metaTitle: 'Lead Management Software | Capture & Convert | Gyan VaniAi',
+    metaDescription: 'Lead management software to capture, qualify, assign, and track leads. Automate your pipeline and improve conversion rates with AI workflows.',
+    h1: 'Lead Management Software',
+    subtitle: 'Capture, qualify, assign, track, and convert leads from a single intelligent CRM workflow.',
+    overview: 'Gyan VaniAi provides robust Lead Management Software designed to stop lead leakage. We consolidate leads from all channels (web, WhatsApp, social) into one unified pipeline, applying AI-assisted prioritization and automated assignment so your team can focus on closing deals.',
+    whoFor: 'Sales teams and revenue operations leaders who need to track lead activity, automate routing, and gain full visibility into conversion metrics without wrestling with clunky spreadsheets.',
+    deliverables: ['Lead capture & qualification', 'AI-assisted lead scoring', 'Automated lead routing & assignment', 'Pipeline management dashboards', 'WhatsApp & CRM workflow integration'],
+    benefits: ['Automated Lead Routing', 'AI Lead Scoring', 'Pipeline Visibility', 'WhatsApp Integration'],
+    image: '/lead-hero.webp',
+    imageAlt: 'Lead pipeline management dashboard showing New, Contacted, Qualified, and Converted stages with lead scores and conversion analytics by Gyan VaniAi',
+    capabilitiesTitle: 'Lead Management Capabilities',
+    capabilitiesVisual: '/lead-capabilities.webp',
+    capabilitiesVisualAlt: 'Lead Management System Capabilities and Ingestion Architecture',
+    engineBanner: {
+      tag: 'LEAD ORCHESTRATION ENGINE',
+      title: 'Omnichannel Ingestion & Smart Routing Pipeline',
+      desc: 'Capture leads across all channels, score with predictive AI, and distribute to the right rep in real time.'
+    },
+    integrations: [
+      { label: 'Multi-Channel Webhooks & Form APIs', icon: <Inbox size={15} /> },
+      { label: 'AI Behavioral Scoring Engine', icon: <Star size={15} /> },
+      { label: 'Automated Round-Robin Routing', icon: <UserCheck size={15} /> },
+      { label: 'Real-Time Pipeline Analytics Sync', icon: <Database size={15} /> }
+    ],
+    ctaVisual: '/lead-cta.webp',
+    ctaVisualAlt: 'Lead Management CRM Dashboard and Growth Analytics',
+    relatedLinks: [
+      { url: '/services/crm-development', text: 'Custom CRM Development', icon: '/service-crm-development.webp' },
+      { url: '/services/sales-automation', text: 'Sales Automation', icon: '/service-sales-automation.webp' },
+      { url: '/services/whatsapp-coexistence', text: 'WhatsApp Coexistence', icon: '/service-whatsapp-coexistence.webp' },
+      { url: '/services/ai-agent-development', text: 'AI Agent Development', icon: '/service-ai-agent-development.webp' }
+    ],
+    capabilities: [
+      { title: 'Lead Capture', desc: 'Consolidate leads from web forms, WhatsApp, social media, landing pages, and third-party APIs into one unified inbox automatically.' },
+      { title: 'Lead Scoring', desc: 'Assign priority scores using behavioral signals and demographic attributes so your team focuses on the highest-intent prospects first.' },
+      { title: 'Lead Enrichment', desc: 'Automatically enrich lead profiles with third-party data, validate contact information, and fill missing fields to improve data quality.' },
+      { title: 'Lead Tracking', desc: 'Track every touchpoint across email, WhatsApp, calls, and website visits with a complete activity timeline for each lead.' },
+      { title: 'Smart Assignment', desc: 'Route leads to the right sales rep using territory rules, skill-based matching, round-robin distribution, and SLA escalation policies.' },
+      { title: 'Workflow Automation', desc: 'Trigger automated follow-ups, task creation, notifications, and stage transitions based on lead behavior and pipeline rules.' },
+      { title: 'Analytics and Reports', desc: 'Monitor pipeline health, conversion rates, rep performance, and source attribution with real-time dashboards and scheduled reports.' },
+      { title: 'Conversion Optimization', desc: 'Identify bottlenecks in your funnel, analyze stage drop-off rates, and run data-driven experiments to improve close rates.' }
+    ],
+    workflowHeading: 'How Lead Management Powers Your Pipeline',
+    workflowSubtitle: 'From first touch to closed deal, every lead moves through a structured, trackable workflow.',
+    workflowFooter: {
+      label: 'PIPELINE ORCHESTRATION',
+      title: 'Lead Pipeline Execution Flow',
+      desc: 'Capture leads from all channels, validate and score them automatically, route to the right rep, nurture with automated sequences, and convert with full visibility.',
+      btnText: 'See How It Works',
+      btnUrl: '#contact'
+    },
+    customFaqs: [
+      { question: 'Can this integrate with our existing lead sources?', answer: 'Yes. We provide APIs, webhooks, and direct integrations to capture leads automatically from your website, Facebook Lead Ads, Google Ads, landing page builders, and WhatsApp.' },
+      { question: 'How does AI lead scoring work?', answer: 'Our system analyzes lead attributes (job title, company size, industry) and interaction history (email opens, page visits, form submissions) to assign a priority score, ensuring your sales reps focus on the highest-intent prospects first.' },
+      { question: 'Can leads be assigned automatically?', answer: 'Yes. We support round-robin distribution, territory-based routing, skill-based matching, and weighted assignment rules. Leads can also be escalated automatically if response SLAs are not met.' },
+      { question: 'What channels can capture leads?', answer: 'Website forms, WhatsApp Business API, Facebook Lead Ads, Google Ads, email campaigns, chatbots, landing pages, manual entry, CSV imports, and third-party webhook integrations.' },
+      { question: 'Can I track lead activity across channels?', answer: 'Yes. Every interaction (email opens, WhatsApp messages, website visits, form submissions, calls) is logged in a unified activity timeline on the lead profile.' },
+      { question: 'Does it support automated follow-ups?', answer: 'Yes. You can configure automated email sequences, WhatsApp message templates, task creation, and internal notifications triggered by lead behavior, stage changes, or time-based rules.' },
+      { question: 'What reports and dashboards are available?', answer: 'Pipeline health, conversion funnel analysis, lead source attribution, rep performance scorecards, response time tracking, and scheduled email reports with custom filters.' },
+      { question: 'How long does implementation take?', answer: 'Basic lead management setup ships in 2-3 weeks. Full implementations with custom scoring models, multi-channel integrations, and advanced workflow automation typically take 4-6 weeks.' },
+      { question: 'Can the system prevent duplicate leads?', answer: 'Yes. We implement deduplication rules based on email, phone number, and configurable matching criteria to merge duplicate records and keep your pipeline clean.' },
+      { question: 'Is it customizable for our sales process?', answer: 'Every pipeline stage, scoring model, assignment rule, and automation workflow is fully customizable to match your specific sales methodology and team structure.' }
+    ],
+    customSteps: [
+      { stepNum: '01', category: 'Capture', icon: <Inbox size={20} />, title: 'Lead Capture', desc: 'Collect leads from web forms, WhatsApp, social ads, and third-party sources into one unified pipeline.' },
+      { stepNum: '02', category: 'Qualify', icon: <Filter size={20} />, title: 'Lead Qualification', desc: 'Validate lead data, check for duplicates, and verify contact information automatically.' },
+      { stepNum: '03', category: 'Score', icon: <Star size={20} />, title: 'Lead Scoring', desc: 'Assign priority scores based on demographics, behavior, and engagement signals.' },
+      { stepNum: '04', category: 'Assign', icon: <UserCheck size={20} />, title: 'Lead Assignment', desc: 'Route qualified leads to the right sales rep using smart distribution rules.' },
+      { stepNum: '05', category: 'Nurture', icon: <Mail size={20} />, title: 'Lead Nurturing', desc: 'Engage prospects with automated email sequences, WhatsApp follow-ups, and scheduled tasks.' },
+      { stepNum: '06', category: 'Convert', icon: <Trophy size={20} />, title: 'Lead Conversion', desc: 'Move leads through your pipeline stages and track the complete journey to closed deal.' }
+    ],
+    faqs: [
+      { q: 'Can this integrate with our existing lead sources?', a: 'Yes. We provide APIs, webhooks, and direct integrations to capture leads automatically from your website, Facebook Lead Ads, Google Ads, landing page builders, and WhatsApp.' },
+      { q: 'How does AI lead scoring work?', a: 'Our system analyzes lead attributes (job title, company size, industry) and interaction history (email opens, page visits, form submissions) to assign a priority score, ensuring your sales reps focus on the highest-intent prospects first.' },
+      { q: 'Can leads be assigned automatically?', a: 'Yes. We support round-robin distribution, territory-based routing, skill-based matching, and weighted assignment rules. Leads can also be escalated automatically if response SLAs are not met.' },
+      { q: 'What channels can capture leads?', a: 'Website forms, WhatsApp Business API, Facebook Lead Ads, Google Ads, email campaigns, chatbots, landing pages, manual entry, CSV imports, and third-party webhook integrations.' },
+      { q: 'Can I track lead activity across channels?', a: 'Yes. Every interaction (email opens, WhatsApp messages, website visits, form submissions, calls) is logged in a unified activity timeline on the lead profile.' },
+      { q: 'Does it support automated follow-ups?', a: 'Yes. You can configure automated email sequences, WhatsApp message templates, task creation, and internal notifications triggered by lead behavior, stage changes, or time-based rules.' },
+      { q: 'What reports and dashboards are available?', a: 'Pipeline health, conversion funnel analysis, lead source attribution, rep performance scorecards, response time tracking, and scheduled email reports with custom filters.' },
+      { q: 'How long does implementation take?', a: 'Basic lead management setup ships in 2-3 weeks. Full implementations with custom scoring models, multi-channel integrations, and advanced workflow automation typically take 4-6 weeks.' },
+      { q: 'Can the system prevent duplicate leads?', a: 'Yes. We implement deduplication rules based on email, phone number, and configurable matching criteria to merge duplicate records and keep your pipeline clean.' },
+      { q: 'Is it customizable for our sales process?', a: 'Every pipeline stage, scoring model, assignment rule, and automation workflow is fully customizable to match your specific sales methodology and team structure.' }
+    ],
+    contactTitle: 'Ready to Transform Your Lead Pipeline?',
+    contactSubtitle: "Tell us about your lead volume, sales process, and conversion goals. We will design a pipeline that captures every opportunity."
+  },
+  'sales-automation': {
+    metaTitle: 'Sales Automation Software | Workflow & Pipeline | Gyan VaniAi',
+    metaDescription: 'Automate repetitive sales workflows, prioritize opportunities, and close deals faster with AI-driven sales automation software.',
+    h1: 'Sales Automation Software',
+    subtitle: 'Automate repetitive sales workflows, prioritize opportunities, and help your team move leads through the pipeline faster.',
+    overview: 'Gyan VaniAi builds Sales Automation Software that eliminates manual data entry and repetitive follow-ups. By automating lead assignments, task creation, and outreach notifications, we empower your sales team to focus on high-value conversations that drive revenue.',
+    whoFor: 'High-velocity sales teams that want to scale their outreach and pipeline management without adding administrative overhead.',
+    deliverables: ['Automated lead follow-ups', 'Sales pipeline automation', 'Opportunity tracking', 'Task & workflow automation', 'Conversion & activity reporting'],
+    benefits: ['Automated Follow-ups', 'Pipeline Automation', 'AI Qualification', 'Real-time Notifications'],
+    image: '/portfolio_ai.webp',
+    imageAlt: 'Sales automation workflow by Gyan VaniAi',
+    relatedLinks: [
+      { url: '/services/lead-management', text: 'Lead Management' },
+      { url: '/services/crm-development', text: 'Custom CRM Software Development' },
+      { url: '/services/whatsapp-coexistence', text: 'WhatsApp Coexistence' },
+      { url: '/services/ai-agent-development', text: 'AI Agent Development' }
+    ],
+    faqs: [
+      { q: 'What kind of sales tasks can be automated?', a: 'We automate lead assignment, email/WhatsApp follow-ups, meeting reminders, task generation upon stage changes, and data entry updates.' },
+      { q: 'Will automation make our outreach feel robotic?', a: 'No. Our systems support highly personalized templates and AI-assisted drafting, ensuring your outreach remains relevant and human.' }
     ]
   },
   'whatsapp-automation': {
@@ -196,14 +351,67 @@ const seoDataMap = {
     whoFor: 'Customer support teams and sales departments looking to automate inbound queries, outbound campaigns, and appointment bookings 24/7.',
     deliverables: ['Conversational AI models', 'Multi-language support', 'CRM integration', 'Transcription & analytics'],
     benefits: ['No Wait Times', 'Natural Conversations', 'Scalable Support', 'Real-time CRM Updates'],
-    image: '/portfolio_ai.webp',
-    imageAlt: 'AI Voice Bot Assistant dashboard by Gyan VaniAi',
+    image: '/voice-bot-hero.webp',
+    imageAlt: 'Enterprise AI Voice Bot Assistant real-time call dashboard with audio waveform, live transcript, and CRM sync by Gyan VaniAi',
+    engineBanner: {
+      tag: 'VOICE AI ENGINE · REAL-TIME ORCHESTRATION',
+      title: 'Ultra-Low Latency Conversational Voice Pipeline',
+      desc: 'Sub-500ms full-duplex speech recognition, contextual reasoning, and immediate CRM synchronization.'
+    },
+    integrations: [
+      { label: 'Telephony Trunk (SIP / WebRTC / PSTN)', icon: <PhoneCall size={15} /> },
+      { label: 'LLM Reasoning & NLU Engine', icon: <BrainCircuit size={15} /> },
+      { label: 'Bi-Directional CRM Database Sync', icon: <Database size={15} /> },
+      { label: 'Instant SMS & WhatsApp Confirmations', icon: <Mail size={15} /> }
+    ],
+    workflowHeading: 'How Conversational Voice AI Works',
+    workflowSubtitle: 'From incoming telephony audio to CRM synchronization in under 500ms.',
+    workflowFooter: {
+      label: 'VOICE AI ENGINE',
+      title: 'Autonomous Voice Pipeline Execution',
+      desc: 'Stream ultra-low latency voice recognition, understand caller intent with NLP, hold natural multi-turn conversations, book appointments, and sync data directly to your CRM.',
+      btnText: 'Deploy Voice AI Agent',
+      btnUrl: '#contact'
+    },
+    customSteps: [
+      { stepNum: '01', category: 'Capture', icon: <PhoneCall size={20} />, title: 'Call Capture', desc: 'Accept inbound calls or initiate automated outbound campaigns across SIP trunks, WebRTC, or WhatsApp Voice.' },
+      { stepNum: '02', category: 'ASR', icon: <Mic size={20} />, title: 'Speech Recognition', desc: 'Real-time Automatic Speech Recognition (ASR) converts caller speech to text with sub-150ms transcription latency.' },
+      { stepNum: '03', category: 'NLP', icon: <BrainCircuit size={20} />, title: 'Intent Detection', desc: 'Natural language understanding parses caller intent, urgency, sentiment, and entity parameters.' },
+      { stepNum: '04', category: 'Voice AI', icon: <Bot size={20} />, title: 'AI Conversation', desc: 'LLM dialogue engine generates human-like, contextual responses with natural full-duplex interruption support.' },
+      { stepNum: '05', category: 'Qualify', icon: <Filter size={20} />, title: 'Lead Qualification', desc: 'Dynamically assesses prospect qualification criteria, budget, timeline, and decision-maker status during the call.' },
+      { stepNum: '06', category: 'Action', icon: <Calendar size={20} />, title: 'Appointment / Action', desc: 'Books meetings directly into Google Calendar or Outlook, triggers SMS confirmations, and executes workflow tasks.' },
+      { stepNum: '07', category: 'Handoff', icon: <Headset size={20} />, title: 'Human Handoff', desc: 'Smoothly transfers complex calls or VIP prospects to live sales reps with full conversation transcripts and context.' },
+      { stepNum: '08', category: 'CRM Sync', icon: <Database size={20} />, title: 'CRM & Follow-up', desc: 'Automatically logs call recording, structured summary, sentiment score, and next-step actions into your CRM.' }
+    ],
+    ctaVisual: '/voice-ai-analytics.webp',
+    ctaVisualAlt: 'Voice AI performance metrics, audio analytics, and call resolution analytics dashboard',
+    contactTitle: 'Ready to Deploy Your AI Voice Assistant?',
+    contactSubtitle: 'Tell us about your call volume, use cases, and telephony stack. We will architect a sub-500ms voice AI pipeline for your business.',
     relatedLinks: [
-      { url: '/services/ai-chatbots', text: 'AI Chatbot Development' },
-      { url: '/services/phone-call-agent', text: 'Phone Call Agent Assistant' }
+      { url: '/services/ai-agent-development', text: 'AI Agent Development', icon: '/service-ai-agent-development.webp' },
+      { url: '/services/sales-automation', text: 'Sales Automation', icon: '/service-sales-automation.webp' },
+      { url: '/services/whatsapp-coexistence', text: 'WhatsApp Coexistence', icon: '/service-whatsapp-coexistence.webp' },
+      { url: '/services/crm-development', text: 'Custom CRM Development', icon: '/service-crm-development.webp' }
+    ],
+    customFaqs: [
+      { question: 'Can callers interrupt the AI voice bot naturally?', answer: 'Yes. Our voice bots support full-duplex communication with active interruption handling (barge-in). The bot stops speaking instantly when the user talks, creating a natural human-like conversation.' },
+      { question: 'What is the voice response latency?', answer: 'Our voice pipeline achieves sub-500ms end-to-end latency using optimized streaming ASR, high-speed LLM inference, and low-latency voice synthesis (TTS).' },
+      { question: 'Can the voice bot book appointments directly?', answer: 'Yes. The bot integrates with Google Calendar, Microsoft Outlook, and Calendly to check real-time availability and book appointments during the call.' },
+      { question: 'How does human agent handoff work?', answer: 'When the AI encounters an out-of-scope query or high-value caller, it initiates a live SIP/telephony transfer to a human agent, providing the rep with the full call summary and transcript.' },
+      { question: 'Does the voice bot integrate with our CRM?', answer: 'Yes. Post-call automation logs complete transcripts, audio recordings, structured call summaries, sentiment scores, and lead qualification data directly into your CRM.' },
+      { question: 'What languages and accents are supported?', answer: 'We support over 30 languages and regional accents with natural inflection, customizable tone, and domain-specific vocabulary.' },
+      { question: 'Can we use our existing business phone numbers?', answer: 'Yes. We connect with your existing telephony via SIP trunking, Twilio, Vonage, Plivo, or direct PBX integration without requiring number changes.' },
+      { question: 'How do you ensure enterprise security and compliance?', answer: 'All voice streams and transcripts are encrypted in transit (TLS) and at rest (AES-256) with strict role-based access controls and configurable retention policies.' }
     ],
     faqs: [
-      { q: 'Can the voice bot handle interruptions?', a: 'Yes. Our advanced voice AI models support full duplex communication, meaning users can interrupt the bot naturally, just like a human conversation.' }
+      { q: 'Can callers interrupt the AI voice bot naturally?', a: 'Yes. Our voice bots support full-duplex communication with active interruption handling (barge-in). The bot stops speaking instantly when the user talks, creating a natural human-like conversation.' },
+      { q: 'What is the voice response latency?', a: 'Our voice pipeline achieves sub-500ms end-to-end latency using optimized streaming ASR, high-speed LLM inference, and low-latency voice synthesis (TTS).' },
+      { q: 'Can the voice bot book appointments directly?', a: 'Yes. The bot integrates with Google Calendar, Microsoft Outlook, and Calendly to check real-time availability and book appointments during the call.' },
+      { q: 'How does human agent handoff work?', a: 'When the AI encounters an out-of-scope query or high-value caller, it initiates a live SIP/telephony transfer to a human agent, providing the rep with the full call summary and transcript.' },
+      { q: 'Does the voice bot integrate with our CRM?', a: 'Yes. Post-call automation logs complete transcripts, audio recordings, structured call summaries, sentiment scores, and lead qualification data directly into your CRM.' },
+      { q: 'What languages and accents are supported?', a: 'We support over 30 languages and regional accents with natural inflection, customizable tone, and domain-specific vocabulary.' },
+      { q: 'Can we use our existing business phone numbers?', a: 'Yes. We connect with your existing telephony via SIP trunking, Twilio, Vonage, Plivo, or direct PBX integration without requiring number changes.' },
+      { q: 'How do you ensure enterprise security and compliance?', a: 'All voice streams and transcripts are encrypted in transit (TLS) and at rest (AES-256) with strict role-based access controls and configurable retention policies.' }
     ]
   },
   'whatsapp-calling-agent': {
@@ -361,22 +569,105 @@ const seoDataMap = {
     ]
   },
   enterprise: {
-    metaTitle: 'Enterprise IT & Custom Software Solutions | Gyan VaniAi',
-    metaDescription: 'Enterprise IT solutions: custom software, AI integrations, CRM, and automation platforms for large-scale organizations.',
-    h1: 'Enterprise IT Solutions',
-    subtitle: 'Custom software, AI, and automation platforms engineered for scale, security, and multi-team delivery.',
-    overview: 'Gyan VaniAi partners with enterprises to design and deliver custom IT solutions (from AI-enabled CRM and knowledge systems to internal portals and automation platforms) with architecture suited to multi-team rollout.',
-    whoFor: 'Large organizations needing dedicated software partners for digital transformation initiatives.',
-    deliverables: ['Solution architecture', 'Custom platforms', 'AI integrations', 'Migration & integrations', 'Ongoing support'],
-    benefits: ['Scalable Architecture', 'High Performance', 'Custom AI Integration', 'Dedicated Support'],
-    image: '/hero_dashboard.webp',
-    imageAlt: 'Enterprise software solutions by Gyan VaniAi',
-    relatedLinks: [
-      { url: '/services/ai-development', text: 'AI Software Development' },
-      { url: '/services/crm-development', text: 'CRM Development' }
+    metaTitle: 'Enterprise CRM Software | Scalable Organization Platform | Gyan VaniAi',
+    metaDescription: 'Scalable Enterprise CRM software for large organizations: centralize customer data, multi-team workflows, role-based governance, and business integrations.',
+    heroEyebrow: 'ENTERPRISE CRM',
+    h1: 'Enterprise CRM Solutions',
+    subtitle: 'Scalable CRM infrastructure for large organizations to manage customers, teams, workflows, and revenue operations from one connected platform.',
+    overviewLabel: '01 OVERVIEW',
+    overviewTitle: 'Connected Enterprise CRM',
+    overview: 'Centralize customer data, account activity, sales operations, support workflows, and team collaboration in one scalable CRM environment.',
+    whoForLabel: "02 WHO IT'S FOR",
+    whoForTitle: 'Built for Growing Organizations',
+    whoFor: 'Designed for enterprises managing multiple teams, business units, customer accounts, complex workflows, and large volumes of CRM data.',
+    deliverablesLabel: '03 WHAT YOU GET',
+    deliverablesTitle: 'Enterprise-Ready Operations',
+    deliverables: [
+      'Centralized Customer Data',
+      'Role-Based Access',
+      'Workflow Automation',
+      'Custom Integrations'
+    ],
+    benefits: [
+      'Scalable CRM Architecture',
+      'Custom Workflow Automation',
+      'Multi-Team Collaboration',
+      'Enterprise Integrations'
+    ],
+    ctaButtonText: 'Get Free Consultation',
+    image: '/hero-enterprise-crm.svg',
+    imageAlt: 'Enterprise CRM multi-team operations, account hierarchy, and customer management dashboard by Gyan VaniAi',
+    workflowHeading: 'How Enterprise CRM Operations Work',
+    workflowSubtitle: 'Connect customer data, teams, workflows, and business systems through one centralized CRM platform.',
+    engineBanner: {
+      tag: 'ENTERPRISE CRM WORKFLOW',
+      title: 'Centralized Enterprise Operations Engine',
+      desc: 'Connect customer data, teams, workflows, and business systems through one centralized CRM platform.'
+    },
+    customSteps: [
+      { stepNum: '01', category: 'Customer Data', icon: <Database size={20} />, title: 'Customer Data Centralization', desc: 'Centralize customer and account information from across departments into a unified source of truth.' },
+      { stepNum: '02', category: 'Accounts', icon: <Building2 size={20} />, title: 'Account Management', desc: 'Manage organizations, contacts, opportunities, and multi-tier relationship hierarchies.' },
+      { stepNum: '03', category: 'Teams', icon: <Users size={20} />, title: 'Team Collaboration', desc: 'Coordinate sales, support, operations, and account teams in shared workspaces.' },
+      { stepNum: '04', category: 'Automation', icon: <Zap size={20} />, title: 'Workflow Automation', desc: 'Automate repetitive business processes, multi-stage approvals, and operational handoffs.' },
+      { stepNum: '05', category: 'Connectors', icon: <Layers size={20} />, title: 'Business Integrations', desc: 'Connect CRM data with external business systems, ERPs, APIs, and communication channels.' },
+      { stepNum: '06', category: 'Analytics', icon: <BarChart3 size={20} />, title: 'Operational Analytics', desc: 'Track pipeline health, customer activity, team performance, and operational metrics.' },
+      { stepNum: '07', category: 'Governance', icon: <ShieldCheck size={20} />, title: 'Governance & Access Control', desc: 'Apply roles, permissions, tenant controls, and operational policies.' },
+      { stepNum: '08', category: 'Success', icon: <Trophy size={20} />, title: 'Customer Success Operations', desc: 'Create a consistent, high-touch customer experience across the organization.' }
+    ],
+    capabilitiesEyebrow: 'ENTERPRISE CAPABILITIES',
+    capabilitiesTitle: 'Built Around How Enterprise Teams Work',
+    capabilities: [
+      { title: 'Centralized Customer Data', desc: 'Maintain a unified view of accounts, contacts, activities, and customer relationships.' },
+      { title: 'Role-Based Access', desc: 'Control access and responsibilities across enterprise teams and organizational roles.' },
+      { title: 'Workflow Automation', desc: 'Automate repetitive processes, approvals, assignments, and operational tasks.' },
+      { title: 'Multi-Team Collaboration', desc: 'Connect sales, support, operations, and management through shared CRM workflows.' },
+      { title: 'Business Integrations', desc: 'Connect CRM operations with external systems, APIs, communication channels, and business tools.' },
+      { title: 'Analytics & Visibility', desc: 'Give teams and leadership a clearer view of customers, operations, and business performance.' }
+    ],
+    outcomesEyebrow: 'WHY ENTERPRISE TEAMS USE CRM',
+    outcomesTitle: 'Create One Operational View of the Customer',
+    outcomesSubtitle: 'Unify operations, standardize team processes, and gain clearer visibility into customer relationships.',
+    outcomes: [
+      { title: 'Centralized Customer Data', desc: 'One connected source of customer information across all touchpoints and departments.' },
+      { title: 'Operational Consistency', desc: 'Standardize processes, deal stages, and customer communication across teams and business units.' },
+      { title: 'Scalable Workflows', desc: 'Support growing teams, expanding customer accounts, and increasingly complex operations.' },
+      { title: 'Better Visibility', desc: 'Give teams and leadership clearer operational insight into pipeline, activity, and customer health.' }
+    ],
+    customFaqs: [
+      { question: 'How does an Enterprise CRM support large organizations?', answer: 'An enterprise CRM provides the scalability, data architecture, and multi-departmental workflow support required to manage thousands of customer accounts, diverse team roles, and high-volume business operations from a single unified platform.' },
+      { question: 'Can the CRM support multiple teams and business units?', answer: 'Yes. The platform supports multi-team hierarchies, departmental workspaces, and customized pipeline views tailored to sales, customer success, support, and operations.' },
+      { question: 'Can enterprise workflows be customized?', answer: 'Every workflow—from multi-tier deal approvals and SLA escalations to automated notifications and stage transitions—is custom-architected to match your organization\'s exact business logic.' },
+      { question: 'How are roles and permissions managed?', answer: 'Granular role-based access control (RBAC) allows administrators to define view/edit permissions, team hierarchies, department boundaries, and audit logging to protect sensitive business data.' },
+      { question: 'Can the CRM integrate with existing business systems?', answer: 'Yes. Our enterprise CRM is built with an API-first architecture, enabling seamless bidirectional integration with ERP systems, accounting software, custom databases, webhooks, and communication channels.' },
+      { question: 'Can customer data and account activity be centralized?', answer: 'Yes. All customer touchpoints—emails, WhatsApp conversations, notes, support tickets, proposals, and call logs—are consolidated into a single unified timeline for every account.' },
+      { question: 'Can enterprise CRM workflows be automated?', answer: 'Yes. You can automate repetitive tasks, cross-department handoffs, follow-up sequences, SLA triggers, and record updates while maintaining human approval checkpoints where needed.' },
+      { question: 'Can the platform scale as the organization grows?', answer: 'The system is built on scalable, modular cloud architecture designed to handle expanding team headcount, increasing data volume, and additional business units without performance degradation.' }
     ],
     faqs: [
-      { q: 'Do you work with enterprise procurement and SLAs?', a: 'Yes. We support structured delivery, documentation, and ongoing maintenance agreements.' }
+      { q: 'How does an Enterprise CRM support large organizations?', a: 'An enterprise CRM provides the scalability, data architecture, and multi-departmental workflow support required to manage thousands of customer accounts, diverse team roles, and high-volume business operations from a single unified platform.' },
+      { q: 'Can the CRM support multiple teams and business units?', a: 'Yes. The platform supports multi-team hierarchies, departmental workspaces, and customized pipeline views tailored to sales, customer success, support, and operations.' },
+      { q: 'Can enterprise workflows be customized?', a: 'Every workflow—from multi-tier deal approvals and SLA escalations to automated notifications and stage transitions—is custom-architected to match your organization\'s exact business logic.' },
+      { q: 'How are roles and permissions managed?', a: 'Granular role-based access control (RBAC) allows administrators to define view/edit permissions, team hierarchies, department boundaries, and audit logging to protect sensitive business data.' },
+      { q: 'Can the CRM integrate with existing business systems?', a: 'Yes. Our enterprise CRM is built with an API-first architecture, enabling seamless bidirectional integration with ERP systems, accounting software, custom databases, webhooks, and communication channels.' },
+      { q: 'Can customer data and account activity be centralized?', a: 'Yes. All customer touchpoints—emails, WhatsApp conversations, notes, support tickets, proposals, and call logs—are consolidated into a single unified timeline for every account.' },
+      { q: 'Can enterprise CRM workflows be automated?', a: 'Yes. You can automate repetitive tasks, cross-department handoffs, follow-up sequences, SLA triggers, and record updates while maintaining human approval checkpoints where needed.' },
+      { q: 'Can the platform scale as the organization grows?', a: 'The system is built on scalable, modular cloud architecture designed to handle expanding team headcount, increasing data volume, and additional business units without performance degradation.' }
+    ],
+    relatedLinks: [
+      { url: '/services/crm-development', text: 'Custom CRM Development', icon: '/service-crm-development.webp' },
+      { url: '/services/sales-automation', text: 'Sales Automation', icon: '/service-sales-automation.webp' },
+      { url: '/services/lead-management', text: 'Lead Management', icon: '/service-crm-development.webp' },
+      { url: '/services/ai-agent-development', text: 'AI Agent Development', icon: '/service-ai-agent-development.webp' },
+      { url: '/services/whatsapp-coexistence', text: 'WhatsApp Coexistence', icon: '/service-whatsapp-coexistence.webp' }
+    ],
+    contactEyebrow: 'BUILD FOR SCALE',
+    contactTitle: 'Ready to Build Your Enterprise CRM?',
+    contactSubtitle: 'Design a CRM environment around your teams, workflows, integrations, and customer operations.',
+    contactChecklist: [
+      'Custom CRM Architecture',
+      'Enterprise Workflow Automation',
+      'Multi-Team Operations',
+      'Business System Integrations'
     ]
   },
   'real-estate': {
@@ -524,6 +815,14 @@ export default function SEOLandingPage() {
     window.scrollTo(0, 0);
   }, [pageId]);
 
+  if (pageId === 'sales-automation') {
+    return <SalesAutomationPage />;
+  }
+
+  if (pageId === 'ai-chatbots') {
+    return <AIChatbotsPage />;
+  }
+
   if (!hasKnownPage) {
     return <NotFound />;
   }
@@ -622,32 +921,37 @@ export default function SEOLandingPage() {
         </script>
       </Helmet>
 
-      <div>
-        <section className="hero" style={{ paddingTop: '150px', paddingBottom: '80px' }}>
-          <div className="container">
-            <nav aria-label="Breadcrumb" style={{ marginBottom: '1.5rem', fontSize: '0.9rem' }}>
+      <div className="seo-landing-page">
+        <section className="hero" style={{ paddingTop: '3.25rem', paddingBottom: '4rem' }}>
+          <div className="container" style={{ maxWidth: '1240px' }}>
+            <nav aria-label="Breadcrumb" style={{ marginBottom: '1.25rem', fontSize: '0.85rem', fontWeight: '500' }}>
               <ol style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', listStyle: 'none', padding: 0, margin: 0, color: 'var(--text-muted)' }}>
                 <li><Link to="/" style={{ color: 'inherit' }}>Home</Link></li>
                 <li aria-hidden="true">/</li>
                 <li>{isIndustry ? 'Industries' : 'Services'}</li>
                 <li aria-hidden="true">/</li>
-                <li style={{ color: 'var(--text-primary)' }}>{pageData.h1}</li>
+                <li style={{ color: 'var(--primary-color)' }}>{pageData.h1}</li>
               </ol>
             </nav>
 
             <div className="seo-hero-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center' }}>
               <div>
-                <h1 className="h1" style={{ fontSize: 'clamp(2rem, 4vw, 3.25rem)', marginBottom: '1.25rem', lineHeight: '1.2' }}>
+                {pageData.heroEyebrow && (
+                  <span className="section-eyebrow" style={{ display: 'inline-block', marginBottom: '0.75rem' }}>
+                    {pageData.heroEyebrow}
+                  </span>
+                )}
+                <h1 className="h1" style={{ fontSize: 'clamp(2.75rem, 5vw, 3.5rem)', fontWeight: '800', marginBottom: '1.5rem', lineHeight: '1.15', letterSpacing: '-0.02em' }}>
                   {pageData.h1}
                 </h1>
-                <p className="text-lg text-muted" style={{ marginBottom: '2rem' }}>
+                <p className="text-muted" style={{ fontSize: '1.125rem', lineHeight: '1.65', marginBottom: '2.5rem' }}>
                   {pageData.subtitle}
                 </p>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '2.5rem' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '3rem' }}>
                   {pageData.benefits.map((benefit, i) => (
                     <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                      <CheckCircle2 size={20} color="var(--primary-color)" aria-hidden="true" />
-                      <span style={{ fontSize: '1.1rem', fontWeight: '500' }}>{benefit}</span>
+                      <CheckCircle2 size={22} color="var(--primary-color)" aria-hidden="true" />
+                      <span style={{ fontSize: '0.95rem', fontWeight: '500', color: 'var(--text-primary)' }}>{benefit}</span>
                     </div>
                   ))}
                 </div>
@@ -656,79 +960,254 @@ export default function SEOLandingPage() {
                   className="btn btn-primary"
                   onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
                 >
-                  Get a Free Consultation <ArrowRight size={20} />
+                  {pageData.ctaButtonText || 'Get a Free Consultation'} <ArrowRight size={20} />
                 </button>
               </div>
-              <div className="hero-visual" style={{ borderRadius: '1rem', overflow: 'hidden', boxShadow: 'var(--shadow-lg)' }}>
-                <img
-                  src={pageData.image}
-                  alt={pageData.imageAlt}
-                  width="800"
-                  height="600"
-                  style={{ width: '100%', height: 'auto', display: 'block' }}
-                  fetchPriority="high"
-                  decoding="async"
-                />
-              </div>
+              {pageId === 'enterprise' ? (
+                <div className="hero-visual" style={{ borderRadius: '1rem', overflow: 'hidden', boxShadow: 'var(--shadow-lg)' }}>
+                  <img
+                    src="/hero-enterprise-crm.svg"
+                    alt="Enterprise Multi-Tenant CRM Platform Dashboard by Gyan VaniAi"
+                    width="1000"
+                    height="750"
+                    style={{ width: '100%', height: 'auto', display: 'block' }}
+                    fetchPriority="high"
+                  />
+                </div>
+              ) : (
+                <div className="hero-visual" style={{ borderRadius: '1rem', overflow: 'hidden', boxShadow: 'var(--shadow-lg)' }}>
+                  <img
+                    src={pageData.image}
+                    alt={pageData.imageAlt}
+                    width="800"
+                    height="600"
+                    style={{ width: '100%', height: 'auto', display: 'block' }}
+                    fetchPriority="high"
+                    decoding="async"
+                  />
+                </div>
+              )}
             </div>
           </div>
         </section>
 
         {/* GEO citeable content blocks */}
-        <section className="section" style={{ paddingTop: 0 }}>
-          <div className="container" style={{ maxWidth: '900px' }}>
-            <h2 className="h2" style={{ marginBottom: '1rem' }}>Overview</h2>
-            <p className="seo-overview text-muted" style={{ lineHeight: 1.75, marginBottom: '2rem', fontSize: '1.05rem' }}>
-              {pageData.overview}
-            </p>
+        <section className="section" style={{ padding: '5rem 0' }}>
+          <div className="container" style={{ maxWidth: '1240px' }}>
+            <div className="seo-content-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem' }}>
+              
+              <div className="seo-card" style={{ background: 'var(--bg-card)', padding: '2.5rem', borderRadius: '1rem', border: '1px solid var(--border-color)', boxShadow: 'var(--shadow-sm)' }}>
+                {pageData.overviewLabel && (
+                  <span className="section-eyebrow" style={{ display: 'inline-block', marginBottom: '0.5rem', fontSize: '0.75rem' }}>{pageData.overviewLabel}</span>
+                )}
+                <h2 className="h2" style={{ fontSize: '1.125rem', marginBottom: '1rem', color: 'var(--text-primary)' }}>{pageData.overviewTitle || 'Overview'}</h2>
+                <p className="seo-overview text-muted" style={{ fontSize: '0.95rem', lineHeight: '1.6', margin: 0 }}>
+                  {pageData.overview}
+                </p>
+              </div>
 
-            <h2 className="h2" style={{ marginBottom: '1rem' }}>Who it&apos;s for</h2>
-            <p className="seo-who-for text-muted" style={{ lineHeight: 1.75, marginBottom: '2rem', fontSize: '1.05rem' }}>
-              {pageData.whoFor}
-            </p>
+              <div className="seo-card" style={{ background: 'var(--bg-card)', padding: '2.5rem', borderRadius: '1rem', border: '1px solid var(--border-color)', boxShadow: 'var(--shadow-sm)' }}>
+                {pageData.whoForLabel && (
+                  <span className="section-eyebrow" style={{ display: 'inline-block', marginBottom: '0.5rem', fontSize: '0.75rem' }}>{pageData.whoForLabel}</span>
+                )}
+                <h2 className="h2" style={{ fontSize: '1.125rem', marginBottom: '1rem', color: 'var(--text-primary)' }}>{pageData.whoForTitle || "Who it's for"}</h2>
+                <p className="seo-who-for text-muted" style={{ fontSize: '0.95rem', lineHeight: '1.6', margin: 0 }}>
+                  {pageData.whoFor}
+                </p>
+              </div>
 
-            {pageData.deliverables?.length > 0 && (
-              <>
-                <h2 className="h2" style={{ marginBottom: '1rem' }}>What you get</h2>
-                <ul style={{ margin: '0 0 2rem', paddingLeft: '1.25rem', color: 'var(--text-secondary)', lineHeight: 1.8 }}>
-                  {pageData.deliverables.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              </>
-            )}
+              {pageData.deliverables?.length > 0 && (
+                <div className="seo-card" style={{ background: 'var(--bg-card)', padding: '2.5rem', borderRadius: '1rem', border: '1px solid var(--border-color)', boxShadow: 'var(--shadow-sm)' }}>
+                  {pageData.deliverablesLabel && (
+                    <span className="section-eyebrow" style={{ display: 'inline-block', marginBottom: '0.5rem', fontSize: '0.75rem' }}>{pageData.deliverablesLabel}</span>
+                  )}
+                  <h2 className="h2" style={{ fontSize: '1.125rem', marginBottom: '1rem', color: 'var(--text-primary)' }}>{pageData.deliverablesTitle || 'What you get'}</h2>
+                  <ul style={{ margin: 0, paddingLeft: '1.25rem', color: 'var(--text-secondary)', fontSize: '0.95rem', lineHeight: '1.6', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                    {pageData.deliverables.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
 
-            {pageFaqs.length > 0 && (
-              <div style={{ marginTop: '1rem' }}>
-                <h2 className="h2" style={{ marginBottom: '1.25rem' }}>Common questions</h2>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                  {pageFaqs.map((faq) => (
-                    <div key={faq.q} style={{ borderBottom: '1px solid var(--border-color)', paddingBottom: '1rem' }}>
-                      <h3 className="h3" style={{ fontSize: '1.1rem', marginBottom: '0.5rem' }}>{faq.q}</h3>
-                      <p className="text-muted" style={{ margin: 0, lineHeight: 1.7 }}>{faq.a}</p>
+            </div>
+
+            {pageData.capabilities ? (
+              <div style={{ marginTop: '4rem' }}>
+                {pageData.capabilitiesEyebrow && (
+                  <div style={{ textAlign: 'center', marginBottom: '0.5rem' }}>
+                    <span className="section-eyebrow">{pageData.capabilitiesEyebrow}</span>
+                  </div>
+                )}
+                <h2 className="h2" style={{ fontSize: 'clamp(2rem, 4vw, 2.5rem)', marginBottom: '2.5rem', textAlign: 'center' }}>
+                  {pageData.capabilitiesTitle || (pageId === 'ai-agent-development' ? 'AI Agent Capabilities' : 'Core Capabilities')}
+                </h2>
+                
+                {pageData.capabilitiesVisual && (
+                  <div className="seo-diagram-card" style={{ marginBottom: '3rem', maxWidth: '960px', marginInline: 'auto' }}>
+                    <img 
+                      src={pageData.capabilitiesVisual} 
+                      alt={pageData.capabilitiesVisualAlt || (pageId === 'ai-agent-development' ? 'Autonomous AI Agent Architecture and 6 Core Capabilities' : 'System Capabilities Architecture')} 
+                      width="960" 
+                      height="720" 
+                      style={{ width: '100%', height: 'auto', display: 'block' }} 
+                      loading="lazy" 
+                    />
+                  </div>
+                )}
+
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
+                  {pageData.capabilities.map((cap) => (
+                    <div key={cap.title} style={{ background: 'var(--bg-card)', padding: '1.75rem', borderRadius: '0.75rem', border: '1px solid var(--border-color)', boxShadow: 'var(--shadow-sm)' }}>
+                      <h3 className="h3" style={{ fontSize: '1.125rem', marginBottom: '0.75rem', color: 'var(--text-primary)' }}>{cap.title}</h3>
+                      <p className="text-muted" style={{ margin: 0, fontSize: '0.95rem', lineHeight: '1.6' }}>{cap.desc}</p>
                     </div>
                   ))}
+                </div>
+              </div>
+            ) : null}
+            {(pageId === 'ai-agent-development' || pageData.vsChatbotVisual) && (
+              <div style={{ marginTop: '5rem' }}>
+                <div style={{ textAlign: 'center', maxWidth: '800px', marginInline: 'auto', marginBottom: '3rem' }}>
+                  <h2 className="h2" style={{ fontSize: 'clamp(2.125rem, 4vw, 2.5rem)', marginBottom: '1rem' }}>AI Agents That Actually Take Action</h2>
+                  <p className="text-muted" style={{ fontSize: '1.05rem', lineHeight: '1.6', margin: 0 }}>
+                    Traditional chatbots primarily respond to questions. AI agents can understand context, retrieve business knowledge, use connected tools, execute workflows, and hand tasks to human teams when needed.
+                  </p>
+                </div>
+
+                {pageData.vsChatbotVisual && (
+                  <div className="seo-diagram-card" style={{ marginBottom: '3rem', maxWidth: '1000px', marginInline: 'auto' }}>
+                    <img 
+                      src={pageData.vsChatbotVisual} 
+                      alt="Side-by-side comparison of Traditional Chatbots versus Autonomous AI Agents" 
+                      width="1200" 
+                      height="675" 
+                      style={{ width: '100%', height: 'auto', display: 'block' }} 
+                      loading="lazy" 
+                    />
+                  </div>
+                )}
+
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem', maxWidth: '1000px', marginInline: 'auto' }}>
+                  <div style={{ background: 'var(--bg-card)', padding: '2rem', borderRadius: '1rem', border: '1px solid var(--border-color)', boxShadow: 'var(--shadow-sm)' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1.25rem' }}>
+                      <X size={24} color="var(--error-color, #ef4444)" />
+                      <h3 className="h3" style={{ fontSize: '1.25rem', margin: 0, color: 'var(--text-primary)' }}>Traditional Chatbot</h3>
+                    </div>
+                    <ul style={{ margin: 0, padding: 0, listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '1rem', color: 'var(--text-secondary)', fontSize: '0.95rem', lineHeight: '1.6' }}>
+                      <li>• Answers questions</li>
+                      <li>• Limited workflow execution</li>
+                      <li>• Mostly conversational</li>
+                      <li>• Limited tool usage</li>
+                    </ul>
+                  </div>
+                  <div style={{ background: 'color-mix(in srgb, var(--primary-color) 12%, var(--bg-card))', padding: '2rem', borderRadius: '1rem', border: '1px solid var(--primary-color)', boxShadow: '0 8px 24px -4px color-mix(in srgb, var(--primary-color) 20%, transparent)' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1.25rem' }}>
+                      <Check size={24} color="var(--primary-color)" />
+                      <h3 className="h3" style={{ fontSize: '1.25rem', margin: 0, color: 'var(--primary-color)' }}>AI Agent</h3>
+                    </div>
+                    <ul style={{ margin: 0, padding: 0, listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '1rem', color: 'var(--text-secondary)', fontSize: '0.95rem', lineHeight: '1.6' }}>
+                      <li>• Understands business context</li>
+                      <li>• Uses knowledge and connected tools</li>
+                      <li>• Executes multi-step workflows</li>
+                      <li>• Can hand work to humans</li>
+                    </ul>
+                  </div>
                 </div>
               </div>
             )}
           </div>
         </section>
 
-        <Process />
-        <FAQ includeSchema={false} />
+        {pageId === 'voice-bot-assistant' ? (
+          <VoiceAIEngineArchitecture />
+        ) : (
+          <Process 
+            title={pageData.workflowHeading} 
+            subtitle={pageData.workflowSubtitle}
+            steps={pageData.customSteps}
+            engineBanner={pageData.engineBanner}
+            integrations={pageData.integrations}
+            workflowVisual={pageData.workflowVisual}
+            workflowVisualAlt={pageData.workflowVisualAlt || (pageId === 'ai-agent-development' ? 'AI Agent Workflow Orchestration and Branching Execution Architecture' : 'Workflow Architecture')}
+            footerLabel={pageData.workflowFooter?.label}
+            footerTitle={pageData.workflowFooter?.title}
+            footerDesc={pageData.workflowFooter?.desc}
+            footerBtnText={pageData.workflowFooter?.btnText}
+            footerBtnUrl={pageData.workflowFooter?.btnUrl}
+          />
+        )}
+
+        {pageData.outcomes?.length > 0 && (
+          <section className="section" style={{ padding: '4.5rem 0' }}>
+            <div className="container" style={{ maxWidth: '1240px' }}>
+              <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+                <span className="section-eyebrow">{pageData.outcomesEyebrow || 'Measurable Outcomes'}</span>
+                <h2 className="h2" style={{ fontSize: 'clamp(2rem, 3.6vw, 2.5rem)', marginBottom: '0.75rem' }}>
+                  {pageData.outcomesTitle || 'Create One Operational View of the Customer'}
+                </h2>
+                {pageData.outcomesSubtitle && (
+                  <p className="text-muted" style={{ fontSize: '1.05rem', maxWidth: '750px', marginInline: 'auto' }}>
+                    {pageData.outcomesSubtitle}
+                  </p>
+                )}
+              </div>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1.5rem' }}>
+                {pageData.outcomes.map((item, idx) => (
+                  <div key={idx} style={{ background: 'var(--bg-card)', padding: '2rem 1.75rem', borderRadius: '1rem', border: '1px solid var(--border-color)', boxShadow: 'var(--shadow-sm)' }}>
+                    <h3 className="h3" style={{ fontSize: '1.15rem', marginBottom: '0.65rem', color: 'var(--text-primary)' }}>{item.title}</h3>
+                    <p className="text-muted" style={{ margin: 0, fontSize: '0.92rem', lineHeight: '1.6' }}>{item.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+        <FAQ includeSchema={false} customFaqs={pageData.customFaqs} />
 
         {pageData.relatedLinks?.length > 0 && (
-          <section className="container" style={{ padding: '2rem 0', textAlign: 'center' }}>
-            <div style={{ padding: '2rem', background: 'color-mix(in srgb, var(--primary-color) 6%, transparent)', borderRadius: '1rem' }}>
-              <h2 className="h3" style={{ marginBottom: '1rem', fontSize: '1.5rem' }}>Related services</h2>
-              <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap' }}>
+          <section className="section" style={{ padding: '3.5rem 0 2rem' }}>
+            <div className="container" style={{ maxWidth: '1240px' }}>
+              <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+                <span className="section-eyebrow">Explore More</span>
+                <h2 className="h2" style={{ fontSize: 'clamp(1.75rem, 3vw, 2.25rem)' }}>Related Services</h2>
+              </div>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1.25rem' }}>
                 {pageData.relatedLinks.map((link) => (
                   <Link
                     key={link.url}
                     to={link.url}
-                    style={{ color: 'var(--primary-color)', fontWeight: 600, textDecoration: 'none' }}
+                    className="related-service-card"
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '1rem',
+                      padding: '1.15rem 1.35rem',
+                      background: 'var(--bg-card)',
+                      borderRadius: '0.85rem',
+                      border: '1px solid var(--border-color)',
+                      boxShadow: 'var(--shadow-sm)',
+                      color: 'var(--text-primary)',
+                      textDecoration: 'none',
+                      fontWeight: '600',
+                      fontSize: '0.98rem',
+                      transition: 'all 0.2s ease'
+                    }}
                   >
-                    {link.text} →
+                    {link.icon && (
+                      <img 
+                        src={link.icon} 
+                        alt="" 
+                        aria-hidden="true" 
+                        width="36" 
+                        height="36" 
+                        style={{ width: '36px', height: '36px', borderRadius: '8px', objectFit: 'contain', flexShrink: 0 }} 
+                        loading="lazy" 
+                      />
+                    )}
+                    <span style={{ flex: 1 }}>{link.text}</span>
+                    <ArrowRight size={18} color="var(--primary-color)" />
                   </Link>
                 ))}
               </div>
@@ -736,14 +1215,34 @@ export default function SEOLandingPage() {
           </section>
         )}
 
-        <ContactSection />
+        <ContactSection 
+          eyebrow={pageData.contactEyebrow}
+          title={pageData.contactTitle} 
+          subtitle={pageData.contactSubtitle} 
+          checklist={pageData.contactChecklist}
+          ctaImage={pageData.ctaVisual}
+          ctaImageAlt={pageData.ctaVisualAlt || 'Enterprise Solution Connected Architecture'}
+        />
       </div>
 
       <style>{`
-        @media (max-width: 900px) {
+        .related-service-card:hover {
+          border-color: var(--primary-color) !important;
+          box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12) !important;
+          transform: translateY(-2px);
+        }
+        @media (max-width: 1024px) {
           .seo-hero-grid {
             grid-template-columns: 1fr !important;
-            gap: 2rem !important;
+            gap: 3rem !important;
+          }
+          .hero-visual {
+            order: -1;
+          }
+        }
+        @media (max-width: 768px) {
+          .seo-content-grid {
+            grid-template-columns: 1fr !important;
           }
         }
       `}</style>

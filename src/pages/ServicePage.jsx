@@ -15,7 +15,7 @@ const serviceData = {
       'Automated workflow triggers and alerts',
       'Bank-grade security and compliance'
     ],
-    imageUrl: '/extra-hero-new.png'
+    imageUrl: '/extra-hero-new.webp'
   },
   'ai-chatbots': {
     title: 'AI Chatbots',
@@ -27,7 +27,7 @@ const serviceData = {
       'Sub-300ms response times for fluid conversations',
       'Analytics dashboard to monitor chatbot performance'
     ],
-    imageUrl: '/whatsapp-features-new.png'
+    imageUrl: '/whatsapp-features-new.webp'
   },
   'whatsapp-automation': {
     title: 'WhatsApp Automation & Meta Coexistence',
@@ -40,7 +40,7 @@ const serviceData = {
       'Interactive messages (buttons, lists, catalog products)',
       'Shared team inbox for multi-agent support'
     ],
-    imageUrl: '/ai-chatbots-hero-new.png'
+    imageUrl: '/ai-chatbots-hero-new.webp'
   }
 };
 
@@ -71,7 +71,7 @@ export default function ServicePage() {
         <link rel="canonical" href={`https://www.gyanvaniai.online/services/${serviceId}`} />
       </Helmet>
       <div className="service-page" style={{ background: 'var(--bg-main)' }}>
-        <div className="container" style={{ padding: '8rem 1rem 6rem', maxWidth: '900px', margin: '0 auto', minHeight: '80vh' }}>
+        <div className="container" style={{ padding: '6rem 1rem 4rem', maxWidth: '900px', margin: '0 auto', minHeight: '80vh' }}>
         <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
           <h1 className="h1" style={{ marginBottom: '1.5rem', color: 'var(--text-primary)' }}>{service.title}</h1>
           <p className="text-lg text-muted" style={{ maxWidth: '700px', margin: '0 auto' }}>

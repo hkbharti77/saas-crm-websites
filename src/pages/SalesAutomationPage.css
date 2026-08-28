@@ -1,0 +1,1165 @@
+/* ==========================================================================
+   Sales Automation Page Styles — Enterprise SaaS
+   Gyan VaniAi Design System Compatible (Light & Dark Theme Tokens)
+   ========================================================================== */
+
+.sales-automation-page {
+  width: 100%;
+  overflow-x: hidden;
+  color: var(--text-primary);
+  background: var(--bg-base);
+}
+
+.sales-auto-container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* ==========================================================================
+   1. HERO SECTION
+   ========================================================================== */
+.sales-hero-section {
+  padding-top: 3.25rem;
+  padding-bottom: 4rem;
+  position: relative;
+}
+
+.sales-hero-breadcrumb {
+  margin-bottom: 1.25rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.sales-hero-breadcrumb ol {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  color: var(--text-muted);
+}
+
+.sales-hero-breadcrumb a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.sales-hero-breadcrumb a:hover {
+  color: var(--primary-color);
+}
+
+.sales-hero-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 3.5rem;
+  align-items: center;
+}
+
+.sales-hero-eyebrow-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.85rem;
+  background: color-mix(in srgb, var(--primary-color) 12%, var(--bg-card));
+  border: 1px solid color-mix(in srgb, var(--primary-color) 35%, transparent);
+  border-radius: var(--radius-full);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--primary-color);
+  margin-bottom: 1.25rem;
+}
+
+.sales-hero-pulse-dot {
+  width: 7px;
+  height: 7px;
+  background: var(--primary-color);
+  border-radius: 50%;
+  box-shadow: 0 0 0 0 color-mix(in srgb, var(--primary-color) 70%, transparent);
+  animation: salesPulse 2s infinite;
+}
+
+@keyframes salesPulse {
+  0% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--primary-color) 70%, transparent);
+  }
+  70% {
+    box-shadow: 0 0 0 7px transparent;
+  }
+  100% {
+    box-shadow: 0 0 0 0 transparent;
+  }
+}
+
+.sales-hero-title {
+  font-size: clamp(2.6rem, 4.5vw, 3.4rem);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+  margin-bottom: 1.25rem;
+  color: var(--text-primary);
+}
+
+.sales-hero-desc {
+  font-size: 1.1rem;
+  line-height: 1.65;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+  max-width: 540px;
+}
+
+.sales-hero-bullets {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.85rem;
+  margin-bottom: 2.25rem;
+}
+
+.sales-hero-bullet-item {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.6rem 0.85rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.sales-hero-bullet-item:hover {
+  border-color: var(--primary-color);
+  transform: translateY(-2px);
+}
+
+.sales-hero-bullet-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--primary-color) 14%, var(--bg-card));
+  color: var(--primary-color);
+  flex-shrink: 0;
+}
+
+.sales-hero-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+}
+
+.sales-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.85rem 1.65rem;
+  background: var(--gradient-primary);
+  color: #ffffff !important;
+  font-size: 0.98rem;
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 18px color-mix(in srgb, var(--primary-color) 35%, transparent);
+  transition: var(--transition);
+  text-decoration: none;
+}
+
+.sales-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px color-mix(in srgb, var(--primary-color) 45%, transparent);
+}
+
+.sales-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.85rem 1.35rem;
+  background: var(--bg-card);
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  cursor: pointer;
+  transition: var(--transition);
+  text-decoration: none;
+}
+
+.sales-btn-secondary:hover {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   HERO PRODUCT MOCKUP (HTML/CSS)
+   ========================================================================== */
+.sales-mockup-wrapper {
+  position: relative;
+}
+
+.sales-mockup-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-hover);
+  overflow: hidden;
+  position: relative;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.sales-mockup-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 1.25rem;
+  background: color-mix(in srgb, var(--bg-card) 92%, var(--text-primary));
+  border-bottom: 1px solid var(--border-color);
+}
+
+.sales-mockup-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.sales-mockup-dots span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+.sales-mockup-dots span:nth-child(1) { background: #ef4444; }
+.sales-mockup-dots span:nth-child(2) { background: #f59e0b; }
+.sales-mockup-dots span:nth-child(3) { background: #10b981; }
+
+.sales-mockup-app-title {
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.sales-mockup-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.2rem 0.65rem;
+  border-radius: var(--radius-full);
+  background: color-mix(in srgb, #10b981 15%, transparent);
+  border: 1px solid color-mix(in srgb, #10b981 35%, transparent);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #10b981;
+}
+
+.sales-mockup-body {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Mockup Metric Stats */
+.sales-mockup-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+
+.sales-mockup-stat-box {
+  background: color-mix(in srgb, var(--bg-card) 60%, var(--bg-base));
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 0.65rem 0.75rem;
+}
+
+.sales-mockup-stat-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 0.2rem;
+}
+
+.sales-mockup-stat-val {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.sales-mockup-stat-sub {
+  font-size: 0.68rem;
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+/* Active Deal Card */
+.sales-mockup-lead-card {
+  background: color-mix(in srgb, var(--primary-color) 6%, var(--bg-card));
+  border: 1px solid color-mix(in srgb, var(--primary-color) 30%, transparent);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  position: relative;
+}
+
+.sales-mockup-lead-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 0.6rem;
+}
+
+.sales-mockup-lead-company {
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.sales-mockup-lead-deal {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+.sales-mockup-score-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.6rem;
+  background: color-mix(in srgb, var(--primary-color) 18%, var(--bg-card));
+  border: 1px solid var(--primary-color);
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+.sales-mockup-lead-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.85rem;
+}
+
+.sales-mockup-detail-tag {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+/* Visual Pipeline Progress in Mockup */
+.sales-mockup-pipeline-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4px;
+  margin-bottom: 0.5rem;
+}
+
+.sales-mockup-pipe-step {
+  padding: 0.35rem 0.5rem;
+  background: color-mix(in srgb, var(--text-muted) 12%, transparent);
+  border-radius: 4px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-align: center;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+}
+
+.sales-mockup-pipe-step.completed {
+  background: color-mix(in srgb, #10b981 18%, var(--bg-card));
+  color: #10b981;
+  border: 1px solid color-mix(in srgb, #10b981 35%, transparent);
+}
+
+.sales-mockup-pipe-step.active {
+  background: var(--gradient-primary);
+  color: #ffffff;
+  box-shadow: 0 2px 8px color-mix(in srgb, var(--primary-color) 35%, transparent);
+}
+
+/* Automation Feed */
+.sales-mockup-feed {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.sales-mockup-feed-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.sales-mockup-feed-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.45rem 0.65rem;
+  background: color-mix(in srgb, var(--bg-card) 70%, var(--bg-base));
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  font-size: 0.76rem;
+  color: var(--text-secondary);
+}
+
+.sales-mockup-feed-left {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.sales-mockup-feed-time {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  font-family: monospace;
+}
+
+/* ==========================================================================
+   2. OVERVIEW / WHO IT'S FOR / WHAT YOU GET (3 ENTERPRISE CARDS)
+   ========================================================================== */
+.sales-overview-section {
+  padding: 5rem 0 4.5rem;
+  position: relative;
+}
+
+.sales-section-header {
+  text-align: center;
+  max-width: 820px;
+  margin: 0 auto 3.25rem;
+}
+
+.sales-section-eyebrow {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--primary-color);
+  margin-bottom: 0.65rem;
+}
+
+.sales-section-title {
+  font-size: clamp(2rem, 3.6vw, 2.6rem);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.85rem;
+  color: var(--text-primary);
+}
+
+.sales-section-subtitle {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+.sales-overview-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem;
+}
+
+.sales-overview-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 2.25rem 2rem;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: var(--transition);
+}
+
+.sales-overview-card:hover {
+  border-color: var(--primary-color);
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-4px);
+}
+
+.sales-overview-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+}
+
+.sales-overview-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.25rem 0.75rem;
+  background: color-mix(in srgb, var(--primary-color) 12%, var(--bg-card));
+  border: 1px solid color-mix(in srgb, var(--primary-color) 30%, transparent);
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  color: var(--primary-color);
+}
+
+.sales-overview-icon-wrap {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--primary-color) 15%, var(--bg-card));
+  color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-sm);
+}
+
+.sales-overview-heading {
+  font-size: 1.25rem;
+  font-weight: 750;
+  line-height: 1.35;
+  color: var(--text-primary);
+  margin-bottom: 0.85rem;
+}
+
+.sales-overview-desc {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+}
+
+.sales-overview-checklist {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  border-top: 1px solid var(--border-color);
+  padding-top: 1.25rem;
+}
+
+.sales-overview-check-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.sales-overview-check-icon {
+  color: var(--primary-color);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* ==========================================================================
+   3. SALES AUTOMATION WORKFLOW ARCHITECTURE
+   ========================================================================== */
+.sales-workflow-section {
+  padding: 5rem 0;
+  background: color-mix(in srgb, var(--primary-color) 3%, var(--bg-base));
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+  position: relative;
+}
+
+.sales-engine-orchestrator-banner {
+  background: var(--bg-card);
+  border: 1px solid color-mix(in srgb, var(--primary-color) 35%, var(--border-color));
+  border-radius: var(--radius-lg);
+  padding: 1.75rem 2rem;
+  margin-bottom: 3.5rem;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.sales-engine-orchestrator-banner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--gradient-primary);
+}
+
+.sales-engine-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.3rem 0.85rem;
+  background: color-mix(in srgb, var(--primary-color) 15%, var(--bg-card));
+  border: 1px solid var(--primary-color);
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+}
+
+.sales-engine-title {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 0.35rem;
+}
+
+.sales-engine-desc {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  margin: 0;
+  max-width: 680px;
+  line-height: 1.55;
+}
+
+.sales-engine-stats-pills {
+  display: flex;
+  gap: 1rem;
+  flex-shrink: 0;
+}
+
+.sales-engine-stat-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem 1.15rem;
+  background: color-mix(in srgb, var(--bg-card) 75%, var(--bg-base));
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  text-align: center;
+}
+
+.sales-engine-stat-val {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--primary-color);
+}
+
+.sales-engine-stat-lbl {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+/* 4 Phase Workflow Grid */
+.sales-workflow-phases-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.sales-workflow-phase-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+}
+
+.sales-workflow-phase-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.sales-workflow-phase-tag {
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.sales-workflow-step-card {
+  background: color-mix(in srgb, var(--bg-card) 60%, var(--bg-base));
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1.15rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: var(--transition);
+  position: relative;
+}
+
+.sales-workflow-step-card:hover {
+  border-color: var(--primary-color);
+  background: var(--bg-card);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.sales-workflow-step-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sales-workflow-step-idx {
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: var(--text-muted);
+  font-family: monospace;
+}
+
+.sales-workflow-step-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--primary-color) 12%, var(--bg-card));
+  color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sales-workflow-step-title {
+  font-size: 1rem;
+  font-weight: 750;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.sales-workflow-step-desc {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.sales-workflow-step-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-top: 0.35rem;
+  padding: 0.2rem 0.55rem;
+  background: color-mix(in srgb, var(--primary-color) 8%, var(--bg-card));
+  border: 1px solid color-mix(in srgb, var(--primary-color) 25%, transparent);
+  border-radius: var(--radius-full);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  align-self: flex-start;
+}
+
+/* ==========================================================================
+   4. SALES AUTOMATION OUTCOME STRIP
+   ========================================================================== */
+.sales-outcomes-section {
+  padding: 4.5rem 0;
+  position: relative;
+}
+
+.sales-outcomes-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.sales-outcome-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem 1.5rem;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  transition: var(--transition);
+}
+
+.sales-outcome-card:hover {
+  border-color: var(--primary-color);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-3px);
+}
+
+.sales-outcome-icon-wrap {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--primary-color) 14%, var(--bg-card));
+  color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+}
+
+.sales-outcome-title {
+  font-size: 1.15rem;
+  font-weight: 750;
+  color: var(--text-primary);
+  margin-bottom: 0.65rem;
+  line-height: 1.3;
+}
+
+.sales-outcome-desc {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* ==========================================================================
+   5. CENTRED ENTERPRISE FAQ
+   ========================================================================== */
+.sales-faq-section {
+  padding: 5rem 0;
+  background: color-mix(in srgb, var(--primary-color) 2%, var(--bg-base));
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.sales-faq-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.sales-faq-controls {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1.5rem;
+}
+
+.sales-faq-toggle-all-btn {
+  padding: 0.45rem 1rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.sales-faq-toggle-all-btn:hover {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+.sales-faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.sales-faq-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  transition: var(--transition);
+}
+
+.sales-faq-item:hover {
+  border-color: color-mix(in srgb, var(--primary-color) 50%, var(--border-color));
+}
+
+.sales-faq-item.open {
+  border-color: var(--primary-color);
+  box-shadow: 0 4px 18px color-mix(in srgb, var(--primary-color) 12%, transparent);
+}
+
+.sales-faq-question-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  background: transparent;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  color: var(--text-primary);
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.sales-faq-icon-wrapper {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--primary-color) 10%, var(--bg-card));
+  color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.sales-faq-answer {
+  overflow: hidden;
+  transition: max-height 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+}
+
+.sales-faq-answer-inner {
+  padding: 0 1.5rem 1.35rem;
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* ==========================================================================
+   6. RELATED SERVICES ("EXPLORE THE PLATFORM")
+   ========================================================================== */
+.sales-related-section {
+  padding: 5rem 0 3.5rem;
+  position: relative;
+}
+
+.sales-related-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+}
+
+.sales-related-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: var(--text-primary);
+  transition: var(--transition);
+  position: relative;
+}
+
+.sales-related-card:hover {
+  border-color: var(--primary-color);
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-3px);
+}
+
+.sales-related-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.sales-related-icon-wrap {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--primary-color) 12%, var(--bg-card));
+  color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sales-related-arrow {
+  color: var(--text-muted);
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.sales-related-card:hover .sales-related-arrow {
+  color: var(--primary-color);
+  transform: translateX(4px);
+}
+
+.sales-related-title {
+  font-size: 1.05rem;
+  font-weight: 750;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.sales-related-desc {
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* ==========================================================================
+   RESPONSIVE MEDIA QUERIES
+   ========================================================================== */
+
+/* Tablet (1024px) */
+@media (max-width: 1024px) {
+  .sales-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .sales-mockup-wrapper {
+    max-width: 600px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .sales-overview-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .sales-workflow-phases-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+
+  .sales-outcomes-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+
+  .sales-related-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+
+  .sales-engine-orchestrator-banner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+  }
+
+  .sales-engine-stats-pills {
+    width: 100%;
+    justify-content: flex-start;
+  }
+}
+
+/* Mobile (768px) */
+@media (max-width: 768px) {
+  .sales-hero-section {
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+  }
+
+  .sales-hero-title {
+    font-size: 2.3rem;
+  }
+
+  .sales-hero-bullets {
+    grid-template-columns: 1fr;
+    gap: 0.65rem;
+  }
+
+  .sales-hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .sales-btn-primary,
+  .sales-btn-secondary {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .sales-mockup-stats-grid {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .sales-workflow-phases-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .sales-outcomes-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .sales-related-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .sales-section-header {
+    margin-bottom: 2.25rem;
+  }
+
+  .sales-section-title {
+    font-size: 1.85rem;
+  }
+}
+
+/* Small Mobile (430px, 390px, 375px) */
+@media (max-width: 480px) {
+  .sales-auto-container {
+    padding: 0 1rem;
+  }
+
+  .sales-hero-title {
+    font-size: 1.95rem;
+  }
+
+  .sales-overview-card {
+    padding: 1.5rem 1.25rem;
+  }
+
+  .sales-mockup-body {
+    padding: 1rem;
+  }
+
+  .sales-engine-orchestrator-banner {
+    padding: 1.25rem 1rem;
+  }
+
+  .sales-engine-stats-pills {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .sales-engine-stat-badge {
+    flex: 1 1 calc(50% - 0.5rem);
+    padding: 0.5rem;
+  }
+}

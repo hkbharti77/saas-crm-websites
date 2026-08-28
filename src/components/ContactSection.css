@@ -29,18 +29,18 @@
 
 .contact-main-heading {
   font-family: var(--font-display, var(--font-sans));
-  font-size: clamp(1.85rem, 2.6vw, 2.35rem);
+  font-size: clamp(2rem, 3vw, 2.75rem);
   font-weight: 800;
-  line-height: 1.14;
-  letter-spacing: -0.025em;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
   color: var(--text-primary);
-  margin-bottom: 0.75rem;
-  max-width: 500px;
+  margin-bottom: 0.85rem;
+  max-width: 540px;
 }
 
 .contact-main-desc {
-  font-size: 0.98rem;
-  line-height: 1.55;
+  font-size: 1.05rem;
+  line-height: 1.6;
   color: var(--text-secondary);
   margin-bottom: 1.25rem;
   max-width: 480px;
@@ -155,9 +155,9 @@
 .contact-form-container .form-input,
 .contact-form-container .form-textarea {
   width: 100%;
-  font-size: 0.95rem;
-  padding: 0.65rem 0.95rem;
-  min-height: 44px;
+  font-size: 1rem;
+  padding: 0.65rem 1rem;
+  min-height: 48px;
   border: 1px solid var(--input-border, var(--border-color));
   border-radius: var(--radius-md, 10px);
   background: var(--input-bg);
@@ -197,7 +197,7 @@
   border: 1px solid var(--input-border, var(--border-color));
   border-radius: var(--radius-md, 10px);
   background: var(--input-bg);
-  min-height: 44px;
+  min-height: 48px;
   padding: 0 0.75rem;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
@@ -234,7 +234,7 @@
   border: none;
   background: transparent;
   padding: 0.65rem 0.25rem;
-  font-size: 0.95rem;
+  font-size: 1rem;
   color: var(--text-primary);
   outline: none;
   width: 100%;

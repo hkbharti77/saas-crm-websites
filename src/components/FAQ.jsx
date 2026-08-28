@@ -39,11 +39,12 @@ const faqs = [
 
 import { Helmet } from 'react-helmet-async';
 
-export default function FAQ({ includeSchema = true }) {
+export default function FAQ({ includeSchema = true, customFaqs = null, title = "Frequently Asked Questions", subtitle = "Everything you need to know about our AI CRMs, integrations, and deployment timelines." }) {
   // Allow multiple FAQs to be open simultaneously (defaults to first 2 open for instant reading)
   const [openSet, setOpenSet] = useState(new Set([0, 1]));
 
-  const allOpen = openSet.size === faqs.length;
+  const activeFaqs = customFaqs || faqs;
+  const allOpen = openSet.size === activeFaqs.length;
 
   const toggleFAQ = (index) => {
     setOpenSet((prev) => {
@@ -61,7 +62,7 @@ export default function FAQ({ includeSchema = true }) {
     if (allOpen) {
       setOpenSet(new Set());
     } else {
-      setOpenSet(new Set(faqs.map((_, i) => i)));
+      setOpenSet(new Set(activeFaqs.map((_, i) => i)));
     }
   };
 
@@ -69,7 +70,7 @@ export default function FAQ({ includeSchema = true }) {
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    "mainEntity": faqs.map(faq => ({
+    "mainEntity": activeFaqs.map(faq => ({
       "@type": "Question",
       "name": faq.question,
       "acceptedAnswer": {
@@ -88,12 +89,12 @@ export default function FAQ({ includeSchema = true }) {
           </script>
         </Helmet>
       )}
-      <div className="container" style={{ maxWidth: '920px' }}>
+      <div className="container" style={{ maxWidth: '1024px' }}>
         <div className="faq-header-row" data-aos="fade-up">
           <div className="section-header section-header--center" style={{ marginBottom: '1.5rem' }}>
-            <h2 className="h2">Frequently Asked Questions</h2>
+            <h2 className="h2">{title}</h2>
             <p className="text-muted" style={{ marginTop: '0.5rem', fontSize: '1.05rem' }}>
-              Everything you need to know about our AI CRMs, integrations, and deployment timelines.
+              {subtitle}
             </p>
           </div>
 
@@ -108,13 +109,13 @@ export default function FAQ({ includeSchema = true }) {
             </button>
           </div>
         </div>
-        
+
         <div className="faq-list">
-          {faqs.map((faq, index) => {
+          {activeFaqs.map((faq, index) => {
             const isOpen = openSet.has(index);
             return (
-              <div 
-                key={index} 
+              <div
+                key={index}
                 className={`faq-item ${isOpen ? 'open' : ''}`}
                 data-aos="fade-up"
                 data-aos-delay={index * 35}
@@ -126,18 +127,23 @@ export default function FAQ({ includeSchema = true }) {
                   aria-expanded={isOpen}
                   aria-controls={`faq-answer-${index}`}
                 >
-                  <h3 className="faq-question-title">{faq.question}</h3>
+                  <h3 className="faq-question-title">{faq.question || faq.q}</h3>
                   <span className="faq-icon-wrapper">
                     {isOpen ? <ChevronUp size={20} className="faq-icon" /> : <ChevronDown size={20} className="faq-icon" />}
                   </span>
                 </button>
-                <div 
+                <div
                   id={`faq-answer-${index}`}
                   className="faq-answer"
                   role="region"
                   aria-labelledby={`faq-question-${index}`}
+                  style={{ 
+                    maxHeight: isOpen ? '500px' : '0',
+                    opacity: isOpen ? 1 : 0,
+                    visibility: isOpen ? 'visible' : 'hidden',
+                  }}
                 >
-                  <p className="faq-answer-text">{faq.answer}</p>
+                  <p className="faq-answer-text">{faq.answer || faq.a}</p>
                 </div>
               </div>
             );

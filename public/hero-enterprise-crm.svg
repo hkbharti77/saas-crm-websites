@@ -1,0 +1,132 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 750" width="100%" height="100%">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="entBgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#081426"/>
+      <stop offset="50%" stop-color="#0d1b32"/>
+      <stop offset="100%" stop-color="#050a14"/>
+    </linearGradient>
+    <linearGradient id="entPrimaryGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0284c7"/>
+      <stop offset="100%" stop-color="#0d9488"/>
+    </linearGradient>
+    <linearGradient id="entCardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#0f172a" stop-opacity="0.98"/>
+    </linearGradient>
+    <filter id="entShadow" x="-10%" y="-10%" width="120%" height="125%">
+      <feDropShadow dx="0" dy="16" stdDeviation="24" flood-color="#000000" flood-opacity="0.65"/>
+    </filter>
+    <filter id="entGlow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="12" flood-color="#0d9488" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <!-- Base Window -->
+  <rect x="20" y="20" width="960" height="710" rx="20" fill="url(#entBgGrad)" stroke="#1e293b" stroke-width="2" filter="url(#entShadow)"/>
+
+  <!-- Window Header Bar -->
+  <path d="M 20 40 Q 20 20 40 20 L 960 20 Q 980 20 980 40 L 980 75 L 20 75 Z" fill="#0f172a" stroke="#1e293b" stroke-width="1"/>
+  <circle cx="50" cy="48" r="6" fill="#ef4444"/>
+  <circle cx="70" cy="48" r="6" fill="#f59e0b"/>
+  <circle cx="90" cy="48" r="6" fill="#10b981"/>
+  <text x="120" y="53" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="600">Gyan VaniAi · Enterprise Multi-Tenant CRM Platform</text>
+  
+  <!-- Security RBAC Badge -->
+  <rect x="760" y="38" width="195" height="26" rx="13" fill="#134e4a" stroke="#0d9488" stroke-width="1"/>
+  <text x="857" y="55" fill="#5eead4" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700" text-anchor="middle">🛡️ RBAC: ENTERPRISE ADMIN</text>
+
+  <!-- Top Real-time Enterprise Metrics -->
+  <g transform="translate(50, 95)">
+    <rect x="0" y="0" width="280" height="85" rx="12" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+    <text x="18" y="28" fill="#64748b" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700">ENTERPRISE ARR PIPELINE</text>
+    <text x="18" y="60" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="26" font-weight="800">$2.4M <tspan fill="#34d399" font-size="12" font-weight="600">+24% YoY</tspan></text>
+
+    <rect x="310" y="0" width="280" height="85" rx="12" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+    <text x="328" y="28" fill="#64748b" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700">CONNECTED WORKSPACES</text>
+    <text x="328" y="60" fill="#38bdf8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="26" font-weight="800">18 Units <tspan fill="#38bdf8" font-size="12" font-weight="600">Multi-Team</tspan></text>
+
+    <rect x="620" y="0" width="280" height="85" rx="12" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+    <text x="638" y="28" fill="#64748b" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700">CROSS-TEAM SLA RATE</text>
+    <text x="638" y="60" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="26" font-weight="800">99.4% <tspan fill="#34d399" font-size="12" font-weight="600">Standardized</tspan></text>
+  </g>
+
+  <!-- Multi-Team Account Management Card (Centerpiece) -->
+  <g transform="translate(50, 200)">
+    <rect x="0" y="0" width="900" height="280" rx="16" fill="url(#entCardGrad)" stroke="#0d9488" stroke-width="1.5" filter="url(#entGlow)"/>
+    
+    <!-- Account Details Header -->
+    <rect x="25" y="25" width="48" height="48" rx="12" fill="url(#entPrimaryGrad)"/>
+    <text x="49" y="56" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="20" font-weight="800" text-anchor="middle">GH</text>
+
+    <text x="88" y="45" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="18" font-weight="750">Global Holdings &amp; Logistics Corp (Enterprise Tier-1)</text>
+    <text x="88" y="65" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13">Parent Account · 14 Sub-Entities · APAC &amp; EMEA Regional Divisions</text>
+
+    <!-- Health Score Badge -->
+    <rect x="710" y="28" width="165" height="38" rx="19" fill="#064e3b" stroke="#10b981" stroke-width="1.5"/>
+    <text x="792" y="52" fill="#34d399" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="800" text-anchor="middle">HEALTH: 98 / 100</text>
+
+    <!-- Team Pod & Ownership Badges -->
+    <g transform="translate(25, 90)">
+      <rect x="0" y="0" width="265" height="32" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+      <text x="14" y="21" fill="#cbd5e1" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="600">💼 Sales Pod: Strategic Enterprise</text>
+
+      <rect x="285" y="0" width="275" height="32" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+      <text x="299" y="21" fill="#cbd5e1" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="600">👥 Support: Tier-3 Dedicated Pod</text>
+
+      <rect x="580" y="0" width="270" height="32" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+      <text x="594" y="21" fill="#cbd5e1" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="600">🔒 Access: Multi-Department RBAC</text>
+    </g>
+
+    <!-- Multi-Stage Enterprise Pipeline Progression -->
+    <g transform="translate(25, 138)">
+      <!-- Stage 1 -->
+      <rect x="0" y="0" width="200" height="42" rx="8" fill="#065f46" stroke="#10b981" stroke-width="1"/>
+      <text x="18" y="26" fill="#a7f3d0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700">✓ Account Intake</text>
+
+      <!-- Stage 2 -->
+      <rect x="215" y="0" width="200" height="42" rx="8" fill="#065f46" stroke="#10b981" stroke-width="1"/>
+      <text x="233" y="26" fill="#a7f3d0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700">✓ Security Review</text>
+
+      <!-- Stage 3 -->
+      <rect x="430" y="0" width="200" height="42" rx="8" fill="url(#entPrimaryGrad)"/>
+      <text x="448" y="26" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700">⚡ Contract &amp; SLA</text>
+
+      <!-- Stage 4 -->
+      <rect x="645" y="0" width="205" height="42" rx="8" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+      <text x="663" y="26" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="600">ERP &amp; Ops Sync</text>
+    </g>
+
+    <!-- Governance Summary -->
+    <g transform="translate(25, 198)">
+      <rect x="0" y="0" width="850" height="64" rx="10" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+      <text x="20" y="28" fill="#38bdf8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="800">ROLE &amp; GOVERNANCE MATRIX</text>
+      <text x="20" y="48" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12">Sales Director (Full Access) · Account Manager (Pipeline &amp; Comms) · Ops Lead (ERP Webhook &amp; Billing)</text>
+      <text x="740" y="38" fill="#34d399" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700">● 100% Policy Compliant</text>
+    </g>
+  </g>
+
+  <!-- Centralized Synchronized Event Feed (Bottom) -->
+  <g transform="translate(50, 500)">
+    <rect x="0" y="0" width="900" height="195" rx="14" fill="#0f172a" stroke="#1e293b" stroke-width="1"/>
+    <text x="25" y="32" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" letter-spacing="0.5">CENTRALIZED CROSS-DEPARTMENT ACTIVITY STREAM</text>
+
+    <!-- Stream Item 1 -->
+    <rect x="25" y="48" width="850" height="38" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+    <circle cx="45" cy="67" r="4" fill="#34d399"/>
+    <text x="65" y="71" fill="#f1f5f9" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="500">Contract executed ($180,000 ARR) — Triggered ERP billing webhook</text>
+    <text x="820" y="71" fill="#64748b" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12">14:02:10</text>
+
+    <!-- Stream Item 2 -->
+    <rect x="25" y="94" width="850" height="38" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+    <circle cx="45" cy="113" r="4" fill="#38bdf8"/>
+    <text x="65" y="117" fill="#f1f5f9" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="500">Account SLA policy assigned to EMEA Support &amp; Customer Success pod</text>
+    <text x="820" y="117" fill="#64748b" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12">14:05:45</text>
+
+    <!-- Stream Item 3 -->
+    <rect x="25" y="140" width="850" height="38" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+    <circle cx="45" cy="159" r="4" fill="#10b981"/>
+    <text x="65" y="163" fill="#f1f5f9" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="500">Unified 360° customer timeline synchronized across 8 regional branches</text>
+    <text x="820" y="163" fill="#64748b" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12">14:10:00</text>
+  </g>
+</svg>

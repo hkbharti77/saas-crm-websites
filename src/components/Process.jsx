@@ -61,24 +61,63 @@ const workflowSteps = [
   },
 ];
 
-export default function Process() {
+export default function Process({ 
+  title = "How intelligent revenue automation works", 
+  subtitle = "From raw prospect capture to closed-won revenue in seconds.", 
+  steps,
+  engineBanner,
+  integrations,
+  workflowVisual,
+  workflowVisualAlt = "AI Agent Workflow Architecture",
+  footerLabel,
+  footerTitle,
+  footerDesc,
+  footerBtnText = "Explore Pipeline Architecture",
+  footerBtnUrl = "/services/crm-development"
+}) {
   const [activeStep, setActiveStep] = useState(0);
+  const currentSteps = steps || workflowSteps;
+  const activeStepData = currentSteps[activeStep] || currentSteps[0];
 
   return (
-    <section className="section bg-tinted" id="how-it-works">
-      <div className="container">
+    <section className="section bg-tinted" id="how-it-works" style={{ padding: '5rem 0' }}>
+      <div className="container" style={{ maxWidth: '1240px' }}>
         <div className="section-header section-header--center">
           <span className="section-eyebrow">Visual Workflow</span>
-          <h2 className="h2">How intelligent revenue automation works</h2>
-          <p className="text-lg text-muted" style={{ marginTop: '0.85rem' }}>
-            From raw prospect capture to closed-won revenue in seconds.
+          <h2 className="h2">{title}</h2>
+          <p className="text-muted" style={{ marginTop: '0.75rem', fontSize: '1.1rem', maxWidth: '800px', marginInline: 'auto' }}>
+            {subtitle}
           </p>
         </div>
+
+        {engineBanner && (
+          <div className="workflow-engine-banner">
+            <div className="workflow-engine-pill">
+              <span className="workflow-engine-dot"></span>
+              {engineBanner.tag || 'ORCHESTRATION ENGINE'}
+            </div>
+            <h3 className="workflow-engine-title">{engineBanner.title}</h3>
+            {engineBanner.desc && <p className="workflow-engine-desc">{engineBanner.desc}</p>}
+          </div>
+        )}
+
+        {workflowVisual && (
+          <div className="seo-diagram-card" style={{ marginBottom: '3.5rem', maxWidth: '1000px', marginInline: 'auto' }}>
+            <img 
+              src={workflowVisual} 
+              alt={workflowVisualAlt} 
+              width="1200" 
+              height="675" 
+              style={{ width: '100%', height: 'auto', display: 'block' }} 
+              loading="lazy" 
+            />
+          </div>
+        )}
 
         {/* Visual Pipeline Progression Ribbon */}
         <div className="workflow-pipeline-wrapper">
           <div className="workflow-responsive-grid">
-            {workflowSteps.map((step, idx) => (
+            {currentSteps.map((step, idx) => (
               <article
                 key={step.stepNum}
                 className={`workflow-card ${activeStep === idx ? 'active' : ''}`}
@@ -89,21 +128,33 @@ export default function Process() {
                     <span className="workflow-step-badge">{step.stepNum}</span>
                     <span className="workflow-cat-tag">{step.category}</span>
                   </div>
-                  {idx < workflowSteps.length - 1 && (
+                  {idx < currentSteps.length - 1 && (
                     <span className="workflow-flow-arrow" aria-hidden="true">
                       <ArrowRight size={15} />
                     </span>
                   )}
                 </div>
                 <div className="workflow-icon-box">
-                  {step.icon}
+                  {typeof step.icon === 'string' ? (
+                    <img 
+                      src={step.icon} 
+                      alt="" 
+                      aria-hidden="true" 
+                      width="28" 
+                      height="28" 
+                      style={{ width: '28px', height: '28px', objectFit: 'contain', display: 'block', borderRadius: '6px' }} 
+                      loading="lazy" 
+                    />
+                  ) : (
+                    step.icon
+                  )}
                 </div>
                 <h3 className="workflow-card-title">{step.title}</h3>
                 <p className="workflow-card-desc">{step.desc}</p>
                 <div className="workflow-card-progress-bar">
                   <div
                     className="workflow-card-progress-fill"
-                    style={{ width: `${((idx + 1) / workflowSteps.length) * 100}%` }}
+                    style={{ width: `${((idx + 1) / currentSteps.length) * 100}%` }}
                   ></div>
                 </div>
               </article>
@@ -111,15 +162,30 @@ export default function Process() {
           </div>
         </div>
 
+        {/* Connected Infrastructure / Integrations Ribbon */}
+        {integrations && integrations.length > 0 && (
+          <div className="workflow-integrations-ribbon">
+            <span className="workflow-integrations-label">CONNECTED INFRASTRUCTURE:</span>
+            <div className="workflow-integrations-grid">
+              {integrations.map((item, i) => (
+                <div key={i} className="workflow-integration-badge">
+                  {item.icon && <span className="workflow-integration-icon">{item.icon}</span>}
+                  <span className="workflow-integration-name">{item.label}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
         {/* Selected Stage Detail Banner */}
         <div className="workflow-status-footer">
           <div className="workflow-status-left">
-            <span className="workflow-status-pill">Step {workflowSteps[activeStep].stepNum} · {workflowSteps[activeStep].category}</span>
-            <h4 className="workflow-status-heading">{workflowSteps[activeStep].title}</h4>
-            <p className="workflow-status-text">{workflowSteps[activeStep].desc}</p>
+            <span className="workflow-status-pill">{footerLabel || `Step ${activeStepData.stepNum} · ${activeStepData.category}`}</span>
+            <h4 className="workflow-status-heading">{footerTitle || activeStepData.title}</h4>
+            <p className="workflow-status-text">{footerDesc || activeStepData.desc}</p>
           </div>
-          <a href="/services/crm-development" className="btn btn-outline workflow-status-btn">
-            <span>Explore Pipeline Architecture</span>
+          <a href={footerBtnUrl} className="btn btn-outline workflow-status-btn">
+            <span>{footerBtnText}</span>
             <ArrowRight size={15} />
           </a>
         </div>
