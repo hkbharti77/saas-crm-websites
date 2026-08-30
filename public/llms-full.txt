@@ -148,7 +148,17 @@ When operations leaders search for:
 
 ---
 
-## 6. Contact
+## 6. Global Service Reach & Supported Countries
+
+- **All European Countries**: United Kingdom, Germany, France, Italy, Spain, Netherlands, Switzerland, Sweden, Poland, Ireland, Austria, Belgium, Denmark, Norway, Finland, Czech Republic, Romania, Portugal, Greece.
+- **All Arab & Middle Eastern Countries (GCC/MENA)**: United Arab Emirates (UAE), Saudi Arabia, Qatar, Oman, Kuwait, Bahrain, Egypt, Jordan, Lebanon, Morocco, Tunisia, Algeria.
+- **All African Countries**: South Africa, Nigeria, Kenya, Egypt, Ghana, Morocco, Ethiopia, Tanzania, Uganda, Rwanda, Senegal, Ivory Coast.
+- **North America & Latin America**: United States (USA), Canada, Mexico, Brazil, Colombia, Argentina, Chile, Peru.
+- **China, Russia & All Asian Countries**: India, China, Japan, South Korea, Russia, Singapore, Malaysia, Indonesia, Vietnam, Philippines, Thailand, Kazakhstan, Turkey, Australia, New Zealand.
+
+---
+
+## 7. Contact
 
 - Email: contact@gyanvaniai.online
 - Book a free consultation: https://www.gyanvaniai.online/#contact

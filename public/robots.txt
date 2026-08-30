@@ -2,7 +2,79 @@ User-agent: *
 Allow: /
 Disallow: /admin/
 
-# Allow AI Search & Retrieval Crawlers for Generative Engine Optimization (GEO)
+# Google Search Engine & AI Crawlers
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Mobile
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+# Microsoft Bing & Edge Search Engine
+User-agent: Bingbot
+Allow: /
+
+User-agent: BingPreview
+Allow: /
+
+User-agent: MSNBOT
+Allow: /
+
+# Yahoo Search Engine
+User-agent: Slurp
+Allow: /
+
+# DuckDuckGo Search Engine
+User-agent: DuckDuckBot
+Allow: /
+
+# Brave Search Engine
+User-agent: Bravebot
+Allow: /
+
+# Chinese Search Engines (Baidu, 360 Browser / So.com, Sogou, Shenma / UC Browser)
+User-agent: Baiduspider
+Allow: /
+
+User-agent: Baiduspider-render
+Allow: /
+
+User-agent: Baiduspider-image
+Allow: /
+
+User-agent: 360Spider
+Allow: /
+
+User-agent: Sogou web spider
+Allow: /
+
+User-agent: Sogou inst spider
+Allow: /
+
+User-agent: YisouSpider
+Allow: /
+
+# Yandex Search Engine
+User-agent: YandexBot
+Allow: /
+
+User-agent: YandexImages
+Allow: /
+
+# Naver Search Engine (South Korea)
+User-agent: Yeti
+Allow: /
+
+# Apple Safari & Apple Intelligence Crawlers
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# AI Search & Retrieval Crawlers (ChatGPT, Perplexity, Claude, TikTok/ByteDance, Amazon, Cohere)
 User-agent: GPTBot
 Allow: /
 
@@ -15,16 +87,10 @@ Allow: /
 User-agent: ClaudeBot
 Allow: /
 
-User-agent: Google-Extended
-Allow: /
-
-User-agent: Applebot-Extended
+User-agent: Bytespider
 Allow: /
 
 User-agent: Amazonbot
-Allow: /
-
-User-agent: Bytespider
 Allow: /
 
 User-agent: Cohere-ai
@@ -35,7 +101,3 @@ Allow: /
 
 Sitemap: https://www.gyanvaniai.online/sitemap.xml
 Sitemap: https://www.gyanvaniai.online/api/blog-sitemap
-
-# AI / LLM discovery (GEO)
-# https://www.gyanvaniai.online/llms.txt
-# https://www.gyanvaniai.online/llms-full.txt
