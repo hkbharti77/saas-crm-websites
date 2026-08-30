@@ -21,6 +21,7 @@ export default function Home() {
         <title>Autonomous AI CRM & Revenue Operations | Gyan VaniAi</title>
         <meta name="description" content="Autonomous AI CRM platform for high-velocity revenue teams. Capture, enrich, qualify, assign and convert leads with intelligent AI-powered workflows." />
         <link rel="canonical" href="https://www.gyanvaniai.online/" />
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 
         {/* OpenGraph / Facebook */}
         <meta property="og:type" content="website" />

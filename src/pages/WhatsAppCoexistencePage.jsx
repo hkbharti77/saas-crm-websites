@@ -131,7 +131,9 @@ export default function WhatsAppCoexistencePage() {
   const [openFaq, setOpenFaq] = useState(null);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    if (!window.location.hash) {
+      window.scrollTo(0, 0);
+    }
   }, []);
 
   const toggleFaq = (index) => {

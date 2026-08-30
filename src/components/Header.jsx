@@ -119,10 +119,10 @@ export default function Header() {
                 ))}
               </div>
               <div className="dropdown-footer">
-                <a href="/#capabilities" className="dropdown-footer-link" onClick={closeAll}>
+                <Link to="/#capabilities" className="dropdown-footer-link" onClick={closeAll}>
                   <span>Explore all 8 platform capabilities</span>
                   <ArrowRight size={14} />
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -167,10 +167,10 @@ export default function Header() {
                 ))}
               </div>
               <div className="dropdown-footer">
-                <a href="/#industries" className="dropdown-footer-link" onClick={closeAll}>
+                <Link to="/#industries" className="dropdown-footer-link" onClick={closeAll}>
                   <span>View all 8 industry solutions</span>
                   <ArrowRight size={14} />
-                </a>
+                </Link>
               </div>
             </div>
           </div>

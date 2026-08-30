@@ -50,8 +50,30 @@ export default function Documentation() {
   return (
     <>
       <Helmet>
-        <title>Documentation & Guides | Gyan VaniAi</title>
-        <meta name="description" content="Explore Gyan VaniAi platform capabilities, CRM workflows, AI automation, WhatsApp coexistence, and integration guidance." />
+        <title>Documentation & Platform Technical Guides | Gyan VaniAi</title>
+        <meta name="description" content="Official documentation for Gyan VaniAi: AI CRM architecture, WhatsApp Coexistence setup, low-latency RAG pipelines, voice bots, and API integration guides." />
+        <link rel="canonical" href="https://www.gyanvaniai.online/documentation" />
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.gyanvaniai.online/documentation" />
+        <meta property="og:title" content="Documentation & Platform Technical Guides | Gyan VaniAi" />
+        <meta property="og:description" content="Official documentation for Gyan VaniAi: AI CRM architecture, WhatsApp Coexistence setup, low-latency RAG pipelines, voice bots, and API integration guides." />
+        <meta property="og:image" content="https://www.gyanvaniai.online/hero_dashboard.webp" />
+        <meta property="og:site_name" content="Gyan VaniAi" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Documentation & Platform Technical Guides | Gyan VaniAi" />
+        <meta name="twitter:description" content="Official documentation for Gyan VaniAi: AI CRM architecture, WhatsApp Coexistence setup, low-latency RAG pipelines, voice bots, and API integration guides." />
+        <meta name="twitter:image" content="https://www.gyanvaniai.online/hero_dashboard.webp" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "TechArticle",
+            "headline": "Gyan VaniAi Documentation & Platform Technical Guides",
+            "url": "https://www.gyanvaniai.online/documentation",
+            "description": "Explore Gyan VaniAi platform capabilities, CRM workflows, AI automation, WhatsApp coexistence, and integration guidance.",
+            "publisher": { "@id": "https://www.gyanvaniai.online/#organization" }
+          })}
+        </script>
       </Helmet>
 
       <div className="docs-page">

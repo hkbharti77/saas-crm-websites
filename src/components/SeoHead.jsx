@@ -27,6 +27,7 @@ export default function SeoHead({
       <meta name="description" content={description} />
       {keywords && <meta name="keywords" content={keywords} />}
       <link rel="canonical" href={canonical} />
+      <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 
       <meta property="og:type" content={type} />
       <meta property="og:url" content={canonical} />

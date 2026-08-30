@@ -73,8 +73,20 @@ function App() {
   const [modalPrefill, setModalPrefill] = useState('');
   const hasTriggeredRef = useRef({});
 
-  useScrollDepth();
-  useGAPageViews();
+  // Scroll to hash target or scroll to top on route change
+  useEffect(() => {
+    if (location.hash) {
+      const targetId = location.hash.replace('#', '');
+      const element = document.getElementById(targetId);
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }, 120);
+      }
+    } else if (!location.pathname.startsWith('/admin')) {
+      window.scrollTo(0, 0);
+    }
+  }, [location.pathname, location.hash]);
 
   useEffect(() => {
     AOS.init({

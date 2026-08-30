@@ -22,6 +22,8 @@ import AIChatbotsPage from './pages/AIChatbotsPage';
 import AdminLogin from './pages/admin/AdminLogin';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import AdminCreatePost from './pages/admin/AdminCreatePost';
+import Security from './pages/Security';
+import Documentation from './pages/Documentation';
 import AdminEditPost from './pages/admin/AdminEditPost';
 import NotFound from './pages/NotFound';
 
@@ -39,6 +41,8 @@ function ServerApp() {
             <Route path="/services/whatsapp-coexistence" element={<WhatsAppCoexistencePage />} />
             <Route path="/services/sales-automation" element={<SalesAutomationPage />} />
             <Route path="/services/ai-chatbots" element={<AIChatbotsPage />} />
+            <Route path="/documentation" element={<Documentation />} />
+            <Route path="/security" element={<Security />} />
             <Route path="/services/:serviceId" element={<SEOLandingPage />} />
             <Route path="/industries/:industryId" element={<SEOLandingPage />} />
             <Route path="/privacy" element={<PolicyPage />} />

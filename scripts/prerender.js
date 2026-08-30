@@ -13,6 +13,8 @@ const routes = [
   '/',
   '/about',
   '/blog',
+  '/security',
+  '/documentation',
   '/privacy',
   '/terms',
   '/services/whatsapp-coexistence',
@@ -98,15 +100,15 @@ async function prerender() {
     // Extract head elements from React 19 render output
     const extractedHeadTags = [];
 
-    const headTagMatches = appHtml.match(/<(title|meta|link)[^>]*>.*?<\/(title|meta|link)>|<(title|meta|link)[^>]*\/?>/gis) || [];
-    for (const tag of headTagMatches) {
-      extractedHeadTags.push(tag);
-    }
+    const titleMatches = appHtml.match(/<title[^>]*>[\s\S]*?<\/title>/gis) || [];
+    const metaMatches = appHtml.match(/<meta[^>]*\/?>/gis) || [];
+    const linkMatches = appHtml.match(/<link[^>]*\/?>/gis) || [];
+    const scriptSchemaMatches = appHtml.match(/<script\s+type="application\/ld\+json"[^>]*>[\s\S]*?<\/script>/gis) || [];
 
-    const scriptSchemaMatches = appHtml.match(/<script\s+type="application\/ld\+json"[^>]*>.*?<\/script>/gis) || [];
-    for (const tag of scriptSchemaMatches) {
-      extractedHeadTags.push(tag);
-    }
+    for (const tag of titleMatches) extractedHeadTags.push(tag);
+    for (const tag of metaMatches) extractedHeadTags.push(tag);
+    for (const tag of linkMatches) extractedHeadTags.push(tag);
+    for (const tag of scriptSchemaMatches) extractedHeadTags.push(tag);
 
     // Also check Helmet object if populated
     if (helmet) {
@@ -133,8 +135,10 @@ async function prerender() {
 
     // Clean up extracted head tags from appHtml so they don't bloat body
     let cleanAppHtml = appHtml
-      .replace(/<(title|meta|link)[^>]*>.*?<\/(title|meta|link)>|<(title|meta|link)[^>]*\/?>/gis, '')
-      .replace(/<script\s+type="application\/ld\+json"[^>]*>.*?<\/script>/gis, '');
+      .replace(/<title[^>]*>[\s\S]*?<\/title>/gis, '')
+      .replace(/<meta[^>]*\/?>/gis, '')
+      .replace(/<link[^>]*\/?>/gis, '')
+      .replace(/<script\s+type="application\/ld\+json"[^>]*>[\s\S]*?<\/script>/gis, '');
 
     // Inject rendered DOM inside #root
     html = html.replace('<div id="root"></div>', `<div id="root">${cleanAppHtml}</div>`);
