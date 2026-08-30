@@ -17,10 +17,12 @@ import {
   Cpu,
   GitFork,
   Lock,
-  Radio
+  Radio,
+  TrendingUp
 } from 'lucide-react';
 import ContactModal from '../components/ContactModal';
 import { trackBookDemo, trackEvent } from '../utils/analytics';
+import { useTheme } from '../context/ThemeContext';
 import './WhatsAppCoexistencePage.css';
 
 const capabilitiesList = [
@@ -137,6 +139,8 @@ export default function WhatsAppCoexistencePage() {
     trackEvent('faq_toggle', { index, question: faqs[index].q });
   };
 
+  const { theme } = useTheme();
+  const isLight = theme === 'light';
   const pageUrl = "https://www.gyanvaniai.online/services/whatsapp-coexistence";
 
   return (
@@ -152,14 +156,14 @@ export default function WhatsAppCoexistencePage() {
         <meta property="og:url" content={pageUrl} />
         <meta property="og:title" content="WhatsApp Business Automation & Coexistence | Gyan VaniAi" />
         <meta property="og:description" content="Unlock WhatsApp Business automation using the official Cloud API. Integrate WhatsApp CRM and Coexistence mode without losing your mobile app access." />
-        <meta property="og:image" content="https://www.gyanvaniai.online/portfolio_crm.webp" />
+        <meta property="og:image" content="https://www.gyanvaniai.online/whatsapp_coexistence_dark.webp" />
 
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:url" content={pageUrl} />
         <meta name="twitter:title" content="WhatsApp Business Automation & Coexistence | Gyan VaniAi" />
         <meta name="twitter:description" content="Unlock WhatsApp Business automation using the official Cloud API. Integrate WhatsApp CRM and Coexistence mode without losing your mobile app access." />
-        <meta name="twitter:image" content="https://www.gyanvaniai.online/portfolio_crm.webp" />
+        <meta name="twitter:image" content="https://www.gyanvaniai.online/whatsapp_coexistence_dark.webp" />
 
         {/* Structured Schema */}
         <script type="application/ld+json">
@@ -221,11 +225,25 @@ export default function WhatsAppCoexistencePage() {
 
       <div className="coexistence-page">
         
-        {/* 1. HERO SECTION WITH DUAL SURFACE PRODUCT VISUAL */}
-        <section className="coexistence-hero container">
-          <div className="coexistence-hero-grid">
-            
-            {/* Left: Headline & Actions */}
+        {/* 1. HERO SECTION WITH IMMERSIVE WHATSAPP COEXISTENCE BACKGROUND */}
+        <section className="coexistence-hero-section" id="coexistence-hero" aria-label="WhatsApp Coexistence Hero">
+          <div className="hero-media" aria-hidden="true">
+            <picture>
+              <img
+                key={isLight ? 'light' : 'dark'}
+                src={isLight ? '/whatsapp_coexistence_light.webp' : '/whatsapp_coexistence_dark.webp'}
+                alt="WhatsApp Business mobile app and CRM dashboard dual-surface coexistence synchronization"
+                width="1920"
+                height="1080"
+                fetchPriority="high"
+                decoding="sync"
+                className="hero-media-img"
+              />
+            </picture>
+            <div className="hero-media-veil"></div>
+          </div>
+
+          <div className="container coexistence-hero-container">
             <div className="coexistence-hero-left">
               <div className="coexistence-eyebrow">
                 <ShieldCheck size={16} />
@@ -234,7 +252,7 @@ export default function WhatsAppCoexistencePage() {
               
               <h1 className="coexistence-hero-title">
                 WhatsApp Business Automation<br />
-                <span className="brand-accent">
+                <span className="text-gradient">
                   Phone App + AI CRM on the Same Number
                 </span>
               </h1>
@@ -243,14 +261,35 @@ export default function WhatsAppCoexistencePage() {
                 Stop choosing between your phone inbox and enterprise automation. With official Meta Coexistence Mode, your team keeps replying from their WhatsApp Business mobile app while <strong>Gyan VaniAi</strong> adds 24/7 AI auto-replies, bulk broadcasts, and CRM lead tracking on the exact same phone number.
               </p>
 
-              <button 
-                id="btn-coexistence-hero-demo"
-                className="btn btn-primary coexistence-hero-btn" 
-                onClick={() => { trackBookDemo('coexistence-hero'); setIsModalOpen(true); }}
-              >
-                <span>Connect Your WhatsApp Number</span>
-                <ArrowRight size={18} />
-              </button>
+              <div className="coexistence-hero-actions">
+                <button 
+                  id="btn-coexistence-hero-demo"
+                  className="btn btn-primary coexistence-hero-btn" 
+                  onClick={() => { trackBookDemo('coexistence-hero'); setIsModalOpen(true); }}
+                >
+                  <span>Connect Your WhatsApp Number</span>
+                  <ArrowRight size={18} />
+                </button>
+              </div>
+
+              {/* Live Telemetry Row */}
+              <div className="hero-telemetry-row">
+                <div className="hero-telemetry-pill">
+                  <span className="telemetry-dot dot-emerald"></span>
+                  <Zap size={13} className="telemetry-icon" />
+                  <span>Avg Response: <strong>&lt; 3 seconds</strong></span>
+                </div>
+                <div className="hero-telemetry-pill">
+                  <span className="telemetry-dot dot-cyan"></span>
+                  <TrendingUp size={13} className="telemetry-icon" />
+                  <span>Conversion Lift: <strong>+4.2x Growth</strong></span>
+                </div>
+                <div className="hero-telemetry-pill">
+                  <span className="telemetry-dot dot-green"></span>
+                  <ShieldCheck size={13} className="telemetry-icon" />
+                  <span>Official API: <strong>99.99% Uptime</strong></span>
+                </div>
+              </div>
 
               <div className="coexistence-hero-trust">
                 <span className="coexistence-trust-pill"><span className="dot"></span> Zero Chat Loss</span>
@@ -259,65 +298,6 @@ export default function WhatsAppCoexistencePage() {
                 <span className="coexistence-trust-pill"><span className="dot"></span> 100% Reversible</span>
               </div>
             </div>
-
-            {/* Right: Dual Surface Synchronization Graphic */}
-            <div className="coexistence-hero-visual">
-              <div className="coexistence-visual-header">
-                <div className="coexistence-number-badge">
-                  <MessageSquare size={18} color="#25D366" />
-                  <span>Single Number (+91 87006 20913)</span>
-                </div>
-                <div className="coexistence-sync-live">
-                  <span className="sync-pulse-dot"></span>
-                  <span>Dual Sync Active</span>
-                </div>
-              </div>
-
-              <div className="coexistence-dual-flow">
-                {/* Node 1: Mobile App */}
-                <div className="dual-node-card whatsapp">
-                  <div className="dual-node-icon">
-                    <Smartphone size={20} />
-                  </div>
-                  <div className="dual-node-title">Phone App</div>
-                  <div className="dual-node-status">Rep Mobile Access</div>
-                </div>
-
-                {/* Flow Connector */}
-                <div className="dual-flow-arrow">
-                  <RefreshCw size={20} />
-                  <span className="dual-flow-label">Meta Sync</span>
-                </div>
-
-                {/* Node 2: AI CRM */}
-                <div className="dual-node-card crm">
-                  <div className="dual-node-icon">
-                    <Bot size={20} />
-                  </div>
-                  <div className="dual-node-title">Gyan VaniAi CRM</div>
-                  <div className="dual-node-status">24/7 AI Automation</div>
-                </div>
-              </div>
-
-              {/* Sample Live Synchronized Chat */}
-              <div className="coexistence-visual-chat-sample">
-                <div className="chat-bubble-row inbound">
-                  <div className="chat-bubble user">
-                    <span className="chat-bubble-tag">Customer (11:42 PM)</span>
-                    <p style={{ margin: 0 }}>Hi, we need automated lead routing for 15 sales reps on WhatsApp.</p>
-                  </div>
-                </div>
-                <div className="chat-bubble-row outbound">
-                  <div className="chat-bubble ai">
-                    <span className="chat-bubble-tag" style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-                      <Sparkles size={12} /> Gyan VaniAi Bot (Instant)
-                    </span>
-                    <p style={{ margin: 0 }}>Gyan VaniAi routes leads based on agent capacity. Would you like a 10-minute demo walkthrough?</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
           </div>
         </section>
 

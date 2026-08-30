@@ -4,84 +4,124 @@
 }
 
 /* ==================================================
-   1. HERO SECTION
+   1. HERO SECTION (IMMERSIVE FULL-BLEED ROBOTICS MEDIA)
    ================================================== */
-.coexistence-hero {
-  padding-top: 3.75rem; /* 60px below sticky navbar */
-  padding-bottom: 4.5rem; /* 72px */
-}
-
-@media (max-width: 1024px) {
-  .coexistence-hero {
-    padding-top: 2.75rem; /* 44px */
-    padding-bottom: 3.5rem;
-  }
-}
-
-@media (max-width: 640px) {
-  .coexistence-hero {
-    padding-top: 2rem; /* 32px */
-    padding-bottom: 2.5rem;
-  }
-}
-
-.coexistence-hero-grid {
-  display: grid;
-  grid-template-columns: 1.15fr 1fr;
-  gap: 3.5rem;
+.coexistence-hero-section {
+  position: relative;
+  min-height: 620px;
+  max-height: 700px;
+  display: flex;
   align-items: center;
+  padding: 4rem 0;
+  overflow: hidden;
+  background: var(--bg-base);
+  margin-bottom: 3.5rem;
 }
 
-@media (max-width: 1024px) {
-  .coexistence-hero-grid {
-    grid-template-columns: 1fr;
-    gap: 3rem;
-  }
+/* Full-bleed media layer */
+.coexistence-hero-section .hero-media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.coexistence-hero-section .hero-media-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: right 6% center;
+  opacity: 0.92;
+  filter: saturate(1.06) contrast(1.04);
+}
+
+.coexistence-hero-section .hero-media-veil {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(
+      to right,
+      var(--bg-base) 0%,
+      var(--bg-base) 42%,
+      color-mix(in srgb, var(--bg-base) 92%, transparent) 55%,
+      color-mix(in srgb, var(--bg-base) 45%, transparent) 74%,
+      color-mix(in srgb, var(--bg-base) 10%, transparent) 100%
+    ),
+    linear-gradient(to top, var(--bg-base) 0%, transparent 18%),
+    linear-gradient(to bottom, var(--bg-base) 0%, transparent 10%);
+}
+
+[data-theme]:not([data-theme="light"]) .coexistence-hero-section .hero-media-veil,
+body.dark-theme .coexistence-hero-section .hero-media-veil {
+  background:
+    linear-gradient(
+      to right,
+      var(--bg-base) 0%,
+      var(--bg-base) 44%,
+      color-mix(in srgb, var(--bg-base) 94%, transparent) 56%,
+      color-mix(in srgb, var(--bg-base) 50%, transparent) 76%,
+      color-mix(in srgb, var(--bg-base) 12%, transparent) 100%
+    ),
+    linear-gradient(to top, var(--bg-base) 0%, transparent 20%),
+    linear-gradient(to bottom, var(--bg-base) 0%, transparent 12%);
+}
+
+.coexistence-hero-container {
+  position: relative;
+  z-index: 2;
+  width: 100%;
 }
 
 .coexistence-hero-left {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  max-width: 680px;
 }
 
 .coexistence-eyebrow {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.35rem 0.95rem;
+  padding: 0.4rem 0.95rem;
   border-radius: var(--radius-full, 99px);
   background: color-mix(in srgb, var(--primary-color) 12%, transparent);
   color: var(--primary-color);
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
+  font-size: 0.8125rem;
+  font-weight: 750;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   margin-bottom: 1.25rem;
-  border: 1px solid color-mix(in srgb, var(--primary-color) 25%, transparent);
+  border: 1px solid color-mix(in srgb, var(--primary-color) 28%, transparent);
+  box-shadow: 0 2px 10px color-mix(in srgb, var(--primary-color) 10%, transparent);
 }
 
 .coexistence-hero-title {
   font-family: var(--font-display, var(--font-sans));
-  font-size: clamp(2.35rem, 4vw, 3.4rem);
+  font-size: clamp(2.35rem, 4vw, 3.5rem);
   font-weight: 800;
-  line-height: 1.08;
-  letter-spacing: -0.025em;
+  line-height: 1.1;
+  letter-spacing: -0.035em;
   color: var(--text-primary);
   margin-bottom: 1.25rem;
   max-width: 650px;
-}
-
-.coexistence-hero-title .brand-accent {
-  color: var(--primary-color);
-  display: inline;
+  text-wrap: balance;
 }
 
 .coexistence-hero-desc {
-  font-size: 1.1rem;
+  font-size: clamp(1.05rem, 1.3vw, 1.15rem);
   line-height: 1.6;
   color: var(--text-secondary);
-  margin-bottom: 2rem;
-  max-width: 620px;
+  margin-bottom: 1.85rem;
+  max-width: 600px;
+  text-wrap: pretty;
+}
+
+.coexistence-hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 .coexistence-hero-btn {
@@ -92,15 +132,89 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15) inset, 0 10px 28px rgba(15, 118, 110, 0.32);
+  background: var(--primary-color);
+  color: #ffffff;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 10px 28px color-mix(in srgb, var(--primary-color) 35%, transparent);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.coexistence-hero-btn:hover {
+  background: var(--primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.3) inset, 0 14px 36px color-mix(in srgb, var(--primary-color) 45%, transparent);
+}
+
+/* Telemetry Pills */
+.coexistence-hero-section .hero-telemetry-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1.65rem;
+}
+
+.coexistence-hero-section .hero-telemetry-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-full, 99px);
+  font-size: 0.78125rem;
+  font-weight: 550;
+  color: var(--text-secondary);
+  background: color-mix(in srgb, var(--bg-card) 75%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid color-mix(in srgb, var(--border-color) 80%, transparent);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.coexistence-hero-section .hero-telemetry-pill:hover {
+  transform: translateY(-1px);
+  border-color: var(--primary-color);
+  color: var(--text-primary);
+}
+
+.coexistence-hero-section .hero-telemetry-pill strong {
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.coexistence-hero-section .telemetry-icon {
+  color: var(--primary-color);
+}
+
+.coexistence-hero-section .telemetry-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.coexistence-hero-section .dot-emerald {
+  background: #10b981;
+  box-shadow: 0 0 6px rgba(16, 185, 129, 0.6);
+}
+
+.coexistence-hero-section .dot-cyan {
+  background: #06b6d4;
+  box-shadow: 0 0 6px rgba(6, 182, 212, 0.6);
+}
+
+.coexistence-hero-section .dot-green {
+  background: #22c55e;
+  box-shadow: 0 0 6px rgba(34, 197, 94, 0.6);
 }
 
 .coexistence-hero-trust {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: 1.25rem;
-  margin-top: 2rem;
-  font-size: 0.92rem;
+  margin-top: 1.85rem;
+  padding-top: 1.35rem;
+  border-top: 1px solid var(--border-color);
+  font-size: 0.875rem;
   font-weight: 600;
   color: var(--text-secondary);
 }
@@ -108,7 +222,7 @@
 .coexistence-trust-pill {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.45rem;
 }
 
 .coexistence-trust-pill span.dot {
@@ -116,6 +230,50 @@
   height: 6px;
   border-radius: 50%;
   background: var(--primary-color);
+}
+
+@media (max-width: 992px) {
+  .coexistence-hero-section {
+    min-height: 540px;
+    max-height: 620px;
+    padding: 3.5rem 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .coexistence-hero-section {
+    min-height: auto;
+    max-height: none;
+    padding: 3rem 0 2.5rem;
+  }
+
+  .coexistence-hero-title {
+    font-size: clamp(2rem, 7vw, 2.55rem);
+    line-height: 1.14;
+    margin-bottom: 0.95rem;
+  }
+
+  .coexistence-hero-desc {
+    font-size: 1.02rem;
+    line-height: 1.55;
+    margin-bottom: 1.5rem;
+  }
+
+  .coexistence-hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .coexistence-hero-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .coexistence-hero-trust {
+    gap: 0.75rem;
+    margin-top: 1.4rem;
+    padding-top: 1.15rem;
+  }
 }
 
 /* Hero Right: Dual Surface Synchronization Graphic */
