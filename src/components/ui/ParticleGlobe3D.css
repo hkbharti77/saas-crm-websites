@@ -1,0 +1,43 @@
+.particle-globe-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  cursor: grab;
+}
+
+.particle-globe-container:active {
+  cursor: grabbing;
+}
+
+.particle-globe-canvas {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 50%;
+  filter: drop-shadow(0 12px 36px rgba(20, 184, 166, 0.18));
+}
+
+.particle-globe-drag-hint {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  pointer-events: none;
+  opacity: 0.75;
+  transition: opacity 0.3s ease;
+}
+
+.particle-globe-container:hover .particle-globe-drag-hint {
+  opacity: 1;
+}

@@ -1,0 +1,71 @@
+.orbit-path-svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.orbit-path-circle {
+  animation: orbit-dash 60s linear infinite;
+}
+
+@keyframes orbit-dash {
+  to {
+    stroke-dashoffset: 200;
+  }
+}
+
+.orbiting-circle-item {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translate(-50%, -50%);
+  animation: orbit-rotate var(--duration) linear infinite;
+  animation-delay: var(--delay);
+  z-index: 5;
+}
+
+.orbiting-circle-item.reverse {
+  animation-direction: reverse;
+}
+
+.orbiting-circle-child {
+  transform: translateY(calc(-1 * var(--radius)));
+  animation: counter-rotate var(--duration) linear infinite;
+  animation-delay: var(--delay);
+}
+
+.orbiting-circle-item.reverse .orbiting-circle-child {
+  animation-direction: reverse;
+}
+
+@keyframes orbit-rotate {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes counter-rotate {
+  from {
+    transform: translateY(calc(-1 * var(--radius))) rotate(0deg);
+  }
+  to {
+    transform: translateY(calc(-1 * var(--radius))) rotate(-360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orbiting-circle-item,
+  .orbiting-circle-child,
+  .orbit-path-circle {
+    animation-play-state: paused !important;
+  }
+}

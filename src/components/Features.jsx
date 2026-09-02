@@ -1,12 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Sparkles, UserCheck, Activity, Bot, MessageSquare, Workflow, Target, BarChart3, ArrowRight } from 'lucide-react';
+import { Database, UserCheck, Activity, Bot, MessageSquare, Workflow, Target, BarChart3, ArrowRight } from 'lucide-react';
 import { trackBookDemo } from '../utils/analytics';
+import Card3DTilt from './ui/Card3DTilt';
 import './Features.css';
 
 const capabilities = [
   {
-    icon: <Sparkles size={22} strokeWidth={1.75} />,
+    icon: <Database size={22} strokeWidth={1.75} />,
     title: 'AI Lead Enrichment',
     description: 'Auto-enrich prospect profiles with verified business intelligence, company size, and technographics.',
     to: '/services/crm-development',
@@ -78,18 +79,20 @@ export default function Features({ onBookDemo }) {
         <div className="capabilities-grid">
           {capabilities.map((item) => (
             <Link to={item.to} className="feature-card-link" key={item.title}>
-              <article className="feature-card capability-card">
-                <div className="capability-top">
-                  <div className="feature-icon">{item.icon}</div>
-                  <span className="capability-tag">{item.tag}</span>
-                </div>
-                <h3 className="h3 feature-title">{item.title}</h3>
-                <p className="text-muted feature-desc">{item.description}</p>
-                <div className="capability-action">
-                  <span>Learn more</span>
-                  <ArrowRight size={15} />
-                </div>
-              </article>
+              <Card3DTilt className="feature-card-3d-wrap" maxRotation={10} scale={1.03}>
+                <article className="feature-card capability-card">
+                  <div className="capability-top elevate-3d-sm">
+                    <div className="feature-icon">{item.icon}</div>
+                    <span className="capability-tag">{item.tag}</span>
+                  </div>
+                  <h3 className="h3 feature-title elevate-3d-sm">{item.title}</h3>
+                  <p className="text-muted feature-desc">{item.description}</p>
+                  <div className="capability-action elevate-3d-sm">
+                    <span>Learn more</span>
+                    <ArrowRight size={15} />
+                  </div>
+                </article>
+              </Card3DTilt>
             </Link>
           ))}
         </div>

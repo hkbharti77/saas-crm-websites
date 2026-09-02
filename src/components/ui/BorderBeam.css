@@ -1,0 +1,28 @@
+.border-beam-container {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: var(--border-beam-width, 1.5px) solid transparent;
+  mask: linear-gradient(transparent, transparent), linear-gradient(#000, #000);
+  mask-composite: intersect;
+  -webkit-mask: linear-gradient(transparent, transparent), linear-gradient(#000, #000);
+  -webkit-mask-composite: source-out;
+  mask-clip: padding-box, border-box;
+  -webkit-mask-clip: padding-box, border-box;
+  overflow: hidden;
+  z-index: 20;
+}
+
+.border-beam-line {
+  position: absolute;
+  aspect-ratio: 1 / 1;
+  background: linear-gradient(to left, var(--color-from, #14b8a6), var(--color-to, #06b6d4), transparent);
+  offset-path: rect(0 auto auto 0 round inherit);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .border-beam-line {
+    display: none;
+  }
+}

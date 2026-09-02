@@ -310,3 +310,102 @@
     gap: 1.15rem;
   }
 }
+
+/* 3D Animated Beam Pipeline Stage */
+.process-beam-stage {
+  position: relative;
+  width: 100%;
+  max-width: 960px;
+  height: 140px;
+  margin: 1.5rem auto 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 3rem;
+  background: color-mix(in srgb, var(--primary-color) 4%, var(--bg-card));
+  border: 1px solid color-mix(in srgb, var(--primary-color) 20%, var(--border-color));
+  border-radius: var(--radius-lg, 16px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  overflow: visible;
+}
+
+.process-beam-aura {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(circle at 50% 50%, color-mix(in srgb, var(--primary-color) 12%, transparent) 0%, transparent 80%);
+  pointer-events: none;
+}
+
+.process-beam-node {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.process-beam-node:hover {
+  transform: translateY(-4px) scale(1.05);
+}
+
+.process-beam-node.active .process-beam-circle {
+  background: linear-gradient(135deg, #0f766e 0%, #14b8a6 100%);
+  color: #ffffff;
+  border-color: #14b8a6;
+  box-shadow: 0 0 24px rgba(20, 184, 166, 0.55);
+}
+
+.process-beam-circle {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 2px solid color-mix(in srgb, var(--primary-color) 35%, var(--border-color));
+  color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  transition: all 0.25s ease;
+}
+
+.process-beam-lbl {
+  font-size: 0.82rem;
+  font-weight: 750;
+  color: var(--text-primary);
+  margin-top: 0.5rem;
+  letter-spacing: -0.01em;
+}
+
+.process-beam-sub {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+/* Card 3D Wrap */
+.workflow-card-tilt-wrap {
+  height: 100%;
+  border-radius: var(--radius-lg, 16px);
+}
+
+@media (max-width: 768px) {
+  .process-beam-stage {
+    padding: 0 1rem;
+    height: 120px;
+  }
+  .process-beam-circle {
+    width: 44px;
+    height: 44px;
+  }
+  .process-beam-lbl {
+    font-size: 0.72rem;
+  }
+  .process-beam-sub {
+    display: none;
+  }
+}
+

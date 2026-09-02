@@ -8,6 +8,7 @@ import Process from '../components/Process';
 import VoiceAIEngineArchitecture from '../components/VoiceAIEngineArchitecture';
 import SalesAutomationPage from './SalesAutomationPage';
 import AIChatbotsPage from './AIChatbotsPage';
+import WhatsAppCallingAgentPage from './WhatsAppCallingAgentPage';
 import NotFound from './NotFound';
 
 const SITE = 'https://www.gyanvaniai.online';
@@ -821,6 +822,10 @@ export default function SEOLandingPage() {
 
   if (pageId === 'ai-chatbots') {
     return <AIChatbotsPage />;
+  }
+
+  if (pageId === 'whatsapp-calling-agent' || pageId === 'whatsapp-calling-agent-bots') {
+    return <WhatsAppCallingAgentPage />;
   }
 
   if (!hasKnownPage) {

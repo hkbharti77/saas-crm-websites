@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { NavLink, Link } from 'react-router-dom';
-import { Menu, X, Sparkles, ChevronDown, MessageSquare, Bot, Users, PhoneCall, Building2, Home, ShoppingBag, Landmark, ArrowRight } from 'lucide-react';
+import { Menu, X, ChevronDown, MessageSquare, Bot, Users, PhoneCall, Building2, Home, ShoppingBag, Landmark, ArrowRight } from 'lucide-react';
 import ThemePicker from './ThemePicker';
 import './Header.css';
 
@@ -207,7 +207,7 @@ export default function Header() {
           {/* Primary CTA */}
           <a href="/#contact" className="btn btn-primary nav-btn" onClick={closeAll}>
             <span>Book a Demo</span>
-            <Sparkles size={14} />
+            <ArrowRight size={14} />
           </a>
         </nav>
 

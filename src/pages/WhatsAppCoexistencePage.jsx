@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { 
   ArrowRight, 
@@ -13,14 +13,25 @@ import {
   ChevronDown,
   HelpCircle,
   MessageSquare,
-  Sparkles,
   Cpu,
   GitFork,
   Lock,
   Radio,
-  TrendingUp
+  TrendingUp,
+  CheckCircle2,
+  Check,
+  Clock,
+  Server
 } from 'lucide-react';
 import ContactModal from '../components/ContactModal';
+import Card3DTilt from '../components/ui/Card3DTilt';
+import AnimatedBeam from '../components/ui/AnimatedBeam';
+import BorderBeam from '../components/ui/BorderBeam';
+import Ripple from '../components/ui/Ripple';
+import NumberTicker from '../components/ui/NumberTicker';
+import Particles from '../components/ui/Particles';
+import SpotlightCard from '../components/ui/SpotlightCard';
+import Meteors from '../components/ui/Meteors';
 import { trackBookDemo, trackEvent } from '../utils/analytics';
 import { useTheme } from '../context/ThemeContext';
 import './WhatsAppCoexistencePage.css';
@@ -128,7 +139,16 @@ const faqs = [
 
 export default function WhatsAppCoexistencePage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [openFaq, setOpenFaq] = useState(null);
+  const [openFaqIndices, setOpenFaqIndices] = useState(new Set([0, 1]));
+  const { theme } = useTheme();
+  const isLight = theme === 'light';
+
+  // Animated beam container refs for dual-fanout pipeline
+  const beamContainerRef = useRef(null);
+  const customerNodeRef = useRef(null);
+  const metaGatewayNodeRef = useRef(null);
+  const mobileNodeRef = useRef(null);
+  const crmNodeRef = useRef(null);
 
   useEffect(() => {
     if (!window.location.hash) {
@@ -136,75 +156,62 @@ export default function WhatsAppCoexistencePage() {
     }
   }, []);
 
+  const isAllFaqsOpen = openFaqIndices.size === faqs.length;
+
   const toggleFaq = (index) => {
-    setOpenFaq(openFaq === index ? null : index);
-    trackEvent('faq_toggle', { index, question: faqs[index].q });
+    setOpenFaqIndices((prev) => {
+      const next = new Set(prev);
+      if (next.has(index)) {
+        next.delete(index);
+      } else {
+        next.add(index);
+      }
+      return next;
+    });
   };
 
-  const { theme } = useTheme();
-  const isLight = theme === 'light';
-  const pageUrl = "https://www.gyanvaniai.online/services/whatsapp-coexistence";
+  const toggleAllFaqs = () => {
+    if (isAllFaqsOpen) {
+      setOpenFaqIndices(new Set());
+    } else {
+      setOpenFaqIndices(new Set(faqs.map((_, i) => i)));
+    }
+  };
 
   return (
     <>
       <Helmet>
-        <title>WhatsApp Business Automation & Coexistence | Gyan VaniAi</title>
-        <meta name="description" content="Unlock WhatsApp Business automation using the official Cloud API. Integrate WhatsApp CRM and Coexistence mode without losing your mobile app access." />
-        <meta name="keywords" content="WhatsApp Coexistence, WhatsApp Business Automation, Meta Tech Provider, WhatsApp CRM, Cloud API Coexistence, Dual Surface WhatsApp, WhatsApp Broadcasts" />
-        <link rel="canonical" href={pageUrl} />
-        
-        {/* OpenGraph */}
+        <title>WhatsApp Coexistence Mode: Mobile App + Cloud API on One Number | Gyan VaniAi</title>
+        <meta
+          name="description"
+          content="Operate your WhatsApp Business mobile app and enterprise Cloud API simultaneously on the exact same phone number. Zero chat loss, no phone reset, 24/7 AI auto-replies, and live CRM sync."
+        />
+        <link rel="canonical" href="https://www.gyanvaniai.online/services/whatsapp-coexistence" />
+        <meta property="og:title" content="WhatsApp Coexistence Mode: Mobile App + Cloud API on One Number | Gyan VaniAi" />
+        <meta
+          property="og:description"
+          content="Keep your WhatsApp Business phone app active while unlocking 24/7 AI CRM auto-replies, bulk broadcasts, and lead tracking on the exact same phone number."
+        />
+        <meta property="og:url" content="https://www.gyanvaniai.online/services/whatsapp-coexistence" />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content={pageUrl} />
-        <meta property="og:title" content="WhatsApp Business Automation & Coexistence | Gyan VaniAi" />
-        <meta property="og:description" content="Unlock WhatsApp Business automation using the official Cloud API. Integrate WhatsApp CRM and Coexistence mode without losing your mobile app access." />
         <meta property="og:image" content="https://www.gyanvaniai.online/whatsapp_coexistence_dark.webp" />
 
-        {/* Twitter */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:url" content={pageUrl} />
-        <meta name="twitter:title" content="WhatsApp Business Automation & Coexistence | Gyan VaniAi" />
-        <meta name="twitter:description" content="Unlock WhatsApp Business automation using the official Cloud API. Integrate WhatsApp CRM and Coexistence mode without losing your mobile app access." />
-        <meta name="twitter:image" content="https://www.gyanvaniai.online/whatsapp_coexistence_dark.webp" />
-
-        {/* Structured Schema */}
         <script type="application/ld+json">
           {`
             [
               {
                 "@context": "https://schema.org",
                 "@type": "Service",
-                "serviceType": "WhatsApp Coexistence CRM & Meta API Automation",
+                "name": "WhatsApp Coexistence Mode Integration",
+                "serviceType": "Conversational AI & WhatsApp Business Platform Coexistence",
                 "provider": {
-                  "@id": "https://www.gyanvaniai.online/#organization"
+                  "@type": "Organization",
+                  "name": "Gyan VaniAi",
+                  "url": "https://www.gyanvaniai.online"
                 },
-                "areaServed": ["Europe", "Asia", "Africa", "Worldwide"],
-                "description": "Native Meta Tech Provider WhatsApp Coexistence mode enabling mobile app and AI CRM integration on the same phone number.",
-                "url": "${pageUrl}"
-              },
-              {
-                "@context": "https://schema.org",
-                "@type": "BreadcrumbList",
-                "itemListElement": [
-                  {
-                    "@type": "ListItem",
-                    "position": 1,
-                    "name": "Home",
-                    "item": "https://www.gyanvaniai.online/"
-                  },
-                  {
-                    "@type": "ListItem",
-                    "position": 2,
-                    "name": "Services",
-                    "item": "https://www.gyanvaniai.online/"
-                  },
-                  {
-                    "@type": "ListItem",
-                    "position": 3,
-                    "name": "WhatsApp Coexistence",
-                    "item": "${pageUrl}"
-                  }
-                ]
+                "areaServed": "Worldwide",
+                "description": "Enterprise WhatsApp Coexistence Mode setup enabling simultaneous WhatsApp Business mobile app and Cloud API operation on the same verified phone number with real-time CRM synchronization.",
+                "url": "https://www.gyanvaniai.online/services/whatsapp-coexistence"
               },
               {
                 "@context": "https://schema.org",
@@ -227,7 +234,9 @@ export default function WhatsAppCoexistencePage() {
 
       <div className="coexistence-page">
         
-        {/* 1. HERO SECTION WITH IMMERSIVE WHATSAPP COEXISTENCE BACKGROUND */}
+        {/* =========================================================================
+            1. HERO SECTION WITH 3D DUAL-SURFACE SHOWCASE & MAGIC UI COMPONENTS
+            ========================================================================= */}
         <section className="coexistence-hero-section" id="coexistence-hero" aria-label="WhatsApp Coexistence Hero">
           <div className="hero-media" aria-hidden="true">
             <picture>
@@ -243,67 +252,158 @@ export default function WhatsAppCoexistencePage() {
               />
             </picture>
             <div className="hero-media-veil"></div>
+            <Particles quantity={28} color="#25D366" />
           </div>
 
           <div className="container coexistence-hero-container">
-            <div className="coexistence-hero-left">
-              <div className="coexistence-eyebrow">
-                <ShieldCheck size={16} />
-                <span>Official Meta Tech Infrastructure Feature</span>
-              </div>
+            <div className="coexistence-hero-grid">
               
-              <h1 className="coexistence-hero-title">
-                WhatsApp Business Automation<br />
-                <span className="text-gradient">
-                  Phone App + AI CRM on the Same Number
-                </span>
-              </h1>
+              {/* Left Column: Copy & Actions */}
+              <div className="coexistence-hero-left">
+                <div className="coexistence-eyebrow">
+                  <ShieldCheck size={16} />
+                  <span>Official Meta Tech Infrastructure Feature</span>
+                </div>
+                
+                <h1 className="coexistence-hero-title">
+                  WhatsApp Business Automation<br />
+                  <span className="text-gradient">
+                    Phone App + AI CRM on the Same Number
+                  </span>
+                </h1>
 
-              <p className="coexistence-hero-desc">
-                Stop choosing between your phone inbox and enterprise automation. With official Meta Coexistence Mode, your team keeps replying from their WhatsApp Business mobile app while <strong>Gyan VaniAi</strong> adds 24/7 AI auto-replies, bulk broadcasts, and CRM lead tracking on the exact same phone number.
-              </p>
+                <p className="coexistence-hero-desc">
+                  Stop choosing between your phone inbox and enterprise automation. With official Meta Coexistence Mode, your team keeps replying from their WhatsApp Business mobile app while <strong>Gyan VaniAi</strong> adds 24/7 AI auto-replies, bulk broadcasts, and CRM lead tracking on the exact same phone number.
+                </p>
 
-              <div className="coexistence-hero-actions">
-                <button 
-                  id="btn-coexistence-hero-demo"
-                  className="btn btn-primary coexistence-hero-btn" 
-                  onClick={() => { trackBookDemo('coexistence-hero'); setIsModalOpen(true); }}
-                >
-                  <span>Connect Your WhatsApp Number</span>
-                  <ArrowRight size={18} />
-                </button>
+                <div className="coexistence-hero-actions">
+                  <button 
+                    id="btn-coexistence-hero-demo"
+                    className="btn btn-primary coexistence-hero-btn" 
+                    onClick={() => { trackBookDemo('coexistence-hero'); setIsModalOpen(true); }}
+                  >
+                    <span>Connect Your WhatsApp Number</span>
+                    <ArrowRight size={18} />
+                  </button>
+                </div>
+
+                {/* Live Telemetry Row with Magic UI NumberTicker */}
+                <div className="hero-telemetry-row">
+                  <div className="hero-telemetry-pill">
+                    <span className="telemetry-dot dot-emerald"></span>
+                    <Zap size={13} className="telemetry-icon" />
+                    <span>Avg Latency: <strong>&lt; 300ms</strong></span>
+                  </div>
+                  <div className="hero-telemetry-pill">
+                    <span className="telemetry-dot dot-cyan"></span>
+                    <TrendingUp size={13} className="telemetry-icon" />
+                    <span>Conversion Lift: <strong>+<NumberTicker value={4.2} decimalPlaces={1} />x Growth</strong></span>
+                  </div>
+                  <div className="hero-telemetry-pill">
+                    <span className="telemetry-dot dot-green"></span>
+                    <ShieldCheck size={13} className="telemetry-icon" />
+                    <span>Official Meta API: <strong><NumberTicker value={99.99} decimalPlaces={2} suffix="%" /> Uptime</strong></span>
+                  </div>
+                </div>
+
+                <div className="coexistence-hero-trust">
+                  <span className="coexistence-trust-pill"><span className="dot"></span> Zero Chat Loss</span>
+                  <span className="coexistence-trust-pill"><span className="dot"></span> No Phone Reset</span>
+                  <span className="coexistence-trust-pill"><span className="dot"></span> 1-Click Embedded Signup</span>
+                  <span className="coexistence-trust-pill"><span className="dot"></span> 100% Reversible</span>
+                </div>
               </div>
 
-              {/* Live Telemetry Row */}
-              <div className="hero-telemetry-row">
-                <div className="hero-telemetry-pill">
-                  <span className="telemetry-dot dot-emerald"></span>
-                  <Zap size={13} className="telemetry-icon" />
-                  <span>Avg Response: <strong>&lt; 3 seconds</strong></span>
-                </div>
-                <div className="hero-telemetry-pill">
-                  <span className="telemetry-dot dot-cyan"></span>
-                  <TrendingUp size={13} className="telemetry-icon" />
-                  <span>Conversion Lift: <strong>+4.2x Growth</strong></span>
-                </div>
-                <div className="hero-telemetry-pill">
-                  <span className="telemetry-dot dot-green"></span>
-                  <ShieldCheck size={13} className="telemetry-icon" />
-                  <span>Official API: <strong>99.99% Uptime</strong></span>
-                </div>
+              {/* Right Column: 3D Dual-Surface Perspective Showcase */}
+              <div className="coexistence-hero-showcase">
+                <Card3DTilt className="coex-tilt-wrapper" maxRotation={8} scale={1.02}>
+                  <div className="coex-showcase-frame">
+                    <BorderBeam size={200} duration={8} colorFrom="#10b981" colorTo="#06b6d4" borderWidth={1.5} />
+                    
+                    {/* Top System Status Bar */}
+                    <div className="coex-frame-header">
+                      <div className="coex-frame-dots">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                      </div>
+                      <div className="coex-frame-title">
+                        <span className="coex-live-pulse"></span>
+                        <span>Meta WABA Coexistence Stream Active</span>
+                      </div>
+                      <div className="coex-frame-badge">
+                        <Lock size={12} />
+                        <span>Signal Protocol + TLS 1.3</span>
+                      </div>
+                    </div>
+
+                    {/* Dual Surface Comparison Body */}
+                    <div className="coex-dual-body">
+                      {/* Left: Rep Mobile App */}
+                      <div className="coex-surface-col phone">
+                        <div className="coex-col-header">
+                          <Smartphone size={16} color="#25D366" />
+                          <span>Owner's Phone App</span>
+                        </div>
+                        <div className="coex-mock-chat">
+                          <div className="coex-bubble in">
+                            <span className="coex-bubble-author">Customer</span>
+                            <p>“Need pricing for 50 licenses.”</p>
+                            <span className="coex-time">10:14 AM</span>
+                          </div>
+                          <div className="coex-bubble out rep">
+                            <span className="coex-bubble-author">Rep (Mobile)</span>
+                            <p>“Sending you our enterprise quote!”</p>
+                            <span className="coex-time">10:15 AM ✓✓</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Middle: Bidirectional Sync Beam */}
+                      <div className="coex-sync-divider">
+                        <div className="coex-sync-icon-circle">
+                          <RefreshCw size={16} className="coex-spin-slow" />
+                        </div>
+                        <span className="coex-sync-label">Sub-300ms Real-Time Mirror</span>
+                      </div>
+
+                      {/* Right: Gyan VaniAi AI CRM Dashboard */}
+                      <div className="coex-surface-col crm">
+                        <div className="coex-col-header">
+                          <Bot size={16} color="var(--primary-color)" />
+                          <span>Gyan VaniAi Cloud CRM</span>
+                        </div>
+                        <div className="coex-crm-card">
+                          <div className="coex-crm-row">
+                            <span className="coex-crm-key">Deal Stage:</span>
+                            <span className="coex-crm-val highlight">Enterprise Lead (94/100)</span>
+                          </div>
+                          <div className="coex-crm-row">
+                            <span className="coex-crm-key">Auto Action:</span>
+                            <span className="coex-crm-val">Logged into Salesforce</span>
+                          </div>
+                          <div className="coex-crm-row">
+                            <span className="coex-crm-key">AI Agent:</span>
+                            <span className="coex-crm-val green">Auto-Reply Streamed (240ms)</span>
+                          </div>
+                          <div className="coex-crm-row">
+                            <span className="coex-crm-key">Rep Assignment:</span>
+                            <span className="coex-crm-val">Marcus Vance (Synced)</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </Card3DTilt>
               </div>
 
-              <div className="coexistence-hero-trust">
-                <span className="coexistence-trust-pill"><span className="dot"></span> Zero Chat Loss</span>
-                <span className="coexistence-trust-pill"><span className="dot"></span> No Phone Reset</span>
-                <span className="coexistence-trust-pill"><span className="dot"></span> 1-Click Embedded Signup</span>
-                <span className="coexistence-trust-pill"><span className="dot"></span> 100% Reversible</span>
-              </div>
             </div>
           </div>
         </section>
 
-        {/* 2. 8 UNLOCKED SUPERPOWERS GRID */}
+        {/* =========================================================================
+            2. 8 UNLOCKED SUPERPOWERS GRID (Wrapped in 3D Card Tilt)
+            ========================================================================= */}
         <section className="section bg-tinted" style={{ padding: '5.25rem 0' }}>
           <div className="container">
             <div className="section-header section-header--center">
@@ -316,20 +416,30 @@ export default function WhatsAppCoexistencePage() {
 
             <div className="coexistence-capabilities-grid">
               {capabilitiesList.map((item) => (
-                <article key={item.num} className="capability-card">
-                  <div className="capability-card-top">
-                    <span className="capability-num">{item.num}</span>
-                    <div className="capability-icon-wrap">{item.icon}</div>
-                  </div>
-                  <h3 className="capability-title">{item.title}</h3>
-                  <p className="capability-desc">{item.desc}</p>
-                </article>
+                <Card3DTilt key={item.num} className="coex-cap-tilt" maxRotation={8} scale={1.02}>
+                  <SpotlightCard
+                    spotlightColor="rgba(37, 211, 102, 0.16)"
+                    borderColor="rgba(37, 211, 102, 0.4)"
+                    style={{ height: '100%', borderRadius: 'inherit' }}
+                  >
+                    <article className="capability-card" style={{ border: 'none', background: 'transparent' }}>
+                      <div className="capability-card-top">
+                        <span className="capability-num">{item.num}</span>
+                        <div className="capability-icon-wrap">{item.icon}</div>
+                      </div>
+                      <h3 className="capability-title">{item.title}</h3>
+                      <p className="capability-desc">{item.desc}</p>
+                    </article>
+                  </SpotlightCard>
+                </Card3DTilt>
               ))}
             </div>
           </div>
         </section>
 
-        {/* 3. META TECHNICAL ARCHITECTURE & HOW IT WORKS */}
+        {/* =========================================================================
+            3. META TECHNICAL ARCHITECTURE WITH 3D ANIMATED BEAM DUAL-FANOUT
+            ========================================================================= */}
         <section className="section container" style={{ padding: '5.25rem 0' }}>
           <div className="section-header section-header--center">
             <span className="section-eyebrow">Technical Architecture</span>
@@ -341,59 +451,101 @@ export default function WhatsAppCoexistencePage() {
 
           <div className="coexistence-arch-grid">
             {metaArchPillars.map((p) => (
-              <div key={p.title} className="coexistence-arch-card">
-                <div className="coexistence-arch-card-header">
-                  <div className="coexistence-arch-icon">{p.icon}</div>
-                  <h3 className="coexistence-arch-card-title">{p.title}</h3>
-                </div>
-                <p className="coexistence-arch-card-desc">{p.desc}</p>
-              </div>
+              <Card3DTilt key={p.title} className="coex-arch-tilt" maxRotation={6} scale={1.01}>
+                <SpotlightCard
+                  spotlightColor="rgba(20, 184, 166, 0.18)"
+                  borderColor="rgba(20, 184, 166, 0.42)"
+                  style={{ height: '100%', borderRadius: 'inherit' }}
+                >
+                  <div className="coexistence-arch-card" style={{ border: 'none', background: 'transparent' }}>
+                    <div className="coexistence-arch-card-header">
+                      <div className="coexistence-arch-icon">{p.icon}</div>
+                      <h3 className="coexistence-arch-card-title">{p.title}</h3>
+                    </div>
+                    <p className="coexistence-arch-card-desc">{p.desc}</p>
+                  </div>
+                </SpotlightCard>
+              </Card3DTilt>
             ))}
           </div>
 
-          {/* Interactive Infrastructure Diagram Box */}
+          {/* Interactive 3D Animated Beam Infrastructure Diagram */}
           <div className="coexistence-diagram-box">
             <h3 className="coexistence-diagram-title">Meta Coexistence Dual Routing Topology</h3>
             <p className="coexistence-diagram-sub">
               Every message travels through Meta official global gateway, fanning out in sub-300ms latency to both your physical phone and AI CRM webhook cluster.
             </p>
 
-            <div className="coexistence-flow-pipeline">
-              {/* Step 1: Customer */}
-              <div className="pipeline-step-box">
-                <Radio size={24} color="var(--primary-color)" style={{ margin: '0 auto 0.5rem' }} />
-                <h4>Inbound Customer Message</h4>
-                <p>Sent to your single business WhatsApp number.</p>
+            <div ref={beamContainerRef} className="coex-beam-stage" aria-label="Meta Coexistence Dual Fanout Gateway Stage">
+              {/* Customer Node */}
+              <div ref={customerNodeRef} className="coex-beam-node customer">
+                <div className="coex-beam-circle">
+                  <Radio size={22} color="var(--primary-color)" />
+                </div>
+                <span className="coex-beam-label">Inbound Customer Message</span>
+                <span className="coex-beam-sub">Official WABA Number</span>
               </div>
 
-              {/* Connector */}
-              <div className="pipeline-connector">
-                <ArrowRight size={22} />
+              {/* Central Meta Cloud Gateway with Magic UI Ripple */}
+              <div ref={metaGatewayNodeRef} className="coex-beam-node meta-hub">
+                <Ripple mainCircleSize={110} numCircles={4} circleColor="rgba(37, 211, 102, 0.3)" />
+                <div className="coex-beam-circle meta-circle">
+                  <GitFork size={26} color="#ffffff" />
+                </div>
+                <span className="coex-beam-label">Meta Cloud API Gateway</span>
+                <span className="coex-beam-sub">Sub-300ms Dual Fanout</span>
               </div>
 
-              {/* Step 2 & 3: Meta Cloud Gateway splitting into 2 Branches */}
-              <div className="pipeline-branches">
-                <div className="pipeline-branch-card whatsapp">
-                  <Smartphone size={22} color="#25D366" />
-                  <div className="pipeline-branch-info">
-                    <h5>Branch A: WhatsApp Business Mobile App</h5>
-                    <p>Reps read, reply, and view chats on their physical iOS/Android phone.</p>
+              {/* Branch Container */}
+              <div className="coex-beam-destinations">
+                {/* Branch A: Mobile App */}
+                <div ref={mobileNodeRef} className="coex-beam-node branch branch-a">
+                  <div className="coex-beam-circle">
+                    <Smartphone size={22} color="#25D366" />
                   </div>
+                  <span className="coex-beam-label">Branch A: WhatsApp Mobile</span>
+                  <span className="coex-beam-sub">Reps Read & Reply on Phone</span>
                 </div>
 
-                <div className="pipeline-branch-card crm">
-                  <Bot size={22} color="var(--primary-color)" />
-                  <div className="pipeline-branch-info">
-                    <h5>Branch B: Gyan VaniAi Cloud API & AI CRM</h5>
-                    <p>Instant RAG AI auto-replies, lead assignment, and CRM pipeline tracking.</p>
+                {/* Branch B: CRM & AI Agent */}
+                <div ref={crmNodeRef} className="coex-beam-node branch branch-b">
+                  <div className="coex-beam-circle">
+                    <Bot size={22} color="var(--primary-color)" />
                   </div>
+                  <span className="coex-beam-label">Branch B: Gyan VaniAi CRM</span>
+                  <span className="coex-beam-sub">24/7 AI Auto-Replies & Sync</span>
                 </div>
               </div>
+
+              {/* Animated Beams linking nodes */}
+              <AnimatedBeam
+                containerRef={beamContainerRef}
+                fromRef={customerNodeRef}
+                toRef={metaGatewayNodeRef}
+                duration={2.5}
+                delay={0}
+              />
+              <AnimatedBeam
+                containerRef={beamContainerRef}
+                fromRef={metaGatewayNodeRef}
+                toRef={mobileNodeRef}
+                duration={2.5}
+                delay={0.6}
+              />
+              <AnimatedBeam
+                containerRef={beamContainerRef}
+                fromRef={metaGatewayNodeRef}
+                toRef={crmNodeRef}
+                duration={2.5}
+                delay={0.6}
+              />
             </div>
           </div>
         </section>
 
-        {/* 4. COMPARISON TABLE */}
+        {/* =========================================================================
+            4. COMPARISON TABLE (Wrapped in Card Tilt with BorderBeam Highlight)
+            ========================================================================= */}
         <section className="section bg-tinted" style={{ padding: '5.25rem 0' }}>
           <div className="container">
             <div className="section-header section-header--center">
@@ -451,7 +603,9 @@ export default function WhatsAppCoexistencePage() {
           </div>
         </section>
 
-        {/* 5. 3-STEP SETUP GUIDE */}
+        {/* =========================================================================
+            5. 3-STEP SETUP GUIDE (3D Cards)
+            ========================================================================= */}
         <section className="section container" style={{ padding: '5.25rem 0' }}>
           <div className="section-header section-header--center">
             <span className="section-eyebrow">Quick Onboarding</span>
@@ -462,35 +616,41 @@ export default function WhatsAppCoexistencePage() {
           </div>
 
           <div className="coexistence-steps-grid">
-            
-            <div className="coexistence-step-card">
-              <div className="coexistence-step-badge">01</div>
-              <h3 className="coexistence-step-title">Open Meta Embedded Signup</h3>
-              <p className="coexistence-step-desc">
-                Log in with your Facebook business manager directly inside the Gyan VaniAi dashboard.
-              </p>
-            </div>
+            <Card3DTilt className="coex-step-tilt" maxRotation={8} scale={1.02}>
+              <div className="coexistence-step-card">
+                <div className="coexistence-step-badge">01</div>
+                <h3 className="coexistence-step-title">Open Meta Embedded Signup</h3>
+                <p className="coexistence-step-desc">
+                  Log in with your Facebook business manager directly inside the Gyan VaniAi dashboard.
+                </p>
+              </div>
+            </Card3DTilt>
 
-            <div className="coexistence-step-card">
-              <div className="coexistence-step-badge">02</div>
-              <h3 className="coexistence-step-title">Select Coexistence Mode</h3>
-              <p className="coexistence-step-desc">
-                Select Coexistence when prompted by Meta. This keeps your phone app installed and active.
-              </p>
-            </div>
+            <Card3DTilt className="coex-step-tilt" maxRotation={8} scale={1.02}>
+              <div className="coexistence-step-card">
+                <div className="coexistence-step-badge">02</div>
+                <h3 className="coexistence-step-title">Select Coexistence Mode</h3>
+                <p className="coexistence-step-desc">
+                  Select Coexistence when prompted by Meta. This keeps your phone app installed and active.
+                </p>
+              </div>
+            </Card3DTilt>
 
-            <div className="coexistence-step-card">
-              <div className="coexistence-step-badge">03</div>
-              <h3 className="coexistence-step-title">Instant Bidirectional Sync</h3>
-              <p className="coexistence-step-desc">
-                Send a test message. It reflects immediately on both your mobile phone and Gyan VaniAi CRM.
-              </p>
-            </div>
-
+            <Card3DTilt className="coex-step-tilt" maxRotation={8} scale={1.02}>
+              <div className="coexistence-step-card">
+                <div className="coexistence-step-badge">03</div>
+                <h3 className="coexistence-step-title">Instant Bidirectional Sync</h3>
+                <p className="coexistence-step-desc">
+                  Send a test message. It reflects immediately on both your mobile phone and Gyan VaniAi CRM.
+                </p>
+              </div>
+            </Card3DTilt>
           </div>
         </section>
 
-        {/* 6. FREQUENTLY ASKED QUESTIONS */}
+        {/* =========================================================================
+            6. ACCESSIBLE FAQ WITH SINGLE COMPACT TOGGLE
+            ========================================================================= */}
         <section className="section bg-tinted" style={{ padding: '5.25rem 0' }}>
           <div className="container">
             <div className="section-header section-header--center">
@@ -499,79 +659,111 @@ export default function WhatsAppCoexistencePage() {
               <p className="text-lg text-muted" style={{ marginTop: '0.85rem' }}>
                 Everything you need to know about WhatsApp Coexistence Mode.
               </p>
+
+              {/* Single Compact Toggle */}
+              <div style={{ marginTop: '1.25rem', display: 'flex', justifyContent: 'center' }}>
+                <button
+                  type="button"
+                  className="coex-faq-toggle-btn"
+                  onClick={toggleAllFaqs}
+                  aria-expanded={isAllFaqsOpen}
+                >
+                  <span>{isAllFaqsOpen ? 'Collapse all' : 'Expand all'}</span>
+                  <ChevronDown
+                    size={16}
+                    style={{ transform: isAllFaqsOpen ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.25s ease' }}
+                  />
+                </button>
+              </div>
             </div>
 
             <div className="coexistence-faq-container">
-              {faqs.map((faq, index) => (
-                <div 
-                  key={index} 
-                  className="coexistence-faq-item"
-                >
-                  <button
-                    type="button"
-                    onClick={() => toggleFaq(index)}
-                    className="coexistence-faq-btn"
-                    aria-expanded={openFaq === index}
-                  >
-                    <span style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                      <HelpCircle size={20} color="var(--primary-color)" />
-                      {faq.q}
-                    </span>
-                    <ChevronDown 
-                      size={20} 
-                      style={{ 
-                        transform: openFaq === index ? 'rotate(180deg)' : 'rotate(0deg)',
-                        transition: 'transform 0.2s ease',
-                        color: 'var(--text-secondary)'
-                      }} 
-                    />
-                  </button>
-                  {openFaq === index && (
-                    <div className="coexistence-faq-answer">
+              {faqs.map((faq, index) => {
+                const isOpen = openFaqIndices.has(index);
+                const buttonId = `coex-faq-btn-${index}`;
+                const panelId = `coex-faq-panel-${index}`;
+
+                return (
+                  <div key={index} className={`coexistence-faq-item ${isOpen ? 'open' : ''}`}>
+                    <button
+                      id={buttonId}
+                      type="button"
+                      onClick={() => toggleFaq(index)}
+                      className="coexistence-faq-btn"
+                      aria-expanded={isOpen}
+                      aria-controls={panelId}
+                    >
+                      <span style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                        <HelpCircle size={20} color="var(--primary-color)" />
+                        {faq.q}
+                      </span>
+                      <ChevronDown 
+                        size={20} 
+                        style={{ 
+                          transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+                          transition: 'transform 0.25s ease',
+                          color: 'var(--text-secondary)'
+                        }} 
+                      />
+                    </button>
+                    <div
+                      id={panelId}
+                      role="region"
+                      aria-labelledby={buttonId}
+                      className="coexistence-faq-answer"
+                      hidden={!isOpen}
+                    >
                       {faq.a}
                     </div>
-                  )}
-                </div>
-              ))}
+                  </div>
+                );
+              })}
             </div>
           </div>
         </section>
 
-        {/* 7. BOTTOM CTA */}
+        {/* =========================================================================
+            7. BOTTOM CTA
+            ========================================================================= */}
         <section className="container" style={{ marginTop: '2rem' }}>
-          <div className="coexistence-cta-card">
-            <h2 className="coexistence-cta-heading">Ready to Enable WhatsApp Coexistence?</h2>
-            <p className="coexistence-cta-sub">
-              Connect your official WhatsApp number in under 5 minutes with our Meta Embedded Signup integration. Get a free tailored demo today.
-            </p>
-            <button 
-              id="btn-coexistence-cta-demo"
-              type="button"
-              className="btn btn-primary"
-              onClick={() => { trackBookDemo('coexistence-bottom'); setIsModalOpen(true); }}
-              style={{ padding: '0.95rem 2.25rem', fontSize: '1.05rem', fontWeight: '700' }}
-            >
-              <span>Book a Free Live Demo</span>
-              <ArrowRight size={18} style={{ marginLeft: '8px' }} />
-            </button>
+          <div className="coexistence-cta-card" style={{ position: 'relative', overflow: 'hidden' }}>
+            <Meteors number={16} />
+            <div style={{ position: 'relative', zIndex: 1 }}>
+              <h2 className="coexistence-cta-heading">Ready to Enable WhatsApp Coexistence?</h2>
+              <p className="coexistence-cta-sub">
+                Connect your official WhatsApp number in under 5 minutes with our Meta Embedded Signup integration. Get a free tailored demo today.
+              </p>
+              <button 
+                id="btn-coexistence-cta-demo"
+                type="button"
+                className="btn btn-primary"
+                onClick={() => { trackBookDemo('coexistence-bottom'); setIsModalOpen(true); }}
+                style={{ padding: '0.95rem 2.25rem', fontSize: '1.05rem', fontWeight: '700' }}
+              >
+                <span>Book a Free Live Demo</span>
+                <ArrowRight size={18} style={{ marginLeft: '8px' }} />
+              </button>
+            </div>
           </div>
         </section>
 
-        {/* 8. RELATED SERVICES */}
+        {/* =========================================================================
+            8. RELATED SERVICES
+            ========================================================================= */}
         <section className="container" style={{ padding: '2rem 0' }}>
           <div className="coexistence-related-bar">
             <span className="coexistence-related-title">Related Services:</span>
             <div className="coexistence-related-links">
+              <a href="/services/whatsapp-calling-agent" className="coexistence-related-link">
+                WhatsApp Calling Agent Bots →
+              </a>
+              <span style={{ color: 'var(--border-color)' }}>|</span>
               <a href="/services/crm-development" className="coexistence-related-link">
                 Custom CRM Software Development →
               </a>
               <span style={{ color: 'var(--border-color)' }}>|</span>
               <a href="/services/ai-development" className="coexistence-related-link">
                 AI Software Development →
-              </a>
-              <span style={{ color: 'var(--border-color)' }}>|</span>
-              <a href="/blog" className="coexistence-related-link">
-                WhatsApp Automation Insights (Blog) →
               </a>
             </div>
           </div>

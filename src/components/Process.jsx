@@ -1,5 +1,18 @@
-import React, { useState } from 'react';
-import { UserPlus, Sparkles, BrainCircuit, Activity, Users, Bot, Headset, CheckCircle2, ArrowRight } from 'lucide-react';
+import React, { useState, useRef } from 'react';
+import { 
+  UserPlus, 
+  Database, 
+  BrainCircuit, 
+  Activity, 
+  Users, 
+  Bot, 
+  Headset, 
+  CheckCircle2, 
+  ArrowRight,
+  Zap
+} from 'lucide-react';
+import Card3DTilt from './ui/Card3DTilt';
+import AnimatedBeam from './ui/AnimatedBeam';
 import './Process.css';
 
 const workflowSteps = [
@@ -13,7 +26,7 @@ const workflowSteps = [
   {
     stepNum: '02',
     category: 'AI Enrichment',
-    icon: <Sparkles size={20} />,
+    icon: <Database size={20} />,
     title: 'Profile Enrichment',
     desc: 'Instant lookup attaches company size, revenue, industry, and contact firmographics automatically.'
   },
@@ -79,6 +92,13 @@ export default function Process({
   const currentSteps = steps || workflowSteps;
   const activeStepData = currentSteps[activeStep] || currentSteps[0];
 
+  // Animated Beam refs
+  const beamContainerRef = useRef(null);
+  const node1Ref = useRef(null);
+  const node2Ref = useRef(null);
+  const node3Ref = useRef(null);
+  const node4Ref = useRef(null);
+
   return (
     <section className="section bg-tinted" id="how-it-works" style={{ padding: '5rem 0' }}>
       <div className="container" style={{ maxWidth: '1240px' }}>
@@ -88,6 +108,91 @@ export default function Process({
           <p className="text-muted" style={{ marginTop: '0.75rem', fontSize: '1.1rem', maxWidth: '800px', marginInline: 'auto' }}>
             {subtitle}
           </p>
+        </div>
+
+        {/* 3D Animated Beam Architecture Stage */}
+        <div ref={beamContainerRef} className="process-beam-stage" aria-label="Interactive 3D Pipeline Stream">
+          <div className="process-beam-aura"></div>
+
+          <div 
+            ref={node1Ref} 
+            className={`process-beam-node ${activeStep === 0 ? 'active' : ''}`}
+            onClick={() => setActiveStep(0)}
+          >
+            <div className="process-beam-circle">
+              <UserPlus size={22} />
+            </div>
+            <span className="process-beam-lbl">01. Intake</span>
+            <span className="process-beam-sub">Multichannel</span>
+          </div>
+
+          <div 
+            ref={node2Ref} 
+            className={`process-beam-node ${activeStep === 2 ? 'active' : ''}`}
+            onClick={() => setActiveStep(2)}
+          >
+            <div className="process-beam-circle">
+              <BrainCircuit size={22} />
+            </div>
+            <span className="process-beam-lbl">03. NLU Intent</span>
+            <span className="process-beam-sub">Live NLP</span>
+          </div>
+
+          <div 
+            ref={node3Ref} 
+            className={`process-beam-node ${activeStep === 5 ? 'active' : ''}`}
+            onClick={() => setActiveStep(5)}
+          >
+            <div className="process-beam-circle">
+              <Bot size={22} />
+            </div>
+            <span className="process-beam-lbl">06. 24/7 Agent</span>
+            <span className="process-beam-sub">Autonomous</span>
+          </div>
+
+          <div 
+            ref={node4Ref} 
+            className={`process-beam-node ${activeStep === 7 ? 'active' : ''}`}
+            onClick={() => setActiveStep(7)}
+          >
+            <div className="process-beam-circle">
+              <CheckCircle2 size={22} />
+            </div>
+            <span className="process-beam-lbl">08. Closed-Won</span>
+            <span className="process-beam-sub">ERP Sync</span>
+          </div>
+
+          {/* Animated Laser Beams Connecting Stages */}
+          <AnimatedBeam 
+            containerRef={beamContainerRef} 
+            fromRef={node1Ref} 
+            toRef={node2Ref} 
+            duration={2.6} 
+            delay={0}
+            pathWidth={3}
+            gradientStartColor="#14b8a6"
+            gradientStopColor="#06b6d4"
+          />
+          <AnimatedBeam 
+            containerRef={beamContainerRef} 
+            fromRef={node2Ref} 
+            toRef={node3Ref} 
+            duration={2.6} 
+            delay={0.65}
+            pathWidth={3}
+            gradientStartColor="#06b6d4"
+            gradientStopColor="#3b82f6"
+          />
+          <AnimatedBeam 
+            containerRef={beamContainerRef} 
+            fromRef={node3Ref} 
+            toRef={node4Ref} 
+            duration={2.6} 
+            delay={1.3}
+            pathWidth={3}
+            gradientStartColor="#3b82f6"
+            gradientStopColor="#10b981"
+          />
         </div>
 
         {engineBanner && (
@@ -114,50 +219,54 @@ export default function Process({
           </div>
         )}
 
-        {/* Visual Pipeline Progression Ribbon */}
+        {/* Visual Pipeline Progression Grid with 3D Tilt Cards */}
         <div className="workflow-pipeline-wrapper">
           <div className="workflow-responsive-grid">
             {currentSteps.map((step, idx) => (
-              <article
+              <Card3DTilt
                 key={step.stepNum}
-                className={`workflow-card ${activeStep === idx ? 'active' : ''}`}
+                className={`workflow-card-tilt-wrap ${activeStep === idx ? 'active' : ''}`}
+                maxRotation={8}
+                scale={1.03}
                 onClick={() => setActiveStep(idx)}
               >
-                <div className="workflow-card-top">
-                  <div className="workflow-step-badge-wrap">
-                    <span className="workflow-step-badge">{step.stepNum}</span>
-                    <span className="workflow-cat-tag">{step.category}</span>
+                <article className={`workflow-card ${activeStep === idx ? 'active' : ''}`}>
+                  <div className="workflow-card-top">
+                    <div className="workflow-step-badge-wrap">
+                      <span className="workflow-step-badge">{step.stepNum}</span>
+                      <span className="workflow-cat-tag">{step.category}</span>
+                    </div>
+                    {idx < currentSteps.length - 1 && (
+                      <span className="workflow-flow-arrow" aria-hidden="true">
+                        <ArrowRight size={15} />
+                      </span>
+                    )}
                   </div>
-                  {idx < currentSteps.length - 1 && (
-                    <span className="workflow-flow-arrow" aria-hidden="true">
-                      <ArrowRight size={15} />
-                    </span>
-                  )}
-                </div>
-                <div className="workflow-icon-box">
-                  {typeof step.icon === 'string' ? (
-                    <img 
-                      src={step.icon} 
-                      alt="" 
-                      aria-hidden="true" 
-                      width="28" 
-                      height="28" 
-                      style={{ width: '28px', height: '28px', objectFit: 'contain', display: 'block', borderRadius: '6px' }} 
-                      loading="lazy" 
-                    />
-                  ) : (
-                    step.icon
-                  )}
-                </div>
-                <h3 className="workflow-card-title">{step.title}</h3>
-                <p className="workflow-card-desc">{step.desc}</p>
-                <div className="workflow-card-progress-bar">
-                  <div
-                    className="workflow-card-progress-fill"
-                    style={{ width: `${((idx + 1) / currentSteps.length) * 100}%` }}
-                  ></div>
-                </div>
-              </article>
+                  <div className="workflow-icon-box">
+                    {typeof step.icon === 'string' ? (
+                      <img 
+                        src={step.icon} 
+                        alt="" 
+                        aria-hidden="true" 
+                        width="28" 
+                        height="28" 
+                        style={{ width: '28px', height: '28px', objectFit: 'contain', display: 'block', borderRadius: '6px' }} 
+                        loading="lazy" 
+                      />
+                    ) : (
+                      step.icon
+                    )}
+                  </div>
+                  <h3 className="workflow-card-title">{step.title}</h3>
+                  <p className="workflow-card-desc">{step.desc}</p>
+                  <div className="workflow-card-progress-bar">
+                    <div
+                      className="workflow-card-progress-fill"
+                      style={{ width: `${((idx + 1) / currentSteps.length) * 100}%` }}
+                    ></div>
+                  </div>
+                </article>
+              </Card3DTilt>
             ))}
           </div>
         </div>

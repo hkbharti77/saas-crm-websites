@@ -17,6 +17,7 @@ const Documentation = lazy(() => import('./pages/Documentation'));
 const WhatsAppCoexistencePage = lazy(() => import('./pages/WhatsAppCoexistencePage'));
 const SalesAutomationPage = lazy(() => import('./pages/SalesAutomationPage'));
 const AIChatbotsPage = lazy(() => import('./pages/AIChatbotsPage'));
+const WhatsAppCallingAgentPage = lazy(() => import('./pages/WhatsAppCallingAgentPage'));
 const AdminLogin = lazy(() => import('./pages/admin/AdminLogin'));
 const AdminDashboard = lazy(() => import('./pages/admin/AdminDashboard'));
 const AdminCreatePost = lazy(() => import('./pages/admin/AdminCreatePost'));
@@ -166,6 +167,8 @@ function App() {
                 <Route path="/services/whatsapp-coexistence" element={<WhatsAppCoexistencePage />} />
                 <Route path="/services/sales-automation" element={<SalesAutomationPage />} />
                 <Route path="/services/ai-chatbots" element={<AIChatbotsPage />} />
+                <Route path="/services/whatsapp-calling-agent" element={<WhatsAppCallingAgentPage />} />
+                <Route path="/services/whatsapp-calling-agent-bots" element={<WhatsAppCallingAgentPage />} />
                 <Route path="/documentation" element={<Documentation />} />
                 <Route path="/services/:serviceId" element={<SEOLandingPage />} />
                 <Route path="/industries/:industryId" element={<SEOLandingPage />} />

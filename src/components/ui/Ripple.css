@@ -1,0 +1,45 @@
+.ripple-container {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  mask: linear-gradient(to bottom, white 50%, transparent 100%);
+  -webkit-mask: linear-gradient(to bottom, white 50%, transparent 100%);
+  user-select: none;
+  z-index: 0;
+}
+
+.ripple-circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  border: 1px solid rgba(20, 184, 166, 0.35);
+  box-shadow: 0 0 20px rgba(20, 184, 166, 0.1);
+  transform: translate(-50%, -50%) scale(1);
+  animation: rippleEffect 3.5s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+
+@keyframes rippleEffect {
+  0% {
+    transform: translate(-50%, -50%) scale(0.85);
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 0.3;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.4);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ripple-circle {
+    animation: none;
+    opacity: 0.15 !important;
+  }
+}

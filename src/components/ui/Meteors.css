@@ -1,0 +1,50 @@
+.meteors-container {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.meteor-item {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: #14b8a6;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15), 0 0 8px #14b8a6;
+  transform: rotate(var(--angle, -215deg));
+  animation: meteorFall linear infinite;
+  opacity: 0;
+}
+
+.meteor-tail {
+  pointer-events: none;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  height: 1px;
+  width: 70px;
+  transform: translateY(-50%);
+  background: linear-gradient(to left, #14b8a6, rgba(20, 184, 166, 0.4) 40%, transparent 100%);
+}
+
+@keyframes meteorFall {
+  0% {
+    opacity: 1;
+    transform: rotate(var(--angle, -215deg)) translateX(0);
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: rotate(var(--angle, -215deg)) translateX(-600px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .meteors-container {
+    display: none !important;
+  }
+}

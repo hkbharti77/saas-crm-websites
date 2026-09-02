@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { ArrowRight, Calendar, Sparkles } from 'lucide-react';
+import { ArrowRight, Calendar, BookOpen } from 'lucide-react';
 import { db } from '../firebase';
 import { collection, getDocs, query, orderBy } from 'firebase/firestore';
 import ContactModal from '../components/ContactModal';
@@ -65,7 +65,7 @@ export default function Blog() {
         <section className="blog-hero-section">
           <div className="container">
             <div className="blog-eyebrow">
-              <Sparkles size={15} />
+              <BookOpen size={15} />
               <span>GYAN VANI AI INSIGHTS</span>
             </div>
             <h1 className="blog-hero-title">Latest Insights & Updates</h1>

@@ -1,8 +1,134 @@
+/* ==========================================================================
+   Omnichannel Intelligence — 3D Planetary Orbit Architecture & Cards
+   ========================================================================== */
+
+/* 3D Orbiting Stage Container */
+.omnichannel-orbit-stage {
+  position: relative;
+  width: 100%;
+  max-width: 580px;
+  height: 520px;
+  margin: 1.5rem auto 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1200px;
+  user-select: none;
+  overflow: visible;
+}
+
+.orbit-ambient-glow {
+  position: absolute;
+  width: 380px;
+  height: 380px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--mesh-color-1, rgba(20, 184, 166, 0.16)) 0%, transparent 70%);
+  filter: blur(48px);
+  pointer-events: none;
+}
+
+/* Center AI Engine Node */
+.orbit-center-node {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transform: translateZ(30px);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.orbit-center-node:hover {
+  transform: translateZ(45px) scale(1.06);
+}
+
+.orbit-center-inner {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0f766e 0%, #14b8a6 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 12px 32px rgba(15, 118, 110, 0.4), 0 0 0 4px color-mix(in srgb, var(--primary-color) 25%, transparent);
+}
+
+.orbit-core-icon {
+  color: #ffffff;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.25));
+}
+
+.orbit-core-pulse {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px solid #14b8a6;
+  opacity: 0.6;
+  animation: corePulse 2.5s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+
+@keyframes corePulse {
+  0% { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(1.4); opacity: 0; }
+}
+
+.orbit-center-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 0.65rem;
+  text-align: center;
+}
+
+.orbit-center-tag {
+  font-size: 0.7rem;
+  font-weight: 750;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--primary-color);
+}
+
+.orbit-center-label strong {
+  font-size: 0.88rem;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+/* Orbit Node Pills */
+.orbit-node-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.42rem 0.85rem;
+  border-radius: var(--radius-full, 99px);
+  background: color-mix(in srgb, var(--bg-card) 94%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid color-mix(in srgb, var(--glass-border) 160%, transparent);
+  color: var(--text-primary);
+  font-size: 0.78rem;
+  font-weight: 700;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.orbit-node-pill:hover,
+.orbit-node-pill.active {
+  background: var(--bg-card);
+  border-color: var(--primary-color);
+  box-shadow: 0 12px 28px rgba(15, 118, 110, 0.3), 0 0 0 1px var(--primary-color);
+  transform: scale(1.1);
+}
+
+/* Hub Architecture & Cards */
 .omnichannel-hub-layout {
   margin-top: 1.5rem;
 }
 
-/* Central AI Hub Architecture Header */
 .omnichannel-central-core {
   display: flex;
   flex-direction: column;
@@ -10,7 +136,7 @@
   text-align: center;
   margin-bottom: 2rem;
   padding: 1.25rem 1.5rem;
-  background: color-mix(in srgb, var(--primary-color) 8%, var(--bg-card, var(--glass-bg)));
+  background: color-mix(in srgb, var(--primary-color) 8%, var(--bg-card));
   border: 1px solid color-mix(in srgb, var(--primary-color) 25%, var(--border-color));
   border-radius: var(--radius-lg, 16px);
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
@@ -70,21 +196,31 @@
   }
 }
 
+/* Card 3D Wrap */
+.omnichannel-card-tilt-wrap {
+  border-radius: var(--radius-lg, 16px);
+  height: 100%;
+}
+
+.omnichannel-card-tilt-wrap.selected .omnichannel-card {
+  border-color: var(--primary-color);
+  box-shadow: 0 14px 34px rgba(15, 118, 110, 0.18), 0 0 0 1px var(--primary-color);
+}
+
 .omnichannel-card {
-  background: var(--bg-card, var(--glass-bg));
+  background: var(--bg-card);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-lg, 16px);
-  padding: 1.75rem 1.6rem; /* 28px x 25px */
+  padding: 1.75rem 1.6rem;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+  height: 100%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
   transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .omnichannel-card:hover {
-  transform: translateY(-2px);
   border-color: color-mix(in srgb, var(--primary-color) 40%, var(--border-color));
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.1);
 }
 
 .omnichannel-card-header {
@@ -94,43 +230,59 @@
   margin-bottom: 1.15rem;
 }
 
+.omnichannel-header-right {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.omnichannel-stat-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  background: color-mix(in srgb, var(--primary-color) 10%, transparent);
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--radius-full, 99px);
+  border: 1px solid color-mix(in srgb, var(--primary-color) 20%, transparent);
+}
+
 .omnichannel-icon {
   width: 50px;
   height: 50px;
   border-radius: var(--radius-md, 10px);
   background: color-mix(in srgb, var(--primary-color) 12%, transparent);
-  border: 1px solid color-mix(in srgb, var(--primary-color) 25%, transparent);
   color: var(--primary-color);
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 1px solid color-mix(in srgb, var(--primary-color) 20%, transparent);
 }
 
 .omnichannel-badge {
-  font-size: 0.775rem; /* 12.5px */
+  font-size: 0.75rem;
   font-weight: 700;
-  color: var(--primary-color);
-  background: color-mix(in srgb, var(--primary-color) 10%, transparent);
-  border: 1px solid color-mix(in srgb, var(--primary-color) 20%, transparent);
-  padding: 0.25rem 0.65rem;
-  border-radius: var(--radius-full);
   text-transform: uppercase;
   letter-spacing: 0.04em;
+  color: var(--primary-color);
+  background: color-mix(in srgb, var(--primary-color) 10%, transparent);
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-full, 99px);
+  border: 1px solid color-mix(in srgb, var(--primary-color) 22%, transparent);
 }
 
 .omnichannel-title {
-  font-size: 1.2rem; /* ~19px */
+  font-size: 1.1875rem;
   font-weight: 750;
   color: var(--text-primary);
-  margin-bottom: 0.55rem;
-  letter-spacing: -0.015em;
+  margin-bottom: 0.65rem;
+  letter-spacing: -0.01em;
 }
 
 .omnichannel-desc {
-  font-size: 0.95rem; /* ~15px */
+  font-size: 0.9375rem;
+  line-height: 1.6;
   color: var(--text-secondary);
-  line-height: 1.55;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.4rem;
   flex: 1;
 }
 
@@ -138,60 +290,71 @@
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  font-size: 0.92rem; /* ~14.5px */
-  font-weight: 650;
   color: var(--primary-color);
+  font-size: 0.875rem;
+  font-weight: 700;
   text-decoration: none;
-  transition: transform 0.2s ease;
+  transition: gap 0.2s ease;
 }
 
-.omnichannel-card:hover .omnichannel-link {
-  transform: translateX(4px);
+.omnichannel-link:hover {
+  gap: 0.65rem;
 }
 
 .omnichannel-bottom-bar {
-  background: color-mix(in srgb, var(--primary-color) 5%, var(--glass-bg));
-  border: 1px solid var(--border-color);
+  margin-top: 2.5rem;
+  padding: 1.5rem 2rem;
   border-radius: var(--radius-lg, 16px);
-  padding: 1.6rem 2rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1.5rem;
-  margin-top: 2rem;
+  gap: 2rem;
+}
+
+@media (max-width: 860px) {
+  .omnichannel-bottom-bar {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
 }
 
 .omnichannel-features-list {
   display: flex;
   align-items: center;
   gap: 2rem;
-  flex-wrap: wrap;
+}
+
+@media (max-width: 860px) {
+  .omnichannel-features-list {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
 }
 
 .omnichannel-feature-item {
   display: flex;
   align-items: center;
-  gap: 0.55rem;
-  font-size: 0.95rem; /* ~15px */
-  font-weight: 600;
+  gap: 0.6rem;
+  font-size: 0.9375rem;
   color: var(--text-primary);
+  font-weight: 600;
 }
 
 .feature-check {
-  color: var(--primary-color);
+  color: #10b981;
+  flex-shrink: 0;
 }
 
-@media (max-width: 860px) {
-  .omnichannel-bottom-bar {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 1.35rem;
-    gap: 1.15rem;
+@media (max-width: 640px) {
+  .omnichannel-orbit-stage {
+    height: 420px;
+    max-width: 360px;
   }
-  
-  .omnichannel-features-list {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.75rem;
+  .orbit-node-pill {
+    font-size: 0.7rem;
+    padding: 0.35rem 0.65rem;
   }
 }

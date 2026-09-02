@@ -1,0 +1,82 @@
+.shimmer-btn-root {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: var(--radius, 9999px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 0.85rem 1.75rem;
+  white-space: nowrap;
+  color: #ffffff;
+  background: var(--bg);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 8px 24px rgba(15, 118, 110, 0.35);
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.shimmer-btn-root:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(15, 118, 110, 0.45);
+}
+
+.shimmer-btn-root:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+.shimmer-spark-wrap {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.shimmer-spark {
+  position: absolute;
+  inset: -100%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 180deg,
+    var(--shimmer-color, #ffffff) 240deg,
+    transparent 280deg
+  );
+  animation: shimmerRotate var(--speed, 3s) linear infinite;
+}
+
+.shimmer-btn-content {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.shimmer-btn-highlight {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.2) 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes shimmerRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shimmer-spark {
+    animation: none;
+    display: none;
+  }
+}

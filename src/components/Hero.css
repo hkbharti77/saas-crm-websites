@@ -4,11 +4,10 @@
 
 .hero {
   position: relative;
-  min-height: 650px;
-  max-height: 740px;
+  min-height: 680px;
   display: flex;
   align-items: center;
-  padding: 3.8rem 0 3.2rem;
+  padding: 4.5rem 0 3.8rem;
   overflow: hidden;
   background: var(--bg-base);
   user-select: none;
@@ -35,6 +34,15 @@
   opacity: 0.94;
   transform: scale(1);
   pointer-events: auto;
+}
+
+.hero-media-slide-motion {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  will-change: transform, opacity, filter;
 }
 
 .hero-media-img {
@@ -85,24 +93,193 @@ body.dark-theme .hero-media-veil {
   width: 100%;
 }
 
+.hero-grid-layout {
+  display: grid;
+  grid-template-columns: 1.15fr 0.9fr;
+  gap: 3rem;
+  align-items: center;
+}
+
 .hero-content {
-  max-width: 680px;
+  max-width: 640px;
+}
+
+/* --- Interactive 3D Motion Stage --- */
+.hero-3d-stage {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 480px;
+  perspective: 1200px;
+}
+
+.hero-3d-stage-halo {
+  position: absolute;
+  width: 380px;
+  height: 380px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--mesh-color-1, rgba(20, 184, 166, 0.2)) 0%, transparent 70%);
+  filter: blur(40px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-3d-canvas-wrapper {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Floating 3D Telemetry Cards */
+.hero-3d-float-card {
+  position: absolute !important;
+  z-index: 3;
+  background: color-mix(in srgb, var(--bg-card) 90%, transparent);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid color-mix(in srgb, var(--glass-border) 140%, transparent);
+  border-radius: var(--radius-lg, 16px);
+  padding: 0.85rem 1.1rem;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.22), 0 0 0 1px rgba(255, 255, 255, 0.08);
+  pointer-events: auto;
+  cursor: pointer;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.hero-3d-float-card:hover {
+  border-color: var(--primary-color);
+  box-shadow: 0 20px 45px rgba(15, 118, 110, 0.25), 0 0 0 1px var(--primary-color);
+}
+
+.hero-3d-card-top {
+  top: 18px;
+  left: -20px;
+  animation: floatTop 5s ease-in-out infinite alternate;
+}
+
+.hero-3d-card-bottom {
+  bottom: 24px;
+  right: -16px;
+  animation: floatBottom 6s ease-in-out infinite alternate;
+}
+
+.hero-3d-card-status {
+  top: 36px;
+  right: -10px;
+  padding: 0.45rem 0.85rem !important;
+  animation: floatTop 5.5s ease-in-out infinite alternate 1s;
+}
+
+.hero-float-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.hero-float-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.hero-float-title {
+  font-size: 0.72rem;
+  font-weight: 750;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.hero-float-metric {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+.hero-float-label {
+  font-size: 0.76rem;
+  color: var(--text-secondary);
+}
+
+.hero-float-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.pulse-emerald {
+  background: #10b981;
+  box-shadow: 0 0 10px #10b981;
+}
+
+.pulse-cyan {
+  background: #06b6d4;
+  box-shadow: 0 0 10px #06b6d4;
+}
+
+.hero-float-status-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.hero-status-live-pulse {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 8px #10b981;
+  animation: pulse-ring 2s infinite;
+}
+
+@keyframes floatTop {
+  0% { transform: translateY(0px) rotate(0deg); }
+  100% { transform: translateY(-10px) rotate(-1deg); }
+}
+
+@keyframes floatBottom {
+  0% { transform: translateY(0px) rotate(0deg); }
+  100% { transform: translateY(12px) rotate(1deg); }
+}
+
+@media (max-width: 1024px) {
+  .hero-grid-layout {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .hero-3d-stage {
+    min-height: 380px;
+  }
+  .hero-3d-card-top {
+    left: 10px;
+  }
+  .hero-3d-card-bottom {
+    right: 10px;
+  }
 }
 
 /* Text Animator on Slide Change */
 .hero-text-animator {
-  animation: slideTextIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+  position: relative;
+  width: 100%;
 }
 
-@keyframes slideTextIn {
-  0% {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.hero-3d-floating-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.hero-3d-floating-layer > * {
+  pointer-events: auto;
 }
 
 .hero-badge {

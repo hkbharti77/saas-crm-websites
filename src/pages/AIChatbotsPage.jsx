@@ -18,7 +18,6 @@ import {
   Clock, 
   Check, 
   X, 
-  Sparkles,
   Users,
   ShieldCheck,
   Cpu,
@@ -489,7 +488,7 @@ export default function AIChatbotsPage() {
                 <h3 className="chatbots-workflow-title">{step.title}</h3>
                 <p className="chatbots-workflow-desc">{step.desc}</p>
                 <div className="chatbots-workflow-status">
-                  <Sparkles size={11} /> {step.status}
+                  <Zap size={11} /> {step.status}
                 </div>
               </div>
             ))}

@@ -5,7 +5,7 @@ import {
   ArrowRight, 
   CheckCircle2, 
   Zap, 
-  Sparkles, 
+  Database, 
   BrainCircuit, 
   Activity, 
   Users, 
@@ -43,7 +43,7 @@ const overviewCards = [
   {
     num: '01',
     category: 'OVERVIEW',
-    icon: <Sparkles size={22} />,
+    icon: <Zap size={22} />,
     title: 'Turn repetitive sales processes into automated revenue workflows.',
     desc: 'Gyan VaniAi builds Sales Automation Software that eliminates manual data entry and repetitive follow-ups, empowering your sales team to focus on high-value conversations that drive revenue.',
     bullets: [
@@ -95,7 +95,7 @@ const workflowPhases = [
         idx: '02',
         title: 'Lead Enrichment',
         desc: 'Instant lookup attaches company size, revenue, industry, and contact firmographics automatically.',
-        icon: <Sparkles size={18} />,
+        icon: <Database size={18} />,
         status: 'Firmographics Synced'
       }
     ]

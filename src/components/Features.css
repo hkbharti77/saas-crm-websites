@@ -122,3 +122,10 @@
 .features-cta p {
   font-size: 1.05rem;
 }
+
+/* 3D Perspective Tilt Card Wrapper */
+.feature-card-3d-wrap {
+  height: 100%;
+  border-radius: var(--radius-lg, 16px);
+}
+
