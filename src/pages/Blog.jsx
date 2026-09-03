@@ -64,10 +64,6 @@ export default function Blog() {
         {/* 1. HERO / BLOG HEADER */}
         <section className="blog-hero-section">
           <div className="container">
-            <div className="blog-eyebrow">
-              <BookOpen size={15} />
-              <span>GYAN VANI AI INSIGHTS</span>
-            </div>
             <h1 className="blog-hero-title">Latest Insights & Updates</h1>
             <p className="blog-hero-sub">
               Deep dives into multi-agent orchestration, enterprise AI security, WhatsApp Coexistence, and customer experience automation, written for operators building with Gyan VaniAi.

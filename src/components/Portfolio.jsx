@@ -61,8 +61,7 @@ export default function Portfolio() {
     <section className="section bg-tinted" id="results">
       <div className="container">
         <div className="section-header section-header--center">
-          <span className="section-eyebrow">Proven Impact</span>
-          <h2 className="h2">Measurable revenue results in production</h2>
+<h2 className="h2">Measurable revenue results in production</h2>
           <p className="text-lg text-muted" style={{ marginTop: '0.85rem' }}>
             Production systems engineered by our team, driving real operational efficiency and pipeline growth.
           </p>

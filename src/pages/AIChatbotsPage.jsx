@@ -277,11 +277,6 @@ export default function AIChatbotsPage() {
 
           <div className="chatbots-hero-grid">
             <div className="chatbots-hero-content">
-              <div className="chatbots-hero-eyebrow-pill">
-                <span className="chatbots-hero-pulse-dot"></span>
-                AI Chatbot Platform
-              </div>
-
               <h1 className="chatbots-hero-title">
                 AI Chatbot Development
               </h1>
@@ -341,8 +336,7 @@ export default function AIChatbotsPage() {
       <section className="chatbots-overview-section">
         <div className="chatbots-container">
           <div className="chatbots-section-header">
-            <span className="chatbots-section-eyebrow">Enterprise Foundations</span>
-            <h2 className="chatbots-section-title">Built for Scalable Customer Conversations</h2>
+<h2 className="chatbots-section-title">Built for Scalable Customer Conversations</h2>
             <p className="chatbots-section-subtitle">
               Empower your business with autonomous AI assistants that resolve inquiries instantly, qualify opportunities, and streamline operations.
             </p>
@@ -442,8 +436,7 @@ export default function AIChatbotsPage() {
       <section className="chatbots-diff-section">
         <div className="chatbots-container">
           <div className="chatbots-section-header">
-            <span className="chatbots-section-eyebrow">Why Choose Our Platform</span>
-            <h2 className="chatbots-section-title">What Makes Our AI Chatbots Different</h2>
+<h2 className="chatbots-section-title">What Makes Our AI Chatbots Different</h2>
             <p className="chatbots-section-subtitle">
               Move beyond rigid script-based bots with autonomous conversational intelligence that connects to your business systems.
             </p>
@@ -469,8 +462,7 @@ export default function AIChatbotsPage() {
       <section className="chatbots-workflow-section" id="chatbot-workflow">
         <div className="chatbots-container">
           <div className="chatbots-section-header">
-            <span className="chatbots-section-eyebrow">Conversational Workflow</span>
-            <h2 className="chatbots-section-title">How Your AI Chatbot Handles Every Conversation</h2>
+<h2 className="chatbots-section-title">How Your AI Chatbot Handles Every Conversation</h2>
             <p className="chatbots-section-subtitle">
               From incoming message to verified action and human escalation, see how intelligent dialogue flows through each stage.
             </p>
@@ -502,8 +494,7 @@ export default function AIChatbotsPage() {
       <section className="chatbots-cap-section">
         <div className="chatbots-container">
           <div className="chatbots-section-header">
-            <span className="chatbots-section-eyebrow">Core Capabilities</span>
-            <h2 className="chatbots-section-title">Enterprise Chatbot Capabilities</h2>
+<h2 className="chatbots-section-title">Enterprise Chatbot Capabilities</h2>
             <p className="chatbots-section-subtitle">
               Engineered for scale, enterprise security, and measurable operational efficiency across departments.
             </p>
@@ -529,8 +520,7 @@ export default function AIChatbotsPage() {
       <section className="chatbots-compare-section">
         <div className="chatbots-container">
           <div className="chatbots-section-header">
-            <span className="chatbots-section-eyebrow">Direct Comparison</span>
-            <h2 className="chatbots-section-title">Traditional Chatbot vs AI-Powered Chatbot</h2>
+<h2 className="chatbots-section-title">Traditional Chatbot vs AI-Powered Chatbot</h2>
             <p className="chatbots-section-subtitle">
               Compare rigid legacy decision trees with modern context-aware conversational AI.
             </p>
@@ -614,8 +604,7 @@ export default function AIChatbotsPage() {
       <section className="chatbots-faq-section">
         <div className="chatbots-container chatbots-faq-container">
           <div className="chatbots-section-header">
-            <span className="chatbots-section-eyebrow">Frequently Asked Questions</span>
-            <h2 className="chatbots-section-title">Everything You Need to Know</h2>
+<h2 className="chatbots-section-title">Everything You Need to Know</h2>
             <p className="chatbots-section-subtitle">
               Clear answers about architecture, integrations, RAG knowledge grounding, and development timelines.
             </p>
@@ -669,8 +658,7 @@ export default function AIChatbotsPage() {
       <section className="chatbots-related-section">
         <div className="chatbots-container">
           <div className="chatbots-section-header">
-            <span className="chatbots-section-eyebrow">Explore More</span>
-            <h2 className="chatbots-section-title">Related AI & Automation Services</h2>
+<h2 className="chatbots-section-title">Related AI & Automation Services</h2>
           </div>
 
           <div className="chatbots-related-grid">

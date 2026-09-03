@@ -69,8 +69,7 @@ export default function Features({ onBookDemo }) {
     <section className="section bg-alt" id="capabilities">
       <div className="container">
         <div className="section-header section-header--center">
-          <span className="section-eyebrow">Core Platform</span>
-          <h2 className="h2">Everything your revenue team needs, powered by AI</h2>
+<h2 className="h2">Everything your revenue team needs, powered by AI</h2>
           <p className="text-lg text-muted" style={{ marginTop: '0.85rem' }}>
             Autonomous intelligence across the entire sales cycle, from first contact to deal closure.
           </p>

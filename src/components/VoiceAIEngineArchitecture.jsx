@@ -79,8 +79,7 @@ export default function VoiceAIEngineArchitecture() {
         
         {/* Section Header */}
         <div className="section-header section-header--center" style={{ marginBottom: '2.5rem' }}>
-          <span className="section-eyebrow">Enterprise Architecture</span>
-          <h2 id="voice-engine-heading" className="h2" style={{ fontSize: 'clamp(2rem, 3.8vw, 2.6rem)', marginBottom: '0.75rem' }}>
+<h2 id="voice-engine-heading" className="h2" style={{ fontSize: 'clamp(2rem, 3.8vw, 2.6rem)', marginBottom: '0.75rem' }}>
             Voice AI Conversational Engine
           </h2>
           <p className="text-muted" style={{ fontSize: '1.08rem', maxWidth: '820px', marginInline: 'auto', lineHeight: '1.6' }}>

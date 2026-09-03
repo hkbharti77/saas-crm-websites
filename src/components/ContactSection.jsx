@@ -113,8 +113,7 @@ export default function ContactSection({
           {/* Left Column: Heading, Description, Benefits, Direct Channels */}
           <div className="contact-info premium-card">
             <div>
-              <span className="section-eyebrow" style={{ textAlign: 'left', margin: '0 0 0.4rem 0' }}>{eyebrow}</span>
-              <h2 className="contact-main-heading">{title}</h2>
+<h2 className="contact-main-heading">{title}</h2>
               <p className="contact-main-desc">
                 {subtitle}
               </p>

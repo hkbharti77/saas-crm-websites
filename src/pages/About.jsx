@@ -110,10 +110,6 @@ export default function About() {
               
               {/* Left Column: Heading & Mission */}
               <div className="about-hero-left">
-                <div className="about-eyebrow">
-                  <Cpu size={15} />
-                  <span>Enterprise AI & Software Engineering</span>
-                </div>
                 
                 <h1 className="about-hero-title">
                   About <span className="brand-accent">Gyan VaniAi</span>
@@ -227,8 +223,7 @@ export default function About() {
         <section className="section bg-tinted" style={{ padding: '5rem 0' }}>
           <div className="container">
             <div className="section-header section-header--center">
-              <span className="section-eyebrow">WHY GYAN VANIAI</span>
-              <h2 className="h2">What makes us different</h2>
+<h2 className="h2">What makes us different</h2>
               <p className="text-lg text-muted" style={{ marginTop: '0.85rem' }}>
                 We combine deep enterprise software engineering with specialized Meta infrastructure and AI automation.
               </p>
@@ -266,8 +261,7 @@ export default function About() {
             <div className="about-tech-layout">
               
               <div>
-                <span className="section-eyebrow" style={{ textAlign: 'left', margin: '0 0 0.5rem 0' }}>ENGINEERING CAPABILITIES</span>
-                <h2 className="h2" style={{ marginBottom: '1.15rem' }}>Technical expertise</h2>
+<h2 className="h2" style={{ marginBottom: '1.15rem' }}>Technical expertise</h2>
                 <p className="text-muted" style={{ fontSize: '1.025rem', lineHeight: '1.65', marginBottom: '1rem' }}>
                   We deliver high-performance applications (multi-tenant SaaS, custom CRM, and autonomous AI agents) on modern stacks with secure, scalable architectures and official Meta API integrations.
                 </p>

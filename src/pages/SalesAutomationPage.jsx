@@ -349,10 +349,6 @@ export default function SalesAutomationPage() {
             <div className="sales-hero-grid">
               {/* Left Column */}
               <div className="sales-hero-left">
-                <div className="sales-hero-eyebrow-pill">
-                  <span className="sales-hero-pulse-dot" aria-hidden="true"></span>
-                  <span>Sales Automation Platform</span>
-                </div>
                 <h1 className="sales-hero-title">
                   Sales Automation Software
                 </h1>
@@ -418,8 +414,7 @@ export default function SalesAutomationPage() {
         <section className="sales-overview-section">
           <div className="sales-auto-container">
             <div className="sales-section-header">
-              <span className="sales-section-eyebrow">Platform Architecture</span>
-              <h2 className="sales-section-title">
+<h2 className="sales-section-title">
                 Engineered for High-Velocity Revenue Teams
               </h2>
               <p className="sales-section-subtitle">
@@ -463,8 +458,7 @@ export default function SalesAutomationPage() {
         <section className="sales-workflow-section" id="revenue-workflow">
           <div className="sales-auto-container">
             <div className="sales-section-header">
-              <span className="sales-section-eyebrow">Revenue Workflow</span>
-              <h2 className="sales-section-title">
+<h2 className="sales-section-title">
                 How intelligent revenue automation works
               </h2>
               <p className="sales-section-subtitle">
@@ -539,8 +533,7 @@ export default function SalesAutomationPage() {
         <section className="sales-outcomes-section">
           <div className="sales-auto-container">
             <div className="sales-section-header">
-              <span className="sales-section-eyebrow">Measurable Impact</span>
-              <h2 className="sales-section-title">
+<h2 className="sales-section-title">
                 Built to move revenue forward
               </h2>
               <p className="sales-section-subtitle">
@@ -568,8 +561,7 @@ export default function SalesAutomationPage() {
         <section className="sales-faq-section" id="faq">
           <div className="sales-auto-container sales-faq-container">
             <div className="sales-section-header" style={{ marginBottom: '1.5rem' }}>
-              <span className="sales-section-eyebrow">Common Questions</span>
-              <h2 className="sales-section-title">
+<h2 className="sales-section-title">
                 Frequently Asked Questions
               </h2>
               <p className="sales-section-subtitle">
@@ -628,8 +620,7 @@ export default function SalesAutomationPage() {
         <section className="sales-related-section">
           <div className="sales-auto-container">
             <div className="sales-section-header">
-              <span className="sales-section-eyebrow">Explore the Platform</span>
-              <h2 className="sales-section-title">
+<h2 className="sales-section-title">
                 Related Revenue Solutions
               </h2>
               <p className="sales-section-subtitle">

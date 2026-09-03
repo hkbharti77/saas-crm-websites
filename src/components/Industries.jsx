@@ -59,8 +59,7 @@ export default function Industries() {
     <section className="section bg-alt" id="industries">
       <div className="container">
         <div className="section-header section-header--center">
-          <span className="section-eyebrow">Industry Solutions</span>
-          <h2 className="h2">Built for the way your industry sells</h2>
+<h2 className="h2">Built for the way your industry sells</h2>
           <p className="text-lg text-muted" style={{ marginTop: '0.85rem' }}>
             Tailored data models, compliance guardrails, and communication workflows for your sector.
           </p>

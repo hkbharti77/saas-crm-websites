@@ -370,12 +370,6 @@ export default function WhatsAppCallingAgentPage() {
             <div className="wa-hero-grid">
               {/* Left Column: Value Prop & CTAs */}
               <div className="wa-hero-copy">
-                <div className="wa-eyebrow-badge">
-                  <span className="wa-badge-pulse"></span>
-                  <MessageSquare size={13} className="wa-badge-icon" />
-                  <span>Official WhatsApp Business API · Voice AI</span>
-                </div>
-
                 <h1 className="wa-hero-h1">
                   WhatsApp AI Agents That <span className="wa-text-gradient">Talk, Qualify & Convert</span>
                 </h1>
@@ -571,8 +565,7 @@ export default function WhatsAppCallingAgentPage() {
           <div className="container wa-container">
             <div className="wa-intro-grid">
               <div className="wa-intro-left">
-                <span className="wa-section-eyebrow">Enterprise Value Proposition</span>
-                <h2 className="wa-h2">Turn WhatsApp conversations into automated customer journeys.</h2>
+<h2 className="wa-h2">Turn WhatsApp conversations into automated customer journeys.</h2>
               </div>
               <div className="wa-intro-right">
                 <p className="wa-intro-body">
@@ -636,8 +629,7 @@ export default function WhatsAppCallingAgentPage() {
         <section className="wa-section wa-capabilities-section" id="capabilities">
           <div className="container wa-container">
             <div className="wa-section-header">
-              <span className="wa-section-eyebrow">Platform Capabilities</span>
-              <h2 className="wa-h2">What the AI agent can actually do</h2>
+<h2 className="wa-h2">What the AI agent can actually do</h2>
               <p className="wa-section-sub">
                 Engineered for enterprise reliability, continuous learning, and seamless human oversight.
               </p>
@@ -672,8 +664,7 @@ export default function WhatsAppCallingAgentPage() {
         <section className="wa-section wa-pipeline-section" id="pipeline">
           <div className="container wa-container">
             <div className="wa-section-header">
-              <span className="wa-section-eyebrow">Visual AI Architecture</span>
-              <h2 className="wa-h2">How the autonomous voice pipeline executes</h2>
+<h2 className="wa-h2">How the autonomous voice pipeline executes</h2>
               <p className="wa-section-sub">
                 From incoming telephony audio to CRM synchronization and warm human escalation in under 500ms.
               </p>
@@ -775,8 +766,7 @@ export default function WhatsAppCallingAgentPage() {
         <section className="wa-section wa-demo-section">
           <div className="container wa-container">
             <div className="wa-section-header">
-              <span className="wa-section-eyebrow">Real Product Demonstration</span>
-              <h2 className="wa-h2">See how a real conversation executes</h2>
+<h2 className="wa-h2">See how a real conversation executes</h2>
               <p className="wa-section-sub">
                 Watch how natural voice dialogue maps to live reasoning, knowledge retrieval, and instant CRM execution.
               </p>
@@ -902,8 +892,7 @@ export default function WhatsAppCallingAgentPage() {
         <section className="wa-section wa-integrations-section">
           <div className="container wa-container">
             <div className="wa-section-header">
-              <span className="wa-section-eyebrow">Ecosystem Architecture</span>
-              <h2 className="wa-h2">Connect the agent to the systems your team already uses.</h2>
+<h2 className="wa-h2">Connect the agent to the systems your team already uses.</h2>
               <p className="wa-section-sub">
                 Seamless API-first connections ensure zero disruption to your existing sales, support, and telephony stack.
               </p>
@@ -944,8 +933,7 @@ export default function WhatsAppCallingAgentPage() {
           <Meteors number={18} />
           <div className="container wa-container" style={{ position: 'relative', zIndex: 1 }}>
             <div className="wa-section-header light">
-              <span className="wa-section-eyebrow light">Enterprise Trust & Compliance</span>
-              <h2 className="wa-h2 light">Built for enterprise conversations.</h2>
+<h2 className="wa-h2 light">Built for enterprise conversations.</h2>
               <p className="wa-section-sub light">
                 Stringent encryption, tenant isolation, and strict audit logging satisfy corporate security standards.
               </p>
@@ -976,8 +964,7 @@ export default function WhatsAppCallingAgentPage() {
         <section className="wa-section wa-faq-section" id="faq">
           <div className="container wa-container">
             <div className="wa-section-header">
-              <span className="wa-section-eyebrow">Knowledge & FAQs</span>
-              <h2 className="wa-h2">Frequently Asked Questions</h2>
+<h2 className="wa-h2">Frequently Asked Questions</h2>
               <p className="wa-section-sub">
                 Everything you need to know about deploying WhatsApp Calling Agents for your business.
               </p>
@@ -1043,8 +1030,7 @@ export default function WhatsAppCallingAgentPage() {
         <section className="wa-section wa-related-services-section">
           <div className="container wa-container">
             <div className="wa-section-header">
-              <span className="wa-section-eyebrow">Explore Connected Platforms</span>
-              <h2 className="wa-h2">Related Enterprise AI Services</h2>
+<h2 className="wa-h2">Related Enterprise AI Services</h2>
             </div>
 
             <div className="wa-related-links-bar">

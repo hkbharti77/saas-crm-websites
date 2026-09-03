@@ -41,8 +41,7 @@ export default function WhyChooseUs() {
     <section className="section bg-alt" id="security">
       <div className="container">
         <div className="section-header section-header--center">
-          <span className="section-eyebrow">Enterprise Trust</span>
-          <h2 className="h2">Enterprise security without enterprise complexity</h2>
+<h2 className="h2">Enterprise security without enterprise complexity</h2>
           <p className="text-lg text-muted" style={{ marginTop: '0.85rem' }}>
             Engineered from the ground up for strict data privacy, zero cross-tenant exposure, and regulatory compliance.
           </p>

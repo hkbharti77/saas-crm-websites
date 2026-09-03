@@ -103,8 +103,7 @@ export default function Process({
     <section className="section bg-tinted" id="how-it-works" style={{ padding: '5rem 0' }}>
       <div className="container" style={{ maxWidth: '1240px' }}>
         <div className="section-header section-header--center">
-          <span className="section-eyebrow">Visual Workflow</span>
-          <h2 className="h2">{title}</h2>
+<h2 className="h2">{title}</h2>
           <p className="text-muted" style={{ marginTop: '0.75rem', fontSize: '1.1rem', maxWidth: '800px', marginInline: 'auto' }}>
             {subtitle}
           </p>

@@ -241,12 +241,6 @@ export default function Hero({ onBookDemo }) {
                 exit="exit"
                 className="hero-text-animator"
               >
-                <div className="hero-badge">
-                  <span className="badge-pulse"></span>
-                  <BadgeIcon size={13} className="hero-badge-icon" />
-                  <span>{activeSlideData.badge}</span>
-                </div>
-
                 <h1 className="hero-title">
                   {activeSlideData.titlePrefix}
                   <span className="text-gradient">{activeSlideData.titleGradient}</span>

@@ -941,11 +941,6 @@ export default function SEOLandingPage() {
 
             <div className="seo-hero-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center' }}>
               <div>
-                {pageData.heroEyebrow && (
-                  <span className="section-eyebrow" style={{ display: 'inline-block', marginBottom: '0.75rem' }}>
-                    {pageData.heroEyebrow}
-                  </span>
-                )}
                 <h1 className="h1" style={{ fontSize: 'clamp(2.75rem, 5vw, 3.5rem)', fontWeight: '800', marginBottom: '1.5rem', lineHeight: '1.15', letterSpacing: '-0.02em' }}>
                   {pageData.h1}
                 </h1>
@@ -1002,9 +997,7 @@ export default function SEOLandingPage() {
             <div className="seo-content-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem' }}>
               
               <div className="seo-card" style={{ background: 'var(--bg-card)', padding: '2.5rem', borderRadius: '1rem', border: '1px solid var(--border-color)', boxShadow: 'var(--shadow-sm)' }}>
-                {pageData.overviewLabel && (
-                  <span className="section-eyebrow" style={{ display: 'inline-block', marginBottom: '0.5rem', fontSize: '0.75rem' }}>{pageData.overviewLabel}</span>
-                )}
+
                 <h2 className="h2" style={{ fontSize: '1.125rem', marginBottom: '1rem', color: 'var(--text-primary)' }}>{pageData.overviewTitle || 'Overview'}</h2>
                 <p className="seo-overview text-muted" style={{ fontSize: '0.95rem', lineHeight: '1.6', margin: 0 }}>
                   {pageData.overview}
@@ -1012,9 +1005,7 @@ export default function SEOLandingPage() {
               </div>
 
               <div className="seo-card" style={{ background: 'var(--bg-card)', padding: '2.5rem', borderRadius: '1rem', border: '1px solid var(--border-color)', boxShadow: 'var(--shadow-sm)' }}>
-                {pageData.whoForLabel && (
-                  <span className="section-eyebrow" style={{ display: 'inline-block', marginBottom: '0.5rem', fontSize: '0.75rem' }}>{pageData.whoForLabel}</span>
-                )}
+
                 <h2 className="h2" style={{ fontSize: '1.125rem', marginBottom: '1rem', color: 'var(--text-primary)' }}>{pageData.whoForTitle || "Who it's for"}</h2>
                 <p className="seo-who-for text-muted" style={{ fontSize: '0.95rem', lineHeight: '1.6', margin: 0 }}>
                   {pageData.whoFor}
@@ -1023,9 +1014,7 @@ export default function SEOLandingPage() {
 
               {pageData.deliverables?.length > 0 && (
                 <div className="seo-card" style={{ background: 'var(--bg-card)', padding: '2.5rem', borderRadius: '1rem', border: '1px solid var(--border-color)', boxShadow: 'var(--shadow-sm)' }}>
-                  {pageData.deliverablesLabel && (
-                    <span className="section-eyebrow" style={{ display: 'inline-block', marginBottom: '0.5rem', fontSize: '0.75rem' }}>{pageData.deliverablesLabel}</span>
-                  )}
+
                   <h2 className="h2" style={{ fontSize: '1.125rem', marginBottom: '1rem', color: 'var(--text-primary)' }}>{pageData.deliverablesTitle || 'What you get'}</h2>
                   <ul style={{ margin: 0, paddingLeft: '1.25rem', color: 'var(--text-secondary)', fontSize: '0.95rem', lineHeight: '1.6', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                     {pageData.deliverables.map((item) => (
@@ -1039,11 +1028,7 @@ export default function SEOLandingPage() {
 
             {pageData.capabilities ? (
               <div style={{ marginTop: '4rem' }}>
-                {pageData.capabilitiesEyebrow && (
-                  <div style={{ textAlign: 'center', marginBottom: '0.5rem' }}>
-                    <span className="section-eyebrow">{pageData.capabilitiesEyebrow}</span>
-                  </div>
-                )}
+
                 <h2 className="h2" style={{ fontSize: 'clamp(2rem, 4vw, 2.5rem)', marginBottom: '2.5rem', textAlign: 'center' }}>
                   {pageData.capabilitiesTitle || (pageId === 'ai-agent-development' ? 'AI Agent Capabilities' : 'Core Capabilities')}
                 </h2>
@@ -1147,8 +1132,7 @@ export default function SEOLandingPage() {
           <section className="section" style={{ padding: '4.5rem 0' }}>
             <div className="container" style={{ maxWidth: '1240px' }}>
               <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-                <span className="section-eyebrow">{pageData.outcomesEyebrow || 'Measurable Outcomes'}</span>
-                <h2 className="h2" style={{ fontSize: 'clamp(2rem, 3.6vw, 2.5rem)', marginBottom: '0.75rem' }}>
+<h2 className="h2" style={{ fontSize: 'clamp(2rem, 3.6vw, 2.5rem)', marginBottom: '0.75rem' }}>
                   {pageData.outcomesTitle || 'Create One Operational View of the Customer'}
                 </h2>
                 {pageData.outcomesSubtitle && (
@@ -1175,8 +1159,7 @@ export default function SEOLandingPage() {
           <section className="section" style={{ padding: '3.5rem 0 2rem' }}>
             <div className="container" style={{ maxWidth: '1240px' }}>
               <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-                <span className="section-eyebrow">Explore More</span>
-                <h2 className="h2" style={{ fontSize: 'clamp(1.75rem, 3vw, 2.25rem)' }}>Related Services</h2>
+<h2 className="h2" style={{ fontSize: 'clamp(1.75rem, 3vw, 2.25rem)' }}>Related Services</h2>
               </div>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1.25rem' }}>
                 {pageData.relatedLinks.map((link) => (

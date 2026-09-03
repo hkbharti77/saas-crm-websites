@@ -83,8 +83,7 @@ export default function OmnichannelSection({ onBookDemo }) {
     <section className="section bg-tinted" id="omnichannel">
       <div className="container">
         <div className="section-header section-header--center">
-          <span className="section-eyebrow">Omnichannel Intelligence</span>
-          <h2 className="h2">One AI agent. Every customer conversation.</h2>
+<h2 className="h2">One AI agent. Every customer conversation.</h2>
           <p className="text-lg text-muted" style={{ marginTop: '0.85rem' }}>
             Unify your communication channels into an autonomous revenue engine with continuous CRM memory.
           </p>

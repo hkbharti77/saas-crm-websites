@@ -260,11 +260,6 @@ export default function WhatsAppCoexistencePage() {
               
               {/* Left Column: Copy & Actions */}
               <div className="coexistence-hero-left">
-                <div className="coexistence-eyebrow">
-                  <ShieldCheck size={16} />
-                  <span>Official Meta Tech Infrastructure Feature</span>
-                </div>
-                
                 <h1 className="coexistence-hero-title">
                   WhatsApp Business Automation<br />
                   <span className="text-gradient">
@@ -407,8 +402,7 @@ export default function WhatsAppCoexistencePage() {
         <section className="section bg-tinted" style={{ padding: '5.25rem 0' }}>
           <div className="container">
             <div className="section-header section-header--center">
-              <span className="section-eyebrow">Enterprise Capabilities</span>
-              <h2 className="h2">What Coexistence Unlocks On Top of Your Phone App</h2>
+<h2 className="h2">What Coexistence Unlocks On Top of Your Phone App</h2>
               <p className="text-lg text-muted" style={{ marginTop: '0.85rem' }}>
                 Keep your existing workflow while unlocking 8 powerful enterprise capabilities your phone app cannot do alone.
               </p>
@@ -442,8 +436,7 @@ export default function WhatsAppCoexistencePage() {
             ========================================================================= */}
         <section className="section container" style={{ padding: '5.25rem 0' }}>
           <div className="section-header section-header--center">
-            <span className="section-eyebrow">Technical Architecture</span>
-            <h2 className="h2">How Official Meta Coexistence Works Under the Hood</h2>
+<h2 className="h2">How Official Meta Coexistence Works Under the Hood</h2>
             <p className="text-lg text-muted" style={{ marginTop: '0.85rem' }}>
               Understand the official Meta Cloud API infrastructure connecting your standard WhatsApp Business app to Gyan VaniAi enterprise CRM.
             </p>
@@ -549,8 +542,7 @@ export default function WhatsAppCoexistencePage() {
         <section className="section bg-tinted" style={{ padding: '5.25rem 0' }}>
           <div className="container">
             <div className="section-header section-header--center">
-              <span className="section-eyebrow">Setup Comparison</span>
-              <h2 className="h2">Comparing Setup Paths</h2>
+<h2 className="h2">Comparing Setup Paths</h2>
               <p className="text-lg text-muted" style={{ marginTop: '0.85rem' }}>
                 Why WhatsApp Coexistence with Gyan VaniAi is the ideal architecture for growing businesses.
               </p>
@@ -608,8 +600,7 @@ export default function WhatsAppCoexistencePage() {
             ========================================================================= */}
         <section className="section container" style={{ padding: '5.25rem 0' }}>
           <div className="section-header section-header--center">
-            <span className="section-eyebrow">Quick Onboarding</span>
-            <h2 className="h2">Enable Coexistence in 3 Simple Steps</h2>
+<h2 className="h2">Enable Coexistence in 3 Simple Steps</h2>
             <p className="text-lg text-muted" style={{ marginTop: '0.85rem' }}>
               No app reinstall, no phone reset, and zero downtime.
             </p>
@@ -654,8 +645,7 @@ export default function WhatsAppCoexistencePage() {
         <section className="section bg-tinted" style={{ padding: '5.25rem 0' }}>
           <div className="container">
             <div className="section-header section-header--center">
-              <span className="section-eyebrow">Got Questions?</span>
-              <h2 className="h2">Frequently Asked Questions</h2>
+<h2 className="h2">Frequently Asked Questions</h2>
               <p className="text-lg text-muted" style={{ marginTop: '0.85rem' }}>
                 Everything you need to know about WhatsApp Coexistence Mode.
               </p>

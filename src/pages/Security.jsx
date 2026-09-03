@@ -38,8 +38,7 @@ export default function Security() {
         {/* HERO */}
         <section className="sec-hero">
           <div className="sec-hero-content">
-            <span className="sec-eyebrow">SECURITY</span>
-            <h1>Security Built Into Every Layer</h1>
+<h1>Security Built Into Every Layer</h1>
             <p className="sec-subtitle">
               Security is considered throughout the Gyan VaniAi platform, from authentication and access control to application workflows and data handling.
             </p>

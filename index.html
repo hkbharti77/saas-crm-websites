@@ -172,9 +172,18 @@
   <body>
     <div id="root"></div>
 
-    <!-- Gyan VaniAi Chat Widget Script -->
-    <script src="https://api.gyanvaniai.online/chat-widget.js"
-      data-business-id="378e6be1-4f4f-4dfe-a374-be26195fb3c8" defer>
+    <!-- Gyan VaniAi Chat Widget Script (Deferred initialization to prevent UI flashing) -->
+    <script>
+      window.addEventListener('load', function() {
+        // Give the browser 1 second to fully paint the UI before injecting the chat widget
+        setTimeout(function() {
+          var script = document.createElement('script');
+          script.src = "https://api.gyanvaniai.online/chat-widget.js";
+          script.setAttribute('data-business-id', "378e6be1-4f4f-4dfe-a374-be26195fb3c8");
+          script.async = true;
+          document.body.appendChild(script);
+        }, 1000);
+      });
     </script>
     
     <!-- SEO Semantic Fallback Content for Crawlers & Browsers without JS -->
