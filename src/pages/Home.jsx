@@ -1,11 +1,12 @@
 import React, { useState, Suspense, lazy } from 'react';
 import Hero from '../components/Hero';
 import TrustBar from '../components/TrustBar';
-import Features from '../components/Features';
-import Process from '../components/Process';
-import Industries from '../components/Industries';
-import OmnichannelSection from '../components/OmnichannelSection';
-import WhyChooseUs from '../components/WhyChooseUs';
+
+const Features = lazy(() => import('../components/Features'));
+const Process = lazy(() => import('../components/Process'));
+const Industries = lazy(() => import('../components/Industries'));
+const OmnichannelSection = lazy(() => import('../components/OmnichannelSection'));
+const WhyChooseUs = lazy(() => import('../components/WhyChooseUs'));
 const Portfolio = lazy(() => import('../components/Portfolio'));
 const FAQ = lazy(() => import('../components/FAQ'));
 const ContactSection = lazy(() => import('../components/ContactSection'));
@@ -90,14 +91,15 @@ export default function Home() {
         <TrustBar />
 
         {/* 4. AI CRM Capabilities */}
-        <div data-aos="fade-up">
-          <Features onBookDemo={() => setIsModalOpen(true)} />
-        </div>
+        <Suspense fallback={<div style={{ minHeight: '300px' }}></div>}>
+          <div data-aos="fade-up">
+            <Features onBookDemo={() => setIsModalOpen(true)} />
+          </div>
 
-        {/* 5. How It Works (Visual Workflow) */}
-        <div data-aos="fade-up">
-          <Process />
-        </div>
+          {/* 5. How It Works (Visual Workflow) */}
+          <div data-aos="fade-up">
+            <Process />
+          </div>
 
         {/* 6. Industries Grid */}
         <div data-aos="fade-up">
@@ -115,7 +117,6 @@ export default function Home() {
         </div>
 
         {/* 9. Results / Social Proof & Case Studies */}
-        <Suspense fallback={<div style={{ minHeight: '300px' }}></div>}>
           <div data-aos="fade-up">
             <Portfolio />
           </div>

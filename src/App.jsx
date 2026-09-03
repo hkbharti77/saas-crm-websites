@@ -90,12 +90,15 @@ function App() {
   }, [location.pathname, location.hash]);
 
   useEffect(() => {
-    AOS.init({
-      duration: 650,
-      once: true,
-      easing: 'ease-out-cubic',
-      offset: 60,
-    });
+    const timer = setTimeout(() => {
+      AOS.init({
+        duration: 650,
+        once: true,
+        easing: 'ease-out-cubic',
+        offset: 60,
+      });
+    }, 400);
+    return () => clearTimeout(timer);
   }, []);
 
   // Auto-open Book a Demo modal when user scrolls past 75% on any page

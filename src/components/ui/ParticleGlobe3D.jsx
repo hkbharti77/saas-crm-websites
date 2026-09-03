@@ -242,9 +242,13 @@ export default function ParticleGlobe3D({
       animId = requestAnimationFrame(render);
     };
 
-    render();
+    // Yield to main thread before starting the heavy 3D math loop
+    const initTimer = setTimeout(() => {
+      render();
+    }, 150);
 
     return () => {
+      clearTimeout(initTimer);
       cancelAnimationFrame(animId);
       if (interactive) {
         canvasEl.removeEventListener('mousedown', handleMouseDown);

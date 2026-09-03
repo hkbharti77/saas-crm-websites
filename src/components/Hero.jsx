@@ -15,8 +15,8 @@ import {
 import { trackBookDemo } from '../utils/analytics';
 import { useTheme } from '../context/ThemeContext';
 import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
-import ParticleGlobe3D from './ui/ParticleGlobe3D';
-import Card3DTilt from './ui/Card3DTilt';
+const ParticleGlobe3D = React.lazy(() => import('./ui/ParticleGlobe3D'));
+const Card3DTilt = React.lazy(() => import('./ui/Card3DTilt'));
 import './Hero.css';
 
 const HERO_SLIDES = [
@@ -368,7 +368,9 @@ export default function Hero({ onBookDemo }) {
             <div className="hero-3d-stage-halo"></div>
             
             <div className="hero-3d-canvas-wrapper">
-              <ParticleGlobe3D size={420} isLight={isLight} dotCount={150} />
+              <React.Suspense fallback={<div className="particle-globe-placeholder" />}>
+                <ParticleGlobe3D size={420} isLight={isLight} dotCount={150} />
+              </React.Suspense>
             </div>
 
             {/* Floating 3D Perspective Telemetry Cards with Spring Motion on Slide Change */}
@@ -381,34 +383,36 @@ export default function Hero({ onBookDemo }) {
                 transition={{ type: 'spring', stiffness: 280, damping: 24 }}
                 className="hero-3d-floating-layer"
               >
-                <Card3DTilt className="hero-3d-float-card hero-3d-card-top" maxRotation={12} scale={1.04}>
-                  <div className="hero-float-content">
-                    <div className="hero-float-header">
-                      <span className="hero-float-dot pulse-emerald"></span>
-                      <span className="hero-float-title">{activeSlideData.badge}</span>
+                <React.Suspense fallback={null}>
+                  <Card3DTilt className="hero-3d-float-card hero-3d-card-top" maxRotation={12} scale={1.04}>
+                    <div className="hero-float-content">
+                      <div className="hero-float-header">
+                        <span className="hero-float-dot pulse-emerald"></span>
+                        <span className="hero-float-title">{activeSlideData.badge}</span>
+                      </div>
+                      <div className="hero-float-metric">{activeSlideData.telemetry[0].value}</div>
+                      <div className="hero-float-label">{activeSlideData.telemetry[0].text.replace(':', '')}</div>
                     </div>
-                    <div className="hero-float-metric">{activeSlideData.telemetry[0].value}</div>
-                    <div className="hero-float-label">{activeSlideData.telemetry[0].text.replace(':', '')}</div>
-                  </div>
-                </Card3DTilt>
+                  </Card3DTilt>
 
-                <Card3DTilt className="hero-3d-float-card hero-3d-card-bottom" maxRotation={12} scale={1.04}>
-                  <div className="hero-float-content">
-                    <div className="hero-float-header">
-                      <span className="hero-float-dot pulse-cyan"></span>
-                      <span className="hero-float-title">Continuous Sync</span>
+                  <Card3DTilt className="hero-3d-float-card hero-3d-card-bottom" maxRotation={12} scale={1.04}>
+                    <div className="hero-float-content">
+                      <div className="hero-float-header">
+                        <span className="hero-float-dot pulse-cyan"></span>
+                        <span className="hero-float-title">Continuous Sync</span>
+                      </div>
+                      <div className="hero-float-metric">{activeSlideData.telemetry[1].value}</div>
+                      <div className="hero-float-label">{activeSlideData.telemetry[1].text.replace(':', '')}</div>
                     </div>
-                    <div className="hero-float-metric">{activeSlideData.telemetry[1].value}</div>
-                    <div className="hero-float-label">{activeSlideData.telemetry[1].text.replace(':', '')}</div>
-                  </div>
-                </Card3DTilt>
+                  </Card3DTilt>
 
-                <Card3DTilt className="hero-3d-float-card hero-3d-card-status" maxRotation={12} scale={1.04}>
-                  <div className="hero-float-status-pill">
-                    <span className="hero-status-live-pulse"></span>
-                    <span>99.99% Cloud SLA</span>
-                  </div>
-                </Card3DTilt>
+                  <Card3DTilt className="hero-3d-float-card hero-3d-card-status" maxRotation={12} scale={1.04}>
+                    <div className="hero-float-status-pill">
+                      <span className="hero-status-live-pulse"></span>
+                      <span>99.99% Cloud SLA</span>
+                    </div>
+                  </Card3DTilt>
+                </React.Suspense>
               </motion.div>
             </AnimatePresence>
           </div>
