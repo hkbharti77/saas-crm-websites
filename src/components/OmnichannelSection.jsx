@@ -10,9 +10,7 @@ import {
   ArrowRight, 
   CheckCircle2, 
   Bot, 
-  Zap,
-  Layers,
-  Activity
+  Zap
 } from 'lucide-react';
 import { trackBookDemo } from '../utils/analytics';
 import OrbitingCircles from './ui/OrbitingCircles';

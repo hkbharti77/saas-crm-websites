@@ -34,7 +34,7 @@ import Ripple from '../components/ui/Ripple';
 import Particles from '../components/ui/Particles';
 import SpotlightCard from '../components/ui/SpotlightCard';
 import Meteors from '../components/ui/Meteors';
-import { trackBookDemo, trackEvent } from '../utils/analytics';
+import { trackBookDemo } from '../utils/analytics';
 import './WhatsAppCallingAgentPage.css';
 
 const SITE = 'https://www.gyanvaniai.online';

@@ -8,8 +8,7 @@ import {
   Bot, 
   Headset, 
   CheckCircle2, 
-  ArrowRight,
-  Zap
+  ArrowRight
 } from 'lucide-react';
 import Card3DTilt from './ui/Card3DTilt';
 import AnimatedBeam from './ui/AnimatedBeam';

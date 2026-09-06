@@ -51,20 +51,48 @@ export default async function handler(req, res) {
     const q = query(collection(db, 'blogs'), orderBy('createdAt', 'desc'));
     const snap = await getDocs(q);
 
-    const urls = snap.docs.map((doc) => {
-      const data = doc.data();
-      const slug = data.slugId || doc.id;
-      const lastmod = toIso(data.updatedAt || data.createdAt || data.date);
+    const urls = snap.docs
+      .filter((doc) => {
+        const d = doc.data();
+        return d.status !== 'draft' && d.status !== 'scheduled' && d.status !== 'archived';
+      })
+      .map((doc) => {
+        const data = doc.data();
+        const slug = data.slugId || doc.id;
+        const lastmod = toIso(data.updatedAt || data.publishedAt || data.createdAt || data.date);
+      const priority = data.featured ? '0.9' : '0.8';
+      const image = data.image || data.thumbnail || data.coverImage;
+      const title = data.title || 'Blog Post';
+      
+      // Escape XML special characters
+      const escapeXml = (str) => {
+        if (!str) return '';
+        return String(str)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&apos;');
+      };
+      
+      const imageTag = image ? `
+    <image:image>
+      <image:loc>${escapeXml(image)}</image:loc>
+      <image:title>${escapeXml(title)}</image:title>
+    </image:image>` : '';
+      
       return `  <url>
     <loc>${SITE}/blog/${slug}</loc>
     <lastmod>${lastmod}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <priority>${priority}</priority>${imageTag}
   </url>`;
     });
 
     const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
 ${urls.join('\n')}
 </urlset>`;
 

@@ -12,6 +12,7 @@ const PolicyPage = lazy(() => import('./pages/PolicyPage'));
 const TermsConditions = lazy(() => import('./pages/TermsConditions'));
 const Blog = lazy(() => import('./pages/Blog'));
 const BlogPost = lazy(() => import('./pages/BlogPost'));
+const BlogSearch = lazy(() => import('./pages/BlogSearch'));
 const SEOLandingPage = lazy(() => import('./pages/SEOLandingPage'));
 const Documentation = lazy(() => import('./pages/Documentation'));
 const WhatsAppCoexistencePage = lazy(() => import('./pages/WhatsAppCoexistencePage'));
@@ -22,16 +23,24 @@ const AdminLogin = lazy(() => import('./pages/admin/AdminLogin'));
 const AdminDashboard = lazy(() => import('./pages/admin/AdminDashboard'));
 const AdminCreatePost = lazy(() => import('./pages/admin/AdminCreatePost'));
 const AdminEditPost = lazy(() => import('./pages/admin/AdminEditPost'));
+const BlogManager = lazy(() => import('./pages/admin/BlogManager'));
+const CategoryManager = lazy(() => import('./pages/admin/CategoryManager'));
+const MediaLibrary = lazy(() => import('./pages/admin/MediaLibrary'));
 const NotFound = lazy(() => import('./pages/NotFound'));
+const CategoryPage = lazy(() => import('./pages/CategoryPage'));
 const About = lazy(() => import('./pages/About'));
 const Security = lazy(() => import('./pages/Security'));
+const BlogAnalytics = lazy(() => import('./pages/admin/BlogAnalytics'));
+const ArticleAnalytics = lazy(() => import('./pages/admin/ArticleAnalytics'));
+const ContentOpportunities = lazy(() => import('./pages/admin/ContentOpportunities'));
+const ContentRefresh = lazy(() => import('./pages/admin/ContentRefresh'));
+const SeoDashboard = lazy(() => import('./pages/admin/SeoDashboard'));
+
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import './App.css';
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
-import { useScrollDepth } from './hooks/useScrollDepth';
-import { useGAPageViews } from './hooks/useGAPageViews';
 
 const DemoModal = lazy(() => import('./components/DemoModal'));
 import MobileStickyCTA from './components/MobileStickyCTA';
@@ -155,18 +164,22 @@ function App() {
     };
   }, []);
 
+  const isAdminRoute = location.pathname.startsWith('/admin');
+
   return (
     <ThemeProvider>
-      <div className="app-container">
-        <EnterpriseBackground />
-        <Header />
-        <main>
+      <div className={`app-container ${isAdminRoute ? 'admin-mode' : ''}`}>
+        {!isAdminRoute && <EnterpriseBackground />}
+        {!isAdminRoute && <Header />}
+        <main className={isAdminRoute ? 'admin-main-content' : ''}>
           <ChunkErrorBoundary>
             <Suspense fallback={<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '60vh' }}><div className="loading-spinner">Loading...</div></div>}>
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/blog" element={<Blog />} />
+                <Route path="/blog/search" element={<BlogSearch />} />
                 <Route path="/blog/:id" element={<BlogPost />} />
+                <Route path="/category/:slug" element={<CategoryPage />} />
                 <Route path="/services/whatsapp-coexistence" element={<WhatsAppCoexistencePage />} />
                 <Route path="/services/sales-automation" element={<SalesAutomationPage />} />
                 <Route path="/services/ai-chatbots" element={<AIChatbotsPage />} />
@@ -184,14 +197,24 @@ function App() {
                 <Route path="/admin/dashboard" element={<AdminDashboard />} />
                 <Route path="/admin/create" element={<AdminCreatePost />} />
                 <Route path="/admin/edit/:id" element={<AdminEditPost />} />
+                <Route path="/admin/blog-manager" element={<BlogManager />} />
+                <Route path="/admin/blog/categories" element={<CategoryManager />} />
+                <Route path="/admin/media" element={<MediaLibrary />} />
+                {/* P3 — Analytics routes */}
+                <Route path="/admin/blog/analytics" element={<BlogAnalytics />} />
+                <Route path="/admin/blog/analytics/:blogId" element={<ArticleAnalytics />} />
+                <Route path="/admin/blog/opportunities" element={<ContentOpportunities />} />
+                <Route path="/admin/blog/refresh" element={<ContentRefresh />} />
+                <Route path="/admin/blog/seo" element={<SeoDashboard />} />
+
 
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </Suspense>
           </ChunkErrorBoundary>
         </main>
-        <Footer />
-        <CookieConsentBanner />
+        {!isAdminRoute && <Footer />}
+        {!isAdminRoute && <CookieConsentBanner />}
         <ContactModal
           isOpen={isDemoModalOpen}
           onClose={() => {
@@ -206,7 +229,7 @@ function App() {
             onClose={() => setIsLiveDemoOpen(false)}
           />
         </Suspense>
-        <MobileStickyCTA />
+        {!isAdminRoute && <MobileStickyCTA />}
         <Analytics />
         <SpeedInsights />
       </div>

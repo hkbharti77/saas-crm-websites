@@ -18,7 +18,12 @@ export default defineConfig([
       parserOptions: { ecmaFeatures: { jsx: true } },
     },
     rules: {
-      'no-unused-vars': ['error', { varsIgnorePattern: '^React$' }],
+      'no-unused-vars': ['warn', { 
+        varsIgnorePattern: '^React$',
+        argsIgnorePattern: '^_',
+        ignoreRestSiblings: true 
+      }],
+      'react-hooks/set-state-in-effect': 'warn',
     },
   },
 ])

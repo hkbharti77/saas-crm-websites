@@ -4,10 +4,12 @@
  *
  * Usage:
  *   import { trackEvent } from '../utils/analytics';
- *   trackEvent('book_demo_click', { source: 'hero' });
+ *   import { EVENT_CATEGORIES } from '../utils/analyticsMap';
+ *   trackEvent(EVENT_CATEGORIES.HERO_CTA_CLICK, { source: 'hero' });
  */
 
 import { track } from '@vercel/analytics';
+import { EVENT_CATEGORIES, FUNNEL_STAGES } from './analyticsMap';
 
 /**
  * Fire a custom analytics event.
@@ -62,3 +64,31 @@ export const trackScroll50 = () =>
 /** Fired when the user scrolls to 90% of the page. */
 export const trackScroll90 = () =>
   trackEvent('scroll_90');
+
+/**
+ * Track conversion funnel progression
+ * @param {string} stage - Funnel stage (from FUNNEL_STAGES)
+ * @param {Object} data - Additional data about the conversion
+ */
+export const trackFunnelStage = (stage, data = {}) => {
+  const eventName = `funnel_${stage}`;
+  trackEvent(eventName, {
+    stage,
+    timestamp: new Date().toISOString(),
+    ...data
+  });
+
+  // Store in sessionStorage for analysis
+  try {
+    const funnel = JSON.parse(sessionStorage.getItem('funnel_stages') || '[]');
+    funnel.push({ stage, time: Date.now(), data });
+    sessionStorage.setItem('funnel_stages', JSON.stringify(funnel));
+  } catch {
+    // Silently fail if sessionStorage is unavailable
+  }
+};
+
+/**
+ * Export constants for use in components
+ */
+export { EVENT_CATEGORIES, FUNNEL_STAGES };

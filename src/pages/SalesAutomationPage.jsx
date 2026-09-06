@@ -21,9 +21,6 @@ import {
   ChevronUp, 
   ShieldCheck, 
   Mail, 
-  Building2, 
-  Bot,
-  Clock,
   Check
 } from 'lucide-react';
 import ContactSection from '../components/ContactSection';

@@ -60,18 +60,23 @@ export default async function handler(req, res) {
     const q = query(collection(db, 'blogs'), orderBy('createdAt', 'desc'));
     const snap = await getDocs(q);
 
-    const items = snap.docs.map((doc) => {
-      const data = doc.data();
-      const slug = data.slugId || doc.id;
-      const link = `${SITE}/blog/${slug}`;
-      const description = escapeXml(
-        (data.excerpt || stripHtml(data.content || '')).slice(0, 300)
-      );
-      return `    <item>
-      <title>${escapeXml(data.title || 'Untitled')}</title>
+    const items = snap.docs
+      .filter((doc) => {
+        const d = doc.data();
+        return d.status !== 'draft' && d.status !== 'scheduled' && d.status !== 'archived';
+      })
+      .map((doc) => {
+        const data = doc.data();
+        const slug = data.slugId || doc.id;
+        const link = `${SITE}/blog/${slug}`;
+        const description = escapeXml(
+          (data.seoDescription || data.excerpt || stripHtml(data.content || '')).slice(0, 300)
+        );
+        return `    <item>
+      <title>${escapeXml(data.seoTitle || data.title || 'Untitled')}</title>
       <link>${link}</link>
       <description>${description}</description>
-      <pubDate>${toRfc822(data.createdAt || data.date)}</pubDate>
+      <pubDate>${toRfc822(data.publishedAt || data.createdAt || data.date)}</pubDate>
       <guid isPermaLink="true">${link}</guid>
     </item>`;
     });

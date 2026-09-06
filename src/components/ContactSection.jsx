@@ -13,7 +13,7 @@ const WhatsAppIcon = ({ size = 18, color = "currentColor" }) => (
 );
 
 export default function ContactSection({ 
-  eyebrow = "Get in Touch",
+  eyebrow: _eyebrow = "Get in Touch",
   title = "Ready to transform your revenue operations?", 
   subtitle = "See how AI can automate your lead management, qualification, enrichment and customer conversations.",
   checklist = null,

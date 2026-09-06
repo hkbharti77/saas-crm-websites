@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
+import { useGeoTargeting } from '../utils/geoDetection';
 import { 
   ArrowRight, 
   Zap,
@@ -92,6 +93,7 @@ export default function Hero({ onBookDemo }) {
   const { theme } = useTheme();
   const isLight = theme === 'light';
   const prefersReducedMotion = useReducedMotion();
+  const { targeting } = useGeoTargeting();
   
   const [currentSlide, setCurrentSlide] = useState(0);
   const [direction, setDirection] = useState(1);
@@ -135,7 +137,6 @@ export default function Hero({ onBookDemo }) {
   }, [isPaused, nextSlide, currentSlide]);
 
   const activeSlideData = HERO_SLIDES[currentSlide];
-  const BadgeIcon = activeSlideData.badgeIcon;
 
   return (
     <section 
@@ -256,8 +257,9 @@ export default function Hero({ onBookDemo }) {
                     type="button"
                     className="btn btn-primary hero-btn-primary"
                     onClick={() => handleBookDemo(`hero-slide-${currentSlide + 1}`)}
+                    title={`${targeting?.country || 'Global'} - Click to ${targeting?.cta || 'Book a Demo'}`}
                   >
-                    <span>Book a Demo</span>
+                    <span>{targeting?.cta || 'Book a Demo'}</span>
                     <ArrowRight size={18} />
                   </button>
                   <a

@@ -9,7 +9,6 @@ import {
   ShieldCheck, 
   Bot, 
   Layers, 
-  Cpu, 
   Mail,
   Zap
 } from 'lucide-react';

@@ -7,8 +7,7 @@ export default function ParticleGlobe3D({
   size = 460,
   dotCount = 140,
   isLight = false,
-  interactive = true,
-  onNodeHover = null
+  interactive = true
 }) {
   const canvasRef = useRef(null);
   const shouldReduceMotion = useReducedMotion();

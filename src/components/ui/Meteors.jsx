@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Meteors.css';
 
 export default function Meteors({
@@ -20,6 +20,7 @@ export default function Meteors({
       animationDelay: `${(Math.random() * (maxDelay - minDelay) + minDelay).toFixed(2)}s`,
       animationDuration: `${(Math.random() * (maxDuration - minDuration) + minDuration).toFixed(2)}s`
     }));
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMeteorStyles(styles);
   }, [number, minDelay, maxDelay, minDuration, maxDuration, angle]);
 

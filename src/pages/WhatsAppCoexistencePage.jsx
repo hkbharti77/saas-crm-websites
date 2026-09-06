@@ -12,16 +12,11 @@ import {
   Smartphone,
   ChevronDown,
   HelpCircle,
-  MessageSquare,
-  Cpu,
   GitFork,
   Lock,
   Radio,
   TrendingUp,
-  CheckCircle2,
-  Check,
-  Clock,
-  Server
+  Cpu
 } from 'lucide-react';
 import ContactModal from '../components/ContactModal';
 import Card3DTilt from '../components/ui/Card3DTilt';
@@ -32,7 +27,7 @@ import NumberTicker from '../components/ui/NumberTicker';
 import Particles from '../components/ui/Particles';
 import SpotlightCard from '../components/ui/SpotlightCard';
 import Meteors from '../components/ui/Meteors';
-import { trackBookDemo, trackEvent } from '../utils/analytics';
+import { trackBookDemo } from '../utils/analytics';
 import { useTheme } from '../context/ThemeContext';
 import './WhatsAppCoexistencePage.css';
 
