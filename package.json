@@ -8,6 +8,7 @@
     "build": "vite build && node scripts/prerender.js",
     "audit:seo": "node scripts/audit-seo.js",
     "lint": "eslint .",
+    "test": "echo \"No test specified\" && exit 0",
     "preview": "vite preview",
     "upload:cloudinary": "node scripts/upload-to-cloudinary.js",
     "postbuild": "node scripts/ping-indexnow.js",
