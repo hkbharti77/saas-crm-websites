@@ -4,7 +4,7 @@
   "crons": [
     {
       "path": "/api/publish-scheduled",
-      "schedule": "* * * * *"
+      "schedule": "0 0 * * *"
     }
   ],
   "redirects": [
