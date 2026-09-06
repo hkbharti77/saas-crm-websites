@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import { build } from 'vite';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -75,7 +75,7 @@ async function prerender() {
   });
 
   const ssrModulePath = path.resolve(ssrOutDir, 'entry-server.js');
-  const { render } = await import(`file://${ssrModulePath.replace(/\\/g, '/')}`);
+  const { render } = await import(pathToFileURL(ssrModulePath).href);
 
   // 2. Read template HTML from dist
   const templatePath = path.resolve(distDir, 'index.html');
