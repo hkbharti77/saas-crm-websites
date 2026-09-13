@@ -79,21 +79,35 @@ export default function ContactModal({ isOpen, onClose, prefillMessage = '' }) {
     }
     
     setIsSubmitting(true);
-    const formData = new FormData(e.target);
     try {
-      const response = await fetch("https://formspree.io/f/mzdqyerw", {
+      const apiBaseUrl = import.meta.env.VITE_CRM_API_URL || 'http://localhost:8080';
+      const businessId = import.meta.env.VITE_CRM_BUSINESS_ID || '840c4a19-6805-4995-84f3-53c7baff658f';
+
+      const payload = {
+        name: values.name,
+        email: values.email,
+        phone: phone || '',
+        subject: `Lead from Website Modal`,
+        message: values.message,
+      };
+
+      const response = await fetch(`${apiBaseUrl}/api/v1/public/contact/${businessId}`, {
         method: "POST",
-        body: formData,
-        headers: { Accept: "application/json" },
+        body: JSON.stringify(payload),
+        headers: { 
+          "Content-Type": "application/json",
+          "Accept": "application/json" 
+        },
       });
+
       if (response.ok) {
         setIsSuccess(true);
         trackContactFormSubmit();
       } else {
         alert("Oops! There was a problem submitting your form");
       }
-    } catch {
-      alert("Oops! There was a problem submitting your form");
+    } catch (error) {
+      alert("Network error. Please try again.");
     }
     setIsSubmitting(false);
   };
