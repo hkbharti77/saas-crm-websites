@@ -146,7 +146,7 @@ export const getRegionTargeting = (countryCode) => {
     },
     'DE': {
       country: 'Germany',
-      cta: 'Demo vereinbaren',
+      cta: 'Book a Demo',
       ctaUrl: '/signup?region=de',
       language: 'de-DE',
       currency: 'EUR',
@@ -158,7 +158,7 @@ export const getRegionTargeting = (countryCode) => {
     },
     'FR': {
       country: 'France',
-      cta: 'Réserver une démo',
+      cta: 'Book a Demo',
       ctaUrl: '/signup?region=fr',
       language: 'fr-FR',
       currency: 'EUR',
@@ -168,11 +168,35 @@ export const getRegionTargeting = (countryCode) => {
       phone: '+33-1-XXXX-XXXX',
       supportHours: '9 AM - 6 PM CET'
     },
+    'NL': {
+      country: 'Netherlands',
+      cta: 'Book a Demo',
+      ctaUrl: '/signup?region=nl',
+      language: 'en-NL',
+      currency: 'EUR',
+      pricing: [89, 269, 899],
+      timezone: 'Europe/Amsterdam',
+      email: 'sales-eu@gyanvaniai.online',
+      phone: '+31-20-XXX-XXXX',
+      supportHours: '9 AM - 6 PM CET'
+    },
+    'SE': {
+      country: 'Sweden',
+      cta: 'Book a Demo',
+      ctaUrl: '/signup?region=se',
+      language: 'en-SE',
+      currency: 'SEK',
+      pricing: [999, 2999, 9999],
+      timezone: 'Europe/Stockholm',
+      email: 'sales-eu@gyanvaniai.online',
+      phone: '+46-8-XXX-XXXX',
+      supportHours: '9 AM - 6 PM CET'
+    },
 
     // Middle East
     'AE': {
       country: 'United Arab Emirates',
-      cta: 'اطلب عرض توضيحي',
+      cta: 'Book a Demo',
       ctaUrl: '/signup?region=ae',
       language: 'en-AE',
       currency: 'AED',
@@ -184,7 +208,7 @@ export const getRegionTargeting = (countryCode) => {
     },
     'SA': {
       country: 'Saudi Arabia',
-      cta: 'طلب عرض توضيحي',
+      cta: 'Book a Demo',
       ctaUrl: '/signup?region=sa',
       language: 'ar-SA',
       currency: 'SAR',
@@ -192,6 +216,18 @@ export const getRegionTargeting = (countryCode) => {
       timezone: 'Asia/Riyadh',
       email: 'sales-sa@gyanvaniai.online',
       phone: '+966-11-XXX-XXXX',
+      supportHours: '8 AM - 5 PM AST'
+    },
+    'QA': {
+      country: 'Qatar',
+      cta: 'Book a Demo',
+      ctaUrl: '/signup?region=qa',
+      language: 'en-QA',
+      currency: 'QAR',
+      pricing: [365, 1095, 3650],
+      timezone: 'Asia/Qatar',
+      email: 'sales-ae@gyanvaniai.online',
+      phone: '+974-XXXX-XXXX',
       supportHours: '8 AM - 5 PM AST'
     },
 
@@ -211,7 +247,7 @@ export const getRegionTargeting = (countryCode) => {
     },
     'CN': {
       country: 'China',
-      cta: '预约演示',
+      cta: 'Book a Demo',
       ctaUrl: '/signup?region=cn',
       language: 'zh-CN',
       currency: 'CNY',
@@ -223,7 +259,7 @@ export const getRegionTargeting = (countryCode) => {
     },
     'JP': {
       country: 'Japan',
-      cta: 'デモを予約',
+      cta: 'Book a Demo',
       ctaUrl: '/signup?region=jp',
       language: 'ja-JP',
       currency: 'JPY',
@@ -232,6 +268,18 @@ export const getRegionTargeting = (countryCode) => {
       email: 'sales-jp@gyanvaniai.online',
       phone: '+81-3-XXXX-XXXX',
       supportHours: '9 AM - 6 PM JST'
+    },
+    'KR': {
+      country: 'South Korea',
+      cta: 'Book a Demo',
+      ctaUrl: '/signup?region=kr',
+      language: 'ko-KR',
+      currency: 'KRW',
+      pricing: [130000, 390000, 1300000],
+      timezone: 'Asia/Seoul',
+      email: 'sales-ap@gyanvaniai.online',
+      phone: '+82-2-XXXX-XXXX',
+      supportHours: '9 AM - 6 PM KST'
     },
     'SG': {
       country: 'Singapore',
@@ -260,10 +308,62 @@ export const getRegionTargeting = (countryCode) => {
       supportHours: '9 AM - 6 PM AEDT'
     },
 
+    // South & Southeast Asia
+    'ID': {
+      country: 'Indonesia',
+      cta: 'Book a Demo',
+      ctaUrl: '/signup?region=id',
+      language: 'en-ID',
+      currency: 'IDR',
+      pricing: [1500000, 4500000, 15000000],
+      timezone: 'Asia/Jakarta',
+      email: 'sales-ap@gyanvaniai.online',
+      phone: '+62-21-XXXX-XXXX',
+      supportHours: '9 AM - 6 PM WIB'
+    },
+    'MY': {
+      country: 'Malaysia',
+      cta: 'Book a Demo',
+      ctaUrl: '/signup?region=my',
+      language: 'en-MY',
+      currency: 'MYR',
+      pricing: [450, 1350, 4500],
+      timezone: 'Asia/Kuala_Lumpur',
+      email: 'sales-ap@gyanvaniai.online',
+      phone: '+60-3-XXXX-XXXX',
+      supportHours: '9 AM - 6 PM MYT'
+    },
+    'PK': {
+      country: 'Pakistan',
+      cta: 'Book a Demo',
+      ctaUrl: '/signup?region=pk',
+      language: 'en-PK',
+      currency: 'PKR',
+      pricing: [28000, 84000, 280000],
+      timezone: 'Asia/Karachi',
+      email: 'sales-in@gyanvaniai.online',
+      phone: '+92-21-XXXX-XXXX',
+      supportHours: '10 AM - 7 PM PKT'
+    },
+
+    // Africa
+    'NG': {
+      country: 'Nigeria',
+      cta: 'Book a Demo',
+      ctaUrl: '/signup?region=ng',
+      language: 'en-NG',
+      currency: 'NGN',
+      pricing: [165000, 495000, 1650000],
+      timezone: 'Africa/Lagos',
+      email: 'sales-af@gyanvaniai.online',
+      phone: '+234-1-XXXX-XXXX',
+      supportHours: '9 AM - 6 PM WAT'
+    },
+
     // South America
     'BR': {
       country: 'Brazil',
-      cta: 'Agende uma Demo',
+      cta: 'Book a Demo',
       ctaUrl: '/signup?region=br',
       language: 'pt-BR',
       currency: 'BRL',
@@ -296,7 +396,9 @@ export const useGeoTargeting = () => {
     fetchGeo();
   }, []);
 
-  const targeting = geo ? getRegionTargeting(geo.country) : getRegionTargeting('US');
+  // Neutral fallback CTA while geo loads (avoids US-specific 'Start Free Trial' flash)
+  const defaultTargeting = { cta: 'Book a Demo', ctaUrl: '/signup', language: 'en', currency: 'USD' };
+  const targeting = geo ? getRegionTargeting(geo.country) : defaultTargeting;
 
   return { geo, targeting, loading };
 };

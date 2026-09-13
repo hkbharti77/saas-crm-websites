@@ -40,9 +40,9 @@ export const generateHreflangTags = (currentPath) => {
 
 export const getGeoTargeting = () => {
   return {
-    'geo.region': 'Global',
-    'geo.placename': 'Worldwide',
-    'geo.position': '28.6139;77.2090', // Delhi, India as primary
+    'geo.region': 'IN-DL',          // ISO 3166-2 — New Delhi, India (primary HQ)
+    'geo.placename': 'New Delhi, India',
+    'geo.position': '28.6139;77.2090',
     'ICBM': '28.6139, 77.2090'
   };
 };

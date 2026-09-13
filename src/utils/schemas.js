@@ -125,7 +125,6 @@ export const localBusinessSchema = {
   "name": "Gyan VaniAi",
   "image": "https://www.gyanvaniai.online/hero_dashboard.webp",
   "url": "https://www.gyanvaniai.online/",
-  "telephone": "+1-XXX-XXX-XXXX",
   "email": "contact@gyanvaniai.online",
   "priceRange": "$$",
   "address": {

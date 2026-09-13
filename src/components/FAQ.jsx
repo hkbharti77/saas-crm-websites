@@ -13,7 +13,7 @@ const faqs = [
   },
   {
     question: 'Can you integrate with existing systems?',
-    answer: 'Absolutely. Our solutions are designed to seamlessly integrate with your existing databases, legacy software, and third-party APIs like Salesforce, Stripe, or SAP.'
+    answer: 'Absolutely. Our solutions are designed to seamlessly integrate with your existing databases, legacy software, and third-party APIs like Salesforce, HubSpot, Zoho, Stripe, or SAP.'
   },
   {
     question: 'Do you provide post-launch support?',
@@ -34,6 +34,47 @@ const faqs = [
   {
     question: 'How do I get a project estimate?',
     answer: 'Simply book a free consultation with our team. We will discuss your requirements, perform a technical feasibility check, and provide a detailed estimate.'
+  },
+  // High-intent commercial queries
+  {
+    question: 'What is the difference between WhatsApp Coexistence and WhatsApp Business API?',
+    answer: 'WhatsApp Coexistence lets you keep your personal WhatsApp app running on your existing number while Gyan VaniAi runs business automation in parallel — no number change needed. The standard WhatsApp Business API replaces personal access entirely. Our Coexistence solution is Meta Tech Provider certified and ideal for sales teams that need both personal and business messaging on one device.'
+  },
+  {
+    question: 'How much does an AI CRM system cost?',
+    answer: 'Pricing depends on features and team size. Our AI CRM packages start from ₹8,000/month for India-based clients and $99/month for international clients. Enterprise custom builds are scoped per project with a detailed technical proposal. Book a free consultation for an exact quote tailored to your requirements.'
+  },
+  {
+    question: 'Can your AI chatbots handle voice calls?',
+    answer: 'Yes. Our Voice AI agents handle both inbound support calls and outbound lead qualification campaigns. They use natural speech synthesis with sub-300ms response times and can seamlessly hand off to a live human agent when needed, with full conversation context preserved.'
+  },
+  {
+    question: 'Is my data secure? What compliance standards do you follow?',
+    answer: 'All our platforms are built with SOC2 Type II readiness, end-to-end encryption, and role-based access control. Your data is never used to train third-party AI models. We support GDPR compliance for EU clients and follow ISO 27001 security best practices across all deployments.'
+  },
+  {
+    question: 'Do you offer a free trial or demo environment?',
+    answer: 'Yes — we provide a 7-day sandbox demo environment with real data simulation at no cost, no credit card required. You can explore the full AI CRM, WhatsApp automation, and lead management features before committing. Click "Book a Demo" to get started.'
+  },
+  {
+    question: 'How does your AI lead scoring work?',
+    answer: 'Our ML models score leads on 50+ behavioral and firmographic signals — including page visits, WhatsApp interaction patterns, email opens, company size, and job title. Scores update in real-time and automatically trigger routing rules to assign the right lead to the right rep at the right moment.'
+  },
+  {
+    question: 'Can your AI agents work in multiple languages?',
+    answer: 'Yes. Our AI chatbots and voice agents support 30+ languages including Hindi, Arabic, Spanish, French, German, Mandarin, Bahasa Indonesia, and more. Language detection is automatic based on the customer\'s input, with zero configuration required on your end.'
+  },
+  {
+    question: 'What happens if the AI cannot answer a customer question?',
+    answer: 'The AI intelligently escalates to a human agent via live chat handoff, email ticket creation, or WhatsApp transfer. The complete conversation history is preserved so your agent has full context and never needs to ask the customer to repeat themselves.'
+  },
+  {
+    question: 'Do you offer white-label solutions for agencies?',
+    answer: 'Yes. We offer white-label versions of our AI CRM, WhatsApp automation, and chatbot platforms for digital agencies and resellers. Your clients see your brand, not ours. Contact our partnerships team for white-label pricing and onboarding details.'
+  },
+  {
+    question: 'Can I use your WhatsApp automation without changing my existing phone number?',
+    answer: 'Yes, through our WhatsApp Coexistence platform. You keep your existing personal number active on your phone app while our system handles business automation, broadcasts, and team inbox management on the same number simultaneously. This is unique to our Meta Tech Provider certified solution.'
   }
 ];
 

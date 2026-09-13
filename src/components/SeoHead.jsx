@@ -82,6 +82,13 @@ export default function SEOHead({
       <meta name="googlebot" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
       <meta name="bingbot" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
 
+      {/* PWA / Mobile Browser */}
+      <meta name="theme-color" content="#0f766e" />
+      <meta name="mobile-web-app-capable" content="yes" />
+      <meta name="apple-mobile-web-app-capable" content="yes" />
+      <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+      <meta name="apple-mobile-web-app-title" content="Gyan VaniAi" />
+
       {/* Geographic Targeting */}
       <meta name="geo.region" content={geoMeta['geo.region']} />
       <meta name="geo.placename" content={geoMeta['geo.placename']} />
