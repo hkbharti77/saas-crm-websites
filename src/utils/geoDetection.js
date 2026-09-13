@@ -198,7 +198,7 @@ export const getRegionTargeting = (countryCode) => {
     // Asia
     'IN': {
       country: 'India',
-      cta: 'मुफ्त परामर्श प्राप्त करें',
+      cta: 'Book a Free Demo',
       ctaUrl: '/signup?region=in',
       language: 'en-IN',
       currency: 'INR',
