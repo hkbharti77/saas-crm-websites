@@ -1,0 +1,529 @@
+/* ==========================================================================
+   Real Estate Industry Page Styles - 2026 PropTech Aesthetic
+   ========================================================================== */
+
+.real-estate-page {
+  --re-amber: #f59e0b;
+  --re-cyan: #06b6d4;
+  --re-emerald: #10b981;
+  --re-indigo: #6366f1;
+  --re-accent: var(--primary-color, #0f766e);
+
+  color: var(--text-primary);
+  position: relative;
+  overflow-x: hidden;
+  font-family: var(--font-sans);
+}
+
+/* Subtle background aura */
+.re-bg-glow-1 {
+  position: absolute;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 850px;
+  height: 450px;
+  background: radial-gradient(ellipse at center, color-mix(in srgb, var(--re-amber) 10%, transparent) 0%, color-mix(in srgb, var(--primary-color) 8%, transparent) 50%, transparent 70%);
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* --- Streamlined Hero Section --- */
+.re-hero {
+  position: relative;
+  padding-top: 2rem;
+  padding-bottom: 3rem;
+  z-index: 1;
+}
+
+.re-hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+@media (max-width: 1024px) {
+  .re-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+}
+
+.re-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.9rem;
+  border-radius: 9999px;
+  background: color-mix(in srgb, var(--re-amber) 12%, var(--bg-card));
+  border: 1px solid color-mix(in srgb, var(--re-amber) 30%, transparent);
+  color: var(--primary-color);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  margin-bottom: 1rem;
+}
+
+.re-pulse-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--re-amber);
+  box-shadow: 0 0 8px var(--re-amber);
+  animation: rePulse 2s infinite;
+}
+
+@keyframes rePulse {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7); }
+  70% { transform: scale(1.15); box-shadow: 0 0 0 8px rgba(245, 158, 11, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
+}
+
+.re-hero-title {
+  font-size: clamp(2.25rem, 4.5vw, 3.5rem);
+  font-weight: 850;
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+
+.re-gradient-text {
+  background: linear-gradient(135deg, var(--re-amber) 0%, var(--primary-color) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.re-hero-subtitle {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+  max-width: 540px;
+  margin-bottom: 1.75rem;
+}
+
+.re-hero-cta-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.75rem;
+}
+
+.re-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.6rem;
+  border-radius: var(--radius-md, 10px);
+  background: var(--gradient-primary, linear-gradient(135deg, #0f766e 0%, #14b8a6 100%));
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 6px 20px color-mix(in srgb, var(--primary-color) 30%, transparent);
+  transition: all 0.22s ease;
+}
+
+.re-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px color-mix(in srgb, var(--primary-color) 40%, transparent);
+}
+
+.re-btn-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  font-size: 0.925rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.5rem 0.75rem;
+  transition: color 0.2s ease;
+}
+
+.re-btn-link:hover {
+  color: var(--primary-color);
+}
+
+/* Light Trust Micro-Strip */
+.re-hero-trust-micro {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  font-size: 0.825rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.re-trust-check {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* --- Hero Visual Showcase Frame --- */
+.re-hero-visual-wrapper {
+  position: relative;
+}
+
+.re-hero-frame {
+  border-radius: 1rem;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.15);
+  background: var(--bg-card);
+  transition: all 0.3s ease;
+}
+
+.re-hero-frame:hover {
+  border-color: color-mix(in srgb, var(--re-amber) 35%, transparent);
+  transform: translateY(-2px);
+  box-shadow: 0 25px 50px -10px rgba(0, 0, 0, 0.2);
+}
+
+.re-hero-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* --- Dedicated Interactive PropTech Simulator Section --- */
+.re-sim-section {
+  margin-top: 3.5rem;
+  margin-bottom: 3.5rem;
+}
+
+.re-simulator-container {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 1rem;
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+.re-simulator-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.875rem 1.25rem;
+  background: color-mix(in srgb, var(--bg-card) 94%, var(--text-primary));
+  border-bottom: 1px solid var(--border-color);
+}
+
+.re-window-dots {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.re-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.re-dot-red { background-color: #ef4444; }
+.re-dot-yellow { background-color: #f59e0b; }
+.re-dot-green { background-color: #10b981; }
+
+.re-sim-tabs {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: color-mix(in srgb, var(--bg-card) 97%, var(--text-primary));
+  border-bottom: 1px solid var(--border-color);
+  overflow-x: auto;
+}
+
+.re-sim-tab {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 0.875rem;
+  border-radius: var(--radius-sm, 6px);
+  font-size: 0.825rem;
+  font-weight: 600;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.re-sim-tab:hover {
+  color: var(--text-primary);
+  background: color-mix(in srgb, var(--primary-color) 8%, transparent);
+}
+
+.re-sim-tab.active {
+  background: color-mix(in srgb, var(--primary-color) 12%, var(--bg-card));
+  color: var(--primary-color);
+  border-color: color-mix(in srgb, var(--primary-color) 30%, transparent);
+}
+
+.re-sim-body {
+  padding: 1.5rem;
+  min-height: 250px;
+}
+
+.re-chat-preview {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+}
+
+.re-chat-msg {
+  max-width: 80%;
+  padding: 0.875rem 1.125rem;
+  border-radius: 0.875rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.re-chat-buyer {
+  align-self: flex-end;
+  background: var(--primary-color);
+  color: #ffffff;
+  border-bottom-right-radius: 0.25rem;
+}
+
+.re-chat-ai {
+  align-self: flex-start;
+  background: color-mix(in srgb, var(--bg-card) 88%, var(--text-primary));
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  border-bottom-left-radius: 0.25rem;
+}
+
+.re-chip {
+  display: inline-block;
+  padding: 0.25rem 0.6rem;
+  border-radius: 0.375rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: color-mix(in srgb, var(--primary-color) 12%, var(--bg-card));
+  color: var(--primary-color);
+  border: 1px solid color-mix(in srgb, var(--primary-color) 25%, transparent);
+}
+
+/* --- Compliance & Portal Trust Marquee Bar --- */
+.re-trust-bar {
+  padding: 1.75rem 0;
+  background: color-mix(in srgb, var(--bg-card) 90%, transparent);
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 3.5rem;
+}
+
+.re-trust-grid {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  gap: 1.5rem;
+}
+
+.re-trust-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+/* --- Bento Grid Section --- */
+.re-bento-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+
+.re-bento-card {
+  border: 1px solid var(--border-color);
+  border-radius: 1.25rem;
+  padding: 2rem;
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.re-bento-card:hover {
+  border-color: color-mix(in srgb, var(--primary-color) 35%, transparent);
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-2px);
+}
+
+.re-bento-card-1 {
+  background: radial-gradient(circle at 0% 0%, color-mix(in srgb, var(--re-amber) 12%, transparent) 0%, var(--bg-card) 70%);
+}
+
+.re-bento-card-2 {
+  background: radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--re-cyan) 12%, transparent) 0%, var(--bg-card) 70%);
+}
+
+.re-bento-card-3 {
+  background: radial-gradient(circle at 0% 100%, color-mix(in srgb, var(--re-emerald) 12%, transparent) 0%, var(--bg-card) 70%);
+}
+
+.re-bento-card-4 {
+  background: radial-gradient(circle at 100% 100%, color-mix(in srgb, var(--primary-color) 14%, transparent) 0%, var(--bg-card) 70%);
+}
+
+.re-bento-col-8 { grid-column: span 8; }
+.re-bento-col-4 { grid-column: span 4; }
+
+@media (max-width: 1024px) {
+  .re-bento-col-8,
+  .re-bento-col-4 {
+    grid-column: span 12;
+  }
+}
+
+.re-bento-icon-wrapper {
+  width: 48px;
+  height: 48px;
+  border-radius: 0.75rem;
+  background: color-mix(in srgb, var(--primary-color) 12%, var(--bg-card));
+  border: 1px solid color-mix(in srgb, var(--primary-color) 25%, transparent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-color);
+  margin-bottom: 1.125rem;
+}
+
+.re-bento-title {
+  font-size: 1.25rem;
+  font-weight: 750;
+  margin-bottom: 0.65rem;
+  color: var(--text-primary);
+}
+
+.re-bento-desc {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+/* --- Interactive ROI Calculator --- */
+.re-roi-box {
+  background: radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--primary-color) 12%, transparent) 0%, var(--bg-card) 60%);
+  border: 1px solid var(--border-color);
+  border-radius: 1.25rem;
+  padding: 2.5rem;
+  margin: 4rem 0;
+  box-shadow: var(--shadow-sm);
+}
+
+.re-slider {
+  width: 100%;
+  height: 8px;
+  border-radius: 4px;
+  background: var(--border-color);
+  outline: none;
+  accent-color: var(--primary-color);
+  cursor: pointer;
+}
+
+.re-roi-stat-box {
+  background: color-mix(in srgb, var(--bg-card) 94%, var(--text-primary));
+  border: 1px solid var(--border-color);
+  border-radius: 0.875rem;
+  padding: 1.25rem;
+  text-align: center;
+}
+
+/* --- PropTech Workflow Section --- */
+.re-workflow-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+  margin-top: 2.5rem;
+}
+
+@media (max-width: 1024px) {
+  .re-workflow-steps {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .re-workflow-steps {
+    grid-template-columns: 1fr;
+  }
+}
+
+.re-workflow-step {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 0.875rem;
+  padding: 1.5rem;
+  transition: all 0.2s ease;
+}
+
+.re-workflow-step:hover {
+  border-color: var(--primary-color);
+}
+
+.re-step-number {
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: var(--primary-color);
+  letter-spacing: 0.08em;
+  margin-bottom: 0.65rem;
+}
+
+/* --- Case Studies & FAQ --- */
+.re-case-section {
+  padding: 3.5rem 0;
+  background: color-mix(in srgb, var(--bg-card) 96%, var(--primary-color) 4%);
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.re-faq-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 0.875rem;
+  margin-bottom: 0.875rem;
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+
+.re-faq-item.open {
+  border-color: var(--primary-color);
+}
+
+.re-faq-button {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.125rem 1.35rem;
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+}
+
+.re-faq-answer {
+  padding: 0 1.35rem 1.35rem 1.35rem;
+  font-size: 0.925rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
