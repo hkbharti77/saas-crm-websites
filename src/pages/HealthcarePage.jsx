@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
 import {
   Activity,
   HeartPulse,
@@ -28,6 +27,7 @@ import {
 } from 'lucide-react';
 import ContactSection from '../components/ContactSection';
 import './HealthcarePage.css';
+import SeoHead from '../components/SeoHead';
 
 const SITE = 'https://www.gyanvaniai.online';
 
@@ -114,24 +114,13 @@ export default function HealthcarePage() {
 
   return (
     <>
-      <Helmet>
-        <title>Healthcare CRM & Patient Automation Platform 2026 | Gyan VaniAi</title>
-        <meta
-          name="description"
-          content="Modern 2026 Healthcare CRM with AI symptom triage, WhatsApp patient appointment automation, EMR sync, and HIPAA compliant clinical workflows."
-        />
-        <meta
-          name="keywords"
-          content="Healthcare CRM, Patient Automation, WhatsApp Appointment Booking, EMR Integration, HIPAA Compliant CRM, Clinical AI Triage, ABDM Ready"
-        />
-        <link rel="canonical" href={`${SITE}/industries/healthcare`} />
-        <meta property="og:title" content="Healthcare CRM & Patient Automation Platform | Gyan VaniAi" />
-        <meta
-          property="og:description"
-          content="Transform patient engagement with automated WhatsApp bookings, AI clinical triage, and secure EMR integration."
-        />
-        <meta property="og:image" content={`${SITE}/healthcare_hero_platform.jpg`} />
-      </Helmet>
+      <SeoHead
+        title="Healthcare CRM & Patient Automation Platform 2026 | Gyan VaniAi"
+        description="Modern 2026 Healthcare CRM with AI symptom triage, WhatsApp patient appointment automation, EMR sync, and HIPAA compliant clinical workflows."
+        canonical={`${SITE}/industries/healthcare`}
+        image={`${SITE}/healthcare_hero_platform.jpg`}
+        keywords="Healthcare CRM, Patient Automation, WhatsApp Appointment Booking, EMR Integration, HIPAA Compliant CRM, Clinical AI Triage, ABDM Ready"
+      />
 
       <div className="healthcare-page">
         {/* Ambient Glow Aura */}

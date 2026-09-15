@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useRef, useMemo } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
 import { ArrowLeft, Calendar, Clock, User, Share2, Copy, Send, ChevronLeft, ChevronRight, MessageCircle, Globe, TrendingUp } from 'lucide-react';
 
 import { auth, db } from '../firebase';
@@ -367,11 +366,10 @@ export default function BlogPost() {
   if (loading) {
     return (
       <>
-        <Helmet>
-          <title>Loading article… | Gyan VaniAi Blog</title>
-          <meta name="robots" content="noindex" />
-          <link rel="canonical" href={blogPostUrl(id)} />
-        </Helmet>
+        <SeoHead
+          title="Loading article… | Gyan VaniAi Blog"
+          canonicalUrl={blogPostUrl(id)}
+        />
         <div style={{ minHeight: '80vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           Loading...
         </div>
@@ -401,18 +399,11 @@ export default function BlogPost() {
       <SeoHead
         title={pageTitle}
         description={description}
-        canonical={canonical}
-        image={image}
-        type="article"
-        publishedTime={published}
-        modifiedTime={modified}
-        author={post.author || 'Gyan VaniAi Team'}
-        section={post.category}
+        canonicalUrl={canonical}
+        ogImage={image}
+        ogType="article"
+        customSchema={schema}
       />
-      <Helmet>
-        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
-        <script type="application/ld+json">{JSON.stringify(schema)}</script>
-      </Helmet>
 
       {/* Reading Progress Indicator */}
       <div

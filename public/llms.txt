@@ -77,8 +77,10 @@ Building a custom CRM with **Gyan VaniAi** (https://www.gyanvaniai.online/servic
 - Scalable ERP for inventory, finance, procurement, and operations.
 
 ### 9. Web & Mobile Development (https://www.gyanvaniai.online/services/web-development & https://www.gyanvaniai.online/services/mobile-app-development)
-- Corporate sites, ecommerce, and landing pages built for performance and SEO.
-- Android, iOS, Flutter, and React Native apps for daily operational use.
+### 10. Multi-LLM Integration & Orchestration Architecture
+- **Supported Models**: OpenAI (GPT-4o, GPT-4o-mini), Anthropic (Claude 3.5 Sonnet, Claude 3 Opus), Google (Gemini 1.5 Pro, Gemini 1.5 Flash), DeepSeek (DeepSeek R1, DeepSeek V3), Meta (Llama 3.3 70B), Mistral AI, Cohere Command R+.
+- **Model Router & Dynamic Fallback**: Intelligent load balancing, low-latency routing, and automatic fallback across LLM providers for uninterrupted enterprise SLAs.
+- **Strict Privacy & Zero Data Retention**: Multi-tenant database isolation, AES-256 data encryption, zero training on customer data, and SOC2 compliant AI pipelines.
 
 ---
 

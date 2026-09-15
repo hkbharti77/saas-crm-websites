@@ -11,77 +11,20 @@ const Portfolio = lazy(() => import('../components/Portfolio'));
 const FAQ = lazy(() => import('../components/FAQ'));
 const ContactSection = lazy(() => import('../components/ContactSection'));
 const ContactModal = lazy(() => import('../components/ContactModal'));
-import { Helmet } from 'react-helmet-async';
+import SeoHead from '../components/SeoHead';
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <>
-      <Helmet htmlAttributes={{ lang: 'en' }}>
-        <title>Autonomous AI CRM & Revenue Operations | Gyan VaniAi</title>
-        <meta name="description" content="Autonomous AI CRM platform for high-velocity revenue teams. Capture, enrich, qualify, assign and convert leads with intelligent AI-powered workflows." />
-        <link rel="canonical" href="https://www.gyanvaniai.online/" />
-        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-
-        {/* OpenGraph / Facebook */}
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://www.gyanvaniai.online/" />
-        <meta property="og:title" content="Autonomous AI CRM & Revenue Operations | Gyan VaniAi" />
-        <meta property="og:description" content="Autonomous AI CRM platform for high-velocity revenue teams. Capture, enrich, qualify, assign and convert leads with intelligent AI-powered workflows." />
-        <meta property="og:image" content="https://www.gyanvaniai.online/hero_dashboard.webp" />
-        <meta property="og:site_name" content="Gyan VaniAi" />
-        <meta property="og:locale" content="en_US" />
-
-        {/* Twitter */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:url" content="https://www.gyanvaniai.online/" />
-        <meta name="twitter:title" content="Autonomous AI CRM & Revenue Operations | Gyan VaniAi" />
-        <meta name="twitter:description" content="Autonomous AI CRM platform for high-velocity revenue teams. Capture, enrich, qualify, assign and convert leads with intelligent AI-powered workflows." />
-        <meta name="twitter:image" content="https://www.gyanvaniai.online/hero_dashboard.webp" />
-
-        {/* Structured Schema */}
-        <script type="application/ld+json">
-          {`
-            [
-              {
-                "@context": "https://schema.org",
-                "@type": "WebSite",
-                "@id": "https://www.gyanvaniai.online/#website",
-                "url": "https://www.gyanvaniai.online/",
-                "name": "Gyan VaniAi",
-                "description": "Enterprise AI CRM, Autonomous Revenue Operations, and WhatsApp Coexistence Platform",
-                "publisher": {
-                  "@id": "https://www.gyanvaniai.online/#organization"
-                },
-                "inLanguage": "en-US"
-              },
-              {
-                "@context": "https://schema.org",
-                "@type": ["ProfessionalService", "Organization"],
-                "@id": "https://www.gyanvaniai.online/#organization",
-                "name": "Gyan VaniAi",
-                "url": "https://www.gyanvaniai.online/",
-                "logo": {
-                  "@type": "ImageObject",
-                  "url": "https://www.gyanvaniai.online/logo.png",
-                  "width": "512",
-                  "height": "512"
-                },
-                "image": "https://www.gyanvaniai.online/hero_dashboard.webp",
-                "description": "Autonomous AI CRM and revenue operations platform with lead scoring, auto-enrichment, intelligent assignment, and WhatsApp Coexistence.",
-                "email": "contact@gyanvaniai.online",
-                "areaServed": ["Europe", "Asia", "Africa", "North America", "Worldwide"],
-                "priceRange": "$$",
-                "sameAs": [
-                  "https://www.facebook.com/gyanvaniai/",
-                  "https://www.linkedin.com/company/gyan-vaniai"
-                ]
-              }
-            ]
-          `}
-        </script>
-      </Helmet>
+      <SeoHead
+        title="Autonomous AI CRM & Revenue Operations | Gyan VaniAi"
+        description="Autonomous AI CRM platform for high-velocity revenue teams. Capture, enrich, qualify, assign and convert leads with intelligent AI-powered workflows."
+        canonical="https://www.gyanvaniai.online/"
+        image="https://www.gyanvaniai.online/hero_dashboard.webp"
+        keywords="Autonomous AI CRM, Revenue Operations, WhatsApp CRM, AI Lead Qualification, Sales Automation"
+      />
 
       <div>
         {/* 1 & 2. Hero Section */}

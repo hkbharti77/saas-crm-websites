@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
+import SeoHead from '../components/SeoHead';
 import { 
   Bot, 
   MessageSquare, 
@@ -251,14 +251,11 @@ export default function AIChatbotsPage() {
 
   return (
     <div className="chatbots-page">
-      <Helmet>
-        <title>AI Chatbot Development Company | Custom RAG Chatbots | Gyan VaniAi</title>
-        <meta 
-          name="description" 
-          content="Build intelligent AI chatbots with RAG knowledge grounding, autonomous API actions, CRM sync, and human handoff. Deploy across WhatsApp and web." 
-        />
-        <link rel="canonical" href={`${SITE}/services/ai-chatbots`} />
-      </Helmet>
+      <SeoHead
+        title="AI Chatbot Development Company | Custom RAG Chatbots | Gyan VaniAi"
+        description="Build intelligent AI chatbots with RAG knowledge grounding, autonomous API actions, CRM sync, and human handoff. Deploy across WhatsApp and web."
+        canonicalUrl={`${SITE}/services/ai-chatbots`}
+      />
 
       {/* ==========================================================================
          1. HERO SECTION

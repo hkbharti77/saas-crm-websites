@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
+import SeoHead from '../components/SeoHead';
 import {
   Landmark,
   ShieldCheck,
@@ -166,25 +166,14 @@ export default function FinancePage() {
 
   return (
     <>
-      <Helmet>
-        <title>FinTech CRM & Conversational Banking Platform 2026 | Gyan VaniAi</title>
-        <meta
-          name="description"
-          content="Enterprise FinTech CRM with automated WhatsApp banking, e-KYC OCR telemetry, credit score pre-approval, EMI collections, and SOC2/PCI-DSS compliance."
-        />
-        <meta
-          name="keywords"
-          content="FinTech CRM, WhatsApp Banking, Financial Services Automation, eKYC Automation, Core Banking CRM, EMI Collections Bot, Credit Scoring Engine"
-        />
-        <link rel="canonical" href={`${SITE}/industries/finance`} />
-        <meta property="og:title" content="FinTech CRM & Conversational Banking Platform | Gyan VaniAi" />
-        <meta
-          property="og:description"
-          content="Accelerate loan disbursals and client onboarding with automated WhatsApp banking, e-KYC telemetry, and core banking API sync."
-        />
-        <meta property="og:image" content={`${SITE}/logo.png`} />
-        <script type="application/ld+json">{JSON.stringify(jsonLdData)}</script>
-      </Helmet>
+      <SeoHead
+        title="FinTech CRM & Conversational Banking Platform 2026 | Gyan VaniAi"
+        description="Enterprise FinTech CRM with automated WhatsApp banking, e-KYC OCR telemetry, credit score pre-approval, EMI collections, and SOC2/PCI-DSS compliance."
+        canonical={`${SITE}/industries/finance`}
+        image={`${SITE}/logo.png`}
+        keywords="FinTech CRM, WhatsApp Banking, Financial Services Automation, eKYC Automation, Core Banking CRM, EMI Collections Bot, Credit Scoring Engine"
+        schema={jsonLdData}
+      />
 
       <div className="finance-page">
         {/* Ambient Glow Atmosphere */}

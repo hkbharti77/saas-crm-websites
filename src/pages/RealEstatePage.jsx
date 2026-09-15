@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
+import SeoHead from '../components/SeoHead';
 import {
   Building,
   Home,
@@ -114,24 +114,13 @@ export default function RealEstatePage() {
 
   return (
     <>
-      <Helmet>
-        <title>Real Estate CRM & WhatsApp Lead Automation 2026 | Gyan VaniAi</title>
-        <meta
-          name="description"
-          content="Modern 2026 Real Estate CRM with WhatsApp property lead capture, AI inventory matching, automated site visit booking, and agent deal tracking."
-        />
-        <meta
-          name="keywords"
-          content="Real Estate CRM, WhatsApp Property Automation, PropTech Software, Site Visit Scheduling, Property Lead Management, Real Estate Lead Routing"
-        />
-        <link rel="canonical" href={`${SITE}/industries/real-estate`} />
-        <meta property="og:title" content="Real Estate CRM & WhatsApp Lead Automation | Gyan VaniAi" />
-        <meta
-          property="og:description"
-          content="Capture property inquiries on WhatsApp, match buyer preferences, and drive 3.4x more site visits with automated PropTech workflows."
-        />
-        <meta property="og:image" content={`${SITE}/real_estate_hero_platform.jpg`} />
-      </Helmet>
+      <SeoHead
+        title="Real Estate CRM & WhatsApp Lead Automation 2026 | Gyan VaniAi"
+        description="Modern 2026 Real Estate CRM with WhatsApp property lead capture, AI inventory matching, automated site visit booking, and agent deal tracking."
+        canonical={`${SITE}/industries/real-estate`}
+        image={`${SITE}/real_estate_hero_platform.jpg`}
+        keywords="Real Estate CRM, WhatsApp Property Automation, PropTech Software, Site Visit Scheduling, Property Lead Management, Real Estate Lead Routing"
+      />
 
       <div className="real-estate-page">
         {/* Ambient Glow Aura */}

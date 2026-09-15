@@ -142,6 +142,22 @@ export default function SEOHead({
       {socialMeta['twitter:site'] && <meta name="twitter:site" content={socialMeta['twitter:site']} />}
       {socialMeta['twitter:creator'] && <meta name="twitter:creator" content={socialMeta['twitter:creator']} />}
 
+      {/* Multi-LLM & Generative Engine Optimization (GEO) Discovery Meta */}
+      <link rel="author" href="https://www.gyanvaniai.online/llms.txt" />
+      <link rel="alternate" type="text/plain" href="https://www.gyanvaniai.online/llms.txt" title="LLM Context Summary" />
+      <link rel="alternate" type="text/plain" href="https://www.gyanvaniai.online/llms-full.txt" title="Full LLM Technical Documentation" />
+      <meta name="ai-site-verification" content="gyan-vani-ai-verified-entity" />
+      <meta name="chatgpt-plugin-support" content="enabled" />
+      <meta name="llm-model-access" content="unrestricted" />
+      <meta name="ai-agent-discovery" content="https://www.gyanvaniai.online/llms.txt" />
+      <meta name="multi-llm-compatibility" content="OpenAI ChatGPT, Anthropic Claude, Perplexity AI, Google Gemini, DeepSeek R1, Meta Llama 3.3, Cohere, Mistral AI" />
+
+      {/* LLM Citation Metadata (For AI Search Indexing & Summarization Engines) */}
+      <meta name="citation_title" content={title} />
+      <meta name="citation_publisher" content="Gyan VaniAi Enterprise AI & Software" />
+      <meta name="citation_fulltext_html_url" content={canonical} />
+      <meta name="citation_language" content="en" />
+
       {/* Hreflang Tags for International SEO */}
       {hreflangs.map((tag, index) => (
         <link 

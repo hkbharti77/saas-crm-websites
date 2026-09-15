@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Helmet } from 'react-helmet-async';
+import SeoHead from '../components/SeoHead';
 import { 
   ArrowRight, 
   RefreshCw, 
@@ -175,57 +175,13 @@ export default function WhatsAppCoexistencePage() {
 
   return (
     <>
-      <Helmet>
-        <title>WhatsApp Coexistence Mode: Mobile App + Cloud API on One Number | Gyan VaniAi</title>
-        <meta
-          name="description"
-          content="Operate your WhatsApp Business mobile app and enterprise Cloud API simultaneously on the exact same phone number. Zero chat loss, no phone reset, 24/7 AI auto-replies, and live CRM sync."
-        />
-        <link rel="canonical" href="https://www.gyanvaniai.online/services/whatsapp-coexistence" />
-        <meta property="og:title" content="WhatsApp Coexistence Mode: Mobile App + Cloud API on One Number | Gyan VaniAi" />
-        <meta
-          property="og:description"
-          content="Keep your WhatsApp Business phone app active while unlocking 24/7 AI CRM auto-replies, bulk broadcasts, and lead tracking on the exact same phone number."
-        />
-        <meta property="og:url" content="https://www.gyanvaniai.online/services/whatsapp-coexistence" />
-        <meta property="og:type" content="website" />
-        <meta property="og:image" content="https://www.gyanvaniai.online/whatsapp_coexistence_dark.webp" />
-
-        <script type="application/ld+json">
-          {`
-            [
-              {
-                "@context": "https://schema.org",
-                "@type": "Service",
-                "name": "WhatsApp Coexistence Mode Integration",
-                "serviceType": "Conversational AI & WhatsApp Business Platform Coexistence",
-                "provider": {
-                  "@type": "Organization",
-                  "name": "Gyan VaniAi",
-                  "url": "https://www.gyanvaniai.online"
-                },
-                "areaServed": "Worldwide",
-                "description": "Enterprise WhatsApp Coexistence Mode setup enabling simultaneous WhatsApp Business mobile app and Cloud API operation on the same verified phone number with real-time CRM synchronization.",
-                "url": "https://www.gyanvaniai.online/services/whatsapp-coexistence"
-              },
-              {
-                "@context": "https://schema.org",
-                "@type": "FAQPage",
-                "mainEntity": [
-                  ${faqs.map(faq => `{
-                    "@type": "Question",
-                    "name": ${JSON.stringify(faq.q)},
-                    "acceptedAnswer": {
-                      "@type": "Answer",
-                      "text": ${JSON.stringify(faq.a)}
-                    }
-                  }`).join(',')}
-                ]
-              }
-            ]
-          `}
-        </script>
-      </Helmet>
+      <SeoHead
+        title="WhatsApp Coexistence Mode: Mobile App + Cloud API on One Number | Gyan VaniAi"
+        description="Operate your WhatsApp Business mobile app and enterprise Cloud API simultaneously on the exact same phone number. Zero chat loss, no phone reset, 24/7 AI auto-replies, and live CRM sync."
+        canonical="https://www.gyanvaniai.online/services/whatsapp-coexistence"
+        image="https://www.gyanvaniai.online/whatsapp_coexistence_dark.webp"
+        keywords="WhatsApp Coexistence, WhatsApp Business API, Dual WhatsApp Mode, WhatsApp CRM Automation, Single Number WhatsApp"
+      />
 
       <div className="coexistence-page">
         

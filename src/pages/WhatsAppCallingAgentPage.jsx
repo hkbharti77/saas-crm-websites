@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
+import SeoHead from '../components/SeoHead';
 import {
   PhoneCall,
   MessageSquare,
@@ -311,40 +311,14 @@ export default function WhatsAppCallingAgentPage() {
 
   return (
     <>
-      <Helmet>
-        <title>WhatsApp Calling Agent Bots | Enterprise Conversational Voice AI | Gyan VaniAi</title>
-        <meta
-          name="description"
-          content="Deploy autonomous WhatsApp Calling Agent Bots that converse naturally, qualify leads with sub-300ms latency, sync CRM pipelines, and book meetings 24/7."
-        />
-        <link rel="canonical" href={canonicalUrl} />
-        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-
-        {/* OpenGraph */}
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content={canonicalUrl} />
-        <meta property="og:title" content="WhatsApp Calling Agent Bots | Enterprise Conversational Voice AI" />
-        <meta
-          property="og:description"
-          content="Autonomous WhatsApp Calling Agent Bots that talk, qualify leads, update CRM records in real time, and route deals to human sales reps."
-        />
-        <meta property="og:image" content={`${SITE}/hero_dashboard.webp`} />
-        <meta property="og:site_name" content="Gyan VaniAi" />
-
-        {/* Twitter */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="WhatsApp Calling Agent Bots | Enterprise Conversational Voice AI" />
-        <meta
-          name="twitter:description"
-          content="Deploy autonomous WhatsApp Calling Agent Bots with sub-300ms conversational voice, automated lead scoring, and live CRM sync."
-        />
-        <meta name="twitter:image" content={`${SITE}/hero_dashboard.webp`} />
-
-        {/* Structured Schema */}
-        <script type="application/ld+json">
-          {JSON.stringify([serviceSchema, breadcrumbSchema, faqSchema])}
-        </script>
-      </Helmet>
+      <SeoHead
+        title="WhatsApp Calling Agent Bots | Enterprise Conversational Voice AI | Gyan VaniAi"
+        description="Deploy autonomous WhatsApp Calling Agent Bots that converse naturally, qualify leads with sub-300ms latency, sync CRM pipelines, and book meetings 24/7."
+        canonical={canonicalUrl}
+        image={`${SITE}/hero_dashboard.webp`}
+        keywords="WhatsApp Calling Agent, Voice AI Bots, Conversational AI, Automated Lead Scoring, WhatsApp CRM Automation"
+        schema={[serviceSchema, breadcrumbSchema, faqSchema]}
+      />
 
       <div className="wa-calling-page">
         {/* =========================================================================

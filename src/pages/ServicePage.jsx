@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Navigate } from 'react-router-dom';
 import { ArrowRight, CheckCircle } from 'lucide-react';
 import ContactModal from '../components/ContactModal';
-import { Helmet } from 'react-helmet-async';
+import SeoHead from '../components/SeoHead';
 
 const serviceData = {
   'crm-development': {
@@ -59,17 +59,12 @@ export default function ServicePage() {
 
   return (
     <>
-      <Helmet>
-        <title>{service.title} | Gyan VaniAi Services</title>
-        <meta name="description" content={service.description} />
-        <meta property="og:title" content={`${service.title} | Gyan VaniAi`} />
-        <meta property="og:description" content={service.description} />
-        <meta property="og:image" content={`https://www.gyanvaniai.online${service.imageUrl}`} />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content={`https://www.gyanvaniai.online/services/${serviceId}`} />
-        <meta name="twitter:card" content="summary_large_image" />
-        <link rel="canonical" href={`https://www.gyanvaniai.online/services/${serviceId}`} />
-      </Helmet>
+      <SeoHead
+        title={`${service.title} | Gyan VaniAi Services`}
+        description={service.description}
+        canonicalUrl={`https://www.gyanvaniai.online/services/${serviceId}`}
+        ogImage={`https://www.gyanvaniai.online${service.imageUrl}`}
+      />
       <div className="service-page" style={{ background: 'var(--bg-main)' }}>
         <div className="container" style={{ padding: '6rem 1rem 4rem', maxWidth: '900px', margin: '0 auto', minHeight: '80vh' }}>
         <div style={{ textAlign: 'center', marginBottom: '4rem' }}>

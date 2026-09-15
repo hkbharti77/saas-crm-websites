@@ -1,16 +1,16 @@
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
+import SeoHead from '../components/SeoHead';
 import { ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export default function NotFound() {
   return (
     <>
-      <Helmet>
-        <title>Page Not Found | Gyan VaniAi</title>
-        <meta name="description" content="The page you are looking for does not exist." />
-        <meta name="robots" content="noindex, follow" />
-      </Helmet>
+      <SeoHead
+        title="Page Not Found | Gyan VaniAi"
+        description="The page you are looking for does not exist."
+        noindex={true}
+      />
       
       <section className="section" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '70vh', textAlign: 'center' }}>
         <div className="container">

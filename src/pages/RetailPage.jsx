@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
+import SeoHead from '../components/SeoHead';
 import {
   ShoppingBag,
   ShoppingCart,
@@ -114,24 +114,13 @@ export default function RetailPage() {
 
   return (
     <>
-      <Helmet>
-        <title>Retail CRM & WhatsApp Commerce Automation 2026 | Gyan VaniAi</title>
-        <meta
-          name="description"
-          content="Modern 2026 Retail CRM with WhatsApp product catalog automation, AI shopping assistant, abandoned cart recovery, and Shopify E-Commerce integration."
-        />
-        <meta
-          name="keywords"
-          content="Retail CRM, WhatsApp Commerce, E-Commerce Automation, Abandoned Cart Recovery, Shopify WhatsApp Integration, D2C Customer Retention"
-        />
-        <link rel="canonical" href={`${SITE}/industries/retail`} />
-        <meta property="og:title" content="Retail CRM & WhatsApp Commerce Automation | Gyan VaniAi" />
-        <meta
-          property="og:description"
-          content="Turn WhatsApp into a high-converting storefront with interactive catalogs, abandoned cart recovery, and automated order tracking."
-        />
-        <meta property="og:image" content={`${SITE}/retail_hero_platform.jpg`} />
-      </Helmet>
+      <SeoHead
+        title="Retail CRM & WhatsApp Commerce Automation 2026 | Gyan VaniAi"
+        description="Modern 2026 Retail CRM with WhatsApp product catalog automation, AI shopping assistant, abandoned cart recovery, and Shopify E-Commerce integration."
+        canonical={`${SITE}/industries/retail`}
+        image={`${SITE}/retail_hero_platform.jpg`}
+        keywords="Retail CRM, WhatsApp Commerce, E-Commerce Automation, Abandoned Cart Recovery, Shopify WhatsApp Integration, D2C Customer Retention"
+      />
 
       <div className="retail-page">
         {/* Ambient Glow Aura */}

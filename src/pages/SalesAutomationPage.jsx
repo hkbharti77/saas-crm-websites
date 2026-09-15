@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
+import SeoHead from '../components/SeoHead';
 import { 
   ArrowRight, 
   CheckCircle2, 
@@ -305,27 +305,14 @@ export default function SalesAutomationPage() {
 
   return (
     <>
-      <Helmet>
-        <title>Sales Automation Software | Workflow & Pipeline | Gyan VaniAi</title>
-        <meta name="description" content="Automate repetitive sales workflows, prioritize opportunities, and close deals faster with AI-driven sales automation software." />
-        <meta name="keywords" content="Sales Automation Software, Revenue Workflow Automation, Lead Routing, Automated Follow-ups, AI Lead Scoring, Sales Pipeline Automation, Gyan VaniAi" />
-        <link rel="canonical" href={PAGE_URL} />
-        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-        <meta property="og:site_name" content="Gyan VaniAi" />
-        <meta property="og:locale" content="en_US" />
-        <meta property="og:title" content="Sales Automation Software | Workflow & Pipeline | Gyan VaniAi" />
-        <meta property="og:description" content="Automate repetitive sales workflows, prioritize opportunities, and close deals faster with AI-driven sales automation software." />
-        <meta property="og:image" content={`${SITE}/portfolio_ai.webp`} />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content={PAGE_URL} />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Sales Automation Software | Workflow & Pipeline | Gyan VaniAi" />
-        <meta name="twitter:description" content="Automate repetitive sales workflows, prioritize opportunities, and close deals faster with AI-driven sales automation software." />
-        <meta name="twitter:image" content={`${SITE}/portfolio_ai.webp`} />
-        <script type="application/ld+json">
-          {JSON.stringify([serviceSchema, breadcrumbSchema, faqSchema])}
-        </script>
-      </Helmet>
+      <SeoHead
+        title="Sales Automation Software | Workflow & Pipeline | Gyan VaniAi"
+        description="Automate repetitive sales workflows, prioritize opportunities, and close deals faster with AI-driven sales automation software."
+        keywords="Sales Automation Software, Revenue Workflow Automation, Lead Routing, Automated Follow-ups, AI Lead Scoring, Sales Pipeline Automation, Gyan VaniAi"
+        canonicalUrl={PAGE_URL}
+        ogImage={`${SITE}/portfolio_ai.webp`}
+        customSchema={[serviceSchema, breadcrumbSchema, faqSchema]}
+      />
 
       <div className="sales-automation-page">
         {/* ==================================================================

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
+import SeoHead from '../components/SeoHead';
 import { ArrowRight, CheckCircle2, X, Check, Inbox, Filter, Star, UserCheck, Mail, Trophy, PhoneCall, Mic, BrainCircuit, Bot, Calendar, Headset, Database, Building2, ShieldCheck, Zap, Layers, BarChart3, Users } from 'lucide-react';
 import ContactSection from '../components/ContactSection';
 import FAQ from '../components/FAQ';
@@ -924,27 +924,14 @@ export default function SEOLandingPage() {
 
   return (
     <>
-      <Helmet>
-        <title>{pageData.metaTitle}</title>
-        <meta name="description" content={pageData.metaDescription} />
-        <meta name="keywords" content={pageKeywords} />
-        <link rel="canonical" href={pageUrl} />
-        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-        <meta property="og:site_name" content="Gyan VaniAi" />
-        <meta property="og:locale" content="en_US" />
-        <meta property="og:title" content={pageData.metaTitle} />
-        <meta property="og:description" content={pageData.metaDescription} />
-        <meta property="og:image" content={ogImage} />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content={pageUrl} />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={pageData.metaTitle} />
-        <meta name="twitter:description" content={pageData.metaDescription} />
-        <meta name="twitter:image" content={ogImage} />
-        <script type="application/ld+json">
-          {JSON.stringify([primarySchema, breadcrumbSchema, ...(faqSchema ? [faqSchema] : [])])}
-        </script>
-      </Helmet>
+      <SeoHead
+        title={pageData.metaTitle}
+        description={pageData.metaDescription}
+        keywords={pageKeywords}
+        canonicalUrl={pageUrl}
+        ogImage={ogImage}
+        customSchema={[primarySchema, breadcrumbSchema, ...(faqSchema ? [faqSchema] : [])]}
+      />
 
       <div className="seo-landing-page">
         <section className="hero" style={{ paddingTop: '3.25rem', paddingBottom: '4rem' }}>

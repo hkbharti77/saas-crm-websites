@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
+import SeoHead from '../components/SeoHead';
 import { ArrowRight, ShieldCheck, Key, Users, Lock, Server, Database, Activity } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import './Security.css';
@@ -7,32 +7,20 @@ import './Security.css';
 export default function Security() {
   return (
     <>
-      <Helmet>
-        <title>Enterprise AI Security & Data Protection | Gyan VaniAi</title>
-        <meta name="description" content="Explore Gyan VaniAi enterprise security controls: multi-tenant isolation, AES-256 encryption, zero cross-tenant RAG pipelines, RBAC, and SOC2 compliant architecture." />
-        <link rel="canonical" href="https://www.gyanvaniai.online/security" />
-        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://www.gyanvaniai.online/security" />
-        <meta property="og:title" content="Enterprise AI Security & Data Protection | Gyan VaniAi" />
-        <meta property="og:description" content="Explore Gyan VaniAi enterprise security controls: multi-tenant isolation, AES-256 encryption, zero cross-tenant RAG pipelines, RBAC, and SOC2 compliant architecture." />
-        <meta property="og:image" content="https://www.gyanvaniai.online/hero_dashboard.webp" />
-        <meta property="og:site_name" content="Gyan VaniAi" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Enterprise AI Security & Data Protection | Gyan VaniAi" />
-        <meta name="twitter:description" content="Explore Gyan VaniAi enterprise security controls: multi-tenant isolation, AES-256 encryption, zero cross-tenant RAG pipelines, RBAC, and SOC2 compliant architecture." />
-        <meta name="twitter:image" content="https://www.gyanvaniai.online/hero_dashboard.webp" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebPage",
-            "name": "Gyan VaniAi Security & Data Protection",
-            "url": "https://www.gyanvaniai.online/security",
-            "description": "Learn how Gyan VaniAi approaches authentication, access control, multi-tenant isolation, data protection, and platform security.",
-            "publisher": { "@id": "https://www.gyanvaniai.online/#organization" }
-          })}
-        </script>
-      </Helmet>
+      <SeoHead
+        title="Enterprise AI Security & Data Protection | Gyan VaniAi"
+        description="Explore Gyan VaniAi enterprise security controls: multi-tenant isolation, AES-256 encryption, zero cross-tenant RAG pipelines, RBAC, and SOC2 compliant architecture."
+        canonicalUrl="https://www.gyanvaniai.online/security"
+        ogImage="https://www.gyanvaniai.online/hero_dashboard.webp"
+        customSchema={{
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": "Gyan VaniAi Security & Data Protection",
+          "url": "https://www.gyanvaniai.online/security",
+          "description": "Learn how Gyan VaniAi approaches authentication, access control, multi-tenant isolation, data protection, and platform security.",
+          "publisher": { "@id": "https://www.gyanvaniai.online/#organization" }
+        }}
+      />
 
       <div className="security-page">
         {/* HERO */}
