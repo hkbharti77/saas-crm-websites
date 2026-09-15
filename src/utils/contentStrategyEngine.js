@@ -121,21 +121,3 @@ export function buildGrowthIntelligenceReport(publishedPosts = [], _analyticsDoc
   };
 }
 
-/**
- * Format structured data prompt for AI Strategy Assistant ("What should I work on next?").
- * Ensures zero fabricated data and strictly structured real inputs.
- */
-export function buildAiStrategyAssistantPrompt(reportData = {}) {
-  return `You are GyanVaniAi's Senior Content Strategist AI.
-Analyze the following REAL structured publication metrics and produce a concise, prioritized content execution roadmap for the editor.
-
-PUBLICATION SNAPSHOT:
-- Total Published Articles: ${reportData.publishedCount || 0}
-- High Priority Opportunities: ${reportData.highPriorityCount || 0}
-- Medium Priority Opportunities: ${reportData.mediumPriorityCount || 0}
-
-INSTRUCTIONS:
-1. Provide a 3-step prioritized action plan (e.g. 1. High-Impact Refreshes, 2. SEO Fixes, 3. Strategic Content Briefs).
-2. Base ALL suggestions strictly on the supplied data. Do NOT invent fake rankings, search volumes, or impression numbers.
-3. Keep recommendations actionable and advisory.`;
-}

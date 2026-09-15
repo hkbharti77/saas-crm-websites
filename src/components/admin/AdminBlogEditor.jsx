@@ -34,15 +34,10 @@ import FeaturedImageUpload from './FeaturedImageUpload';
 import AdminHeader from './AdminHeader';
 import GoogleSearchPreview from './GoogleSearchPreview';
 import SocialSharePreview from './SocialSharePreview';
-import TagsInput from './TagsInput';
-import AiContentAssistant from './AiContentAssistant';
-import AiSeoPanel from './AiSeoPanel';
-import ContentBriefModal from './ContentBriefModal';
 import '../../pages/BlogPost.css';
 import EditorialReviewPanel from './EditorialReviewPanel';
 import EditorialComments from './EditorialComments';
 import InternalLinkPanel from './InternalLinkPanel';
-import AiHistoryPanel from './AiHistoryPanel';
 import { pingBlogIndexNow } from '../../utils/pingBlogIndexNow';
 import { sanitizeBlogHtml } from '../../utils/sanitizeBlogHtml';
 import { slugify } from '../../utils/slugify';
@@ -91,38 +86,7 @@ export default function AdminBlogEditor({
     setOpenSections((prev) => ({ ...prev, [sectionKey]: !prev[sectionKey] }));
   };
 
-  // Selection tracking for AI Assistant
-  const [selectedText, setSelectedText] = useState('');
-  const [isBriefModalOpen, setIsBriefModalOpen] = useState(false);
 
-  const handleUseBriefInEditor = ({ title, metaDescription, tags, content: briefContent }) => {
-    if (title) handleChange('title', title);
-    if (metaDescription) {
-      setIsSeoDescCustom(true);
-      handleChange('seoDescription', metaDescription);
-    }
-    if (tags) {
-      const tagArray = tags.split(',').map(t => t.trim()).filter(Boolean);
-      handleChange('tags', tagArray);
-      handleChange('tagLabels', tagArray);
-    }
-    if (briefContent) {
-      setContent(briefContent);
-      setIsDirty(true);
-    }
-  };
-
-  useEffect(() => {
-    const handleSelectionChange = () => {
-      const selection = window.getSelection();
-      if (selection && !selection.isCollapsed) {
-        const text = selection.toString().trim();
-        if (text) setSelectedText(text);
-      }
-    };
-    document.addEventListener('selectionchange', handleSelectionChange);
-    return () => document.removeEventListener('selectionchange', handleSelectionChange);
-  }, []);
 
   // Form State
   const [formData, setFormData] = useState({
@@ -1283,39 +1247,7 @@ export default function AdminBlogEditor({
               )}
             </div>
 
-            {/* 2. AI Content Assistant Panel (Collapsible) */}
-            <div className="admin-cms-panel-card">
-              <div
-                className="admin-panel-header collapsible"
-                onClick={() => toggleSection('aiAssistant')}
-              >
-                <div className="panel-header-title-wrap">
-                  <Sparkles size={15} style={{ color: '#0d9488' }} />
-                  <h3>AI Content Assistant</h3>
-                </div>
-                <div className="panel-collapse-icon">
-                  {openSections.aiAssistant ? <ChevronUp size={15} /> : <ChevronDown size={15} />}
-                </div>
-              </div>
 
-              {openSections.aiAssistant && (
-                <div className="admin-panel-body">
-                  <AiContentAssistant
-                    articleContext={{
-                      title: formData.title,
-                      category: customCategoryActive ? formData.customCategory : formData.category,
-                      excerpt: formData.excerpt,
-                      content: content,
-                    }}
-                    selectedText={selectedText}
-                    onInsertSuggestion={handleInsertAiSuggestion}
-                    onReplaceSelection={handleReplaceSelection}
-                    onApplySeoTitle={handleApplySeoTitle}
-                    onApplyMetaDesc={handleApplyMetaDesc}
-                  />
-                </div>
-              )}
-            </div>
 
             {/* Internal Link Recommendations Panel (Collapsible) */}
             <div className="admin-cms-panel-card">
@@ -1370,27 +1302,7 @@ export default function AdminBlogEditor({
               )}
             </div>
 
-            {/* AI Audit Activity Log (Collapsible) */}
-            <div className="admin-cms-panel-card">
-              <div
-                className="admin-panel-header collapsible"
-                onClick={() => toggleSection('aiHistory')}
-              >
-                <div className="panel-header-title-wrap">
-                  <Sparkles size={15} style={{ color: '#0d9488' }} />
-                  <h3>AI Audit Activity Log</h3>
-                </div>
-                <div className="panel-collapse-icon">
-                  {openSections.aiHistory ? <ChevronUp size={15} /> : <ChevronDown size={15} />}
-                </div>
-              </div>
 
-              {openSections.aiHistory && (
-                <div className="admin-panel-body">
-                  <AiHistoryPanel blogId={postId} />
-                </div>
-              )}
-            </div>
 
             {/* 2. Featured Cover Image (Collapsible) */}
             <div className="admin-cms-panel-card">
@@ -1646,20 +1558,7 @@ export default function AdminBlogEditor({
                     imageUrl={formData.ogImageUrl || formData.imageUrl}
                   />
 
-                  {/* AI SEO & Intelligence Audit Panel */}
-                  <div style={{ marginTop: '1.25rem', paddingTop: '1.25rem', borderTop: '1px solid var(--border-color, #e2e8f0)' }}>
-                    <AiSeoPanel
-                      formData={formData}
-                      content={content}
-                      onApplySeoTitle={handleApplySeoTitle}
-                      onApplyMetaDesc={handleApplyMetaDesc}
-                      onApplySlug={(slug) => {
-                        setIsSlugCustom(true);
-                        handleChange('slug', slugify(slug));
-                      }}
-                      onInsertContent={(newHtml) => handleInsertAiSuggestion(newHtml, 'append')}
-                    />
-                  </div>
+
                 </div>
               )}
             </div>
@@ -1920,13 +1819,7 @@ export default function AdminBlogEditor({
         </div>
       )}
 
-      {/* Content Brief Modal */}
-      <ContentBriefModal
-        isOpen={isBriefModalOpen}
-        onClose={() => setIsBriefModalOpen(false)}
-        onUseBriefInEditor={handleUseBriefInEditor}
-        defaultCategory={customCategoryActive ? formData.customCategory : formData.category}
-      />
+
     </div>
   );
 }

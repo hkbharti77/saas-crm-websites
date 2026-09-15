@@ -1,13 +1,11 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { Lightbulb, Plus, RefreshCw, Sparkles, Layers } from 'lucide-react';
+import { Lightbulb, Plus, RefreshCw, Layers } from 'lucide-react';
 import { auth, db } from '../../firebase';
 import { collection, getDocs, query, where, orderBy } from 'firebase/firestore';
 import AdminHeader from '../../components/admin/AdminHeader';
-import ContentBriefModal from '../../components/admin/ContentBriefModal';
-import { buildGrowthIntelligenceReport, buildAiStrategyAssistantPrompt } from '../../utils/contentStrategyEngine';
-import { generateText } from '../../services/ai/aiService';
+import { buildGrowthIntelligenceReport } from '../../utils/contentStrategyEngine';
 import './BlogAnalytics.css';
 import '../../components/admin/AdminCMS.css';
 
@@ -30,14 +28,6 @@ export default function ContentOpportunities() {
   const [analyticsDocs, setAnalyticsDocs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
-  // AI Strategy Assistant State
-  const [aiAnalysis, setAiAnalysis] = useState('');
-  const [isAiLoading, setIsAiLoading] = useState(false);
-
-  // Content Brief Modal State
-  const [isBriefModalOpen, setIsBriefModalOpen] = useState(false);
-  const [briefPrefillTopic, setBriefPrefillTopic] = useState('');
 
   useEffect(() => {
     async function load() {
@@ -71,35 +61,7 @@ export default function ContentOpportunities() {
     return buildGrowthIntelligenceReport(posts, analyticsDocs);
   }, [posts, analyticsDocs]);
 
-  // Handle AI Strategy Assistant Trigger
-  const handleAskAiStrategy = async () => {
-    setIsAiLoading(true);
-    try {
-      const prompt = buildAiStrategyAssistantPrompt(intelligenceReport);
-      const res = await generateText({
-        operation: 'strategic_recommendation',
-        prompt,
-        maxTokens: 500,
-      });
-
-      if (res.success && res.text) {
-        setAiAnalysis(res.text);
-      } else {
-        setAiAnalysis('AI strategy advice is currently unavailable. Please review the deterministic priority board below.');
-      }
-    } catch (err) {
-      setAiAnalysis('Unable to generate AI recommendations: ' + (err.message || ''));
-    } finally {
-      setIsAiLoading(false);
-    }
-  };
-
-  const handleOpenBrief = (topic = '') => {
-    setBriefPrefillTopic(topic);
-    setIsBriefModalOpen(true);
-  };
-
-  const handleUseBriefInEditor = () => {
+  const handleCreateNewPost = () => {
     navigate('/admin/create');
   };
 
@@ -134,37 +96,15 @@ export default function ContentOpportunities() {
           <div style={{ display: 'flex', gap: '0.5rem' }}>
             <button
               type="button"
-              className="btn btn-primary btn-sm"
-              onClick={handleAskAiStrategy}
-              disabled={isAiLoading}
-            >
-              <Sparkles size={14} style={{ marginRight: '4px' }} />
-              {isAiLoading ? 'Analyzing…' : 'Ask AI Strategist'}
-            </button>
-            <button
-              type="button"
               className="btn btn-outline btn-sm"
-              onClick={() => handleOpenBrief('WhatsApp & CRM Automation')}
+              onClick={handleCreateNewPost}
             >
-              <Plus size={14} style={{ marginRight: '4px' }} /> Create Brief
+              <Plus size={14} style={{ marginRight: '4px' }} /> Create Article
             </button>
           </div>
         </div>
 
         {error && <div className="analytics-error" role="alert">{error}</div>}
-
-        {/* AI Strategy Assistant Output Panel */}
-        {aiAnalysis && (
-          <div className="analytics-section" style={{ background: 'color-mix(in srgb, var(--primary-color) 6%, var(--bg-card))', border: '1px solid color-mix(in srgb, var(--primary-color) 25%, var(--border-color))', borderRadius: '14px', padding: '1.5rem', marginBottom: '2rem' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.75rem' }}>
-              <Sparkles size={18} style={{ color: 'var(--primary-color)' }} />
-              <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 800 }}>AI Content Strategy Advice</h3>
-            </div>
-            <div style={{ whiteSpace: 'pre-wrap', lineHeight: 1.6, fontSize: '0.92rem', color: 'var(--text-primary)' }}>
-              {aiAnalysis}
-            </div>
-          </div>
-        )}
 
         {loading ? (
           <div className="analytics-loading"><RefreshCw size={16} /> Computing Content Growth Priorities…</div>
@@ -192,7 +132,7 @@ export default function ContentOpportunities() {
                         <p style={{ fontSize: '0.82rem', color: 'var(--text-secondary)', margin: '0 0 0.75rem 0', lineHeight: 1.4 }}>
                           <strong>WHY:</strong> {item.reason}
                         </p>
-                        <Link to={item.actionLink} className="btn btn-outline btn-xs" style={{ width: '100%', justifyContent: 'center' }}>
+                        <Link to={item.actionLink || '/admin/create'} className="btn btn-outline btn-xs" style={{ width: '100%', justifyContent: 'center' }}>
                           {item.recommendedAction}
                         </Link>
                       </div>
@@ -215,20 +155,9 @@ export default function ContentOpportunities() {
                         <p style={{ fontSize: '0.82rem', color: 'var(--text-secondary)', margin: '0 0 0.75rem 0', lineHeight: 1.4 }}>
                           <strong>WHY:</strong> {item.reason}
                         </p>
-                        {item.actionType === 'brief' ? (
-                          <button
-                            type="button"
-                            className="btn btn-primary btn-xs"
-                            onClick={() => handleOpenBrief(item.suggestedTopic)}
-                            style={{ width: '100%', justifyContent: 'center' }}
-                          >
-                            <Sparkles size={12} style={{ marginRight: '4px' }} /> Create Brief from Opportunity
-                          </button>
-                        ) : (
-                          <Link to={item.actionLink} className="btn btn-outline btn-xs" style={{ width: '100%', justifyContent: 'center' }}>
-                            {item.recommendedAction}
-                          </Link>
-                        )}
+                        <Link to={item.actionLink || '/admin/create'} className="btn btn-outline btn-xs" style={{ width: '100%', justifyContent: 'center' }}>
+                          {item.recommendedAction}
+                        </Link>
                       </div>
                     ))
                   )}
@@ -238,13 +167,6 @@ export default function ContentOpportunities() {
           </>
         )}
       </div>
-
-      <ContentBriefModal
-        isOpen={isBriefModalOpen}
-        onClose={() => setIsBriefModalOpen(false)}
-        initialTopic={briefPrefillTopic}
-        onUseBrief={handleUseBriefInEditor}
-      />
     </div>
   );
 }

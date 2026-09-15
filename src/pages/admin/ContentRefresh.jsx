@@ -3,18 +3,13 @@ import { useNavigate, Link } from 'react-router-dom';
 import { db } from '../../firebase';
 import { collection, getDocs, query } from 'firebase/firestore';
 import AdminHeader from '../../components/admin/AdminHeader';
-import ContentRefreshModal from '../../components/admin/ContentRefreshModal';
-import { RefreshCw, Sparkles } from 'lucide-react';
+import { RefreshCw } from 'lucide-react';
 import '../../components/admin/AdminCMS.css';
 
 export default function ContentRefresh() {
   const navigate = useNavigate();
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
-
-  // Selected article for AI refresh modal
-  const [selectedArticle, setSelectedArticle] = useState(null);
-  const [isRefreshModalOpen, setIsRefreshModalOpen] = useState(false);
 
   useEffect(() => {
     async function loadBlogs() {
@@ -88,16 +83,11 @@ export default function ContentRefresh() {
     loadBlogs();
   }, []);
 
-  const handleOpenRefreshModal = (article) => {
-    setSelectedArticle(article);
-    setIsRefreshModalOpen(true);
-  };
-
   return (
     <div className="admin-cms-container">
       <AdminHeader
         title="Content Refresh Dashboard"
-        subtitle="Identify aging articles, audit content health, and apply AI-assisted refreshes safely to working drafts"
+        subtitle="Identify aging articles and audit content health safely for working drafts"
       />
 
       <div className="admin-cms-content" style={{ padding: '2rem' }}>
@@ -107,7 +97,7 @@ export default function ContentRefresh() {
               <RefreshCw size={20} className="text-teal-600" />
               <div>
                 <h3>Content Freshness & Decay Monitoring</h3>
-                <p>Articles published 6+ months ago are flagged for editorial review and AI refreshment.</p>
+                <p>Articles published 6+ months ago are flagged for editorial review.</p>
               </div>
             </div>
             <div className="refresh-stats-badges">
@@ -167,15 +157,7 @@ export default function ContentRefresh() {
                       {blog.trafficSignal}
                     </td>
                     <td>
-                      <div style={{ display: 'flex', gap: '0.4rem' }}>
-                        <button
-                          type="button"
-                          className="admin-cms-btn-primary small"
-                          onClick={() => handleOpenRefreshModal(blog)}
-                        >
-                          <Sparkles size={13} />
-                          <span>AI Refresh</span>
-                        </button>
+                      <div>
                         <Link
                           to={`/admin/edit/${blog.id}`}
                           className="admin-cms-btn-secondary small"
@@ -191,19 +173,6 @@ export default function ContentRefresh() {
           )}
         </div>
       </div>
-
-      {/* AI Refresh Proposal Modal */}
-      {selectedArticle && (
-        <ContentRefreshModal
-          isOpen={isRefreshModalOpen}
-          onClose={() => setIsRefreshModalOpen(false)}
-          article={selectedArticle}
-          onApplyRefreshToEditor={(_updatedData) => {
-            setIsRefreshModalOpen(false);
-            navigate(`/admin/edit/${selectedArticle.id}`);
-          }}
-        />
-      )}
     </div>
   );
 }

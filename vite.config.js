@@ -23,18 +23,6 @@ export default defineConfig(({ mode }) => {
   }
 
   return {
-    define: {
-      'process.env.AI_PROVIDER': JSON.stringify(env.AI_PROVIDER || env.VITE_AI_PROVIDER || ''),
-      'process.env.AI_API_KEY': JSON.stringify(env.AI_API_KEY || env.VITE_AI_API_KEY || ''),
-      'process.env.OPENROUTER_API_KEY': JSON.stringify(env.OPENROUTER_API_KEY || env.VITE_OPENROUTER_API_KEY || ''),
-      'process.env.OPENAI_API_KEY': JSON.stringify(env.OPENAI_API_KEY || env.VITE_OPENAI_API_KEY || ''),
-      'process.env.ANTHROPIC_API_KEY': JSON.stringify(env.ANTHROPIC_API_KEY || env.VITE_ANTHROPIC_API_KEY || ''),
-      'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY || env.VITE_GEMINI_API_KEY || ''),
-      'process.env.OPENROUTER_MODEL_NAME': JSON.stringify(env.OPENROUTER_MODEL_NAME || env.VITE_OPENROUTER_MODEL_NAME || ''),
-      'process.env.AI_MODEL': JSON.stringify(env.AI_MODEL || env.VITE_AI_MODEL || ''),
-      'process.env.AI_MAX_TOKENS': JSON.stringify(env.AI_MAX_TOKENS || env.VITE_AI_MAX_TOKENS || ''),
-      'process.env.AI_TEMPERATURE': JSON.stringify(env.AI_TEMPERATURE || env.VITE_AI_TEMPERATURE || ''),
-    },
     plugins: [
       react(),
       tailwindcss(),
