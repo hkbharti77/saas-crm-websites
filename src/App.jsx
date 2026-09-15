@@ -112,8 +112,8 @@ function App() {
 
   // Auto-open Book a Demo modal when user scrolls past 75% on any page
   useEffect(() => {
-    // Exclude admin dashboard/editor pages
-    if (location.pathname.startsWith('/admin')) return;
+    // Exclude admin dashboard/editor pages and blog pages
+    if (location.pathname.startsWith('/admin') || location.pathname.startsWith('/blog')) return;
 
     const currentPath = location.pathname;
 
