@@ -12,6 +12,7 @@ import WhatsAppCallingAgentPage from './WhatsAppCallingAgentPage';
 import HealthcarePage from './HealthcarePage';
 import RealEstatePage from './RealEstatePage';
 import RetailPage from './RetailPage';
+import FinancePage from './FinancePage';
 import NotFound from './NotFound';
 
 const SITE = 'https://www.gyanvaniai.online';
@@ -841,6 +842,10 @@ export default function SEOLandingPage() {
 
   if (pageId === 'retail') {
     return <RetailPage />;
+  }
+
+  if (pageId === 'finance' || pageId === 'fintech') {
+    return <FinancePage />;
   }
 
   if (!hasKnownPage) {
