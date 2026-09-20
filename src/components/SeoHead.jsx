@@ -36,7 +36,8 @@ export default function SEOHead({
   noindex = false,
   publishDate = null,
   modifiedDate = null,
-  author = 'Gyan VaniAi'
+  author = 'Gyan VaniAi',
+  preloadImage = null
 }) {
   const currentPath = canonical.replace('https://www.gyanvaniai.online', '');
   const hreflangs = generateHreflangTags(currentPath);
@@ -58,7 +59,7 @@ export default function SEOHead({
     schemas.push(breadcrumbSchema(breadcrumbs));
   }
   if (schema) {
-    schemas.push(schema);
+    schemas.push(...(Array.isArray(schema) ? schema : [schema]));
   }
 
   return (
@@ -176,11 +177,15 @@ export default function SEOHead({
         {JSON.stringify(schemas, null, 0)}
       </script>
 
+      {/* LCP Image Preload */}
+      {preloadImage && <link rel="preload" as="image" href={preloadImage} fetchpriority="high" />}
+
       {/* Preconnect for performance */}
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       <link rel="preconnect" href="https://www.googletagmanager.com" />
       <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+      <link rel="preconnect" href="https://res.cloudinary.com" />
     </Helmet>
   );
 }

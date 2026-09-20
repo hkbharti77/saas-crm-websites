@@ -18,6 +18,7 @@ import { useTheme } from '../context/ThemeContext';
 import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
 const ParticleGlobe3D = React.lazy(() => import('./ui/ParticleGlobe3D'));
 const Card3DTilt = React.lazy(() => import('./ui/Card3DTilt'));
+import { Helmet } from 'react-helmet-async';
 import './Hero.css';
 
 const HERO_SLIDES = [
@@ -139,13 +140,16 @@ export default function Hero({ onBookDemo }) {
   const activeSlideData = HERO_SLIDES[currentSlide];
 
   return (
-    <section 
-      className="hero" 
-      id="hero-section" 
+    <section
+      className="hero"
+      id="hero-section"
       aria-label="Gyan VaniAI Hero Carousel"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
+      <Helmet>
+        <link rel="preload" as="image" href="/hero_robot_dark.webp" fetchpriority="high" />
+      </Helmet>
       {/* Background Subtle Ambient Media Layer with Fluid Framer Motion */}
       <div className="hero-media-container" aria-hidden="true">
         <AnimatePresence initial={false} custom={direction} mode="popLayout">

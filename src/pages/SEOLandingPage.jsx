@@ -928,9 +928,10 @@ export default function SEOLandingPage() {
         title={pageData.metaTitle}
         description={pageData.metaDescription}
         keywords={pageKeywords}
-        canonicalUrl={pageUrl}
-        ogImage={ogImage}
-        customSchema={[primarySchema, breadcrumbSchema, ...(faqSchema ? [faqSchema] : [])]}
+        canonical={pageUrl}
+        image={ogImage}
+        schema={faqSchema ? [primarySchema, breadcrumbSchema, faqSchema] : [primarySchema, breadcrumbSchema]}
+        preloadImage={pageId === 'enterprise' ? '/hero-enterprise-crm.svg' : pageData.image}
       />
 
       <div className="seo-landing-page">
@@ -979,6 +980,7 @@ export default function SEOLandingPage() {
                     height="750"
                     style={{ width: '100%', height: 'auto', display: 'block' }}
                     fetchPriority="high"
+                    decoding="sync"
                   />
                 </div>
               ) : (
@@ -990,7 +992,7 @@ export default function SEOLandingPage() {
                     height="600"
                     style={{ width: '100%', height: 'auto', display: 'block' }}
                     fetchPriority="high"
-                    decoding="async"
+                    decoding="sync"
                   />
                 </div>
               )}

@@ -76,7 +76,7 @@ export default function Header() {
             height="38"
             className="logo-img"
             style={{ display: 'block' }}
-            fetchPriority="high"
+            decoding="auto"
           />
           <span className="logo-text">Gyan VaniAi</span>
         </Link>
@@ -189,6 +189,14 @@ export default function Header() {
             onClick={closeAll}
           >
             Blog
+          </NavLink>
+
+          <NavLink
+            to="/pricing"
+            className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
+            onClick={closeAll}
+          >
+            Pricing
           </NavLink>
 
           {/* Live Demo Trigger */}

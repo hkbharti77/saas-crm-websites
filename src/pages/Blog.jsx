@@ -132,6 +132,7 @@ export default function Blog() {
       <Helmet>
         <link rel="alternate" type="application/rss+xml" title="Gyan VaniAi Blog RSS" href="https://www.gyanvaniai.online/rss.xml" />
         <script type="application/ld+json">{JSON.stringify(indexSchema)}</script>
+        {featuredArticle?.imageUrl && <link rel="preload" as="image" href={featuredArticle.imageUrl} fetchpriority="high" />}
       </Helmet>
 
       <div className="blog-page">
@@ -177,6 +178,8 @@ export default function Blog() {
                     alt={`${featuredArticle.title} | Featured Article`}
                     className="featured-image"
                     loading="eager"
+                    fetchPriority="high"
+                    decoding="sync"
                     width="720"
                     height="405"
                     onError={() => handleImageError(featuredArticle.id)}

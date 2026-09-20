@@ -63,9 +63,70 @@
     <meta name="indexnow-key" content="e58f9214b74a49c693a19b88c42ef84a" />
     <link rel="alternate" type="application/rss+xml" title="Gyan VaniAi RSS Feed" href="https://www.gyanvaniai.online/rss.xml" />
 
+    <!-- Critical LCP image preloads — injected at HTML parse time, before the JS bundle executes.
+         Mirrors ThemeContext logic (localStorage app-theme-mode / app-fixed-theme + 7-day rotation). -->
+    <script>
+      (function () {
+        var ROUTE_IMAGES = {
+          '/services/sales-automation': '/hero-sales-automation.svg',
+          '/services/ai-chatbots': '/hero-ai-chatbots.svg',
+          '/services/whatsapp-calling-agent': '/hero_dashboard.webp',
+          '/services/whatsapp-calling-agent-bots': '/hero_dashboard.webp',
+          '/services/ai-development': '/portfolio_ai.webp',
+          '/services/ai-agent-development': '/ai-agent-hero.webp',
+          '/services/crm-development': '/portfolio_crm.webp',
+          '/services/lead-management': '/lead-hero.webp',
+          '/services/whatsapp-automation': '/portfolio_crm.webp',
+          '/services/hrms-development': '/portfolio_stock.webp',
+          '/services/erp-development': '/portfolio_stock.webp',
+          '/services/web-development': '/portfolio_stock.webp',
+          '/services/mobile-app-development': '/portfolio_crm.webp',
+          '/services/voice-bot-assistant': '/voice-bot-hero.webp',
+          '/services/phone-call-agent': '/hero_dashboard.webp',
+          '/services/ivr-solutions': '/portfolio_stock.webp',
+          '/services/human-handoff-systems': '/portfolio_crm.webp',
+          '/industries/healthcare': '/healthcare_hero_platform.jpg',
+          '/industries/real-estate': '/real_estate_hero_platform.jpg',
+          '/industries/retail': '/retail_hero_platform.jpg',
+          '/industries/enterprise': '/hero-enterprise-crm.svg',
+          '/privacy': '/privacy_image.webp',
+          '/terms': '/terms_image.webp'
+        };
+        var THEME_IMAGES = {
+          '/': { dark: '/hero_robot_dark.webp', light: '/hero_robot_light.webp' },
+          '/services/whatsapp-coexistence': { dark: '/whatsapp_coexistence_dark.webp', light: '/whatsapp_coexistence_light.webp' }
+        };
+        var src = null;
+        var themed = THEME_IMAGES[location.pathname];
+        if (themed) {
+          var mode = 'fixed', fixed = 'midnight';
+          try {
+            mode = localStorage.getItem('app-theme-mode') || 'fixed';
+            var saved = localStorage.getItem('app-fixed-theme');
+            if (saved && ['midnight','aurora','slate','quantum','amber','light','sapphire'].indexOf(saved) !== -1) fixed = saved;
+          } catch (e) {}
+          var theme = mode === 'auto'
+            ? ['amber','aurora','slate','quantum','light','midnight','sapphire'][new Date().getDay()]
+            : fixed;
+          src = theme === 'light' ? themed.light : themed.dark;
+        } else {
+          src = ROUTE_IMAGES[location.pathname] || null;
+        }
+        if (src) {
+          var link = document.createElement('link');
+          link.rel = 'preload';
+          link.as = 'image';
+          link.href = src;
+          link.fetchPriority = 'high';
+          document.head.appendChild(link);
+        }
+      })();
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" />
+    <link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" /></noscript>
     <meta property="og:type" content="website" data-rh="true" />
     <meta property="og:url" content="https://www.gyanvaniai.online/" data-rh="true" />
     <meta property="og:site_name" content="Gyan VaniAi" data-rh="true" />
@@ -109,8 +170,10 @@
       }
     </script>
 
-    <!-- Gyan VaniAi Chat Widget Stylesheet -->
-    <link rel="stylesheet" href="https://api.gyanvaniai.online/styles.css">
+    <!-- Gyan VaniAi Chat Widget Stylesheet (non-blocking: widget script only injects after window load) -->
+    <link rel="preload" as="style" href="https://api.gyanvaniai.online/styles.css" />
+    <link rel="stylesheet" media="print" onload="this.media='all'" href="https://api.gyanvaniai.online/styles.css" />
+    <noscript><link rel="stylesheet" href="https://api.gyanvaniai.online/styles.css" /></noscript>
     <style>
       #crm-chat-widget,
       #chat-toggle {

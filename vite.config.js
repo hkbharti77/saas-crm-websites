@@ -205,16 +205,6 @@ export default defineConfig(({ mode }) => {
     },
     build: {
       chunkSizeWarningLimit: 1500,
-      rollupOptions: {
-        output: {
-          manualChunks(id) {
-            if (id.includes('node_modules')) {
-              if (id.includes('firebase')) return 'vendor-firebase';
-              if (id.includes('react-phone-number-input') || id.includes('libphonenumber-js')) return 'vendor-phone';
-            }
-          }
-        }
-      }
     }
   };
 });

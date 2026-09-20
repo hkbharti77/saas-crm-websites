@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { db } from '../firebase';
-import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import './CookieConsentBanner.css';
 
 const COOKIE_CONSENT_KEY = 'gyanvaniai_cookie_consent';
@@ -94,7 +92,12 @@ const CookieConsentBanner = () => {
     setShowPreferences(false);
 
     // Write analytics event to Firestore with IP + location
+    // Firebase is dynamically imported here so the ~560KB SDK stays out of the initial bundle
     try {
+      const [{ db }, { collection, addDoc, serverTimestamp }] = await Promise.all([
+        import('../firebase'),
+        import('firebase/firestore'),
+      ]);
       const geo = await getGeoInfo();
       await addDoc(collection(db, 'cookie_consents'), {
         status,

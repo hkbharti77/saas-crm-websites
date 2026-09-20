@@ -120,6 +120,7 @@ export default function RealEstatePage() {
         canonical={`${SITE}/industries/real-estate`}
         image={`${SITE}/real_estate_hero_platform.jpg`}
         keywords="Real Estate CRM, WhatsApp Property Automation, PropTech Software, Site Visit Scheduling, Property Lead Management, Real Estate Lead Routing"
+        preloadImage="/real_estate_hero_platform.jpg"
       />
 
       <div className="real-estate-page">
@@ -193,6 +194,7 @@ export default function RealEstatePage() {
                     height="562"
                     className="re-hero-img"
                     fetchPriority="high"
+                    decoding="sync"
                   />
                 </div>
               </div>

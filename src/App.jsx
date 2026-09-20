@@ -4,7 +4,6 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import EnterpriseBackground from './components/EnterpriseBackground';
 import CookieConsentBanner from './components/CookieConsentBanner';
-import ContactModal from './components/ContactModal';
 import Home from './pages/Home';
 import { ThemeProvider } from './context/ThemeContext';
 
@@ -29,6 +28,8 @@ const MediaLibrary = lazy(() => import('./pages/admin/MediaLibrary'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 const CategoryPage = lazy(() => import('./pages/CategoryPage'));
 const About = lazy(() => import('./pages/About'));
+const PricingPage = lazy(() => import('./pages/PricingPage'));
+const PlanDetailPage = lazy(() => import('./pages/PlanDetailPage'));
 const Security = lazy(() => import('./pages/Security'));
 const BlogAnalytics = lazy(() => import('./pages/admin/BlogAnalytics'));
 const ArticleAnalytics = lazy(() => import('./pages/admin/ArticleAnalytics'));
@@ -43,6 +44,8 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 
 const DemoModal = lazy(() => import('./components/DemoModal'));
+// Lazy: pulls react-phone-number-input (~210KB) — only loaded when the modal is actually opened
+const ContactModal = lazy(() => import('./components/ContactModal'));
 import MobileStickyCTA from './components/MobileStickyCTA';
 
 class ChunkErrorBoundary extends Component {
@@ -191,6 +194,8 @@ function App() {
                 <Route path="/privacy" element={<PolicyPage />} />
                 <Route path="/terms" element={<TermsConditions />} />
                 <Route path="/about" element={<About />} />
+                <Route path="/pricing" element={<PricingPage />} />
+                <Route path="/pricing/:planId" element={<PlanDetailPage />} />
                 <Route path="/security" element={<Security />} />
 
                 <Route path="/admin/login" element={<AdminLogin />} />
@@ -215,14 +220,18 @@ function App() {
         </main>
         {!isAdminRoute && <Footer />}
         {!isAdminRoute && <CookieConsentBanner />}
-        <ContactModal
-          isOpen={isDemoModalOpen}
-          onClose={() => {
-            setIsDemoModalOpen(false);
-            setModalPrefill('');
-          }}
-          prefillMessage={modalPrefill}
-        />
+        {isDemoModalOpen && (
+          <Suspense fallback={null}>
+            <ContactModal
+              isOpen={isDemoModalOpen}
+              onClose={() => {
+                setIsDemoModalOpen(false);
+                setModalPrefill('');
+              }}
+              prefillMessage={modalPrefill}
+            />
+          </Suspense>
+        )}
         <Suspense fallback={null}>
           <DemoModal
             isOpen={isLiveDemoOpen}

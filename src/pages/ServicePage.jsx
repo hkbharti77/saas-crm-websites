@@ -62,8 +62,9 @@ export default function ServicePage() {
       <SeoHead
         title={`${service.title} | Gyan VaniAi Services`}
         description={service.description}
-        canonicalUrl={`https://www.gyanvaniai.online/services/${serviceId}`}
-        ogImage={`https://www.gyanvaniai.online${service.imageUrl}`}
+        canonical={`https://www.gyanvaniai.online/services/${serviceId}`}
+        image={`https://www.gyanvaniai.online${service.imageUrl}`}
+        preloadImage={service.imageUrl}
       />
       <div className="service-page" style={{ background: 'var(--bg-main)' }}>
         <div className="container" style={{ padding: '6rem 1rem 4rem', maxWidth: '900px', margin: '0 auto', minHeight: '80vh' }}>

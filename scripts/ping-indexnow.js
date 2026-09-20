@@ -129,7 +129,12 @@ async function submitBatch() {
       `${BASE_URL}/industries/travel`,
       `${BASE_URL}/industries/government`,
       `${BASE_URL}/privacy`,
-      `${BASE_URL}/terms`
+      `${BASE_URL}/terms`,
+      `${BASE_URL}/pricing`,
+      `${BASE_URL}/pricing/starter`,
+      `${BASE_URL}/pricing/growth`,
+      `${BASE_URL}/pricing/scale`,
+      `${BASE_URL}/pricing/enterprise`
     ];
     
     console.log(`📊 Using ${urlList.length} predefined URLs\n`);

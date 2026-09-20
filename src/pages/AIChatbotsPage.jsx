@@ -254,7 +254,9 @@ export default function AIChatbotsPage() {
       <SeoHead
         title="AI Chatbot Development Company | Custom RAG Chatbots | Gyan VaniAi"
         description="Build intelligent AI chatbots with RAG knowledge grounding, autonomous API actions, CRM sync, and human handoff. Deploy across WhatsApp and web."
-        canonicalUrl={`${SITE}/services/ai-chatbots`}
+        canonical={`${SITE}/services/ai-chatbots`}
+        image={`${SITE}/hero-ai-chatbots.svg`}
+        preloadImage="/hero-ai-chatbots.svg"
       />
 
       {/* ==========================================================================
@@ -321,6 +323,7 @@ export default function AIChatbotsPage() {
                 className="chatbots-hero-img"
                 style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '1rem', boxShadow: 'var(--shadow-hover)' }}
                 fetchPriority="high"
+                decoding="sync"
               />
             </div>
           </div>

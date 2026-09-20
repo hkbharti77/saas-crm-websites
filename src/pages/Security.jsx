@@ -10,9 +10,9 @@ export default function Security() {
       <SeoHead
         title="Enterprise AI Security & Data Protection | Gyan VaniAi"
         description="Explore Gyan VaniAi enterprise security controls: multi-tenant isolation, AES-256 encryption, zero cross-tenant RAG pipelines, RBAC, and SOC2 compliant architecture."
-        canonicalUrl="https://www.gyanvaniai.online/security"
-        ogImage="https://www.gyanvaniai.online/hero_dashboard.webp"
-        customSchema={{
+        canonical="https://www.gyanvaniai.online/security"
+        image="https://www.gyanvaniai.online/hero_dashboard.webp"
+        schema={{
           "@context": "https://schema.org",
           "@type": "WebPage",
           "name": "Gyan VaniAi Security & Data Protection",

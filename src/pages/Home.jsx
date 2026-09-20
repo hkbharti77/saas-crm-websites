@@ -66,7 +66,7 @@ export default function Home() {
 
           <FAQ />
 
-          {/* 10 & 11. Final CTA & Lead Form */}
+          {/* 11 & 12. Final CTA & Lead Form */}
           <ContactSection />
         </Suspense>
       </div>

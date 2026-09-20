@@ -32,6 +32,7 @@ export default function TermsConditions() {
         title="Terms & Conditions | Gyan VaniAi"
         description="Terms of Service and API usage guidelines for Gyan VaniAi platforms."
         canonical="https://www.gyanvaniai.online/terms"
+        preloadImage="/terms_image.webp"
       />
       <Helmet>
         <script type="application/ld+json">

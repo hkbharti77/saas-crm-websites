@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef, useMemo } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { ArrowLeft, Calendar, Clock, User, Share2, Copy, Send, ChevronLeft, ChevronRight, MessageCircle, Globe, TrendingUp } from 'lucide-react';
 
 import { auth, db } from '../firebase';
@@ -368,7 +369,7 @@ export default function BlogPost() {
       <>
         <SeoHead
           title="Loading article… | Gyan VaniAi Blog"
-          canonicalUrl={blogPostUrl(id)}
+          canonical={blogPostUrl(id)}
         />
         <div style={{ minHeight: '80vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           Loading...
@@ -399,11 +400,15 @@ export default function BlogPost() {
       <SeoHead
         title={pageTitle}
         description={description}
-        canonicalUrl={canonical}
-        ogImage={image}
-        ogType="article"
-        customSchema={schema}
+        canonical={canonical}
+        image={image}
+        type="article"
+        schema={schema.length === 1 ? schema[0] : schema}
+        preloadImage={post.imageUrl}
       />
+      <Helmet>
+        {post.imageUrl && <link rel="preload" as="image" href={post.imageUrl} fetchpriority="high" />}
+      </Helmet>
 
       {/* Reading Progress Indicator */}
       <div

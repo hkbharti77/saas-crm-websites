@@ -120,6 +120,7 @@ export default function RetailPage() {
         canonical={`${SITE}/industries/retail`}
         image={`${SITE}/retail_hero_platform.jpg`}
         keywords="Retail CRM, WhatsApp Commerce, E-Commerce Automation, Abandoned Cart Recovery, Shopify WhatsApp Integration, D2C Customer Retention"
+        preloadImage="/retail_hero_platform.jpg"
       />
 
       <div className="retail-page">
@@ -214,6 +215,7 @@ export default function RetailPage() {
                     height="562"
                     className="rt-hero-img"
                     fetchPriority="high"
+                    decoding="sync"
                   />
                 </div>
               </div>

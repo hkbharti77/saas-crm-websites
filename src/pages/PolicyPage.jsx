@@ -32,6 +32,7 @@ export default function PolicyPage() {
         title="Privacy Policy | Gyan VaniAi"
         description="Privacy Policy and Data Handling practices for Gyan VaniAi."
         canonical="https://www.gyanvaniai.online/privacy"
+        preloadImage="/privacy_image.webp"
       />
       <Helmet>
         <script type="application/ld+json">

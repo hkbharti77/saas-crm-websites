@@ -52,9 +52,9 @@ export default function Documentation() {
       <SeoHead
         title="Documentation & Platform Technical Guides | Gyan VaniAi"
         description="Official documentation for Gyan VaniAi: AI CRM architecture, WhatsApp Coexistence setup, low-latency RAG pipelines, voice bots, and API integration guides."
-        canonicalUrl="https://www.gyanvaniai.online/documentation"
-        ogImage="https://www.gyanvaniai.online/hero_dashboard.webp"
-        customSchema={{
+        canonical="https://www.gyanvaniai.online/documentation"
+        image="https://www.gyanvaniai.online/hero_dashboard.webp"
+        schema={{
           "@context": "https://schema.org",
           "@type": "TechArticle",
           "headline": "Gyan VaniAi Documentation & Platform Technical Guides",

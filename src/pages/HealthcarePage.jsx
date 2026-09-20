@@ -120,6 +120,7 @@ export default function HealthcarePage() {
         canonical={`${SITE}/industries/healthcare`}
         image={`${SITE}/healthcare_hero_platform.jpg`}
         keywords="Healthcare CRM, Patient Automation, WhatsApp Appointment Booking, EMR Integration, HIPAA Compliant CRM, Clinical AI Triage, ABDM Ready"
+        preloadImage="/healthcare_hero_platform.jpg"
       />
 
       <div className="healthcare-page">
@@ -193,6 +194,7 @@ export default function HealthcarePage() {
                     height="562"
                     className="hc-hero-img"
                     fetchPriority="high"
+                    decoding="sync"
                   />
                 </div>
               </div>

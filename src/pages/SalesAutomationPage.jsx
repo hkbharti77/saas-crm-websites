@@ -309,9 +309,10 @@ export default function SalesAutomationPage() {
         title="Sales Automation Software | Workflow & Pipeline | Gyan VaniAi"
         description="Automate repetitive sales workflows, prioritize opportunities, and close deals faster with AI-driven sales automation software."
         keywords="Sales Automation Software, Revenue Workflow Automation, Lead Routing, Automated Follow-ups, AI Lead Scoring, Sales Pipeline Automation, Gyan VaniAi"
-        canonicalUrl={PAGE_URL}
-        ogImage={`${SITE}/portfolio_ai.webp`}
-        customSchema={[serviceSchema, breadcrumbSchema, faqSchema]}
+        canonical={PAGE_URL}
+        image={`${SITE}/portfolio_ai.webp`}
+        schema={[serviceSchema, breadcrumbSchema, faqSchema]}
+        preloadImage="/hero-sales-automation.svg"
       />
 
       <div className="sales-automation-page">
@@ -386,6 +387,7 @@ export default function SalesAutomationPage() {
                   className="sales-hero-img"
                   style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '1rem', boxShadow: 'var(--shadow-hover)' }}
                   fetchPriority="high"
+                  decoding="sync"
                 />
               </div>
             </div>

@@ -27,6 +27,7 @@ import NumberTicker from '../components/ui/NumberTicker';
 import Particles from '../components/ui/Particles';
 import SpotlightCard from '../components/ui/SpotlightCard';
 import Meteors from '../components/ui/Meteors';
+import MetaInteractiveSandbox from '../components/MetaInteractiveSandbox';
 import { trackBookDemo } from '../utils/analytics';
 import { useTheme } from '../context/ThemeContext';
 import './WhatsAppCoexistencePage.css';
@@ -181,6 +182,7 @@ export default function WhatsAppCoexistencePage() {
         canonical="https://www.gyanvaniai.online/services/whatsapp-coexistence"
         image="https://www.gyanvaniai.online/whatsapp_coexistence_dark.webp"
         keywords="WhatsApp Coexistence, WhatsApp Business API, Dual WhatsApp Mode, WhatsApp CRM Automation, Single Number WhatsApp"
+        preloadImage="/whatsapp_coexistence_dark.webp"
       />
 
       <div className="coexistence-page">
@@ -488,7 +490,19 @@ export default function WhatsAppCoexistencePage() {
         </section>
 
         {/* =========================================================================
-            4. COMPARISON TABLE (Wrapped in Card Tilt with BorderBeam Highlight)
+            4. LIVE META INTERACTIVE SANDBOX (CAMPAIGN SIMULATOR & HSM TESTER)
+            ========================================================================= */}
+        <section className="section container" style={{ padding: '2rem 0 4rem 0' }}>
+          <MetaInteractiveSandbox 
+            onBookDemo={() => {
+              trackBookDemo('coexistence-sandbox');
+              setIsModalOpen(true);
+            }} 
+          />
+        </section>
+
+        {/* =========================================================================
+            5. COMPARISON TABLE (Wrapped in Card Tilt with BorderBeam Highlight)
             ========================================================================= */}
         <section className="section bg-tinted" style={{ padding: '5.25rem 0' }}>
           <div className="container">
