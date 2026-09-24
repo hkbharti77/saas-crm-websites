@@ -10,6 +10,7 @@ const WhyChooseUs = lazy(() => import('../components/WhyChooseUs'));
 const Portfolio = lazy(() => import('../components/Portfolio'));
 const FAQ = lazy(() => import('../components/FAQ'));
 const ContactSection = lazy(() => import('../components/ContactSection'));
+const ContactModal = lazy(() => import('../components/ContactModal'));
 import SeoHead from '../components/SeoHead';
 
 export default function Home() {
