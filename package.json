@@ -10,6 +10,8 @@
     "dev": "vite",
     "build": "vite build && node scripts/prerender.js",
     "audit:seo": "node scripts/audit-seo.js",
+    "audit:aeo": "node scripts/audit-aeo.js",
+    "aeo:check": "node scripts/audit-aeo.js",
     "lint": "eslint .",
     "test": "echo \"No test specified\" && exit 0",
     "preview": "vite preview",

@@ -132,7 +132,7 @@ export default function Blog() {
       <Helmet>
         <link rel="alternate" type="application/rss+xml" title="Gyan VaniAi Blog RSS" href="https://www.gyanvaniai.online/rss.xml" />
         <script type="application/ld+json">{JSON.stringify(indexSchema)}</script>
-        {featuredArticle?.imageUrl && <link rel="preload" as="image" href={featuredArticle.imageUrl} fetchpriority="high" />}
+        {featuredArticle?.imageUrl && <link rel="preload" as="image" href={featuredArticle.imageUrl} fetchPriority="high" />}
       </Helmet>
 
       <div className="blog-page">

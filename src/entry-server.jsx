@@ -19,6 +19,9 @@ import SEOLandingPage from './pages/SEOLandingPage';
 import WhatsAppCoexistencePage from './pages/WhatsAppCoexistencePage';
 import SalesAutomationPage from './pages/SalesAutomationPage';
 import AIChatbotsPage from './pages/AIChatbotsPage';
+import WhatsAppCallingAgentPage from './pages/WhatsAppCallingAgentPage';
+import BlogSearch from './pages/BlogSearch';
+import CategoryPage from './pages/CategoryPage';
 import AdminLogin from './pages/admin/AdminLogin';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import AdminCreatePost from './pages/admin/AdminCreatePost';
@@ -39,10 +42,14 @@ function ServerApp() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/search" element={<BlogSearch />} />
             <Route path="/blog/:id" element={<BlogPost />} />
+            <Route path="/category/:slug" element={<CategoryPage />} />
             <Route path="/services/whatsapp-coexistence" element={<WhatsAppCoexistencePage />} />
             <Route path="/services/sales-automation" element={<SalesAutomationPage />} />
             <Route path="/services/ai-chatbots" element={<AIChatbotsPage />} />
+            <Route path="/services/whatsapp-calling-agent" element={<WhatsAppCallingAgentPage />} />
+            <Route path="/services/whatsapp-calling-agent-bots" element={<WhatsAppCallingAgentPage />} />
             <Route path="/documentation" element={<Documentation />} />
             <Route path="/security" element={<Security />} />
             <Route path="/services/:serviceId" element={<SEOLandingPage />} />

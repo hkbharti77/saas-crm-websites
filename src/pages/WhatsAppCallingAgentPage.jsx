@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import SeoHead from '../components/SeoHead';
+import AEOAnswerBlock from '../components/AEOAnswerBlock';
 import {
   PhoneCall,
   MessageSquare,
@@ -230,6 +231,7 @@ const pageFaqs = [
 ];
 
 export default function WhatsAppCallingAgentPage() {
+  const location = useLocation();
   const [isDemoModalOpen, setIsDemoModalOpen] = useState(false);
   const [activePipelineStep, setActivePipelineStep] = useState(0);
   const [openFaqIndices, setOpenFaqIndices] = useState(new Set([0, 1]));
@@ -269,7 +271,7 @@ export default function WhatsAppCallingAgentPage() {
     setIsDemoModalOpen(true);
   };
 
-  const canonicalUrl = `${SITE}/services/whatsapp-calling-agent`;
+  const canonicalUrl = `${SITE}${location.pathname}`;
 
   // JSON-LD Schemas for SEO
   const serviceSchema = {
@@ -318,9 +320,26 @@ export default function WhatsAppCallingAgentPage() {
         image={`${SITE}/hero_dashboard.webp`}
         keywords="WhatsApp Calling Agent, Voice AI Bots, Conversational AI, Automated Lead Scoring, WhatsApp CRM Automation"
         schema={[serviceSchema, breadcrumbSchema, faqSchema]}
+        aeoQuestion="What is WhatsApp Calling Agent Bot Voice AI?"
+        aeoAnswer="WhatsApp Calling Agent Bots are autonomous voice AI assistants that operate natively within WhatsApp Business API. They conduct sub-300ms human-like voice conversations, qualify leads, and update CRM records automatically."
       />
 
       <div className="wa-calling-page">
+        {/* AEO Direct Answer Summary Block */}
+        <div className="container mx-auto px-4 max-w-7xl pt-6">
+          <AEOAnswerBlock
+            question="What is Gyan VaniAi WhatsApp Calling Bot & Voice AI Agent?"
+            answer="Gyan VaniAi WhatsApp Calling Bots conduct natural conversational voice calls directly over WhatsApp Business API with sub-300ms latency, automated lead scoring, dynamic CRM data dips, and instant human handoff."
+            takeaways={[
+              "Sub-300ms Voice Latency: Natural speech-to-speech conversational response time.",
+              "Native WhatsApp Calling: Inbound & outbound calls directly inside WhatsApp API.",
+              "Automated Lead Scoring: Real-time BANT qualification during live voice calls.",
+              "Smart Human Handoff: Transfer complex calls with complete transcript retention.",
+              "SIP / Telephony Integration: Connect to enterprise PBX and custom CRM workflows."
+            ]}
+            badge="AEO Voice AI Summary"
+          />
+        </div>
         {/* =========================================================================
             1. HERO SECTION — Enterprise Product Showcase
             ========================================================================= */}

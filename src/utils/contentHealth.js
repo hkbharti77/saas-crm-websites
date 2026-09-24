@@ -235,3 +235,93 @@ export function countSeoOpportunities(posts) {
     missingTags: published.filter(p => !Array.isArray(p.tags) || p.tags.length === 0).length,
   };
 }
+
+/**
+ * Compute AEO (Answer Engine Optimization) Readiness score (0-100) for a post.
+ * Checks direct Q&A fields, snippet lengths, takeaways, FAQ structure, and schemas.
+ *
+ * @param {Object} post - Blog post object
+ * @returns {{ score: number, grade: string, label: string, color: string, checks: Array }}
+ */
+export function computeAeoReadiness(post) {
+  const checks = [];
+  let score = 0;
+
+  // 1. Direct Question Defined (25 pts)
+  const question = post?.aeoDirectQuestion || '';
+  const hasQuestion = question.trim().length >= 15;
+  checks.push({
+    key: 'aeo_question',
+    label: 'Direct Question Defined',
+    pass: hasQuestion,
+    points: 25,
+    earned: hasQuestion ? 25 : 0,
+    tip: hasQuestion ? null : 'Add a clear AEO direct question (e.g. "What is [Topic] and how does it work?")'
+  });
+  if (hasQuestion) score += 25;
+
+  // 2. Direct Answer Snippet (25 pts)
+  const answer = post?.aeoDirectAnswer || '';
+  const ansLen = answer.trim().length;
+  const hasGoodAnswer = ansLen >= 50 && ansLen <= 400;
+  checks.push({
+    key: 'aeo_answer',
+    label: `Direct Answer Snippet (${ansLen} chars)`,
+    pass: hasGoodAnswer,
+    points: 25,
+    earned: hasGoodAnswer ? 25 : 0,
+    tip: hasGoodAnswer ? null : 'Provide a concise 1-3 sentence direct answer snippet (50-400 chars) for ChatGPT & Perplexity'
+  });
+  if (hasGoodAnswer) score += 25;
+
+  // 3. Key Technical Takeaways (20 pts)
+  const takeaways = post?.aeoKeyTakeaways;
+  const takeawayArray = Array.isArray(takeaways) 
+    ? takeaways 
+    : (typeof takeaways === 'string' ? takeaways.split(',').filter(Boolean) : []);
+  const hasTakeaways = takeawayArray.length >= 2;
+  checks.push({
+    key: 'aeo_takeaways',
+    label: 'Key Technical Takeaways',
+    pass: hasTakeaways,
+    points: 20,
+    earned: hasTakeaways ? 20 : 0,
+    tip: hasTakeaways ? null : 'Add at least 2 bulleted key takeaways for AI extraction'
+  });
+  if (hasTakeaways) score += 20;
+
+  // 4. Content FAQ/Q&A Structure (15 pts)
+  const contentHtml = post?.content || '';
+  const hasFaqStructure = /<h[23][^>]*>.*?(faq|frequently asked|q&a|questions).*?<\/h[23]>/i.test(contentHtml) || countHeadings(contentHtml) >= 3;
+  checks.push({
+    key: 'aeo_faq_structure',
+    label: 'Subheading & FAQ Hierarchy',
+    pass: hasFaqStructure,
+    points: 15,
+    earned: hasFaqStructure ? 15 : 0,
+    tip: hasFaqStructure ? null : 'Include a structured Q&A or subheadings inside the content'
+  });
+  if (hasFaqStructure) score += 15;
+
+  // 5. Schema & Speakable Prerequisites (15 pts)
+  const hasSeoMeta = !!(post?.seoTitle && post?.seoDescription);
+  checks.push({
+    key: 'aeo_schema_meta',
+    label: 'SEO Metadata for Schema Generation',
+    pass: hasSeoMeta,
+    points: 15,
+    earned: hasSeoMeta ? 15 : 0,
+    tip: hasSeoMeta ? null : 'Ensure SEO Title and Description are filled to generate valid QAPage JSON-LD'
+  });
+  if (hasSeoMeta) score += 15;
+
+  const clampedScore = Math.min(100, Math.max(0, score));
+  let grade, label, color;
+  if (clampedScore >= 90) { grade = 'A'; label = 'AI Answer Engine Ready'; color = '#10b981'; }
+  else if (clampedScore >= 75) { grade = 'B'; label = 'Good AEO Score'; color = '#3b82f6'; }
+  else if (clampedScore >= 50) { grade = 'C'; label = 'Needs AEO Optimization'; color = '#f59e0b'; }
+  else { grade = 'D'; label = 'Unoptimized for AI Engines'; color = '#ef4444'; }
+
+  return { score: clampedScore, grade, label, color, checks };
+}
+

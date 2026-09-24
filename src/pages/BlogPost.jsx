@@ -14,6 +14,7 @@ import {
 } from '../utils/blogAnalytics';
 import { recordRecentView, recordReadingProgress } from '../utils/personalizationEngine';
 import SeoHead from '../components/SeoHead';
+import AEOAnswerBlock from '../components/AEOAnswerBlock';
 import NotFound from './NotFound';
 import {
   blogPostUrl,
@@ -129,10 +130,49 @@ function extractHeadingsAndTransformHtml(htmlContent) {
   return { headings, modifiedHtml: doc.body.innerHTML };
 }
 
+const STATIC_BLOG_FALLBACKS = {
+  'multi-agent-orchestration-future': {
+    id: 'multi-agent-orchestration-future',
+    slugId: 'multi-agent-orchestration-future',
+    title: 'The Future of Multi-Agent AI Orchestration in Enterprise Operations',
+    category: 'AI Agents',
+    author: 'Gyan VaniAi Architecture Team',
+    date: 'June 25, 2026',
+    status: 'published',
+    imageUrl: '/ai-agent-hero.webp',
+    excerpt: 'Discover how multi-agent AI frameworks decompose complex enterprise workflows, call APIs autonomously, and execute multi-step operations with zero human bottleneck.',
+    content: '<h2>What is Multi-Agent AI Orchestration?</h2><p>Multi-agent AI orchestration involves multiple specialized autonomous agents collaborating to complete complex business tasks. Each agent possesses specific capabilities, memory access, and tool authorizations.</p><h2>Key Architectural Layers</h2><p>Enterprise multi-agent architectures feature intent detection, vector search knowledge retrieval, tool selection, action execution, and human escalation guardrails.</p>'
+  },
+  'secure-rag-pipelines-enterprise': {
+    id: 'secure-rag-pipelines-enterprise',
+    slugId: 'secure-rag-pipelines-enterprise',
+    title: 'Building Zero-Hallucination Secure RAG Pipelines for Enterprise Systems',
+    category: 'RAG & Security',
+    author: 'Gyan VaniAi Engineering',
+    date: 'June 20, 2026',
+    status: 'published',
+    imageUrl: '/portfolio_ai.webp',
+    excerpt: 'Learn how to architect low-latency (< 300ms) Retrieval-Augmented Generation (RAG) pipelines with strict tenant data isolation, PII masking, and vector database security.',
+    content: '<h2>What is a Secure RAG Pipeline?</h2><p>Retrieval-Augmented Generation (RAG) combines dense vector retrieval with LLMs to ground AI responses strictly in proprietary enterprise documentation without data leakage.</p>'
+  },
+  'whatsapp-business-api-automation': {
+    id: 'whatsapp-business-api-automation',
+    slugId: 'whatsapp-business-api-automation',
+    title: 'Meta WhatsApp Business API Automation: Scaling Customer Engagement',
+    category: 'WhatsApp CRM',
+    author: 'Gyan VaniAi Product Team',
+    date: 'June 12, 2026',
+    status: 'published',
+    imageUrl: '/portfolio_crm.webp',
+    excerpt: 'Complete guide to official Meta WhatsApp Cloud API integration, WhatsApp Coexistence mode, bulk campaign broadcasts, and multi-agent shared inboxes.',
+    content: '<h2>Official Meta WhatsApp Business API</h2><p>Automate customer conversations on WhatsApp with official Meta Cloud API integrations, interactive buttons, 24/7 AI auto-replies, and dual-surface Coexistence support.</p>'
+  }
+};
+
 export default function BlogPost() {
   const { id } = useParams();
-  const [post, setPost] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [post, setPost] = useState(() => STATIC_BLOG_FALLBACKS[id] || null);
+  const [loading, setLoading] = useState(!STATIC_BLOG_FALLBACKS[id]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [readProgress, setReadProgress] = useState(0);
   const [activeHeadingId, setActiveHeadingId] = useState('');
@@ -159,16 +199,22 @@ export default function BlogPost() {
           const docData = querySnapshot.docs[0].data();
           const isUnpublished = docData.status === 'draft' || docData.status === 'scheduled' || docData.status === 'archived';
           if (isUnpublished && !auth.currentUser) {
-            setPost(null);
+            setPost(STATIC_BLOG_FALLBACKS[id] || null);
           } else {
             setPost({ id: querySnapshot.docs[0].id, ...docData });
           }
+        } else if (STATIC_BLOG_FALLBACKS[id]) {
+          setPost(STATIC_BLOG_FALLBACKS[id]);
         } else {
           setPost(null);
         }
       } catch (error) {
         console.error('Error fetching post: ', error);
-        setPost(null);
+        if (STATIC_BLOG_FALLBACKS[id]) {
+          setPost(STATIC_BLOG_FALLBACKS[id]);
+        } else {
+          setPost(null);
+        }
       } finally {
         setLoading(false);
       }
@@ -405,9 +451,11 @@ export default function BlogPost() {
         type="article"
         schema={schema.length === 1 ? schema[0] : schema}
         preloadImage={post.imageUrl}
+        aeoQuestion={post.aeoDirectQuestion || `What is ${post.title}?`}
+        aeoAnswer={post.aeoDirectAnswer || post.excerpt}
       />
       <Helmet>
-        {post.imageUrl && <link rel="preload" as="image" href={post.imageUrl} fetchpriority="high" />}
+        {post.imageUrl && <link rel="preload" as="image" href={post.imageUrl} fetchPriority="high" />}
       </Helmet>
 
       {/* Reading Progress Indicator */}
@@ -559,6 +607,21 @@ export default function BlogPost() {
                 className="blog-hero-image"
               />
             </div>
+          </div>
+        )}
+
+        {/* AEO Direct Answer Block */}
+        {(post.aeoDirectQuestion || post.aeoDirectAnswer) && (
+          <div className="blog-editorial-container my-6">
+            <AEOAnswerBlock
+              question={post.aeoDirectQuestion || `What is ${post.title}?`}
+              answer={post.aeoDirectAnswer || post.excerpt}
+              takeaways={Array.isArray(post.aeoKeyTakeaways) 
+                ? post.aeoKeyTakeaways 
+                : (typeof post.aeoKeyTakeaways === 'string' ? post.aeoKeyTakeaways.split(',').map(s => s.trim()).filter(Boolean) : [])
+              }
+              badge="AEO Summary • Direct AI Answer"
+            />
           </div>
         )}
 

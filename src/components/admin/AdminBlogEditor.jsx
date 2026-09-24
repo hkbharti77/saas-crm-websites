@@ -48,6 +48,7 @@ import {
   getSeoTitleStatus,
   getSeoDescriptionStatus
 } from '../../utils/seoValidator';
+import { computeAeoReadiness } from '../../utils/contentHealth';
 import '../../pages/BlogPost.css';
 import './AdminCMS.css';
 
@@ -76,7 +77,8 @@ export default function AdminBlogEditor({
     internalLinks: true,
     featuredImage: true,
     tags: false,
-    seo: false,
+    seo: true,
+    aeo: true,
     settings: false,
     comments: true,
     aiHistory: false,
@@ -85,8 +87,6 @@ export default function AdminBlogEditor({
   const toggleSection = (sectionKey) => {
     setOpenSections((prev) => ({ ...prev, [sectionKey]: !prev[sectionKey] }));
   };
-
-
 
   // Form State
   const [formData, setFormData] = useState({
@@ -105,6 +105,12 @@ export default function AdminBlogEditor({
     slug: initialData.slugId || '',
     canonicalUrl: initialData.canonicalUrl || '',
     ogImageUrl: initialData.ogImageUrl || '',
+    // AEO (Answer Engine Optimization) Fields
+    aeoDirectQuestion: initialData.aeoDirectQuestion || '',
+    aeoDirectAnswer: initialData.aeoDirectAnswer || '',
+    aeoKeyTakeaways: Array.isArray(initialData.aeoKeyTakeaways) 
+      ? initialData.aeoKeyTakeaways.join(', ') 
+      : (initialData.aeoKeyTakeaways || ''),
     // P1 Tags
     tags: Array.isArray(initialData.tags) ? initialData.tags : [],
     tagLabels: Array.isArray(initialData.tagLabels) ? initialData.tagLabels : [],
@@ -469,6 +475,21 @@ export default function AdminBlogEditor({
         seoDescription: sanitizePlainText(formData.seoDescription) || sanitizePlainText(formData.excerpt),
         canonicalUrl: cleanCanonical,
         ogImageUrl: safeOgImage,
+        // AEO (Answer Engine Optimization) Fields
+        aeoDirectQuestion: sanitizePlainText(formData.aeoDirectQuestion || ''),
+        aeoDirectAnswer: sanitizePlainText(formData.aeoDirectAnswer || ''),
+        aeoKeyTakeaways: typeof formData.aeoKeyTakeaways === 'string'
+          ? formData.aeoKeyTakeaways.split(',').map(s => s.trim()).filter(Boolean)
+          : (Array.isArray(formData.aeoKeyTakeaways) ? formData.aeoKeyTakeaways : []),
+        aeoScore: computeAeoReadiness({
+          title: formData.title,
+          content: content,
+          seoTitle: formData.seoTitle,
+          seoDescription: formData.seoDescription,
+          aeoDirectQuestion: formData.aeoDirectQuestion,
+          aeoDirectAnswer: formData.aeoDirectAnswer,
+          aeoKeyTakeaways: formData.aeoKeyTakeaways
+        }).score,
         // P1 Tags
         tags: formData.tags || [],
         tagLabels: formData.tagLabels || [],
@@ -1559,6 +1580,145 @@ export default function AdminBlogEditor({
                   />
 
 
+                </div>
+              )}
+            </div>
+
+            {/* AEO (Answer Engine Optimization) Settings Panel (Collapsible) */}
+            <div className="admin-cms-panel-card">
+              <div
+                className="admin-panel-header collapsible"
+                onClick={() => toggleSection('aeo')}
+              >
+                <div className="panel-header-title-wrap" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flex: 1 }}>
+                  <Sparkles size={15} style={{ color: '#10b981' }} />
+                  <h3>AEO (Answer Engine Optimization)</h3>
+                  {(() => {
+                    const aeo = computeAeoReadiness({
+                      title: formData.title,
+                      content: content,
+                      seoTitle: formData.seoTitle,
+                      seoDescription: formData.seoDescription,
+                      aeoDirectQuestion: formData.aeoDirectQuestion,
+                      aeoDirectAnswer: formData.aeoDirectAnswer,
+                      aeoKeyTakeaways: formData.aeoKeyTakeaways,
+                    });
+                    return (
+                      <span 
+                        className="aeo-score-badge"
+                        style={{ 
+                          fontSize: '0.72rem', 
+                          fontWeight: '700', 
+                          padding: '2px 8px', 
+                          borderRadius: '12px', 
+                          background: `${aeo.color}20`, 
+                          color: aeo.color,
+                          border: `1px solid ${aeo.color}40`,
+                          marginLeft: 'auto'
+                        }}
+                      >
+                        AEO: {aeo.score}/100 • {aeo.grade}
+                      </span>
+                    );
+                  })()}
+                </div>
+                <div className="panel-collapse-icon" style={{ marginLeft: '0.5rem' }}>
+                  {openSections.aeo ? <ChevronUp size={15} /> : <ChevronDown size={15} />}
+                </div>
+              </div>
+
+              {openSections.aeo && (
+                <div className="admin-panel-body">
+                  <div style={{ background: 'var(--cms-bg-muted, rgba(16, 185, 129, 0.05))', padding: '0.75rem', borderRadius: '8px', border: '1px solid rgba(16, 185, 129, 0.2)', marginBottom: '1rem' }}>
+                    <p style={{ margin: 0, fontSize: '0.78rem', color: 'var(--cms-text-muted)', lineHeight: '1.4' }}>
+                      <strong>Answer Engine Optimization (AEO)</strong> prepares your blog post for AI search engines like <strong>ChatGPT, Perplexity, Claude, SearchGPT & Google AI Overviews</strong>.
+                    </p>
+                  </div>
+
+                  {/* AEO Direct Question */}
+                  <div className="admin-panel-field">
+                    <div className="seo-label-row">
+                      <label className="admin-panel-label" style={{ margin: 0 }}>Direct AI Question</label>
+                      <button
+                        type="button"
+                        className="auto-gen-btn"
+                        style={{ fontSize: '0.72rem', color: 'var(--cms-brand)', background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
+                        onClick={() => {
+                          if (formData.title) {
+                            const autoQ = `What is ${formData.title.replace(/^how to /i, '')} and how does it work?`;
+                            handleChange('aeoDirectQuestion', autoQ);
+                          }
+                        }}
+                      >
+                        Auto-Generate
+                      </button>
+                    </div>
+                    <input
+                      type="text"
+                      className="admin-panel-input"
+                      placeholder="e.g. What is Multi-Agent AI Orchestration and how does it work?"
+                      value={formData.aeoDirectQuestion}
+                      onChange={(e) => handleChange('aeoDirectQuestion', e.target.value)}
+                    />
+                  </div>
+
+                  {/* AEO Direct Answer Snippet */}
+                  <div className="admin-panel-field">
+                    <div className="seo-label-row">
+                      <label className="admin-panel-label" style={{ margin: 0 }}>Direct Answer Snippet (50-400 chars)</label>
+                      <button
+                        type="button"
+                        className="auto-gen-btn"
+                        style={{ fontSize: '0.72rem', color: 'var(--cms-brand)', background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
+                        onClick={() => {
+                          if (formData.excerpt) {
+                            handleChange('aeoDirectAnswer', formData.excerpt);
+                          }
+                        }}
+                      >
+                        Use Excerpt
+                      </button>
+                    </div>
+                    <textarea
+                      className="admin-panel-input"
+                      rows={3}
+                      placeholder="Provide a concise 1-3 sentence direct answer snippet optimized for ChatGPT & Perplexity extraction..."
+                      value={formData.aeoDirectAnswer}
+                      onChange={(e) => handleChange('aeoDirectAnswer', e.target.value)}
+                    />
+                    <span style={{ fontSize: '0.72rem', color: formData.aeoDirectAnswer.length >= 50 && formData.aeoDirectAnswer.length <= 400 ? '#10b981' : '#f59e0b' }}>
+                      {formData.aeoDirectAnswer.length} / 400 characters (Ideal: 50-300 chars)
+                    </span>
+                  </div>
+
+                  {/* Key Technical Takeaways */}
+                  <div className="admin-panel-field">
+                    <label className="admin-panel-label">Key Technical Takeaways (Comma separated)</label>
+                    <input
+                      type="text"
+                      className="admin-panel-input"
+                      placeholder="e.g. Sub-300ms latency, Official Meta WABA API, Multi-tenant security"
+                      value={formData.aeoKeyTakeaways}
+                      onChange={(e) => handleChange('aeoKeyTakeaways', e.target.value)}
+                    />
+                  </div>
+
+                  {/* Live AI Answer Engine Card Preview */}
+                  <div className="aeo-live-preview-card" style={{ marginTop: '1rem', padding: '0.85rem', background: '#0f172a', borderRadius: '8px', border: '1px solid #1e293b', color: '#f8fafc' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.5rem', fontSize: '0.72rem', color: '#94a3b8' }}>
+                      <span style={{ display: 'flex', alignItems: 'center', gap: '4px', color: '#38bdf8', fontWeight: '600' }}>
+                        <Sparkles size={12} /> ChatGPT / Perplexity AI Answer Snippet Preview
+                      </span>
+                      <span>QAPage Schema</span>
+                    </div>
+                    <div style={{ fontSize: '0.85rem', fontWeight: '700', color: '#38bdf8', marginBottom: '0.35rem' }}>
+                      Q: {formData.aeoDirectQuestion || (formData.title ? `What is ${formData.title}?` : 'Direct Question')}
+                    </div>
+                    <div style={{ fontSize: '0.78rem', color: '#cbd5e1', lineHeight: '1.45', background: '#1e293b', padding: '0.5rem', borderRadius: '6px' }}>
+                      <strong>Direct Answer: </strong>
+                      {formData.aeoDirectAnswer || formData.excerpt || 'Concise direct answer snippet will appear here when filled.'}
+                    </div>
+                  </div>
                 </div>
               )}
             </div>

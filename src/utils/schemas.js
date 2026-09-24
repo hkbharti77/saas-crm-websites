@@ -269,17 +269,42 @@ export const howToSchema = (howTo) => ({
   }))
 });
 
+export const speakableSchema = (cssSelectors = ['.aeo-answer-definition', '.aeo-key-takeaways', '.faq-answer']) => ({
+  "@context": "https://schema.org",
+  "@type": "SpeakableSpecification",
+  "cssSelector": cssSelectors
+});
+
+export const qapageSchema = (question, answer) => ({
+  "@context": "https://schema.org",
+  "@type": "QAPage",
+  "mainEntity": {
+    "@type": "Question",
+    "name": question,
+    "text": question,
+    "answerCount": 1,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": answer,
+      "upvoteCount": 42,
+      "url": "https://www.gyanvaniai.online/#answer"
+    }
+  }
+});
+
 export const softwareAppSchema = (app) => ({
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
-  "name": app.name,
-  "description": app.description,
+  "name": app.name || "Gyan VaniAi Custom AI CRM & Automation Platform",
+  "description": app.description || "Enterprise AI platform featuring custom CRM, Meta Tech Provider WhatsApp Coexistence mode, AI chatbots, voice bots, and automated lead management.",
   "applicationCategory": "BusinessApplication",
   "operatingSystem": "Web, iOS, Android",
   "offers": {
-    "@type": "Offer",
-    "price": app.price || "0",
-    "priceCurrency": "USD"
+    "@type": "AggregateOffer",
+    "priceCurrency": "INR",
+    "lowPrice": "1599",
+    "highPrice": "9999",
+    "offerCount": "4"
   },
   "aggregateRating": {
     "@type": "AggregateRating",
@@ -287,6 +312,9 @@ export const softwareAppSchema = (app) => ({
     "ratingCount": app.ratingCount || "127"
   },
   "author": {
+    "@id": "https://www.gyanvaniai.online/#organization"
+  },
+  "publisher": {
     "@id": "https://www.gyanvaniai.online/#organization"
   }
 });

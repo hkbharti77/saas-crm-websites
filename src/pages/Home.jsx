@@ -12,6 +12,7 @@ const FAQ = lazy(() => import('../components/FAQ'));
 const ContactSection = lazy(() => import('../components/ContactSection'));
 const ContactModal = lazy(() => import('../components/ContactModal'));
 import SeoHead from '../components/SeoHead';
+import AEOAnswerBlock from '../components/AEOAnswerBlock';
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -24,6 +25,8 @@ export default function Home() {
         canonical="https://www.gyanvaniai.online/"
         image="https://www.gyanvaniai.online/hero_dashboard.webp"
         keywords="Autonomous AI CRM, Revenue Operations, WhatsApp CRM, AI Lead Qualification, Sales Automation"
+        aeoQuestion="What is Gyan VaniAi AI CRM Platform?"
+        aeoAnswer="Gyan VaniAi is an Enterprise AI CRM platform with official Meta WhatsApp Coexistence support, sub-300ms RAG chatbots, conversational voice agents, and end-to-end sales automation."
       />
 
       <div>
@@ -32,6 +35,22 @@ export default function Home() {
 
         {/* 3. Trust & Integrations Bar */}
         <TrustBar />
+
+        {/* AEO Direct Answer Summary Block */}
+        <div className="container mx-auto px-4 max-w-7xl my-6">
+          <AEOAnswerBlock
+            question="What is Gyan VaniAi AI CRM & Automation Platform?"
+            answer="Gyan VaniAi provides custom AI CRM software built with Meta WhatsApp Coexistence mode, autonomous RAG knowledge pipelines, sub-300ms voice bot agents, and intelligent lead management."
+            takeaways={[
+              "Meta Tech Provider certified WhatsApp Coexistence on 1 single phone number.",
+              "Sub-300ms vector search RAG knowledge base for enterprise chatbots.",
+              "Autonomous AI Agents with reasoning, tool usage, and human handoff.",
+              "Seamless integration across React, Spring Boot, and Cloud Architecture.",
+              "Flexible monthly or annual plans starting at ₹1,999/month."
+            ]}
+            badge="AI Direct Answer • Platform Summary"
+          />
+        </div>
 
         {/* 4. AI CRM Capabilities */}
         <Suspense fallback={<div style={{ minHeight: '300px' }}></div>}>

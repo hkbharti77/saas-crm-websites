@@ -121,14 +121,29 @@ export default function ArticleAnalytics() {
         }
 
         // Load analytics docs for this blog (both periods)
-        const snap = await getDocs(
-          query(
-            collection(db, 'analytics_blog_daily'),
-            where('blogId', '==', blogId),
-            where('date', '>=', prevFromDate)
-          )
-        );
-        setAnalyticsDocs(snap.docs.map(d => ({ id: d.id, ...d.data() })));
+        let docsList = [];
+        try {
+          const snap = await getDocs(
+            query(
+              collection(db, 'analytics_blog_daily'),
+              where('blogId', '==', blogId),
+              where('date', '>=', prevFromDate)
+            )
+          );
+          docsList = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+        } catch (idxErr) {
+          console.warn('[ArticleAnalytics] Composite index missing, using single-field fallback query:', idxErr.message);
+          const snap = await getDocs(
+            query(
+              collection(db, 'analytics_blog_daily'),
+              where('blogId', '==', blogId)
+            )
+          );
+          docsList = snap.docs
+            .map(d => ({ id: d.id, ...d.data() }))
+            .filter(d => !prevFromDate || d.date >= prevFromDate);
+        }
+        setAnalyticsDocs(docsList);
       } catch (err) {
         setError('Failed to load analytics: ' + (err.message || ''));
       } finally {

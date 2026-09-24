@@ -9,7 +9,9 @@ import {
 import { 
   organizationSchema, 
   websiteSchema, 
-  breadcrumbSchema 
+  breadcrumbSchema,
+  speakableSchema,
+  qapageSchema
 } from '../utils/schemas';
 
 /**
@@ -24,6 +26,8 @@ import {
  * @param {string} type - og:type (default: website)
  * @param {Array} keywords - Keywords array
  * @param {boolean} noindex - Set to true to prevent indexing
+ * @param {string} aeoQuestion - Direct Question for AEO QAPage Schema
+ * @param {string} aeoAnswer - Direct Answer for AEO QAPage Schema
  */
 export default function SEOHead({
   title = 'Enterprise AI, CRM & Automation Solutions | Gyan VaniAi',
@@ -37,7 +41,9 @@ export default function SEOHead({
   publishDate = null,
   modifiedDate = null,
   author = 'Gyan VaniAi',
-  preloadImage = null
+  preloadImage = null,
+  aeoQuestion = null,
+  aeoAnswer = null
 }) {
   const currentPath = canonical.replace('https://www.gyanvaniai.online', '');
   const hreflangs = generateHreflangTags(currentPath);
@@ -53,10 +59,13 @@ export default function SEOHead({
     keywordString = keywords.join(', ');
   }
 
-  // Combine organization and website schemas with any additional schema
-  const schemas = [organizationSchema, websiteSchema];
+  // Combine organization, website, speakable schemas with any additional schema
+  const schemas = [organizationSchema, websiteSchema, speakableSchema()];
   if (breadcrumbs) {
     schemas.push(breadcrumbSchema(breadcrumbs));
+  }
+  if (aeoQuestion && aeoAnswer) {
+    schemas.push(qapageSchema(aeoQuestion, aeoAnswer));
   }
   if (schema) {
     schemas.push(...(Array.isArray(schema) ? schema : [schema]));
@@ -178,7 +187,7 @@ export default function SEOHead({
       </script>
 
       {/* LCP Image Preload */}
-      {preloadImage && <link rel="preload" as="image" href={preloadImage} fetchpriority="high" />}
+      {preloadImage && <link rel="preload" as="image" href={preloadImage} fetchPriority="high" />}
 
       {/* Preconnect for performance */}
       <link rel="preconnect" href="https://fonts.googleapis.com" />

@@ -148,7 +148,7 @@ export default function Hero({ onBookDemo }) {
       onMouseLeave={() => setIsPaused(false)}
     >
       <Helmet>
-        <link rel="preload" as="image" href="/hero_robot_dark.webp" fetchpriority="high" />
+        <link rel="preload" as="image" href="/hero_robot_dark.webp" fetchPriority="high" />
       </Helmet>
       {/* Background Subtle Ambient Media Layer with Fluid Framer Motion */}
       <div className="hero-media-container" aria-hidden="true">

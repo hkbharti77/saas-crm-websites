@@ -9,11 +9,11 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import {
-  BarChart2, TrendingUp, TrendingDown, AlertTriangle, Lightbulb, ArrowRight
+  BarChart2, TrendingUp, TrendingDown, AlertTriangle, Lightbulb, ArrowRight, Sparkles
 } from 'lucide-react';
 import { db } from '../../firebase';
 import { collection, getDocs, query, where } from 'firebase/firestore';
-import { computeContentHealth, countSeoOpportunities } from '../../utils/contentHealth';
+import { computeContentHealth, countSeoOpportunities, computeAeoReadiness } from '../../utils/contentHealth';
 import '../../pages/admin/BlogAnalytics.css';
 
 function dateNDaysAgo(n) {
@@ -126,6 +126,12 @@ export default function ContentIntelligencePanel({ posts = [] }) {
     // SEO opportunity count
     const seoOpps = countSeoOpportunities(posts);
 
+    // AEO average score
+    const published = posts.filter(p => p.status === 'published');
+    const aeoScores = published.map(p => computeAeoReadiness(p).score);
+    const avgAeoScore = aeoScores.length > 0 ? Math.round(aeoScores.reduce((a, b) => a + b, 0) / aeoScores.length) : 0;
+    const aeoReadyCount = published.filter(p => computeAeoReadiness(p).score >= 75).length;
+
     return {
       hasData,
       topPost,
@@ -137,6 +143,9 @@ export default function ContentIntelligencePanel({ posts = [] }) {
       worstHealth,
       bestCat,
       seoOpps,
+      avgAeoScore,
+      aeoReadyCount,
+      totalPublished: published.length
     };
   }, [analyticsDocs, analyticsLoaded, posts]);
 
@@ -148,7 +157,7 @@ export default function ContentIntelligencePanel({ posts = [] }) {
     <div className="intel-panel">
       <div className="intel-panel-header">
         <h2 className="intel-panel-title">
-          <BarChart2 size={15} /> Content Intelligence
+          <BarChart2 size={15} /> Content Intelligence & AEO
         </h2>
         <Link
           to="/admin/blog/analytics"
@@ -173,6 +182,17 @@ export default function ContentIntelligencePanel({ posts = [] }) {
                 : '—'}
             </span>
             <span className="intel-item-meta growing">{fmtNum(intelligence.topViews)} views</span>
+          </div>
+
+          {/* AEO Readiness Score */}
+          <div className="intel-panel-item">
+            <span className="intel-item-label"><Sparkles size={10} style={{ verticalAlign: 'middle', color: '#10b981' }} /> AEO Readiness Score</span>
+            <span className="intel-item-value" style={{ color: '#10b981', fontWeight: '700' }}>
+              {intelligence.avgAeoScore}/100 Average
+            </span>
+            <span className="intel-item-meta growing">
+              {intelligence.aeoReadyCount} / {intelligence.totalPublished} AI Answer Ready
+            </span>
           </div>
 
           {/* Fastest Growing */}
@@ -212,12 +232,6 @@ export default function ContentIntelligencePanel({ posts = [] }) {
             {intelligence.worstHealth && (
               <span className="intel-item-meta declining">Score: {intelligence.worstHealth.score}/100</span>
             )}
-          </div>
-
-          {/* Best Category */}
-          <div className="intel-panel-item">
-            <span className="intel-item-label">Best Category (30d)</span>
-            <span className="intel-item-value">{intelligence.bestCat || '—'}</span>
           </div>
 
           {/* SEO Opportunities */}
