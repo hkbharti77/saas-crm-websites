@@ -91,14 +91,19 @@ const CookieConsentBanner = () => {
     setVisible(false);
     setShowPreferences(false);
 
-    // Write analytics event to Firestore with IP + location
-    // Firebase is dynamically imported here so the ~560KB SDK stays out of the initial bundle
+    // Write consent audit record to Firestore
+    // Note: IP and location tracking only occur if user granted consent for analytics/performance
     try {
       const [{ db }, { collection, addDoc, serverTimestamp }] = await Promise.all([
         import('../firebase'),
         import('firebase/firestore'),
       ]);
-      const geo = await getGeoInfo();
+
+      let geo = { ip: null, city: null, region: null, country: null };
+      if (finalPrefs.analytics || status === 'all') {
+        geo = await getGeoInfo();
+      }
+
       await addDoc(collection(db, 'cookie_consents'), {
         status,
         preferences: finalPrefs,

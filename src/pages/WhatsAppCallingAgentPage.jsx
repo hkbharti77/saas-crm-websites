@@ -1,7 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import SeoHead from '../components/SeoHead';
-import AEOAnswerBlock from '../components/AEOAnswerBlock';
 import {
   PhoneCall,
   MessageSquare,
@@ -325,21 +324,6 @@ export default function WhatsAppCallingAgentPage() {
       />
 
       <div className="wa-calling-page">
-        {/* AEO Direct Answer Summary Block */}
-        <div className="container mx-auto px-4 max-w-7xl pt-6">
-          <AEOAnswerBlock
-            question="What is Gyan VaniAi WhatsApp Calling Bot & Voice AI Agent?"
-            answer="Gyan VaniAi WhatsApp Calling Bots conduct natural conversational voice calls directly over WhatsApp Business API with sub-300ms latency, automated lead scoring, dynamic CRM data dips, and instant human handoff."
-            takeaways={[
-              "Sub-300ms Voice Latency: Natural speech-to-speech conversational response time.",
-              "Native WhatsApp Calling: Inbound & outbound calls directly inside WhatsApp API.",
-              "Automated Lead Scoring: Real-time BANT qualification during live voice calls.",
-              "Smart Human Handoff: Transfer complex calls with complete transcript retention.",
-              "SIP / Telephony Integration: Connect to enterprise PBX and custom CRM workflows."
-            ]}
-            badge="AEO Voice AI Summary"
-          />
-        </div>
         {/* =========================================================================
             1. HERO SECTION — Enterprise Product Showcase
             ========================================================================= */}

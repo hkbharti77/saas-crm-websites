@@ -68,6 +68,9 @@ export default function ContactSection({
     return newErrors;
   };
 
+  const [consentGiven, setConsentGiven] = useState(false);
+  const [consentError, setConsentError] = useState(false);
+
   const errors = getErrors();
 
   const handleSubmit = async (e) => {
@@ -75,6 +78,12 @@ export default function ContactSection({
     
     setTouched({ name: true, email: true, company: true, phone: true });
     
+    if (!consentGiven) {
+      setConsentError(true);
+      return;
+    }
+    setConsentError(false);
+
     const submitErrors = {};
     if (values.name.trim().length < 2 || values.name.length > 66) submitErrors.name = 'Please enter your full name';
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email) || values.email.length > 266) submitErrors.email = 'Please enter a valid work email';
@@ -96,6 +105,8 @@ export default function ContactSection({
         phone: phone || '',
         subject: `Lead from ${values.company || 'Website'}`,
         message: values.message,
+        consentTimestamp: new Date().toISOString(),
+        consentVersion: 'DPDP-2023-v1',
       };
 
       const response = await fetch(`${apiBaseUrl}/api/v1/public/contact/${businessId}`, {
@@ -113,7 +124,7 @@ export default function ContactSection({
       } else {
         alert("Oops! There was a problem submitting your demo request. Please try again.");
       }
-    } catch (error) {
+    } catch {
       alert("Network error. Please try again.");
     }
     setIsSubmitting(false);
@@ -312,6 +323,23 @@ export default function ContactSection({
                       {values.message.length}/1000
                     </span>
                   </div>
+                </div>
+
+                {/* DPDP Act 2023 Explicit Consent Checkbox */}
+                <div className="form-group" style={{ margin: '0.85rem 0 0.5rem 0' }}>
+                  <label style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem', cursor: 'pointer', fontSize: '0.8rem', color: 'var(--text-secondary)' }}>
+                    <input
+                      type="checkbox"
+                      checked={consentGiven}
+                      onChange={(e) => { setConsentGiven(e.target.checked); if(e.target.checked) setConsentError(false); }}
+                      style={{ marginTop: '2px', cursor: 'pointer' }}
+                      required
+                    />
+                    <span>
+                      I explicitly consent to Gyan VaniAi processing my personal data under India's <strong>DPDP Act, 2023</strong> for demo scheduling and sales response. Read our <Link to="/privacy" style={{ color: 'var(--primary-color)', textDecoration: 'underline' }}>Privacy Policy</Link>.
+                    </span>
+                  </label>
+                  {consentError && <span className="form-error-msg">You must give explicit consent to proceed.</span>}
                 </div>
 
                 {/* 6. CTA Button */}

@@ -14,7 +14,6 @@ import {
 } from '../utils/blogAnalytics';
 import { recordRecentView, recordReadingProgress } from '../utils/personalizationEngine';
 import SeoHead from '../components/SeoHead';
-import AEOAnswerBlock from '../components/AEOAnswerBlock';
 import NotFound from './NotFound';
 import {
   blogPostUrl,
@@ -610,20 +609,7 @@ export default function BlogPost() {
           </div>
         )}
 
-        {/* AEO Direct Answer Block (Pure Invisible Schema Mode by default like SEO; only renders on UI if explicitly enabled) */}
-        {post.showAeoBlockOnUi === true && (post.aeoDirectQuestion || post.aeoDirectAnswer) && (
-          <div className="blog-editorial-container my-6">
-            <AEOAnswerBlock
-              question={post.aeoDirectQuestion || post.title}
-              answer={post.aeoDirectAnswer || post.excerpt}
-              takeaways={Array.isArray(post.aeoKeyTakeaways) 
-                ? post.aeoKeyTakeaways 
-                : (typeof post.aeoKeyTakeaways === 'string' ? post.aeoKeyTakeaways.split(',').map(s => s.trim()).filter(Boolean) : [])
-              }
-              badge="Executive Summary • Direct AI Answer"
-            />
-          </div>
-        )}
+
 
         {/* Two-Column Grid: Left 760px Reading Column + Right Sticky TOC Sidebar (Desktop) */}
         <div className="blog-editorial-container blog-reading-layout">

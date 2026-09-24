@@ -29,11 +29,16 @@ export default function ContactModal({ isOpen, onClose, prefillMessage = '' }) {
     };
   }, [isOpen]);
 
+  const [consentGiven, setConsentGiven] = useState(false);
+  const [consentError, setConsentError] = useState(false);
+
   const handleClose = () => {
     setIsSuccess(false);
     setPhone();
     setValues({ name: '', email: '', message: prefillMessage });
     setTouched({ name: false, email: false, phone: false });
+    setConsentGiven(false);
+    setConsentError(false);
     onClose();
   };
 
@@ -68,6 +73,12 @@ export default function ContactModal({ isOpen, onClose, prefillMessage = '' }) {
     
     setTouched({ name: true, email: true, phone: true });
     
+    if (!consentGiven) {
+      setConsentError(true);
+      return;
+    }
+    setConsentError(false);
+    
     const submitErrors = {};
     if (values.name.trim().length < 2 || values.name.length > 66) submitErrors.name = 'Name must be between 2 and 66 characters';
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email) || values.email.length > 266) submitErrors.email = 'Invalid email format or too long';
@@ -89,6 +100,8 @@ export default function ContactModal({ isOpen, onClose, prefillMessage = '' }) {
         phone: phone || '',
         subject: `Lead from Website Modal`,
         message: values.message,
+        consentTimestamp: new Date().toISOString(),
+        consentVersion: 'DPDP-2023-v1',
       };
 
       const response = await fetch(`${apiBaseUrl}/api/v1/public/contact/${businessId}`, {
@@ -106,7 +119,7 @@ export default function ContactModal({ isOpen, onClose, prefillMessage = '' }) {
       } else {
         alert("Oops! There was a problem submitting your form");
       }
-    } catch (error) {
+    } catch {
       alert("Network error. Please try again.");
     }
     setIsSubmitting(false);
@@ -180,6 +193,24 @@ export default function ContactModal({ isOpen, onClose, prefillMessage = '' }) {
                 </span>
               </div>
             </div>
+
+            {/* DPDP Act 2023 Explicit Consent Checkbox */}
+            <div className="form-group" style={{ margin: '0.75rem 0' }}>
+              <label style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem', cursor: 'pointer', fontSize: '0.78rem', color: 'var(--text-secondary)' }}>
+                <input
+                  type="checkbox"
+                  checked={consentGiven}
+                  onChange={(e) => { setConsentGiven(e.target.checked); if(e.target.checked) setConsentError(false); }}
+                  style={{ marginTop: '2px', cursor: 'pointer' }}
+                  required
+                />
+                <span>
+                  I explicitly consent to Gyan VaniAi processing my personal data in accordance with India's <strong>DPDP Act, 2023</strong> to respond to my demo request. See our <a href="/privacy" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--primary-color)', textDecoration: 'underline' }}>Privacy Policy</a>.
+                </span>
+              </label>
+              {consentError && <span style={{ color: '#ef4444', fontSize: '0.75rem', marginTop: '0.2rem', display: 'block' }}>You must give consent to proceed.</span>}
+            </div>
+
             <button type="submit" className="btn btn-primary" style={{ width: '100%', padding: '0.68rem 1rem', fontSize: '0.92rem' }} disabled={isSubmitting}>
               {isSubmitting ? 'Sending...' : 'Request Demo'}
             </button>

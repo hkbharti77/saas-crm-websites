@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import SeoHead from '../components/SeoHead';
-import AEOAnswerBlock from '../components/AEOAnswerBlock';
 import { ArrowRight, CheckCircle2, X, Check, Inbox, Filter, Star, UserCheck, Mail, Trophy, PhoneCall, Mic, BrainCircuit, Bot, Calendar, Headset, Database, Building2, ShieldCheck, Zap, Layers, BarChart3, Users } from 'lucide-react';
 import ContactSection from '../components/ContactSection';
 import FAQ from '../components/FAQ';
@@ -1002,16 +1001,6 @@ export default function SEOLandingPage() {
             </div>
           </div>
         </section>
-
-        {/* AEO Direct Answer Summary Block */}
-        <div className="container" style={{ maxWidth: '1240px' }}>
-          <AEOAnswerBlock
-            question={`What is ${pageData.h1}?`}
-            answer={pageData.overview}
-            takeaways={pageData.deliverables || pageData.benefits}
-            badge={`AEO Summary • ${isIndustry ? 'Industry Solution' : 'Enterprise Service'}`}
-          />
-        </div>
 
         {/* GEO citeable content blocks */}
         <section className="section" style={{ padding: '5rem 0' }}>

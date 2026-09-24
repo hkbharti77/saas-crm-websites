@@ -110,14 +110,14 @@ export default function PolicyPage() {
               <li><strong>Page URL &amp; Referrer:</strong> The page you were visiting and the source URL when you made your consent decision.</li>
               <li><strong>Timestamp:</strong> The exact date and time (UTC) of your consent action.</li>
             </ul>
-            <h3 className="h3" style={{ fontSize: '1.2rem', marginTop: '1.25rem', marginBottom: '0.75rem' }}>Legal Basis</h3>
-            <p className="text-muted">This data is collected under the legal basis of <strong>Legal Obligation</strong> and <strong>Legitimate Interest</strong> (GDPR Article 6(1)(c) and 6(1)(f); India DPDP Act 2023 Section 6). As a Data Fiduciary, we are required by law to be able to demonstrate that valid, informed consent was obtained. Recording your IP and timestamp is the industry-standard method for this proof.</p>
+            <h3 className="h3" style={{ fontSize: '1.2rem', marginTop: '1.25rem', marginBottom: '0.75rem' }}>Legal Basis Under DPDP Act, 2023 &amp; International Frameworks</h3>
+            <p className="text-muted">Personal data processing is carried out strictly under the legal grounds of <strong>Verifiable Consent</strong> (India DPDP Act 2023 Section 6; GDPR Article 6(1)(a)) and specified <strong>Legitimate Uses / Legal Obligations</strong> (India DPDP Act 2023 Section 7; GDPR Article 6(1)(c)). As a Data Fiduciary, we maintain verifiable consent audit records to demonstrate compliance.</p>
             <h3 className="h3" style={{ fontSize: '1.2rem', marginTop: '1.25rem', marginBottom: '0.75rem' }}>How We Use This Data</h3>
             <p className="text-muted">This consent audit data is <strong>used exclusively</strong> for compliance verification and legal evidence purposes. It is <strong>never</strong> used for advertising, marketing profiling, or sold to any third party.</p>
             <h3 className="h3" style={{ fontSize: '1.2rem', marginTop: '1.25rem', marginBottom: '0.75rem' }}>Retention Period</h3>
-            <p className="text-muted">Consent audit records, including IP address and location data, are retained for a maximum of <strong>12 months</strong> from the date of collection, after which they are permanently deleted.</p>
-            <h3 className="h3" style={{ fontSize: '1.2rem', marginTop: '1.25rem', marginBottom: '0.75rem' }}>Your Rights</h3>
-            <p className="text-muted">You have the right to request access to, correction of, or deletion of your consent record at any time by contacting us at <a href="mailto:contact@gyanvaniai.online">contact@gyanvaniai.online</a> with the subject line <em>"Consent Data Request"</em>.</p>
+            <p className="text-muted">Consent audit records, including IP address and location data (where consent was granted), are retained for a maximum of <strong>12 months</strong> from the date of collection, after which they are permanently deleted.</p>
+            <h3 className="h3" style={{ fontSize: '1.2rem', marginTop: '1.25rem', marginBottom: '0.75rem' }}>Your Data Principal Rights</h3>
+            <p className="text-muted">Under the DPDP Act 2023 (Sections 11–14), you have the right to request access to, correction of, updating, or complete erasure of your personal data, as well as the right to withdraw consent at any time by contacting our Grievance Officer at <a href="mailto:dpo@gyanvaniai.online">dpo@gyanvaniai.online</a>.</p>
           </section>
 
           <section id="whatsapp" className="legal-section">
@@ -129,33 +129,42 @@ export default function PolicyPage() {
           <section id="thirdparty" className="legal-section">
             <h2 className="h2">4. Meta &amp; Third-Party APIs</h2>
             <p className="text-muted">Because our core infrastructure utilizes the official WhatsApp Business API, data transmitted via our chatbots is securely routed through Meta's infrastructure. We ensure that this data is handled in strict compliance with Meta's Business Policies.</p>
-            <p className="text-muted">We do not sell your personal data to any third-party brokers. Data is only shared with essential sub-processors (like AWS or Vertex AI) required to provide the core service.</p>
+            <p className="text-muted">We do not sell your personal data to any third-party brokers. Data is only shared with essential sub-processors (like AWS, Firebase, or Vertex AI) required to provide the core service.</p>
           </section>
 
           <section id="security" className="legal-section">
             <h2 className="h2">5. Security &amp; Storage</h2>
-            <p className="text-muted">We implement enterprise-grade security, including JWT authentication and secure PII masking, to protect your personal information against unauthorized access, alteration, disclosure, or destruction.</p>
+            <p className="text-muted">We implement enterprise-grade security, including JWT authentication, TLS encryption, and secure PII masking, to protect your personal information against unauthorized access, alteration, disclosure, or destruction.</p>
           </section>
 
           <section id="deletion" className="legal-section">
-            <h2 className="h2">6. User Data Deletion &amp; GDPR Compliance</h2>
-            <p className="text-muted">In strict compliance with international and national data protection laws, including the <strong>General Data Protection Regulation (GDPR)</strong> (Article 17: Right to Erasure / "Right to be forgotten") and applicable local privacy frameworks (such as CCPA), you have the absolute right to request the complete deletion of your personal data stored within our systems.</p>
+            <h2 className="h2">6. User Data Deletion &amp; DPDP / GDPR Compliance</h2>
+            <p className="text-muted">In strict compliance with the Indian <strong>Digital Personal Data Protection Act, 2023</strong> (Section 12: Right to Erasure) and international frameworks (such as GDPR Article 17), you have the absolute right to request the complete deletion of your personal data stored within our systems.</p>
             <h3 className="h3" style={{ fontSize: '1.25rem', marginTop: '1.5rem', marginBottom: '0.75rem' }}>How to Request Data Deletion</h3>
-            <p className="text-muted">To exercise your right to erasure, please submit a formal data deletion request by emailing our Data Protection Officer at <a href="mailto:contact@gyanvaniai.online">contact@gyanvaniai.online</a> with the subject line "Data Deletion Request".</p>
+            <p className="text-muted">To exercise your right to erasure, please submit a formal data deletion request by emailing our Grievance Officer at <a href="mailto:dpo@gyanvaniai.online">dpo@gyanvaniai.online</a> with the subject line "Data Deletion Request".</p>
             <h3 className="h3" style={{ fontSize: '1.25rem', marginTop: '1.5rem', marginBottom: '0.75rem' }}>Our Deletion Process</h3>
             <ul className="text-muted" style={{ paddingLeft: '1.5rem', marginBottom: '1rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
               <li><strong>Verification:</strong> We will verify your identity within 7 business days to prevent unauthorized data removal.</li>
               <li><strong>Complete Erasure:</strong> Upon verification, we will permanently delete or cryptographically anonymize your personal data across all our active databases, internal systems, and third-party sub-processors within a maximum of <strong>30 days</strong>.</li>
               <li><strong>Legal Exceptions:</strong> Data will be completely erased except where strict retention is explicitly mandated by national/international financial laws, legal obligations, or active dispute resolutions.</li>
             </ul>
-
-            <h3 className="h3" style={{ fontSize: '1.25rem', marginTop: '1.5rem', marginBottom: '0.75rem' }}>Demo Platform 7-Day Data Retention Policy</h3>
-            <p className="text-muted">For users interacting with our live demo environment at <a href="https://connect.gyanvaniai.online/" target="_blank" rel="noopener noreferrer">https://connect.gyanvaniai.online/</a>, your demo account is provided for evaluation and testing purposes for a 7-day evaluation period. If you do not upgrade to a paid plan before the evaluation period ends, demo data associated with your account may be permanently deleted from active systems. Please export or preserve any information you wish to keep before the evaluation period ends. Except where required by applicable law, Gyan VaniAi is not responsible for data permanently deleted in accordance with this policy.</p>
           </section>
 
           <section id="privacy-contact" className="legal-section">
-            <h2 className="h2">7. Contact Us</h2>
-            <p className="text-muted">If you have any questions about this Privacy Policy or wish to exercise your data rights, please contact our Data Protection Officer via the contact form at the bottom of our website.</p>
+            <h2 className="h2">7. Grievance Redressal &amp; Data Protection Board (DPBI) Appeals</h2>
+            <p className="text-muted">In compliance with Section 5(2) and Section 13 of the Digital Personal Data Protection Act, 2023, Gyan VaniAi has appointed a designated Grievance Officer to address any privacy concerns, data rights requests, or grievances:</p>
+            <div style={{ background: 'rgba(255, 255, 255, 0.04)', padding: '1.25rem', borderRadius: '8px', border: '1px solid var(--border-color)', margin: '1rem 0' }}>
+              <p style={{ margin: '0 0 0.4rem 0', fontWeight: 'bold', color: 'var(--text-primary)' }}>Grievance Officer Details:</p>
+              <ul className="text-muted" style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.35rem', fontSize: '0.9rem' }}>
+                <li><strong>Name:</strong> Himanshu Bharti</li>
+                <li><strong>Designation:</strong> Chief Data Protection &amp; Grievance Redressal Officer</li>
+                <li><strong>Email:</strong> <a href="mailto:dpo@gyanvaniai.online" style={{ color: 'var(--primary-color)' }}>dpo@gyanvaniai.online</a> / <a href="mailto:contact@gyanvaniai.online" style={{ color: 'var(--primary-color)' }}>contact@gyanvaniai.online</a></li>
+                <li><strong>Address:</strong> Gyan VaniAi Data Protection Office, Sector 62, Noida, Uttar Pradesh 201309, India</li>
+              </ul>
+            </div>
+            <h3 className="h3" style={{ fontSize: '1.15rem', marginTop: '1rem', marginBottom: '0.5rem' }}>Procedure for Filing Grievance &amp; Appeals to DPBI:</h3>
+            <p className="text-muted">1. <strong>Internal Grievance Redressal:</strong> Submit your privacy complaint or rights request directly to the Grievance Officer above. We will acknowledge receipt within 24 hours and resolve your request within 15 business days.</p>
+            <p className="text-muted">2. <strong>Appeal to Data Protection Board of India (DPBI):</strong> If you are unsatisfied with our Grievance Officer's response or if no response is provided within statutory timelines, you have the statutory right under DPDP Act Section 13(3) &amp; Section 18 to file an appeal directly with the <strong>Data Protection Board of India (DPBI)</strong> via their official portal at <a href="https://dpbi.gov.in" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--primary-color)', textDecoration: 'underline' }}>dpbi.gov.in</a>.</p>
           </section>
         </div>
       </div>

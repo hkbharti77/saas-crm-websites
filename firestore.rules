@@ -27,11 +27,12 @@ service cloud.firestore {
       allow read, write: if request.auth != null;
     }
     
-    // Cookie Consent Analytics
+    // Cookie Consent Analytics — Hardened for DPDP Compliance
     match /cookie_consents/{docId} {
-      // Anonymous visitors can record their cookie consent decision
-      allow create: if true;
-      // Only authenticated admins can read or manage consent records
+      // Anonymous visitors can record their explicit consent decision with payload validation
+      allow create: if request.resource.data.status in ['all', 'essential', 'rejected', 'custom']
+                    && request.resource.data.keys().hasAll(['status', 'preferences', 'createdAt']);
+      // Only authenticated admins can read, update, or delete consent records
       allow read, update, delete: if request.auth != null;
     }
 
