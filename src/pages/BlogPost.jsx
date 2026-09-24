@@ -610,8 +610,8 @@ export default function BlogPost() {
           </div>
         )}
 
-        {/* AEO Direct Answer Block */}
-        {(post.aeoDirectQuestion || post.aeoDirectAnswer) && (
+        {/* AEO Direct Answer Block (Pure Invisible Schema Mode by default like SEO; only renders on UI if explicitly enabled) */}
+        {post.showAeoBlockOnUi === true && (post.aeoDirectQuestion || post.aeoDirectAnswer) && (
           <div className="blog-editorial-container my-6">
             <AEOAnswerBlock
               question={post.aeoDirectQuestion || post.title}

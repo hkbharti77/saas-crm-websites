@@ -1033,3 +1033,34 @@ body.dark-theme .share-btn {
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
 }
 
+/* =====================================================
+   AEO ANSWER BLOCK STYLING (HIGH CONTRAST ALL THEMES)
+   ===================================================== */
+.aeo-answer-block {
+  background: linear-gradient(135deg, #0f172a 0%, #022c22 100%) !important;
+  border: 1px solid rgba(45, 212, 191, 0.35) !important;
+  color: #f8fafc !important;
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.35) !important;
+}
+
+.aeo-answer-block h2 {
+  color: #ffffff !important;
+}
+
+.aeo-answer-block h3 {
+  color: #94a3b8 !important;
+}
+
+.aeo-answer-block .aeo-answer-definition {
+  background: rgba(30, 41, 59, 0.85) !important;
+  border: 1px solid rgba(51, 65, 85, 0.8) !important;
+  color: #f1f5f9 !important;
+}
+
+.aeo-answer-block li {
+  background: rgba(15, 23, 42, 0.75) !important;
+  border: 1px solid rgba(30, 41, 59, 0.9) !important;
+  color: #e2e8f0 !important;
+}
+
+
