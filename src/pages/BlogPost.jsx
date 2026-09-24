@@ -614,13 +614,13 @@ export default function BlogPost() {
         {(post.aeoDirectQuestion || post.aeoDirectAnswer) && (
           <div className="blog-editorial-container my-6">
             <AEOAnswerBlock
-              question={post.aeoDirectQuestion || `What is ${post.title}?`}
+              question={post.aeoDirectQuestion || post.title}
               answer={post.aeoDirectAnswer || post.excerpt}
               takeaways={Array.isArray(post.aeoKeyTakeaways) 
                 ? post.aeoKeyTakeaways 
                 : (typeof post.aeoKeyTakeaways === 'string' ? post.aeoKeyTakeaways.split(',').map(s => s.trim()).filter(Boolean) : [])
               }
-              badge="AEO Summary • Direct AI Answer"
+              badge="Executive Summary • Direct AI Answer"
             />
           </div>
         )}

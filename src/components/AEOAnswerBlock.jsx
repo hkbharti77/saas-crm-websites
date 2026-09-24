@@ -14,8 +14,18 @@ import { CheckCircle, Sparkles, HelpCircle, ArrowRight } from 'lucide-react';
  * @param {Function} onCtaClick - Optional CTA click handler
  * @param {string} badge - Optional badge text (e.g. "AI Quick Summary", "Direct Answer")
  */
+function cleanQuestionText(q) {
+  if (!q) return '';
+  let cleaned = String(q).trim();
+  // Strip awkward "What is How..." or "What is Why..." prefixes
+  if (/^What is (How|Why|What|When|Where|\d+)/i.test(cleaned)) {
+    cleaned = cleaned.replace(/^What is /i, '');
+  }
+  return cleaned;
+}
+
 export default function AEOAnswerBlock({
-  question = 'What is Gyan VaniAi Custom AI CRM & Automation Platform?',
+  question = 'Gyan VaniAi Custom AI CRM & Automation Platform Overview',
   answer = 'Gyan VaniAi is an enterprise AI software platform featuring custom AI CRM systems, Meta Tech Provider WhatsApp Coexistence support, autonomous AI agents, sub-300ms RAG pipelines, and conversational voice bots.',
   takeaways = [
     'Official Meta Tech Provider for WhatsApp Coexistence on phone + web simultaneously.',
@@ -26,7 +36,7 @@ export default function AEOAnswerBlock({
   ],
   ctaText = 'Book a Free AI Consultation',
   onCtaClick = null,
-  badge = 'AI Direct Answer'
+  badge = 'Executive Summary & Direct AI Answer'
 }) {
   const handleCta = () => {
     if (onCtaClick) {
@@ -38,9 +48,12 @@ export default function AEOAnswerBlock({
     }
   };
 
+  const formattedQuestion = cleanQuestionText(question);
+  const isQuestionFormat = /^What|^How|^Why|^When|^Where/i.test(formattedQuestion);
+
   return (
     <section 
-      className="aeo-answer-block my-8 p-6 md:p-8 rounded-2xl border border-teal-500/20 bg-gradient-to-br from-slate-900/90 via-teal-950/30 to-slate-900/90 text-white shadow-xl backdrop-blur-md relative overflow-hidden"
+      className="aeo-answer-block my-6 p-5 md:p-7 rounded-2xl border border-teal-500/30 bg-gradient-to-br from-slate-900 via-slate-900/95 to-teal-950/40 text-white shadow-xl backdrop-blur-md relative overflow-hidden"
       aria-label="Direct AI Answer Summary"
       data-aeo-block="true"
       data-speakable="true"
@@ -49,43 +62,46 @@ export default function AEOAnswerBlock({
     >
       {/* Background glow decoration */}
       <div className="absolute -top-24 -right-24 w-64 h-64 bg-teal-500/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
 
       {/* Badge Header */}
-      <div className="flex items-center justify-between mb-4">
-        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-teal-500/20 text-teal-300 border border-teal-500/30">
+      <div className="flex items-center justify-between mb-3">
+        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-teal-500/15 text-teal-300 border border-teal-500/30">
           <Sparkles className="w-3.5 h-3.5 text-teal-400" />
           {badge}
         </span>
         <span className="text-xs text-slate-400 font-mono flex items-center gap-1">
-          <HelpCircle className="w-3 h-3" /> Machine-Readable Citation Block
+          <HelpCircle className="w-3 h-3 text-teal-400" /> AI Citation & Key Insights
         </span>
       </div>
 
       {/* Question / Heading */}
-      <h2 
-        className="text-xl md:text-2xl font-bold text-white mb-3 tracking-tight flex items-start gap-2.5"
-        itemProp="name"
-      >
-        <span className="text-teal-400 font-serif italic text-2xl leading-none">Q.</span>
-        <span>{question}</span>
-      </h2>
+      {formattedQuestion && (
+        <h2 
+          className="text-lg md:text-xl font-bold text-white mb-3 tracking-tight flex items-start gap-2"
+          itemProp="name"
+        >
+          {isQuestionFormat && <span className="text-teal-400 font-serif italic text-xl leading-none">Q.</span>}
+          <span>{formattedQuestion}</span>
+        </h2>
+      )}
 
       {/* Answer Body */}
-      <div 
-        itemProp="acceptedAnswer" 
-        itemScope 
-        itemType="https://schema.org/Answer" 
-        className="mb-6"
-      >
+      {answer && (
         <div 
-          className="aeo-answer-definition text-slate-200 text-base md:text-lg leading-relaxed bg-slate-800/50 p-4 rounded-xl border border-slate-700/50"
-          itemProp="text"
+          itemProp="acceptedAnswer" 
+          itemScope 
+          itemType="https://schema.org/Answer" 
+          className="mb-5"
         >
-          <span className="font-semibold text-teal-300">Direct Answer: </span>
-          {answer}
+          <div 
+            className="aeo-answer-definition text-slate-200 text-sm md:text-base leading-relaxed bg-slate-800/60 p-4 rounded-xl border border-slate-700/60"
+            itemProp="text"
+          >
+            <span className="font-semibold text-teal-300">Direct Answer: </span>
+            {answer}
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Key Takeaways Grid */}
       {takeaways && takeaways.length > 0 && (
