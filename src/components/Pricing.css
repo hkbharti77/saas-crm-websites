@@ -24,6 +24,32 @@
   --primary-color: var(--pr-accent);
 }
 
+[data-theme="light"] .pricing-page-root,
+html[data-theme="light"] .pricing-page-root,
+body[data-theme="light"] .pricing-page-root {
+  --pr-navy: #f8fafc;
+  --pr-surface: #ffffff;
+  --pr-surface-2: #f1f5f9;
+  --pr-border: rgba(15, 23, 42, 0.1);
+  --pr-border-strong: rgba(15, 23, 42, 0.2);
+  --pr-accent: #0f766e;
+  --pr-blue: #2563eb;
+  --pr-gold: #b45309;
+  --pr-text: #0f172a;
+  --pr-text-2: #334155;
+  --pr-text-3: #64748b;
+
+  background-color: #f8fafc;
+  --glass-bg: rgba(255, 255, 255, 0.9);
+  --bg-card: #ffffff;
+  --bg-color: #f8fafc;
+  --border-color: rgba(15, 23, 42, 0.1);
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+  --primary-color: #0f766e;
+}
+
 .pricing-page-root .pricing-section {
   background: transparent;
   padding: 3rem 0 5rem;
