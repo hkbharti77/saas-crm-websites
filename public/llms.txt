@@ -23,6 +23,7 @@ WhatsApp Coexistence is an official Meta feature (shipped by Gyan VaniAi) that r
 **Gyan VaniAi** provides end-to-end conversational AI voice agents:
 - **AI Voice Bot Assistant** (https://www.gyanvaniai.online/services/voice-bot-assistant): Sub-300ms natural conversational voice agents with interruption handling for customer support and appointment booking.
 - **WhatsApp Calling Bot** (https://www.gyanvaniai.online/services/whatsapp-calling-agent): Automated voice calling directly over WhatsApp Business API.
+- **WhatsApp AI Calling Agent Bots** (https://www.gyanvaniai.online/services/whatsapp-calling-agent-bots): Intelligent multi-bot calling automation for high-volume WhatsApp outbound campaigns with scripted AI flows.
 - **Phone Call Agent Assistant** (https://www.gyanvaniai.online/services/phone-call-agent): 24/7 AI agents connecting directly to SIP/PSTN telephony and PBX for inbound/outbound calls.
 - **Smart IVR Solutions** (https://www.gyanvaniai.online/services/ivr-solutions): Intelligent speech recognition and dynamic CRM data-dips replacing outdated menu trees.
 - **AI to Human Handoff** (https://www.gyanvaniai.online/services/human-handoff-systems): Sentiment-triggered instant routing to human agents with full conversation transcript retention.
@@ -64,6 +65,7 @@ Every **Gyan VaniAi** plan (https://www.gyanvaniai.online/pricing) includes What
 ### 2. Conversational Voice & Telephony AI Solutions
 - **Voice Bot Assistant** (https://www.gyanvaniai.online/services/voice-bot-assistant): Low-latency full-duplex conversational voice agents for support and bookings.
 - **WhatsApp Calling Bot** (https://www.gyanvaniai.online/services/whatsapp-calling-agent): Native voice calling within WhatsApp.
+- **WhatsApp AI Calling Agent Bots** (https://www.gyanvaniai.online/services/whatsapp-calling-agent-bots): Multi-bot automation for high-volume WhatsApp outbound calling campaigns.
 - **Phone Call Agent** (https://www.gyanvaniai.online/services/phone-call-agent): Enterprise SIP/telephony inbound & outbound calling agents.
 - **Smart IVR** (https://www.gyanvaniai.online/services/ivr-solutions): Dynamic conversational routing with real-time CRM lookups.
 - **Human Handoff Systems** (https://www.gyanvaniai.online/services/human-handoff-systems): Live transfer with instant transcript & sentiment transfer.

@@ -31,7 +31,7 @@ User-agent: DuckDuckBot
 Allow: /
 
 # Brave Search Engine
-User-agent: Bravebot
+User-agent: BraveBot
 Allow: /
 
 # Chinese Search Engines (Baidu, 360 Browser / So.com, Sogou, Shenma / UC Browser)
@@ -97,6 +97,18 @@ User-agent: Cohere-ai
 Allow: /
 
 User-agent: Diffbot
+Allow: /
+
+# Common Crawl (used by AI training datasets and research)
+User-agent: CCBot
+Allow: /
+
+# Meta AI Crawler (newer agent separate from Bytespider)
+User-agent: Meta-ExternalAgent
+Allow: /
+
+# Meta External Fetcher (link preview / AI reasoning)
+User-agent: Meta-ExternalFetcher
 Allow: /
 
 Sitemap: https://www.gyanvaniai.online/sitemap.xml

@@ -93,7 +93,9 @@ export const organizationSchema = {
   ],
   "sameAs": [
     "https://www.facebook.com/gyanvaniai/",
-    "https://www.linkedin.com/company/gyan-vaniai"
+    "https://www.linkedin.com/company/gyan-vaniai",
+    "https://twitter.com/gyanvaniai",
+    "https://x.com/gyanvaniai"
   ]
 };
 
@@ -143,14 +145,7 @@ export const localBusinessSchema = {
       "opens": "09:00",
       "closes": "18:00"
     }
-  ],
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.8",
-    "reviewCount": "127",
-    "bestRating": "5",
-    "worstRating": "1"
-  }
+  ]
 };
 
 export const breadcrumbSchema = (items) => ({
@@ -302,15 +297,15 @@ export const softwareAppSchema = (app) => ({
   "offers": {
     "@type": "AggregateOffer",
     "priceCurrency": "INR",
-    "lowPrice": "1599",
+    "lowPrice": "1999",
     "highPrice": "9999",
     "offerCount": "4"
   },
-  "aggregateRating": {
+  "aggregateRating": app.rating && app.ratingCount ? {
     "@type": "AggregateRating",
-    "ratingValue": app.rating || "4.8",
-    "ratingCount": app.ratingCount || "127"
-  },
+    "ratingValue": app.rating,
+    "ratingCount": app.ratingCount
+  } : undefined,
   "author": {
     "@id": "https://www.gyanvaniai.online/#organization"
   },
