@@ -112,7 +112,7 @@ export default function TermsConditions() {
               <li><strong>No Profiling:</strong> The IP address and location data recorded during consent logging is never used for behavioural profiling, advertising targeting, or sold to any third party. It is held in a private, access-controlled database visible only to authorised administrators.</li>
               <li><strong>Third-Party Geolocation:</strong> Geographic location data is resolved from your IP address using the ipapi.co API. By using this site, you acknowledge that your IP address may be processed by this third-party service for this purpose.</li>
               <li><strong>Retention:</strong> Consent audit records are retained for a maximum of 12 months and then permanently deleted.</li>
-              <li><strong>Your Right to Access &amp; Delete:</strong> You may request access to or deletion of your consent record at any time by emailing <a href="mailto:contact@gyanvaniai.online">contact@gyanvaniai.online</a> with the subject line <em>"Consent Data Request"</em>.</li>
+              <li><strong>Your Right to Access &amp; Delete:</strong> You may request access to or deletion of your consent record at any time by submitting a request with the subject line <em>"Consent Data Request"</em>. We will respond to your request within 15 business days.</li>
             </ul>
           </section>
 

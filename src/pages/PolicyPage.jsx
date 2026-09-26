@@ -2,6 +2,216 @@ import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import SeoHead from '../components/SeoHead';
 
+function PrivacyRequestForm() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    requestType: 'Data Access Request',
+    description: '',
+  });
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    
+    try {
+      // Prepare email body
+      const emailBody = `
+Privacy Request Submission
+
+Name: ${formData.name}
+Email: ${formData.email}
+Phone: ${formData.phone}
+Request Type: ${formData.requestType}
+
+Details:
+${formData.description}
+
+---
+This is an automated submission from the Privacy Policy page.
+      `.trim();
+
+      // Send email via mailto link
+      window.location.href = `mailto:contact@gyanvaniai.online?subject=${encodeURIComponent(formData.requestType)}&body=${encodeURIComponent(emailBody)}`;
+      
+      // Reset form after short delay
+      setTimeout(() => {
+        setIsSubmitted(true);
+        setFormData({ name: '', email: '', phone: '', requestType: 'Data Access Request', description: '' });
+        setTimeout(() => setIsSubmitted(false), 4000);
+      }, 1000);
+    } catch (error) {
+      console.error('Error submitting form:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit} style={{
+      background: 'rgba(255, 255, 255, 0.02)',
+      padding: '2rem',
+      borderRadius: '8px',
+      border: '1px solid var(--border-color)',
+      marginTop: '1rem',
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '1.25rem'
+    }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+        <label style={{ fontWeight: '500', fontSize: '0.95rem', color: 'var(--text-primary)' }}>Full Name *</label>
+        <input
+          type="text"
+          name="name"
+          value={formData.name}
+          onChange={handleChange}
+          required
+          placeholder="Your full name"
+          style={{
+            padding: '0.75rem',
+            border: '1px solid var(--border-color)',
+            borderRadius: '6px',
+            backgroundColor: 'rgba(255, 255, 255, 0.05)',
+            color: 'var(--text-primary)',
+            fontSize: '1rem',
+            fontFamily: 'inherit'
+          }}
+        />
+      </div>
+
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+        <label style={{ fontWeight: '500', fontSize: '0.95rem', color: 'var(--text-primary)' }}>Email Address *</label>
+        <input
+          type="email"
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
+          required
+          placeholder="your.email@example.com"
+          style={{
+            padding: '0.75rem',
+            border: '1px solid var(--border-color)',
+            borderRadius: '6px',
+            backgroundColor: 'rgba(255, 255, 255, 0.05)',
+            color: 'var(--text-primary)',
+            fontSize: '1rem',
+            fontFamily: 'inherit'
+          }}
+        />
+      </div>
+
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+        <label style={{ fontWeight: '500', fontSize: '0.95rem', color: 'var(--text-primary)' }}>Phone Number</label>
+        <input
+          type="tel"
+          name="phone"
+          value={formData.phone}
+          onChange={handleChange}
+          placeholder="+91 XXXXXXXXXX"
+          style={{
+            padding: '0.75rem',
+            border: '1px solid var(--border-color)',
+            borderRadius: '6px',
+            backgroundColor: 'rgba(255, 255, 255, 0.05)',
+            color: 'var(--text-primary)',
+            fontSize: '1rem',
+            fontFamily: 'inherit'
+          }}
+        />
+      </div>
+
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+        <label style={{ fontWeight: '500', fontSize: '0.95rem', color: 'var(--text-primary)' }}>Request Type *</label>
+        <select
+          name="requestType"
+          value={formData.requestType}
+          onChange={handleChange}
+          required
+          style={{
+            padding: '0.75rem',
+            border: '1px solid var(--border-color)',
+            borderRadius: '6px',
+            backgroundColor: 'rgba(255, 255, 255, 0.05)',
+            color: 'var(--text-primary)',
+            fontSize: '1rem',
+            fontFamily: 'inherit',
+            cursor: 'pointer'
+          }}
+        >
+          <option value="Data Access Request">Data Access Request</option>
+          <option value="Data Deletion Request">Data Deletion Request</option>
+          <option value="Data Correction Request">Data Correction Request</option>
+          <option value="Privacy Complaint">Privacy Complaint</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+        <label style={{ fontWeight: '500', fontSize: '0.95rem', color: 'var(--text-primary)' }}>Request Details *</label>
+        <textarea
+          name="description"
+          value={formData.description}
+          onChange={handleChange}
+          required
+          placeholder="Please provide details about your request..."
+          rows="6"
+          style={{
+            padding: '0.75rem',
+            border: '1px solid var(--border-color)',
+            borderRadius: '6px',
+            backgroundColor: 'rgba(255, 255, 255, 0.05)',
+            color: 'var(--text-primary)',
+            fontSize: '1rem',
+            fontFamily: 'inherit',
+            resize: 'vertical'
+          }}
+        />
+      </div>
+
+      <button
+        type="submit"
+        disabled={isLoading}
+        style={{
+          padding: '0.875rem 1.5rem',
+          backgroundColor: isLoading ? 'var(--border-color)' : 'var(--primary-color)',
+          color: '#fff',
+          border: 'none',
+          borderRadius: '6px',
+          fontSize: '1rem',
+          fontWeight: '600',
+          cursor: isLoading ? 'not-allowed' : 'pointer',
+          transition: 'all 0.2s ease',
+          opacity: isLoading ? 0.7 : 1
+        }}
+      >
+        {isLoading ? 'Submitting...' : 'Submit Request'}
+      </button>
+
+      {isSubmitted && (
+        <div style={{
+          padding: '1rem',
+          backgroundColor: 'rgba(34, 197, 94, 0.1)',
+          border: '1px solid rgba(34, 197, 94, 0.3)',
+          borderRadius: '6px',
+          color: 'rgb(34, 197, 94)',
+          textAlign: 'center',
+          fontSize: '0.95rem'
+        }}>
+          ✓ Thank you! Your request has been submitted. We will contact you within 24 hours.
+        </div>
+      )}
+    </form>
+  );
+}
+
 export default function PolicyPage() {
   const [activeSection, setActiveSection] = useState('data');
   
@@ -117,7 +327,7 @@ export default function PolicyPage() {
             <h3 className="h3" style={{ fontSize: '1.2rem', marginTop: '1.25rem', marginBottom: '0.75rem' }}>Retention Period</h3>
             <p className="text-muted">Consent audit records, including IP address and location data (where consent was granted), are retained for a maximum of <strong>12 months</strong> from the date of collection, after which they are permanently deleted.</p>
             <h3 className="h3" style={{ fontSize: '1.2rem', marginTop: '1.25rem', marginBottom: '0.75rem' }}>Your Data Principal Rights</h3>
-            <p className="text-muted">Under the DPDP Act 2023 (Sections 11–14), you have the right to request access to, correction of, updating, or complete erasure of your personal data, as well as the right to withdraw consent at any time by contacting our Grievance Officer at <a href="mailto:dpo@gyanvaniai.online">dpo@gyanvaniai.online</a>.</p>
+            <p className="text-muted">Under the DPDP Act 2023 (Sections 11–14), you have the right to request access to, correction of, updating, or complete erasure of your personal data, as well as the right to withdraw consent at any time. Please submit your request through our contact form or support channel.</p>
           </section>
 
           <section id="whatsapp" className="legal-section">
@@ -141,30 +351,32 @@ export default function PolicyPage() {
             <h2 className="h2">6. User Data Deletion &amp; DPDP / GDPR Compliance</h2>
             <p className="text-muted">In strict compliance with the Indian <strong>Digital Personal Data Protection Act, 2023</strong> (Section 12: Right to Erasure) and international frameworks (such as GDPR Article 17), you have the absolute right to request the complete deletion of your personal data stored within our systems.</p>
             <h3 className="h3" style={{ fontSize: '1.25rem', marginTop: '1.5rem', marginBottom: '0.75rem' }}>How to Request Data Deletion</h3>
-            <p className="text-muted">To exercise your right to erasure, please submit a formal data deletion request by emailing our Grievance Officer at <a href="mailto:dpo@gyanvaniai.online">dpo@gyanvaniai.online</a> with the subject line "Data Deletion Request".</p>
+            <p className="text-muted">To exercise your right to erasure, please submit a formal data deletion request with the subject line "Data Deletion Request". We will verify your identity within 7 business days and process your request accordingly.</p>
             <h3 className="h3" style={{ fontSize: '1.25rem', marginTop: '1.5rem', marginBottom: '0.75rem' }}>Our Deletion Process</h3>
             <ul className="text-muted" style={{ paddingLeft: '1.5rem', marginBottom: '1rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-              <li><strong>Verification:</strong> We will verify your identity within 7 business days to prevent unauthorized data removal.</li>
-              <li><strong>Complete Erasure:</strong> Upon verification, we will permanently delete or cryptographically anonymize your personal data across all our active databases, internal systems, and third-party sub-processors within a maximum of <strong>30 days</strong>.</li>
-              <li><strong>Legal Exceptions:</strong> Data will be completely erased except where strict retention is explicitly mandated by national/international financial laws, legal obligations, or active dispute resolutions.</li>
+              <li><strong>Identity Verification:</strong> We will verify your identity within 7 business days to prevent unauthorized data removal and ensure the security of your account.</li>
+              <li><strong>Complete Erasure:</strong> Upon successful verification, we will permanently delete or cryptographically anonymize your personal data across all our active databases, internal systems, and third-party sub-processors within a maximum of 30 days.</li>
+              <li><strong>Legal Exceptions:</strong> Data may be retained only where strict retention is explicitly mandated by national or international financial laws, legal obligations, or active dispute resolutions.</li>
             </ul>
           </section>
 
           <section id="privacy-contact" className="legal-section">
             <h2 className="h2">7. Grievance Redressal &amp; Data Protection Board (DPBI) Appeals</h2>
-            <p className="text-muted">In compliance with Section 5(2) and Section 13 of the Digital Personal Data Protection Act, 2023, Gyan VaniAi has appointed a designated Grievance Officer to address any privacy concerns, data rights requests, or grievances:</p>
+            <p className="text-muted">In compliance with Section 5(2) and Section 13 of the Digital Personal Data Protection Act, 2023, Gyan VaniAi has designated a Grievance Officer to address any privacy concerns, data rights requests, or grievances. You can submit your concerns through the following process:</p>
             <div style={{ background: 'rgba(255, 255, 255, 0.04)', padding: '1.25rem', borderRadius: '8px', border: '1px solid var(--border-color)', margin: '1rem 0' }}>
-              <p style={{ margin: '0 0 0.4rem 0', fontWeight: 'bold', color: 'var(--text-primary)' }}>Grievance Officer Details:</p>
+              <p style={{ margin: '0 0 0.4rem 0', fontWeight: 'bold', color: 'var(--text-primary)' }}>How to Submit a Grievance or Data Request:</p>
               <ul className="text-muted" style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.35rem', fontSize: '0.9rem' }}>
-                <li><strong>Name:</strong> Himanshu Bharti</li>
-                <li><strong>Designation:</strong> Chief Data Protection &amp; Grievance Redressal Officer</li>
-                <li><strong>Email:</strong> <a href="mailto:dpo@gyanvaniai.online" style={{ color: 'var(--primary-color)' }}>dpo@gyanvaniai.online</a> / <a href="mailto:contact@gyanvaniai.online" style={{ color: 'var(--primary-color)' }}>contact@gyanvaniai.online</a></li>
-                <li><strong>Address:</strong> Gyan VaniAi Data Protection Office, Sector 62, Noida, Uttar Pradesh 201309, India</li>
+                <li><strong>Email:</strong> <a href="mailto:contact@gyanvaniai.online" style={{ color: 'var(--primary-color)' }}>contact@gyanvaniai.online</a></li>
+                <li><strong>Subject Line:</strong> Clearly state your request (e.g., "Data Access Request", "Data Deletion Request", "Privacy Complaint")</li>
+                <li><strong>Response Time:</strong> We will acknowledge receipt within 24 hours and resolve your request within 15 business days</li>
               </ul>
             </div>
             <h3 className="h3" style={{ fontSize: '1.15rem', marginTop: '1rem', marginBottom: '0.5rem' }}>Procedure for Filing Grievance &amp; Appeals to DPBI:</h3>
-            <p className="text-muted">1. <strong>Internal Grievance Redressal:</strong> Submit your privacy complaint or rights request directly to the Grievance Officer above. We will acknowledge receipt within 24 hours and resolve your request within 15 business days.</p>
-            <p className="text-muted">2. <strong>Appeal to Data Protection Board of India (DPBI):</strong> If you are unsatisfied with our Grievance Officer's response or if no response is provided within statutory timelines, you have the statutory right under DPDP Act Section 13(3) &amp; Section 18 to file an appeal directly with the <strong>Data Protection Board of India (DPBI)</strong> via their official portal at <a href="https://dpbi.gov.in" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--primary-color)', textDecoration: 'underline' }}>dpbi.gov.in</a>.</p>
+            <p className="text-muted">1. <strong>Internal Grievance Redressal:</strong> Submit your privacy complaint or rights request through our designated contact channels. We will acknowledge receipt within 24 hours and resolve your request within 15 business days according to applicable laws.</p>
+            <p className="text-muted">2. <strong>Appeal to Data Protection Board of India (DPBI):</strong> If you are unsatisfied with our response or if no response is provided within statutory timelines, you have the statutory right under DPDP Act Section 13(3) &amp; Section 18 to file an appeal directly with the <strong>Data Protection Board of India (DPBI)</strong> via their official portal at <a href="https://dpbi.gov.in" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--primary-color)', textDecoration: 'underline' }}>dpbi.gov.in</a>.</p>
+            
+            <h3 className="h3" style={{ fontSize: '1.15rem', marginTop: '1.5rem', marginBottom: '1rem' }}>Privacy Request Form</h3>
+            <PrivacyRequestForm />
           </section>
         </div>
       </div>
