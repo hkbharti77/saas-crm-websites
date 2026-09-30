@@ -165,6 +165,38 @@ export default function Security() {
           </div>
         </section>
 
+        {/* SECTION 5.5: Indian Government Regulatory Compliance & Standards */}
+        <section className="sec-section">
+          <div className="sec-container">
+            <h2 className="sec-section-title">Indian Regulatory & Security Compliance Checklist</h2>
+            <p className="sec-subtitle" style={{ margin: '0 auto 2.5rem', textAlign: 'center' }}>
+              Gyan VaniAi aligns with national Indian cybersecurity directives, data privacy acts, and telecommunications guidelines.
+            </p>
+            <div className="sec-controls-grid">
+              <div className="sec-control-card" style={{ borderColor: 'rgba(34, 197, 94, 0.3)' }}>
+                <ShieldCheck className="sec-icon" style={{ color: '#22c55e' }} />
+                <h3>DPDP Act, 2023 Compliance</h3>
+                <p>Full compliance with India's <strong>Digital Personal Data Protection Act, 2023</strong> (Sections 5–14). Verifiable consent logs, purpose specification, data principal rights (Access/Erasure), and designated Grievance Officer.</p>
+              </div>
+              <div className="sec-control-card" style={{ borderColor: 'rgba(34, 197, 94, 0.3)' }}>
+                <Activity className="sec-icon" style={{ color: '#22c55e' }} />
+                <h3>CERT-In Cybersecurity Directives</h3>
+                <p>Adherence to <strong>CERT-In directives (April 2022)</strong>: Mandatory 180-day ICT audit log retention, NTP clock synchronization to Indian Standard Time (IST), and sub-6-hour incident escalation procedures.</p>
+              </div>
+              <div className="sec-control-card" style={{ borderColor: 'rgba(34, 197, 94, 0.3)' }}>
+                <Server className="sec-icon" style={{ color: '#22c55e' }} />
+                <h3>IT Act 2000 & IT Rules 2021</h3>
+                <p>Intermediary due diligence under <strong>Section 79 of IT Act, 2000</strong> & IT (Intermediary Guidelines and Digital Media Ethics Code) Rules 2021, including automated content moderation & 24/7 Grievance Officer contact.</p>
+              </div>
+              <div className="sec-control-card" style={{ borderColor: 'rgba(34, 197, 94, 0.3)' }}>
+                <Lock className="sec-icon" style={{ color: '#22c55e' }} />
+                <h3>Data Localization & Encryption</h3>
+                <p>Support for MeitY-empanelled cloud data residency in India, enforcing <strong>AES-256 encryption at rest</strong> and <strong>TLS 1.3 in transit</strong> across all CRM lead repositories and RAG vector databases.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* SECTION 6: Privacy Link */}
         <section className="sec-section">
           <div className="sec-container sec-privacy-link">
