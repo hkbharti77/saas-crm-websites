@@ -20,6 +20,7 @@ import WhatsAppCoexistencePage from './pages/WhatsAppCoexistencePage';
 import SalesAutomationPage from './pages/SalesAutomationPage';
 import AIChatbotsPage from './pages/AIChatbotsPage';
 import WhatsAppCallingAgentPage from './pages/WhatsAppCallingAgentPage';
+import CrmDevelopmentPage from './pages/CrmDevelopmentPage';
 import BlogSearch from './pages/BlogSearch';
 import CategoryPage from './pages/CategoryPage';
 import AdminLogin from './pages/admin/AdminLogin';
@@ -49,6 +50,7 @@ function ServerApp() {
             <Route path="/services/sales-automation" element={<SalesAutomationPage />} />
             <Route path="/services/ai-chatbots" element={<AIChatbotsPage />} />
             <Route path="/services/whatsapp-calling-agent" element={<WhatsAppCallingAgentPage />} />
+            <Route path="/services/crm-development" element={<CrmDevelopmentPage />} />
             <Route path="/services/whatsapp-calling-agent-bots" element={<Navigate to="/services/whatsapp-calling-agent" replace />} />
             <Route path="/documentation" element={<Documentation />} />
             <Route path="/security" element={<Security />} />
