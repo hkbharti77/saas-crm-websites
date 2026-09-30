@@ -1,7 +1,7 @@
 /* eslint-disable react-refresh/only-export-components */
 import React from 'react';
 import { renderToString } from 'react-dom/server';
-import { MemoryRouter, Routes, Route } from 'react-router-dom';
+import { MemoryRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { ThemeProvider } from './context/ThemeContext';
 import Header from './components/Header';
@@ -49,7 +49,7 @@ function ServerApp() {
             <Route path="/services/sales-automation" element={<SalesAutomationPage />} />
             <Route path="/services/ai-chatbots" element={<AIChatbotsPage />} />
             <Route path="/services/whatsapp-calling-agent" element={<WhatsAppCallingAgentPage />} />
-            <Route path="/services/whatsapp-calling-agent-bots" element={<WhatsAppCallingAgentPage />} />
+            <Route path="/services/whatsapp-calling-agent-bots" element={<Navigate to="/services/whatsapp-calling-agent" replace />} />
             <Route path="/documentation" element={<Documentation />} />
             <Route path="/security" element={<Security />} />
             <Route path="/services/:serviceId" element={<SEOLandingPage />} />

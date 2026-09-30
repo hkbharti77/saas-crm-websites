@@ -55,7 +55,7 @@ export default function AIChatbotsPage() {
     {
       title: 'RAG Knowledge Retrieval',
       icon: <Database size={22} />,
-      desc: 'Retrieves verified facts from your approved manuals, PDFs, and documentation with zero hallucinations.'
+      desc: 'Retrieves verified facts directly from your approved manuals, PDFs, and internal documentation for accurate responses.'
     },
     {
       title: 'Autonomous Actions',
@@ -253,7 +253,7 @@ export default function AIChatbotsPage() {
     <div className="chatbots-page">
       <SeoHead
         title="AI Chatbot Development Company | Custom RAG Chatbots | Gyan VaniAi"
-        description="Build intelligent AI chatbots with RAG knowledge grounding, autonomous API actions, CRM sync, and human handoff. Deploy across WhatsApp and web."
+        description="Build custom AI chatbots with RAG knowledge grounding, API workflows, CRM integration, and human handoff across WhatsApp and web channels."
         canonical={`${SITE}/services/ai-chatbots`}
         image={`${SITE}/hero-ai-chatbots.svg`}
         preloadImage="/hero-ai-chatbots.svg"
@@ -268,20 +268,20 @@ export default function AIChatbotsPage() {
             <ol>
               <li><Link to="/">Home</Link></li>
               <li aria-hidden="true">/</li>
-              <li><Link to="/services">Services</Link></li>
+              <li><Link to="/#capabilities">Services</Link></li>
               <li aria-hidden="true">/</li>
-              <li style={{ color: 'var(--primary-color)' }}>AI Chatbot Development</li>
+              <li style={{ color: 'var(--primary-color)' }}>Custom AI Chatbot Development</li>
             </ol>
           </nav>
 
           <div className="chatbots-hero-grid">
             <div className="chatbots-hero-content">
               <h1 className="chatbots-hero-title">
-                AI Chatbot Development
+                Custom AI Chatbot Development
               </h1>
 
               <p className="chatbots-hero-desc">
-                Build intelligent AI chatbots that understand customer intent, retrieve business knowledge, perform actions, and hand conversations to human teams when needed.
+                Gyan VaniAi builds intelligent custom AI chatbots with RAG knowledge grounding for customer support and lead qualification. Our chatbots understand customer intent, retrieve answers directly from your internal manuals, execute CRM workflows, and seamlessly hand off to live human reps.
               </p>
 
               <div className="chatbots-hero-bullets">

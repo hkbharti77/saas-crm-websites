@@ -97,11 +97,13 @@ export default function Footer() {
           <div className="footer-links">
             <div className="link-group">
               <h3 className="link-title">Product</h3>
-              <a href="/#capabilities" className="footer-link">Platform</a>
+              <Link to="/#capabilities" className="footer-link">Platform</Link>
               <Link to="/services/ai-agent-development" className="footer-link">AI Agents</Link>
               <Link to="/services/lead-management" className="footer-link">Lead Management</Link>
               <Link to="/services/whatsapp-coexistence" className="footer-link">WhatsApp Coexistence</Link>
-              <Link to="/services/voice-bot-assistant" className="footer-link">Voice AI</Link>
+              <Link to="/services/whatsapp-calling-agent" className="footer-link">WhatsApp Calling Agent</Link>
+              <Link to="/services/voice-bot-assistant" className="footer-link">Voice AI Assistants</Link>
+              <Link to="/services/phone-call-agent" className="footer-link">Phone Call Agents</Link>
               <button
                 type="button"
                 className="footer-link footer-demo-link"
@@ -113,7 +115,7 @@ export default function Footer() {
             <div className="link-group">
               <h3 className="link-title">Solutions</h3>
               <Link to="/services/sales-automation" className="footer-link">Sales Automation</Link>
-              <Link to="/services/ai-chatbots" className="footer-link">Inbound Qualification</Link>
+              <Link to="/services/ai-chatbots" className="footer-link">AI Chatbots</Link>
               <Link to="/industries/enterprise" className="footer-link">Enterprise CRM</Link>
               <Link to="/industries/real-estate" className="footer-link">Real Estate</Link>
               <Link to="/industries/healthcare" className="footer-link">Healthcare</Link>
@@ -122,7 +124,7 @@ export default function Footer() {
             <div className="link-group">
               <h3 className="link-title">Company</h3>
               <Link to="/about" className="footer-link">About Us</Link>
-              <a href="/#contact" className="footer-link">Contact</a>
+              <Link to="/#contact" className="footer-link">Contact</Link>
               <Link to="/security" className="footer-link">Security</Link>
               <Link to="/privacy" className="footer-link">Privacy Policy</Link>
               <Link to="/terms" className="footer-link">Terms & Conditions</Link>
@@ -131,8 +133,8 @@ export default function Footer() {
               <h3 className="link-title">Resources</h3>
               <Link to="/blog" className="footer-link">Blog & Insights</Link>
               <Link to="/documentation" className="footer-link">Documentation</Link>
-              <a href="/#how-it-works" className="footer-link">How It Works</a>
-              <a href="/#results" className="footer-link">Case Studies</a>
+              <Link to="/#how-it-works" className="footer-link">How It Works</Link>
+              <Link to="/#results" className="footer-link">Case Studies</Link>
               <a href="mailto:contact@gyanvaniai.online" className="footer-link">Support</a>
             </div>
           </div>
@@ -165,7 +167,7 @@ export default function Footer() {
 
         <div className="footer-bottom">
           <p className="text-sm text-muted">
-            © 2026 Gyan VaniAi. All rights reserved. · <Link to="/privacy" className="link-inline">Privacy</Link> · <Link to="/terms" className="link-inline">Terms</Link> · <a href="/#security" className="link-inline">Security</a>
+            © 2026 Gyan VaniAi. All rights reserved. · <Link to="/privacy" className="link-inline">Privacy</Link> · <Link to="/terms" className="link-inline">Terms</Link> · <Link to="/security" className="link-inline">Security</Link>
           </p>
         </div>
       </div>

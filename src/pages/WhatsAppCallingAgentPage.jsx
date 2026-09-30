@@ -45,7 +45,7 @@ const capabilityCards = [
     num: '01',
     icon: <PhoneCall size={22} className="cap-icon" />,
     title: 'AI Voice Conversations',
-    desc: 'Sub-300ms full-duplex conversational voice agents that understand natural cadence, handle interruptions (barge-in), and speak naturally in 30+ languages.'
+    desc: 'Low-latency full-duplex conversational voice agents that understand natural cadence, handle interruptions (barge-in), and speak naturally in 30+ languages.'
   },
   {
     num: '02',
@@ -94,7 +94,7 @@ const pipelineStages = [
     name: 'Speech ASR',
     category: 'Streaming',
     icon: <Mic size={18} />,
-    headline: 'Sub-150ms Speech Recognition',
+    headline: 'Real-Time Streaming Speech Recognition',
     detail: 'Streaming automatic speech recognition converts spoken voice audio to text with real-time domain vocabulary adaptation.'
   },
   {
@@ -270,7 +270,7 @@ export default function WhatsAppCallingAgentPage() {
     setIsDemoModalOpen(true);
   };
 
-  const canonicalUrl = `${SITE}${location.pathname}`;
+  const canonicalUrl = `${SITE}/services/whatsapp-calling-agent`;
 
   // JSON-LD Schemas for SEO
   const serviceSchema = {
@@ -313,14 +313,14 @@ export default function WhatsAppCallingAgentPage() {
   return (
     <>
       <SeoHead
-        title="WhatsApp Calling Agent Bots | Enterprise Conversational Voice AI | Gyan VaniAi"
-        description="Deploy autonomous WhatsApp Calling Agent Bots that converse naturally, qualify leads with sub-300ms latency, sync CRM pipelines, and book meetings 24/7."
+        title="WhatsApp Calling Agent Bots | Voice AI Automation | Gyan VaniAi"
+        description="Deploy autonomous WhatsApp Calling Agent Bots that conduct natural voice conversations, qualify leads, update CRM records, and schedule meetings 24/7."
         canonical={canonicalUrl}
         image={`${SITE}/hero_dashboard.webp`}
         keywords="WhatsApp Calling Agent, Voice AI Bots, Conversational AI, Automated Lead Scoring, WhatsApp CRM Automation"
         schema={[serviceSchema, breadcrumbSchema, faqSchema]}
         aeoQuestion="What is WhatsApp Calling Agent Bot Voice AI?"
-        aeoAnswer="WhatsApp Calling Agent Bots are autonomous voice AI assistants that operate natively within WhatsApp Business API. They conduct sub-300ms human-like voice conversations, qualify leads, and update CRM records automatically."
+        aeoAnswer="WhatsApp Calling Agent Bots are autonomous voice AI assistants operating natively within WhatsApp Business API. They conduct human-like voice conversations, qualify leads, and update CRM records automatically."
       />
 
       <div className="wa-calling-page">
@@ -348,11 +348,11 @@ export default function WhatsAppCallingAgentPage() {
               {/* Left Column: Value Prop & CTAs */}
               <div className="wa-hero-copy">
                 <h1 className="wa-hero-h1">
-                  WhatsApp AI Agents That <span className="wa-text-gradient">Talk, Qualify & Convert</span>
+                  WhatsApp Calling Agent Bots
                 </h1>
 
                 <p className="wa-hero-lead">
-                  Deploy intelligent WhatsApp voice agents that converse naturally in 30+ languages, qualify inbound prospects in real time, update your CRM automatically, and route complex high-value deals to human reps.
+                  Deploy intelligent WhatsApp voice agents that converse naturally in 30+ languages, qualify inbound prospects in real time, update your CRM automatically, and route high-value deals to live reps.
                 </p>
 
                 <div className="wa-hero-cta-group">
@@ -1011,6 +1011,14 @@ export default function WhatsAppCallingAgentPage() {
             </div>
 
             <div className="wa-related-links-bar">
+              <Link to="/services/voice-bot-assistant" className="wa-related-pill">
+                <span>Voice AI Assistants</span>
+                <ArrowRight size={15} />
+              </Link>
+              <Link to="/services/phone-call-agent" className="wa-related-pill">
+                <span>Phone Call AI Agents</span>
+                <ArrowRight size={15} />
+              </Link>
               <Link to="/services/ai-agent-development" className="wa-related-pill">
                 <span>AI Agent Development</span>
                 <ArrowRight size={15} />

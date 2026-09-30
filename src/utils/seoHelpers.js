@@ -3,47 +3,17 @@
  * International targeting, hreflang tags, and meta optimization
  */
 
-export const generateHreflangTags = (currentPath) => {
-  const baseUrl = 'https://www.gyanvaniai.online';
-  
-  // Target markets with languages
-  const hreflangs = [
-    { lang: 'en', region: '', label: 'English (Global)' },
-    { lang: 'en', region: 'US', label: 'English (United States)' },
-    { lang: 'en', region: 'GB', label: 'English (United Kingdom)' },
-    { lang: 'en', region: 'IN', label: 'English (India)' },
-    { lang: 'en', region: 'AE', label: 'English (UAE)' },
-    { lang: 'en', region: 'SG', label: 'English (Singapore)' },
-    { lang: 'en', region: 'AU', label: 'English (Australia)' },
-    { lang: 'en', region: 'CA', label: 'English (Canada)' },
-    { lang: 'zh', region: 'CN', label: 'Chinese (Simplified)' },
-    { lang: 'ar', region: 'SA', label: 'Arabic (Saudi Arabia)' },
-    { lang: 'ar', region: 'AE', label: 'Arabic (UAE)' },
-    { lang: 'de', region: 'DE', label: 'German' },
-    { lang: 'fr', region: 'FR', label: 'French' },
-    { lang: 'es', region: 'ES', label: 'Spanish' },
-    { lang: 'pt', region: 'BR', label: 'Portuguese (Brazil)' },
-    { lang: 'ru', region: 'RU', label: 'Russian' },
-    { lang: 'ja', region: 'JP', label: 'Japanese' },
-    { lang: 'ko', region: 'KR', label: 'Korean' },
-  ];
-
-  return hreflangs.map(({ lang, region }) => {
-    const hreflang = region ? `${lang}-${region}` : lang;
-    return {
-      rel: 'alternate',
-      hreflang,
-      href: `${baseUrl}${currentPath}`
-    };
-  });
+export const generateHreflangTags = () => {
+  // Return empty array as website is single-locale English; hreflang is only added when distinct localized URLs exist.
+  return [];
 };
 
 export const getGeoTargeting = () => {
   return {
-    'geo.region': 'IN-DL',          // ISO 3166-2 — New Delhi, India (primary HQ)
-    'geo.placename': 'New Delhi, India',
-    'geo.position': '28.6139;77.2090',
-    'ICBM': '28.6139, 77.2090'
+    'geo.region': '',
+    'geo.placename': '',
+    'geo.position': '',
+    'ICBM': ''
   };
 };
 
@@ -171,9 +141,16 @@ export const generateBreadcrumbs = (path) => {
       .map(word => word.charAt(0).toUpperCase() + word.slice(1))
       .join(' ');
     
+    let segmentUrl = `https://www.gyanvaniai.online${currentPath}`;
+    if (segment === 'services') {
+      segmentUrl = 'https://www.gyanvaniai.online/#capabilities';
+    } else if (segment === 'industries') {
+      segmentUrl = 'https://www.gyanvaniai.online/#industries';
+    }
+    
     breadcrumbs.push({
       name,
-      url: `https://www.gyanvaniai.online${currentPath}`
+      url: segmentUrl
     });
   });
   

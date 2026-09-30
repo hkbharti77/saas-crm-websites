@@ -30,7 +30,6 @@ const routes = [
   '/services/whatsapp-automation',
   '/services/voice-bot-assistant',
   '/services/whatsapp-calling-agent',
-  '/services/whatsapp-calling-agent-bots',
   '/services/phone-call-agent',
   '/services/ivr-solutions',
   '/services/human-handoff-systems',

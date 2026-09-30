@@ -10,27 +10,27 @@ const capabilities = [
     icon: <Database size={22} strokeWidth={1.75} />,
     title: 'AI Lead Enrichment',
     description: 'Auto-enrich prospect profiles with verified business intelligence, company size, and technographics.',
-    to: '/services/crm-development',
+    to: '/services/lead-management',
     tag: 'Intelligence'
   },
   {
     icon: <UserCheck size={22} strokeWidth={1.75} />,
     title: 'Intelligent Lead Assignment',
     description: 'Route high-value leads to the best-suited reps instantly using dynamic skill-based matching.',
-    to: '/services/crm-development',
+    to: '/services/lead-management',
     tag: 'Routing'
   },
   {
     icon: <Activity size={22} strokeWidth={1.75} />,
     title: 'AI Intent Scoring',
     description: 'Analyze buyer sentiment and engagement signals in real-time to rank conversion readiness.',
-    to: '/services/ai-development',
+    to: '/services/ai-agent-development',
     tag: 'Scoring'
   },
   {
     icon: <Bot size={22} strokeWidth={1.75} />,
     title: 'RAG-Based AI Assistant',
-    description: 'Query company knowledge, sales playbooks, and docs with zero hallucination and tenant isolation.',
+    description: 'Query company knowledge, sales playbooks, and docs with verified facts and tenant isolation.',
     to: '/services/ai-chatbots',
     tag: 'RAG Knowledge'
   },
@@ -38,14 +38,14 @@ const capabilities = [
     icon: <MessageSquare size={22} strokeWidth={1.75} />,
     title: 'Omnichannel Communication',
     description: 'Engage prospects seamlessly across WhatsApp, voice calls, email, and web chat from a unified inbox.',
-    to: '/services/whatsapp-automation',
+    to: '/services/whatsapp-coexistence',
     tag: 'Omnichannel'
   },
   {
     icon: <Workflow size={22} strokeWidth={1.75} />,
     title: 'Sales Automation',
     description: 'Automate multi-step drip campaigns, task reminders, and deal pipeline status updates.',
-    to: '/services/crm-development',
+    to: '/services/sales-automation',
     tag: 'Automation'
   },
   {

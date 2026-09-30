@@ -41,11 +41,11 @@ const seoDataMap = {
   },
   'ai-agent-development': {
     metaTitle: 'Custom AI Agent Development Company | Gyan VaniAi',
-    metaDescription: 'Deploy autonomous AI agents for sales, support, and operations. Multi-agent systems with RAG, tool use, and CRM/WhatsApp integration by Gyan VaniAi.',
+    metaDescription: 'Deploy autonomous AI agents for sales, support, and operations. Multi-agent systems with RAG, tool calling, and CRM integration by Gyan VaniAi.',
     h1: 'Custom AI Agent Development',
     subtitle: 'Deploy intelligent AI agents that handle sales, support, and operations autonomously, with human oversight when it matters.',
-    overview: 'Build AI agents that understand business context, use connected tools, and automate repetitive workflows.',
-    whoFor: 'Growing businesses • Operations teams • Sales teams • Customer support teams',
+    overview: 'Gyan VaniAi architects and deploys custom autonomous AI agents designed to automate complex, multi-step business workflows across sales, customer support, and revenue operations. Our AI agents go beyond basic chatbots by using context-aware reasoning, tenant-isolated Retrieval-Augmented Generation (RAG), and secure API tool calling to query databases, update CRM records, and execute business actions independently while maintaining human-in-the-loop oversight.',
+    whoFor: 'Operations leaders, engineering directors, and revenue teams needing AI that executes multi-step workflows across CRMs, messaging channels, and backend APIs.',
     deliverables: ['AI agent architecture', 'Workflow automation', 'Knowledge/RAG integration', 'API and tool integrations', 'Human handoff'],
     benefits: ['Multi-Agent Systems', 'Workflow Automation', 'Natural Language Processing', 'Custom Integrations'],
     image: '/ai-agent-hero.webp',
@@ -55,10 +55,10 @@ const seoDataMap = {
     workflowVisual: '/ai-agent-workflow.webp',
     ctaVisual: '/ai-agent-cta.webp',
     relatedLinks: [
-      { url: '/services/crm-development', text: 'CRM Development', icon: '/service-crm-development.webp' },
-      { url: '/services/whatsapp-coexistence', text: 'WhatsApp Coexistence', icon: '/service-whatsapp-coexistence.webp' },
-      { url: '/services/voice-bot-assistant', text: 'Voice AI', icon: '/service-voice-ai.webp' },
-      { url: '/services/ai-chatbots', text: 'AI Chatbot Development', icon: '/service-ai-chatbot.webp' }
+      { url: '/services/ai-chatbots', text: 'AI Chatbot Development', icon: '/service-ai-chatbot.webp' },
+      { url: '/services/voice-bot-assistant', text: 'Voice AI Assistants', icon: '/service-voice-ai.webp' },
+      { url: '/services/sales-automation', text: 'Sales Automation', icon: '/service-sales-automation.webp' },
+      { url: '/services/crm-development', text: 'CRM Development', icon: '/service-crm-development.webp' }
     ],
     capabilities: [
       { title: 'Autonomous Reasoning', desc: 'Agents can break down complex tasks into sequential steps and execute them dynamically.' },
@@ -348,20 +348,20 @@ const seoDataMap = {
     ]
   },
   'voice-bot-assistant': {
-    metaTitle: 'AI Voice Bot Assistant & Phone Call Agent (24/7 Voice) | Gyan VaniAi',
-    metaDescription: 'Deploy natural conversational AI voice bots for customer support & outbound phone campaigns. Sub-300ms response time, SIP/PBX integration & calendar booking.',
+    metaTitle: 'AI Voice Bot Assistant | Conversational Voice AI | Gyan VaniAi',
+    metaDescription: 'Build conversational AI voice bot assistants for customer support, inbound call handling, and automated phone campaigns with real-time CRM integration.',
     h1: 'AI Voice Bot Assistants',
     subtitle: 'Human-like conversational AI voice bots for customer support, sales, and appointment booking.',
-    overview: 'Gyan VaniAi builds intelligent Voice Bot Assistants that understand natural language, handle interruptions, and provide instant resolutions over voice channels without wait times. Our voice agents are designed for natural conversational flow and minimal latency.',
+    overview: 'Gyan VaniAi builds intelligent Voice Bot Assistants that understand natural language, handle interruptions, and provide instant resolutions over voice channels. Our voice agents are engineered for low-latency conversational flow, streaming speech recognition, and bi-directional CRM integration.',
     whoFor: 'Customer support teams and sales departments looking to automate inbound queries, outbound campaigns, and appointment bookings 24/7.',
     deliverables: ['Conversational AI models', 'Multi-language support', 'CRM integration', 'Transcription & analytics'],
-    benefits: ['No Wait Times', 'Natural Conversations', 'Scalable Support', 'Real-time CRM Updates'],
+    benefits: ['Reduced Queue Times', 'Natural Conversations', 'Scalable Support', 'Real-time CRM Updates'],
     image: '/voice-bot-hero.webp',
     imageAlt: 'Enterprise AI Voice Bot Assistant real-time call dashboard with audio waveform, live transcript, and CRM sync by Gyan VaniAi',
     engineBanner: {
       tag: 'VOICE AI ENGINE · REAL-TIME ORCHESTRATION',
-      title: 'Ultra-Low Latency Conversational Voice Pipeline',
-      desc: 'Sub-500ms full-duplex speech recognition, contextual reasoning, and immediate CRM synchronization.'
+      title: 'Low-Latency Conversational Voice Pipeline',
+      desc: 'Streaming full-duplex speech recognition, contextual reasoning, and immediate CRM synchronization.'
     },
     integrations: [
       { label: 'Telephony Trunk (SIP / WebRTC / PSTN)', icon: <PhoneCall size={15} /> },
@@ -370,17 +370,17 @@ const seoDataMap = {
       { label: 'Instant SMS & WhatsApp Confirmations', icon: <Mail size={15} /> }
     ],
     workflowHeading: 'How Conversational Voice AI Works',
-    workflowSubtitle: 'From incoming telephony audio to CRM synchronization in under 500ms.',
+    workflowSubtitle: 'From incoming telephony audio to CRM synchronization in real time.',
     workflowFooter: {
       label: 'VOICE AI ENGINE',
       title: 'Autonomous Voice Pipeline Execution',
-      desc: 'Stream ultra-low latency voice recognition, understand caller intent with NLP, hold natural multi-turn conversations, book appointments, and sync data directly to your CRM.',
+      desc: 'Stream real-time voice recognition, understand caller intent with NLP, hold natural multi-turn conversations, book appointments, and sync data directly to your CRM.',
       btnText: 'Deploy Voice AI Agent',
       btnUrl: '#contact'
     },
     customSteps: [
       { stepNum: '01', category: 'Capture', icon: <PhoneCall size={20} />, title: 'Call Capture', desc: 'Accept inbound calls or initiate automated outbound campaigns across SIP trunks, WebRTC, or WhatsApp Voice.' },
-      { stepNum: '02', category: 'ASR', icon: <Mic size={20} />, title: 'Speech Recognition', desc: 'Real-time Automatic Speech Recognition (ASR) converts caller speech to text with sub-150ms transcription latency.' },
+      { stepNum: '02', category: 'ASR', icon: <Mic size={20} />, title: 'Speech Recognition', desc: 'Streaming Automatic Speech Recognition (ASR) converts caller speech to text in real time.' },
       { stepNum: '03', category: 'NLP', icon: <BrainCircuit size={20} />, title: 'Intent Detection', desc: 'Natural language understanding parses caller intent, urgency, sentiment, and entity parameters.' },
       { stepNum: '04', category: 'Voice AI', icon: <Bot size={20} />, title: 'AI Conversation', desc: 'LLM dialogue engine generates human-like, contextual responses with natural full-duplex interruption support.' },
       { stepNum: '05', category: 'Qualify', icon: <Filter size={20} />, title: 'Lead Qualification', desc: 'Dynamically assesses prospect qualification criteria, budget, timeline, and decision-maker status during the call.' },
@@ -391,29 +391,29 @@ const seoDataMap = {
     ctaVisual: '/voice-ai-analytics.webp',
     ctaVisualAlt: 'Voice AI performance metrics, audio analytics, and call resolution analytics dashboard',
     contactTitle: 'Ready to Deploy Your AI Voice Assistant?',
-    contactSubtitle: 'Tell us about your call volume, use cases, and telephony stack. We will architect a sub-500ms voice AI pipeline for your business.',
+    contactSubtitle: 'Tell us about your call volume, use cases, and telephony stack. We will architect a low-latency voice AI pipeline for your business.',
     relatedLinks: [
+      { url: '/services/whatsapp-calling-agent', text: 'WhatsApp Calling Agent', icon: '/service-voice-ai.webp' },
+      { url: '/services/phone-call-agent', text: 'Phone Call Agent', icon: '/service-voice-ai.webp' },
       { url: '/services/ai-agent-development', text: 'AI Agent Development', icon: '/service-ai-agent-development.webp' },
-      { url: '/services/sales-automation', text: 'Sales Automation', icon: '/service-sales-automation.webp' },
-      { url: '/services/whatsapp-coexistence', text: 'WhatsApp Coexistence', icon: '/service-whatsapp-coexistence.webp' },
       { url: '/services/crm-development', text: 'Custom CRM Development', icon: '/service-crm-development.webp' }
     ],
     customFaqs: [
-      { question: 'Can callers interrupt the AI voice bot naturally?', answer: 'Yes. Our voice bots support full-duplex communication with active interruption handling (barge-in). The bot stops speaking instantly when the user talks, creating a natural human-like conversation.' },
-      { question: 'What is the voice response latency?', answer: 'Our voice pipeline achieves sub-500ms end-to-end latency using optimized streaming ASR, high-speed LLM inference, and low-latency voice synthesis (TTS).' },
+      { question: 'Can callers interrupt the AI voice bot naturally?', answer: 'Yes. Our voice bots support full-duplex communication with active interruption handling (barge-in). The bot pauses instantly when the user speaks, ensuring natural conversational flow.' },
+      { question: 'What is the voice response performance?', answer: 'Our streaming voice pipeline achieves fast end-to-end responsiveness using optimized ASR speech recognition, LLM reasoning, and low-latency text-to-speech synthesis.' },
       { question: 'Can the voice bot book appointments directly?', answer: 'Yes. The bot integrates with Google Calendar, Microsoft Outlook, and Calendly to check real-time availability and book appointments during the call.' },
-      { question: 'How does human agent handoff work?', answer: 'When the AI encounters an out-of-scope query or high-value caller, it initiates a live SIP/telephony transfer to a human agent, providing the rep with the full call summary and transcript.' },
-      { question: 'Does the voice bot integrate with our CRM?', answer: 'Yes. Post-call automation logs complete transcripts, audio recordings, structured call summaries, sentiment scores, and lead qualification data directly into your CRM.' },
+      { question: 'How does human agent handoff work?', answer: 'When the AI encounters an out-of-scope query or high-value caller, it initiates a live SIP transfer to a human agent, providing the rep with a complete call transcript.' },
+      { question: 'Does the voice bot integrate with our CRM?', answer: 'Yes. Post-call automation logs complete transcripts, call summaries, sentiment scores, and lead qualification data directly into your CRM.' },
       { question: 'What languages and accents are supported?', answer: 'We support over 30 languages and regional accents with natural inflection, customizable tone, and domain-specific vocabulary.' },
       { question: 'Can we use our existing business phone numbers?', answer: 'Yes. We connect with your existing telephony via SIP trunking, Twilio, Vonage, Plivo, or direct PBX integration without requiring number changes.' },
       { question: 'How do you ensure enterprise security and compliance?', answer: 'All voice streams and transcripts are encrypted in transit (TLS) and at rest (AES-256) with strict role-based access controls and configurable retention policies.' }
     ],
     faqs: [
-      { q: 'Can callers interrupt the AI voice bot naturally?', a: 'Yes. Our voice bots support full-duplex communication with active interruption handling (barge-in). The bot stops speaking instantly when the user talks, creating a natural human-like conversation.' },
-      { q: 'What is the voice response latency?', a: 'Our voice pipeline achieves sub-500ms end-to-end latency using optimized streaming ASR, high-speed LLM inference, and low-latency voice synthesis (TTS).' },
+      { q: 'Can callers interrupt the AI voice bot naturally?', a: 'Yes. Our voice bots support full-duplex communication with active interruption handling (barge-in). The bot pauses instantly when the user speaks, ensuring natural conversational flow.' },
+      { q: 'What is the voice response performance?', a: 'Our streaming voice pipeline achieves fast end-to-end responsiveness using optimized ASR speech recognition, LLM reasoning, and low-latency text-to-speech synthesis.' },
       { q: 'Can the voice bot book appointments directly?', a: 'Yes. The bot integrates with Google Calendar, Microsoft Outlook, and Calendly to check real-time availability and book appointments during the call.' },
-      { q: 'How does human agent handoff work?', a: 'When the AI encounters an out-of-scope query or high-value caller, it initiates a live SIP/telephony transfer to a human agent, providing the rep with the full call summary and transcript.' },
-      { q: 'Does the voice bot integrate with our CRM?', a: 'Yes. Post-call automation logs complete transcripts, audio recordings, structured call summaries, sentiment scores, and lead qualification data directly into your CRM.' },
+      { q: 'How does human agent handoff work?', a: 'When the AI encounters an out-of-scope query or high-value caller, it initiates a live SIP transfer to a human agent, providing the rep with a complete call transcript.' },
+      { q: 'Does the voice bot integrate with our CRM?', a: 'Yes. Post-call automation logs complete transcripts, call summaries, sentiment scores, and lead qualification data directly into your CRM.' },
       { q: 'What languages and accents are supported?', a: 'We support over 30 languages and regional accents with natural inflection, customizable tone, and domain-specific vocabulary.' },
       { q: 'Can we use our existing business phone numbers?', a: 'Yes. We connect with your existing telephony via SIP trunking, Twilio, Vonage, Plivo, or direct PBX integration without requiring number changes.' },
       { q: 'How do you ensure enterprise security and compliance?', a: 'All voice streams and transcripts are encrypted in transit (TLS) and at rest (AES-256) with strict role-based access controls and configurable retention policies.' }
@@ -439,19 +439,21 @@ const seoDataMap = {
     ]
   },
   'phone-call-agent': {
-    metaTitle: 'AI Phone Call Agent Assistant (24/7 Telephony SIP) | Gyan VaniAi',
-    metaDescription: 'Deploy 24/7 AI phone agents that sound human and resolve complex customer inquiries over standard phone lines, SIP trunks & PBX with zero hold times.',
-    h1: 'Phone Call AI Agent Assistants',
+    metaTitle: 'AI Phone Call Agent Assistant | SIP & PBX Telephony | Gyan VaniAi',
+    metaDescription: 'Deploy AI phone agents to handle inbound calls, answer customer inquiries, and route sales leads across standard phone lines, SIP trunks, and PBX systems.',
+    h1: 'AI Phone Call Agent Assistants',
     subtitle: '24/7 AI phone agents that sound human and resolve complex customer inquiries.',
-    overview: 'Replace rigid phone menus with natural, conversational AI agents that can qualify leads, troubleshoot issues, and take reservations over standard phone lines. We integrate directly with your existing PBX or cloud telephony provider.',
-    whoFor: 'Call centers, clinics, and enterprises drowning in repetitive inbound calls who want to provide zero-wait-time resolutions.',
+    overview: 'Replace rigid phone menus with natural, conversational AI agents that qualify leads, troubleshoot issues, and schedule appointments over standard phone lines and telephony networks. We integrate directly with your existing PBX or cloud telephony provider to streamline inbound calls and eliminate call queue wait times.',
+    whoFor: 'Call centers, healthcare clinics, and enterprise teams handling high inbound call volumes seeking efficient automated resolution.',
     deliverables: ['SIP/PSTN trunking integration', 'Natural voice synthesis (TTS)', 'Intent recognition', 'Automated follow-up texts'],
-    benefits: ['Zero Hold Times', 'High Intent Recognition', 'Human-like Voices', 'Telephony Integration'],
+    benefits: ['Eliminates Call Queues', 'High Intent Recognition', 'Human-like Voices', 'SIP & PBX Telephony'],
     image: '/hero_dashboard.webp',
     imageAlt: 'Phone Call AI Agent telephony dashboard by Gyan VaniAi',
     relatedLinks: [
-      { url: '/services/ivr-solutions', text: 'Smart IVR Solutions' },
-      { url: '/services/human-handoff-systems', text: 'AI to Human Handoff' }
+      { url: '/services/voice-bot-assistant', text: 'AI Voice Bot Assistants', icon: '/service-voice-ai.webp' },
+      { url: '/services/whatsapp-calling-agent', text: 'WhatsApp Calling Agent', icon: '/service-voice-ai.webp' },
+      { url: '/services/lead-management', text: 'Lead Management', icon: '/lead-hero.webp' },
+      { url: '/services/crm-development', text: 'CRM Development', icon: '/service-crm-development.webp' }
     ],
     faqs: [
       { q: 'Can it transfer calls to a real human?', a: 'Absolutely. If the AI detects a complex issue or an angry customer, it can instantly route the call to a live human agent via SIP transfer.' }
@@ -828,7 +830,7 @@ export default function SEOLandingPage() {
     return <AIChatbotsPage />;
   }
 
-  if (pageId === 'whatsapp-calling-agent' || pageId === 'whatsapp-calling-agent-bots') {
+  if (pageId === 'whatsapp-calling-agent') {
     return <WhatsAppCallingAgentPage />;
   }
 

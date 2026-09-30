@@ -272,19 +272,15 @@ export const speakableSchema = (cssSelectors = ['.aeo-answer-definition', '.aeo-
 
 export const qapageSchema = (question, answer) => ({
   "@context": "https://schema.org",
-  "@type": "QAPage",
-  "mainEntity": {
+  "@type": "FAQPage",
+  "mainEntity": [{
     "@type": "Question",
     "name": question,
-    "text": question,
-    "answerCount": 1,
     "acceptedAnswer": {
       "@type": "Answer",
-      "text": answer,
-      "upvoteCount": 42,
-      "url": "https://www.gyanvaniai.online/#answer"
+      "text": answer
     }
-  }
+  }]
 });
 
 export const softwareAppSchema = (app) => ({
@@ -326,9 +322,9 @@ export const services = [
   {
     name: "WhatsApp Coexistence Platform",
     url: "/services/whatsapp-coexistence",
-    description: "Keep your personal WhatsApp app while running business automation on the same number. Meta Tech Provider certified solution.",
+    description: "Keep your personal WhatsApp app while running business automation on the same number. Official Meta Cloud API dual-surface solution.",
     image: "https://www.gyanvaniai.online/whatsapp_coexistence_light.webp",
-    features: ["Dual Surface Support", "Meta Certified", "Personal + Business", "Same Phone Number", "Zero Disruption"]
+    features: ["Dual Surface Support", "Official Meta API Integration", "Personal + Business", "Same Phone Number", "Zero Disruption"]
   },
   {
     name: "AI CRM Development",

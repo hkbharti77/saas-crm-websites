@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef, Suspense, lazy, Component } from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import EnterpriseBackground from './components/EnterpriseBackground';
@@ -187,7 +187,7 @@ function App() {
                 <Route path="/services/sales-automation" element={<SalesAutomationPage />} />
                 <Route path="/services/ai-chatbots" element={<AIChatbotsPage />} />
                 <Route path="/services/whatsapp-calling-agent" element={<WhatsAppCallingAgentPage />} />
-                <Route path="/services/whatsapp-calling-agent-bots" element={<WhatsAppCallingAgentPage />} />
+                <Route path="/services/whatsapp-calling-agent-bots" element={<Navigate to="/services/whatsapp-calling-agent" replace />} />
                 <Route path="/documentation" element={<Documentation />} />
                 <Route path="/services/:serviceId" element={<SEOLandingPage />} />
                 <Route path="/industries/:industryId" element={<SEOLandingPage />} />

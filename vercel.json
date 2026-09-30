@@ -9,6 +9,11 @@
   ],
   "redirects": [
     {
+      "source": "/services/whatsapp-calling-agent-bots",
+      "destination": "/services/whatsapp-calling-agent",
+      "permanent": true
+    },
+    {
       "source": "/:path*",
       "has": [{ "type": "host", "value": "gyanvaniai.online" }],
       "destination": "https://www.gyanvaniai.online/:path*",

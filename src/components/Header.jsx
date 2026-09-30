@@ -26,6 +26,12 @@ const solutionsList = [
     icon: <Bot size={18} />
   },
   {
+    title: 'WhatsApp Calling Agent',
+    desc: 'Sub-300ms voice AI calling natively over WhatsApp API.',
+    to: '/services/whatsapp-calling-agent',
+    icon: <PhoneCall size={18} />
+  },
+  {
     title: 'Voice AI & Calling Bots',
     desc: 'Inbound support and outbound qualification over phone & WhatsApp.',
     to: '/services/voice-bot-assistant',

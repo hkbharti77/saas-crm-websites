@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import SeoHead from '../components/SeoHead';
 import { 
   ArrowRight, 
@@ -177,14 +178,14 @@ export default function WhatsAppCoexistencePage() {
   return (
     <>
       <SeoHead
-        title="WhatsApp Coexistence Mode: Mobile App + Cloud API on One Number | Gyan VaniAi"
-        description="Operate your WhatsApp Business mobile app and enterprise Cloud API simultaneously on the exact same phone number. Zero chat loss, no phone reset, 24/7 AI auto-replies, and live CRM sync."
+        title="WhatsApp Coexistence Mode | Mobile App & CRM Sync | Gyan VaniAi"
+        description="Connect official WhatsApp Cloud API to Gyan VaniAi CRM while retaining your mobile WhatsApp Business app on the exact same phone number."
         canonical="https://www.gyanvaniai.online/services/whatsapp-coexistence"
         image="https://www.gyanvaniai.online/whatsapp_coexistence_dark.webp"
         keywords="WhatsApp Coexistence, WhatsApp Business API, Dual WhatsApp Mode, WhatsApp CRM Automation, Single Number WhatsApp"
         preloadImage="/whatsapp_coexistence_dark.webp"
         aeoQuestion="How does Meta WhatsApp Coexistence Mode work?"
-        aeoAnswer="WhatsApp Coexistence allows both your mobile WhatsApp Business phone app AND Gyan VaniAi Cloud API AI CRM to run simultaneously on 1 single phone number with real-time bidirectional message sync and zero chat loss."
+        aeoAnswer="WhatsApp Coexistence allows both your mobile WhatsApp Business phone app AND Gyan VaniAi Cloud API AI CRM to run simultaneously on 1 single phone number with real-time bidirectional message sync."
       />
 
       <div className="coexistence-page">
@@ -216,14 +217,14 @@ export default function WhatsAppCoexistencePage() {
               {/* Left Column: Copy & Actions */}
               <div className="coexistence-hero-left">
                 <h1 className="coexistence-hero-title">
-                  WhatsApp Business Automation<br />
+                  WhatsApp Coexistence Platform<br />
                   <span className="text-gradient">
-                    Phone App + AI CRM on the Same Number
+                    Mobile App + AI CRM on One Phone Number
                   </span>
                 </h1>
 
                 <p className="coexistence-hero-desc">
-                  Stop choosing between your phone inbox and enterprise automation. With official Meta Coexistence Mode, your team keeps replying from their WhatsApp Business mobile app while <strong>Gyan VaniAi</strong> adds 24/7 AI auto-replies, bulk broadcasts, and CRM lead tracking on the exact same phone number.
+                  Stop choosing between your mobile phone app and enterprise automation. With official Meta Coexistence Mode, your team continues replying from their WhatsApp Business mobile app while <strong>Gyan VaniAi</strong> adds AI auto-replies, broadcasts, and CRM lead tracking on the exact same number.
                 </p>
 
                 <div className="coexistence-hero-actions">
@@ -711,17 +712,21 @@ export default function WhatsAppCoexistencePage() {
           <div className="coexistence-related-bar">
             <span className="coexistence-related-title">Related Services:</span>
             <div className="coexistence-related-links">
-              <a href="/services/whatsapp-calling-agent" className="coexistence-related-link">
+              <Link to="/services/whatsapp-calling-agent" className="coexistence-related-link">
                 WhatsApp Calling Agent Bots →
-              </a>
+              </Link>
               <span style={{ color: 'var(--border-color)' }}>|</span>
-              <a href="/services/crm-development" className="coexistence-related-link">
-                Custom CRM Software Development →
-              </a>
+              <Link to="/services/whatsapp-automation" className="coexistence-related-link">
+                WhatsApp CRM Automation →
+              </Link>
               <span style={{ color: 'var(--border-color)' }}>|</span>
-              <a href="/services/ai-development" className="coexistence-related-link">
-                AI Software Development →
-              </a>
+              <Link to="/services/crm-development" className="coexistence-related-link">
+                Custom CRM Software →
+              </Link>
+              <span style={{ color: 'var(--border-color)' }}>|</span>
+              <Link to="/services/lead-management" className="coexistence-related-link">
+                Lead Management Software →
+              </Link>
             </div>
           </div>
         </section>

@@ -11,7 +11,7 @@ import {
   websiteSchema, 
   breadcrumbSchema,
   speakableSchema,
-  qapageSchema
+  faqSchema
 } from '../utils/schemas';
 
 /**
@@ -65,7 +65,7 @@ export default function SEOHead({
     schemas.push(breadcrumbSchema(breadcrumbs));
   }
   if (aeoQuestion && aeoAnswer) {
-    schemas.push(qapageSchema(aeoQuestion, aeoAnswer));
+    schemas.push(faqSchema([{ question: aeoQuestion, answer: aeoAnswer }]));
   }
   if (schema) {
     schemas.push(...(Array.isArray(schema) ? schema : [schema]));
@@ -99,11 +99,11 @@ export default function SEOHead({
       <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
       <meta name="apple-mobile-web-app-title" content="Gyan VaniAi" />
 
-      {/* Geographic Targeting */}
-      <meta name="geo.region" content={geoMeta['geo.region']} />
-      <meta name="geo.placename" content={geoMeta['geo.placename']} />
-      <meta name="geo.position" content={geoMeta['geo.position']} />
-      <meta name="ICBM" content={geoMeta.ICBM} />
+      {/* Geographic Targeting (rendered only when specified) */}
+      {geoMeta['geo.region'] && <meta name="geo.region" content={geoMeta['geo.region']} />}
+      {geoMeta['geo.placename'] && <meta name="geo.placename" content={geoMeta['geo.placename']} />}
+      {geoMeta['geo.position'] && <meta name="geo.position" content={geoMeta['geo.position']} />}
+      {geoMeta.ICBM && <meta name="ICBM" content={geoMeta.ICBM} />}
 
       {/* Distribution & Coverage */}
       <meta name="distribution" content="Global" />
@@ -128,20 +128,6 @@ export default function SEOHead({
       <meta property="og:image:height" content={socialMeta['og:image:height']} />
       <meta property="og:image:alt" content={socialMeta['og:image:alt']} />
       <meta property="og:locale" content={socialMeta['og:locale']} />
-
-      {/* Open Graph Alternate Locales */}
-      <meta property="og:locale:alternate" content="en_GB" />
-      <meta property="og:locale:alternate" content="en_AE" />
-      <meta property="og:locale:alternate" content="en_CA" />
-      <meta property="og:locale:alternate" content="en_IN" />
-      <meta property="og:locale:alternate" content="en_SG" />
-      <meta property="og:locale:alternate" content="en_AU" />
-      <meta property="og:locale:alternate" content="de_DE" />
-      <meta property="og:locale:alternate" content="fr_FR" />
-      <meta property="og:locale:alternate" content="es_ES" />
-      <meta property="og:locale:alternate" content="ar_SA" />
-      <meta property="og:locale:alternate" content="zh_CN" />
-      <meta property="og:locale:alternate" content="ru_RU" />
 
       {/* Twitter */}
       <meta name="twitter:card" content={socialMeta['twitter:card']} />
@@ -168,7 +154,7 @@ export default function SEOHead({
       <meta name="citation_fulltext_html_url" content={canonical} />
       <meta name="citation_language" content="en" />
 
-      {/* Hreflang Tags for International SEO */}
+      {/* Hreflang Tags for International SEO (rendered only when localized versions exist) */}
       {hreflangs.map((tag, index) => (
         <link 
           key={index}
@@ -178,8 +164,7 @@ export default function SEOHead({
         />
       ))}
 
-      {/* x-default for international */}
-      <link rel="alternate" hrefLang="x-default" href={canonical} />
+      {hreflangs.length > 0 && <link rel="alternate" hrefLang="x-default" href={canonical} />}
 
       {/* Structured Data (JSON-LD) */}
       <script type="application/ld+json">
