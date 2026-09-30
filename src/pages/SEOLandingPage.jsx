@@ -329,8 +329,8 @@ const seoDataMap = {
     ]
   },
   'ai-chatbots': {
-    metaTitle: 'AI Chatbot Development Company | RAG Chatbots | Gyan VaniAi',
-    metaDescription: 'Custom AI chatbots with RAG, human handoff, and CRM/WhatsApp integration. Sub-300ms answers from your business knowledge base.',
+    metaTitle: 'Custom AI Chatbot Development (Sub-300ms RAG) | Gyan VaniAi',
+    metaDescription: 'Build custom AI chatbots grounded in your business database. Zero hallucination RAG architecture, sub-300ms responses & WhatsApp/web widget integration.',
     h1: 'AI Chatbot Development',
     subtitle: 'Intelligent chatbots that answer from your data, hand off to humans with context, and plug into WhatsApp and CRM.',
     overview: 'Gyan VaniAi builds AI chatbots powered by RAG so answers come from your documents and policies, not hallucinations. Chatbots support multi-language conversations, sentiment-aware routing, and seamless escalation to live agents.',
@@ -348,8 +348,8 @@ const seoDataMap = {
     ]
   },
   'voice-bot-assistant': {
-    metaTitle: 'AI Voice Bot Assistant | Conversational AI Voice Agents | Gyan VaniAi',
-    metaDescription: 'Deploy human-like conversational AI voice bots for customer support, sales, and appointment booking with seamless CRM integration.',
+    metaTitle: 'AI Voice Bot Assistant & Phone Call Agent (24/7 Voice) | Gyan VaniAi',
+    metaDescription: 'Deploy natural conversational AI voice bots for customer support & outbound phone campaigns. Sub-300ms response time, SIP/PBX integration & calendar booking.',
     h1: 'AI Voice Bot Assistants',
     subtitle: 'Human-like conversational AI voice bots for customer support, sales, and appointment booking.',
     overview: 'Gyan VaniAi builds intelligent Voice Bot Assistants that understand natural language, handle interruptions, and provide instant resolutions over voice channels without wait times. Our voice agents are designed for natural conversational flow and minimal latency.',
@@ -420,8 +420,8 @@ const seoDataMap = {
     ]
   },
   'whatsapp-calling-agent': {
-    metaTitle: 'WhatsApp Calling Agent Bot | WhatsApp Voice AI | Gyan VaniAi',
-    metaDescription: 'Automate customer interactions directly over WhatsApp voice calls with AI agents for support, sales, and proactive outreach.',
+    metaTitle: 'AI WhatsApp Calling Agent Bot (Sub-300ms Voice) | Gyan VaniAi',
+    metaDescription: 'Automate customer interactions directly over WhatsApp voice calls with sub-300ms AI agents. Instant CRM logging, 24/7 outbound campaigns & live human handoff.',
     h1: 'WhatsApp Calling Agent Bots',
     subtitle: 'Automate customer interactions directly over WhatsApp voice calls with conversational AI.',
     overview: 'Reach your customers where they are. Our WhatsApp Calling Agent Bots handle inbound and outbound voice calls natively within WhatsApp, providing seamless support and sales automation without requiring traditional telecom infrastructure.',
@@ -439,8 +439,8 @@ const seoDataMap = {
     ]
   },
   'phone-call-agent': {
-    metaTitle: 'Phone Call AI Agent Assistant | AI Calling System | Gyan VaniAi',
-    metaDescription: '24/7 AI phone agents that sound human and resolve complex customer inquiries over standard phone lines and SIP.',
+    metaTitle: 'AI Phone Call Agent Assistant (24/7 Telephony SIP) | Gyan VaniAi',
+    metaDescription: 'Deploy 24/7 AI phone agents that sound human and resolve complex customer inquiries over standard phone lines, SIP trunks & PBX with zero hold times.',
     h1: 'Phone Call AI Agent Assistants',
     subtitle: '24/7 AI phone agents that sound human and resolve complex customer inquiries.',
     overview: 'Replace rigid phone menus with natural, conversational AI agents that can qualify leads, troubleshoot issues, and take reservations over standard phone lines. We integrate directly with your existing PBX or cloud telephony provider.',
