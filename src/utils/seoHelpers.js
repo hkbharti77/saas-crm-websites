@@ -117,7 +117,7 @@ export const getKeywords = (category) => {
     voice: 'Voice AI, Calling Bots, IVR System, Phone AI Agent, Voice Assistant, Speech Recognition, Natural Language Processing',
     automation: 'Sales Automation, Marketing Automation, Business Process Automation, Workflow Automation, Lead Nurturing',
     enterprise: 'Enterprise Software, HRMS, ERP, Custom Software Development, SaaS Development, B2B Software',
-    default: 'AI Agency, Software Development, Business Automation, Digital Transformation, Custom Software'
+    default: 'Gyan Vani, Gyanvani, Gyan Vani AI, Gyanvani AI, GyanVani, AI Agency, Software Development, Business Automation, Digital Transformation, Custom Software'
   };
   
   return keywordMap[category] || keywordMap.default;

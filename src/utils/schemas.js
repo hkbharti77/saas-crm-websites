@@ -8,7 +8,7 @@ export const organizationSchema = {
   "@type": ["Organization", "ProfessionalService"],
   "@id": "https://www.gyanvaniai.online/#organization",
   "name": "Gyan VaniAi",
-  "alternateName": "Gyan Vani AI",
+  "alternateName": ["Gyan Vani", "Gyanvani", "Gyan Vani AI", "GyanVani AI", "GyanVani"],
   "url": "https://www.gyanvaniai.online/",
   "logo": {
     "@type": "ImageObject",
