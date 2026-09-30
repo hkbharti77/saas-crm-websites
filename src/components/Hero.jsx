@@ -267,6 +267,17 @@ export default function Hero({ onBookDemo }) {
                     <ArrowRight size={18} />
                   </button>
                   <a
+                    id="btn-hero-whatsapp"
+                    href="https://wa.me/918700620913?text=Hi%20Gyan%20VaniAi%2C%20I%20would%20like%20to%20book%20a%20consultation."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn hero-btn-whatsapp"
+                    title="Chat with Gyan VaniAi WhatsApp AI Agent"
+                  >
+                    <MessageSquare size={18} className="whatsapp-icon" />
+                    <span>WhatsApp AI Demo</span>
+                  </a>
+                  <a
                     id="btn-hero-explore"
                     href="#capabilities"
                     className="btn btn-outline hero-btn-secondary"
@@ -351,10 +362,16 @@ export default function Hero({ onBookDemo }) {
                 <span><strong>Live Demo:</strong> 7-Day Sandbox</span>
               </div>
               <div className="trust-divider"></div>
-              <div className="trust-item">
-                <span className="trust-dot"></span>
-                <span>Official WhatsApp Cloud API</span>
-              </div>
+              <a 
+                href="/services/whatsapp-coexistence" 
+                className="trust-item trust-item-whatsapp"
+                title="Learn about Official Meta WhatsApp Cloud API & Coexistence"
+              >
+                <span className="trust-whatsapp-badge">
+                  <MessageSquare size={13} className="trust-whatsapp-icon" />
+                </span>
+                <span><strong>WhatsApp AI:</strong> Official Meta Cloud API</span>
+              </a>
               <div className="trust-divider"></div>
               <div className="trust-item">
                 <ShieldCheck size={14} className="trust-shield" />

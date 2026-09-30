@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import SeoHead from '../components/SeoHead';
-import { ArrowRight, CheckCircle2, X, Check, Inbox, Filter, Star, UserCheck, Mail, Trophy, PhoneCall, Mic, BrainCircuit, Bot, Calendar, Headset, Database, Building2, ShieldCheck, Zap, Layers, BarChart3, Users } from 'lucide-react';
+import { ArrowRight, CheckCircle2, X, Check, Inbox, Filter, Star, UserCheck, Mail, Trophy, PhoneCall, Mic, BrainCircuit, Bot, Calendar, Headset, Database, Building2, ShieldCheck, Zap, Layers, BarChart3, Users, MessageSquare } from 'lucide-react';
 import ContactSection from '../components/ContactSection';
 import FAQ from '../components/FAQ';
 import Process from '../components/Process';
@@ -967,13 +967,36 @@ export default function SEOLandingPage() {
                     </div>
                   ))}
                 </div>
-                <button
-                  type="button"
-                  className="btn btn-primary"
-                  onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-                >
-                  {pageData.ctaButtonText || 'Get a Free Consultation'} <ArrowRight size={20} />
-                </button>
+                <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', alignItems: 'center' }}>
+                  <button
+                    type="button"
+                    className="btn btn-primary"
+                    onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                  >
+                    {pageData.ctaButtonText || 'Get a Free Consultation'} <ArrowRight size={20} />
+                  </button>
+                  <a
+                    href="https://wa.me/918700620913?text=Hi%20Gyan%20VaniAi%2C%20I%20would%20like%20to%20book%20a%20consultation."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '0.55rem',
+                      padding: '0.85rem 1.6rem',
+                      borderRadius: 'var(--radius-md, 12px)',
+                      background: '#25D366',
+                      color: '#ffffff',
+                      fontWeight: '700',
+                      textDecoration: 'none',
+                      boxShadow: '0 4px 16px rgba(37, 211, 102, 0.35)',
+                      transition: 'transform 0.2s ease, background 0.2s ease'
+                    }}
+                  >
+                    <MessageSquare size={18} />
+                    <span>WhatsApp AI Demo</span>
+                  </a>
+                </div>
               </div>
               {pageId === 'enterprise' ? (
                 <div className="hero-visual" style={{ borderRadius: '1rem', overflow: 'hidden', boxShadow: 'var(--shadow-lg)' }}>
