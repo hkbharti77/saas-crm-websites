@@ -28,7 +28,7 @@ export function getSearchConsoleStatus() {
   return {
     connected: true,
     message: 'Search Console connected',
-    property: 'https://www.gyanvaniai.online/',
+    property: 'https://www.gyanvaniai.com/',
   };
 }
 

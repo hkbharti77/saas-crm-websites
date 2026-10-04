@@ -141,7 +141,7 @@ export default function BlogSearch() {
       <SeoHead
         title="Search Articles - Gyan VaniAi Blog"
         description="Search published Gyan VaniAi articles, guides, and tutorials on AI orchestration, WhatsApp integration, and CRM automation."
-        canonical="https://www.gyanvaniai.online/blog/search"
+        canonical="https://www.gyanvaniai.com/blog/search"
       />
       <Helmet>
         <meta name="robots" content="noindex, follow" />

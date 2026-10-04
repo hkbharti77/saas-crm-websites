@@ -21,8 +21,8 @@ export default function Home() {
       <SeoHead
         title="Autonomous AI CRM & Revenue Operations | Gyan VaniAi"
         description="Autonomous AI CRM platform for high-velocity revenue teams. Capture, enrich, qualify, assign and convert leads with intelligent AI-powered workflows."
-        canonical="https://www.gyanvaniai.online/"
-        image="https://www.gyanvaniai.online/hero_dashboard.webp"
+        canonical="https://www.gyanvaniai.com/"
+        image="https://www.gyanvaniai.com/hero_dashboard.webp"
         keywords="Autonomous AI CRM, Revenue Operations, WhatsApp CRM, AI Lead Qualification, Sales Automation"
         aeoQuestion="What is Gyan VaniAi AI CRM Platform?"
         aeoAnswer="Gyan VaniAi is an Enterprise AI CRM platform with official Meta WhatsApp Coexistence support, sub-300ms RAG chatbots, conversational voice agents, and end-to-end sales automation."

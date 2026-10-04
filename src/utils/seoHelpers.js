@@ -130,7 +130,7 @@ export const renderJsonLd = (schema) => {
 export const generateBreadcrumbs = (path) => {
   const segments = path.split('/').filter(Boolean);
   const breadcrumbs = [
-    { name: 'Home', url: 'https://www.gyanvaniai.online/' }
+    { name: 'Home', url: 'https://www.gyanvaniai.com/' }
   ];
   
   let currentPath = '';
@@ -141,11 +141,11 @@ export const generateBreadcrumbs = (path) => {
       .map(word => word.charAt(0).toUpperCase() + word.slice(1))
       .join(' ');
     
-    let segmentUrl = `https://www.gyanvaniai.online${currentPath}`;
+    let segmentUrl = `https://www.gyanvaniai.com${currentPath}`;
     if (segment === 'services') {
-      segmentUrl = 'https://www.gyanvaniai.online/#capabilities';
+      segmentUrl = 'https://www.gyanvaniai.com/#capabilities';
     } else if (segment === 'industries') {
-      segmentUrl = 'https://www.gyanvaniai.online/#industries';
+      segmentUrl = 'https://www.gyanvaniai.com/#industries';
     }
     
     breadcrumbs.push({

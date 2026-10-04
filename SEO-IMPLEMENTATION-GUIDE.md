@@ -46,7 +46,7 @@ Features:
 - ✅ Priority based on featured status
 - ✅ 1-hour cache for performance
 
-**URL:** `https://www.gyanvaniai.online/api/blog-sitemap`
+**URL:** `https://www.gyanvaniai.com/api/blog-sitemap`
 
 ### 4. **International SEO (Hreflang)** ✓
 **Location:** `src/utils/seoHelpers.js`
@@ -143,7 +143,7 @@ export default function ServicePage() {
     name: 'WhatsApp Automation',
     url: '/services/whatsapp-automation',
     description: 'Official WhatsApp Business API integration...',
-    image: 'https://www.gyanvaniai.online/whatsapp-features-new.webp',
+    image: 'https://www.gyanvaniai.com/whatsapp-features-new.webp',
     features: ['API Integration', 'Automation', 'Broadcasting']
   });
 
@@ -152,8 +152,8 @@ export default function ServicePage() {
       <SEOHead
         title="WhatsApp Business API Automation | Gyan VaniAi"
         description="Official WhatsApp Business API with cloud hosting..."
-        canonical="https://www.gyanvaniai.online/services/whatsapp-automation"
-        image="https://www.gyanvaniai.online/whatsapp-features-new.webp"
+        canonical="https://www.gyanvaniai.com/services/whatsapp-automation"
+        image="https://www.gyanvaniai.com/whatsapp-features-new.webp"
         schema={schema}
         keywords={['WhatsApp API', 'WhatsApp Automation', 'Business API']}
       />
@@ -239,14 +239,14 @@ npm run build
 
 ### 1. **Google Search Console**
 1. Visit: https://search.google.com/search-console
-2. Add property: `https://www.gyanvaniai.online`
+2. Add property: `https://www.gyanvaniai.com`
 3. Verify ownership (DNS or file upload)
-4. Submit sitemap: `https://www.gyanvaniai.online/sitemap.xml`
-5. Submit blog sitemap: `https://www.gyanvaniai.online/api/blog-sitemap`
+4. Submit sitemap: `https://www.gyanvaniai.com/sitemap.xml`
+5. Submit blog sitemap: `https://www.gyanvaniai.com/api/blog-sitemap`
 
 ### 2. **Bing Webmaster Tools**
 1. Visit: https://www.bing.com/webmasters
-2. Add site: `https://www.gyanvaniai.online`
+2. Add site: `https://www.gyanvaniai.com`
 3. Verify (can import from Google Search Console)
 4. Submit sitemaps
 
@@ -429,7 +429,7 @@ Track these KPIs:
 
 3. **Indexation**
    - All pages indexed
-   - Check: `site:www.gyanvaniai.online` on Google
+   - Check: `site:www.gyanvaniai.com` on Google
 
 4. **Core Web Vitals**
    - LCP < 2.5s ✓

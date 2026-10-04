@@ -22,7 +22,7 @@ export default function PricingPage() {
       <SEOHead
         title="Gyan VaniAi Pricing | AI CRM Plans from ₹1,999/mo"
         description="Simple, affordable pricing for Gyan VaniAi: Starter ₹1,999, Growth ₹4,999, Scale ₹9,999 per month, and custom Enterprise plans. Every plan includes WhatsApp CRM, AI RAG chatbot, and a 7-day free trial."
-        canonical="https://www.gyanvaniai.online/pricing"
+        canonical="https://www.gyanvaniai.com/pricing"
         keywords="AI CRM pricing, WhatsApp CRM price, Gyan VaniAi plans, AI chatbot pricing, voice bot pricing, AI calling agent price, CRM subscription India"
         schema={schema}
         aeoQuestion="How much does Gyan VaniAi AI CRM platform cost?"

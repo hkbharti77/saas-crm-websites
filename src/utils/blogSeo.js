@@ -2,7 +2,7 @@
  * Helpers for dynamic blog SEO (Firestore-backed posts).
  */
 
-const SITE = 'https://www.gyanvaniai.online';
+const SITE = 'https://www.gyanvaniai.com';
 
 export function blogPostUrl(slugId) {
   return `${SITE}/blog/${slugId}`;

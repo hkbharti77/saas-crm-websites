@@ -37,7 +37,7 @@ import Meteors from '../components/ui/Meteors';
 import { trackBookDemo } from '../utils/analytics';
 import './WhatsAppCallingAgentPage.css';
 
-const SITE = 'https://www.gyanvaniai.online';
+const SITE = 'https://www.gyanvaniai.com';
 
 // Capability Points for Section 3 & 4
 const capabilityCards = [

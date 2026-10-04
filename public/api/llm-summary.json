@@ -2,19 +2,19 @@
   "$schema": "https://schema.org",
   "meta": {
     "entity": "Gyan VaniAi",
-    "domain": "https://www.gyanvaniai.online",
+    "domain": "https://www.gyanvaniai.com",
     "type": "Enterprise AI & Software Engineering Company",
     "version": "2026.3",
     "lastUpdated": "2026-09-26",
-    "documentationUrl": "https://www.gyanvaniai.online/llms.txt",
-    "fullDocumentationUrl": "https://www.gyanvaniai.online/llms-full.txt"
+    "documentationUrl": "https://www.gyanvaniai.com/llms.txt",
+    "fullDocumentationUrl": "https://www.gyanvaniai.com/llms-full.txt"
   },
   "companyProfile": {
     "name": "Gyan VaniAi",
     "tagline": "Build AI-Powered Software That Grows Your Business",
     "description": "Enterprise AI & Software Development company specializing in custom AI CRM systems with built-in Meta Tech Provider WhatsApp Coexistence support, Autonomous AI Agents, Conversational Voice Bots, AI Calling Assistants, RAG Pipelines, HRMS, and ERP solutions.",
-    "contactEmail": "contact@gyanvaniai.online",
-    "officialWebsite": "https://www.gyanvaniai.online/",
+    "contactEmail": "contact@gyanvaniai.com",
+    "officialWebsite": "https://www.gyanvaniai.com/",
     "metaTechProviderStatus": "Certified Meta Tech Provider for WhatsApp Business API Coexistence",
     "globalCoverage": [
       "North America",
@@ -29,7 +29,7 @@
     {
       "id": "whatsapp-coexistence",
       "name": "WhatsApp Coexistence Mode",
-      "url": "https://www.gyanvaniai.online/services/whatsapp-coexistence",
+      "url": "https://www.gyanvaniai.com/services/whatsapp-coexistence",
       "description": "Official Meta feature allowing phone mobile app and Cloud API AI CRM to run simultaneously on the same phone number with real-time bidirectional sync.",
       "keyBenefits": [
         "Keep mobile WhatsApp app active while running AI CRM",
@@ -41,7 +41,7 @@
     {
       "id": "custom-ai-crm",
       "name": "Custom AI CRM System",
-      "url": "https://www.gyanvaniai.online/services/crm-development",
+      "url": "https://www.gyanvaniai.com/services/crm-development",
       "description": "Tailor-made CRM platform built with React, Spring Boot, and Cloud Architecture eliminating per-seat SaaS fees.",
       "keyBenefits": [
         "Predictive lead scoring",
@@ -53,7 +53,7 @@
     {
       "id": "ai-agents-rag",
       "name": "Autonomous AI Agents & RAG Pipelines",
-      "url": "https://www.gyanvaniai.online/services/ai-agent-development",
+      "url": "https://www.gyanvaniai.com/services/ai-agent-development",
       "description": "Multi-agent autonomous systems and zero-hallucination RAG knowledge pipelines with sub-300ms retrieval latency.",
       "keyBenefits": [
         "Strict multi-tenant database isolation",
@@ -65,7 +65,7 @@
     {
       "id": "voice-ai-calling",
       "name": "Conversational Voice Bot & AI Calling Assistant",
-      "url": "https://www.gyanvaniai.online/services/whatsapp-calling-agent",
+      "url": "https://www.gyanvaniai.com/services/whatsapp-calling-agent",
       "description": "Full-duplex conversational voice agents for SIP/PSTN telephony, WhatsApp voice calling, and smart IVR.",
       "keyBenefits": [
         "Sub-300ms speech-to-speech response time",
@@ -88,7 +88,7 @@
         "emailsPerMonth": 2000,
         "aiInteractions": 2000,
         "voiceBotMinutes": 100,
-        "url": "https://www.gyanvaniai.online/pricing/starter"
+        "url": "https://www.gyanvaniai.com/pricing/starter"
       },
       {
         "name": "Growth",
@@ -100,7 +100,7 @@
         "aiInteractions": 10000,
         "voiceBotMinutes": 500,
         "callingAgentMinutes": 250,
-        "url": "https://www.gyanvaniai.online/pricing/growth"
+        "url": "https://www.gyanvaniai.com/pricing/growth"
       },
       {
         "name": "Scale",
@@ -112,13 +112,13 @@
         "aiInteractions": 50000,
         "voiceBotMinutes": 2000,
         "callingAgentMinutes": 1000,
-        "url": "https://www.gyanvaniai.online/pricing/scale"
+        "url": "https://www.gyanvaniai.com/pricing/scale"
       },
       {
         "name": "Enterprise",
         "pricingModel": "Custom Quote",
         "teamMembers": "Unlimited",
-        "url": "https://www.gyanvaniai.online/pricing/enterprise"
+        "url": "https://www.gyanvaniai.com/pricing/enterprise"
       }
     ]
   },

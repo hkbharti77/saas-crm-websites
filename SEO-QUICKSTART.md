@@ -35,11 +35,11 @@ Upload your `dist` folder to your hosting provider (Vercel, Netlify, etc.)
 ### Google Search Console
 1. Go to: https://search.google.com/search-console
 2. Click "Add Property"
-3. Enter: `https://www.gyanvaniai.online`
+3. Enter: `https://www.gyanvaniai.com`
 4. Verify ownership (use HTML file method or DNS)
 5. Go to "Sitemaps" → Submit these:
-   - `https://www.gyanvaniai.online/sitemap.xml`
-   - `https://www.gyanvaniai.online/api/blog-sitemap`
+   - `https://www.gyanvaniai.com/sitemap.xml`
+   - `https://www.gyanvaniai.com/api/blog-sitemap`
 
 ### Bing Webmaster Tools
 1. Go to: https://www.bing.com/webmasters
@@ -82,7 +82,7 @@ export default function WhatsAppAutomation() {
     name: 'WhatsApp Business API Automation',
     url: '/services/whatsapp-automation',
     description: 'Official WhatsApp Business API integration with cloud hosting, automation, and team inbox.',
-    image: 'https://www.gyanvaniai.online/whatsapp-features-new.webp',
+    image: 'https://www.gyanvaniai.com/whatsapp-features-new.webp',
     features: ['Cloud API', 'Automation', 'Broadcasting', 'Team Inbox', 'Analytics']
   });
 
@@ -91,8 +91,8 @@ export default function WhatsAppAutomation() {
       <SEOHead
         title="WhatsApp Business API Automation | Gyan VaniAi"
         description="Official WhatsApp Business API with cloud hosting, automated workflows, broadcast campaigns, and team inbox. Free consultation, 30-day delivery."
-        canonical="https://www.gyanvaniai.online/services/whatsapp-automation"
-        image="https://www.gyanvaniai.online/whatsapp-features-new.webp"
+        canonical="https://www.gyanvaniai.com/services/whatsapp-automation"
+        image="https://www.gyanvaniai.com/whatsapp-features-new.webp"
         schema={schema}
         keywords={['WhatsApp API', 'WhatsApp Automation', 'WhatsApp Business', 'Cloud API', 'Business Messaging']}
       />
@@ -158,7 +158,7 @@ Check Google Analytics:
 
 ### Checklist:
 1. ✅ Did you submit sitemaps to Google and Bing?
-2. ✅ Are pages indexed? (Search: `site:www.gyanvaniai.online`)
+2. ✅ Are pages indexed? (Search: `site:www.gyanvaniai.com`)
 3. ✅ Are there any errors in Search Console?
 4. ✅ Is your robots.txt allowing crawlers?
 5. ✅ Have you published blog content?
@@ -265,7 +265,7 @@ A: 4-8 weeks for initial rankings, 12 weeks for 20+ daily visitors.
 A: Run `npm run seo:submit` and manually submit URLs in Google Search Console.
 
 **Q: Should I change my domain?**
-A: No! Keep `www.gyanvaniai.online` - it's already well-configured.
+A: No! Keep `www.gyanvaniai.com` - it's already well-configured.
 
 **Q: Do I need to pay for SEO tools?**
 A: Not required. Google Search Console and Bing Webmaster Tools are free and sufficient.

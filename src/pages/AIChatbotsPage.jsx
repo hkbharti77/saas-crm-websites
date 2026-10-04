@@ -26,7 +26,7 @@ import {
 import ContactSection from '../components/ContactSection';
 import './AIChatbotsPage.css';
 
-const SITE = 'https://www.gyanvaniai.online';
+const SITE = 'https://www.gyanvaniai.com';
 
 export default function AIChatbotsPage() {
   const [openFaq, setOpenFaq] = useState(0);

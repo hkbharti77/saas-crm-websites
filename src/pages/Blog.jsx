@@ -126,11 +126,11 @@ export default function Blog() {
       <SeoHead
         title="Blog - Gyan VaniAi | Insights on AI & CRM"
         description="Deep dives into multi-agent orchestration, enterprise AI security, WhatsApp Coexistence, and customer experience automation, written for operators building with Gyan VaniAi."
-        canonical="https://www.gyanvaniai.online/blog"
-        image="https://www.gyanvaniai.online/hero_dashboard.webp"
+        canonical="https://www.gyanvaniai.com/blog"
+        image="https://www.gyanvaniai.com/hero_dashboard.webp"
       />
       <Helmet>
-        <link rel="alternate" type="application/rss+xml" title="Gyan VaniAi Blog RSS" href="https://www.gyanvaniai.online/rss.xml" />
+        <link rel="alternate" type="application/rss+xml" title="Gyan VaniAi Blog RSS" href="https://www.gyanvaniai.com/rss.xml" />
         <script type="application/ld+json">{JSON.stringify(indexSchema)}</script>
         {featuredArticle?.imageUrl && <link rel="preload" as="image" href={featuredArticle.imageUrl} fetchPriority="high" />}
       </Helmet>

@@ -10,15 +10,15 @@ export default function Security() {
       <SeoHead
         title="Enterprise AI Security & Data Protection | Gyan VaniAi"
         description="Explore Gyan VaniAi enterprise security controls: multi-tenant isolation, AES-256 encryption, zero cross-tenant RAG pipelines, RBAC, and SOC2 compliant architecture."
-        canonical="https://www.gyanvaniai.online/security"
-        image="https://www.gyanvaniai.online/hero_dashboard.webp"
+        canonical="https://www.gyanvaniai.com/security"
+        image="https://www.gyanvaniai.com/hero_dashboard.webp"
         schema={{
           "@context": "https://schema.org",
           "@type": "WebPage",
           "name": "Gyan VaniAi Security & Data Protection",
-          "url": "https://www.gyanvaniai.online/security",
+          "url": "https://www.gyanvaniai.com/security",
           "description": "Learn how Gyan VaniAi approaches authentication, access control, multi-tenant isolation, data protection, and platform security.",
-          "publisher": { "@id": "https://www.gyanvaniai.online/#organization" }
+          "publisher": { "@id": "https://www.gyanvaniai.com/#organization" }
         }}
       />
 
@@ -34,7 +34,7 @@ export default function Security() {
               <button onClick={() => window.dispatchEvent(new CustomEvent('open-demo-modal'))} className="btn btn-primary">
                 Talk to Our Team
               </button>
-              <a href="mailto:contact@gyanvaniai.online" className="btn btn-secondary">
+              <a href="mailto:contact@gyanvaniai.com" className="btn btn-secondary">
                 Contact Support
               </a>
             </div>

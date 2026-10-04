@@ -8,8 +8,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const INDEXNOW_KEY = 'e58f9214b74a49c693a19b88c42ef84a';
-const HOST = 'www.gyanvaniai.online';
-const BASE_URL = 'https://www.gyanvaniai.online';
+const HOST = 'www.gyanvaniai.com';
+const BASE_URL = 'https://www.gyanvaniai.com';
 
 // IndexNow endpoints (all use the same API spec)
 const INDEXNOW_ENDPOINTS = [

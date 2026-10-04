@@ -3,5 +3,5 @@ Allow: /
 Disallow: /admin/
 Disallow: /admin
 
-Sitemap: https://www.gyanvaniai.online/sitemap.xml
+Sitemap: https://www.gyanvaniai.com/sitemap.xml
 

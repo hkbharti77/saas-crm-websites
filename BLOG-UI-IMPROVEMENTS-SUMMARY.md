@@ -128,7 +128,7 @@ Visit your blog post at:
 `http://localhost:5173/blog/[post-slug]`
 
 Or production URL:
-`https://www.gyanvaniai.online/blog/[post-slug]`
+`https://www.gyanvaniai.com/blog/[post-slug]`
 
 ## What Your Visitors Will See
 

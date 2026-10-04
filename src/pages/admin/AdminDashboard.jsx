@@ -187,7 +187,7 @@ export default function AdminDashboard() {
 
       // Ping IndexNow
       const slug = blog.slugId || blog.id;
-      pingBlogIndexNow(`https://www.gyanvaniai.online/blog/${slug}`).catch(() => {});
+      pingBlogIndexNow(`https://www.gyanvaniai.com/blog/${slug}`).catch(() => {});
     } catch (err) {
       console.error('Error publishing post:', err);
       alert('Failed to publish post: ' + err.message);

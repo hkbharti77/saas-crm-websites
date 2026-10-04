@@ -31,7 +31,7 @@ export default function TermsConditions() {
       <SeoHead
         title="Terms & Conditions | Gyan VaniAi"
         description="Terms of Service and API usage guidelines for Gyan VaniAi platforms."
-        canonical="https://www.gyanvaniai.online/terms"
+        canonical="https://www.gyanvaniai.com/terms"
         preloadImage="/terms_image.webp"
       />
       <Helmet>
@@ -42,9 +42,9 @@ export default function TermsConditions() {
                 "@context": "https://schema.org",
                 "@type": "WebPage",
                 "name": "Terms & Conditions | Gyan VaniAi",
-                "url": "https://www.gyanvaniai.online/terms",
+                "url": "https://www.gyanvaniai.com/terms",
                 "publisher": {
-                  "@id": "https://www.gyanvaniai.online/#organization"
+                  "@id": "https://www.gyanvaniai.com/#organization"
                 }
               },
               {
@@ -55,13 +55,13 @@ export default function TermsConditions() {
                     "@type": "ListItem",
                     "position": 1,
                     "name": "Home",
-                    "item": "https://www.gyanvaniai.online/"
+                    "item": "https://www.gyanvaniai.com/"
                   },
                   {
                     "@type": "ListItem",
                     "position": 2,
                     "name": "Terms & Conditions",
-                    "item": "https://www.gyanvaniai.online/terms"
+                    "item": "https://www.gyanvaniai.com/terms"
                   }
                 ]
               }
@@ -129,8 +129,8 @@ export default function TermsConditions() {
 
           <section id="demo-policy" className="legal-section">
             <h2 className="h2">6. Live Demo Platform &amp; 7-Day Data Retention Policy</h2>
-            <a href="https://connect.gyanvaniai.online" target="_blank" rel="noopener noreferrer" className="text-muted" style={{ display: 'inline-block', marginBottom: '1.25rem', marginTop: '-0.75rem', fontSize: '0.9rem' }}>connect.gyanvaniai.online</a>
-            <p className="text-muted">Gyan VaniAi provides access to a live software demo environment hosted at <a href="https://connect.gyanvaniai.online/" target="_blank" rel="noopener noreferrer">https://connect.gyanvaniai.online/</a>. By creating a demo account or utilizing this environment, you agree to the following Demo Data Retention Policy:</p>
+            <a href="https://connect.gyanvaniai.com" target="_blank" rel="noopener noreferrer" className="text-muted" style={{ display: 'inline-block', marginBottom: '1.25rem', marginTop: '-0.75rem', fontSize: '0.9rem' }}>connect.gyanvaniai.com</a>
+            <p className="text-muted">Gyan VaniAi provides access to a live software demo environment hosted at <a href="https://connect.gyanvaniai.com/" target="_blank" rel="noopener noreferrer">https://connect.gyanvaniai.com/</a>. By creating a demo account or utilizing this environment, you agree to the following Demo Data Retention Policy:</p>
             <ul className="text-muted" style={{ paddingLeft: '1.5rem', margin: '1rem 0', display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
               <li><strong>7-Day Evaluation Period:</strong> Your demo account is provided for evaluation and testing purposes. The 7-day evaluation period begins when your demo account is created.</li>
               <li><strong>Automatic Data Deletion:</strong> If you do not upgrade to a paid plan before the evaluation period ends, demo data associated with your account may be permanently deleted from active systems, including your profile, test records, configurations, and other demo-generated data.</li>

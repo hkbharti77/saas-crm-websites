@@ -124,7 +124,7 @@ Then use in pricing page (create if doesn't exist):
 <SeoHead 
   title="Pricing - Gyan VaniAi"
   schema={pricingPageSchema(pricingPlans)}
-  canonical="https://www.gyanvaniai.online/pricing"
+  canonical="https://www.gyanvaniai.com/pricing"
 />
 ```
 
@@ -245,7 +245,7 @@ export const getVisitorGeo = async () => {
   // This will be called server-side during SSR
   // In browser, use IP-based detection or fetch from CDN
   try {
-    const response = await fetch('https://api.gyanvaniai.online/geo');
+    const response = await fetch('https://api.gyanvaniai.com/geo');
     return response.json(); // { country, region, city, timezone }
   } catch {
     return null;
@@ -330,7 +330,7 @@ export default function INLanding() {
       <SeoHead 
         title="AI CRM Software for Indian SMBs | Gyan VaniAi"
         description="Affordable AI-powered CRM and WhatsApp automation tailored for Indian businesses. 50% cost savings vs competitors."
-        canonical="https://www.gyanvaniai.online/in"
+        canonical="https://www.gyanvaniai.com/in"
         keywords={['AI CRM India', 'WhatsApp Business API India', 'Indian SaaS', 'Affordable CRM']}
       />
       
@@ -491,7 +491,7 @@ export default function AIAssistant() {
 
     try {
       // Call your Gyan VaniAi API
-      const response = await fetch('https://api.gyanvaniai.online/chat', {
+      const response = await fetch('https://api.gyanvaniai.com/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

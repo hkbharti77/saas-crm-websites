@@ -6,28 +6,28 @@
 export const organizationSchema = {
   "@context": "https://schema.org",
   "@type": ["Organization", "ProfessionalService"],
-  "@id": "https://www.gyanvaniai.online/#organization",
+  "@id": "https://www.gyanvaniai.com/#organization",
   "name": "Gyan VaniAi",
   "alternateName": ["Gyan Vani", "Gyanvani", "Gyan Vani AI", "GyanVani AI", "GyanVani"],
-  "url": "https://www.gyanvaniai.online/",
+  "url": "https://www.gyanvaniai.com/",
   "logo": {
     "@type": "ImageObject",
-    "@id": "https://www.gyanvaniai.online/#logo",
-    "url": "https://www.gyanvaniai.online/logo.png",
-    "contentUrl": "https://www.gyanvaniai.online/logo.png",
+    "@id": "https://www.gyanvaniai.com/#logo",
+    "url": "https://www.gyanvaniai.com/logo.png",
+    "contentUrl": "https://www.gyanvaniai.com/logo.png",
     "width": 512,
     "height": 512,
     "caption": "Gyan VaniAi Logo"
   },
   "image": {
     "@type": "ImageObject",
-    "url": "https://www.gyanvaniai.online/hero_dashboard.webp",
+    "url": "https://www.gyanvaniai.com/hero_dashboard.webp",
     "width": 1200,
     "height": 630
   },
   "description": "Leading AI CRM and automation platform specializing in WhatsApp Business API, AI chatbots, voice bots, and enterprise software solutions for business growth.",
   "slogan": "Build AI-Powered Software That Grows Your Business",
-  "email": "contact@gyanvaniai.online",
+  "email": "contact@gyanvaniai.com",
   "address": {
     "@type": "PostalAddress",
     "addressCountry": "IN",
@@ -102,19 +102,19 @@ export const organizationSchema = {
 export const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "@id": "https://www.gyanvaniai.online/#website",
-  "url": "https://www.gyanvaniai.online/",
+  "@id": "https://www.gyanvaniai.com/#website",
+  "url": "https://www.gyanvaniai.com/",
   "name": "Gyan VaniAi",
   "description": "Enterprise AI CRM, WhatsApp Automation, and Custom Software Development Platform",
   "publisher": {
-    "@id": "https://www.gyanvaniai.online/#organization"
+    "@id": "https://www.gyanvaniai.com/#organization"
   },
   "inLanguage": "en-US",
   "potentialAction": {
     "@type": "SearchAction",
     "target": {
       "@type": "EntryPoint",
-      "urlTemplate": "https://www.gyanvaniai.online/blog?search={search_term_string}"
+      "urlTemplate": "https://www.gyanvaniai.com/blog?search={search_term_string}"
     },
     "query-input": "required name=search_term_string"
   }
@@ -123,11 +123,11 @@ export const websiteSchema = {
 export const localBusinessSchema = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
-  "@id": "https://www.gyanvaniai.online/#localbusiness",
+  "@id": "https://www.gyanvaniai.com/#localbusiness",
   "name": "Gyan VaniAi",
-  "image": "https://www.gyanvaniai.online/hero_dashboard.webp",
-  "url": "https://www.gyanvaniai.online/",
-  "email": "contact@gyanvaniai.online",
+  "image": "https://www.gyanvaniai.com/hero_dashboard.webp",
+  "url": "https://www.gyanvaniai.com/",
+  "email": "contact@gyanvaniai.com",
   "priceRange": "$$",
   "address": {
     "@type": "PostalAddress",
@@ -162,12 +162,12 @@ export const breadcrumbSchema = (items) => ({
 export const serviceSchema = (service) => ({
   "@context": "https://schema.org",
   "@type": "Service",
-  "@id": `https://www.gyanvaniai.online${service.url}#service`,
+  "@id": `https://www.gyanvaniai.com${service.url}#service`,
   "serviceType": service.name,
   "name": service.name,
   "description": service.description,
   "provider": {
-    "@id": "https://www.gyanvaniai.online/#organization"
+    "@id": "https://www.gyanvaniai.com/#organization"
   },
   "areaServed": "Worldwide",
   "hasOfferCatalog": {
@@ -182,7 +182,7 @@ export const serviceSchema = (service) => ({
     })) || []
   },
   "image": service.image,
-  "url": `https://www.gyanvaniai.online${service.url}`
+  "url": `https://www.gyanvaniai.com${service.url}`
 });
 
 export const faqSchema = (faqs) => ({
@@ -201,33 +201,33 @@ export const faqSchema = (faqs) => ({
 export const articleSchema = (article) => ({
   "@context": "https://schema.org",
   "@type": ["Article", "BlogPosting"],
-  "@id": `https://www.gyanvaniai.online/blog/${article.id}#article`,
+  "@id": `https://www.gyanvaniai.com/blog/${article.id}#article`,
   "headline": article.title,
   "description": article.excerpt || article.description,
-  "image": article.image || "https://www.gyanvaniai.online/hero_dashboard.webp",
+  "image": article.image || "https://www.gyanvaniai.com/hero_dashboard.webp",
   "datePublished": article.publishDate || article.createdAt,
   "dateModified": article.updatedAt || article.publishDate || article.createdAt,
   "author": {
     "@type": "Organization",
-    "@id": "https://www.gyanvaniai.online/#organization"
+    "@id": "https://www.gyanvaniai.com/#organization"
   },
   "publisher": {
     "@type": "Organization",
-    "@id": "https://www.gyanvaniai.online/#organization",
+    "@id": "https://www.gyanvaniai.com/#organization",
     "name": "Gyan VaniAi",
     "logo": {
       "@type": "ImageObject",
-      "@id": "https://www.gyanvaniai.online/#logo"
+      "@id": "https://www.gyanvaniai.com/#logo"
     }
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": `https://www.gyanvaniai.online/blog/${article.id}`
+    "@id": `https://www.gyanvaniai.com/blog/${article.id}`
   },
   "keywords": article.tags?.join(", ") || article.keywords,
   "articleSection": article.category || "Technology",
   "inLanguage": "en-US",
-  "url": `https://www.gyanvaniai.online/blog/${article.id}`
+  "url": `https://www.gyanvaniai.com/blog/${article.id}`
 });
 
 export const videoSchema = (video) => ({
@@ -303,10 +303,10 @@ export const softwareAppSchema = (app) => ({
     "ratingCount": app.ratingCount
   } : undefined,
   "author": {
-    "@id": "https://www.gyanvaniai.online/#organization"
+    "@id": "https://www.gyanvaniai.com/#organization"
   },
   "publisher": {
-    "@id": "https://www.gyanvaniai.online/#organization"
+    "@id": "https://www.gyanvaniai.com/#organization"
   }
 });
 
@@ -316,56 +316,56 @@ export const services = [
     name: "WhatsApp Business API Integration",
     url: "/services/whatsapp-automation",
     description: "Official WhatsApp Business API with cloud hosting, interactive buttons, automated campaigns, and team inbox management.",
-    image: "https://www.gyanvaniai.online/whatsapp-features-new.webp",
+    image: "https://www.gyanvaniai.com/whatsapp-features-new.webp",
     features: ["Official WhatsApp API", "Interactive Buttons", "Broadcast Campaigns", "Team Inbox", "Automation Workflows"]
   },
   {
     name: "WhatsApp Coexistence Platform",
     url: "/services/whatsapp-coexistence",
     description: "Keep your personal WhatsApp app while running business automation on the same number. Official Meta Cloud API dual-surface solution.",
-    image: "https://www.gyanvaniai.online/whatsapp_coexistence_light.webp",
+    image: "https://www.gyanvaniai.com/whatsapp_coexistence_light.webp",
     features: ["Dual Surface Support", "Official Meta API Integration", "Personal + Business", "Same Phone Number", "Zero Disruption"]
   },
   {
     name: "AI CRM Development",
     url: "/services/crm-development",
     description: "Custom CRM systems with lead management, pipeline tracking, automated follow-ups, and revenue analytics.",
-    image: "https://www.gyanvaniai.online/hero_dashboard.webp",
+    image: "https://www.gyanvaniai.com/hero_dashboard.webp",
     features: ["Lead Management", "Pipeline Tracking", "Sales Automation", "Analytics Dashboard", "Team Collaboration"]
   },
   {
     name: "AI Chatbot Development",
     url: "/services/ai-chatbots",
     description: "Intelligent AI chatbots powered by RAG pipelines, answering from your knowledge base with sub-300ms latency.",
-    image: "https://www.gyanvaniai.online/service-ai-chatbot.webp",
+    image: "https://www.gyanvaniai.com/service-ai-chatbot.webp",
     features: ["RAG Architecture", "Custom Knowledge Base", "Multi-Channel Support", "Natural Language Processing", "24/7 Availability"]
   },
   {
     name: "Voice AI & Calling Agents",
     url: "/services/whatsapp-calling-agent",
     description: "Autonomous voice bots for inbound support and outbound campaigns with human-like conversations.",
-    image: "https://www.gyanvaniai.online/voice-bot-hero.webp",
+    image: "https://www.gyanvaniai.com/voice-bot-hero.webp",
     features: ["Natural Voice AI", "Inbound & Outbound", "Call Recording", "Sentiment Analysis", "Live Handoff"]
   },
   {
     name: "AI Agent Development",
     url: "/services/ai-agent-development",
     description: "Multi-agent orchestration systems that automate complex business workflows with reasoning and tool usage.",
-    image: "https://www.gyanvaniai.online/ai-agent-hero.webp",
+    image: "https://www.gyanvaniai.com/ai-agent-hero.webp",
     features: ["Multi-Agent Systems", "Tool Integration", "Reasoning Engine", "Workflow Automation", "Self-Learning"]
   },
   {
     name: "Sales Automation Platform",
     url: "/services/sales-automation",
     description: "End-to-end sales automation with lead capture, qualification, enrichment, scoring, and intelligent assignment.",
-    image: "https://www.gyanvaniai.online/hero_slide_2_light.webp",
+    image: "https://www.gyanvaniai.com/hero_slide_2_light.webp",
     features: ["Lead Capture", "Auto-Enrichment", "AI Scoring", "Smart Routing", "Conversion Tracking"]
   },
   {
     name: "Lead Management System",
     url: "/services/lead-management",
     description: "Centralized lead database with source tracking, funnel analytics, and automated nurturing campaigns.",
-    image: "https://www.gyanvaniai.online/lead-hero.webp",
+    image: "https://www.gyanvaniai.com/lead-hero.webp",
     features: ["Source Attribution", "Funnel Analytics", "Lead Scoring", "Nurture Campaigns", "ROI Tracking"]
   }
 ];

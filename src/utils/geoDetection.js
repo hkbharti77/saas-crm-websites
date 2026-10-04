@@ -114,7 +114,7 @@ export const getRegionTargeting = (countryCode) => {
       currency: 'USD',
       pricing: [99, 299, 999],
       timezone: 'America/New_York',
-      email: 'sales-us@gyanvaniai.online',
+      email: 'sales-us@gyanvaniai.com',
       phone: '+1-844-XXX-XXXX',
       supportHours: '9 AM - 6 PM EST'
     },
@@ -126,7 +126,7 @@ export const getRegionTargeting = (countryCode) => {
       currency: 'CAD',
       pricing: [129, 389, 1299],
       timezone: 'America/Toronto',
-      email: 'sales-ca@gyanvaniai.online',
+      email: 'sales-ca@gyanvaniai.com',
       phone: '+1-647-XXX-XXXX',
       supportHours: '9 AM - 6 PM EST'
     },
@@ -140,7 +140,7 @@ export const getRegionTargeting = (countryCode) => {
       currency: 'GBP',
       pricing: [79, 239, 799],
       timezone: 'Europe/London',
-      email: 'sales-gb@gyanvaniai.online',
+      email: 'sales-gb@gyanvaniai.com',
       phone: '+44-20-XXXX-XXXX',
       supportHours: '9 AM - 6 PM GMT'
     },
@@ -152,7 +152,7 @@ export const getRegionTargeting = (countryCode) => {
       currency: 'EUR',
       pricing: [89, 269, 899],
       timezone: 'Europe/Berlin',
-      email: 'sales-de@gyanvaniai.online',
+      email: 'sales-de@gyanvaniai.com',
       phone: '+49-30-XXX-XXXX',
       supportHours: '9 AM - 6 PM CET'
     },
@@ -164,7 +164,7 @@ export const getRegionTargeting = (countryCode) => {
       currency: 'EUR',
       pricing: [89, 269, 899],
       timezone: 'Europe/Paris',
-      email: 'sales-fr@gyanvaniai.online',
+      email: 'sales-fr@gyanvaniai.com',
       phone: '+33-1-XXXX-XXXX',
       supportHours: '9 AM - 6 PM CET'
     },
@@ -176,7 +176,7 @@ export const getRegionTargeting = (countryCode) => {
       currency: 'EUR',
       pricing: [89, 269, 899],
       timezone: 'Europe/Amsterdam',
-      email: 'sales-eu@gyanvaniai.online',
+      email: 'sales-eu@gyanvaniai.com',
       phone: '+31-20-XXX-XXXX',
       supportHours: '9 AM - 6 PM CET'
     },
@@ -188,7 +188,7 @@ export const getRegionTargeting = (countryCode) => {
       currency: 'SEK',
       pricing: [999, 2999, 9999],
       timezone: 'Europe/Stockholm',
-      email: 'sales-eu@gyanvaniai.online',
+      email: 'sales-eu@gyanvaniai.com',
       phone: '+46-8-XXX-XXXX',
       supportHours: '9 AM - 6 PM CET'
     },
@@ -202,7 +202,7 @@ export const getRegionTargeting = (countryCode) => {
       currency: 'AED',
       pricing: [365, 1095, 3650],
       timezone: 'Asia/Dubai',
-      email: 'sales-ae@gyanvaniai.online',
+      email: 'sales-ae@gyanvaniai.com',
       phone: '+971-4-XXXX-XXXX',
       supportHours: '8 AM - 5 PM GST'
     },
@@ -214,7 +214,7 @@ export const getRegionTargeting = (countryCode) => {
       currency: 'SAR',
       pricing: [375, 1125, 3750],
       timezone: 'Asia/Riyadh',
-      email: 'sales-sa@gyanvaniai.online',
+      email: 'sales-sa@gyanvaniai.com',
       phone: '+966-11-XXX-XXXX',
       supportHours: '8 AM - 5 PM AST'
     },
@@ -226,7 +226,7 @@ export const getRegionTargeting = (countryCode) => {
       currency: 'QAR',
       pricing: [365, 1095, 3650],
       timezone: 'Asia/Qatar',
-      email: 'sales-ae@gyanvaniai.online',
+      email: 'sales-ae@gyanvaniai.com',
       phone: '+974-XXXX-XXXX',
       supportHours: '8 AM - 5 PM AST'
     },
@@ -240,7 +240,7 @@ export const getRegionTargeting = (countryCode) => {
       currency: 'INR',
       pricing: [8000, 24000, 80000],
       timezone: 'Asia/Kolkata',
-      email: 'sales-in@gyanvaniai.online',
+      email: 'sales-in@gyanvaniai.com',
       phone: '+91-11-XXXX-XXXX',
       supportHours: '10 AM - 7 PM IST',
       discount: '20%'
@@ -253,7 +253,7 @@ export const getRegionTargeting = (countryCode) => {
       currency: 'CNY',
       pricing: [690, 2070, 6900],
       timezone: 'Asia/Shanghai',
-      email: 'sales-cn@gyanvaniai.online',
+      email: 'sales-cn@gyanvaniai.com',
       phone: '+86-10-XXXX-XXXX',
       supportHours: '9 AM - 6 PM CST'
     },
@@ -265,7 +265,7 @@ export const getRegionTargeting = (countryCode) => {
       currency: 'JPY',
       pricing: [11000, 33000, 110000],
       timezone: 'Asia/Tokyo',
-      email: 'sales-jp@gyanvaniai.online',
+      email: 'sales-jp@gyanvaniai.com',
       phone: '+81-3-XXXX-XXXX',
       supportHours: '9 AM - 6 PM JST'
     },
@@ -277,7 +277,7 @@ export const getRegionTargeting = (countryCode) => {
       currency: 'KRW',
       pricing: [130000, 390000, 1300000],
       timezone: 'Asia/Seoul',
-      email: 'sales-ap@gyanvaniai.online',
+      email: 'sales-ap@gyanvaniai.com',
       phone: '+82-2-XXXX-XXXX',
       supportHours: '9 AM - 6 PM KST'
     },
@@ -289,7 +289,7 @@ export const getRegionTargeting = (countryCode) => {
       currency: 'SGD',
       pricing: [135, 405, 1350],
       timezone: 'Asia/Singapore',
-      email: 'sales-sg@gyanvaniai.online',
+      email: 'sales-sg@gyanvaniai.com',
       phone: '+65-XXXX-XXXX',
       supportHours: '9 AM - 6 PM SGT'
     },
@@ -303,7 +303,7 @@ export const getRegionTargeting = (countryCode) => {
       currency: 'AUD',
       pricing: [155, 465, 1550],
       timezone: 'Australia/Sydney',
-      email: 'sales-au@gyanvaniai.online',
+      email: 'sales-au@gyanvaniai.com',
       phone: '+61-2-XXXX-XXXX',
       supportHours: '9 AM - 6 PM AEDT'
     },
@@ -317,7 +317,7 @@ export const getRegionTargeting = (countryCode) => {
       currency: 'IDR',
       pricing: [1500000, 4500000, 15000000],
       timezone: 'Asia/Jakarta',
-      email: 'sales-ap@gyanvaniai.online',
+      email: 'sales-ap@gyanvaniai.com',
       phone: '+62-21-XXXX-XXXX',
       supportHours: '9 AM - 6 PM WIB'
     },
@@ -329,7 +329,7 @@ export const getRegionTargeting = (countryCode) => {
       currency: 'MYR',
       pricing: [450, 1350, 4500],
       timezone: 'Asia/Kuala_Lumpur',
-      email: 'sales-ap@gyanvaniai.online',
+      email: 'sales-ap@gyanvaniai.com',
       phone: '+60-3-XXXX-XXXX',
       supportHours: '9 AM - 6 PM MYT'
     },
@@ -341,7 +341,7 @@ export const getRegionTargeting = (countryCode) => {
       currency: 'PKR',
       pricing: [28000, 84000, 280000],
       timezone: 'Asia/Karachi',
-      email: 'sales-in@gyanvaniai.online',
+      email: 'sales-in@gyanvaniai.com',
       phone: '+92-21-XXXX-XXXX',
       supportHours: '10 AM - 7 PM PKT'
     },
@@ -355,7 +355,7 @@ export const getRegionTargeting = (countryCode) => {
       currency: 'NGN',
       pricing: [165000, 495000, 1650000],
       timezone: 'Africa/Lagos',
-      email: 'sales-af@gyanvaniai.online',
+      email: 'sales-af@gyanvaniai.com',
       phone: '+234-1-XXXX-XXXX',
       supportHours: '9 AM - 6 PM WAT'
     },
@@ -369,7 +369,7 @@ export const getRegionTargeting = (countryCode) => {
       currency: 'BRL',
       pricing: [520, 1560, 5200],
       timezone: 'America/Sao_Paulo',
-      email: 'sales-br@gyanvaniai.online',
+      email: 'sales-br@gyanvaniai.com',
       phone: '+55-11-XXXX-XXXX',
       supportHours: '9 AM - 6 PM BRT'
     }

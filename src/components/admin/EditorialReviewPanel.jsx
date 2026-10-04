@@ -74,7 +74,7 @@ export default function EditorialReviewPanel({
     const user = auth.currentUser;
     const userInfo = {
       uid: user?.uid || 'admin',
-      email: user?.email || 'admin@gyanvaniai.online',
+      email: user?.email || 'admin@gyanvaniai.com',
       name: user?.displayName || user?.email || 'Editorial Staff'
     };
 
@@ -118,7 +118,7 @@ export default function EditorialReviewPanel({
     const user = auth.currentUser;
     const userInfo = {
       uid: user?.uid || 'admin',
-      email: user?.email || 'admin@gyanvaniai.online',
+      email: user?.email || 'admin@gyanvaniai.com',
       name: user?.displayName || user?.email || 'Editorial Staff'
     };
 

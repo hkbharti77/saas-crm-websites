@@ -40,7 +40,7 @@ This is an automated submission from the Privacy Policy page.
       `.trim();
 
       // Send email via mailto link
-      window.location.href = `mailto:contact@gyanvaniai.online?subject=${encodeURIComponent(formData.requestType)}&body=${encodeURIComponent(emailBody)}`;
+      window.location.href = `mailto:contact@gyanvaniai.com?subject=${encodeURIComponent(formData.requestType)}&body=${encodeURIComponent(emailBody)}`;
       
       // Reset form after short delay
       setTimeout(() => {
@@ -241,7 +241,7 @@ export default function PolicyPage() {
       <SeoHead
         title="Privacy Policy | Gyan VaniAi"
         description="Privacy Policy and Data Handling practices for Gyan VaniAi."
-        canonical="https://www.gyanvaniai.online/privacy"
+        canonical="https://www.gyanvaniai.com/privacy"
         preloadImage="/privacy_image.webp"
       />
       <Helmet>
@@ -252,9 +252,9 @@ export default function PolicyPage() {
                 "@context": "https://schema.org",
                 "@type": "WebPage",
                 "name": "Privacy Policy | Gyan VaniAi",
-                "url": "https://www.gyanvaniai.online/privacy",
+                "url": "https://www.gyanvaniai.com/privacy",
                 "publisher": {
-                  "@id": "https://www.gyanvaniai.online/#organization"
+                  "@id": "https://www.gyanvaniai.com/#organization"
                 }
               },
               {
@@ -265,13 +265,13 @@ export default function PolicyPage() {
                     "@type": "ListItem",
                     "position": 1,
                     "name": "Home",
-                    "item": "https://www.gyanvaniai.online/"
+                    "item": "https://www.gyanvaniai.com/"
                   },
                   {
                     "@type": "ListItem",
                     "position": 2,
                     "name": "Privacy Policy",
-                    "item": "https://www.gyanvaniai.online/privacy"
+                    "item": "https://www.gyanvaniai.com/privacy"
                   }
                 ]
               }
@@ -366,7 +366,7 @@ export default function PolicyPage() {
             <div style={{ background: 'rgba(255, 255, 255, 0.04)', padding: '1.25rem', borderRadius: '8px', border: '1px solid var(--border-color)', margin: '1rem 0' }}>
               <p style={{ margin: '0 0 0.4rem 0', fontWeight: 'bold', color: 'var(--text-primary)' }}>How to Submit a Grievance or Data Request:</p>
               <ul className="text-muted" style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.35rem', fontSize: '0.9rem' }}>
-                <li><strong>Email:</strong> <a href="mailto:contact@gyanvaniai.online" style={{ color: 'var(--primary-color)' }}>contact@gyanvaniai.online</a></li>
+                <li><strong>Email:</strong> <a href="mailto:contact@gyanvaniai.com" style={{ color: 'var(--primary-color)' }}>contact@gyanvaniai.com</a></li>
                 <li><strong>Subject Line:</strong> Clearly state your request (e.g., "Data Access Request", "Data Deletion Request", "Privacy Complaint")</li>
                 <li><strong>Response Time:</strong> We will acknowledge receipt within 24 hours and resolve your request within 15 business days</li>
               </ul>

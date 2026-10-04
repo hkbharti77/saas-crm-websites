@@ -52,15 +52,15 @@ export default function Documentation() {
       <SeoHead
         title="Documentation & Platform Technical Guides | Gyan VaniAi"
         description="Official documentation for Gyan VaniAi: AI CRM architecture, WhatsApp Coexistence setup, low-latency RAG pipelines, voice bots, and API integration guides."
-        canonical="https://www.gyanvaniai.online/documentation"
-        image="https://www.gyanvaniai.online/hero_dashboard.webp"
+        canonical="https://www.gyanvaniai.com/documentation"
+        image="https://www.gyanvaniai.com/hero_dashboard.webp"
         schema={{
           "@context": "https://schema.org",
           "@type": "TechArticle",
           "headline": "Gyan VaniAi Documentation & Platform Technical Guides",
-          "url": "https://www.gyanvaniai.online/documentation",
+          "url": "https://www.gyanvaniai.com/documentation",
           "description": "Explore Gyan VaniAi platform capabilities, CRM workflows, AI automation, WhatsApp coexistence, and integration guidance.",
-          "publisher": { "@id": "https://www.gyanvaniai.online/#organization" }
+          "publisher": { "@id": "https://www.gyanvaniai.com/#organization" }
         }}
       />
 
@@ -129,7 +129,7 @@ export default function Documentation() {
                 <h2>Support</h2>
               </div>
               <div className="doc-items">
-                <a href="mailto:contact@gyanvaniai.online" className="doc-item">
+                <a href="mailto:contact@gyanvaniai.com" className="doc-item">
                   <div className="doc-item-content">
                     <h3>Contact Support</h3>
                     <p>Get help from our technical team.</p>

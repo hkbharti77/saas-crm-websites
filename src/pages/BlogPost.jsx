@@ -430,7 +430,7 @@ export default function BlogPost() {
   const pageTitle = post.seoTitle ? `${post.seoTitle} | Gyan VaniAi Blog` : `${post.title} | Gyan VaniAi Blog`;
   const description = post.seoDescription || resolveDescription(post);
   const { published, modified } = resolvePostDates(post);
-  const image = post.ogImageUrl || post.imageUrl || 'https://www.gyanvaniai.online/hero_dashboard.webp';
+  const image = post.ogImageUrl || post.imageUrl || 'https://www.gyanvaniai.com/hero_dashboard.webp';
   const canonical = post.canonicalUrl || blogPostUrl(id);
 
   const safePost = {

@@ -81,7 +81,7 @@ export default function Footer() {
                 <WhatsAppIcon size={20} color="currentColor" />
               </a>
               <a
-                href="mailto:contact@gyanvaniai.online"
+                href="mailto:contact@gyanvaniai.com"
                 id="link-footer-email"
                 className="social-icon"
                 onClick={() => trackEmailClick('footer')}
@@ -135,7 +135,7 @@ export default function Footer() {
               <Link to="/documentation" className="footer-link">Documentation</Link>
               <Link to="/#how-it-works" className="footer-link">How It Works</Link>
               <Link to="/#results" className="footer-link">Case Studies</Link>
-              <a href="mailto:contact@gyanvaniai.online" className="footer-link">Support</a>
+              <a href="mailto:contact@gyanvaniai.com" className="footer-link">Support</a>
             </div>
           </div>
 

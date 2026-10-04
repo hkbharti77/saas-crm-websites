@@ -29,7 +29,7 @@ import {
 import ContactSection from '../components/ContactSection';
 import './RetailPage.css';
 
-const SITE = 'https://www.gyanvaniai.online';
+const SITE = 'https://www.gyanvaniai.com';
 
 export default function RetailPage() {
   const [activeSimTab, setActiveSimTab] = useState(0);

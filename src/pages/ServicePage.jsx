@@ -62,8 +62,8 @@ export default function ServicePage() {
       <SeoHead
         title={`${service.title} | Gyan VaniAi Services`}
         description={service.description}
-        canonical={`https://www.gyanvaniai.online/services/${serviceId}`}
-        image={`https://www.gyanvaniai.online${service.imageUrl}`}
+        canonical={`https://www.gyanvaniai.com/services/${serviceId}`}
+        image={`https://www.gyanvaniai.com${service.imageUrl}`}
         preloadImage={service.imageUrl}
       />
       <div className="service-page" style={{ background: 'var(--bg-main)' }}>

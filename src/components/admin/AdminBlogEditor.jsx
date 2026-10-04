@@ -599,7 +599,7 @@ export default function AdminBlogEditor({
     const user = auth.currentUser;
     const userInfo = {
       uid: user?.uid || 'admin',
-      email: user?.email || 'admin@gyanvaniai.online',
+      email: user?.email || 'admin@gyanvaniai.com',
       name: user?.displayName || user?.email || 'Editorial Staff'
     };
 
@@ -743,7 +743,7 @@ export default function AdminBlogEditor({
       // Ping IndexNow if published immediately
       if (!isScheduling) {
         try {
-          await pingBlogIndexNow(`https://www.gyanvaniai.online/blog/${slugId}`);
+          await pingBlogIndexNow(`https://www.gyanvaniai.com/blog/${slugId}`);
         } catch (e) {
           console.warn('IndexNow ping notice (non-fatal):', e);
         }

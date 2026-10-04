@@ -1,7 +1,7 @@
 import { initializeApp, getApps } from 'firebase/app';
 import { getFirestore, collection, getDocs, updateDoc, doc, query, where, serverTimestamp } from 'firebase/firestore';
 
-const SITE = 'https://www.gyanvaniai.online';
+const SITE = 'https://www.gyanvaniai.com';
 
 function getDb() {
   const firebaseConfig = {
@@ -26,9 +26,9 @@ async function notifyIndexNow(urlList) {
   try {
     const key = process.env.INDEXNOW_KEY || '22588e44b82d4310860822692ce01d81';
     const payload = {
-      host: 'www.gyanvaniai.online',
+      host: 'www.gyanvaniai.com',
       key: key,
-      keyLocation: `https://www.gyanvaniai.online/${key}.txt`,
+      keyLocation: `https://www.gyanvaniai.com/${key}.txt`,
       urlList: urlList,
     };
 

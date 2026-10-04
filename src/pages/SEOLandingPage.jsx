@@ -15,7 +15,7 @@ import RetailPage from './RetailPage';
 import FinancePage from './FinancePage';
 import NotFound from './NotFound';
 
-const SITE = 'https://www.gyanvaniai.online';
+const SITE = 'https://www.gyanvaniai.com';
 
 const seoDataMap = {
   'ai-development': {

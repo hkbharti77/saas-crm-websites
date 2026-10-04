@@ -15,8 +15,20 @@
     },
     {
       "source": "/:path*",
+      "has": [{ "type": "host", "value": "gyanvaniai.com" }],
+      "destination": "https://www.gyanvaniai.com/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
       "has": [{ "type": "host", "value": "gyanvaniai.online" }],
-      "destination": "https://www.gyanvaniai.online/:path*",
+      "destination": "https://www.gyanvaniai.com/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.gyanvaniai.online" }],
+      "destination": "https://www.gyanvaniai.com/:path*",
       "permanent": true
     }
   ],

@@ -1,5 +1,5 @@
 /** Canonical production origin (www is the live primary host). */
-export const SITE_ORIGIN = 'https://www.gyanvaniai.online';
+export const SITE_ORIGIN = 'https://www.gyanvaniai.com';
 
 export function siteUrl(path = '/') {
   if (!path || path === '/') return `${SITE_ORIGIN}/`;

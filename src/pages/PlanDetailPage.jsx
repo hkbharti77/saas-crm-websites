@@ -60,7 +60,7 @@ export default function PlanDetailPage() {
       <SEOHead
         title={plan.seoTitle}
         description={plan.seoDescription}
-        canonical={`https://www.gyanvaniai.online/pricing/${plan.plan}`}
+        canonical={`https://www.gyanvaniai.com/pricing/${plan.plan}`}
         keywords={`Gyan VaniAi ${plan.name} plan, ${plan.name} pricing, AI CRM ${plan.name}, WhatsApp CRM pricing India`}
         schema={schema}
       />

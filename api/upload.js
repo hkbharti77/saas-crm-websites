@@ -143,7 +143,7 @@ export default async function handler(req, res) {
       resource_type: 'image', // Strictly image (prevents raw/video/script execution)
     });
 
-    const host = req.headers.host || 'gyanvaniai.online';
+    const host = req.headers.host || 'gyanvaniai.com';
     const protocol = host.includes('localhost') ? 'http' : 'https';
     const maskedUrl = `${protocol}://${host}/media/${uploadResponse.public_id}`;
 

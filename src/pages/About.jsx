@@ -56,9 +56,9 @@ export default function About() {
       <SeoHead
         title="About Gyan VaniAi | Enterprise AI & Software Development"
         description={description}
-        canonical="https://www.gyanvaniai.online/about"
+        canonical="https://www.gyanvaniai.com/about"
         keywords="About Gyan VaniAi, Enterprise AI Company, Software Development Agency, WhatsApp Coexistence Meta Provider, AI CRM Developers, India, Global"
-        image="https://www.gyanvaniai.online/hero_dashboard.webp"
+        image="https://www.gyanvaniai.com/hero_dashboard.webp"
       />
       <Helmet>
         <script type="application/ld+json">
@@ -68,13 +68,13 @@ export default function About() {
                 "@context": "https://schema.org",
                 "@type": "WebPage",
                 "name": "About Gyan VaniAi",
-                "url": "https://www.gyanvaniai.online/about",
+                "url": "https://www.gyanvaniai.com/about",
                 "description": "${description}",
                 "publisher": {
-                  "@id": "https://www.gyanvaniai.online/#organization"
+                  "@id": "https://www.gyanvaniai.com/#organization"
                 },
                 "isPartOf": {
-                  "@id": "https://www.gyanvaniai.online/#website"
+                  "@id": "https://www.gyanvaniai.com/#website"
                 }
               },
               {
@@ -85,13 +85,13 @@ export default function About() {
                     "@type": "ListItem",
                     "position": 1,
                     "name": "Home",
-                    "item": "https://www.gyanvaniai.online/"
+                    "item": "https://www.gyanvaniai.com/"
                   },
                   {
                     "@type": "ListItem",
                     "position": 2,
                     "name": "About",
-                    "item": "https://www.gyanvaniai.online/about"
+                    "item": "https://www.gyanvaniai.com/about"
                   }
                 ]
               }
@@ -207,7 +207,7 @@ export default function About() {
                 <div className="about-contact-callout">
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
                     <Mail size={17} color="var(--primary-color)" />
-                    <span>Direct: <a href="mailto:contact@gyanvaniai.online">contact@gyanvaniai.online</a></span>
+                    <span>Direct: <a href="mailto:contact@gyanvaniai.com">contact@gyanvaniai.com</a></span>
                   </div>
                   <span>·</span>
                   <Link to="/#contact">Book a free consultation →</Link>

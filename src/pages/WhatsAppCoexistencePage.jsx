@@ -180,8 +180,8 @@ export default function WhatsAppCoexistencePage() {
       <SeoHead
         title="WhatsApp Coexistence Mode | Mobile App & CRM Sync | Gyan VaniAi"
         description="Connect official WhatsApp Cloud API to Gyan VaniAi CRM while retaining your mobile WhatsApp Business app on the exact same phone number."
-        canonical="https://www.gyanvaniai.online/services/whatsapp-coexistence"
-        image="https://www.gyanvaniai.online/whatsapp_coexistence_dark.webp"
+        canonical="https://www.gyanvaniai.com/services/whatsapp-coexistence"
+        image="https://www.gyanvaniai.com/whatsapp_coexistence_dark.webp"
         keywords="WhatsApp Coexistence, WhatsApp Business API, Dual WhatsApp Mode, WhatsApp CRM Automation, Single Number WhatsApp"
         preloadImage="/whatsapp_coexistence_dark.webp"
         aeoQuestion="How does Meta WhatsApp Coexistence Mode work?"

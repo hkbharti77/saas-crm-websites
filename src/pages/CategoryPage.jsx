@@ -116,13 +116,13 @@ export default function CategoryPage() {
       <SeoHead
         title={pageTitle}
         description={pageDesc}
-        url={`https://www.gyanvaniai.online/category/${slug}`}
+        url={`https://www.gyanvaniai.com/category/${slug}`}
         type="website"
       />
       <Helmet>
         <title>{pageTitle}</title>
         <meta name="description" content={pageDesc} />
-        <link rel="canonical" href={`https://www.gyanvaniai.online/category/${slug}`} />
+        <link rel="canonical" href={`https://www.gyanvaniai.com/category/${slug}`} />
       </Helmet>
 
       {/* Hero */}

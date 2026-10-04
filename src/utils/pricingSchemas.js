@@ -1,6 +1,6 @@
 import { PRICING_CONFIG } from '../config/pricingConfig';
 
-const BASE = 'https://www.gyanvaniai.online';
+const BASE = 'https://www.gyanvaniai.com';
 const ORG_ID = `${BASE}/#organization`;
 
 function offerForPlan(plan) {

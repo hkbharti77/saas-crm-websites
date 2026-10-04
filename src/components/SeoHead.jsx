@@ -32,8 +32,8 @@ import {
 export default function SEOHead({
   title = 'Enterprise AI, CRM & Automation Solutions | Gyan VaniAi',
   description = 'Gyan VaniAi builds AI software, CRM, WhatsApp automation, chatbots and custom business solutions to automate operations, generate leads and scale growth.',
-  canonical = 'https://www.gyanvaniai.online/',
-  image = 'https://www.gyanvaniai.online/hero_dashboard.webp',
+  canonical = 'https://www.gyanvaniai.com/',
+  image = 'https://www.gyanvaniai.com/hero_dashboard.webp',
   schema = null,
   type = 'website',
   keywords = [],
@@ -45,7 +45,7 @@ export default function SEOHead({
   aeoQuestion = null,
   aeoAnswer = null
 }) {
-  const currentPath = canonical.replace('https://www.gyanvaniai.online', '');
+  const currentPath = canonical.replace('https://www.gyanvaniai.com', '');
   const hreflangs = generateHreflangTags(currentPath);
   const geoMeta = getGeoTargeting();
   const socialMeta = getSocialMeta(title, description, image, canonical);
@@ -139,13 +139,13 @@ export default function SEOHead({
       {socialMeta['twitter:creator'] && <meta name="twitter:creator" content={socialMeta['twitter:creator']} />}
 
       {/* Multi-LLM & Generative Engine Optimization (GEO) Discovery Meta */}
-      <link rel="author" href="https://www.gyanvaniai.online/llms.txt" />
-      <link rel="alternate" type="text/plain" href="https://www.gyanvaniai.online/llms.txt" title="LLM Context Summary" />
-      <link rel="alternate" type="text/plain" href="https://www.gyanvaniai.online/llms-full.txt" title="Full LLM Technical Documentation" />
+      <link rel="author" href="https://www.gyanvaniai.com/llms.txt" />
+      <link rel="alternate" type="text/plain" href="https://www.gyanvaniai.com/llms.txt" title="LLM Context Summary" />
+      <link rel="alternate" type="text/plain" href="https://www.gyanvaniai.com/llms-full.txt" title="Full LLM Technical Documentation" />
       <meta name="ai-site-verification" content="gyan-vani-ai-verified-entity" />
       <meta name="chatgpt-plugin-support" content="enabled" />
       <meta name="llm-model-access" content="unrestricted" />
-      <meta name="ai-agent-discovery" content="https://www.gyanvaniai.online/llms.txt" />
+      <meta name="ai-agent-discovery" content="https://www.gyanvaniai.com/llms.txt" />
       <meta name="multi-llm-compatibility" content="OpenAI ChatGPT, Anthropic Claude, Perplexity AI, Google Gemini, DeepSeek R1, Meta Llama 3.3, Cohere, Mistral AI" />
 
       {/* LLM Citation Metadata (For AI Search Indexing & Summarization Engines) */}

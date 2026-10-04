@@ -82,7 +82,7 @@ runTest('Extracts h2/h3 headings and assigns safe IDs', () => {
 // ─── Test 4: Social Share Link Formatting & Privacy ───────────────────────────
 runTest('Social share links build cleanly without leaking private data', () => {
   const shareTitle = 'Enterprise AI Orchestration';
-  const shareUrl = 'https://www.gyanvaniai.online/blog/ai-orchestration';
+  const shareUrl = 'https://www.gyanvaniai.com/blog/ai-orchestration';
 
   const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareTitle + ' - ' + shareUrl)}`;
   const liUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`;

@@ -42,13 +42,13 @@ export default function Breadcrumbs({ customPaths = null }) {
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://www.gyanvaniai.online/"
+        "item": "https://www.gyanvaniai.com/"
       },
       ...paths.map((item, index) => ({
         "@type": "ListItem",
         "position": index + 2,
         "name": item.label,
-        "item": `https://www.gyanvaniai.online${item.path}`
+        "item": `https://www.gyanvaniai.com${item.path}`
       }))
     ]
   };

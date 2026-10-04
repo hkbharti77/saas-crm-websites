@@ -1,7 +1,7 @@
 import React from 'react';
 import { Share2 } from 'lucide-react';
 
-const FALLBACK_OG_IMAGE = 'https://www.gyanvaniai.online/hero_dashboard.webp';
+const FALLBACK_OG_IMAGE = 'https://www.gyanvaniai.com/hero_dashboard.webp';
 
 export default function SocialSharePreview({ title, description, imageUrl }) {
   const displayTitle = title || 'Untitled Article';
@@ -28,7 +28,7 @@ export default function SocialSharePreview({ title, description, imageUrl }) {
           />
         </div>
         <div className="social-preview-meta">
-          <span className="social-preview-domain">GYANVANIAI.ONLINE</span>
+          <span className="social-preview-domain">GYANVANIAI.COM</span>
           <h4 className="social-preview-title">{displayTitle}</h4>
           <p className="social-preview-desc">{displayDesc}</p>
         </div>

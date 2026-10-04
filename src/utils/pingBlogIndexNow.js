@@ -1,5 +1,5 @@
 const INDEXNOW_KEY = 'e58f9214b74a49c693a19b88c42ef84a';
-const HOST = 'www.gyanvaniai.online';
+const HOST = 'www.gyanvaniai.com';
 
 /**
  * Notify IndexNow when a blog URL is created or updated (client-side, best-effort).

@@ -26,7 +26,7 @@ import {
 import ContactSection from '../components/ContactSection';
 import './SalesAutomationPage.css';
 
-const SITE = 'https://www.gyanvaniai.online';
+const SITE = 'https://www.gyanvaniai.com';
 const PAGE_URL = `${SITE}/services/sales-automation`;
 
 const heroBullets = [

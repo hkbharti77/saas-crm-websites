@@ -29,7 +29,7 @@ import ContactSection from '../components/ContactSection';
 import './HealthcarePage.css';
 import SeoHead from '../components/SeoHead';
 
-const SITE = 'https://www.gyanvaniai.online';
+const SITE = 'https://www.gyanvaniai.com';
 
 export default function HealthcarePage() {
   const [activeSimTab, setActiveSimTab] = useState(0);

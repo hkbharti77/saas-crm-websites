@@ -192,12 +192,12 @@ export default function ContactSection({
                 <h3 className="h3 contact-channel-label">Email</h3>
                 <p style={{ margin: 0 }}>
                   <a
-                    href="mailto:contact@gyanvaniai.online"
+                    href="mailto:contact@gyanvaniai.com"
                     id="link-email-contact"
                     className="contact-channel-link contact-channel-email"
                     onClick={() => trackEmailClick('contact-section')}
                   >
-                    contact@gyanvaniai.online
+                    contact@gyanvaniai.com
                   </a>
                 </p>
               </div>

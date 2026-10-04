@@ -48,7 +48,7 @@ import {
 } from 'lucide-react';
 import './CrmDevelopmentPage.css';
 
-const SITE_URL = 'https://www.gyanvaniai.online';
+const SITE_URL = 'https://www.gyanvaniai.com';
 const PAGE_URL = `${SITE_URL}/services/crm-development`;
 
 export default function CrmDevelopmentPage() {

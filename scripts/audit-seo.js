@@ -45,7 +45,7 @@ for (const file of allFiles) {
   const rootLen = rootStart !== -1 && rootEnd !== -1 ? rootEnd - rootStart : 0;
 
   const isNoindex = html.includes('noindex');
-  const expectedCanon = 'https://www.gyanvaniai.online' + (route === '/' ? '/' : route);
+  const expectedCanon = 'https://www.gyanvaniai.com' + (route === '/' ? '/' : route);
 
   if (!title || title.includes('Loading')) {
     console.error(`❌ Title issue on ${route}:`, title);
