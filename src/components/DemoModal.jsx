@@ -20,7 +20,7 @@ export default function DemoModal({ isOpen, onClose }) {
 
   const handleLaunch = () => {
     if (!agreed) return;
-    window.open('https://connect.gyanvaniai.com/', '_blank', 'noopener,noreferrer');
+    window.open('https://connect.gyanvaniai.online/', '_blank', 'noopener,noreferrer');
     onClose();
   };
 
@@ -37,7 +37,7 @@ export default function DemoModal({ isOpen, onClose }) {
           </div>
           <div>
             <h3 className="demo-modal-title" id="demo-modal-heading">Try Gyan VaniAi Live Demo</h3>
-            <span className="demo-url-badge">connect.gyanvaniai.com</span>
+            <span className="demo-url-badge">connect.gyanvaniai.online</span>
           </div>
         </div>
 

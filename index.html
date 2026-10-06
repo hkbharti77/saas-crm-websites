@@ -158,9 +158,9 @@
     </script>
 
     <!-- Gyan VaniAi Chat Widget Stylesheet (non-blocking: widget script only injects after window load) -->
-    <link rel="preload" as="style" href="https://api.gyanvaniai.com/styles.css" />
-    <link rel="stylesheet" media="print" onload="this.media='all'" href="https://api.gyanvaniai.com/styles.css" />
-    <noscript><link rel="stylesheet" href="https://api.gyanvaniai.com/styles.css" /></noscript>
+    <link rel="preload" as="style" href="https://api.gyanvaniai.online/styles.css" />
+    <link rel="stylesheet" media="print" onload="this.media='all'" href="https://api.gyanvaniai.online/styles.css" />
+    <noscript><link rel="stylesheet" href="https://api.gyanvaniai.online/styles.css" /></noscript>
     <style>
       #crm-chat-widget,
       #chat-toggle {
@@ -224,7 +224,7 @@
         // Give the browser 1 second to fully paint the UI before injecting the chat widget
         setTimeout(function() {
           var script = document.createElement('script');
-          script.src = "https://api.gyanvaniai.com/chat-widget.js";
+          script.src = "https://api.gyanvaniai.online/chat-widget.js";
           script.setAttribute('data-business-id', "378e6be1-4f4f-4dfe-a374-be26195fb3c8");
           script.async = true;
           document.body.appendChild(script);

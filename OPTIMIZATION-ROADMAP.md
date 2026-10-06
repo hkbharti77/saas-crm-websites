@@ -245,7 +245,7 @@ export const getVisitorGeo = async () => {
   // This will be called server-side during SSR
   // In browser, use IP-based detection or fetch from CDN
   try {
-    const response = await fetch('https://api.gyanvaniai.com/geo');
+    const response = await fetch('https://api.gyanvaniai.online/geo');
     return response.json(); // { country, region, city, timezone }
   } catch {
     return null;
@@ -491,7 +491,7 @@ export default function AIAssistant() {
 
     try {
       // Call your Gyan VaniAi API
-      const response = await fetch('https://api.gyanvaniai.com/chat', {
+      const response = await fetch('https://api.gyanvaniai.online/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
