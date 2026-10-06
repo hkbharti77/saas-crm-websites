@@ -34,6 +34,7 @@ import FeaturedImageUpload from './FeaturedImageUpload';
 import AdminHeader from './AdminHeader';
 import GoogleSearchPreview from './GoogleSearchPreview';
 import SocialSharePreview from './SocialSharePreview';
+import TagsInput from './TagsInput';
 import '../../pages/BlogPost.css';
 import EditorialReviewPanel from './EditorialReviewPanel';
 import EditorialComments from './EditorialComments';
@@ -148,6 +149,7 @@ export default function AdminBlogEditor({
   const [isSaving, setIsSaving] = useState(false);
   const [isPublishing, setIsPublishing] = useState(false);
   const [showPublishModal, setShowPublishModal] = useState(false);
+  const [isBriefModalOpen, setIsBriefModalOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState(null);
   const [isDirty, setIsDirty] = useState(false);
   const [customCategoryActive, setCustomCategoryActive] = useState(false);
@@ -1974,6 +1976,39 @@ export default function AdminBlogEditor({
                   ))}
                 </div>
               )}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ================= CONTENT BRIEF MODAL ================= */}
+      {isBriefModalOpen && (
+        <div className="admin-modal-overlay" onClick={() => setIsBriefModalOpen(false)}>
+          <div className="admin-modal-box" onClick={(e) => e.stopPropagation()} style={{ maxWidth: '600px' }}>
+            <div className="admin-modal-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                <div className="admin-modal-icon-badge">
+                  <FileText size={20} />
+                </div>
+                <h3>AI Content Brief</h3>
+              </div>
+              <button onClick={() => setIsBriefModalOpen(false)} style={{ background: 'none', border: 'none', cursor: 'pointer' }}>
+                <X size={20} />
+              </button>
+            </div>
+            <div className="admin-modal-summary-box" style={{ maxHeight: '420px', overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+              <p><strong>Topic / Title:</strong> {formData.title || 'Untitled Post'}</p>
+              <p><strong>Primary Keyword:</strong> {formData.seoTitle || formData.title || 'AI Automation'}</p>
+              <p><strong>Category:</strong> {formData.category}</p>
+              <p><strong>Estimated Read Time:</strong> {formData.readTime || '5 min'}</p>
+              <div style={{ padding: '0.75rem', background: 'var(--bg-card)', borderRadius: '6px', border: '1px solid var(--border-color)', fontSize: '0.88rem' }}>
+                <div style={{ fontWeight: 600, marginBottom: '0.35rem' }}>Target Structure Recommendations:</div>
+                <ul style={{ paddingLeft: '1.25rem', margin: 0 }}>
+                  <li>Include clear H2 and H3 problem/solution breakdowns.</li>
+                  <li>Ensure direct answer block is formatted for LLM citation.</li>
+                  <li>Include internal links to relevant service pages.</li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>

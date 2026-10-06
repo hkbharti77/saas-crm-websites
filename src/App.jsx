@@ -87,6 +87,16 @@ function App() {
   const [modalPrefill, setModalPrefill] = useState('');
   const hasTriggeredRef = useRef({});
 
+  // Canonical host enforcement: redirect old domain or non-www to canonical https://www.gyanvaniai.com
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.location) {
+      const hostname = window.location.hostname;
+      if (hostname === 'gyanvaniai.online' || hostname === 'www.gyanvaniai.online' || hostname === 'gyanvaniai.com') {
+        window.location.replace(`https://www.gyanvaniai.com${window.location.pathname}${window.location.search}${window.location.hash}`);
+      }
+    }
+  }, []);
+
   // Scroll to hash target or scroll to top on route change
   useEffect(() => {
     if (location.hash) {
