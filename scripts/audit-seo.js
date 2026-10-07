@@ -26,8 +26,8 @@ for (const file of allFiles) {
   const html = fs.readFileSync(file, 'utf8');
   const route = file.replace('dist', '').replace(/\\/g, '/').replace(/\/index\.html$/, '') || '/';
 
-  // Admin routes and 404 page are intentionally non-indexed
-  if (route.startsWith('/admin') || route.includes('404')) {
+  // Admin routes, internal telemetry, and 404 page are intentionally non-indexed
+  if (route.startsWith('/admin') || route === '/seo/ai-visibility' || route.includes('404')) {
     continue;
   }
 

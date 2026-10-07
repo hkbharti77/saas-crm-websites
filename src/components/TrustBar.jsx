@@ -4,8 +4,8 @@ import './TrustBar.css';
 
 const integrations = [
   { name: 'WhatsApp Cloud API', type: 'Meta Tech Provider' },
-  { name: 'Salesforce', type: 'Two-Way Sync' },
-  { name: 'HubSpot', type: 'Real-Time Pipeline' },
+  { name: 'CRM Integrations', type: 'REST API & Webhooks' },
+  { name: 'Custom Pipelines', type: 'Real-Time Sync' },
   { name: 'Zapier', type: 'Webhook Triggers' },
   { name: 'OpenAI / Claude', type: 'RAG Intelligence' },
   { name: 'PostgreSQL', type: 'Isolated Tenant DB' },
@@ -17,7 +17,7 @@ export default function TrustBar() {
       <div className="container">
         <div className="trust-inner">
           <p className="trust-heading">
-            Trusted by modern revenue teams and integrated with your core tech stack
+            Built to connect with your core tech stack
           </p>
 
           <div className="trust-logos-grid">

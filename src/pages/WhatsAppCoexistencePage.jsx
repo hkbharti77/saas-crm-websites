@@ -31,7 +31,51 @@ import Meteors from '../components/ui/Meteors';
 import MetaInteractiveSandbox from '../components/MetaInteractiveSandbox';
 import { trackBookDemo } from '../utils/analytics';
 import { useTheme } from '../context/ThemeContext';
+import AiAnswerSummaryBlock from '../components/AiAnswerSummaryBlock';
 import './WhatsAppCoexistencePage.css';
+
+const coexistenceAiFacts = [
+  {
+    question: "What is Gyan VaniAi?",
+    answer: "An autonomous AI CRM and revenue operations platform engineered to automate customer acquisition, sales pipelines, and multi-agent support over WhatsApp and Voice channels."
+  },
+  {
+    question: "Who is this solution for?",
+    answer: "Sales teams, business owners, and customer support organizations that currently manage customer conversations on mobile WhatsApp Business phones but need multi-agent team access, automated lead logging, and bulk broadcasts."
+  },
+  {
+    question: "What problem does it solve?",
+    answer: "It eliminates the forced dilemma between using the convenient WhatsApp mobile app and deploying enterprise Cloud API CRM automation. You no longer need to sacrifice chat history or reset your phone number."
+  },
+  {
+    question: "How does it work?",
+    answer: "Meta Cloud API receives incoming messages and routes them in parallel to your mobile phone app and Gyan VaniAi CRM web inbox. Outgoing replies sent from mobile reflect in the CRM timeline in under 300ms."
+  },
+  {
+    question: "Why choose Gyan VaniAi?",
+    answer: "Gyan VaniAi offers native Meta Embedded Signup, sub-300ms voice AI, 0% markup on Meta conversation rates, and flat team subscription plans without per-seat penalties."
+  },
+  {
+    question: "How is it different from alternatives?",
+    answer: "Legacy BSP tools (Wati, Respond.io) disconnect your mobile WhatsApp Business app when binding the Cloud API. Gyan VaniAi officially leverages Meta Coexistence so your mobile phone remains active on the exact same number."
+  },
+  {
+    question: "Pricing",
+    answer: "WhatsApp Coexistence is available on Gyan VaniAi Starter (₹1,999/mo), Growth (₹4,999/mo), and Scale (₹9,999/mo) plans. Standard Meta conversation fees are paid directly to Meta."
+  },
+  {
+    question: "Key capabilities",
+    answer: "Single number dual-surface sync, 24/7 AI auto-replies, bulk broadcast campaigns, multi-agent shared inbox, automated lead qualification, and sub-300ms voice calling."
+  },
+  {
+    question: "Implementation",
+    answer: "Under 5 minutes via Meta 1-Click Embedded Signup directly inside Gyan VaniAi. No coding or telecom changes required."
+  },
+  {
+    question: "Integrations",
+    answer: "Official Meta WhatsApp Cloud API, Shopify, WooCommerce, Razorpay, Google Sheets, HubSpot, Salesforce, and custom REST webhooks."
+  }
+];
 
 const capabilitiesList = [
   {
@@ -389,6 +433,9 @@ export default function WhatsAppCoexistencePage() {
             </div>
           </div>
         </section>
+
+        {/* AI Answer Extraction Block */}
+        <AiAnswerSummaryBlock items={coexistenceAiFacts} title="WhatsApp Coexistence: Architectural Q&A Reference" />
 
         {/* =========================================================================
             2. 8 UNLOCKED SUPERPOWERS GRID (Wrapped in 3D Card Tilt)

@@ -39,6 +39,20 @@ const ContentRefresh = lazy(() => import('./pages/admin/ContentRefresh'));
 const SeoDashboard = lazy(() => import('./pages/admin/SeoDashboard'));
 const CookieConsentPage = lazy(() => import('./pages/admin/CookieConsentPage'));
 
+// New high-value SEO, AEO & comparison pages
+const WhatsAppCatalogCrmPage = lazy(() => import('./pages/WhatsAppCatalogCrmPage'));
+const WhatsAppPricingCalculatorPage = lazy(() => import('./pages/WhatsAppPricingCalculatorPage'));
+const SalesforceComparePage = lazy(() => import('./pages/SalesforceComparePage'));
+const HubSpotComparePage = lazy(() => import('./pages/HubSpotComparePage'));
+const ZohoComparePage = lazy(() => import('./pages/ZohoComparePage'));
+const CrmMigrationGuidePage = lazy(() => import('./pages/CrmMigrationGuidePage'));
+const VoiceAiLatencyBenchmarkPage = lazy(() => import('./pages/VoiceAiLatencyBenchmarkPage'));
+const SipArchitectureGuidePage = lazy(() => import('./pages/SipArchitectureGuidePage'));
+const VoiceAiInfrastructurePage = lazy(() => import('./pages/VoiceAiInfrastructurePage'));
+const McpToolCallingGuidePage = lazy(() => import('./pages/McpToolCallingGuidePage'));
+const WhereToFindUsPage = lazy(() => import('./pages/WhereToFindUsPage'));
+const AeoVisibilityDashboard = lazy(() => import('./pages/AeoVisibilityDashboard'));
+
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import './App.css';
@@ -201,6 +215,28 @@ function App() {
                 <Route path="/services/whatsapp-calling-agent" element={<WhatsAppCallingAgentPage />} />
                 <Route path="/services/crm-development" element={<CrmDevelopmentPage />} />
                 <Route path="/services/whatsapp-calling-agent-bots" element={<Navigate to="/services/whatsapp-calling-agent" replace />} />
+                
+                {/* Specialized Commercial & Tool Pages */}
+                <Route path="/services/whatsapp-catalog-crm" element={<WhatsAppCatalogCrmPage />} />
+                <Route path="/tools/whatsapp-pricing-calculator" element={<WhatsAppPricingCalculatorPage />} />
+
+                {/* CRM Comparisons */}
+                <Route path="/compare/salesforce-vs-gyanvaniai" element={<SalesforceComparePage />} />
+                <Route path="/compare/hubspot-vs-gyanvaniai" element={<HubSpotComparePage />} />
+                <Route path="/compare/zoho-vs-gyanvaniai" element={<ZohoComparePage />} />
+
+                {/* Guides & Resources */}
+                <Route path="/guides/crm-migration" element={<CrmMigrationGuidePage />} />
+                <Route path="/resources/voice-ai-latency-benchmark" element={<VoiceAiLatencyBenchmarkPage />} />
+                <Route path="/resources/sip-architecture" element={<SipArchitectureGuidePage />} />
+                <Route path="/resources/voice-ai-infrastructure" element={<VoiceAiInfrastructurePage />} />
+                <Route path="/resources/mcp-ai-agent-tool-calling" element={<McpToolCallingGuidePage />} />
+                <Route path="/resources/where-to-find-us" element={<WhereToFindUsPage />} />
+
+                {/* AEO & Search Visibility Telemetry */}
+                <Route path="/seo/ai-visibility" element={<AeoVisibilityDashboard />} />
+                <Route path="/admin/seo/ai-visibility" element={<AeoVisibilityDashboard />} />
+
                 <Route path="/documentation" element={<Documentation />} />
                 <Route path="/services/:serviceId" element={<SEOLandingPage />} />
                 <Route path="/industries/:industryId" element={<SEOLandingPage />} />

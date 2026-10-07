@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-10-07T03:44:39.307Z",
+  "timestamp": "2026-10-07T05:19:52.355Z",
   "targetDomain": "https://www.gyanvaniai.com",
   "score": {
     "total": 100,
@@ -63,11 +63,11 @@
     "adminProtected": true
   },
   "htmlPagesAudit": {
-    "totalPages": 44,
-    "speakableCoverage": 44,
-    "faqCoverage": 37,
-    "jsonLdCoverage": 44,
-    "directAnswerCoverage": 44
+    "totalPages": 56,
+    "speakableCoverage": 56,
+    "faqCoverage": 48,
+    "jsonLdCoverage": 56,
+    "directAnswerCoverage": 56
   },
   "errors": [],
   "warnings": []

@@ -1,0 +1,171 @@
+{
+  "lastUpdated": "2026-10-07T10:00:00.000Z",
+  "auditSummary": {
+    "totalOpportunities": 12,
+    "liveBacklinks": 3,
+    "pendingSubmissions": 1,
+    "recommendedOpportunities": 8,
+    "verifiedReferringDomains": 3,
+    "domainAuthorityStatus": "External DA metric unavailable without third-party SEO API integration (e.g., Ahrefs/Moz)"
+  },
+  "existingAuthority": [
+    {
+      "platform": "GitHub Organization",
+      "profileUrl": "https://github.com/gyanvaniai",
+      "status": "Live",
+      "submissionUrl": "https://github.com/gyanvaniai",
+      "brandName": "Gyan VaniAi",
+      "officialWebsite": "https://www.gyanvaniai.com",
+      "description": "Official open-source repositories, developer SDKs, and automation templates by Gyan VaniAi.",
+      "category": "Developer & Open Source Organization",
+      "targetPage": "https://www.gyanvaniai.com",
+      "napContactConsistency": "VERIFIED (Name: Gyan VaniAi, Email: contact@gyanvaniai.com, Domain: www.gyanvaniai.com)",
+      "notes": "Verified public GitHub organization with verified domain link and public repository assets."
+    },
+    {
+      "platform": "LinkedIn Company Profile",
+      "profileUrl": "https://www.linkedin.com/company/gyan-vaniai",
+      "status": "Live",
+      "submissionUrl": "https://www.linkedin.com/company/gyan-vaniai",
+      "brandName": "Gyan VaniAi",
+      "officialWebsite": "https://www.gyanvaniai.com",
+      "description": "Official LinkedIn company page for Gyan VaniAi - Autonomous AI CRM and revenue operations.",
+      "category": "B2B Professional Social Network",
+      "targetPage": "https://www.gyanvaniai.com",
+      "napContactConsistency": "VERIFIED (Domain: www.gyanvaniai.com, Headquarters: India)",
+      "notes": "Active corporate page linked in global footer."
+    },
+    {
+      "platform": "Facebook Page",
+      "profileUrl": "https://www.facebook.com/gyanvaniai/",
+      "status": "Live",
+      "submissionUrl": "https://www.facebook.com/gyanvaniai/",
+      "brandName": "Gyan VaniAi",
+      "officialWebsite": "https://www.gyanvaniai.com",
+      "description": "Official Facebook business page for Gyan VaniAi updates, announcements, and product demos.",
+      "category": "Business Social Profile",
+      "targetPage": "https://www.gyanvaniai.com",
+      "napContactConsistency": "VERIFIED (Domain: www.gyanvaniai.com)",
+      "notes": "Verified brand asset linked in footer."
+    }
+  ],
+  "recommendedAcquisitions": [
+    {
+      "platform": "G2 (Business Software Reviews)",
+      "profileUrl": null,
+      "status": "Recommended Acquisition",
+      "submissionUrl": "https://sell.g2.com/list-your-product",
+      "brandName": "Gyan VaniAi",
+      "officialWebsite": "https://www.gyanvaniai.com",
+      "description": "Autonomous AI CRM and WhatsApp revenue operations platform featuring coexistence, sub-300ms voice AI calling, and lead management.",
+      "category": "CRM Software / WhatsApp Marketing Software / Conversational AI",
+      "targetPage": "https://www.gyanvaniai.com",
+      "napContactConsistency": "PENDING CLAIM (Must match Delhi NCR office & contact@gyanvaniai.com)",
+      "notes": "Primary enterprise B2B review hub. Organic reviews require corporate email verification from clients."
+    },
+    {
+      "platform": "Capterra (Gartner Digital Markets)",
+      "profileUrl": null,
+      "status": "Recommended Acquisition",
+      "submissionUrl": "https://www.capterra.com/vendors/get-listed/",
+      "brandName": "Gyan VaniAi",
+      "officialWebsite": "https://www.gyanvaniai.com",
+      "description": "AI-powered CRM with WhatsApp Business coexistence, omni-channel calling agents, and sales pipeline automation.",
+      "category": "Customer Relationship Management (CRM) / Live Chat Software",
+      "targetPage": "https://www.gyanvaniai.com",
+      "napContactConsistency": "PENDING CLAIM",
+      "notes": "Feeds into Gartner Digital Markets network (Capterra, Software Advice, GetApp)."
+    },
+    {
+      "platform": "Product Hunt",
+      "profileUrl": null,
+      "status": "Recommended Acquisition",
+      "submissionUrl": "https://www.producthunt.com/posts/new",
+      "brandName": "Gyan VaniAi",
+      "officialWebsite": "https://www.gyanvaniai.com",
+      "description": "The WhatsApp CRM that doesn't disconnect your mobile app. Built-in sub-300ms voice AI and autonomous lead qualification.",
+      "category": "Artificial Intelligence / Sales & CRM / Messaging",
+      "targetPage": "https://www.gyanvaniai.com",
+      "napContactConsistency": "READY FOR SUBMISSION",
+      "notes": "High DA link and tech community visibility upon product launch."
+    },
+    {
+      "platform": "AlternativeTo",
+      "profileUrl": null,
+      "status": "Recommended Acquisition",
+      "submissionUrl": "https://alternativeto.net/software/submit/",
+      "brandName": "Gyan VaniAi",
+      "officialWebsite": "https://www.gyanvaniai.com",
+      "description": "A modern AI-first alternative to Respond.io, Wati, and Salesforce with native WhatsApp coexistence and voice bots.",
+      "category": "CRM & WhatsApp Messaging",
+      "targetPage": "https://www.gyanvaniai.com",
+      "napContactConsistency": "READY FOR SUBMISSION",
+      "notes": "High topical authority for software comparisons and alternative search queries."
+    },
+    {
+      "platform": "SaaSHub",
+      "profileUrl": null,
+      "status": "Recommended Acquisition",
+      "submissionUrl": "https://www.saashub.com/submit",
+      "brandName": "Gyan VaniAi",
+      "officialWebsite": "https://www.gyanvaniai.com",
+      "description": "Autonomous AI CRM platform for sales teams, WhatsApp automation, and voice AI calling.",
+      "category": "Software as a Service (SaaS) / CRM",
+      "targetPage": "https://www.gyanvaniai.com",
+      "napContactConsistency": "READY FOR SUBMISSION",
+      "notes": "Structured software directory with automatic competitor pairing and direct dofollow backlinks."
+    },
+    {
+      "platform": "Futurepedia",
+      "profileUrl": null,
+      "status": "Recommended Acquisition",
+      "submissionUrl": "https://www.futurepedia.io/submit-tool",
+      "brandName": "Gyan VaniAi",
+      "officialWebsite": "https://www.gyanvaniai.com",
+      "description": "Autonomous AI CRM with sub-300ms voice AI calling agent and multi-agent customer support.",
+      "category": "AI Productivity Tools / AI CRM",
+      "targetPage": "https://www.gyanvaniai.com",
+      "napContactConsistency": "READY FOR SUBMISSION",
+      "notes": "Leading AI directory with curated classification and indexed tool profiles."
+    },
+    {
+      "platform": "Crunchbase",
+      "profileUrl": null,
+      "status": "Pending Submission",
+      "submissionUrl": "https://www.crunchbase.com/add-new",
+      "brandName": "Gyan VaniAi",
+      "officialWebsite": "https://www.gyanvaniai.com",
+      "description": "Enterprise artificial intelligence and autonomous CRM software company based in India.",
+      "category": "Enterprise Software / Artificial Intelligence",
+      "targetPage": "https://www.gyanvaniai.com",
+      "napContactConsistency": "VERIFIED PROFILE DETAILS (Gyan VaniAi, contact@gyanvaniai.com)",
+      "notes": "Foundational entity citation for Knowledge Graph and Google Brand Entity recognition."
+    },
+    {
+      "platform": "There's An AI For That (TAAFT)",
+      "profileUrl": null,
+      "status": "Recommended Acquisition",
+      "submissionUrl": "https://theresanaiforthat.com/submit/",
+      "brandName": "Gyan VaniAi",
+      "officialWebsite": "https://www.gyanvaniai.com",
+      "description": "AI CRM that automates WhatsApp lead management, inbound call answering, and sales pipelines.",
+      "category": "Customer Support AI / Sales Automation AI",
+      "targetPage": "https://www.gyanvaniai.com",
+      "napContactConsistency": "READY FOR SUBMISSION",
+      "notes": "Largest directory of artificial intelligence tools by visitor volume."
+    },
+    {
+      "platform": "Postman Public Workspace",
+      "profileUrl": null,
+      "status": "Recommended Acquisition",
+      "submissionUrl": "https://www.postman.com/explore",
+      "brandName": "Gyan VaniAi Developer APIs",
+      "officialWebsite": "https://www.gyanvaniai.com/documentation",
+      "description": "Public API collections for WhatsApp Cloud API integration, webhook endpoints, and CRM lead ingestion.",
+      "category": "Developer Tools & API Documentation",
+      "targetPage": "https://www.gyanvaniai.com/documentation",
+      "napContactConsistency": "API SPECIFICATION READY",
+      "notes": "Provides legitimate developer linkable asset and API discoverability."
+    }
+  ]
+}

@@ -33,6 +33,20 @@ import NotFound from './pages/NotFound';
 import PricingPage from './pages/PricingPage';
 import PlanDetailPage from './pages/PlanDetailPage';
 
+// High-Value Content Roadmap & Authority & AEO Pages
+import WhatsAppCatalogCrmPage from './pages/WhatsAppCatalogCrmPage';
+import WhatsAppPricingCalculatorPage from './pages/WhatsAppPricingCalculatorPage';
+import SalesforceComparePage from './pages/SalesforceComparePage';
+import HubSpotComparePage from './pages/HubSpotComparePage';
+import ZohoComparePage from './pages/ZohoComparePage';
+import CrmMigrationGuidePage from './pages/CrmMigrationGuidePage';
+import VoiceAiLatencyBenchmarkPage from './pages/VoiceAiLatencyBenchmarkPage';
+import SipArchitectureGuidePage from './pages/SipArchitectureGuidePage';
+import VoiceAiInfrastructurePage from './pages/VoiceAiInfrastructurePage';
+import McpToolCallingGuidePage from './pages/McpToolCallingGuidePage';
+import WhereToFindUsPage from './pages/WhereToFindUsPage';
+import AeoVisibilityDashboard from './pages/AeoVisibilityDashboard';
+
 function ServerApp() {
   return (
     <ThemeProvider>
@@ -47,11 +61,24 @@ function ServerApp() {
             <Route path="/blog/:id" element={<BlogPost />} />
             <Route path="/category/:slug" element={<CategoryPage />} />
             <Route path="/services/whatsapp-coexistence" element={<WhatsAppCoexistencePage />} />
+            <Route path="/services/whatsapp-catalog-crm" element={<WhatsAppCatalogCrmPage />} />
             <Route path="/services/sales-automation" element={<SalesAutomationPage />} />
             <Route path="/services/ai-chatbots" element={<AIChatbotsPage />} />
             <Route path="/services/whatsapp-calling-agent" element={<WhatsAppCallingAgentPage />} />
             <Route path="/services/crm-development" element={<CrmDevelopmentPage />} />
             <Route path="/services/whatsapp-calling-agent-bots" element={<Navigate to="/services/whatsapp-calling-agent" replace />} />
+            <Route path="/tools/whatsapp-pricing-calculator" element={<WhatsAppPricingCalculatorPage />} />
+            <Route path="/compare/salesforce-vs-gyanvaniai" element={<SalesforceComparePage />} />
+            <Route path="/compare/hubspot-vs-gyanvaniai" element={<HubSpotComparePage />} />
+            <Route path="/compare/zoho-vs-gyanvaniai" element={<ZohoComparePage />} />
+            <Route path="/guides/crm-migration" element={<CrmMigrationGuidePage />} />
+            <Route path="/resources/voice-ai-latency-benchmark" element={<VoiceAiLatencyBenchmarkPage />} />
+            <Route path="/resources/sip-architecture" element={<SipArchitectureGuidePage />} />
+            <Route path="/resources/voice-ai-infrastructure" element={<VoiceAiInfrastructurePage />} />
+            <Route path="/resources/mcp-ai-agent-tool-calling" element={<McpToolCallingGuidePage />} />
+            <Route path="/resources/where-to-find-us" element={<WhereToFindUsPage />} />
+            <Route path="/seo/ai-visibility" element={<AeoVisibilityDashboard />} />
+            <Route path="/admin/seo/ai-visibility" element={<AeoVisibilityDashboard />} />
             <Route path="/documentation" element={<Documentation />} />
             <Route path="/security" element={<Security />} />
             <Route path="/services/:serviceId" element={<SEOLandingPage />} />

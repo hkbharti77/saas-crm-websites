@@ -1,11 +1,11 @@
 {
-  "timestamp": "2026-10-07T04:00:04.457Z",
+  "timestamp": "2026-10-07T06:28:14.924Z",
   "domain": "https://www.gyanvaniai.com",
   "summary": {
-    "totalPagesAudited": 48,
-    "indexablePages": 44,
-    "nonIndexableUtilityPages": 4,
-    "sitemapUrls": 44,
+    "totalPagesAudited": 60,
+    "indexablePages": 55,
+    "nonIndexableUtilityPages": 5,
+    "sitemapUrls": 55,
     "criticalErrorsCount": 0,
     "warningsCount": 0,
     "maxClickDepth": 2
@@ -135,8 +135,8 @@
     },
     "30_duplicate_content": {
       "status": "PASS",
-      "uniqueTitles": 44,
-      "totalPages": 44
+      "uniqueTitles": 55,
+      "totalPages": 55
     },
     "31_thin_content": {
       "status": "PASS",
@@ -154,6 +154,14 @@
     "34_structured_data_consistency": {
       "status": "PASS",
       "schemaConsistencyIssues": []
+    },
+    "35_roadmap_pages_validation": {
+      "status": "PASS",
+      "details": []
+    },
+    "36_aeo_benchmark_integrity": {
+      "status": "PASS",
+      "details": []
     }
   },
   "criticalErrors": [],

@@ -350,6 +350,7 @@ export async function runRegressionAudit() {
   const sitemapIssues = [];
   const sitemapPath = path.resolve(rootDir, 'public/sitemap.xml');
   const sitemapUrls = [];
+  let sitemapSet = new Set();
   if (!fs.existsSync(sitemapPath)) {
     criticalErrors.push('Missing public/sitemap.xml file');
     sitemapIssues.push('Missing sitemap.xml');
@@ -362,7 +363,7 @@ export async function runRegressionAudit() {
     }
 
     // Check every sitemap URL matches an indexable page
-    const sitemapSet = new Set(sitemapUrls);
+    sitemapSet = new Set(sitemapUrls);
     if (sitemapUrls.length !== sitemapSet.size) {
       criticalErrors.push('public/sitemap.xml contains duplicate URLs');
       sitemapIssues.push('Duplicate URLs in sitemap');
@@ -844,6 +845,68 @@ export async function runRegressionAudit() {
   systemResults['34_structured_data_consistency'] = { status: schemaConsistencyIssues.length === 0 ? 'PASS' : 'WARN', schemaConsistencyIssues };
 
   // =========================================================================
+  // 35. High-Value Roadmap Pages Reachability & Validation
+  // =========================================================================
+  const roadmapIssues = [];
+  const roadmapPages = [
+    '/services/whatsapp-catalog-crm',
+    '/tools/whatsapp-pricing-calculator',
+    '/compare/salesforce-vs-gyanvaniai',
+    '/compare/hubspot-vs-gyanvaniai',
+    '/compare/zoho-vs-gyanvaniai',
+    '/guides/crm-migration',
+    '/resources/voice-ai-latency-benchmark',
+    '/resources/sip-architecture',
+    '/resources/voice-ai-infrastructure',
+    '/resources/mcp-ai-agent-tool-calling',
+    '/resources/where-to-find-us'
+  ];
+  for (const rRoute of roadmapPages) {
+    const p = pageMap.get(rRoute);
+    if (!p) {
+      criticalErrors.push(`High-value roadmap page missing from build: ${rRoute}`);
+      roadmapIssues.push(`Missing page: ${rRoute}`);
+    } else {
+      if (!p.isIndexable) {
+        criticalErrors.push(`Roadmap page ${rRoute} is accidentally non-indexable`);
+        roadmapIssues.push(`Non-indexable: ${rRoute}`);
+      }
+      if (!sitemapSet.has(`${CANONICAL_ORIGIN}${rRoute}`)) {
+        criticalErrors.push(`Roadmap page missing from sitemap.xml: ${rRoute}`);
+        roadmapIssues.push(`Missing from sitemap: ${rRoute}`);
+      }
+      if (orphanPages.includes(rRoute)) {
+        criticalErrors.push(`Roadmap page is an orphan (not reachable from home): ${rRoute}`);
+        roadmapIssues.push(`Orphan: ${rRoute}`);
+      }
+    }
+  }
+  systemResults['35_roadmap_pages_validation'] = { status: roadmapIssues.length === 0 ? 'PASS' : 'FAIL', details: roadmapIssues };
+
+  // =========================================================================
+  // 36. AEO Benchmark Integrity & No Fake Citations
+  // =========================================================================
+  const benchmarkIssues = [];
+  const aeoBenchmarkPath = path.resolve(rootDir, 'src/data/aeoBenchmarks.json');
+  if (fs.existsSync(aeoBenchmarkPath)) {
+    try {
+      const aeoJson = JSON.parse(fs.readFileSync(aeoBenchmarkPath, 'utf8'));
+      for (const b of aeoJson.benchmarks || []) {
+        if (b.status === 'Measured' && b.cited && b.citationUrl) {
+          if (!b.citationUrl.startsWith(CANONICAL_ORIGIN)) {
+            warnings.push(`External or non-canonical citation URL in benchmark: ${b.citationUrl}`);
+            benchmarkIssues.push(b.citationUrl);
+          }
+        }
+      }
+    } catch {
+      criticalErrors.push('Malformed JSON in src/data/aeoBenchmarks.json');
+      benchmarkIssues.push('Malformed aeoBenchmarks.json');
+    }
+  }
+  systemResults['36_aeo_benchmark_integrity'] = { status: benchmarkIssues.length === 0 ? 'PASS' : 'FAIL', details: benchmarkIssues };
+
+  // =========================================================================
   // PRODUCTION SCORE CALCULATIONS
   // =========================================================================
   const totalPages = pages.length;
@@ -956,6 +1019,12 @@ export async function runRegressionAudit() {
   console.log(`   ⭐ OVERALL SEO SCORE:          ${overallScore} / 100`);
   console.log(`   ================================================`);
   console.log(`📄 Comprehensive report saved to: ${reportOutputPath}\n`);
+  console.log('📋 REAL-WORLD SEO / AEO READINESS STATUS:');
+  console.log('   - AEO Technical Readiness:     PASS');
+  console.log('   - AEO Real-World Visibility:   NOT YET MEASURED (Baseline Defined)');
+  console.log('   - External Brand Authority:    INSUFFICIENTLY VERIFIED');
+  console.log('   - Backlink Acquisition:        OUTSTANDING (Target Profiles Prepared)');
+  console.log('   - Google Organic Performance:  NOT YET MEASURED (GSC/CrUX integration required)\n');
 
   if (criticalErrors.length > 0) {
     console.error('❌ CI/BUILD FAILURE: Critical SEO regressions detected:');

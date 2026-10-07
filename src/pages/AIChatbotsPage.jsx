@@ -24,9 +24,53 @@ import {
   MessageSquareCode
 } from 'lucide-react';
 import ContactSection from '../components/ContactSection';
+import AiAnswerSummaryBlock from '../components/AiAnswerSummaryBlock';
 import './AIChatbotsPage.css';
 
 const SITE = 'https://www.gyanvaniai.com';
+
+const chatbotAiFacts = [
+  {
+    question: "What is Gyan VaniAi?",
+    answer: "An AI engineering company and SaaS platform building custom conversational chatbots, RAG knowledge systems, and autonomous multi-agent pipelines for enterprise operations."
+  },
+  {
+    question: "Who is this solution for?",
+    answer: "Support directors, e-commerce brands, operations leaders, and sales teams that need 24/7 automated resolution across WhatsApp, websites, and mobile apps."
+  },
+  {
+    question: "What problem does it solve?",
+    answer: "It eliminates high support ticket backlogs, slow customer response times, and robotic rule-based decision trees by using context-aware LLMs grounded in verified company documents."
+  },
+  {
+    question: "How does it work?",
+    answer: "Your company documentation, FAQs, and product catalogs are vectorized into a tenant-isolated RAG database. Inbound customer queries retrieve exact factual context to generate hallucination-free answers and execute secure API actions."
+  },
+  {
+    question: "Why choose Gyan VaniAi?",
+    answer: "Sub-300ms latency, native WhatsApp Coexistence, seamless human handoff, and full data privacy with zero model training on customer data."
+  },
+  {
+    question: "How is it different from alternatives?",
+    answer: "Unlike generic wrapper bots, Gyan VaniAi chatbots execute transactional API actions (checking orders, booking slots, updating CRM pipelines) and support voice-to-text natively."
+  },
+  {
+    question: "Pricing",
+    answer: "Included in Gyan VaniAi Starter (₹1,999/mo), Growth (₹4,999/mo), and Scale (₹9,999/mo) plans. Custom enterprise RAG deployments available."
+  },
+  {
+    question: "Key capabilities",
+    answer: "Multi-turn memory, RAG document search, API tool execution, automated human escalation, multi-language translation, and CRM deal tracking."
+  },
+  {
+    question: "Implementation",
+    answer: "Standard knowledge-base bots deploy in 3 to 5 business days. Enterprise multi-agent systems with database integrations deploy in 2 to 4 weeks."
+  },
+  {
+    question: "Integrations",
+    answer: "Meta WhatsApp Cloud API, Shopify, WooCommerce, Salesforce, HubSpot, Zendesk, Freshdesk, Slack, and REST webhooks."
+  }
+];
 
 export default function AIChatbotsPage() {
   const [openFaq, setOpenFaq] = useState(0);
@@ -357,6 +401,9 @@ export default function AIChatbotsPage() {
           </div>
         </div>
       </section>
+
+      {/* AI Answer Extraction Block */}
+      <AiAnswerSummaryBlock items={chatbotAiFacts} title="AI Chatbots: Architecture & Technical Reference" />
 
       {/* ==========================================================================
          2. OVERVIEW / WHO IT'S FOR / WHAT YOU GET (3 CARDS)

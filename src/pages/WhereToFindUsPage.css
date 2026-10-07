@@ -1,0 +1,273 @@
+.where-to-find-us-page {
+  padding-top: 5rem;
+  color: var(--text-color, #ffffff);
+}
+
+.where-hero {
+  padding: 3.5rem 0 2rem;
+  text-align: center;
+}
+
+.where-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 1rem;
+  background: rgba(15, 118, 110, 0.12);
+  border: 1px solid rgba(15, 118, 110, 0.3);
+  color: #14b8a6;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border-radius: 9999px;
+  margin-bottom: 1.25rem;
+}
+
+.where-hero-title {
+  font-size: 2.75rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin-bottom: 1rem;
+}
+
+.where-hero-subtitle {
+  font-size: 1.1rem;
+  color: var(--text-muted, #94a3b8);
+  max-width: 760px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.where-nap-section {
+  padding: 2rem 0;
+}
+
+.where-nap-card {
+  background: var(--card-bg, rgba(255, 255, 255, 0.03));
+  border: 1px solid var(--border-color, rgba(255, 255, 255, 0.1));
+  border-radius: 16px;
+  padding: 2rem;
+}
+
+.where-nap-heading {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: #2dd4bf;
+}
+
+.where-nap-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+
+.where-nap-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.where-nap-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted, #94a3b8);
+}
+
+.where-nap-val {
+  font-size: 1rem;
+  color: #ffffff;
+}
+
+.where-nap-note {
+  font-size: 0.75rem;
+  color: #64748b;
+}
+
+.where-link {
+  color: #2dd4bf;
+  text-decoration: underline;
+}
+
+.where-profiles-section, .where-ecosystem-section {
+  padding: 3rem 0;
+}
+
+.where-section-header {
+  margin-bottom: 2rem;
+}
+
+.where-pill-live {
+  display: inline-block;
+  padding: 0.25rem 0.65rem;
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  color: #10b981;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: 9999px;
+  margin-bottom: 0.5rem;
+}
+
+.where-pill-target {
+  display: inline-block;
+  padding: 0.25rem 0.65rem;
+  background: rgba(15, 118, 110, 0.15);
+  border: 1px solid rgba(15, 118, 110, 0.3);
+  color: #2dd4bf;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: 9999px;
+  margin-bottom: 0.5rem;
+}
+
+.where-section-title {
+  font-size: 1.85rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.5rem;
+}
+
+.where-section-desc {
+  font-size: 0.95rem;
+  color: var(--text-muted, #94a3b8);
+  max-width: 680px;
+}
+
+.where-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+.where-profile-card {
+  background: var(--card-bg, rgba(255, 255, 255, 0.02));
+  border: 1px solid var(--border-color, rgba(255, 255, 255, 0.08));
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.where-profile-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(15, 118, 110, 0.4);
+}
+
+.where-profile-card.live {
+  border-top: 3px solid #10b981;
+}
+
+.where-profile-card.opportunity {
+  border-top: 3px solid #0f766e;
+}
+
+.where-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.where-platform-name {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.where-status-live {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.2rem 0.5rem;
+  background: rgba(16, 185, 129, 0.15);
+  color: #10b981;
+  font-size: 0.7rem;
+  font-weight: 700;
+  border-radius: 4px;
+}
+
+.where-status-target {
+  display: inline-block;
+  padding: 0.2rem 0.5rem;
+  background: rgba(15, 118, 110, 0.15);
+  color: #2dd4bf;
+  font-size: 0.7rem;
+  font-weight: 700;
+  border-radius: 4px;
+}
+
+.where-card-desc {
+  font-size: 0.85rem;
+  color: var(--text-muted, #cbd5e1);
+  line-height: 1.5;
+  margin-bottom: 1rem;
+  flex-grow: 1;
+}
+
+.where-card-meta {
+  font-size: 0.8rem;
+  color: var(--text-muted, #94a3b8);
+  margin-bottom: 1.25rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.where-card-footer {
+  display: flex;
+}
+
+.where-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #10b981;
+  text-decoration: underline;
+}
+
+.where-action-btn.secondary {
+  color: #2dd4bf;
+}
+
+.where-nav-section {
+  padding: 2rem 0;
+}
+
+.where-nav-box {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.where-nav-heading {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--text-muted, #94a3b8);
+}
+
+.where-nav-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.where-nav-link {
+  color: #2dd4bf;
+  font-size: 0.9rem;
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .where-hero-title {
+    font-size: 2rem;
+  }
+}

@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import SeoHead from '../components/SeoHead';
 import {
   PhoneCall,
@@ -35,9 +35,53 @@ import Particles from '../components/ui/Particles';
 import SpotlightCard from '../components/ui/SpotlightCard';
 import Meteors from '../components/ui/Meteors';
 import { trackBookDemo } from '../utils/analytics';
+import AiAnswerSummaryBlock from '../components/AiAnswerSummaryBlock';
 import './WhatsAppCallingAgentPage.css';
 
 const SITE = 'https://www.gyanvaniai.com';
+
+const voiceCallingAiFacts = [
+  {
+    question: "What is Gyan VaniAi?",
+    answer: "An autonomous AI CRM and conversational telephony engineering company building low-latency WhatsApp voice agents, SIP trunking gateways, and revenue automation software."
+  },
+  {
+    question: "Who is this solution for?",
+    answer: "Businesses receiving high call volumes, customer support hotlines, and sales teams running outbound lead qualification over WhatsApp."
+  },
+  {
+    question: "What problem does it solve?",
+    answer: "It solves missed inbound calls after hours, high telecaller staffing costs, and slow lead follow-up by answering calls instantly with natural AI voices."
+  },
+  {
+    question: "How does it work?",
+    answer: "Inbound or outbound WhatsApp voice calls connect to our WebRTC and SIP telephony gateway. Streaming speech-to-text and low-latency LLMs process the caller's words in sub-300ms, synthesizing natural responses and syncing records to Gyan VaniAi CRM."
+  },
+  {
+    question: "Why choose Gyan VaniAi?",
+    answer: "Sub-300ms turn-around latency, full-duplex conversational barge-in interruption handling, Indian multilingual support, and zero per-seat licensing penalties."
+  },
+  {
+    question: "How is it different from alternatives?",
+    answer: "Traditional IVR systems force callers through frustrating keypress menus. Gyan VaniAi provides fluid, natural conversational dialogue that understands context and executes real-time CRM tool actions."
+  },
+  {
+    question: "Pricing",
+    answer: "Voice AI calling modules are available across Gyan VaniAi Growth and Scale tiers with standard telecom carrier minutes billed transparently."
+  },
+  {
+    question: "Key capabilities",
+    answer: "Sub-300ms latency, multi-lingual voice synthesis, real-time CRM deal logging, automated appointment scheduling, and warm transfer to human reps."
+  },
+  {
+    question: "Implementation",
+    answer: "Turnkey WhatsApp voice bot setups deploy within 5 business days. Custom PBX SIP integrations deploy in 2 to 3 weeks."
+  },
+  {
+    question: "Integrations",
+    answer: "Meta WhatsApp Business API, Asterisk, FreePBX, Twilio, Razorpay, HubSpot, Salesforce, and custom REST webhooks."
+  }
+];
 
 // Capability Points for Section 3 & 4
 const capabilityCards = [
@@ -230,7 +274,6 @@ const pageFaqs = [
 ];
 
 export default function WhatsAppCallingAgentPage() {
-  const location = useLocation();
   const [isDemoModalOpen, setIsDemoModalOpen] = useState(false);
   const [activePipelineStep, setActivePipelineStep] = useState(0);
   const [openFaqIndices, setOpenFaqIndices] = useState(new Set([0, 1]));
@@ -495,6 +538,9 @@ export default function WhatsAppCallingAgentPage() {
             </div>
           </div>
         </section>
+
+        {/* AI Answer Extraction Block */}
+        <AiAnswerSummaryBlock items={voiceCallingAiFacts} title="WhatsApp Voice Calling Agent: Architectural Q&A Reference" />
 
         {/* =========================================================================
             2. TRUST / VALUE STRIP

@@ -23,6 +23,7 @@
     "audit:indexing": "node scripts/validate-indexing.js",
     "audit:technical-seo": "node scripts/validate-technical-seo.js",
     "audit:regression": "node scripts/seo-regression-checker.js",
+    "regression": "node scripts/seo-regression-checker.js",
     "regression:check": "node scripts/seo-regression-checker.js"
   },
   "dependencies": {

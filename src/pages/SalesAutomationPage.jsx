@@ -24,10 +24,54 @@ import {
   Check
 } from 'lucide-react';
 import ContactSection from '../components/ContactSection';
+import AiAnswerSummaryBlock from '../components/AiAnswerSummaryBlock';
 import './SalesAutomationPage.css';
 
 const SITE = 'https://www.gyanvaniai.com';
 const PAGE_URL = `${SITE}/services/sales-automation`;
+
+const salesAiFacts = [
+  {
+    question: "What is Gyan VaniAi?",
+    answer: "An autonomous sales automation and AI CRM platform that eliminates manual follow-up tasks, qualifies inbound leads, and accelerates deal velocity."
+  },
+  {
+    question: "Who is this solution for?",
+    answer: "B2B sales teams, inbound lead generators, e-commerce brands, and agency sales reps needing faster lead response without administrative headcount."
+  },
+  {
+    question: "What problem does it solve?",
+    answer: "It stops lead leakage caused by slow response times, ends inconsistent follow-ups, and automates multi-channel sequences across WhatsApp, email, and phone."
+  },
+  {
+    question: "How does it work?",
+    answer: "Inbound leads from ads or website forms trigger instant sub-second qualification webhooks. AI assigns propensity scores, routes hot deals to reps, and triggers coordinated follow-up touchpoints."
+  },
+  {
+    question: "Why choose Gyan VaniAi?",
+    answer: "Sub-300ms response latency, native WhatsApp mobile app coexistence, flat team subscription plans, and unified CRM pipeline visualization."
+  },
+  {
+    question: "How is it different from alternatives?",
+    answer: "Generic email drip tools miss high-converting WhatsApp conversations. Gyan VaniAi combines WhatsApp, voice bots, and CRM automation in one synchronized platform."
+  },
+  {
+    question: "Pricing",
+    answer: "Included in Gyan VaniAi Starter (₹1,999/mo), Growth (₹4,999/mo), and Scale (₹9,999/mo) plans with zero per-seat user fees."
+  },
+  {
+    question: "Key capabilities",
+    answer: "AI lead propensity scoring, automated round-robin routing, Click-to-WhatsApp ad triggers, multi-step follow-up cadences, and pipeline stage automation."
+  },
+  {
+    question: "Implementation",
+    answer: "Turnkey workflow templates deploy in 1 to 2 business days. Custom enterprise CRM connectors deploy in 2 to 3 weeks."
+  },
+  {
+    question: "Integrations",
+    answer: "Meta WhatsApp Cloud API, HubSpot, Salesforce, Zoho, Google Ads, Meta Lead Ads, Stripe, Razorpay, and REST webhooks."
+  }
+];
 
 const heroBullets = [
   { text: 'Automated Follow-ups', icon: <Mail size={16} /> },
@@ -393,6 +437,9 @@ export default function SalesAutomationPage() {
             </div>
           </div>
         </section>
+
+        {/* AI Answer Extraction Block */}
+        <AiAnswerSummaryBlock items={salesAiFacts} title="Sales Automation: Architecture & Capability Facts" />
 
         {/* ==================================================================
             2. OVERVIEW / WHO IT'S FOR / WHAT YOU GET (3 ENTERPRISE CARDS)

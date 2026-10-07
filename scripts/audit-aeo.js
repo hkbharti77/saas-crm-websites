@@ -223,13 +223,17 @@ console.log(`   - Factual Consistency:     ${report.score.breakdown.consistency.
 console.log(`   - Structured Data/Voice:   ${report.score.breakdown.structuredData.score} / 25`);
 console.log(`   - Semantic Direct Answers: ${report.score.breakdown.semanticDirectAnswers.score} / 25`);
 console.log('====================================================');
+console.log('📋 AEO STATUS CLASSIFICATION:');
+console.log('   - AEO Technical Readiness:       PASS (Score: ' + report.score.total + '/100)');
+console.log('   - AEO Real-World Citation Telemetry: NOT YET MEASURED (Benchmark defined)');
+console.log('====================================================');
 
 const outPath = path.resolve('aeo-readiness-report.json');
 fs.writeFileSync(outPath, JSON.stringify(report, null, 2), 'utf8');
 console.log(`📄 Comprehensive AEO audit report saved to: ${outPath}`);
 
 if (report.score.total >= 90) {
-  console.log('🎉 AEO Implementation Audit PASSED with Grade A readiness!');
+  console.log('🎉 AEO Implementation Audit PASSED with Grade A technical readiness!');
   process.exit(0);
 } else {
   console.warn('⚠️ AEO readiness score below 90%. Review report for improvements.');

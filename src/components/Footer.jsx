@@ -110,14 +110,14 @@ export default function Footer() {
 
           <div className="footer-links">
             <div className="link-group">
-              <h3 className="link-title">Product</h3>
+              <h3 className="link-title">Product & Tools</h3>
               <Link to="/services/crm-development" className="footer-link">Platform & CRM</Link>
-              <Link to="/services/ai-agent-development" className="footer-link">AI Agents</Link>
-              <Link to="/services/lead-management" className="footer-link">Lead Management</Link>
               <Link to="/services/whatsapp-coexistence" className="footer-link">WhatsApp Coexistence</Link>
+              <Link to="/services/whatsapp-catalog-crm" className="footer-link">WhatsApp Catalog CRM</Link>
+              <Link to="/tools/whatsapp-pricing-calculator" className="footer-link">WhatsApp Cost Calculator</Link>
               <Link to="/services/whatsapp-calling-agent" className="footer-link">WhatsApp Calling Agent</Link>
               <Link to="/services/voice-bot-assistant" className="footer-link">Voice AI Assistants</Link>
-              <Link to="/services/phone-call-agent" className="footer-link">Phone Call Agents</Link>
+              <Link to="/services/ai-agent-development" className="footer-link">AI Agents & RAG</Link>
               <button
                 type="button"
                 className="footer-link footer-demo-link"
@@ -127,29 +127,33 @@ export default function Footer() {
               </button>
             </div>
             <div className="link-group">
-              <h3 className="link-title">Solutions</h3>
+              <h3 className="link-title">Solutions & Compare</h3>
               <Link to="/services/sales-automation" className="footer-link">Sales Automation</Link>
               <Link to="/services/ai-chatbots" className="footer-link">AI Chatbots</Link>
+              <Link to="/compare/salesforce-vs-gyanvaniai" className="footer-link">Salesforce vs Gyan VaniAi</Link>
+              <Link to="/compare/hubspot-vs-gyanvaniai" className="footer-link">HubSpot vs Gyan VaniAi</Link>
+              <Link to="/compare/zoho-vs-gyanvaniai" className="footer-link">Zoho vs Gyan VaniAi</Link>
               <Link to="/industries/enterprise" className="footer-link">Enterprise CRM</Link>
-              <Link to="/industries/real-estate" className="footer-link">Real Estate</Link>
-              <Link to="/industries/healthcare" className="footer-link">Healthcare</Link>
-              <Link to="/industries/retail" className="footer-link">E-commerce & Retail</Link>
+            </div>
+            <div className="link-group">
+              <h3 className="link-title">Resources & Guides</h3>
+              <Link to="/guides/crm-migration" className="footer-link">CRM Migration Guide</Link>
+              <Link to="/resources/voice-ai-latency-benchmark" className="footer-link">Voice AI Latency Benchmark</Link>
+              <Link to="/resources/sip-architecture" className="footer-link">SIP Architecture</Link>
+              <Link to="/resources/voice-ai-infrastructure" className="footer-link">Voice AI Infrastructure</Link>
+              <Link to="/resources/mcp-ai-agent-tool-calling" className="footer-link">MCP & Tool Calling Guide</Link>
+              <Link to="/resources/where-to-find-us" className="footer-link">Where to Find Us</Link>
+              <Link to="/blog" className="footer-link">Blog & Insights</Link>
+              <Link to="/documentation" className="footer-link">Documentation</Link>
             </div>
             <div className="link-group">
               <h3 className="link-title">Company</h3>
               <Link to="/about" className="footer-link">About Us</Link>
+              <Link to="/pricing" className="footer-link">Pricing Plans</Link>
               <Link to="/#contact" className="footer-link">Contact</Link>
-              <Link to="/security" className="footer-link">Security</Link>
+              <Link to="/security" className="footer-link">Security Center</Link>
               <Link to="/privacy" className="footer-link">Privacy Policy</Link>
               <Link to="/terms" className="footer-link">Terms & Conditions</Link>
-            </div>
-            <div className="link-group">
-              <h3 className="link-title">Resources</h3>
-              <Link to="/blog" className="footer-link">Blog & Insights</Link>
-              <Link to="/documentation" className="footer-link">Documentation</Link>
-              <Link to="/services/ai-agent-development" className="footer-link">AI Architecture</Link>
-              <Link to="/industries/enterprise" className="footer-link">Case Studies</Link>
-              <a href="mailto:contact@gyanvaniai.com" className="footer-link">Support</a>
             </div>
           </div>
 

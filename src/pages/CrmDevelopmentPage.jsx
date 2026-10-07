@@ -46,15 +46,59 @@ import {
   UserCheck,
   Briefcase
 } from 'lucide-react';
+import AiAnswerSummaryBlock from '../components/AiAnswerSummaryBlock';
 import './CrmDevelopmentPage.css';
 
 const SITE_URL = 'https://www.gyanvaniai.com';
 const PAGE_URL = `${SITE_URL}/services/crm-development`;
 
+const crmAiFacts = [
+  {
+    question: "What is Gyan VaniAi?",
+    answer: "An autonomous AI CRM software engineering platform that builds custom, enterprise-grade revenue workflows, native WhatsApp coexistence, and sub-300ms voice agents."
+  },
+  {
+    question: "Who is this solution for?",
+    answer: "B2B and high-velocity sales organizations, growing agencies, real estate firms, and healthcare providers who have outgrown generic spreadsheets or want to eliminate bloated per-seat SaaS costs."
+  },
+  {
+    question: "What problem does it solve?",
+    answer: "It eliminates per-seat licensing penalties, solves the rigid field limitations of off-the-shelf CRMs, and bridges the gap between customer WhatsApp chats and automated CRM pipeline stages."
+  },
+  {
+    question: "How does it work?",
+    answer: "We engineer custom CRM platforms on modern stack architectures (React, Node.js, PostgreSQL/Firestore) integrated with Meta WhatsApp Cloud API, sub-300ms voice engines, and automated lead scoring algorithms."
+  },
+  {
+    question: "Why choose Gyan VaniAi?",
+    answer: "Zero per-seat licensing fees, 100% tailored data schemas, native WhatsApp coexistence, and full ownership of your customer data."
+  },
+  {
+    question: "How is it different from alternatives?",
+    answer: "Off-the-shelf CRMs typically charge per user and may require add-ons or third-party connectors for WhatsApp. Gyan VaniAi offers flat team tiers, custom pipeline boards, and WhatsApp Business Coexistence support. Compare current vendor pricing before deciding."
+  },
+  {
+    question: "Pricing",
+    answer: "Flat monthly tiers starting at ₹1,999/mo (Starter) to ₹9,999/mo (Scale), or custom enterprise development with bespoke ownership."
+  },
+  {
+    question: "Key capabilities",
+    answer: "Automated lead scoring, Kanban pipeline visualization, WhatsApp shared inbox, sub-300ms voice AI, Click-to-WhatsApp ad ingestion, and role-based permissions."
+  },
+  {
+    question: "Implementation",
+    answer: "Pre-built modules deploy same-day. Custom enterprise migrations and dedicated integrations deploy in 2 to 4 weeks."
+  },
+  {
+    question: "Integrations",
+    answer: "Meta WhatsApp Cloud API, Shopify, WooCommerce, Razorpay, Stripe, Google Calendar, Zapier, and custom REST API webhooks."
+  }
+];
+
 export default function CrmDevelopmentPage() {
   // Calculator State
   const [teamSize, setTeamSize] = useState(25);
-  const [provider, setProvider] = useState('salesforce'); // 'salesforce' | 'hubspot' | 'zoho'
+  const [provider, setProvider] = useState('premium'); // 'premium' | 'mid' | 'entry' (illustrative per-seat tiers)
 
   // Sandbox Tabs State
   const [activeTab, setActiveTab] = useState('kanban'); // 'kanban' | 'coexistence' | 'ai_scoring' | 'rbac'
@@ -65,9 +109,9 @@ export default function CrmDevelopmentPage() {
   // Pricing & ROI Calculations
   const getProviderCostPerSeat = () => {
     switch (provider) {
-      case 'salesforce': return 165; // $165/user/mo Enterprise
-      case 'hubspot': return 150; // $150/user/mo Sales Hub Pro/Enterprise
-      case 'zoho': return 95; // $95/user/mo Ultimate
+      case 'premium': return 165; // illustrative assumption, not a vendor quote
+      case 'mid': return 150; // illustrative assumption, not a vendor quote
+      case 'entry': return 95; // illustrative assumption, not a vendor quote
       default: return 150;
     }
   };
@@ -236,7 +280,7 @@ export default function CrmDevelopmentPage() {
 
               <div className="crm-hero-badge">
                 <Sparkles size={16} />
-                <span>#1 Custom AI CRM Development Engine</span>
+                <span>Enterprise Custom AI CRM Development Engine</span>
               </div>
 
               <h1 className="crm-hero-h1">
@@ -322,6 +366,9 @@ export default function CrmDevelopmentPage() {
           </div>
         </section>
 
+        {/* Direct AI Answer Extraction Block */}
+        <AiAnswerSummaryBlock items={crmAiFacts} title="Custom AI CRM: Architecture & Engineering Q&A Reference" />
+
         {/* ==========================================
             INTERACTIVE ROI SAVINGS CALCULATOR
             ========================================== */}
@@ -341,27 +388,27 @@ export default function CrmDevelopmentPage() {
               <div className="crm-calc-controls">
                 <div className="crm-calc-group">
                   <label>
-                    <span>Current CRM Provider</span>
+                    <span>Illustrative per-seat CRM tier (assumed prices, not vendor quotes)</span>
                     <span className="crm-calc-val-highlight">{provider.toUpperCase()}</span>
                   </label>
                   <div className="crm-provider-selects">
                     <button 
-                      className={`crm-provider-btn ${provider === 'salesforce' ? 'active' : ''}`}
-                      onClick={() => setProvider('salesforce')}
+                      className={`crm-provider-btn ${provider === 'premium' ? 'active' : ''}`}
+                      onClick={() => setProvider('premium')}
                     >
-                      Salesforce Ent ($165/mo)
+                      Premium per-seat tier (~$165/mo)
                     </button>
                     <button 
-                      className={`crm-provider-btn ${provider === 'hubspot' ? 'active' : ''}`}
-                      onClick={() => setProvider('hubspot')}
+                      className={`crm-provider-btn ${provider === 'mid' ? 'active' : ''}`}
+                      onClick={() => setProvider('mid')}
                     >
-                      HubSpot Pro ($150/mo)
+                      Mid per-seat tier (~$150/mo)
                     </button>
                     <button 
-                      className={`crm-provider-btn ${provider === 'zoho' ? 'active' : ''}`}
-                      onClick={() => setProvider('zoho')}
+                      className={`crm-provider-btn ${provider === 'entry' ? 'active' : ''}`}
+                      onClick={() => setProvider('entry')}
                     >
-                      Zoho Ult ($95/mo)
+                      Entry per-seat tier (~$95/mo)
                     </button>
                   </div>
                 </div>
@@ -718,7 +765,7 @@ export default function CrmDevelopmentPage() {
             </div>
             <h2 className="crm-section-title">Custom AI CRM vs. Off-The-Shelf SaaS</h2>
             <p className="crm-section-subtitle">
-              Compare how Gyan VaniAi custom-built CRM compares against legacy platforms like Salesforce, HubSpot, or Zoho.
+              How a custom-built Gyan VaniAi CRM can differ from typical off-the-shelf per-seat SaaS CRMs. Capabilities vary by vendor and plan.
             </p>
           </div>
 
@@ -727,14 +774,14 @@ export default function CrmDevelopmentPage() {
               <thead>
                 <tr>
                   <th>Feature / Capability</th>
-                  <th>Legacy SaaS (Salesforce / HubSpot)</th>
+                  <th>Typical off-the-shelf SaaS CRM</th>
                   <th>Gyan VaniAi Custom AI CRM</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td><strong>Pricing Architecture</strong></td>
-                  <td><span className="crm-cross-badge"><X size={14} /> Expensive per-seat fees ($95-$165+/mo)</span></td>
+                  <td><span className="crm-cross-badge"><X size={14} /> Often per-seat pricing; varies by vendor and plan</span></td>
                   <td><span className="crm-check-badge"><Check size={14} /> $0 Per-Seat Fees (Unlimited Users)</span></td>
                 </tr>
                 <tr>
