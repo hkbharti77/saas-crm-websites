@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef, useMemo } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { ArrowLeft, Calendar, Clock, User, Share2, Copy, Send, ChevronLeft, ChevronRight, MessageCircle, Globe, TrendingUp } from 'lucide-react';
+import { ArrowLeft, Calendar, Clock, User, Share2, Copy, Send, ChevronLeft, ChevronRight, MessageCircle, Globe, TrendingUp, ShieldCheck, ExternalLink, CheckCircle2 } from 'lucide-react';
 
 import { auth, db } from '../firebase';
 import { collection, query, where, getDocs, limit, orderBy } from 'firebase/firestore';
@@ -18,12 +18,12 @@ import NotFound from './NotFound';
 import {
   blogPostUrl,
   resolveDescription,
-  resolvePostDates,
   buildBlogPostingSchema,
   buildBlogBreadcrumbSchema,
 } from '../utils/blogSeo';
 import { sanitizeBlogHtml } from '../utils/sanitizeBlogHtml';
 import BlogCTA from '../components/BlogCTA';
+import { STATIC_BLOG_FALLBACKS } from '../data/staticBlogData';
 import './BlogPost.css';
 
 // Extract headings from HTML content for TOC and enhance HTML (code blocks, tables, FAQs)
@@ -128,45 +128,6 @@ function extractHeadingsAndTransformHtml(htmlContent) {
 
   return { headings, modifiedHtml: doc.body.innerHTML };
 }
-
-const STATIC_BLOG_FALLBACKS = {
-  'multi-agent-orchestration-future': {
-    id: 'multi-agent-orchestration-future',
-    slugId: 'multi-agent-orchestration-future',
-    title: 'The Future of Multi-Agent AI Orchestration in Enterprise Operations',
-    category: 'AI Agents',
-    author: 'Gyan VaniAi Architecture Team',
-    date: 'June 25, 2026',
-    status: 'published',
-    imageUrl: '/ai-agent-hero.webp',
-    excerpt: 'Discover how multi-agent AI frameworks decompose complex enterprise workflows, call APIs autonomously, and execute multi-step operations with zero human bottleneck.',
-    content: '<h2>What is Multi-Agent AI Orchestration?</h2><p>Multi-agent AI orchestration involves multiple specialized autonomous agents collaborating to complete complex business tasks. Each agent possesses specific capabilities, memory access, and tool authorizations.</p><h2>Key Architectural Layers</h2><p>Enterprise multi-agent architectures feature intent detection, vector search knowledge retrieval, tool selection, action execution, and human escalation guardrails.</p>'
-  },
-  'secure-rag-pipelines-enterprise': {
-    id: 'secure-rag-pipelines-enterprise',
-    slugId: 'secure-rag-pipelines-enterprise',
-    title: 'Building Zero-Hallucination Secure RAG Pipelines for Enterprise Systems',
-    category: 'RAG & Security',
-    author: 'Gyan VaniAi Engineering',
-    date: 'June 20, 2026',
-    status: 'published',
-    imageUrl: '/portfolio_ai.webp',
-    excerpt: 'Learn how to architect low-latency (< 300ms) Retrieval-Augmented Generation (RAG) pipelines with strict tenant data isolation, PII masking, and vector database security.',
-    content: '<h2>What is a Secure RAG Pipeline?</h2><p>Retrieval-Augmented Generation (RAG) combines dense vector retrieval with LLMs to ground AI responses strictly in proprietary enterprise documentation without data leakage.</p>'
-  },
-  'whatsapp-business-api-automation': {
-    id: 'whatsapp-business-api-automation',
-    slugId: 'whatsapp-business-api-automation',
-    title: 'Meta WhatsApp Business API Automation: Scaling Customer Engagement',
-    category: 'WhatsApp CRM',
-    author: 'Gyan VaniAi Product Team',
-    date: 'June 12, 2026',
-    status: 'published',
-    imageUrl: '/portfolio_crm.webp',
-    excerpt: 'Complete guide to official Meta WhatsApp Cloud API integration, WhatsApp Coexistence mode, bulk campaign broadcasts, and multi-agent shared inboxes.',
-    content: '<h2>Official Meta WhatsApp Business API</h2><p>Automate customer conversations on WhatsApp with official Meta Cloud API integrations, interactive buttons, 24/7 AI auto-replies, and dual-surface Coexistence support.</p>'
-  }
-};
 
 export default function BlogPost() {
   const { id } = useParams();
@@ -429,7 +390,6 @@ export default function BlogPost() {
 
   const pageTitle = post.seoTitle ? `${post.seoTitle} | Gyan VaniAi Blog` : `${post.title} | Gyan VaniAi Blog`;
   const description = post.seoDescription || resolveDescription(post);
-  const { published, modified } = resolvePostDates(post);
   const image = post.ogImageUrl || post.imageUrl || 'https://www.gyanvaniai.com/hero_dashboard.webp';
   const canonical = post.canonicalUrl || blogPostUrl(id);
 
@@ -664,6 +624,42 @@ export default function BlogPost() {
                   </div>
                 </div>
               )}
+
+              {/* Author & Editorial Credibility Card */}
+              <section className="blog-author-card" aria-label="Author and editorial information">
+                <div className="author-card-header">
+                  <div className="author-avatar-badge">
+                    <User size={24} />
+                  </div>
+                  <div className="author-info-main">
+                    <div className="author-name-row">
+                      <h3 className="author-name">{post.author || 'Gyan VaniAi Architecture Team'}</h3>
+                      <span className="author-badge">Verified Expert</span>
+                    </div>
+                    <p className="author-role">Enterprise Systems &amp; AI Research Group at Gyan VaniAi</p>
+                  </div>
+                </div>
+
+                <p className="author-bio">
+                  Authored by the engineering and solutions team at Gyan VaniAi. Focused on high-throughput Meta Cloud API integrations, autonomous multi-agent tool calling, sub-400ms voice pipelines, and single-tenant enterprise CRM architecture.
+                </p>
+
+                <div className="author-editorial-bar">
+                  <div className="editorial-badge">
+                    <ShieldCheck size={16} color="#10b981" />
+                    <span>Fact-checked &amp; reviewed under Gyan VaniAi Technical Standards.</span>
+                  </div>
+                  <div className="author-social-links">
+                    <a href="https://github.com/gyanvaniai" target="_blank" rel="noopener noreferrer" className="author-link" aria-label="Gyan VaniAi on GitHub">
+                      GitHub
+                    </a>
+                    <span>·</span>
+                    <a href="https://www.linkedin.com/company/gyan-vaniai" target="_blank" rel="noopener noreferrer" className="author-link" aria-label="Gyan VaniAi on LinkedIn">
+                      LinkedIn
+                    </a>
+                  </div>
+                </div>
+              </section>
 
               {/* Integrated CTA Block */}
               <div className="blog-cta-container">

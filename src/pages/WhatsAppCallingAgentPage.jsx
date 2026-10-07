@@ -305,7 +305,7 @@ export default function WhatsAppCallingAgentPage() {
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE}/` },
-      { '@type': 'ListItem', position: 2, name: 'Services', item: `${SITE}/#capabilities` },
+      { '@type': 'ListItem', position: 2, name: 'Services', item: `${SITE}/` },
       { '@type': 'ListItem', position: 3, name: 'WhatsApp Calling Agent Bots', item: canonicalUrl }
     ]
   };
@@ -338,7 +338,7 @@ export default function WhatsAppCallingAgentPage() {
               <ol>
                 <li><Link to="/">Home</Link></li>
                 <li aria-hidden="true">/</li>
-                <li><Link to="/#capabilities">Services</Link></li>
+                <li>Services</li>
                 <li aria-hidden="true">/</li>
                 <li className="active" aria-current="page">WhatsApp Calling Agent Bots</li>
               </ol>

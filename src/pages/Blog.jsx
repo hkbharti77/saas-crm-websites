@@ -8,12 +8,13 @@ import ContactModal from '../components/ContactModal';
 import { trackBookDemo } from '../utils/analytics';
 import SeoHead from '../components/SeoHead';
 import { buildBlogIndexSchema } from '../utils/blogSeo';
+import { STATIC_BLOG_LIST } from '../data/staticBlogData';
 import PersonalizedRecommendations from '../components/PersonalizedRecommendations';
 import './Blog.css';
 
 export default function Blog() {
-  const [blogs, setBlogs] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [blogs, setBlogs] = useState(STATIC_BLOG_LIST);
+  const [loading, setLoading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [brokenImages, setBrokenImages] = useState({});
   const [selectedCategory, setSelectedCategory] = useState('All');
@@ -128,10 +129,10 @@ export default function Blog() {
         description="Deep dives into multi-agent orchestration, enterprise AI security, WhatsApp Coexistence, and customer experience automation, written for operators building with Gyan VaniAi."
         canonical="https://www.gyanvaniai.com/blog"
         image="https://www.gyanvaniai.com/hero_dashboard.webp"
+        schema={indexSchema}
       />
       <Helmet>
         <link rel="alternate" type="application/rss+xml" title="Gyan VaniAi Blog RSS" href="https://www.gyanvaniai.com/rss.xml" />
-        <script type="application/ld+json">{JSON.stringify(indexSchema)}</script>
         {featuredArticle?.imageUrl && <link rel="preload" as="image" href={featuredArticle.imageUrl} fetchPriority="high" />}
       </Helmet>
 

@@ -175,6 +175,33 @@ export default function WhatsAppCoexistencePage() {
     }
   };
 
+  const serviceSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: 'WhatsApp Coexistence Platform & CRM Integration',
+    serviceType: 'Meta Tech Provider WhatsApp Coexistence & Cloud API Sync',
+    provider: {
+      '@id': 'https://www.gyanvaniai.com/#organization'
+    },
+    areaServed: 'Worldwide',
+    description: 'Run your WhatsApp Business mobile app and enterprise CRM simultaneously on 1 single phone number with real-time bidirectional message sync.',
+    url: 'https://www.gyanvaniai.com/services/whatsapp-coexistence',
+    image: 'https://www.gyanvaniai.com/whatsapp_coexistence_light.webp'
+  };
+
+  const coexistenceFaqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: f.a
+      }
+    }))
+  };
+
   return (
     <>
       <SeoHead
@@ -186,6 +213,7 @@ export default function WhatsAppCoexistencePage() {
         preloadImage="/whatsapp_coexistence_dark.webp"
         aeoQuestion="How does Meta WhatsApp Coexistence Mode work?"
         aeoAnswer="WhatsApp Coexistence allows both your mobile WhatsApp Business phone app AND Gyan VaniAi Cloud API AI CRM to run simultaneously on 1 single phone number with real-time bidirectional message sync."
+        schema={[serviceSchema, coexistenceFaqSchema]}
       />
 
       <div className="coexistence-page">
@@ -216,6 +244,16 @@ export default function WhatsAppCoexistencePage() {
               
               {/* Left Column: Copy & Actions */}
               <div className="coexistence-hero-left">
+                <nav aria-label="Breadcrumb" className="coexistence-breadcrumb" style={{ marginBottom: '1.25rem', fontSize: '0.85rem', fontWeight: '500' }}>
+                  <ol style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', listStyle: 'none', padding: 0, margin: 0, color: 'var(--text-muted)' }}>
+                    <li><Link to="/" style={{ color: 'inherit' }}>Home</Link></li>
+                    <li aria-hidden="true">/</li>
+                    <li>Services</li>
+                    <li aria-hidden="true">/</li>
+                    <li style={{ color: 'var(--primary-color)' }}>WhatsApp Coexistence</li>
+                  </ol>
+                </nav>
+
                 <h1 className="coexistence-hero-title">
                   WhatsApp Coexistence Platform<br />
                   <span className="text-gradient">
@@ -706,22 +744,26 @@ export default function WhatsAppCoexistencePage() {
         </section>
 
         {/* =========================================================================
-            8. RELATED SERVICES
+            8. RELATED SERVICES & TOPIC CLUSTER
             ========================================================================= */}
         <section className="container" style={{ padding: '2rem 0' }}>
           <div className="coexistence-related-bar">
-            <span className="coexistence-related-title">Related Services:</span>
+            <span className="coexistence-related-title">WhatsApp CRM Cluster:</span>
             <div className="coexistence-related-links">
+              <Link to="/services/whatsapp-automation" className="coexistence-related-link">
+                WhatsApp CRM Platform →
+              </Link>
+              <span style={{ color: 'var(--border-color)' }}>|</span>
               <Link to="/services/whatsapp-calling-agent" className="coexistence-related-link">
                 WhatsApp Calling Agent Bots →
               </Link>
               <span style={{ color: 'var(--border-color)' }}>|</span>
-              <Link to="/services/whatsapp-automation" className="coexistence-related-link">
-                WhatsApp CRM Automation →
+              <Link to="/blog/whatsapp-business-api-automation" className="coexistence-related-link">
+                WhatsApp Cloud API Guide →
               </Link>
               <span style={{ color: 'var(--border-color)' }}>|</span>
-              <Link to="/services/crm-development" className="coexistence-related-link">
-                Custom CRM Software →
+              <Link to="/pricing" className="coexistence-related-link">
+                WhatsApp CRM Pricing →
               </Link>
               <span style={{ color: 'var(--border-color)' }}>|</span>
               <Link to="/services/lead-management" className="coexistence-related-link">

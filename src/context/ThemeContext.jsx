@@ -1,4 +1,6 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
+import { db, auth } from '../firebase';
+import { doc, onSnapshot, setDoc, serverTimestamp } from 'firebase/firestore';
 
 const THEMES = [
   { id: 'midnight', name: 'Enterprise Midnight', color: '#070b12', accent: '#2dd4bf', description: 'Deep ink with teal accents' },
@@ -48,14 +50,109 @@ export function ThemeProvider({ children }) {
     return 'midnight';
   });
 
+  const [isGlobalSynced, setIsGlobalSynced] = useState(false);
+  const [isSavingGlobal, setIsSavingGlobal] = useState(false);
+  const [lastSyncedAt, setLastSyncedAt] = useState(null);
+  const [globalSyncError, setGlobalSyncError] = useState(null);
+
+  // Real-time Firestore sync: Any visitor anywhere automatically receives the theme chosen by the admin
+  useEffect(() => {
+    let unsubscribe = () => {};
+    try {
+      const themeDocRef = doc(db, 'site_settings', 'theme');
+      unsubscribe = onSnapshot(
+        themeDocRef,
+        (snap) => {
+          if (snap.exists()) {
+            const data = snap.data();
+            if (data.themeMode === 'auto' || data.themeMode === 'fixed') {
+              setThemeMode(data.themeMode);
+              if (typeof window !== 'undefined') {
+                localStorage.setItem('app-theme-mode', data.themeMode);
+              }
+            }
+            if (data.fixedTheme && THEMES.some((t) => t.id === data.fixedTheme)) {
+              setFixedTheme(data.fixedTheme);
+              if (typeof window !== 'undefined') {
+                localStorage.setItem('app-fixed-theme', data.fixedTheme);
+              }
+            }
+            setIsGlobalSynced(true);
+            if (data.updatedAt?.toDate) {
+              setLastSyncedAt(data.updatedAt.toDate());
+            } else if (data.updatedAt) {
+              setLastSyncedAt(new Date(data.updatedAt));
+            }
+          } else {
+            // First time setup: document not created yet
+            setIsGlobalSynced(true);
+          }
+        },
+        (err) => {
+          console.warn('Theme Firestore listener notice (using local cached theme):', err);
+        }
+      );
+    } catch (err) {
+      console.warn('Could not initialize Theme Firestore listener:', err);
+    }
+
+    return () => unsubscribe();
+  }, []);
+
   // Calculate effective active theme
   const activeTheme = themeMode === 'auto' ? getTodayAutoTheme() : fixedTheme;
 
-  const selectTheme = (themeId) => {
+  // Admin function to save and broadcast theme settings globally to all visitors
+  const updateGlobalTheme = useCallback(async (newMode, newThemeId) => {
+    const targetMode = newMode || themeMode;
+    const targetTheme = newThemeId || fixedTheme;
+
+    // Immediately update local state & cache for zero-latency UI response
+    setThemeMode(targetMode);
+    if (newThemeId) setFixedTheme(targetTheme);
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('app-theme-mode', targetMode);
+      if (newThemeId) localStorage.setItem('app-fixed-theme', targetTheme);
+    }
+
+    setIsSavingGlobal(true);
+    setGlobalSyncError(null);
+
+    try {
+      const themeDocRef = doc(db, 'site_settings', 'theme');
+      await setDoc(
+        themeDocRef,
+        {
+          themeMode: targetMode,
+          fixedTheme: targetTheme,
+          updatedAt: serverTimestamp(),
+          updatedBy: auth.currentUser?.email || 'admin',
+        },
+        { merge: true }
+      );
+      setIsGlobalSynced(true);
+      setLastSyncedAt(new Date());
+      return { success: true };
+    } catch (err) {
+      console.error('Failed to update global enterprise theme in Firestore:', err);
+      setGlobalSyncError(err.message || 'Failed to sync with live site database');
+      return { success: false, error: err };
+    } finally {
+      setIsSavingGlobal(false);
+    }
+  }, [themeMode, fixedTheme]);
+
+  const selectTheme = useCallback((themeId) => {
+    // Visitor local toggle
     setThemeMode('fixed');
     setFixedTheme(themeId);
-  };
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('app-theme-mode', 'fixed');
+      localStorage.setItem('app-fixed-theme', themeId);
+    }
+  }, []);
 
+  // Update DOM attributes for theme styling
   useEffect(() => {
     const root = document.documentElement;
     const body = document.body;
@@ -92,13 +189,18 @@ export function ThemeProvider({ children }) {
       value={{
         theme: activeTheme,
         themeMode,
-        setThemeMode,
+        setThemeMode: (mode) => updateGlobalTheme(mode, fixedTheme),
         fixedTheme,
-        setFixedTheme,
+        setFixedTheme: (themeId) => updateGlobalTheme('fixed', themeId),
+        updateGlobalTheme,
         selectTheme,
         themes: THEMES,
         dailySchedule: DAILY_SCHEDULE,
-        todayAutoTheme: getTodayAutoTheme()
+        todayAutoTheme: getTodayAutoTheme(),
+        isGlobalSynced,
+        isSavingGlobal,
+        lastSyncedAt,
+        globalSyncError,
       }}
     >
       {children}

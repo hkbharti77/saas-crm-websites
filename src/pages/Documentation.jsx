@@ -1,6 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import SeoHead from '../components/SeoHead';
-import { ArrowRight, BookOpen, Layers, Bot, MessageSquare, Zap, LifeBuoy } from 'lucide-react';
+import { ArrowRight, BookOpen, Layers, Bot, MessageSquare, Zap, LifeBuoy, Code2 } from 'lucide-react';
 import './Documentation.css';
 
 export default function Documentation() {
@@ -9,40 +10,41 @@ export default function Documentation() {
       title: "Platform Overview",
       icon: <Layers className="doc-icon" />,
       items: [
-        { title: "AI CRM", desc: "Understand the core architecture of Gyan VaniAi CRM." },
-        { title: "Lead Management", desc: "How leads are captured, scored, and routed." },
-        { title: "AI Agents", desc: "Deploying autonomous agents for sales and support." },
-        { title: "WhatsApp Coexistence", desc: "Running Business API alongside the mobile app." },
-        { title: "Voice AI", desc: "Configuring conversational voice agents." }
+        { title: "AI CRM Architecture", desc: "Understand the core multi-tenant architecture of Gyan VaniAi CRM.", to: "/services/crm-development" },
+        { title: "Lead Ingestion & Scoring", desc: "How inbound leads are captured, enriched, scored, and routed.", to: "/services/lead-management" },
+        { title: "AI Agent Orchestration", desc: "Deploying autonomous tool-calling agents for sales and operations.", to: "/blog/multi-agent-orchestration-future" },
+        { title: "WhatsApp Coexistence", desc: "Running Business Cloud API alongside the mobile app on 1 number.", to: "/services/whatsapp-coexistence" },
+        { title: "Conversational Voice AI", desc: "Configuring sub-400ms speech synthesis and telephony agents.", to: "/services/voice-bot-assistant" }
       ]
     },
     {
       title: "Getting Started",
       icon: <BookOpen className="doc-icon" />,
       items: [
-        { title: "Platform overview", desc: "A high-level look at the dashboard and modules." },
-        { title: "Account setup", desc: "Initial configuration and user role management." },
-        { title: "CRM workflow basics", desc: "Setting up your first pipeline stages." },
-        { title: "Demo environment", desc: "Using the 7-day trial sandbox." }
+        { title: "Platform Modules & Setup", desc: "A high-level look at dashboard telemetry and module configurations.", to: "/services/crm-development" },
+        { title: "Tiered Pricing & Plans", desc: "Explore Starter, Growth, Scale, and Enterprise subscription specs.", to: "/pricing" },
+        { title: "Pipeline & Stage Movement", desc: "Configuring deal stages, automated actions, and rep assignment.", to: "/services/sales-automation" },
+        { title: "Live Sandbox Demo", desc: "Testing the 7-day live evaluation environment.", to: "/terms#demo-policy" }
       ]
     },
     {
       title: "AI & Automation",
       icon: <Zap className="doc-icon" />,
       items: [
-        { title: "AI agents", desc: "Configuring agent behaviors and knowledge bases." },
-        { title: "Lead qualification", desc: "Setting up AI-driven lead scoring rules." },
-        { title: "Sales automation", desc: "Automating follow-ups and task creation." },
-        { title: "Workflow automation", desc: "Triggering actions based on CRM events." }
+        { title: "Autonomous Reasoning", desc: "Configuring agent behaviors, tools, and multi-step execution.", to: "/blog/multi-agent-orchestration-future" },
+        { title: "RAG Knowledge Bases", desc: "Tenant-isolated vector retrieval with sub-300ms latency SLAs.", to: "/blog/secure-rag-pipelines-enterprise" },
+        { title: "Sales Automation", desc: "Automating follow-up sequences, task triggers, and lead alerts.", to: "/services/sales-automation" },
+        { title: "Conversational AI Chatbots", desc: "Customer support deflection and interactive lead qualification.", to: "/services/ai-chatbots" }
       ]
     },
     {
       title: "WhatsApp Coexistence",
       icon: <MessageSquare className="doc-icon" />,
       items: [
-        { title: "Business WhatsApp workflows", desc: "Managing conversations across devices." },
-        { title: "CRM communication", desc: "Syncing chats with lead records." },
-        { title: "Automation concepts", desc: "Setting up auto-replies and routing." }
+        { title: "Dual-Surface Architecture", desc: "Meta Tech Provider dual-sync between mobile app and web CRM.", to: "/services/whatsapp-coexistence" },
+        { title: "Broadcast Campaigns", desc: "Pre-approved Meta template messaging to 10,000+ opted-in contacts.", to: "/services/whatsapp-automation" },
+        { title: "In-App WhatsApp Voice", desc: "Automated VoIP outbound calls and phone bots inside WhatsApp.", to: "/services/whatsapp-calling-agent" },
+        { title: "Cloud API Integration Guide", desc: "Comprehensive webhook fanout and payload architecture.", to: "/blog/whatsapp-business-api-automation" }
       ]
     }
   ];
@@ -60,7 +62,23 @@ export default function Documentation() {
           "headline": "Gyan VaniAi Documentation & Platform Technical Guides",
           "url": "https://www.gyanvaniai.com/documentation",
           "description": "Explore Gyan VaniAi platform capabilities, CRM workflows, AI automation, WhatsApp coexistence, and integration guidance.",
-          "publisher": { "@id": "https://www.gyanvaniai.com/#organization" }
+          "image": ["https://www.gyanvaniai.com/hero_dashboard.webp"],
+          "author": {
+            "@type": "Organization",
+            "name": "Gyan VaniAi",
+            "url": "https://www.gyanvaniai.com/"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "Gyan VaniAi",
+            "url": "https://www.gyanvaniai.com/",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://www.gyanvaniai.com/logo.png"
+            }
+          },
+          "datePublished": "2024-01-01T00:00:00.000Z",
+          "dateModified": "2026-03-01T00:00:00.000Z"
         }}
       />
 
@@ -68,7 +86,7 @@ export default function Documentation() {
         {/* Hero Section */}
         <section className="docs-hero">
           <div className="docs-hero-content">
-            <h1>Documentation</h1>
+            <h1>Documentation &amp; Technical Architecture</h1>
             <p className="docs-subtitle">
               Explore Gyan VaniAi platform capabilities, CRM workflows, AI automation, WhatsApp coexistence, and integration guidance.
             </p>
@@ -86,39 +104,63 @@ export default function Documentation() {
                 </div>
                 <div className="doc-items">
                   {section.items.map((item, i) => (
-                    <a key={i} href="#support" className="doc-item">
+                    <Link key={i} to={item.to} className="doc-item">
                       <div className="doc-item-content">
                         <h3>{item.title}</h3>
                         <p>{item.desc}</p>
                       </div>
                       <ArrowRight className="doc-item-arrow" />
-                    </a>
+                    </Link>
                   ))}
                 </div>
               </div>
             ))}
 
-            {/* Integrations */}
+            {/* Integrations & Developer SDKs */}
             <div className="doc-category-card">
               <div className="doc-category-header">
                 <Bot className="doc-icon" />
                 <h2>Integrations</h2>
               </div>
               <div className="doc-items">
-                <a href="#support" className="doc-item">
+                <Link to="/blog/whatsapp-business-api-automation" className="doc-item">
                   <div className="doc-item-content">
                     <h3>WhatsApp Cloud API</h3>
-                    <p>Official Meta integration for messaging.</p>
+                    <p>Official Meta integration for messaging &amp; coexistence.</p>
                   </div>
                   <ArrowRight className="doc-item-arrow" />
-                </a>
-                <a href="#support" className="doc-item">
+                </Link>
+                <Link to="/blog/whatsapp-business-api-automation" className="doc-item">
                   <div className="doc-item-content">
-                    <h3>Webhooks</h3>
-                    <p>Receive real-time lead and event data.</p>
+                    <h3>Webhooks &amp; Event Fanout</h3>
+                    <p>Receive real-time lead updates and chat payloads.</p>
+                  </div>
+                  <ArrowRight className="doc-item-arrow" />
+                </Link>
+              </div>
+            </div>
+
+            {/* Developer Resources & Open Source */}
+            <div className="doc-category-card">
+              <div className="doc-category-header">
+                <Code2 className="doc-icon" />
+                <h2>Developer Resources</h2>
+              </div>
+              <div className="doc-items">
+                <a href="https://github.com/gyanvaniai" target="_blank" rel="noopener noreferrer" className="doc-item">
+                  <div className="doc-item-content">
+                    <h3>GitHub Organization &amp; SDKs</h3>
+                    <p>Explore public SDKs, webhook templates, and community tools.</p>
                   </div>
                   <ArrowRight className="doc-item-arrow" />
                 </a>
+                <Link to="/services/crm-development" className="doc-item">
+                  <div className="doc-item-content">
+                    <h3>Bespoke Enterprise API</h3>
+                    <p>Single-tenant API endpoints, PostgreSQL schemas, and Spring Boot.</p>
+                  </div>
+                  <ArrowRight className="doc-item-arrow" />
+                </Link>
               </div>
             </div>
 
@@ -131,8 +173,8 @@ export default function Documentation() {
               <div className="doc-items">
                 <a href="mailto:contact@gyanvaniai.com" className="doc-item">
                   <div className="doc-item-content">
-                    <h3>Contact Support</h3>
-                    <p>Get help from our technical team.</p>
+                    <h3>Contact Technical Support</h3>
+                    <p>Get direct architectural assistance from our engineering team.</p>
                   </div>
                   <ArrowRight className="doc-item-arrow" />
                 </a>

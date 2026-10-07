@@ -24,7 +24,8 @@ import {
   Activity,
   RefreshCw,
   X,
-  ArrowUpDown
+  ArrowUpDown,
+  ShieldCheck
 } from 'lucide-react';
 import AdminHeader from '../../components/admin/AdminHeader';
 import ThemeSwitcher from '../../components/ThemeSwitcher';
@@ -490,6 +491,10 @@ export default function AdminDashboard() {
               <Activity size={16} />
               <span>Activity</span>
             </button>
+            <Link to="/admin/cookies" className="admin-cms-btn-secondary" style={{ background: 'var(--bg-card)', border: '1px solid var(--border-color)' }}>
+              <ShieldCheck size={16} />
+              <span>Cookie Consents</span>
+            </Link>
             <Link to="/admin/create" className="admin-cms-btn-primary">
               <PenLine size={16} />
               <span>Create New Article</span>

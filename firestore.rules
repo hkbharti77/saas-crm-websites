@@ -43,6 +43,14 @@ service cloud.firestore {
       // Only authenticated admins can read analytics data or delete records
       allow read, delete: if request.auth != null;
     }
+
+    // Global Site & Enterprise Theme Settings (Controlled by Admin for all visitors)
+    match /site_settings/{docId} {
+      // Public visitors can read site settings to receive the admin-configured theme
+      allow read: if true;
+      // Only authenticated admins can modify site settings
+      allow write: if request.auth != null;
+    }
     
     // Fallback: Deny all other unauthenticated access
     match /{document=**} {

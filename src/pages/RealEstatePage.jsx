@@ -112,6 +112,19 @@ export default function RealEstatePage() {
     }
   ];
 
+  const realEstateFaqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: f.a,
+      },
+    })),
+  };
+
   return (
     <>
       <SeoHead
@@ -121,6 +134,7 @@ export default function RealEstatePage() {
         image={`${SITE}/real_estate_hero_platform.jpg`}
         keywords="Real Estate CRM, WhatsApp Property Automation, PropTech Software, Site Visit Scheduling, Property Lead Management, Real Estate Lead Routing"
         preloadImage="/real_estate_hero_platform.jpg"
+        schema={realEstateFaqSchema}
       />
 
       <div className="real-estate-page">

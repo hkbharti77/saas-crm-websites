@@ -68,11 +68,36 @@ export function buildBlogPostingSchema(post, slugId) {
     inLanguage: 'en',
     datePublished: published,
     dateModified: modified,
-    author: {
-      '@type': 'Person',
-      name: post.author || 'Gyan VaniAi Team',
+    author: (post.author && !post.author.toLowerCase().includes('team') && !post.author.toLowerCase().includes('gyan vaniai'))
+      ? {
+          '@type': 'Person',
+          name: post.author,
+          worksFor: {
+            '@type': 'Organization',
+            '@id': `${SITE}/#organization`,
+            name: 'Gyan VaniAi'
+          }
+        }
+      : {
+          '@type': 'Organization',
+          '@id': `${SITE}/#organization`,
+          name: post.author || 'Gyan VaniAi Product Team',
+          url: `${SITE}/about`
+        },
+    publisher: {
+      '@type': 'Organization',
+      '@id': `${SITE}/#organization`,
+      name: 'Gyan VaniAi',
+      url: `${SITE}/`,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${SITE}/logo.png`,
+      },
+      sameAs: [
+        'https://www.facebook.com/gyanvaniai/',
+        'https://www.linkedin.com/company/gyan-vaniai'
+      ]
     },
-    publisher: { '@id': `${SITE}/#organization` },
     isPartOf: {
       '@type': 'Blog',
       name: 'Gyan VaniAi Blog',

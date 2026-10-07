@@ -112,6 +112,19 @@ export default function HealthcarePage() {
     }
   ];
 
+  const healthcareFaqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: f.a,
+      },
+    })),
+  };
+
   return (
     <>
       <SeoHead
@@ -121,6 +134,7 @@ export default function HealthcarePage() {
         image={`${SITE}/healthcare_hero_platform.jpg`}
         keywords="Healthcare CRM, Patient Automation, WhatsApp Appointment Booking, EMR Integration, HIPAA Compliant CRM, Clinical AI Triage, ABDM Ready"
         preloadImage="/healthcare_hero_platform.jpg"
+        schema={healthcareFaqSchema}
       />
 
       <div className="healthcare-page">

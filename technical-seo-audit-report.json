@@ -1,0 +1,714 @@
+{
+  "timestamp": "2026-10-07T03:44:39.006Z",
+  "canonicalOrigin": "https://www.gyanvaniai.com",
+  "summary": {
+    "totalPagesAudited": 48,
+    "indexablePagesCount": 44,
+    "nonIndexablePagesCount": 4,
+    "canonicalIssuesCount": 0,
+    "hreflangIssuesCount": 0,
+    "schemaIssuesCount": 0,
+    "duplicateSchemasCount": 0,
+    "totalErrorsCount": 0
+  },
+  "canonicalAudit": {
+    "valid": [
+      {
+        "route": "/about",
+        "canonical": "https://www.gyanvaniai.com/about"
+      },
+      {
+        "route": "/blog",
+        "canonical": "https://www.gyanvaniai.com/blog"
+      },
+      {
+        "route": "/blog/multi-agent-orchestration-future",
+        "canonical": "https://www.gyanvaniai.com/blog/multi-agent-orchestration-future"
+      },
+      {
+        "route": "/blog/secure-rag-pipelines-enterprise",
+        "canonical": "https://www.gyanvaniai.com/blog/secure-rag-pipelines-enterprise"
+      },
+      {
+        "route": "/blog/whatsapp-business-api-automation",
+        "canonical": "https://www.gyanvaniai.com/blog/whatsapp-business-api-automation"
+      },
+      {
+        "route": "/documentation",
+        "canonical": "https://www.gyanvaniai.com/documentation"
+      },
+      {
+        "route": "/",
+        "canonical": "https://www.gyanvaniai.com/"
+      },
+      {
+        "route": "/industries/education",
+        "canonical": "https://www.gyanvaniai.com/industries/education"
+      },
+      {
+        "route": "/industries/enterprise",
+        "canonical": "https://www.gyanvaniai.com/industries/enterprise"
+      },
+      {
+        "route": "/industries/finance",
+        "canonical": "https://www.gyanvaniai.com/industries/finance"
+      },
+      {
+        "route": "/industries/government",
+        "canonical": "https://www.gyanvaniai.com/industries/government"
+      },
+      {
+        "route": "/industries/healthcare",
+        "canonical": "https://www.gyanvaniai.com/industries/healthcare"
+      },
+      {
+        "route": "/industries/hospitality",
+        "canonical": "https://www.gyanvaniai.com/industries/hospitality"
+      },
+      {
+        "route": "/industries/legal",
+        "canonical": "https://www.gyanvaniai.com/industries/legal"
+      },
+      {
+        "route": "/industries/logistics",
+        "canonical": "https://www.gyanvaniai.com/industries/logistics"
+      },
+      {
+        "route": "/industries/manufacturing",
+        "canonical": "https://www.gyanvaniai.com/industries/manufacturing"
+      },
+      {
+        "route": "/industries/real-estate",
+        "canonical": "https://www.gyanvaniai.com/industries/real-estate"
+      },
+      {
+        "route": "/industries/retail",
+        "canonical": "https://www.gyanvaniai.com/industries/retail"
+      },
+      {
+        "route": "/industries/travel",
+        "canonical": "https://www.gyanvaniai.com/industries/travel"
+      },
+      {
+        "route": "/pricing/enterprise",
+        "canonical": "https://www.gyanvaniai.com/pricing/enterprise"
+      },
+      {
+        "route": "/pricing/growth",
+        "canonical": "https://www.gyanvaniai.com/pricing/growth"
+      },
+      {
+        "route": "/pricing",
+        "canonical": "https://www.gyanvaniai.com/pricing"
+      },
+      {
+        "route": "/pricing/scale",
+        "canonical": "https://www.gyanvaniai.com/pricing/scale"
+      },
+      {
+        "route": "/pricing/starter",
+        "canonical": "https://www.gyanvaniai.com/pricing/starter"
+      },
+      {
+        "route": "/privacy",
+        "canonical": "https://www.gyanvaniai.com/privacy"
+      },
+      {
+        "route": "/security",
+        "canonical": "https://www.gyanvaniai.com/security"
+      },
+      {
+        "route": "/services/ai-agent-development",
+        "canonical": "https://www.gyanvaniai.com/services/ai-agent-development"
+      },
+      {
+        "route": "/services/ai-chatbots",
+        "canonical": "https://www.gyanvaniai.com/services/ai-chatbots"
+      },
+      {
+        "route": "/services/ai-development",
+        "canonical": "https://www.gyanvaniai.com/services/ai-development"
+      },
+      {
+        "route": "/services/crm-development",
+        "canonical": "https://www.gyanvaniai.com/services/crm-development"
+      },
+      {
+        "route": "/services/erp-development",
+        "canonical": "https://www.gyanvaniai.com/services/erp-development"
+      },
+      {
+        "route": "/services/hrms-development",
+        "canonical": "https://www.gyanvaniai.com/services/hrms-development"
+      },
+      {
+        "route": "/services/human-handoff-systems",
+        "canonical": "https://www.gyanvaniai.com/services/human-handoff-systems"
+      },
+      {
+        "route": "/services/ivr-solutions",
+        "canonical": "https://www.gyanvaniai.com/services/ivr-solutions"
+      },
+      {
+        "route": "/services/lead-management",
+        "canonical": "https://www.gyanvaniai.com/services/lead-management"
+      },
+      {
+        "route": "/services/mobile-app-development",
+        "canonical": "https://www.gyanvaniai.com/services/mobile-app-development"
+      },
+      {
+        "route": "/services/phone-call-agent",
+        "canonical": "https://www.gyanvaniai.com/services/phone-call-agent"
+      },
+      {
+        "route": "/services/sales-automation",
+        "canonical": "https://www.gyanvaniai.com/services/sales-automation"
+      },
+      {
+        "route": "/services/voice-bot-assistant",
+        "canonical": "https://www.gyanvaniai.com/services/voice-bot-assistant"
+      },
+      {
+        "route": "/services/web-development",
+        "canonical": "https://www.gyanvaniai.com/services/web-development"
+      },
+      {
+        "route": "/services/whatsapp-automation",
+        "canonical": "https://www.gyanvaniai.com/services/whatsapp-automation"
+      },
+      {
+        "route": "/services/whatsapp-calling-agent",
+        "canonical": "https://www.gyanvaniai.com/services/whatsapp-calling-agent"
+      },
+      {
+        "route": "/services/whatsapp-coexistence",
+        "canonical": "https://www.gyanvaniai.com/services/whatsapp-coexistence"
+      },
+      {
+        "route": "/terms",
+        "canonical": "https://www.gyanvaniai.com/terms"
+      }
+    ],
+    "issues": []
+  },
+  "hreflangAudit": {
+    "status": "PASS",
+    "declaredAlternates": [],
+    "issues": []
+  },
+  "schemaAudit": {
+    "detectedTypesSummary": {
+      "Organization": 45,
+      "WebSite": 45,
+      "SpeakableSpecification": 45,
+      "BreadcrumbList": 43,
+      "WebPage": 12,
+      "Blog": 1,
+      "ItemList": 1,
+      "FAQPage": 37,
+      "BlogPosting": 3,
+      "TechArticle": 1,
+      "Service": 18,
+      "Product": 5,
+      "SoftwareApplication": 1
+    },
+    "issues": [],
+    "detailsByRoute": {
+      "/404": {
+        "totalSchemas": 3,
+        "types": {
+          "Organization": 1,
+          "WebSite": 1,
+          "SpeakableSpecification": 1
+        }
+      },
+      "/about": {
+        "totalSchemas": 5,
+        "types": {
+          "Organization": 1,
+          "WebSite": 1,
+          "SpeakableSpecification": 1,
+          "BreadcrumbList": 1,
+          "WebPage": 1
+        }
+      },
+      "/admin/create": {
+        "totalSchemas": 0,
+        "types": {}
+      },
+      "/admin/dashboard": {
+        "totalSchemas": 0,
+        "types": {}
+      },
+      "/admin/login": {
+        "totalSchemas": 0,
+        "types": {}
+      },
+      "/blog": {
+        "totalSchemas": 6,
+        "types": {
+          "Organization": 1,
+          "WebSite": 1,
+          "SpeakableSpecification": 1,
+          "Blog": 1,
+          "BreadcrumbList": 1,
+          "ItemList": 1
+        }
+      },
+      "/blog/multi-agent-orchestration-future": {
+        "totalSchemas": 6,
+        "types": {
+          "Organization": 1,
+          "WebSite": 1,
+          "SpeakableSpecification": 1,
+          "FAQPage": 1,
+          "BlogPosting": 1,
+          "BreadcrumbList": 1
+        }
+      },
+      "/blog/secure-rag-pipelines-enterprise": {
+        "totalSchemas": 6,
+        "types": {
+          "Organization": 1,
+          "WebSite": 1,
+          "SpeakableSpecification": 1,
+          "FAQPage": 1,
+          "BlogPosting": 1,
+          "BreadcrumbList": 1
+        }
+      },
+      "/blog/whatsapp-business-api-automation": {
+        "totalSchemas": 6,
+        "types": {
+          "Organization": 1,
+          "WebSite": 1,
+          "SpeakableSpecification": 1,
+          "FAQPage": 1,
+          "BlogPosting": 1,
+          "BreadcrumbList": 1
+        }
+      },
+      "/documentation": {
+        "totalSchemas": 5,
+        "types": {
+          "Organization": 1,
+          "WebSite": 1,
+          "SpeakableSpecification": 1,
+          "BreadcrumbList": 1,
+          "TechArticle": 1
+        }
+      },
+      "/": {
+        "totalSchemas": 4,
+        "types": {
+          "Organization": 1,
+          "WebSite": 1,
+          "SpeakableSpecification": 1,
+          "FAQPage": 1
+        }
+      },
+      "/industries/education": {
+        "totalSchemas": 6,
+        "types": {
+          "Organization": 1,
+          "WebSite": 1,
+          "SpeakableSpecification": 1,
+          "WebPage": 1,
+          "BreadcrumbList": 1,
+          "FAQPage": 1
+        }
+      },
+      "/industries/enterprise": {
+        "totalSchemas": 6,
+        "types": {
+          "Organization": 1,
+          "WebSite": 1,
+          "SpeakableSpecification": 1,
+          "WebPage": 1,
+          "BreadcrumbList": 1,
+          "FAQPage": 1
+        }
+      },
+      "/industries/finance": {
+        "totalSchemas": 5,
+        "types": {
+          "Organization": 1,
+          "WebSite": 1,
+          "SpeakableSpecification": 1,
+          "BreadcrumbList": 1,
+          "Service": 1
+        }
+      },
+      "/industries/government": {
+        "totalSchemas": 6,
+        "types": {
+          "Organization": 1,
+          "WebSite": 1,
+          "SpeakableSpecification": 1,
+          "WebPage": 1,
+          "BreadcrumbList": 1,
+          "FAQPage": 1
+        }
+      },
+      "/industries/healthcare": {
+        "totalSchemas": 5,
+        "types": {
+          "Organization": 1,
+          "WebSite": 1,
+          "SpeakableSpecification": 1,
+          "BreadcrumbList": 1,
+          "FAQPage": 1
+        }
+      },
+      "/industries/hospitality": {
+        "totalSchemas": 6,
+        "types": {
+          "Organization": 1,
+          "WebSite": 1,
+          "SpeakableSpecification": 1,
+          "WebPage": 1,
+          "BreadcrumbList": 1,
+          "FAQPage": 1
+        }
+      },
+      "/industries/legal": {
+        "totalSchemas": 6,
+        "types": {
+          "Organization": 1,
+          "WebSite": 1,
+          "SpeakableSpecification": 1,
+          "WebPage": 1,
+          "BreadcrumbList": 1,
+          "FAQPage": 1
+        }
+      },
+      "/industries/logistics": {
+        "totalSchemas": 6,
+        "types": {
+          "Organization": 1,
+          "WebSite": 1,
+          "SpeakableSpecification": 1,
+          "WebPage": 1,
+          "BreadcrumbList": 1,
+          "FAQPage": 1
+        }
+      },
+      "/industries/manufacturing": {
+        "totalSchemas": 6,
+        "types": {
+          "Organization": 1,
+          "WebSite": 1,
+          "SpeakableSpecification": 1,
+          "WebPage": 1,
+          "BreadcrumbList": 1,
+          "FAQPage": 1
+        }
+      },
+      "/industries/real-estate": {
+        "totalSchemas": 5,
+        "types": {
+          "Organization": 1,
+          "WebSite": 1,
+          "SpeakableSpecification": 1,
+          "BreadcrumbList": 1,
+          "FAQPage": 1
+        }
+      },
+      "/industries/retail": {
+        "totalSchemas": 5,
+        "types": {
+          "Organization": 1,
+          "WebSite": 1,
+          "SpeakableSpecification": 1,
+          "BreadcrumbList": 1,
+          "FAQPage": 1
+        }
+      },
+      "/industries/travel": {
+        "totalSchemas": 6,
+        "types": {
+          "Organization": 1,
+          "WebSite": 1,
+          "SpeakableSpecification": 1,
+          "WebPage": 1,
+          "BreadcrumbList": 1,
+          "FAQPage": 1
+        }
+      },
+      "/pricing/enterprise": {
+        "totalSchemas": 6,
+        "types": {
+          "Organization": 1,
+          "WebSite": 1,
+          "SpeakableSpecification": 1,
+          "BreadcrumbList": 1,
+          "Product": 1,
+          "FAQPage": 1
+        }
+      },
+      "/pricing/growth": {
+        "totalSchemas": 6,
+        "types": {
+          "Organization": 1,
+          "WebSite": 1,
+          "SpeakableSpecification": 1,
+          "BreadcrumbList": 1,
+          "Product": 1,
+          "FAQPage": 1
+        }
+      },
+      "/pricing": {
+        "totalSchemas": 6,
+        "types": {
+          "Organization": 1,
+          "WebSite": 1,
+          "SpeakableSpecification": 1,
+          "BreadcrumbList": 1,
+          "Product": 1,
+          "FAQPage": 1
+        }
+      },
+      "/pricing/scale": {
+        "totalSchemas": 6,
+        "types": {
+          "Organization": 1,
+          "WebSite": 1,
+          "SpeakableSpecification": 1,
+          "BreadcrumbList": 1,
+          "Product": 1,
+          "FAQPage": 1
+        }
+      },
+      "/pricing/starter": {
+        "totalSchemas": 6,
+        "types": {
+          "Organization": 1,
+          "WebSite": 1,
+          "SpeakableSpecification": 1,
+          "BreadcrumbList": 1,
+          "Product": 1,
+          "FAQPage": 1
+        }
+      },
+      "/privacy": {
+        "totalSchemas": 5,
+        "types": {
+          "Organization": 1,
+          "WebSite": 1,
+          "SpeakableSpecification": 1,
+          "BreadcrumbList": 1,
+          "WebPage": 1
+        }
+      },
+      "/security": {
+        "totalSchemas": 5,
+        "types": {
+          "Organization": 1,
+          "WebSite": 1,
+          "SpeakableSpecification": 1,
+          "BreadcrumbList": 1,
+          "WebPage": 1
+        }
+      },
+      "/services/ai-agent-development": {
+        "totalSchemas": 6,
+        "types": {
+          "Organization": 1,
+          "WebSite": 1,
+          "SpeakableSpecification": 1,
+          "FAQPage": 1,
+          "Service": 1,
+          "BreadcrumbList": 1
+        }
+      },
+      "/services/ai-chatbots": {
+        "totalSchemas": 6,
+        "types": {
+          "Organization": 1,
+          "WebSite": 1,
+          "SpeakableSpecification": 1,
+          "BreadcrumbList": 1,
+          "Service": 1,
+          "FAQPage": 1
+        }
+      },
+      "/services/ai-development": {
+        "totalSchemas": 6,
+        "types": {
+          "Organization": 1,
+          "WebSite": 1,
+          "SpeakableSpecification": 1,
+          "Service": 1,
+          "BreadcrumbList": 1,
+          "FAQPage": 1
+        }
+      },
+      "/services/crm-development": {
+        "totalSchemas": 7,
+        "types": {
+          "Organization": 1,
+          "WebSite": 1,
+          "SpeakableSpecification": 1,
+          "BreadcrumbList": 1,
+          "Service": 1,
+          "SoftwareApplication": 1,
+          "FAQPage": 1
+        }
+      },
+      "/services/erp-development": {
+        "totalSchemas": 6,
+        "types": {
+          "Organization": 1,
+          "WebSite": 1,
+          "SpeakableSpecification": 1,
+          "Service": 1,
+          "BreadcrumbList": 1,
+          "FAQPage": 1
+        }
+      },
+      "/services/hrms-development": {
+        "totalSchemas": 6,
+        "types": {
+          "Organization": 1,
+          "WebSite": 1,
+          "SpeakableSpecification": 1,
+          "Service": 1,
+          "BreadcrumbList": 1,
+          "FAQPage": 1
+        }
+      },
+      "/services/human-handoff-systems": {
+        "totalSchemas": 6,
+        "types": {
+          "Organization": 1,
+          "WebSite": 1,
+          "SpeakableSpecification": 1,
+          "Service": 1,
+          "BreadcrumbList": 1,
+          "FAQPage": 1
+        }
+      },
+      "/services/ivr-solutions": {
+        "totalSchemas": 6,
+        "types": {
+          "Organization": 1,
+          "WebSite": 1,
+          "SpeakableSpecification": 1,
+          "Service": 1,
+          "BreadcrumbList": 1,
+          "FAQPage": 1
+        }
+      },
+      "/services/lead-management": {
+        "totalSchemas": 6,
+        "types": {
+          "Organization": 1,
+          "WebSite": 1,
+          "SpeakableSpecification": 1,
+          "Service": 1,
+          "BreadcrumbList": 1,
+          "FAQPage": 1
+        }
+      },
+      "/services/mobile-app-development": {
+        "totalSchemas": 6,
+        "types": {
+          "Organization": 1,
+          "WebSite": 1,
+          "SpeakableSpecification": 1,
+          "Service": 1,
+          "BreadcrumbList": 1,
+          "FAQPage": 1
+        }
+      },
+      "/services/phone-call-agent": {
+        "totalSchemas": 6,
+        "types": {
+          "Organization": 1,
+          "WebSite": 1,
+          "SpeakableSpecification": 1,
+          "Service": 1,
+          "BreadcrumbList": 1,
+          "FAQPage": 1
+        }
+      },
+      "/services/sales-automation": {
+        "totalSchemas": 6,
+        "types": {
+          "Organization": 1,
+          "WebSite": 1,
+          "SpeakableSpecification": 1,
+          "Service": 1,
+          "BreadcrumbList": 1,
+          "FAQPage": 1
+        }
+      },
+      "/services/voice-bot-assistant": {
+        "totalSchemas": 6,
+        "types": {
+          "Organization": 1,
+          "WebSite": 1,
+          "SpeakableSpecification": 1,
+          "Service": 1,
+          "BreadcrumbList": 1,
+          "FAQPage": 1
+        }
+      },
+      "/services/web-development": {
+        "totalSchemas": 6,
+        "types": {
+          "Organization": 1,
+          "WebSite": 1,
+          "SpeakableSpecification": 1,
+          "Service": 1,
+          "BreadcrumbList": 1,
+          "FAQPage": 1
+        }
+      },
+      "/services/whatsapp-automation": {
+        "totalSchemas": 6,
+        "types": {
+          "Organization": 1,
+          "WebSite": 1,
+          "SpeakableSpecification": 1,
+          "Service": 1,
+          "BreadcrumbList": 1,
+          "FAQPage": 1
+        }
+      },
+      "/services/whatsapp-calling-agent": {
+        "totalSchemas": 6,
+        "types": {
+          "Organization": 1,
+          "WebSite": 1,
+          "SpeakableSpecification": 1,
+          "Service": 1,
+          "BreadcrumbList": 1,
+          "FAQPage": 1
+        }
+      },
+      "/services/whatsapp-coexistence": {
+        "totalSchemas": 6,
+        "types": {
+          "Organization": 1,
+          "WebSite": 1,
+          "SpeakableSpecification": 1,
+          "BreadcrumbList": 1,
+          "Service": 1,
+          "FAQPage": 1
+        }
+      },
+      "/terms": {
+        "totalSchemas": 5,
+        "types": {
+          "Organization": 1,
+          "WebSite": 1,
+          "SpeakableSpecification": 1,
+          "BreadcrumbList": 1,
+          "WebPage": 1
+        }
+      }
+    }
+  }
+}

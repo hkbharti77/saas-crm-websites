@@ -8,9 +8,16 @@ function offerForPlan(plan) {
     return {
       '@type': 'Offer',
       name: `${plan.name} Plan`,
-      description: 'Custom pricing with configurable usage limits. Contact sales for a quote.',
+      price: '0',
+      priceCurrency: 'INR',
+      description: 'Custom Enterprise pricing based on team volume and dedicated SLAs. Contact sales for quote.',
       availability: 'https://schema.org/InStock',
       url: `${BASE}/pricing/${plan.plan}`,
+      seller: {
+        '@type': 'Organization',
+        '@id': ORG_ID,
+        name: 'Gyan VaniAi',
+      },
     };
   }
   return {
@@ -21,6 +28,11 @@ function offerForPlan(plan) {
     description: `${plan.name} plan, billed monthly in INR. Annual billing saves ${PRICING_CONFIG.yearlyDiscountPct} percent.`,
     availability: 'https://schema.org/InStock',
     url: `${BASE}/pricing/${plan.plan}`,
+    seller: {
+      '@type': 'Organization',
+      '@id': ORG_ID,
+      name: 'Gyan VaniAi',
+    },
   };
 }
 
@@ -32,11 +44,20 @@ export function pricingProductSchema() {
     name: 'Gyan VaniAi AI CRM Platform',
     description:
       'Multi-tenant AI CRM with WhatsApp Business API, unified inbox, AI RAG chatbot, Voice Bot Assistant, and AI Calling Agent. Plans start at ₹1,999 per month with a 7-day free trial.',
-    brand: { '@id': ORG_ID },
-    provider: { '@id': ORG_ID },
+    brand: {
+      '@type': 'Brand',
+      name: 'Gyan VaniAi',
+    },
     image: `${BASE}/hero_dashboard.webp`,
     url: `${BASE}/pricing`,
-    offers: PRICING_CONFIG.plans.map(offerForPlan),
+    offers: {
+      '@type': 'AggregateOffer',
+      priceCurrency: 'INR',
+      lowPrice: '1999',
+      highPrice: '9999',
+      offerCount: '4',
+      offers: PRICING_CONFIG.plans.map(offerForPlan),
+    },
   };
 }
 
@@ -47,8 +68,10 @@ export function planProductSchema(plan) {
     '@id': `${BASE}/pricing/${plan.plan}#product`,
     name: `Gyan VaniAi ${plan.name} Plan`,
     description: plan.seoDescription,
-    brand: { '@id': ORG_ID },
-    provider: { '@id': ORG_ID },
+    brand: {
+      '@type': 'Brand',
+      name: 'Gyan VaniAi',
+    },
     image: `${BASE}/hero_dashboard.webp`,
     url: `${BASE}/pricing/${plan.plan}`,
     offers: offerForPlan(plan),

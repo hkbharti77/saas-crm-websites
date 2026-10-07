@@ -1,422 +1,380 @@
 /**
  * Geo-Detection Utility
- * Detects visitor location and provides region-specific messaging
- * Used for dynamic CTA customization and personalization
+ * 
+ * Provides client-side UX personalization (e.g. localized CTA labels, regional currency helpers)
+ * without affecting SEO-critical content, crawlability, or server-rendered HTML.
+ * 
+ * ARCHITECTURE PRINCIPLES:
+ * 1. Crawlers receive 100% stable, deterministic HTML with canonical copy and structured data.
+ * 2. Geo-detection runs purely in the client browser inside non-blocking asynchronous effects.
+ * 3. Never mutates SEO headings (H1/H2), canonical URLs, or JSON-LD structured data.
+ * 4. Resilient multi-provider failover (ipapi.co -> freeipapi.com -> safe neutral fallback).
+ * 5. Strict timeout handling (2.5s) to avoid delaying browser interactive cycles.
+ * 6. Privacy by design: coarse location only (country, currency, timezone). Zero GPS coordinates stored.
  */
 
 import React from 'react';
 
-// Cache geo data in session storage to avoid repeated API calls
-const GEO_CACHE_KEY = 'visitor_geo_data';
+const GEO_CACHE_KEY = 'gyanvaniai_visitor_geo';
 const GEO_CACHE_TTL = 24 * 60 * 60 * 1000; // 24 hours
 
+// Safe default targeting for SSR, search crawlers, and fallback states
+export const DEFAULT_GEO = {
+  country: 'US',
+  countryName: 'United States',
+  region: 'Global',
+  city: 'Global',
+  timezone: 'UTC',
+  currency: 'USD',
+  timestamp: 0,
+};
+
+export const DEFAULT_TARGETING = {
+  country: 'Global',
+  cta: 'Book a Demo',
+  ctaUrl: '/pricing',
+  language: 'en',
+  currency: 'USD',
+  email: 'contact@gyanvaniai.com',
+  phone: '+91 87006 20913',
+};
+
 /**
- * Fetches visitor geolocation based on IP address
- * @returns {Promise<{country: string, region: string, city: string, timezone: string, coordinates: {lat: number, lng: number}}>}
+ * Defensive cache helper: tries localStorage, falls back to sessionStorage or memory
  */
-export const getVisitorGeo = async () => {
+const getCachedGeo = () => {
+  if (typeof window === 'undefined') return null;
   try {
-    // Check cache first
-    const cached = sessionStorage.getItem(GEO_CACHE_KEY);
-    if (cached) {
-      const data = JSON.parse(cached);
-      if (Date.now() - data.timestamp < GEO_CACHE_TTL) {
+    const raw = window.localStorage?.getItem(GEO_CACHE_KEY) || window.sessionStorage?.getItem(GEO_CACHE_KEY);
+    if (raw) {
+      const data = JSON.parse(raw);
+      if (Date.now() - (data.timestamp || 0) < GEO_CACHE_TTL) {
         return data;
       }
     }
+  } catch {
+    // Storage restricted or disabled (e.g. strict private browsing mode)
+  }
+  return null;
+};
 
-    // Try multiple geo APIs for redundancy
-    let geoData = null;
-
+const setCachedGeo = (data) => {
+  if (typeof window === 'undefined' || !data) return;
+  try {
+    const serialized = JSON.stringify(data);
+    window.localStorage?.setItem(GEO_CACHE_KEY, serialized);
+  } catch {
     try {
-      // Primary: IP Geolocation API (free tier)
-      const response = await fetch('https://ipapi.co/json/', {
-        headers: { 'Accept': 'application/json' }
-      });
-      if (response.ok) {
-        const data = await response.json();
-        geoData = {
-          country: data.country_code,
-          region: data.region,
-          city: data.city,
-          timezone: data.timezone,
-          coordinates: {
-            lat: data.latitude,
-            lng: data.longitude
-          },
-          currency: data.currency,
-          timestamp: Date.now()
-        };
-      }
+      window.sessionStorage?.setItem(GEO_CACHE_KEY, JSON.stringify(data));
     } catch {
-      // Fallback: Cloudflare geolocation headers
-      try {
-        const response = await fetch('https://api.cloudflare.com/client/v4/geo', {
-          headers: { 'Accept': 'application/json' }
-        });
-        if (response.ok) {
-          const data = await response.json();
-          geoData = {
-            country: data.country,
-            region: data.region || 'Unknown',
-            city: data.city || 'Unknown',
-            timezone: data.timezone,
-            coordinates: { lat: data.latitude, lng: data.longitude },
-            timestamp: Date.now()
-          };
-        }
-      } catch {
-        // Fallback to empty data
-        geoData = {
-          country: 'US',
-          region: 'Unknown',
-          city: 'Unknown',
-          timezone: 'UTC',
-          coordinates: { lat: 0, lng: 0 },
-          timestamp: Date.now()
-        };
-      }
+      // Storage unavailable
     }
-
-    // Cache the result
-    if (geoData) {
-      sessionStorage.setItem(GEO_CACHE_KEY, JSON.stringify(geoData));
-    }
-
-    return geoData;
-  } catch (error) {
-    console.warn('Geo-detection failed:', error);
-    // Return default (US/UTC)
-    return {
-      country: 'US',
-      region: 'Unknown',
-      city: 'Unknown',
-      timezone: 'UTC',
-      coordinates: { lat: 0, lng: 0 },
-      timestamp: Date.now()
-    };
   }
 };
 
 /**
- * Gets region-specific targeting based on country code
- * @param {string} countryCode - 2-letter country code
- * @returns {Object} Region-specific configuration
+ * Fetches visitor geolocation with resilient provider failover and strict timeouts.
+ * Guarantees coarse data only (no exact GPS coordinates stored).
+ * 
+ * @returns {Promise<typeof DEFAULT_GEO>}
  */
-export const getRegionTargeting = (countryCode) => {
-  const regionMap = {
-    // North America
-    'US': {
-      country: 'United States',
-      cta: 'Start Free Trial',
-      ctaUrl: '/signup?region=us',
-      language: 'en-US',
-      currency: 'USD',
-      pricing: [99, 299, 999],
-      timezone: 'America/New_York',
-      email: 'sales-us@gyanvaniai.com',
-      phone: '+1-844-XXX-XXXX',
-      supportHours: '9 AM - 6 PM EST'
-    },
-    'CA': {
-      country: 'Canada',
-      cta: 'Get Started Today',
-      ctaUrl: '/signup?region=ca',
-      language: 'en-CA',
-      currency: 'CAD',
-      pricing: [129, 389, 1299],
-      timezone: 'America/Toronto',
-      email: 'sales-ca@gyanvaniai.com',
-      phone: '+1-647-XXX-XXXX',
-      supportHours: '9 AM - 6 PM EST'
-    },
+export const getVisitorGeo = async () => {
+  // 1. SSR Guard: return default immediately in server context
+  if (typeof window === 'undefined') {
+    return DEFAULT_GEO;
+  }
 
-    // Europe
-    'GB': {
-      country: 'United Kingdom',
-      cta: 'Book a Demo',
-      ctaUrl: '/signup?region=gb',
-      language: 'en-GB',
-      currency: 'GBP',
-      pricing: [79, 239, 799],
-      timezone: 'Europe/London',
-      email: 'sales-gb@gyanvaniai.com',
-      phone: '+44-20-XXXX-XXXX',
-      supportHours: '9 AM - 6 PM GMT'
-    },
-    'DE': {
-      country: 'Germany',
-      cta: 'Book a Demo',
-      ctaUrl: '/signup?region=de',
-      language: 'de-DE',
-      currency: 'EUR',
-      pricing: [89, 269, 899],
-      timezone: 'Europe/Berlin',
-      email: 'sales-de@gyanvaniai.com',
-      phone: '+49-30-XXX-XXXX',
-      supportHours: '9 AM - 6 PM CET'
-    },
-    'FR': {
-      country: 'France',
-      cta: 'Book a Demo',
-      ctaUrl: '/signup?region=fr',
-      language: 'fr-FR',
-      currency: 'EUR',
-      pricing: [89, 269, 899],
-      timezone: 'Europe/Paris',
-      email: 'sales-fr@gyanvaniai.com',
-      phone: '+33-1-XXXX-XXXX',
-      supportHours: '9 AM - 6 PM CET'
-    },
-    'NL': {
-      country: 'Netherlands',
-      cta: 'Book a Demo',
-      ctaUrl: '/signup?region=nl',
-      language: 'en-NL',
-      currency: 'EUR',
-      pricing: [89, 269, 899],
-      timezone: 'Europe/Amsterdam',
-      email: 'sales-eu@gyanvaniai.com',
-      phone: '+31-20-XXX-XXXX',
-      supportHours: '9 AM - 6 PM CET'
-    },
-    'SE': {
-      country: 'Sweden',
-      cta: 'Book a Demo',
-      ctaUrl: '/signup?region=se',
-      language: 'en-SE',
-      currency: 'SEK',
-      pricing: [999, 2999, 9999],
-      timezone: 'Europe/Stockholm',
-      email: 'sales-eu@gyanvaniai.com',
-      phone: '+46-8-XXX-XXXX',
-      supportHours: '9 AM - 6 PM CET'
-    },
+  // 2. Check cached result (24h TTL)
+  const cached = getCachedGeo();
+  if (cached) {
+    return cached;
+  }
 
-    // Middle East
-    'AE': {
-      country: 'United Arab Emirates',
-      cta: 'Book a Demo',
-      ctaUrl: '/signup?region=ae',
-      language: 'en-AE',
-      currency: 'AED',
-      pricing: [365, 1095, 3650],
-      timezone: 'Asia/Dubai',
-      email: 'sales-ae@gyanvaniai.com',
-      phone: '+971-4-XXXX-XXXX',
-      supportHours: '8 AM - 5 PM GST'
-    },
-    'SA': {
-      country: 'Saudi Arabia',
-      cta: 'Book a Demo',
-      ctaUrl: '/signup?region=sa',
-      language: 'ar-SA',
-      currency: 'SAR',
-      pricing: [375, 1125, 3750],
-      timezone: 'Asia/Riyadh',
-      email: 'sales-sa@gyanvaniai.com',
-      phone: '+966-11-XXX-XXXX',
-      supportHours: '8 AM - 5 PM AST'
-    },
-    'QA': {
-      country: 'Qatar',
-      cta: 'Book a Demo',
-      ctaUrl: '/signup?region=qa',
-      language: 'en-QA',
-      currency: 'QAR',
-      pricing: [365, 1095, 3650],
-      timezone: 'Asia/Qatar',
-      email: 'sales-ae@gyanvaniai.com',
-      phone: '+974-XXXX-XXXX',
-      supportHours: '8 AM - 5 PM AST'
-    },
+  let geoData = null;
 
-    // Asia
-    'IN': {
-      country: 'India',
-      cta: 'Book a Free Demo',
-      ctaUrl: '/signup?region=in',
-      language: 'en-IN',
-      currency: 'INR',
-      pricing: [8000, 24000, 80000],
-      timezone: 'Asia/Kolkata',
-      email: 'sales-in@gyanvaniai.com',
-      phone: '+91-11-XXXX-XXXX',
-      supportHours: '10 AM - 7 PM IST',
-      discount: '20%'
-    },
-    'CN': {
-      country: 'China',
-      cta: 'Book a Demo',
-      ctaUrl: '/signup?region=cn',
-      language: 'zh-CN',
-      currency: 'CNY',
-      pricing: [690, 2070, 6900],
-      timezone: 'Asia/Shanghai',
-      email: 'sales-cn@gyanvaniai.com',
-      phone: '+86-10-XXXX-XXXX',
-      supportHours: '9 AM - 6 PM CST'
-    },
-    'JP': {
-      country: 'Japan',
-      cta: 'Book a Demo',
-      ctaUrl: '/signup?region=jp',
-      language: 'ja-JP',
-      currency: 'JPY',
-      pricing: [11000, 33000, 110000],
-      timezone: 'Asia/Tokyo',
-      email: 'sales-jp@gyanvaniai.com',
-      phone: '+81-3-XXXX-XXXX',
-      supportHours: '9 AM - 6 PM JST'
-    },
-    'KR': {
-      country: 'South Korea',
-      cta: 'Book a Demo',
-      ctaUrl: '/signup?region=kr',
-      language: 'ko-KR',
-      currency: 'KRW',
-      pricing: [130000, 390000, 1300000],
-      timezone: 'Asia/Seoul',
-      email: 'sales-ap@gyanvaniai.com',
-      phone: '+82-2-XXXX-XXXX',
-      supportHours: '9 AM - 6 PM KST'
-    },
-    'SG': {
-      country: 'Singapore',
-      cta: 'Book a Demo',
-      ctaUrl: '/signup?region=sg',
-      language: 'en-SG',
-      currency: 'SGD',
-      pricing: [135, 405, 1350],
-      timezone: 'Asia/Singapore',
-      email: 'sales-sg@gyanvaniai.com',
-      phone: '+65-XXXX-XXXX',
-      supportHours: '9 AM - 6 PM SGT'
-    },
+  // 3. Primary Provider: ipapi.co (with 2.5s timeout)
+  try {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 2500);
 
-    // Oceania
-    'AU': {
-      country: 'Australia',
-      cta: 'Start Free Trial',
-      ctaUrl: '/signup?region=au',
-      language: 'en-AU',
-      currency: 'AUD',
-      pricing: [155, 465, 1550],
-      timezone: 'Australia/Sydney',
-      email: 'sales-au@gyanvaniai.com',
-      phone: '+61-2-XXXX-XXXX',
-      supportHours: '9 AM - 6 PM AEDT'
-    },
+    const response = await fetch('https://ipapi.co/json/', {
+      headers: { Accept: 'application/json' },
+      signal: controller.signal,
+    });
+    clearTimeout(timeoutId);
 
-    // South & Southeast Asia
-    'ID': {
-      country: 'Indonesia',
-      cta: 'Book a Demo',
-      ctaUrl: '/signup?region=id',
-      language: 'en-ID',
-      currency: 'IDR',
-      pricing: [1500000, 4500000, 15000000],
-      timezone: 'Asia/Jakarta',
-      email: 'sales-ap@gyanvaniai.com',
-      phone: '+62-21-XXXX-XXXX',
-      supportHours: '9 AM - 6 PM WIB'
-    },
-    'MY': {
-      country: 'Malaysia',
-      cta: 'Book a Demo',
-      ctaUrl: '/signup?region=my',
-      language: 'en-MY',
-      currency: 'MYR',
-      pricing: [450, 1350, 4500],
-      timezone: 'Asia/Kuala_Lumpur',
-      email: 'sales-ap@gyanvaniai.com',
-      phone: '+60-3-XXXX-XXXX',
-      supportHours: '9 AM - 6 PM MYT'
-    },
-    'PK': {
-      country: 'Pakistan',
-      cta: 'Book a Demo',
-      ctaUrl: '/signup?region=pk',
-      language: 'en-PK',
-      currency: 'PKR',
-      pricing: [28000, 84000, 280000],
-      timezone: 'Asia/Karachi',
-      email: 'sales-in@gyanvaniai.com',
-      phone: '+92-21-XXXX-XXXX',
-      supportHours: '10 AM - 7 PM PKT'
-    },
-
-    // Africa
-    'NG': {
-      country: 'Nigeria',
-      cta: 'Book a Demo',
-      ctaUrl: '/signup?region=ng',
-      language: 'en-NG',
-      currency: 'NGN',
-      pricing: [165000, 495000, 1650000],
-      timezone: 'Africa/Lagos',
-      email: 'sales-af@gyanvaniai.com',
-      phone: '+234-1-XXXX-XXXX',
-      supportHours: '9 AM - 6 PM WAT'
-    },
-
-    // South America
-    'BR': {
-      country: 'Brazil',
-      cta: 'Book a Demo',
-      ctaUrl: '/signup?region=br',
-      language: 'pt-BR',
-      currency: 'BRL',
-      pricing: [520, 1560, 5200],
-      timezone: 'America/Sao_Paulo',
-      email: 'sales-br@gyanvaniai.com',
-      phone: '+55-11-XXXX-XXXX',
-      supportHours: '9 AM - 6 PM BRT'
+    if (response.ok) {
+      const data = await response.json();
+      if (data && data.country_code && !data.error) {
+        geoData = {
+          country: String(data.country_code).toUpperCase(),
+          countryName: data.country_name || 'Global',
+          region: data.region || 'Unknown',
+          city: data.city || 'Unknown',
+          timezone: data.timezone || 'UTC',
+          currency: data.currency || 'USD',
+          timestamp: Date.now(),
+        };
+      }
     }
-  };
+  } catch {
+    // Primary provider failed, timed out, or blocked by adblock/privacy extension
+  }
 
-  // Return region-specific config or default to US
-  return regionMap[countryCode?.toUpperCase()] || regionMap['US'];
+  // 4. Secondary Provider (Failover): freeipapi.com (with 2.5s timeout)
+  if (!geoData) {
+    try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 2500);
+
+      const response = await fetch('https://freeipapi.com/api/json', {
+        headers: { Accept: 'application/json' },
+        signal: controller.signal,
+      });
+      clearTimeout(timeoutId);
+
+      if (response.ok) {
+        const data = await response.json();
+        if (data && data.countryCode) {
+          geoData = {
+            country: String(data.countryCode).toUpperCase(),
+            countryName: data.countryName || 'Global',
+            region: data.regionName || 'Unknown',
+            city: data.cityName || 'Unknown',
+            timezone: data.timeZone || 'UTC',
+            currency: data.currency || 'USD',
+            timestamp: Date.now(),
+          };
+        }
+      }
+    } catch {
+      // Secondary failover also failed or unavailable
+    }
+  }
+
+  // 5. Final Fallback: deterministic neutral global default
+  if (!geoData) {
+    geoData = {
+      ...DEFAULT_GEO,
+      timestamp: Date.now(),
+    };
+  }
+
+  // 6. Cache valid result
+  setCachedGeo(geoData);
+
+  return geoData;
 };
 
 /**
- * Hook to use geo-detection in components
- * @returns {{geo: Object, targeting: Object, loading: boolean}}
+ * Gets region-specific UX targeting configuration based on country code.
+ * 
+ * NOTE: This is exclusively used for interactive UI micro-copy (e.g. CTA text)
+ * and never rewrites canonical URLs, indexable body text, or Schema.org pricing.
+ * 
+ * @param {string} countryCode - 2-letter ISO country code
+ * @returns {Object} Region-specific UI config
+ */
+export const getRegionTargeting = (countryCode) => {
+  const code = (countryCode || 'US').toUpperCase();
+
+  const regionMap = {
+    // North America
+    US: {
+      country: 'United States',
+      cta: 'Start Free Trial',
+      ctaUrl: '/pricing',
+      language: 'en-US',
+      currency: 'USD',
+      pricing: [19, 49, 99],
+      timezone: 'America/New_York',
+      email: 'contact@gyanvaniai.com',
+      phone: '+91 87006 20913',
+    },
+    CA: {
+      country: 'Canada',
+      cta: 'Get Started Today',
+      ctaUrl: '/pricing',
+      language: 'en-CA',
+      currency: 'CAD',
+      pricing: [25, 65, 135],
+      timezone: 'America/Toronto',
+      email: 'contact@gyanvaniai.com',
+      phone: '+91 87006 20913',
+    },
+
+    // Europe
+    GB: {
+      country: 'United Kingdom',
+      cta: 'Book a Demo',
+      ctaUrl: '/pricing',
+      language: 'en-GB',
+      currency: 'GBP',
+      pricing: [15, 39, 79],
+      timezone: 'Europe/London',
+      email: 'contact@gyanvaniai.com',
+      phone: '+91 87006 20913',
+    },
+    DE: {
+      country: 'Germany',
+      cta: 'Book a Demo',
+      ctaUrl: '/pricing',
+      language: 'de-DE',
+      currency: 'EUR',
+      pricing: [18, 45, 90],
+      timezone: 'Europe/Berlin',
+      email: 'contact@gyanvaniai.com',
+      phone: '+91 87006 20913',
+    },
+    FR: {
+      country: 'France',
+      cta: 'Book a Demo',
+      ctaUrl: '/pricing',
+      language: 'fr-FR',
+      currency: 'EUR',
+      pricing: [18, 45, 90],
+      timezone: 'Europe/Paris',
+      email: 'contact@gyanvaniai.com',
+      phone: '+91 87006 20913',
+    },
+    NL: {
+      country: 'Netherlands',
+      cta: 'Book a Demo',
+      ctaUrl: '/pricing',
+      language: 'en-NL',
+      currency: 'EUR',
+      pricing: [18, 45, 90],
+      timezone: 'Europe/Amsterdam',
+      email: 'contact@gyanvaniai.com',
+      phone: '+91 87006 20913',
+    },
+
+    // Middle East
+    AE: {
+      country: 'United Arab Emirates',
+      cta: 'Book a Demo',
+      ctaUrl: '/pricing',
+      language: 'en-AE',
+      currency: 'AED',
+      pricing: [70, 180, 365],
+      timezone: 'Asia/Dubai',
+      email: 'contact@gyanvaniai.com',
+      phone: '+91 87006 20913',
+    },
+    SA: {
+      country: 'Saudi Arabia',
+      cta: 'Book a Demo',
+      ctaUrl: '/pricing',
+      language: 'ar-SA',
+      currency: 'SAR',
+      pricing: [72, 185, 375],
+      timezone: 'Asia/Riyadh',
+      email: 'contact@gyanvaniai.com',
+      phone: '+91 87006 20913',
+    },
+
+    // Asia-Pacific
+    IN: {
+      country: 'India',
+      cta: 'Book a Free Demo',
+      ctaUrl: '/pricing',
+      language: 'en-IN',
+      currency: 'INR',
+      pricing: [1999, 4999, 9999],
+      timezone: 'Asia/Kolkata',
+      email: 'contact@gyanvaniai.com',
+      phone: '+91 87006 20913',
+    },
+    SG: {
+      country: 'Singapore',
+      cta: 'Book a Demo',
+      ctaUrl: '/pricing',
+      language: 'en-SG',
+      currency: 'SGD',
+      pricing: [26, 68, 135],
+      timezone: 'Asia/Singapore',
+      email: 'contact@gyanvaniai.com',
+      phone: '+91 87006 20913',
+    },
+    AU: {
+      country: 'Australia',
+      cta: 'Start Free Trial',
+      ctaUrl: '/pricing',
+      language: 'en-AU',
+      currency: 'AUD',
+      pricing: [29, 75, 150],
+      timezone: 'Australia/Sydney',
+      email: 'contact@gyanvaniai.com',
+      phone: '+91 87006 20913',
+    },
+  };
+
+  return regionMap[code] || regionMap['US'];
+};
+
+/**
+ * Non-blocking React Hook for client-side UX personalization.
+ * Initializes with neutral default targeting to match SSR HTML immediately,
+ * then seamlessly updates if client geolocation resolves.
+ * 
+ * @returns {{ geo: Object, targeting: Object, loading: boolean }}
  */
 export const useGeoTargeting = () => {
   const [geo, setGeo] = React.useState(null);
   const [loading, setLoading] = React.useState(true);
 
   React.useEffect(() => {
-    const fetchGeo = async () => {
-      const geoData = await getVisitorGeo();
-      setGeo(geoData);
-      setLoading(false);
+    let isMounted = true;
+
+    const resolveGeo = async () => {
+      try {
+        const geoData = await getVisitorGeo();
+        if (isMounted) {
+          setGeo(geoData);
+          setLoading(false);
+        }
+      } catch {
+        if (isMounted) {
+          setGeo(DEFAULT_GEO);
+          setLoading(false);
+        }
+      }
     };
-    fetchGeo();
+
+    // Use requestIdleCallback if supported to avoid contending with first paint
+    if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
+      const handle = window.requestIdleCallback(() => resolveGeo(), { timeout: 1500 });
+      return () => {
+        isMounted = false;
+        window.cancelIdleCallback?.(handle);
+      };
+    } else {
+      resolveGeo();
+      return () => {
+        isMounted = false;
+      };
+    }
   }, []);
 
-  // Neutral fallback CTA while geo loads (avoids US-specific 'Start Free Trial' flash)
-  const defaultTargeting = { cta: 'Book a Demo', ctaUrl: '/signup', language: 'en', currency: 'USD' };
-  const targeting = geo ? getRegionTargeting(geo.country) : defaultTargeting;
+  const targeting = geo ? getRegionTargeting(geo.country) : DEFAULT_TARGETING;
 
   return { geo, targeting, loading };
 };
 
 /**
- * Gets pricing in visitor's local currency
+ * Gets pricing in visitor's local currency for interactive preview
  * @param {string} countryCode
- * @returns {Array<number>} Pricing in local currency
+ * @returns {Array<number>}
  */
 export const getPricingByCountry = (countryCode) => {
   const targeting = getRegionTargeting(countryCode);
-  return targeting.pricing || [99, 299, 999];
+  return targeting.pricing || [19, 49, 99];
 };
 
 /**
  * Gets currency code for country
  * @param {string} countryCode
- * @returns {string} 3-letter currency code
+ * @returns {string}
  */
 export const getCurrencyByCountry = (countryCode) => {
   const targeting = getRegionTargeting(countryCode);
@@ -424,9 +382,11 @@ export const getCurrencyByCountry = (countryCode) => {
 };
 
 export default {
+  DEFAULT_GEO,
+  DEFAULT_TARGETING,
   getVisitorGeo,
   getRegionTargeting,
   getPricingByCountry,
   getCurrencyByCountry,
-  useGeoTargeting
+  useGeoTargeting,
 };

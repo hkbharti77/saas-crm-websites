@@ -288,7 +288,7 @@ export default function SalesAutomationPage() {
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE}/` },
-      { '@type': 'ListItem', position: 2, name: 'Services', item: `${SITE}/#services` },
+      { '@type': 'ListItem', position: 2, name: 'Services', item: `${SITE}/` },
       { '@type': 'ListItem', position: 3, name: 'Sales Automation', item: PAGE_URL }
     ]
   };

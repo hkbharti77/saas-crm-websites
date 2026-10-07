@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import SeoHead from '../components/SeoHead';
 
 function PrivacyRequestForm() {
@@ -236,6 +235,17 @@ export default function PolicyPage() {
     }
   };
 
+  const privacyWebPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Privacy Policy | Gyan VaniAi",
+    "url": "https://www.gyanvaniai.com/privacy",
+    "description": "Privacy Policy and Data Handling practices for Gyan VaniAi.",
+    "publisher": {
+      "@id": "https://www.gyanvaniai.com/#organization"
+    }
+  };
+
   return (
     <div style={{ minHeight: '100vh' }}>
       <SeoHead
@@ -243,42 +253,8 @@ export default function PolicyPage() {
         description="Privacy Policy and Data Handling practices for Gyan VaniAi."
         canonical="https://www.gyanvaniai.com/privacy"
         preloadImage="/privacy_image.webp"
+        schema={privacyWebPageSchema}
       />
-      <Helmet>
-        <script type="application/ld+json">
-          {`
-            [
-              {
-                "@context": "https://schema.org",
-                "@type": "WebPage",
-                "name": "Privacy Policy | Gyan VaniAi",
-                "url": "https://www.gyanvaniai.com/privacy",
-                "publisher": {
-                  "@id": "https://www.gyanvaniai.com/#organization"
-                }
-              },
-              {
-                "@context": "https://schema.org",
-                "@type": "BreadcrumbList",
-                "itemListElement": [
-                  {
-                    "@type": "ListItem",
-                    "position": 1,
-                    "name": "Home",
-                    "item": "https://www.gyanvaniai.com/"
-                  },
-                  {
-                    "@type": "ListItem",
-                    "position": 2,
-                    "name": "Privacy Policy",
-                    "item": "https://www.gyanvaniai.com/privacy"
-                  }
-                ]
-              }
-            ]
-          `}
-        </script>
-      </Helmet>
       <div className="legal-hero">
         <div className="container legal-hero-content">
           <img src="/privacy_image.webp" alt="" width="400" height="400" className="legal-hero-img" fetchPriority="high" decoding="sync" />

@@ -1,32 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { getVisitorGeo } from '../utils/geoDetection';
 import './CookieConsentBanner.css';
 
 const COOKIE_CONSENT_KEY = 'gyanvaniai_cookie_consent';
-
-// Fetch IP + geo - cached for the session so we only call the API once
-let _geoCache = null;
-async function getGeoInfo() {
-  if (_geoCache) return _geoCache;
-  try {
-    const res = await fetch('https://ipapi.co/json/', { signal: AbortSignal.timeout(4000) });
-    if (!res.ok) throw new Error('geo fetch failed');
-    const data = await res.json();
-    _geoCache = {
-      ip:       data.ip       || null,
-      city:     data.city     || null,
-      region:   data.region   || null,
-      country:  data.country_name || data.country || null,
-      countryCode: data.country || null,
-      latitude: data.latitude  || null,
-      longitude: data.longitude || null,
-      org:      data.org      || null,
-    };
-  } catch {
-    _geoCache = { ip: null, city: null, region: null, country: null };
-  }
-  return _geoCache;
-}
 
 const CookieConsentBanner = () => {
   const [visible, setVisible] = useState(false);
@@ -53,17 +30,27 @@ const CookieConsentBanner = () => {
 
   useEffect(() => {
     let timer;
+    const isTestTrigger = typeof window !== 'undefined' && (
+      window.location.search.includes('show_cookies=1') ||
+      window.location.hash.includes('cookie-consent')
+    );
+
     try {
       const saved = localStorage.getItem(COOKIE_CONSENT_KEY);
-      if (!saved) {
+      if (!saved || isTestTrigger) {
         // Show after a short delay for smooth entrance
-        timer = setTimeout(() => setVisible(true), 800);
+        timer = setTimeout(() => setVisible(true), isTestTrigger ? 250 : 800);
       }
     } catch {
       timer = setTimeout(() => setVisible(true), 800);
     }
+
+    const handleCustomOpen = () => setVisible(true);
+    window.addEventListener('open-cookie-banner', handleCustomOpen);
+
     return () => {
       if (timer) clearTimeout(timer);
+      window.removeEventListener('open-cookie-banner', handleCustomOpen);
     };
   }, []);
 
@@ -99,9 +86,17 @@ const CookieConsentBanner = () => {
         import('firebase/firestore'),
       ]);
 
-      let geo = { ip: null, city: null, region: null, country: null };
+      let geo = { city: null, region: null, country: null, countryCode: null };
       if (finalPrefs.analytics || status === 'all') {
-        geo = await getGeoInfo();
+        const geoData = await getVisitorGeo();
+        if (geoData) {
+          geo = {
+            city: geoData.city || null,
+            region: geoData.region || null,
+            country: geoData.countryName || geoData.country || null,
+            countryCode: geoData.country || null,
+          };
+        }
       }
 
       await addDoc(collection(db, 'cookie_consents'), {
@@ -111,15 +106,11 @@ const CookieConsentBanner = () => {
         language: navigator.language || null,
         referrer: document.referrer || null,
         pageUrl: window.location.href,
-        ip:        geo.ip,
-        city:      geo.city,
-        region:    geo.region,
-        country:   geo.country,
+        city:        geo.city,
+        region:      geo.region,
+        country:     geo.country,
         countryCode: geo.countryCode,
-        latitude:  geo.latitude,
-        longitude: geo.longitude,
-        isp:       geo.org,
-        createdAt: serverTimestamp(),
+        createdAt:   serverTimestamp(),
       });
     } catch (e) {
       console.warn('Could not log consent to Firestore:', e);

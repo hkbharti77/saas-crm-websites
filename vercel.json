@@ -9,17 +9,6 @@
   ],
   "redirects": [
     {
-      "source": "/services/whatsapp-calling-agent-bots",
-      "destination": "/services/whatsapp-calling-agent",
-      "permanent": true
-    },
-    {
-      "source": "/:path*",
-      "has": [{ "type": "host", "value": "gyanvaniai.com" }],
-      "destination": "https://www.gyanvaniai.com/:path*",
-      "permanent": true
-    },
-    {
       "source": "/:path*",
       "has": [{ "type": "host", "value": "gyanvaniai.online" }],
       "destination": "https://www.gyanvaniai.com/:path*",
@@ -30,11 +19,29 @@
       "has": [{ "type": "host", "value": "www.gyanvaniai.online" }],
       "destination": "https://www.gyanvaniai.com/:path*",
       "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "gyanvaniai.com" }],
+      "destination": "https://www.gyanvaniai.com/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/services/whatsapp-calling-agent-bots",
+      "destination": "https://www.gyanvaniai.com/services/whatsapp-calling-agent",
+      "permanent": true
     }
   ],
   "headers": [
     {
       "source": "/sitemap.xml",
+      "headers": [
+        { "key": "Content-Type", "value": "application/xml" },
+        { "key": "Cache-Control", "value": "public, max-age=3600" }
+      ]
+    },
+    {
+      "source": "/blog-sitemap.xml",
       "headers": [
         { "key": "Content-Type", "value": "application/xml" },
         { "key": "Cache-Control", "value": "public, max-age=3600" }
@@ -74,6 +81,20 @@
       ]
     },
     {
+      "source": "/admin/(.*)",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "noindex, nofollow" },
+        { "key": "Cache-Control", "value": "no-store, no-cache, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/admin",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "noindex, nofollow" },
+        { "key": "Cache-Control", "value": "no-store, no-cache, must-revalidate" }
+      ]
+    },
+    {
       "source": "/(.*).(webp|png|jpg|jpeg|gif|svg|ico)",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
@@ -105,6 +126,10 @@
     {
       "source": "/rss.xml",
       "destination": "/api/rss"
+    },
+    {
+      "source": "/blog-sitemap.xml",
+      "destination": "/api/blog-sitemap"
     },
     {
       "source": "/api/(.*)",

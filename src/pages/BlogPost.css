@@ -1063,4 +1063,109 @@ body.dark-theme .share-btn {
   color: #e2e8f0 !important;
 }
 
+/* =====================================================
+   AUTHOR & EDITORIAL CREDIBILITY CARD (E-E-A-T)
+   ===================================================== */
+.blog-author-card {
+  margin: 2.75rem 0 2rem 0;
+  padding: 1.75rem 2rem;
+  background: color-mix(in srgb, var(--primary-color) 4%, var(--bg-card, #ffffff));
+  border: 1px solid var(--border-color, rgba(226, 232, 240, 0.8));
+  border-radius: 14px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+}
+
+.author-card-header {
+  display: flex;
+  align-items: center;
+  gap: 1.15rem;
+  margin-bottom: 1rem;
+}
+
+.author-avatar-badge {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--primary-color) 15%, transparent);
+  color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 1px solid color-mix(in srgb, var(--primary-color) 30%, transparent);
+}
+
+.author-name-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.author-name {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.author-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.15rem 0.55rem;
+  background: rgba(16, 185, 129, 0.12);
+  color: #059669;
+  border-radius: 99px;
+  border: 1px solid rgba(16, 185, 129, 0.25);
+}
+
+.author-role {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin: 0.2rem 0 0 0;
+}
+
+.author-bio {
+  font-size: 0.935rem;
+  line-height: 1.6;
+  color: var(--text-secondary, #475569);
+  margin-bottom: 1.15rem;
+}
+
+.author-editorial-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color, rgba(226, 232, 240, 0.8));
+  font-size: 0.825rem;
+}
+
+.editorial-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--text-muted);
+}
+
+.author-social-links {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.author-link {
+  color: var(--primary-color);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.author-link:hover {
+  text-decoration: underline;
+}
+
+
 

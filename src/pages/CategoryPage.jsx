@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
 import { ArrowRight, Calendar, Folder } from 'lucide-react';
 import { db } from '../firebase';
 import { collection, getDocs, query, where, orderBy } from 'firebase/firestore';
@@ -116,14 +115,9 @@ export default function CategoryPage() {
       <SeoHead
         title={pageTitle}
         description={pageDesc}
-        url={`https://www.gyanvaniai.com/category/${slug}`}
+        canonical={`https://www.gyanvaniai.com/category/${slug}`}
         type="website"
       />
-      <Helmet>
-        <title>{pageTitle}</title>
-        <meta name="description" content={pageDesc} />
-        <link rel="canonical" href={`https://www.gyanvaniai.com/category/${slug}`} />
-      </Helmet>
 
       {/* Hero */}
       <div className="blog-hero">

@@ -1,59 +1,388 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://www.gyanvaniai.com/</loc><lastmod>2026-09-26</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>
-  <url><loc>https://www.gyanvaniai.com/about</loc><lastmod>2026-09-26</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://www.gyanvaniai.com/blog</loc><lastmod>2026-09-26</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://www.gyanvaniai.com/</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://www.gyanvaniai.com/hero_dashboard.webp</image:loc>
+      <image:title>Gyan VaniAi Autonomous AI CRM &amp; Revenue Operations Platform</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.gyanvaniai.com/about</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.gyanvaniai.com/hero_dashboard.webp</image:loc>
+      <image:title>About Gyan VaniAi Enterprise AI Architecture</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.gyanvaniai.com/blog</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.gyanvaniai.com/hero_dashboard.webp</image:loc>
+      <image:title>Gyan VaniAi Enterprise AI &amp; Automation Blog</image:title>
+    </image:image>
+  </url>
 
   <!-- Pricing Plans -->
-  <url><loc>https://www.gyanvaniai.com/pricing</loc><lastmod>2026-09-26</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://www.gyanvaniai.com/pricing/starter</loc><lastmod>2026-09-26</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.gyanvaniai.com/pricing/growth</loc><lastmod>2026-09-26</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.gyanvaniai.com/pricing/scale</loc><lastmod>2026-09-26</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.gyanvaniai.com/pricing/enterprise</loc><lastmod>2026-09-26</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url>
+    <loc>https://www.gyanvaniai.com/pricing</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.gyanvaniai.com/pricing/starter</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.gyanvaniai.com/pricing/growth</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.gyanvaniai.com/pricing/scale</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.gyanvaniai.com/pricing/enterprise</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
 
   <!-- AI & Custom Software Services -->
-  <url><loc>https://www.gyanvaniai.com/services/ai-development</loc><lastmod>2026-09-26</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.gyanvaniai.com/services/ai-agent-development</loc><lastmod>2026-09-26</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.gyanvaniai.com/services/ai-chatbots</loc><lastmod>2026-09-26</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.gyanvaniai.com/services/crm-development</loc><lastmod>2026-09-26</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.gyanvaniai.com/services/whatsapp-automation</loc><lastmod>2026-09-26</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.gyanvaniai.com/services/whatsapp-coexistence</loc><lastmod>2026-09-26</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://www.gyanvaniai.com/services/voice-bot-assistant</loc><lastmod>2026-09-26</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.gyanvaniai.com/services/whatsapp-calling-agent</loc><lastmod>2026-09-26</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.gyanvaniai.com/services/phone-call-agent</loc><lastmod>2026-09-26</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.gyanvaniai.com/services/ivr-solutions</loc><lastmod>2026-09-26</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.gyanvaniai.com/services/human-handoff-systems</loc><lastmod>2026-09-26</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.gyanvaniai.com/services/hrms-development</loc><lastmod>2026-09-26</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.gyanvaniai.com/services/erp-development</loc><lastmod>2026-09-26</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.gyanvaniai.com/services/web-development</loc><lastmod>2026-09-26</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.gyanvaniai.com/services/mobile-app-development</loc><lastmod>2026-09-26</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.gyanvaniai.com/services/sales-automation</loc><lastmod>2026-09-26</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.gyanvaniai.com/services/lead-management</loc><lastmod>2026-09-26</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url>
+    <loc>https://www.gyanvaniai.com/services/ai-development</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.gyanvaniai.com/portfolio_ai.webp</image:loc>
+      <image:title>Custom AI Software Development</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.gyanvaniai.com/services/ai-agent-development</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.gyanvaniai.com/ai-agent-hero.webp</image:loc>
+      <image:title>Autonomous AI Agent Development &amp; Multi-Agent Systems</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.gyanvaniai.com/services/ai-chatbots</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.gyanvaniai.com/hero-ai-chatbots.svg</image:loc>
+      <image:title>Enterprise AI Chatbots and Sub-300ms RAG Systems</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.gyanvaniai.com/services/crm-development</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.gyanvaniai.com/portfolio_crm.webp</image:loc>
+      <image:title>Custom AI CRM Development with WhatsApp Coexistence</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.gyanvaniai.com/services/whatsapp-automation</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.gyanvaniai.com/portfolio_crm.webp</image:loc>
+      <image:title>Official Meta WhatsApp Business API Automation</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.gyanvaniai.com/services/whatsapp-coexistence</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.gyanvaniai.com/whatsapp_coexistence_dark.webp</image:loc>
+      <image:title>WhatsApp Coexistence Mode Dual-Surface Architecture</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.gyanvaniai.com/services/voice-bot-assistant</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.gyanvaniai.com/voice-bot-hero.webp</image:loc>
+      <image:title>Conversational AI Voice Bot Assistants &amp; Telephony</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.gyanvaniai.com/services/whatsapp-calling-agent</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.gyanvaniai.com/hero_dashboard.webp</image:loc>
+      <image:title>WhatsApp Voice AI Calling Agent</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.gyanvaniai.com/services/phone-call-agent</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.gyanvaniai.com/hero_dashboard.webp</image:loc>
+      <image:title>Autonomous AI Phone Calling Agents</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.gyanvaniai.com/services/ivr-solutions</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.gyanvaniai.com/portfolio_stock.webp</image:loc>
+      <image:title>Intelligent IVR Solutions with Speech Recognition</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.gyanvaniai.com/services/human-handoff-systems</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.gyanvaniai.com/portfolio_crm.webp</image:loc>
+      <image:title>AI to Human Escalation and Handoff Systems</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.gyanvaniai.com/services/hrms-development</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.gyanvaniai.com/portfolio_stock.webp</image:loc>
+      <image:title>Custom HRMS Software Development</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.gyanvaniai.com/services/erp-development</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.gyanvaniai.com/portfolio_stock.webp</image:loc>
+      <image:title>Custom ERP Software Development</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.gyanvaniai.com/services/web-development</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.gyanvaniai.com/portfolio_stock.webp</image:loc>
+      <image:title>Custom Web Application Development</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.gyanvaniai.com/services/mobile-app-development</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.gyanvaniai.com/portfolio_crm.webp</image:loc>
+      <image:title>Custom Mobile App Development</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.gyanvaniai.com/services/sales-automation</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.gyanvaniai.com/hero-sales-automation.svg</image:loc>
+      <image:title>Autonomous Sales Automation Software</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.gyanvaniai.com/services/lead-management</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.gyanvaniai.com/lead-hero.webp</image:loc>
+      <image:title>Lead Management and Prioritization Software</image:title>
+    </image:image>
+  </url>
 
   <!-- Industry Solutions -->
-  <url><loc>https://www.gyanvaniai.com/industries/healthcare</loc><lastmod>2026-09-26</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.gyanvaniai.com/industries/education</loc><lastmod>2026-09-26</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.gyanvaniai.com/industries/finance</loc><lastmod>2026-09-26</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.gyanvaniai.com/industries/manufacturing</loc><lastmod>2026-09-26</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.gyanvaniai.com/industries/enterprise</loc><lastmod>2026-09-26</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.gyanvaniai.com/industries/real-estate</loc><lastmod>2026-09-26</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.gyanvaniai.com/industries/retail</loc><lastmod>2026-09-26</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.gyanvaniai.com/industries/logistics</loc><lastmod>2026-09-26</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.gyanvaniai.com/industries/hospitality</loc><lastmod>2026-09-26</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.gyanvaniai.com/industries/legal</loc><lastmod>2026-09-26</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.gyanvaniai.com/industries/travel</loc><lastmod>2026-09-26</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.gyanvaniai.com/industries/government</loc><lastmod>2026-09-26</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url>
+    <loc>https://www.gyanvaniai.com/industries/healthcare</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.gyanvaniai.com/healthcare_hero_platform.jpg</image:loc>
+      <image:title>Healthcare AI CRM &amp; Patient Automation</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.gyanvaniai.com/industries/education</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.gyanvaniai.com/industries/finance</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.gyanvaniai.com/industries/manufacturing</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.gyanvaniai.com/industries/enterprise</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.gyanvaniai.com/hero-enterprise-crm.svg</image:loc>
+      <image:title>Enterprise AI CRM &amp; Workflow Architecture</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.gyanvaniai.com/industries/real-estate</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.gyanvaniai.com/real_estate_hero_platform.jpg</image:loc>
+      <image:title>Real Estate AI CRM &amp; Site Visit Automation</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.gyanvaniai.com/industries/retail</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.gyanvaniai.com/retail_hero_platform.jpg</image:loc>
+      <image:title>Retail &amp; E-commerce WhatsApp CRM</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.gyanvaniai.com/industries/logistics</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.gyanvaniai.com/industries/hospitality</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.gyanvaniai.com/industries/legal</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.gyanvaniai.com/industries/travel</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.gyanvaniai.com/industries/government</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
 
   <!-- Platform & Content -->
-  <url><loc>https://www.gyanvaniai.com/security</loc><lastmod>2026-09-26</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.gyanvaniai.com/documentation</loc><lastmod>2026-09-26</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url>
+    <loc>https://www.gyanvaniai.com/security</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.gyanvaniai.com/documentation</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
 
-  <!-- Blog Articles -->
-  <url><loc>https://www.gyanvaniai.com/blog/multi-agent-orchestration-future</loc><lastmod>2026-09-26</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.gyanvaniai.com/blog/secure-rag-pipelines-enterprise</loc><lastmod>2026-09-26</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.gyanvaniai.com/blog/whatsapp-business-api-automation</loc><lastmod>2026-09-26</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <!-- Core Featured Blog Articles -->
+  <url>
+    <loc>https://www.gyanvaniai.com/blog/multi-agent-orchestration-future</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.gyanvaniai.com/ai-agent-hero.webp</image:loc>
+      <image:title>The Future of Multi-Agent AI Orchestration in Enterprise Operations</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.gyanvaniai.com/blog/secure-rag-pipelines-enterprise</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.gyanvaniai.com/portfolio_ai.webp</image:loc>
+      <image:title>Building Zero-Hallucination Secure RAG Pipelines for Enterprise Systems</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.gyanvaniai.com/blog/whatsapp-business-api-automation</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.gyanvaniai.com/portfolio_crm.webp</image:loc>
+      <image:title>Meta WhatsApp Business API Automation: Scaling Customer Engagement</image:title>
+    </image:image>
+  </url>
 
   <!-- Legal & Policies -->
-  <url><loc>https://www.gyanvaniai.com/privacy</loc><lastmod>2026-09-26</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://www.gyanvaniai.com/terms</loc><lastmod>2026-09-26</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url>
+    <loc>https://www.gyanvaniai.com/privacy</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://www.gyanvaniai.com/terms</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
 </urlset>

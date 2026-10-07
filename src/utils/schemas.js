@@ -5,7 +5,7 @@
 
 export const organizationSchema = {
   "@context": "https://schema.org",
-  "@type": ["Organization", "ProfessionalService"],
+  "@type": "Organization",
   "@id": "https://www.gyanvaniai.com/#organization",
   "name": "Gyan VaniAi",
   "alternateName": ["Gyan Vani", "Gyanvani", "Gyan Vani AI", "GyanVani AI", "GyanVani"],
@@ -28,10 +28,29 @@ export const organizationSchema = {
   "description": "Leading AI CRM and automation platform specializing in WhatsApp Business API, AI chatbots, voice bots, and enterprise software solutions for business growth.",
   "slogan": "Build AI-Powered Software That Grows Your Business",
   "email": "contact@gyanvaniai.com",
+  "telephone": "+91-87006-20913",
+  "contactPoint": [
+    {
+      "@type": "ContactPoint",
+      "telephone": "+91-87006-20913",
+      "contactType": "customer service",
+      "areaServed": ["IN", "US", "GB", "AE", "SG", "AU"],
+      "availableLanguage": ["en", "hi"]
+    },
+    {
+      "@type": "ContactPoint",
+      "telephone": "+91-87006-20913",
+      "contactType": "sales",
+      "areaServed": ["IN", "US", "GB", "AE", "SG", "AU"],
+      "availableLanguage": ["en", "hi"]
+    }
+  ],
   "address": {
     "@type": "PostalAddress",
-    "addressCountry": "IN",
-    "addressRegion": "Global"
+    "addressLocality": "New Delhi",
+    "addressRegion": "Delhi",
+    "postalCode": "110001",
+    "addressCountry": "IN"
   },
   "areaServed": [
     {
@@ -52,31 +71,17 @@ export const organizationSchema = {
     },
     {
       "@type": "Country",
-      "name": "China"
-    },
-    {
-      "@type": "Country",
       "name": "Singapore"
     },
     {
       "@type": "Country",
       "name": "Australia"
-    },
-    "Worldwide"
+    }
   ],
-  "serviceArea": {
-    "@type": "GeoCircle",
-    "geoMidpoint": {
-      "@type": "GeoCoordinates",
-      "latitude": "0",
-      "longitude": "0"
-    },
-    "geoRadius": "20000000"
-  },
   "priceRange": "$$",
   "founder": {
-    "@type": "Person",
-    "name": "Gyan VaniAi Team"
+    "@type": "Organization",
+    "name": "Gyan VaniAi"
   },
   "foundingDate": "2024",
   "knowsAbout": [
@@ -93,9 +98,7 @@ export const organizationSchema = {
   ],
   "sameAs": [
     "https://www.facebook.com/gyanvaniai/",
-    "https://www.linkedin.com/company/gyan-vaniai",
-    "https://twitter.com/gyanvaniai",
-    "https://x.com/gyanvaniai"
+    "https://www.linkedin.com/company/gyan-vaniai"
   ]
 };
 
@@ -114,7 +117,7 @@ export const websiteSchema = {
     "@type": "SearchAction",
     "target": {
       "@type": "EntryPoint",
-      "urlTemplate": "https://www.gyanvaniai.com/blog?search={search_term_string}"
+      "urlTemplate": "https://www.gyanvaniai.com/blog/search?q={search_term_string}"
     },
     "query-input": "required name=search_term_string"
   }
@@ -128,11 +131,19 @@ export const localBusinessSchema = {
   "image": "https://www.gyanvaniai.com/hero_dashboard.webp",
   "url": "https://www.gyanvaniai.com/",
   "email": "contact@gyanvaniai.com",
+  "telephone": "+91-87006-20913",
   "priceRange": "$$",
   "address": {
     "@type": "PostalAddress",
+    "addressLocality": "New Delhi",
+    "addressRegion": "Delhi",
+    "postalCode": "110001",
     "addressCountry": "IN"
   },
+  "sameAs": [
+    "https://www.facebook.com/gyanvaniai/",
+    "https://www.linkedin.com/company/gyan-vaniai"
+  ],
   "geo": {
     "@type": "GeoCoordinates",
     "latitude": 28.6139,
@@ -204,7 +215,7 @@ export const articleSchema = (article) => ({
   "@id": `https://www.gyanvaniai.com/blog/${article.id}#article`,
   "headline": article.title,
   "description": article.excerpt || article.description,
-  "image": article.image || "https://www.gyanvaniai.com/hero_dashboard.webp",
+  "image": [article.image || "https://www.gyanvaniai.com/hero_dashboard.webp"],
   "datePublished": article.publishDate || article.createdAt,
   "dateModified": article.updatedAt || article.publishDate || article.createdAt,
   "author": {
@@ -264,7 +275,7 @@ export const howToSchema = (howTo) => ({
   }))
 });
 
-export const speakableSchema = (cssSelectors = ['.aeo-answer-definition', '.aeo-key-takeaways', '.faq-answer']) => ({
+export const speakableSchema = (cssSelectors = ['h1', '.blog-post-content', '.faq-answer-text', '.seo-overview']) => ({
   "@context": "https://schema.org",
   "@type": "SpeakableSpecification",
   "cssSelector": cssSelectors

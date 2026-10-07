@@ -13,13 +13,17 @@
     "audit:aeo": "node scripts/audit-aeo.js",
     "aeo:check": "node scripts/audit-aeo.js",
     "lint": "eslint .",
-    "test": "echo \"No test specified\" && exit 0",
+    "test": "node scripts/run-all-tests.js",
     "preview": "vite preview",
     "upload:cloudinary": "node scripts/upload-to-cloudinary.js",
     "postbuild": "node scripts/ping-indexnow.js",
     "seo:submit": "node scripts/ping-indexnow.js",
     "seo:check": "node scripts/audit-seo.js",
-    "seo:monitor": "node scripts/seo-monitor.js"
+    "seo:monitor": "node scripts/seo-monitor.js",
+    "audit:indexing": "node scripts/validate-indexing.js",
+    "audit:technical-seo": "node scripts/validate-technical-seo.js",
+    "audit:regression": "node scripts/seo-regression-checker.js",
+    "regression:check": "node scripts/seo-regression-checker.js"
   },
   "dependencies": {
     "@cloudinary/react": "^1.14.4",

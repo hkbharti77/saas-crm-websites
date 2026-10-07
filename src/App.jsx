@@ -37,6 +37,7 @@ const ArticleAnalytics = lazy(() => import('./pages/admin/ArticleAnalytics'));
 const ContentOpportunities = lazy(() => import('./pages/admin/ContentOpportunities'));
 const ContentRefresh = lazy(() => import('./pages/admin/ContentRefresh'));
 const SeoDashboard = lazy(() => import('./pages/admin/SeoDashboard'));
+const CookieConsentPage = lazy(() => import('./pages/admin/CookieConsentPage'));
 
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -223,6 +224,8 @@ function App() {
                 <Route path="/admin/blog/opportunities" element={<ContentOpportunities />} />
                 <Route path="/admin/blog/refresh" element={<ContentRefresh />} />
                 <Route path="/admin/blog/seo" element={<SeoDashboard />} />
+                <Route path="/admin/cookies" element={<CookieConsentPage />} />
+                <Route path="/admin/cookie-consent" element={<CookieConsentPage />} />
 
 
                 <Route path="*" element={<NotFound />} />

@@ -121,3 +121,25 @@ export function buildGrowthIntelligenceReport(publishedPosts = [], _analyticsDoc
   };
 }
 
+/**
+ * Builds AI strategy assistant prompt with structured stats and strict safety guidelines.
+ * @param {Object} reportData
+ * @returns {string} Prompt string
+ */
+export function buildAiStrategyAssistantPrompt(reportData = {}) {
+  const publishedCount = reportData.publishedCount ?? 0;
+  const highPriorityCount = reportData.highPriorityCount ?? 0;
+  const mediumPriorityCount = reportData.mediumPriorityCount ?? 0;
+
+  return `You are the Content Growth Strategy Advisor for Gyan VaniAi.
+Current Website Content Status:
+- Total Published Articles: ${publishedCount}
+- High Priority Opportunities: ${highPriorityCount}
+- Medium Priority Opportunities: ${mediumPriorityCount}
+
+Guidelines:
+1. Do NOT invent fake rankings, search traffic or vanity metrics.
+2. Provide grounded, deterministic recommendations based on content freshness, topic clusters, and user intent.
+3. Keep recommendations strictly advisory and editorial; do not auto-publish.`;
+}
+

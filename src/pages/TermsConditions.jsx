@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import SeoHead from '../components/SeoHead';
 
 export default function TermsConditions() {
@@ -26,6 +25,17 @@ export default function TermsConditions() {
     }
   };
 
+  const termsWebPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Terms & Conditions | Gyan VaniAi",
+    "url": "https://www.gyanvaniai.com/terms",
+    "description": "Terms of Service and API usage guidelines for Gyan VaniAi platforms.",
+    "publisher": {
+      "@id": "https://www.gyanvaniai.com/#organization"
+    }
+  };
+
   return (
     <div style={{ minHeight: '100vh' }}>
       <SeoHead
@@ -33,42 +43,8 @@ export default function TermsConditions() {
         description="Terms of Service and API usage guidelines for Gyan VaniAi platforms."
         canonical="https://www.gyanvaniai.com/terms"
         preloadImage="/terms_image.webp"
+        schema={termsWebPageSchema}
       />
-      <Helmet>
-        <script type="application/ld+json">
-          {`
-            [
-              {
-                "@context": "https://schema.org",
-                "@type": "WebPage",
-                "name": "Terms & Conditions | Gyan VaniAi",
-                "url": "https://www.gyanvaniai.com/terms",
-                "publisher": {
-                  "@id": "https://www.gyanvaniai.com/#organization"
-                }
-              },
-              {
-                "@context": "https://schema.org",
-                "@type": "BreadcrumbList",
-                "itemListElement": [
-                  {
-                    "@type": "ListItem",
-                    "position": 1,
-                    "name": "Home",
-                    "item": "https://www.gyanvaniai.com/"
-                  },
-                  {
-                    "@type": "ListItem",
-                    "position": 2,
-                    "name": "Terms & Conditions",
-                    "item": "https://www.gyanvaniai.com/terms"
-                  }
-                ]
-              }
-            ]
-          `}
-        </script>
-      </Helmet>
       <div className="legal-hero">
         <div className="container legal-hero-content">
           <img src="/terms_image.webp" alt="" width="400" height="400" className="legal-hero-img" fetchPriority="high" decoding="sync" />

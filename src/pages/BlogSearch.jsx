@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
 import { Search, X, Calendar, ArrowRight, Trash2 } from 'lucide-react';
 import { db } from '../firebase';
 import { collection, getDocs, query, orderBy } from 'firebase/firestore';
@@ -142,10 +141,8 @@ export default function BlogSearch() {
         title="Search Articles - Gyan VaniAi Blog"
         description="Search published Gyan VaniAi articles, guides, and tutorials on AI orchestration, WhatsApp integration, and CRM automation."
         canonical="https://www.gyanvaniai.com/blog/search"
+        noindex={true}
       />
-      <Helmet>
-        <meta name="robots" content="noindex, follow" />
-      </Helmet>
 
       <div className="blog-search-page container" style={{ paddingTop: '5.5rem', paddingBottom: '4rem', maxWidth: '1100px' }}>
         {/* Search Header Form */}

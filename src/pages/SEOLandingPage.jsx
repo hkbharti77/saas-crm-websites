@@ -239,17 +239,24 @@ const seoDataMap = {
     subtitle: 'Official WhatsApp Business API automation with Coexistence, Embedded Signup, broadcasts, and AI replies, without losing your mobile app.',
     overview: 'Gyan VaniAi provides WhatsApp automation for businesses using the official Meta WhatsApp Business Platform. Features include Coexistence mode, 1-click Embedded Signup, bulk broadcasts, interactive messages, AI auto-replies, and a multi-agent shared inbox for sales and support teams.',
     whoFor: 'Retail, real estate, healthcare, education, and service businesses that close deals and support customers primarily on WhatsApp.',
-    deliverables: ['Cloud API + Coexistence setup', 'Broadcast & template campaigns', 'AI FAQ auto-replies', 'Team shared inbox', 'CRM lead sync'],
+    deliverables: ['Cloud API + Coexistence setup', 'Broadcast & template campaigns', 'AI FAQ auto-replies', 'Team shared inbox', 'CRM lead sync', 'Interactive product catalogs'],
     benefits: ['Built-in WhatsApp Coexistence', '1-Click Embedded Signup', 'Official Meta API Integration', 'Instant Replies & Broadcasts'],
     image: '/portfolio_crm.webp',
     imageAlt: 'WhatsApp automation CRM dashboard by Gyan VaniAi',
     relatedLinks: [
-      { url: '/services/whatsapp-coexistence', text: 'Full WhatsApp Coexistence Guide' },
+      { url: '/services/whatsapp-coexistence', text: 'WhatsApp Coexistence Mode' },
+      { url: '/services/whatsapp-calling-agent', text: 'WhatsApp Calling Agent Bots' },
+      { url: '/pricing', text: 'WhatsApp CRM Pricing' },
+      { url: '/blog/whatsapp-business-api-automation', text: 'Meta WhatsApp Cloud API Guide' },
+      { url: '/services/lead-management', text: 'Lead Management & Pipelines' },
       { url: '/services/crm-development', text: 'Custom CRM Development' }
     ],
     faqs: [
       { q: 'Is this official WhatsApp Business API?', a: 'Yes. Gyan VaniAi integrates the official Meta WhatsApp Business Cloud API with Coexistence and Embedded Signup, not unofficial or banned scrapers.' },
-      { q: 'Can I keep using WhatsApp on my phone?', a: 'Yes, with Coexistence mode. Your WhatsApp Business mobile app and our CRM run on the same number with real-time sync.' }
+      { q: 'Can I keep using WhatsApp on my phone?', a: 'Yes, with Coexistence mode. Your WhatsApp Business mobile app and our CRM run on the same number with real-time sync.' },
+      { q: 'Can we send WhatsApp product catalogs and interactive button messages?', a: 'Yes. We support official Meta WhatsApp Catalogs, single-product and multi-product messages, quick-reply buttons, and call-to-action link buttons directly in automated customer flows.' },
+      { q: 'How does WhatsApp message pricing work for Indian businesses?', a: 'Meta bills conversations by category (Utility, Authentication, Marketing, Service). With Gyan VaniAi, platform subscription plans start at ₹1,999/month, and Meta messaging fees are billed directly at official Meta pass-through rates in INR with zero markup.' },
+      { q: 'How many agents can use the WhatsApp shared team inbox?', a: 'Starter plans include 3 team members, Growth includes 10, Scale includes 25, and Enterprise plans support unlimited agents with role-based permissions and team routing.' }
     ]
   },
   'hrms-development': {
@@ -909,7 +916,7 @@ export default function SEOLandingPage() {
         '@type': 'ListItem',
         position: 2,
         name: isIndustry ? 'Industries' : 'Services',
-        item: isIndustry ? `${SITE}/#industries` : `${SITE}/`
+        item: `${SITE}/`
       },
       { '@type': 'ListItem', position: 3, name: pageData.h1, item: pageUrl }
     ]

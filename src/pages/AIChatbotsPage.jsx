@@ -249,6 +249,33 @@ export default function AIChatbotsPage() {
     }
   ];
 
+  const serviceSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: 'Custom AI Chatbot Development & RAG Systems',
+    serviceType: 'AI Chatbot & Conversational AI Development',
+    provider: {
+      '@id': 'https://www.gyanvaniai.com/#organization'
+    },
+    areaServed: 'Worldwide',
+    description: 'Custom AI chatbots with RAG knowledge grounding, sub-300ms latency, WhatsApp integration, and human handoff.',
+    url: `${SITE}/services/ai-chatbots`,
+    image: `${SITE}/hero-ai-chatbots.svg`
+  };
+
+  const chatbotFaqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: f.a
+      }
+    }))
+  };
+
   return (
     <div className="chatbots-page">
       <SeoHead
@@ -257,6 +284,7 @@ export default function AIChatbotsPage() {
         canonical={`${SITE}/services/ai-chatbots`}
         image={`${SITE}/hero-ai-chatbots.svg`}
         preloadImage="/hero-ai-chatbots.svg"
+        schema={[serviceSchema, chatbotFaqSchema]}
       />
 
       {/* ==========================================================================
@@ -268,7 +296,7 @@ export default function AIChatbotsPage() {
             <ol>
               <li><Link to="/">Home</Link></li>
               <li aria-hidden="true">/</li>
-              <li><Link to="/#capabilities">Services</Link></li>
+              <li>Services</li>
               <li aria-hidden="true">/</li>
               <li style={{ color: 'var(--primary-color)' }}>Custom AI Chatbot Development</li>
             </ol>

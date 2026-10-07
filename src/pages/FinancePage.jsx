@@ -149,19 +149,21 @@ export default function FinancePage() {
     }
   ];
 
-  // Financial Product Schema Data for SEO
+  // Financial CRM Service Schema Data for SEO
   const jsonLdData = {
     '@context': 'https://schema.org',
-    '@type': 'FinancialProduct',
-    name: 'Gyan VaniAi Finance & FinTech CRM',
-    description: 'Next-generation AI FinTech CRM, WhatsApp Banking automation, automated e-KYC telemetry, and core banking integration.',
+    '@type': 'Service',
+    name: 'Gyan VaniAi Finance & FinTech CRM Platform',
+    serviceType: 'FinTech Software & Banking CRM Development',
+    description: 'Enterprise AI FinTech CRM with automated WhatsApp banking, e-KYC OCR telemetry, credit score pre-approval, EMI collections, and SOC2/PCI-DSS compliance.',
     provider: {
       '@type': 'Organization',
       name: 'Gyan VaniAi',
       url: SITE
     },
     areaServed: 'Worldwide',
-    category: 'FinTech Software & Banking CRM'
+    url: `${SITE}/industries/finance`,
+    image: `${SITE}/hero_dashboard.webp`
   };
 
   return (
@@ -554,9 +556,9 @@ export default function FinancePage() {
                   <span>Request Architect Consultation</span>
                   <ArrowRight size={16} />
                 </button>
-                <Link to="/contact" className="btn btn-glass">
+                <a href="#contact" className="btn btn-glass">
                   <span>Contact Sales Team</span>
-                </Link>
+                </a>
               </div>
             </div>
           </div>

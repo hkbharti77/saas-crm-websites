@@ -12,6 +12,8 @@ const FAQ = lazy(() => import('../components/FAQ'));
 const ContactSection = lazy(() => import('../components/ContactSection'));
 const ContactModal = lazy(() => import('../components/ContactModal'));
 import SeoHead from '../components/SeoHead';
+import { defaultFaqs } from '../data/faqs';
+import { faqSchema } from '../utils/schemas';
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -26,6 +28,7 @@ export default function Home() {
         keywords="Autonomous AI CRM, Revenue Operations, WhatsApp CRM, AI Lead Qualification, Sales Automation"
         aeoQuestion="What is Gyan VaniAi AI CRM Platform?"
         aeoAnswer="Gyan VaniAi is an Enterprise AI CRM platform with official Meta WhatsApp Coexistence support, sub-300ms RAG chatbots, conversational voice agents, and end-to-end sales automation."
+        schema={faqSchema(defaultFaqs)}
       />
       <div>
         {/* 1 & 2. Hero Section */}
@@ -65,7 +68,7 @@ export default function Home() {
             <Portfolio />
           </div>
 
-          <FAQ />
+          <FAQ includeSchema={false} />
 
           {/* 11 & 12. Final CTA & Lead Form */}
           <ContactSection />

@@ -112,6 +112,19 @@ export default function RetailPage() {
     }
   ];
 
+  const retailFaqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: f.a,
+      },
+    })),
+  };
+
   return (
     <>
       <SeoHead
@@ -121,6 +134,7 @@ export default function RetailPage() {
         image={`${SITE}/retail_hero_platform.jpg`}
         keywords="Retail CRM, WhatsApp Commerce, E-Commerce Automation, Abandoned Cart Recovery, Shopify WhatsApp Integration, D2C Customer Retention"
         preloadImage="/retail_hero_platform.jpg"
+        schema={retailFaqSchema}
       />
 
       <div className="retail-page">

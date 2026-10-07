@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { auth } from '../../firebase';
 import { signOut } from 'firebase/auth';
-import { LayoutDashboard, PenLine, ExternalLink, LogOut, FileText, BarChart2 } from 'lucide-react';
+import { LayoutDashboard, PenLine, ExternalLink, LogOut, FileText, BarChart2, ShieldCheck } from 'lucide-react';
 import './AdminCMS.css';
 
 export default function AdminHeader() {
@@ -22,6 +22,7 @@ export default function AdminHeader() {
   const isDashboard = location.pathname === '/admin/dashboard';
   const isCreate = location.pathname === '/admin/create';
   const isAnalytics = location.pathname.startsWith('/admin/blog/analytics') || location.pathname.startsWith('/admin/blog/opportunities');
+  const isCookies = location.pathname.startsWith('/admin/cookies');
 
   return (
     <header className="admin-cms-header">
@@ -62,6 +63,13 @@ export default function AdminHeader() {
           >
             <FileText size={15} />
             <span>SEO Growth</span>
+          </Link>
+          <Link
+            to="/admin/cookies"
+            className={`admin-cms-nav-item ${isCookies ? 'active' : ''}`}
+          >
+            <ShieldCheck size={15} />
+            <span>Cookie Consents</span>
           </Link>
 
         </nav>

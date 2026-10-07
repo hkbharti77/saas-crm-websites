@@ -32,7 +32,8 @@ import {
 export default function SEOHead({
   title = 'Enterprise AI, CRM & Automation Solutions | Gyan VaniAi',
   description = 'Gyan VaniAi builds AI software, CRM, WhatsApp automation, chatbots and custom business solutions to automate operations, generate leads and scale growth.',
-  canonical = 'https://www.gyanvaniai.com/',
+  canonical,
+  url,
   image = 'https://www.gyanvaniai.com/hero_dashboard.webp',
   schema = null,
   type = 'website',
@@ -45,11 +46,14 @@ export default function SEOHead({
   aeoQuestion = null,
   aeoAnswer = null
 }) {
-  const currentPath = canonical.replace('https://www.gyanvaniai.com', '');
+  const effectiveCanonical = canonical !== undefined 
+    ? canonical 
+    : (url || (noindex ? null : 'https://www.gyanvaniai.com/'));
+  const currentPath = effectiveCanonical ? effectiveCanonical.replace('https://www.gyanvaniai.com', '') : '';
   const hreflangs = generateHreflangTags(currentPath);
   const geoMeta = getGeoTargeting();
-  const socialMeta = getSocialMeta(title, description, image, canonical);
-  const breadcrumbs = currentPath !== '/' ? generateBreadcrumbs(currentPath) : null;
+  const socialMeta = getSocialMeta(title, description, image, effectiveCanonical || 'https://www.gyanvaniai.com/');
+  const breadcrumbs = currentPath && currentPath !== '/' ? generateBreadcrumbs(currentPath) : null;
 
   // Handle keywords that could be string, array, or other types
   let keywordString = 'AI Agency, Enterprise AI, WhatsApp Automation, CRM Development, AI Chatbots, Sales Automation';
@@ -59,16 +63,61 @@ export default function SEOHead({
     keywordString = keywords.join(', ');
   }
 
-  // Combine organization, website, speakable schemas with any additional schema
+  // Consolidate extra schemas passed by page
+  const extraSchemas = schema 
+    ? (Array.isArray(schema) ? schema : [schema]).filter(Boolean)
+    : [];
+
+  // Check if caller already provided BreadcrumbList
+  const hasCallerBreadcrumbs = extraSchemas.some((s) => {
+    const t = s && s['@type'];
+    return t === 'BreadcrumbList' || (Array.isArray(t) && t.includes('BreadcrumbList'));
+  });
+
+  // Check if caller already provided FAQPage
+  const existingFaq = extraSchemas.find((s) => {
+    const t = s && s['@type'];
+    return t === 'FAQPage' || (Array.isArray(t) && t.includes('FAQPage'));
+  });
+
   const schemas = [organizationSchema, websiteSchema, speakableSchema()];
-  if (breadcrumbs) {
+
+  // Only add auto-generated breadcrumbs if the caller hasn't provided explicit ones
+  if (!hasCallerBreadcrumbs && breadcrumbs) {
     schemas.push(breadcrumbSchema(breadcrumbs));
   }
+
+  // Handle FAQPage consolidation: merge aeoQuestion/aeoAnswer into existing FAQPage, or create a single one
   if (aeoQuestion && aeoAnswer) {
-    schemas.push(faqSchema([{ question: aeoQuestion, answer: aeoAnswer }]));
+    if (existingFaq && Array.isArray(existingFaq.mainEntity)) {
+      const alreadyHasQuestion = existingFaq.mainEntity.some(
+        (q) => q.name === aeoQuestion || q.question === aeoQuestion
+      );
+      if (!alreadyHasQuestion) {
+        existingFaq.mainEntity.unshift({
+          '@type': 'Question',
+          name: aeoQuestion,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: aeoAnswer,
+          },
+        });
+      }
+    } else if (!existingFaq) {
+      schemas.push(faqSchema([{ question: aeoQuestion, answer: aeoAnswer }]));
+    }
   }
-  if (schema) {
-    schemas.push(...(Array.isArray(schema) ? schema : [schema]));
+
+  // Add extra schemas with deduplication
+  for (const s of extraSchemas) {
+    if (!s) continue;
+    const t = s['@type'];
+    const id = s['@id'];
+    const isOrg = t === 'Organization' || id === 'https://www.gyanvaniai.com/#organization';
+    const isWeb = t === 'WebSite' || id === 'https://www.gyanvaniai.com/#website';
+    if (!isOrg && !isWeb) {
+      schemas.push(s);
+    }
   }
 
   return (
@@ -79,7 +128,7 @@ export default function SEOHead({
       <meta name="description" content={description} />
       <meta name="keywords" content={keywordString} />
       <meta name="author" content={author} />
-      <link rel="canonical" href={canonical} />
+      {effectiveCanonical && <link rel="canonical" href={effectiveCanonical} />}
       
       {/* Robots */}
       <meta 
@@ -119,7 +168,7 @@ export default function SEOHead({
 
       {/* Open Graph / Facebook */}
       <meta property="og:type" content={type} />
-      <meta property="og:url" content={canonical} />
+      {effectiveCanonical && <meta property="og:url" content={effectiveCanonical} />}
       <meta property="og:site_name" content={socialMeta['og:site_name']} />
       <meta property="og:title" content={socialMeta['og:title']} />
       <meta property="og:description" content={socialMeta['og:description']} />

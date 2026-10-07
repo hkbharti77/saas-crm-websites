@@ -1,19 +1,14 @@
 {
-  "timestamp": "2026-09-29T17:15:34.112Z",
+  "timestamp": "2026-10-07T01:45:38.861Z",
   "score": 100,
-  "passed": 31,
+  "passed": 26,
   "warnings": 0,
   "errors": 0,
   "details": {
     "passed": [
-      "✓ Sitemap exists with 45 URLs",
+      "✓ Sitemap exists with 44 URLs",
       "✓ robots.txt exists",
       "✓ Sitemap URL in robots.txt",
-      "✓ Googlebot directive present",
-      "✓ Bingbot directive present",
-      "✓ Yandex directive present",
-      "✓ DuckDuckBot directive present",
-      "✓ Baiduspider directive present",
       "✓ IndexNow key file exists",
       "✓ favicon.ico exists",
       "✓ favicon-32x32.png exists",

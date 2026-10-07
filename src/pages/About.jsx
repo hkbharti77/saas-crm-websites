@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
 import { 
   ArrowRight, 
   Code2, 
@@ -10,7 +9,12 @@ import {
   Bot, 
   Layers, 
   Mail,
-  Zap
+  Zap,
+  Building,
+  Phone,
+  Globe,
+  ExternalLink,
+  CheckCircle2
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import SeoHead from '../components/SeoHead';
@@ -51,6 +55,20 @@ export default function About() {
   const description =
     'Gyan VaniAi builds custom AI CRMs, WhatsApp Coexistence, RAG agents, HRMS, and ERP systems for startups and enterprises across Europe, Asia, Africa, and worldwide.';
 
+  const aboutWebPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "About Gyan VaniAi",
+    "url": "https://www.gyanvaniai.com/about",
+    "description": description,
+    "publisher": {
+      "@id": "https://www.gyanvaniai.com/#organization"
+    },
+    "isPartOf": {
+      "@id": "https://www.gyanvaniai.com/#website"
+    }
+  };
+
   return (
     <>
       <SeoHead
@@ -59,46 +77,8 @@ export default function About() {
         canonical="https://www.gyanvaniai.com/about"
         keywords="About Gyan VaniAi, Enterprise AI Company, Software Development Agency, WhatsApp Coexistence Meta Provider, AI CRM Developers, India, Global"
         image="https://www.gyanvaniai.com/hero_dashboard.webp"
+        schema={aboutWebPageSchema}
       />
-      <Helmet>
-        <script type="application/ld+json">
-          {`
-            [
-              {
-                "@context": "https://schema.org",
-                "@type": "WebPage",
-                "name": "About Gyan VaniAi",
-                "url": "https://www.gyanvaniai.com/about",
-                "description": "${description}",
-                "publisher": {
-                  "@id": "https://www.gyanvaniai.com/#organization"
-                },
-                "isPartOf": {
-                  "@id": "https://www.gyanvaniai.com/#website"
-                }
-              },
-              {
-                "@context": "https://schema.org",
-                "@type": "BreadcrumbList",
-                "itemListElement": [
-                  {
-                    "@type": "ListItem",
-                    "position": 1,
-                    "name": "Home",
-                    "item": "https://www.gyanvaniai.com/"
-                  },
-                  {
-                    "@type": "ListItem",
-                    "position": 2,
-                    "name": "About",
-                    "item": "https://www.gyanvaniai.com/about"
-                  }
-                ]
-              }
-            ]
-          `}
-        </script>
-      </Helmet>
 
       <div className="about-page">
         
@@ -307,7 +287,90 @@ export default function About() {
           </div>
         </section>
 
-        {/* 5. EXPLORE OUR WORK */}
+        {/* 5. CORPORATE FACTS & MEDIA KIT FOR DIRECTORIES & PRESS */}
+        <section className="section bg-tinted" style={{ padding: '4.5rem 0', borderTop: '1px solid var(--border-color)', borderBottom: '1px solid var(--border-color)' }}>
+          <div className="container">
+            <div style={{ maxWidth: '850px', margin: '0 auto 3rem auto', textAlign: 'center' }}>
+              <span className="about-section-label">05 / COMPANY VERIFICATION &amp; MEDIA KIT</span>
+              <h2 className="h2" style={{ marginTop: '0.5rem' }}>Corporate Profile &amp; Citation Index</h2>
+              <p className="text-muted" style={{ marginTop: '0.75rem', fontSize: '1.05rem' }}>
+                Verified information for ecosystem partners, industry directories, journalists, and enterprise procurement audits.
+              </p>
+            </div>
+
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem' }}>
+              {/* Corporate Facts Box */}
+              <div style={{ background: 'var(--card-bg, #ffffff)', padding: '2rem', borderRadius: '14px', border: '1px solid var(--border-color)', boxShadow: '0 4px 20px rgba(0,0,0,0.03)' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.25rem' }}>
+                  <Building size={22} color="var(--primary-color)" />
+                  <h3 style={{ fontSize: '1.25rem', fontWeight: '700', margin: 0 }}>Company Overview</h3>
+                </div>
+
+                <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.9rem', fontSize: '0.95rem' }}>
+                  <li style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid var(--border-color, #f0f0f0)', paddingBottom: '0.5rem' }}>
+                    <span className="text-muted">Legal Brand Name</span>
+                    <strong style={{ color: 'var(--text-primary)' }}>Gyan VaniAi</strong>
+                  </li>
+                  <li style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid var(--border-color, #f0f0f0)', paddingBottom: '0.5rem' }}>
+                    <span className="text-muted">Headquarters</span>
+                    <strong style={{ color: 'var(--text-primary)' }}>New Delhi, Delhi, India</strong>
+                  </li>
+                  <li style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid var(--border-color, #f0f0f0)', paddingBottom: '0.5rem' }}>
+                    <span className="text-muted">Founding Year</span>
+                    <strong style={{ color: 'var(--text-primary)' }}>2024</strong>
+                  </li>
+                  <li style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid var(--border-color, #f0f0f0)', paddingBottom: '0.5rem' }}>
+                    <span className="text-muted">Canonical Domain</span>
+                    <strong style={{ color: 'var(--text-primary)' }}>https://www.gyanvaniai.com</strong>
+                  </li>
+                  <li style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid var(--border-color, #f0f0f0)', paddingBottom: '0.5rem' }}>
+                    <span className="text-muted">Direct Email</span>
+                    <a href="mailto:contact@gyanvaniai.com" style={{ color: 'var(--primary-color)', fontWeight: '600' }}>contact@gyanvaniai.com</a>
+                  </li>
+                  <li style={{ display: 'flex', justifyContent: 'space-between' }}>
+                    <span className="text-muted">Direct Line</span>
+                    <strong style={{ color: 'var(--text-primary)' }}>+91 87006 20913</strong>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Media Kit & Boilerplate Box */}
+              <div style={{ background: 'var(--card-bg, #ffffff)', padding: '2rem', borderRadius: '14px', border: '1px solid var(--border-color)', boxShadow: '0 4px 20px rgba(0,0,0,0.03)' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.25rem' }}>
+                  <Globe size={22} color="var(--primary-color)" />
+                  <h3 style={{ fontSize: '1.25rem', fontWeight: '700', margin: 0 }}>Press &amp; Media Boilerplate</h3>
+                </div>
+
+                <p className="text-muted" style={{ fontSize: '0.925rem', lineHeight: '1.6', marginBottom: '1.25rem' }}>
+                  <em>"Gyan VaniAi is an enterprise AI CRM and revenue automation software company specializing in official Meta WhatsApp Business API coexistence, autonomous RAG agents, and bespoke conversational telephony pipelines for scaling teams worldwide."</em>
+                </p>
+
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', paddingTop: '0.5rem', borderTop: '1px solid var(--border-color, #f0f0f0)' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.9rem' }}>
+                    <CheckCircle2 size={16} color="#10b981" />
+                    <span>Official Meta Tech Provider architecture</span>
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.9rem' }}>
+                    <CheckCircle2 size={16} color="#10b981" />
+                    <span>DPDP Act 2023 &amp; SOC-2 compliant data controls</span>
+                  </div>
+                  <div style={{ marginTop: '0.75rem', display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+                    <a href="https://github.com/gyanvaniai" target="_blank" rel="noopener noreferrer" className="btn btn-outline" style={{ fontSize: '0.85rem', padding: '0.5rem 1rem' }}>
+                      <span>GitHub</span>
+                      <ExternalLink size={14} />
+                    </a>
+                    <a href="https://www.linkedin.com/company/gyan-vaniai" target="_blank" rel="noopener noreferrer" className="btn btn-outline" style={{ fontSize: '0.85rem', padding: '0.5rem 1rem' }}>
+                      <span>LinkedIn</span>
+                      <ExternalLink size={14} />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 6. EXPLORE OUR WORK */}
         <section className="about-explore-section">
           <div className="container">
             <div className="about-explore-bar">

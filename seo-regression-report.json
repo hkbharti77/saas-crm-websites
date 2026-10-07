@@ -1,0 +1,161 @@
+{
+  "timestamp": "2026-10-07T04:00:04.457Z",
+  "domain": "https://www.gyanvaniai.com",
+  "summary": {
+    "totalPagesAudited": 48,
+    "indexablePages": 44,
+    "nonIndexableUtilityPages": 4,
+    "sitemapUrls": 44,
+    "criticalErrorsCount": 0,
+    "warningsCount": 0,
+    "maxClickDepth": 2
+  },
+  "scores": {
+    "technicalScore": 100,
+    "indexabilityScore": 100,
+    "internationalScore": 100,
+    "aeoScore": 100,
+    "performanceScore": 95,
+    "contentArchitectureScore": 100,
+    "overallScore": 99
+  },
+  "systemResults": {
+    "1_domain_migration": {
+      "status": "PASS",
+      "details": []
+    },
+    "2_https": {
+      "status": "PASS",
+      "details": []
+    },
+    "3_www_consistency": {
+      "status": "PASS",
+      "details": []
+    },
+    "4_301_redirects": {
+      "status": "PASS",
+      "details": []
+    },
+    "5_canonical_urls": {
+      "status": "PASS",
+      "details": []
+    },
+    "6_robots_txt": {
+      "status": "PASS",
+      "details": []
+    },
+    "7_xml_sitemap": {
+      "status": "PASS",
+      "details": []
+    },
+    "8_blog_sitemap": {
+      "status": "PASS",
+      "details": []
+    },
+    "9_image_sitemap_metadata": {
+      "status": "PASS",
+      "details": []
+    },
+    "10_hreflang": {
+      "status": "PASS",
+      "details": []
+    },
+    "11_json_ld": {
+      "status": "PASS",
+      "details": []
+    },
+    "12_opengraph": {
+      "status": "PASS",
+      "details": []
+    },
+    "13_twitter_cards": {
+      "status": "PASS",
+      "details": []
+    },
+    "14_metadata": {
+      "status": "PASS",
+      "details": []
+    },
+    "15_ssg_prerendering": {
+      "status": "PASS",
+      "details": []
+    },
+    "16_internal_links": {
+      "status": "PASS",
+      "details": []
+    },
+    "17_broken_links": {
+      "status": "PASS",
+      "count": 0
+    },
+    "18_404_handling": {
+      "status": "PASS",
+      "details": []
+    },
+    "19_redirect_chains": {
+      "status": "PASS",
+      "details": []
+    },
+    "20_noindex_rules": {
+      "status": "PASS",
+      "details": []
+    },
+    "21_geo_personalization": {
+      "status": "PASS",
+      "details": []
+    },
+    "22_regional_pricing": {
+      "status": "PASS",
+      "details": []
+    },
+    "23_llms_txt": {
+      "status": "PASS"
+    },
+    "24_llms_full_txt": {
+      "status": "PASS"
+    },
+    "25_llm_summary_json": {
+      "status": "PASS"
+    },
+    "26_ai_crawler_access": {
+      "status": "PASS",
+      "details": []
+    },
+    "27_performance": {
+      "status": "PASS",
+      "details": []
+    },
+    "28_mobile_seo": {
+      "status": "PASS",
+      "details": []
+    },
+    "29_accessibility_crawlability": {
+      "status": "PASS",
+      "details": []
+    },
+    "30_duplicate_content": {
+      "status": "PASS",
+      "uniqueTitles": 44,
+      "totalPages": 44
+    },
+    "31_thin_content": {
+      "status": "PASS",
+      "thinPages": []
+    },
+    "32_keyword_cannibalization": {
+      "status": "PASS",
+      "cannibalizationIssues": []
+    },
+    "33_orphan_pages": {
+      "status": "PASS",
+      "orphans": [],
+      "maxClickDepth": 2
+    },
+    "34_structured_data_consistency": {
+      "status": "PASS",
+      "schemaConsistencyIssues": []
+    }
+  },
+  "criticalErrors": [],
+  "warnings": []
+}

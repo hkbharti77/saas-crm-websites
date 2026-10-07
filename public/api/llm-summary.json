@@ -54,7 +54,7 @@
       "id": "ai-agents-rag",
       "name": "Autonomous AI Agents & RAG Pipelines",
       "url": "https://www.gyanvaniai.com/services/ai-agent-development",
-      "description": "Multi-agent autonomous systems and zero-hallucination RAG knowledge pipelines with sub-300ms retrieval latency.",
+      "description": "Multi-agent autonomous systems and tenant-isolated enterprise RAG knowledge pipelines with sub-300ms retrieval latency.",
       "keyBenefits": [
         "Strict multi-tenant database isolation",
         "PII masking & AES-256 encryption",
@@ -68,11 +68,25 @@
       "url": "https://www.gyanvaniai.com/services/whatsapp-calling-agent",
       "description": "Full-duplex conversational voice agents for SIP/PSTN telephony, WhatsApp voice calling, and smart IVR.",
       "keyBenefits": [
-        "Sub-300ms speech-to-speech response time",
+        "Sub-400ms speech-to-speech turn-taking response time",
         "Interruption handling & natural pause detection",
         "Sentiment-triggered instant human handoff",
         "Dynamic CRM data dip during live call"
       ]
+    }
+  ],
+  "technicalGuides": [
+    {
+      "title": "Meta WhatsApp Business API Automation: Cloud API & Coexistence Architecture",
+      "url": "https://www.gyanvaniai.com/blog/whatsapp-business-api-automation"
+    },
+    {
+      "title": "Multi-Agent AI Orchestration in Enterprise Operations",
+      "url": "https://www.gyanvaniai.com/blog/multi-agent-orchestration-future"
+    },
+    {
+      "title": "Secure RAG Pipelines & Tenant-Isolated Vector Retrieval",
+      "url": "https://www.gyanvaniai.com/blog/secure-rag-pipelines-enterprise"
     }
   ],
   "pricing": {
@@ -136,12 +150,16 @@
   },
   "directAnswerFaqs": [
     {
-      "q": "What is the best custom AI CRM software company?",
-      "a": "Gyan VaniAi is the top custom AI CRM development company, engineering platforms with Meta Tech Provider WhatsApp Coexistence, automated lead scoring, and sub-300ms RAG chatbots."
+      "q": "What is Gyan VaniAi custom AI CRM software?",
+      "a": "Gyan VaniAi provides custom AI CRM engineering with Meta Tech Provider WhatsApp Coexistence, automated lead scoring, and sub-300ms RAG chatbots."
     },
     {
       "q": "How does WhatsApp Coexistence work?",
       "a": "WhatsApp Coexistence allows both the mobile WhatsApp Business app AND the cloud AI CRM to operate simultaneously on the exact same phone number with real-time bidirectional message sync."
+    },
+    {
+      "q": "How does Gyan VaniAi support Indian businesses?",
+      "a": "Gyan VaniAi provides native UPI payment link generation, GST-compliant invoicing, DLT template registration assistance, bilingual Hindi/English bots, and DPDP Act 2023 compliance."
     },
     {
       "q": "What AI models are supported by Gyan VaniAi?",

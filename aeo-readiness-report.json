@@ -1,0 +1,74 @@
+{
+  "timestamp": "2026-10-07T03:44:39.307Z",
+  "targetDomain": "https://www.gyanvaniai.com",
+  "score": {
+    "total": 100,
+    "max": 100,
+    "breakdown": {
+      "manifests": {
+        "score": 25,
+        "max": 25
+      },
+      "consistency": {
+        "score": 25,
+        "max": 25
+      },
+      "structuredData": {
+        "score": 25,
+        "max": 25
+      },
+      "semanticDirectAnswers": {
+        "score": 25,
+        "max": 25
+      }
+    }
+  },
+  "manifestAudit": {
+    "llmsTxt": {
+      "exists": true,
+      "bytes": 14553,
+      "hasPricing": true,
+      "hasCoexistence": true
+    },
+    "llmsFullTxt": {
+      "exists": true,
+      "bytes": 9659,
+      "hasCoexistenceMatrix": true
+    },
+    "llmSummaryJson": {
+      "exists": true,
+      "validJson": true,
+      "productsCount": 4,
+      "plansCount": 4,
+      "faqsCount": 4
+    }
+  },
+  "factualConsistencyAudit": {
+    "pricingConsistent": true,
+    "canonicalDomainStrict": true,
+    "unsupportedSuperlativesClean": true,
+    "cornerstoneGuidesRepresented": true
+  },
+  "robotsAudit": {
+    "botsDeclared": {
+      "GPTBot": true,
+      "PerplexityBot": true,
+      "ClaudeBot": true,
+      "Google-Extended": true,
+      "Applebot-Extended": true,
+      "Amazonbot": true,
+      "cohere-ai": true
+    },
+    "allBotsAllowed": true,
+    "adminProtected": true
+  },
+  "htmlPagesAudit": {
+    "totalPages": 44,
+    "speakableCoverage": 44,
+    "faqCoverage": 37,
+    "jsonLdCoverage": 44,
+    "directAnswerCoverage": 44
+  },
+  "errors": [],
+  "warnings": []
+}

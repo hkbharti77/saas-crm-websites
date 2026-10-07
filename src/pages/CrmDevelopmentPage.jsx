@@ -180,6 +180,19 @@ export default function CrmDevelopmentPage() {
     }
   ];
 
+  const crmFaqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqData.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: f.a,
+      },
+    })),
+  };
+
   return (
     <div className="crm-dev-page">
       <SEOHead
@@ -195,7 +208,7 @@ export default function CrmDevelopmentPage() {
           "Enterprise AI Lead Management System",
           "Custom Salesforce Alternative"
         ]}
-        schema={[customCrmServiceSchema, softwareAppSchema]}
+        schema={[customCrmServiceSchema, softwareAppSchema, crmFaqSchema]}
       />
 
       {/* Background Particles Decoration */}
@@ -211,6 +224,16 @@ export default function CrmDevelopmentPage() {
         <section className="crm-hero">
           <div className="crm-hero-grid">
             <div className="crm-hero-content">
+              <nav aria-label="Breadcrumb" className="crm-breadcrumb" style={{ marginBottom: '1.25rem', fontSize: '0.85rem', fontWeight: '500' }}>
+                <ol style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', listStyle: 'none', padding: 0, margin: 0, color: 'var(--text-muted)' }}>
+                  <li><Link to="/" style={{ color: 'inherit' }}>Home</Link></li>
+                  <li aria-hidden="true">/</li>
+                  <li>Services</li>
+                  <li aria-hidden="true">/</li>
+                  <li style={{ color: 'var(--primary-color)' }}>Custom CRM Development</li>
+                </ol>
+              </nav>
+
               <div className="crm-hero-badge">
                 <Sparkles size={16} />
                 <span>#1 Custom AI CRM Development Engine</span>
@@ -244,10 +267,10 @@ export default function CrmDevelopmentPage() {
               </div>
 
               <div className="crm-hero-ctas">
-                <Link to="/about#contact" className="crm-btn-primary">
+                <a href="#contact" className="crm-btn-primary">
                   <span>Schedule CRM Architecture Call</span>
                   <ArrowRight size={18} />
-                </Link>
+                </a>
                 <a href="#roi-calculator" className="crm-btn-secondary">
                   <DollarSign size={18} />
                   <span>Calculate Savings ROI</span>

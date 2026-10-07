@@ -3,18 +3,40 @@ Allow: /
 Disallow: /admin/
 Disallow: /admin
 
+# Dedicated AI & LLM Search Crawlers
 User-agent: GPTBot
 Allow: /
+Disallow: /admin/
+Disallow: /admin
 
 User-agent: PerplexityBot
 Allow: /
+Disallow: /admin/
+Disallow: /admin
 
 User-agent: ClaudeBot
 Allow: /
+Disallow: /admin/
+Disallow: /admin
 
 User-agent: Google-Extended
 Allow: /
+Disallow: /admin/
+Disallow: /admin
+
+User-agent: Applebot-Extended
+Allow: /
+Disallow: /admin/
+Disallow: /admin
+
+User-agent: Amazonbot
+Allow: /
+Disallow: /admin/
+Disallow: /admin
+
+User-agent: cohere-ai
+Allow: /
+Disallow: /admin/
+Disallow: /admin
 
 Sitemap: https://www.gyanvaniai.com/sitemap.xml
-Sitemap: https://www.gyanvaniai.com/api/blog-sitemap
-

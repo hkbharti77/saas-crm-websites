@@ -8,6 +8,13 @@ export const generateHreflangTags = () => {
   return [];
 };
 
+/**
+ * Geographic meta tags (geo.region, geo.placename, geo.position, ICBM) are obsolete
+ * 2000s Dublin Core / GeoURL tags. Google and Bing explicitly ignore them for web
+ * ranking and geotargeting. Omitting them avoids fake local-storefront signals for a
+ * global B2B SaaS platform. Legitimate international targeting is established via
+ * Schema.org Organization areaServed and HTML language declarations.
+ */
 export const getGeoTargeting = () => {
   return {
     'geo.region': '',
@@ -113,9 +120,7 @@ export const getSocialMeta = (title, description, image, url) => {
     'twitter:title': title,
     'twitter:description': description,
     'twitter:image': image,
-    'twitter:url': url,
-    'twitter:site': '@gyanvaniai',
-    'twitter:creator': '@gyanvaniai'
+    'twitter:url': url
   };
 };
 
@@ -142,10 +147,8 @@ export const generateBreadcrumbs = (path) => {
       .join(' ');
     
     let segmentUrl = `https://www.gyanvaniai.com${currentPath}`;
-    if (segment === 'services') {
-      segmentUrl = 'https://www.gyanvaniai.com/#capabilities';
-    } else if (segment === 'industries') {
-      segmentUrl = 'https://www.gyanvaniai.com/#industries';
+    if (segment === 'services' || segment === 'industries') {
+      segmentUrl = 'https://www.gyanvaniai.com/';
     }
     
     breadcrumbs.push({
