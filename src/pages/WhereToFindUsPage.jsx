@@ -5,7 +5,8 @@ import {
   Building2, 
   CheckCircle2, 
   ExternalLink, 
-  ShieldCheck
+  ShieldCheck,
+  MapPin
 } from 'lucide-react';
 import authorityData from '../data/authorityProfiles.json';
 import ContactSection from '../components/ContactSection';
@@ -23,7 +24,7 @@ export default function WhereToFindUsPage() {
     },
     {
       q: 'How can partners verify Gyan VaniAi brand identity?',
-      a: 'Partners and enterprise compliance teams can verify our public presence via our official GitHub organization (github.com/gyanvaniai), verified LinkedIn corporate profile, and direct outreach to contact@gyanvaniai.com.'
+      a: 'Partners and enterprise compliance teams can verify our public presence via our official GitHub organization (github.com/gyanvaniai), verified LinkedIn corporate profile, verified Google Maps entity (Gyan VaniAi Technologies), and direct outreach to contact@gyanvaniai.com.'
     },
     {
       q: 'Where can developers access Gyan VaniAi APIs and SDKs?',
@@ -39,19 +40,25 @@ export default function WhereToFindUsPage() {
     <div className="where-to-find-us-page">
       <SeoHead
         title="Official Brand Presence & Verified Listings | Where to Find Us | Gyan VaniAi"
-        description="Verify official company profiles, social channels, developer repositories, and B2B directories for Gyan VaniAi. Official entity verification and contact data."
+        description="Verify official company profiles, office location on Google Maps, social channels, and B2B directories for Gyan VaniAi Technologies."
         canonical="https://www.gyanvaniai.com/resources/where-to-find-us"
         schema={{
           "@context": "https://schema.org",
           "@type": "WebPage",
           "name": "Where to Find Gyan VaniAi - Official Brand Verification",
           "url": "https://www.gyanvaniai.com/resources/where-to-find-us",
-          "description": "Directory of verified corporate profiles, developer resources, and official listings for Gyan VaniAi.",
+          "description": "Directory of verified corporate profiles, developer resources, office location on Google Maps, and official listings for Gyan VaniAi.",
           "publisher": {
             "@type": "Organization",
             "name": "Gyan VaniAi",
             "url": "https://www.gyanvaniai.com",
-            "logo": "https://www.gyanvaniai.com/logo.webp"
+            "logo": "https://www.gyanvaniai.com/logo.webp",
+            "sameAs": [
+              "https://maps.app.goo.gl/Ts3kKh9L8fe4m9AP6",
+              "https://github.com/gyanvaniai",
+              "https://www.linkedin.com/company/gyan-vaniai",
+              "https://www.facebook.com/gyanvaniai/"
+            ]
           }
         }}
       />
@@ -81,8 +88,15 @@ export default function WhereToFindUsPage() {
             <div className="where-nap-grid">
               <div className="where-nap-item">
                 <span className="where-nap-label">Brand & Entity Name</span>
-                <strong className="where-nap-val">Gyan VaniAi</strong>
+                <strong className="where-nap-val">Gyan VaniAi Technologies</strong>
                 <span className="where-nap-note">Standardized across all global profiles</span>
+              </div>
+              <div className="where-nap-item">
+                <span className="where-nap-label">Office Headquarters</span>
+                <strong className="where-nap-val">
+                  <a href="https://maps.app.goo.gl/Ts3kKh9L8fe4m9AP6" target="_blank" rel="noopener noreferrer" className="where-link">Gyan VaniAi Technologies</a>
+                </strong>
+                <span className="where-nap-note">Verified Google Maps location</span>
               </div>
               <div className="where-nap-item">
                 <span className="where-nap-label">Official Website URL</span>
@@ -105,6 +119,51 @@ export default function WhereToFindUsPage() {
                 </strong>
                 <span className="where-nap-note">Live WhatsApp Coexistence demo number</span>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Office Location & Google Maps Interactive Embed Section */}
+      <section className="where-map-section">
+        <div className="container">
+          <div className="where-map-card">
+            <div className="where-map-header">
+              <div>
+                <span className="where-pill-live">
+                  <MapPin size={12} style={{ marginRight: '4px', verticalAlign: 'middle' }} />
+                  Physical Headquarters
+                </span>
+                <h2 className="where-map-title">Gyan VaniAi Technologies Office Location</h2>
+                <p className="where-map-desc">
+                  Find our office location on Google Maps or navigate directly to our registered headquarters. Verified software company location.
+                </p>
+              </div>
+              <div className="where-map-actions">
+                <a
+                  href="https://maps.app.goo.gl/Ts3kKh9L8fe4m9AP6"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-primary where-map-directions-btn"
+                >
+                  <MapPin size={16} />
+                  <span>Get Directions on Google Maps</span>
+                  <ExternalLink size={14} />
+                </a>
+              </div>
+            </div>
+
+            <div className="where-map-frame-wrapper">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d920171.8511723293!2d85.42869444687501!3d25.723578000000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ee23cee9501acf%3A0x7df9bbd4bdd9f93c!2sGyan%20VaniAi%20Technologies!5e0!3m2!1sen!2sin!4v1791388084453!5m2!1sen!2sin"
+                width="100%"
+                height="450"
+                style={{ border: 0 }}
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="strict-origin-when-cross-origin"
+                title="Gyan VaniAi Technologies Office Location"
+              />
             </div>
           </div>
         </div>

@@ -309,11 +309,13 @@ export default function About() {
                 <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.9rem', fontSize: '0.95rem' }}>
                   <li style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid var(--border-color, #f0f0f0)', paddingBottom: '0.5rem' }}>
                     <span className="text-muted">Legal Brand Name</span>
-                    <strong style={{ color: 'var(--text-primary)' }}>Gyan VaniAi</strong>
+                    <strong style={{ color: 'var(--text-primary)' }}>Gyan VaniAi Technologies</strong>
                   </li>
                   <li style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid var(--border-color, #f0f0f0)', paddingBottom: '0.5rem' }}>
-                    <span className="text-muted">Headquarters</span>
-                    <strong style={{ color: 'var(--text-primary)' }}>New Delhi, Delhi, India</strong>
+                    <span className="text-muted">Office & Location</span>
+                    <a href="https://maps.app.goo.gl/Ts3kKh9L8fe4m9AP6" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--primary-color)', fontWeight: '600', display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}>
+                      <span>Gyan VaniAi Technologies ↗</span>
+                    </a>
                   </li>
                   <li style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid var(--border-color, #f0f0f0)', paddingBottom: '0.5rem' }}>
                     <span className="text-muted">Founding Year</span>
@@ -355,6 +357,10 @@ export default function About() {
                     <span>DPDP Act 2023 &amp; SOC-2 compliant data controls</span>
                   </div>
                   <div style={{ marginTop: '0.75rem', display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+                    <a href="https://maps.app.goo.gl/Ts3kKh9L8fe4m9AP6" target="_blank" rel="noopener noreferrer" className="btn btn-outline" style={{ fontSize: '0.85rem', padding: '0.5rem 1rem' }}>
+                      <span>Google Maps</span>
+                      <ExternalLink size={14} />
+                    </a>
                     <a href="https://github.com/gyanvaniai" target="_blank" rel="noopener noreferrer" className="btn btn-outline" style={{ fontSize: '0.85rem', padding: '0.5rem 1rem' }}>
                       <span>GitHub</span>
                       <ExternalLink size={14} />

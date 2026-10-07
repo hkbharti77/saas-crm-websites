@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { CheckCircle, Check, XCircle, CheckCircle2, Lock } from 'lucide-react';
+import { CheckCircle, Check, XCircle, CheckCircle2, Lock, MapPin } from 'lucide-react';
 import 'react-phone-number-input/style.css';
 import PhoneInput, { isValidPhoneNumber } from 'react-phone-number-input';
 import { trackContactFormSubmit, trackEmailClick } from '../utils/analytics';
@@ -173,6 +173,22 @@ export default function ContactSection({
             </div>
 
             <div className="contact-direct-channels">
+              <div>
+                <h3 className="h3 contact-channel-label">Office Location</h3>
+                <p style={{ margin: 0 }}>
+                  <a
+                    href="https://maps.app.goo.gl/Ts3kKh9L8fe4m9AP6"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    id="link-office-maps-contact"
+                    className="contact-channel-link contact-channel-location"
+                    title="View Gyan VaniAi Technologies on Google Maps"
+                  >
+                    <MapPin size={18} color="var(--primary-color)" />
+                    <span>Gyan VaniAi Technologies ↗</span>
+                  </a>
+                </p>
+              </div>
               <div>
                 <h3 className="h3 contact-channel-label">WhatsApp Direct</h3>
                 <p style={{ margin: 0 }}>

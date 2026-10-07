@@ -134,5 +134,6 @@ Every **Gyan VaniAi** plan (https://www.gyanvaniai.com/pricing) includes WhatsAp
 - Blog RSS: https://www.gyanvaniai.com/rss.xml
 - Dedicated Coexistence Page: https://www.gyanvaniai.com/services/whatsapp-coexistence
 - Contact Email: contact@gyanvaniai.com
+- Office Location (Google Maps): https://maps.app.goo.gl/Ts3kKh9L8fe4m9AP6
 - Book a Free Demo: https://www.gyanvaniai.com/ (Click "Get a Free Consultation" or "Book a Free Demo")
 - Full AI Reference: https://www.gyanvaniai.com/llms-full.txt

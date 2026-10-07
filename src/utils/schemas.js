@@ -97,6 +97,8 @@ export const organizationSchema = {
     "AI Agent Development"
   ],
   "sameAs": [
+    "https://maps.app.goo.gl/Ts3kKh9L8fe4m9AP6",
+    "https://github.com/gyanvaniai",
     "https://www.facebook.com/gyanvaniai/",
     "https://www.linkedin.com/company/gyan-vaniai"
   ]
@@ -127,9 +129,11 @@ export const localBusinessSchema = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
   "@id": "https://www.gyanvaniai.com/#localbusiness",
-  "name": "Gyan VaniAi",
+  "name": "Gyan VaniAi Technologies",
+  "alternateName": ["Gyan VaniAi", "Gyan Vani AI"],
   "image": "https://www.gyanvaniai.com/hero_dashboard.webp",
   "url": "https://www.gyanvaniai.com/",
+  "hasMap": "https://maps.app.goo.gl/Ts3kKh9L8fe4m9AP6",
   "email": "contact@gyanvaniai.com",
   "telephone": "+91-87006-20913",
   "priceRange": "$$",
@@ -141,13 +145,15 @@ export const localBusinessSchema = {
     "addressCountry": "IN"
   },
   "sameAs": [
+    "https://maps.app.goo.gl/Ts3kKh9L8fe4m9AP6",
+    "https://github.com/gyanvaniai",
     "https://www.facebook.com/gyanvaniai/",
     "https://www.linkedin.com/company/gyan-vaniai"
   ],
   "geo": {
     "@type": "GeoCoordinates",
-    "latitude": 28.6139,
-    "longitude": 77.2090
+    "latitude": 25.723578,
+    "longitude": 85.428694
   },
   "openingHoursSpecification": [
     {

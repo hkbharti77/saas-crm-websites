@@ -116,6 +116,15 @@
   transform: translateX(3px);
 }
 
+.contact-channel-location {
+  color: var(--text-primary);
+}
+
+.contact-channel-location:hover {
+  color: var(--primary-color);
+  transform: translateX(3px);
+}
+
 /* Right Column (Form Card) */
 .contact-form-container {
   padding: 2rem 1.85rem; /* 32px x 30px compact laptop fit */

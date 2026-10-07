@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Mail } from 'lucide-react';
+import { Mail, MapPin } from 'lucide-react';
 import { trackEmailClick, trackNewsletterSubscribe } from '../utils/analytics';
 import './Footer.css';
 
@@ -102,6 +102,17 @@ export default function Footer() {
               >
                 <Mail size={20} />
               </a>
+              <a
+                href="https://maps.app.goo.gl/Ts3kKh9L8fe4m9AP6"
+                target="_blank"
+                rel="noopener noreferrer"
+                id="link-footer-maps"
+                className="social-icon"
+                aria-label="Find Gyan VaniAi Technologies on Google Maps"
+                title="Office Location on Google Maps"
+              >
+                <MapPin size={20} />
+              </a>
               <a href="https://www.facebook.com/gyanvaniai/" target="_blank" rel="noopener noreferrer" className="social-icon" aria-label="Visit our Facebook page"><FacebookIcon size={20} /></a>
               <a href="https://www.linkedin.com/company/gyan-vaniai" target="_blank" rel="noopener noreferrer" className="social-icon" aria-label="Visit our LinkedIn page"><LinkedinIcon size={20} /></a>
               <a href="https://github.com/gyanvaniai" target="_blank" rel="noopener noreferrer" className="social-icon" aria-label="Visit Gyan VaniAi on GitHub"><GithubIcon size={20} /></a>
@@ -149,6 +160,7 @@ export default function Footer() {
             <div className="link-group">
               <h3 className="link-title">Company</h3>
               <Link to="/about" className="footer-link">About Us</Link>
+              <a href="https://maps.app.goo.gl/Ts3kKh9L8fe4m9AP6" target="_blank" rel="noopener noreferrer" className="footer-link">Office Location ↗</a>
               <Link to="/pricing" className="footer-link">Pricing Plans</Link>
               <Link to="/#contact" className="footer-link">Contact</Link>
               <Link to="/security" className="footer-link">Security Center</Link>
