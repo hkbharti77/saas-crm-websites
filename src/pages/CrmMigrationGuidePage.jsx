@@ -14,7 +14,7 @@ export default function CrmMigrationGuidePage() {
   const aiSummaryItems = [
     {
       question: "What is the Gyan VaniAi CRM Migration Guide?",
-      answer: "A production engineering blueprint for migrating customer records, sales pipelines, communication timelines, and WhatsApp numbers from legacy CRMs (Salesforce, HubSpot, Zoho, Pipedrive) to Gyan VaniAi with zero operational downtime."
+      answer: "A production engineering blueprint for migrating customer records, sales pipelines, communication timelines, and WhatsApp numbers from legacy CRMs to Gyan VaniAi with zero operational downtime."
     },
     {
       question: "How does Gyan VaniAi prevent WhatsApp downtime during migration?",
@@ -26,7 +26,7 @@ export default function CrmMigrationGuidePage() {
     },
     {
       question: "What data formats are supported for migration?",
-      answer: "Automated ingestion via REST APIs, CSV/JSON bulk uploads, and direct database webhooks. Pre-built mapping templates are provided for Salesforce Objects, HubSpot Contacts/Deals, and Zoho CRM modules."
+      answer: "Automated ingestion via REST APIs, CSV/JSON bulk uploads, and direct database webhooks. Pre-built mapping templates are provided for standard objects, customer contacts, deals, and custom CRM modules."
     }
   ];
 
@@ -96,10 +96,10 @@ export default function CrmMigrationGuidePage() {
     <div className="guide-page">
       <SeoHead
         title="Enterprise CRM Migration Guide 2026 | Zero-Downtime Blueprint | Gyan VaniAi"
-        description="Step-by-step engineering guide for migrating from Salesforce, HubSpot, or Zoho to Gyan VaniAi. Zero-downtime WhatsApp transfer, schema mapping, and pipeline import."
+        description="Step-by-step engineering guide for migrating from legacy systems to Gyan VaniAi. Zero-downtime WhatsApp transfer, schema mapping, and pipeline import."
         canonical="https://www.gyanvaniai.com/guides/crm-migration"
         schema={articleSchema}
-        keywords="CRM Migration Guide, Salesforce to Gyan VaniAi, HubSpot Migration, Zoho CRM Migration, WhatsApp CRM Transfer"
+        keywords="CRM Migration Guide, Zero Downtime CRM Migration, WhatsApp CRM Transfer, Legacy CRM Data Import"
       />
 
       {/* Hero */}
@@ -152,20 +152,20 @@ export default function CrmMigrationGuidePage() {
           <div className="guide-cluster-card">
             <h3 className="guide-cluster-title">Explore Related Architectural Benchmarks</h3>
             <div className="guide-cluster-links">
-              <Link to="/compare/salesforce-vs-gyanvaniai" className="guide-link-pill">
-                <span>Salesforce vs Gyan VaniAi</span>
-                <ArrowRight size={14} />
-              </Link>
-              <Link to="/compare/hubspot-vs-gyanvaniai" className="guide-link-pill">
-                <span>HubSpot vs Gyan VaniAi</span>
-                <ArrowRight size={14} />
-              </Link>
-              <Link to="/compare/zoho-vs-gyanvaniai" className="guide-link-pill">
-                <span>Zoho vs Gyan VaniAi</span>
-                <ArrowRight size={14} />
-              </Link>
               <Link to="/services/whatsapp-coexistence" className="guide-link-pill">
                 <span>WhatsApp Coexistence Mode</span>
+                <ArrowRight size={14} />
+              </Link>
+              <Link to="/services/whatsapp-catalog-crm" className="guide-link-pill">
+                <span>WhatsApp Catalog CRM</span>
+                <ArrowRight size={14} />
+              </Link>
+              <Link to="/tools/whatsapp-pricing-calculator" className="guide-link-pill">
+                <span>WhatsApp Pricing Calculator</span>
+                <ArrowRight size={14} />
+              </Link>
+              <Link to="/resources/voice-ai-latency-benchmark" className="guide-link-pill">
+                <span>Voice AI Latency Benchmark</span>
                 <ArrowRight size={14} />
               </Link>
             </div>

@@ -75,7 +75,7 @@ const crmAiFacts = [
   },
   {
     question: "How is it different from alternatives?",
-    answer: "Off-the-shelf CRMs typically charge per user and may require add-ons or third-party connectors for WhatsApp. Gyan VaniAi offers flat team tiers, custom pipeline boards, and WhatsApp Business Coexistence support. Compare current vendor pricing before deciding."
+    answer: "Gyan VaniAi offers flat team tiers with zero per-seat fees, 100% bespoke pipeline boards tailored to your exact business logic, and native Meta WhatsApp Business Coexistence built right into the core architecture."
   },
   {
     question: "Pricing",
@@ -199,7 +199,7 @@ export default function CrmDevelopmentPage() {
 
   const faqData = [
     {
-      q: "Why should we build a Custom AI CRM instead of buying Salesforce or HubSpot?",
+      q: "Why should we build a Custom AI CRM instead of using rigid off-the-shelf platforms?",
       a: "Off-the-shelf platforms charge heavy recurring per-seat fees ($95-$165+/user/mo), lock down your database schema, and charge expensive add-ons for WhatsApp or AI capabilities. A custom CRM built by Gyan VaniAi is 100% tailored to your exact sales process, includes native Meta WhatsApp Coexistence, grants complete data ownership, and eliminates per-seat SaaS licensing costs."
     },
     {
@@ -211,8 +211,8 @@ export default function CrmDevelopmentPage() {
       a: "A typical custom CRM project is delivered in 4 to 8 weeks depending on your database complexity, legacy data migration needs, and custom integration requirements. We deliver working milestones in agile sprints so your team can test early."
     },
     {
-      q: "Can you migrate existing records from Salesforce, HubSpot, or Excel spreadsheets?",
-      a: "Absolutely. We perform seamless ETL (Extract, Transform, Load) data migrations from Salesforce, HubSpot, Zoho, Pipedrive, or CSV databases into your custom CRM schema with zero data loss and automated field mapping."
+      q: "Can you migrate existing records from legacy CRMs, databases, or spreadsheets?",
+      a: "Absolutely. We perform seamless ETL (Extract, Transform, Load) data migrations from legacy CRM systems, external databases, or CSV/Excel files into your custom CRM schema with zero data loss and automated field mapping."
     },
     {
       q: "Who owns the code and database of the custom CRM?",
@@ -250,7 +250,7 @@ export default function CrmDevelopmentPage() {
           "Zero Seat Fee Custom CRM",
           "Meta Tech Provider WhatsApp CRM",
           "Enterprise AI Lead Management System",
-          "Custom Salesforce Alternative"
+          "Enterprise Custom AI CRM"
         ]}
         schema={[customCrmServiceSchema, softwareAppSchema, crmFaqSchema]}
       />
@@ -756,16 +756,16 @@ export default function CrmDevelopmentPage() {
         </section>
 
         {/* ==========================================
-            COMPARISON TABLE: CUSTOM CRM VS LEGACY SAAS
+            ENTERPRISE ARCHITECTURE STANDARDS & CAPABILITIES
             ========================================== */}
         <section className="crm-compare-section">
           <div className="crm-section-header">
             <div className="crm-section-tag">
-              <Zap size={14} /> Competitive Advantage
+              <ShieldCheck size={14} /> Architecture Standards
             </div>
-            <h2 className="crm-section-title">Custom AI CRM vs. Off-The-Shelf SaaS</h2>
+            <h2 className="crm-section-title">Custom AI CRM: Engineering & Capability Standards</h2>
             <p className="crm-section-subtitle">
-              How a custom-built Gyan VaniAi CRM can differ from typical off-the-shelf per-seat SaaS CRMs. Capabilities vary by vendor and plan.
+              Full data sovereignty, native Meta WhatsApp coexistence, and autonomous AI pipelines engineered to your exact operational requirements.
             </p>
           </div>
 
@@ -773,41 +773,34 @@ export default function CrmDevelopmentPage() {
             <table className="crm-compare-table">
               <thead>
                 <tr>
-                  <th>Feature / Capability</th>
-                  <th>Typical off-the-shelf SaaS CRM</th>
-                  <th>Gyan VaniAi Custom AI CRM</th>
+                  <th>Architectural Dimension</th>
+                  <th>Gyan VaniAi Engineering Standard & Delivery</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td><strong>Pricing Architecture</strong></td>
-                  <td><span className="crm-cross-badge"><X size={14} /> Often per-seat pricing; varies by vendor and plan</span></td>
-                  <td><span className="crm-check-badge"><Check size={14} /> $0 Per-Seat Fees (Unlimited Users)</span></td>
+                  <td><span className="crm-check-badge"><Check size={14} /> $0 Per-Seat Fees (Unlimited Users & Flat Team Licensing)</span></td>
                 </tr>
                 <tr>
                   <td><strong>Meta WhatsApp Coexistence</strong></td>
-                  <td><span className="crm-cross-badge"><X size={14} /> Requires 3rd party plugins / separate app</span></td>
-                  <td><span className="crm-check-badge"><Check size={14} /> Native Dual-Surface Sync Included</span></td>
+                  <td><span className="crm-check-badge"><Check size={14} /> Native Dual-Surface Sync (Official Mobile App + AI CRM Desktop Inbox)</span></td>
                 </tr>
                 <tr>
                   <td><strong>Database Schema & Objects</strong></td>
-                  <td><span className="crm-cross-badge"><X size={14} /> Rigid standardized objects & entity limits</span></td>
-                  <td><span className="crm-check-badge"><Check size={14} /> 100% Tailored to Your Business Logic</span></td>
+                  <td><span className="crm-check-badge"><Check size={14} /> 100% Tailored to Your Business Logic & Custom Relational Entities</span></td>
                 </tr>
                 <tr>
                   <td><strong>AI Lead Scoring & Bots</strong></td>
-                  <td><span className="crm-cross-badge"><X size={14} /> Locked behind enterprise add-on packages</span></td>
-                  <td><span className="crm-check-badge"><Check size={14} /> Built-in RAG & Autonomous AI Agents</span></td>
+                  <td><span className="crm-check-badge"><Check size={14} /> Built-in RAG & Autonomous Voice/Chat AI Agents (Sub-300ms Turnaround)</span></td>
                 </tr>
                 <tr>
                   <td><strong>Code & Data Sovereignty</strong></td>
-                  <td><span className="crm-cross-badge"><X size={14} /> Locked inside vendor cloud environment</span></td>
-                  <td><span className="crm-check-badge"><Check size={14} /> You Own 100% Code & Database</span></td>
+                  <td><span className="crm-check-badge"><Check size={14} /> You Own 100% Code & Database (Dedicated Cloud / On-Premise SLA)</span></td>
                 </tr>
                 <tr>
                   <td><strong>Custom Webhook & ERP Sync</strong></td>
-                  <td><span className="crm-cross-badge"><X size={14} /> Complex API limits & expensive connectors</span></td>
-                  <td><span className="crm-check-badge"><Check size={14} /> Unlimited API Webhooks & ERP Sync</span></td>
+                  <td><span className="crm-check-badge"><Check size={14} /> Unlimited API Webhooks, Real-Time Bidirectional Event Streaming & ERP Sync</span></td>
                 </tr>
               </tbody>
             </table>
@@ -865,7 +858,7 @@ export default function CrmDevelopmentPage() {
               <div className="crm-step-num">05</div>
               <h3 className="crm-step-title">Data ETL & Legacy Migration</h3>
               <p className="crm-step-desc">
-                We extract, clean, and load your existing records from Salesforce, HubSpot, Excel, or SQL databases with zero data loss.
+                We extract, clean, and load your existing customer records from legacy systems, spreadsheets, or SQL databases with zero data loss.
               </p>
             </div>
 

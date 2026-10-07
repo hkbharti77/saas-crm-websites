@@ -223,7 +223,7 @@ export default function RealEstatePage() {
               <div className="re-trust-item"><MessageSquare size={18} color="var(--primary-color)" /> WhatsApp Business API</div>
               <div className="re-trust-item"><Layers size={18} color="var(--re-amber)" /> Meta Lead Ads Sync</div>
               <div className="re-trust-item"><Building size={18} color="var(--primary-color)" /> Zillow & Realtor MLS</div>
-              <div className="re-trust-item"><Database size={18} color="var(--re-amber)" /> Salesforce & Custom CRM</div>
+              <div className="re-trust-item"><Database size={18} color="var(--re-amber)" /> Enterprise & Custom CRM</div>
               <div className="re-trust-item"><ShieldCheck size={18} color="var(--primary-color)" /> 256-Bit SSL Encryption</div>
             </div>
           </div>

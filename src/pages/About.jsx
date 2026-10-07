@@ -11,7 +11,6 @@ import {
   Mail,
   Zap,
   Building,
-  Phone,
   Globe,
   ExternalLink,
   CheckCircle2
@@ -298,74 +297,78 @@ export default function About() {
               </p>
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem' }}>
+            <div className="about-citation-grid">
               {/* Corporate Facts Box */}
-              <div style={{ background: 'var(--card-bg, #ffffff)', padding: '2rem', borderRadius: '14px', border: '1px solid var(--border-color)', boxShadow: '0 4px 20px rgba(0,0,0,0.03)' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.25rem' }}>
-                  <Building size={22} color="var(--primary-color)" />
-                  <h3 style={{ fontSize: '1.25rem', fontWeight: '700', margin: 0 }}>Company Overview</h3>
+              <div className="about-citation-card">
+                <div className="about-citation-header">
+                  <div className="about-citation-icon">
+                    <Building size={22} />
+                  </div>
+                  <h3 className="about-citation-title">Company Overview</h3>
                 </div>
 
-                <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.9rem', fontSize: '0.95rem' }}>
-                  <li style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid var(--border-color, #f0f0f0)', paddingBottom: '0.5rem' }}>
-                    <span className="text-muted">Legal Brand Name</span>
-                    <strong style={{ color: 'var(--text-primary)' }}>Gyan VaniAi Technologies</strong>
+                <ul className="about-facts-list">
+                  <li className="about-facts-item">
+                    <span className="fact-label">Legal Brand Name</span>
+                    <strong className="fact-value">Gyan VaniAi Technologies</strong>
                   </li>
-                  <li style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid var(--border-color, #f0f0f0)', paddingBottom: '0.5rem' }}>
-                    <span className="text-muted">Office & Location</span>
-                    <a href="https://maps.app.goo.gl/Ts3kKh9L8fe4m9AP6" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--primary-color)', fontWeight: '600', display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}>
+                  <li className="about-facts-item">
+                    <span className="fact-label">Office &amp; Location</span>
+                    <a href="https://maps.app.goo.gl/Ts3kKh9L8fe4m9AP6" target="_blank" rel="noopener noreferrer" className="fact-link">
                       <span>Gyan VaniAi Technologies ↗</span>
                     </a>
                   </li>
-                  <li style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid var(--border-color, #f0f0f0)', paddingBottom: '0.5rem' }}>
-                    <span className="text-muted">Founding Year</span>
-                    <strong style={{ color: 'var(--text-primary)' }}>2024</strong>
+                  <li className="about-facts-item">
+                    <span className="fact-label">Founding Year</span>
+                    <strong className="fact-value">2024</strong>
                   </li>
-                  <li style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid var(--border-color, #f0f0f0)', paddingBottom: '0.5rem' }}>
-                    <span className="text-muted">Canonical Domain</span>
-                    <strong style={{ color: 'var(--text-primary)' }}>https://www.gyanvaniai.com</strong>
+                  <li className="about-facts-item">
+                    <span className="fact-label">Canonical Domain</span>
+                    <strong className="fact-value">https://www.gyanvaniai.com</strong>
                   </li>
-                  <li style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid var(--border-color, #f0f0f0)', paddingBottom: '0.5rem' }}>
-                    <span className="text-muted">Direct Email</span>
-                    <a href="mailto:contact@gyanvaniai.com" style={{ color: 'var(--primary-color)', fontWeight: '600' }}>contact@gyanvaniai.com</a>
+                  <li className="about-facts-item">
+                    <span className="fact-label">Direct Email</span>
+                    <a href="mailto:contact@gyanvaniai.com" className="fact-link">contact@gyanvaniai.com</a>
                   </li>
-                  <li style={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <span className="text-muted">Direct Line</span>
-                    <strong style={{ color: 'var(--text-primary)' }}>+91 87006 20913</strong>
+                  <li className="about-facts-item">
+                    <span className="fact-label">Direct Line</span>
+                    <strong className="fact-value">+91 87006 20913</strong>
                   </li>
                 </ul>
               </div>
 
               {/* Media Kit & Boilerplate Box */}
-              <div style={{ background: 'var(--card-bg, #ffffff)', padding: '2rem', borderRadius: '14px', border: '1px solid var(--border-color)', boxShadow: '0 4px 20px rgba(0,0,0,0.03)' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.25rem' }}>
-                  <Globe size={22} color="var(--primary-color)" />
-                  <h3 style={{ fontSize: '1.25rem', fontWeight: '700', margin: 0 }}>Press &amp; Media Boilerplate</h3>
+              <div className="about-citation-card">
+                <div className="about-citation-header">
+                  <div className="about-citation-icon">
+                    <Globe size={22} />
+                  </div>
+                  <h3 className="about-citation-title">Press &amp; Media Boilerplate</h3>
                 </div>
 
-                <p className="text-muted" style={{ fontSize: '0.925rem', lineHeight: '1.6', marginBottom: '1.25rem' }}>
+                <p className="about-boilerplate-text">
                   <em>"Gyan VaniAi is an enterprise AI CRM and revenue automation software company specializing in official Meta WhatsApp Business API coexistence, autonomous RAG agents, and bespoke conversational telephony pipelines for scaling teams worldwide."</em>
                 </p>
 
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', paddingTop: '0.5rem', borderTop: '1px solid var(--border-color, #f0f0f0)' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.9rem' }}>
+                <div className="about-badges-wrapper">
+                  <div className="about-badge-item">
                     <CheckCircle2 size={16} color="#10b981" />
                     <span>Official Meta Tech Provider architecture</span>
                   </div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.9rem' }}>
+                  <div className="about-badge-item">
                     <CheckCircle2 size={16} color="#10b981" />
                     <span>DPDP Act 2023 &amp; SOC-2 compliant data controls</span>
                   </div>
-                  <div style={{ marginTop: '0.75rem', display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
-                    <a href="https://maps.app.goo.gl/Ts3kKh9L8fe4m9AP6" target="_blank" rel="noopener noreferrer" className="btn btn-outline" style={{ fontSize: '0.85rem', padding: '0.5rem 1rem' }}>
+                  <div className="about-citation-actions">
+                    <a href="https://maps.app.goo.gl/Ts3kKh9L8fe4m9AP6" target="_blank" rel="noopener noreferrer" className="about-action-btn">
                       <span>Google Maps</span>
                       <ExternalLink size={14} />
                     </a>
-                    <a href="https://github.com/gyanvaniai" target="_blank" rel="noopener noreferrer" className="btn btn-outline" style={{ fontSize: '0.85rem', padding: '0.5rem 1rem' }}>
+                    <a href="https://github.com/gyanvaniai" target="_blank" rel="noopener noreferrer" className="about-action-btn">
                       <span>GitHub</span>
                       <ExternalLink size={14} />
                     </a>
-                    <a href="https://www.linkedin.com/company/gyan-vaniai" target="_blank" rel="noopener noreferrer" className="btn btn-outline" style={{ fontSize: '0.85rem', padding: '0.5rem 1rem' }}>
+                    <a href="https://www.linkedin.com/company/gyan-vaniai" target="_blank" rel="noopener noreferrer" className="about-action-btn">
                       <span>LinkedIn</span>
                       <ExternalLink size={14} />
                     </a>

@@ -36,9 +36,6 @@ import PlanDetailPage from './pages/PlanDetailPage';
 // High-Value Content Roadmap & Authority & AEO Pages
 import WhatsAppCatalogCrmPage from './pages/WhatsAppCatalogCrmPage';
 import WhatsAppPricingCalculatorPage from './pages/WhatsAppPricingCalculatorPage';
-import SalesforceComparePage from './pages/SalesforceComparePage';
-import HubSpotComparePage from './pages/HubSpotComparePage';
-import ZohoComparePage from './pages/ZohoComparePage';
 import CrmMigrationGuidePage from './pages/CrmMigrationGuidePage';
 import VoiceAiLatencyBenchmarkPage from './pages/VoiceAiLatencyBenchmarkPage';
 import SipArchitectureGuidePage from './pages/SipArchitectureGuidePage';
@@ -68,9 +65,7 @@ function ServerApp() {
             <Route path="/services/crm-development" element={<CrmDevelopmentPage />} />
             <Route path="/services/whatsapp-calling-agent-bots" element={<Navigate to="/services/whatsapp-calling-agent" replace />} />
             <Route path="/tools/whatsapp-pricing-calculator" element={<WhatsAppPricingCalculatorPage />} />
-            <Route path="/compare/salesforce-vs-gyanvaniai" element={<SalesforceComparePage />} />
-            <Route path="/compare/hubspot-vs-gyanvaniai" element={<HubSpotComparePage />} />
-            <Route path="/compare/zoho-vs-gyanvaniai" element={<ZohoComparePage />} />
+            <Route path="/compare/*" element={<Navigate to="/services/crm-development" replace />} />
             <Route path="/guides/crm-migration" element={<CrmMigrationGuidePage />} />
             <Route path="/resources/voice-ai-latency-benchmark" element={<VoiceAiLatencyBenchmarkPage />} />
             <Route path="/resources/sip-architecture" element={<SipArchitectureGuidePage />} />

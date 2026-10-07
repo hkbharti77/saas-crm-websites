@@ -885,27 +885,6 @@
       "rationale": "Prospective clients need accurate calculation of Meta conversation charges (Marketing, Utility, Service) vs SaaS platform fees."
     },
     {
-      "topic": "Salesforce vs Gyan VaniAi Comparison",
-      "intent": "Commercial Investigation",
-      "priority": "High",
-      "recommendedPage": "/compare/salesforce-vs-gyanvaniai",
-      "rationale": "Enterprise buyers comparing heavy traditional CRM against agile WhatsApp coexistence & sub-300ms voice AI architecture."
-    },
-    {
-      "topic": "HubSpot vs Gyan VaniAi Comparison",
-      "intent": "Commercial Investigation",
-      "priority": "High",
-      "recommendedPage": "/compare/hubspot-vs-gyanvaniai",
-      "rationale": "Mid-market businesses evaluating seat-based pricing and native WhatsApp Business API depth."
-    },
-    {
-      "topic": "Zoho CRM vs Gyan VaniAi Comparison",
-      "intent": "Commercial Investigation",
-      "priority": "High",
-      "recommendedPage": "/compare/zoho-vs-gyanvaniai",
-      "rationale": "Indian enterprise & SME buyers evaluating coexistence, UPI automation, and Indian telecom compliance."
-    },
-    {
       "topic": "Enterprise CRM Migration Architecture Guide",
       "intent": "Educational / High Intent",
       "priority": "Medium",

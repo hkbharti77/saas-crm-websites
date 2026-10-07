@@ -69,7 +69,7 @@ const salesAiFacts = [
   },
   {
     question: "Integrations",
-    answer: "Meta WhatsApp Cloud API, HubSpot, Salesforce, Zoho, Google Ads, Meta Lead Ads, Stripe, Razorpay, and REST webhooks."
+    answer: "Meta WhatsApp Cloud API, enterprise CRMs, Google Ads, Meta Lead Ads, Stripe, Razorpay, and REST webhooks."
   }
 ];
 
@@ -237,7 +237,7 @@ const salesFaqs = [
   },
   {
     q: 'Can this integrate with our existing CRM and lead sources?',
-    a: 'Yes. We build webhook and API connectors for custom CRMs, HubSpot, Salesforce, Zoho, Google Ads, Meta Lead Ads, website forms, and WhatsApp Business API so data syncs bidirectionally in real time.'
+    a: 'Yes. We build webhook and API connectors for custom CRMs, enterprise systems, Google Ads, Meta Lead Ads, website forms, and WhatsApp Business API so data syncs bidirectionally in real time.'
   },
   {
     q: 'How does AI lead scoring prioritize opportunities?',

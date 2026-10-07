@@ -73,7 +73,7 @@ const coexistenceAiFacts = [
   },
   {
     question: "Integrations",
-    answer: "Official Meta WhatsApp Cloud API, Shopify, WooCommerce, Razorpay, Google Sheets, HubSpot, Salesforce, and custom REST webhooks."
+    answer: "Official Meta WhatsApp Cloud API, Shopify, WooCommerce, Razorpay, Google Sheets, enterprise CRMs, and custom REST webhooks."
   }
 ];
 
@@ -413,7 +413,7 @@ export default function WhatsAppCoexistencePage() {
                           </div>
                           <div className="coex-crm-row">
                             <span className="coex-crm-key">Auto Action:</span>
-                            <span className="coex-crm-val">Logged into Salesforce</span>
+                            <span className="coex-crm-val">Logged into CRM Database</span>
                           </div>
                           <div className="coex-crm-row">
                             <span className="coex-crm-key">AI Agent:</span>

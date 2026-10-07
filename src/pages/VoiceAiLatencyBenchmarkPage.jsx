@@ -137,7 +137,7 @@ export default function VoiceAiLatencyBenchmarkPage() {
           </div>
 
           <div className="table-responsive">
-            <table className="compare-table" style={{ background: 'rgba(255,255,255,0.02)', borderRadius: '12px' }}>
+            <table className="guide-table" style={{ background: 'rgba(255,255,255,0.02)', borderRadius: '12px' }}>
               <thead>
                 <tr>
                   <th>Pipeline Stage</th>

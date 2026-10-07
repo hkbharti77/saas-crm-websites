@@ -68,7 +68,7 @@ const chatbotAiFacts = [
   },
   {
     question: "Integrations",
-    answer: "Meta WhatsApp Cloud API, Shopify, WooCommerce, Salesforce, HubSpot, Zendesk, Freshdesk, Slack, and REST webhooks."
+    answer: "Meta WhatsApp Cloud API, Shopify, WooCommerce, enterprise CRMs, Zendesk, Freshdesk, Slack, and REST webhooks."
   }
 ];
 
@@ -201,7 +201,7 @@ export default function AIChatbotsPage() {
     {
       title: 'CRM Integration',
       icon: <Layers size={20} />,
-      desc: 'Bidirectional sync with custom CRMs, HubSpot, and Salesforce to log interactions and manage pipeline deals.'
+      desc: 'Bidirectional sync with custom CRMs and enterprise databases to log interactions and manage pipeline deals.'
     },
     {
       title: 'API & Tool Calling',
@@ -236,7 +236,7 @@ export default function AIChatbotsPage() {
     },
     {
       q: 'Can it connect with our CRM?',
-      a: 'Yes. Our AI chatbots integrate bidirectionally with custom CRMs, HubSpot, Salesforce, Zoho, and custom SQL databases to look up existing customer records, log transcripts, update deal stages, and create contacts automatically.'
+      a: 'Yes. Our AI chatbots integrate bidirectionally with custom CRMs, enterprise platforms, and custom SQL databases to look up existing customer records, log transcripts, update deal stages, and create contacts automatically.'
     },
     {
       q: 'Can it perform actions through APIs?',

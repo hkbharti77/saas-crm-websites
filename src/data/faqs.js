@@ -9,7 +9,7 @@ export const defaultFaqs = [
   },
   {
     question: 'Can you integrate with existing systems?',
-    answer: 'Absolutely. Our solutions are designed to seamlessly integrate with your existing databases, legacy software, and third-party APIs like Salesforce, HubSpot, Zoho, Stripe, or SAP.'
+    answer: 'Absolutely. Our solutions are designed to seamlessly integrate with your existing databases, legacy software, enterprise systems, Stripe, or SAP.'
   },
   {
     question: 'Do you provide post-launch support?',

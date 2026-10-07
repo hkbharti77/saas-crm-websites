@@ -80,9 +80,6 @@ This production audit establishes strict, verifiable boundaries between **techni
 | :--- | :--- | :--- | :--- | :--- |
 | `/services/whatsapp-catalog-crm` | `PASS` | Deployed (6 Q&As) | `Service` | In Sitemap & Verified |
 | `/tools/whatsapp-pricing-calculator` | `PASS` | Deployed (4 Q&As) | `SoftwareApplication` | In Sitemap & Verified |
-| `/compare/salesforce-vs-gyanvaniai` | `PASS` | Deployed (4 Q&As) | `Product` | In Sitemap & Verified |
-| `/compare/hubspot-vs-gyanvaniai` | `PASS` | Deployed (4 Q&As) | `Product` | In Sitemap & Verified |
-| `/compare/zoho-vs-gyanvaniai` | `PASS` | Deployed (4 Q&As) | `Product` | In Sitemap & Verified |
 | `/guides/crm-migration` | `PASS` | Deployed (4 Q&As) | `TechArticle` | In Sitemap & Verified |
 | `/resources/voice-ai-latency-benchmark` | `PASS` | Deployed (4 Q&As) | `TechArticle` | In Sitemap & Verified |
 | `/resources/sip-architecture` | `PASS` | Deployed (4 Q&As) | `TechArticle` | In Sitemap & Verified |
@@ -159,7 +156,7 @@ This production audit establishes strict, verifiable boundaries between **techni
 | :--- | :--- | :--- |
 | **Navigation Hierarchy** | `PASS` | Clear 3-tier taxonomy: Primary Header -> Topic Clusters / Service Pillars -> Informational Guides & Comparisons. |
 | **Footer Link Architecture** | `PASS` | Extended footer incorporates direct contextual links to all 10 new roadmap pages across 4 structured columns. |
-| **Cross-Pillar Hub Linking** | `PASS` | Comparison pages (`/compare/*`) cross-link to relevant service pages (`/services/whatsapp-coexistence`, `/services/sales-automation`) and pricing. |
+| **Cross-Pillar Hub Linking** | `PASS` | Pillar pages cross-link to relevant service pages (`/services/whatsapp-coexistence`, `/services/sales-automation`) and pricing. |
 | **Engineering Guide Silo Links** | `PASS` | Guides (`/resources/*`, `/guides/*`) maintain internal contextual pills linking to related architecture documentation. |
 | **Anchor Text Specificity** | `PASS` | Zero generic anchor texts ("click here", "read more"). Descriptive anchor texts utilized consistently throughout. |
 

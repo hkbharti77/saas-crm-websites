@@ -1,6 +1,6 @@
 .where-to-find-us-page {
   padding-top: 5rem;
-  color: var(--text-color, #ffffff);
+  color: var(--text-primary);
 }
 
 .where-hero {
@@ -13,39 +13,47 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.4rem 1rem;
-  background: rgba(15, 118, 110, 0.12);
-  border: 1px solid rgba(15, 118, 110, 0.3);
-  color: #14b8a6;
-  font-size: 0.8rem;
-  font-weight: 600;
-  border-radius: 9999px;
+  background: color-mix(in srgb, var(--primary-color) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--primary-color) 30%, transparent);
+  color: var(--primary-color);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  border-radius: var(--radius-full, 9999px);
   margin-bottom: 1.25rem;
 }
 
 .where-hero-title {
-  font-size: 2.75rem;
+  font-family: var(--font-display, var(--font-sans));
+  font-size: clamp(2.2rem, 3.8vw, 3rem);
   font-weight: 800;
   letter-spacing: -0.03em;
   margin-bottom: 1rem;
+  color: var(--text-primary);
 }
 
 .where-hero-subtitle {
   font-size: 1.1rem;
-  color: var(--text-muted, #94a3b8);
+  color: var(--text-secondary);
   max-width: 760px;
   margin: 0 auto;
   line-height: 1.6;
 }
 
+/* ==================================================
+   NAP CONSISTENCY PANEL
+   ================================================== */
 .where-nap-section {
-  padding: 2rem 0;
+  padding: 1.75rem 0;
 }
 
 .where-nap-card {
-  background: var(--card-bg, rgba(255, 255, 255, 0.03));
-  border: 1px solid var(--border-color, rgba(255, 255, 255, 0.1));
-  border-radius: 16px;
+  background: var(--bg-card, var(--glass-bg));
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg, 16px);
   padding: 2rem;
+  box-shadow: var(--shadow-sm);
 }
 
 .where-nap-heading {
@@ -53,236 +61,69 @@
   align-items: center;
   gap: 0.75rem;
   font-size: 1.25rem;
-  font-weight: 700;
+  font-weight: 750;
   margin-bottom: 1.5rem;
-  color: #2dd4bf;
+  color: var(--primary-color);
 }
 
 .where-nap-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 1.5rem;
 }
 
 .where-nap-item {
   display: flex;
   flex-direction: column;
-  gap: 0.3rem;
+  gap: 0.35rem;
 }
 
 .where-nap-label {
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: var(--text-muted, #94a3b8);
+  color: var(--text-muted);
+  font-weight: 600;
 }
 
 .where-nap-val {
-  font-size: 1rem;
-  color: #ffffff;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.4;
 }
 
 .where-nap-note {
-  font-size: 0.75rem;
-  color: #64748b;
+  font-size: 0.775rem;
+  color: var(--text-muted);
 }
 
 .where-link {
-  color: #2dd4bf;
+  color: var(--primary-color);
   text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.15s ease;
 }
 
-.where-profiles-section, .where-ecosystem-section {
-  padding: 3rem 0;
+.where-link:hover {
+  color: var(--primary-hover);
 }
 
-.where-section-header {
-  margin-bottom: 2rem;
-}
-
-.where-pill-live {
-  display: inline-block;
-  padding: 0.25rem 0.65rem;
-  background: rgba(16, 185, 129, 0.15);
-  border: 1px solid rgba(16, 185, 129, 0.3);
-  color: #10b981;
-  font-size: 0.75rem;
-  font-weight: 700;
-  border-radius: 9999px;
-  margin-bottom: 0.5rem;
-}
-
-.where-pill-target {
-  display: inline-block;
-  padding: 0.25rem 0.65rem;
-  background: rgba(15, 118, 110, 0.15);
-  border: 1px solid rgba(15, 118, 110, 0.3);
-  color: #2dd4bf;
-  font-size: 0.75rem;
-  font-weight: 700;
-  border-radius: 9999px;
-  margin-bottom: 0.5rem;
-}
-
-.where-section-title {
-  font-size: 1.85rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  margin-bottom: 0.5rem;
-}
-
-.where-section-desc {
-  font-size: 0.95rem;
-  color: var(--text-muted, #94a3b8);
-  max-width: 680px;
-}
-
-.where-cards-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 1.5rem;
-}
-
-.where-profile-card {
-  background: var(--card-bg, rgba(255, 255, 255, 0.02));
-  border: 1px solid var(--border-color, rgba(255, 255, 255, 0.08));
-  border-radius: 12px;
-  padding: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  transition: transform 0.2s ease, border-color 0.2s ease;
-}
-
-.where-profile-card:hover {
-  transform: translateY(-2px);
-  border-color: rgba(15, 118, 110, 0.4);
-}
-
-.where-profile-card.live {
-  border-top: 3px solid #10b981;
-}
-
-.where-profile-card.opportunity {
-  border-top: 3px solid #0f766e;
-}
-
-.where-card-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0.75rem;
-}
-
-.where-platform-name {
-  font-size: 1.1rem;
-  font-weight: 700;
-}
-
-.where-status-live {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.25rem;
-  padding: 0.2rem 0.5rem;
-  background: rgba(16, 185, 129, 0.15);
-  color: #10b981;
-  font-size: 0.7rem;
-  font-weight: 700;
-  border-radius: 4px;
-}
-
-.where-status-target {
-  display: inline-block;
-  padding: 0.2rem 0.5rem;
-  background: rgba(15, 118, 110, 0.15);
-  color: #2dd4bf;
-  font-size: 0.7rem;
-  font-weight: 700;
-  border-radius: 4px;
-}
-
-.where-card-desc {
-  font-size: 0.85rem;
-  color: var(--text-muted, #cbd5e1);
-  line-height: 1.5;
-  margin-bottom: 1rem;
-  flex-grow: 1;
-}
-
-.where-card-meta {
-  font-size: 0.8rem;
-  color: var(--text-muted, #94a3b8);
-  margin-bottom: 1.25rem;
-  padding-top: 0.5rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.where-card-footer {
-  display: flex;
-}
-
-.where-action-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: #10b981;
-  text-decoration: underline;
-}
-
-.where-action-btn.secondary {
-  color: #2dd4bf;
-}
-
-.where-nav-section {
-  padding: 2rem 0;
-}
-
-.where-nav-box {
-  background: rgba(0, 0, 0, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 12px;
-  padding: 1.5rem;
-  text-align: center;
-}
-
-.where-nav-heading {
-  font-size: 1rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
-  color: var(--text-muted, #94a3b8);
-}
-
-.where-nav-links {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 1.5rem;
-}
-
-.where-nav-link {
-  color: #2dd4bf;
-  font-size: 0.9rem;
-  text-decoration: underline;
-}
-
-@media (max-width: 768px) {
-  .where-hero-title {
-    font-size: 2rem;
-  }
-}
-
-/* Office Location & Google Maps Section */
+/* ==================================================
+   OFFICE LOCATION & GOOGLE MAPS SECTION
+   ================================================== */
 .where-map-section {
   padding: 1rem 0 2.5rem;
 }
 
 .where-map-card {
-  background: var(--card-bg, rgba(255, 255, 255, 0.03));
-  border: 1px solid var(--border-color, rgba(255, 255, 255, 0.1));
-  border-radius: 16px;
+  background: var(--bg-card, var(--glass-bg));
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg, 16px);
   padding: 2rem;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--shadow-md);
 }
 
 .where-map-header {
@@ -295,18 +136,19 @@
 }
 
 .where-map-title {
-  font-size: 1.75rem;
-  font-weight: 750;
+  font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+  font-weight: 800;
   letter-spacing: -0.02em;
   margin: 0.35rem 0 0.5rem;
-  color: var(--text-color, #ffffff);
+  color: var(--text-primary);
+  line-height: 1.25;
 }
 
 .where-map-desc {
-  font-size: 0.95rem;
-  color: var(--text-muted, #94a3b8);
+  font-size: 0.98rem;
+  color: var(--text-secondary);
   max-width: 620px;
-  line-height: 1.55;
+  line-height: 1.6;
   margin: 0;
 }
 
@@ -317,12 +159,22 @@
 .where-map-directions-btn {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  font-size: 0.925rem;
-  font-weight: 650;
+  gap: 0.55rem;
+  font-size: 0.95rem;
+  font-weight: 700;
   padding: 0.75rem 1.4rem;
-  border-radius: 10px;
+  border-radius: var(--radius-md, 10px);
   text-decoration: none;
+  background: var(--primary-color);
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(15, 118, 110, 0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.where-map-directions-btn:hover {
+  transform: translateY(-2px);
+  background: var(--primary-hover);
+  box-shadow: 0 8px 24px rgba(15, 118, 110, 0.4);
 }
 
 .where-map-frame-wrapper {
@@ -330,29 +182,267 @@
   width: 100%;
   border-radius: 12px;
   overflow: hidden;
-  border: 1px solid var(--border-color, rgba(255, 255, 255, 0.1));
-  background: rgba(0, 0, 0, 0.3);
-  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--border-color);
+  background: var(--bg-card);
+  box-shadow: var(--shadow-sm);
 }
 
 .where-map-frame-wrapper iframe {
   display: block;
   width: 100%;
-  min-height: 420px;
+  min-height: 440px;
+  border: none;
 }
 
-@media (max-width: 640px) {
-  .where-map-card {
-    padding: 1.25rem;
+/* ==================================================
+   VERIFIED CHANNELS & DIRECTORIES
+   ================================================== */
+.where-profiles-section, 
+.where-ecosystem-section {
+  padding: 2.75rem 0;
+}
+
+.where-section-header {
+  margin-bottom: 2rem;
+}
+
+.where-pill-live {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.65rem;
+  background: color-mix(in srgb, #10b981 14%, transparent);
+  border: 1px solid color-mix(in srgb, #10b981 30%, transparent);
+  color: #10b981;
+  font-size: 0.75rem;
+  font-weight: 750;
+  border-radius: var(--radius-full, 9999px);
+  margin-bottom: 0.5rem;
+}
+
+[data-theme="light"] .where-pill-live {
+  color: #047857;
+  background: rgba(16, 185, 129, 0.12);
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+.where-pill-target {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.65rem;
+  background: color-mix(in srgb, var(--primary-color) 14%, transparent);
+  border: 1px solid color-mix(in srgb, var(--primary-color) 30%, transparent);
+  color: var(--primary-color);
+  font-size: 0.75rem;
+  font-weight: 750;
+  border-radius: var(--radius-full, 9999px);
+  margin-bottom: 0.5rem;
+}
+
+.where-section-title {
+  font-size: 1.85rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+}
+
+.where-section-desc {
+  font-size: 0.98rem;
+  color: var(--text-secondary);
+  max-width: 680px;
+  line-height: 1.6;
+}
+
+.where-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+.where-profile-card {
+  background: var(--bg-card, var(--glass-bg));
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg, 14px);
+  padding: 1.65rem;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.where-profile-card:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--primary-color) 40%, var(--border-color));
+  box-shadow: var(--shadow-md);
+}
+
+.where-profile-card.live {
+  border-top: 3px solid #10b981;
+}
+
+.where-profile-card.opportunity {
+  border-top: 3px solid var(--primary-color);
+}
+
+.where-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.85rem;
+}
+
+.where-platform-name {
+  font-size: 1.125rem;
+  font-weight: 750;
+  color: var(--text-primary);
+}
+
+.where-status-live {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.2rem 0.55rem;
+  background: color-mix(in srgb, #10b981 14%, transparent);
+  border: 1px solid color-mix(in srgb, #10b981 25%, transparent);
+  color: #10b981;
+  font-size: 0.7rem;
+  font-weight: 800;
+  border-radius: 6px;
+}
+
+[data-theme="light"] .where-status-live {
+  color: #047857;
+  background: rgba(16, 185, 129, 0.12);
+  border-color: rgba(16, 185, 129, 0.25);
+}
+
+.where-status-target {
+  display: inline-block;
+  padding: 0.2rem 0.55rem;
+  background: color-mix(in srgb, var(--primary-color) 14%, transparent);
+  border: 1px solid color-mix(in srgb, var(--primary-color) 25%, transparent);
+  color: var(--primary-color);
+  font-size: 0.7rem;
+  font-weight: 800;
+  border-radius: 6px;
+}
+
+.where-card-desc {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  margin-bottom: 1.15rem;
+  flex-grow: 1;
+}
+
+.where-card-meta {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-bottom: 1.25rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border-color);
+  line-height: 1.5;
+}
+
+.where-card-meta code {
+  color: var(--primary-color);
+  background: color-mix(in srgb, var(--primary-color) 8%, transparent);
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.8em;
+}
+
+.where-card-footer {
+  display: flex;
+}
+
+.where-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.88rem;
+  font-weight: 650;
+  color: #10b981;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+[data-theme="light"] .where-action-btn {
+  color: #047857;
+}
+
+.where-action-btn:hover {
+  opacity: 0.85;
+  transform: translateX(2px);
+}
+
+.where-action-btn.secondary {
+  color: var(--primary-color);
+}
+
+/* ==================================================
+   INTERNAL NAVIGATION & RELATED HUBS
+   ================================================== */
+.where-nav-section {
+  padding: 2rem 0;
+}
+
+.where-nav-box {
+  background: var(--bg-card, var(--glass-bg));
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg, 14px);
+  padding: 1.75rem;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+}
+
+.where-nav-heading {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+
+.where-nav-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.where-nav-link {
+  color: var(--primary-color);
+  font-size: 0.92rem;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.15s ease;
+}
+
+.where-nav-link:hover {
+  color: var(--primary-hover);
+}
+
+/* ==================================================
+   RESPONSIVE
+   ================================================== */
+@media (max-width: 768px) {
+  .where-hero-title {
+    font-size: 2.1rem;
   }
-  .where-map-title {
-    font-size: 1.35rem;
+  .where-map-card {
+    padding: 1.35rem;
   }
   .where-map-directions-btn {
     width: 100%;
     justify-content: center;
   }
   .where-map-frame-wrapper iframe {
-    min-height: 320px;
+    min-height: 340px;
   }
 }

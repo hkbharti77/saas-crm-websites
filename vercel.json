@@ -27,6 +27,11 @@
       "permanent": true
     },
     {
+      "source": "/compare/:path*",
+      "destination": "https://www.gyanvaniai.com/services/crm-development",
+      "permanent": true
+    },
+    {
       "source": "/services/whatsapp-calling-agent-bots",
       "destination": "https://www.gyanvaniai.com/services/whatsapp-calling-agent",
       "permanent": true

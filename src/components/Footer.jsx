@@ -138,12 +138,12 @@ export default function Footer() {
               </button>
             </div>
             <div className="link-group">
-              <h3 className="link-title">Solutions & Compare</h3>
+              <h3 className="link-title">Enterprise Solutions</h3>
               <Link to="/services/sales-automation" className="footer-link">Sales Automation</Link>
               <Link to="/services/ai-chatbots" className="footer-link">AI Chatbots</Link>
-              <Link to="/compare/salesforce-vs-gyanvaniai" className="footer-link">Salesforce vs Gyan VaniAi</Link>
-              <Link to="/compare/hubspot-vs-gyanvaniai" className="footer-link">HubSpot vs Gyan VaniAi</Link>
-              <Link to="/compare/zoho-vs-gyanvaniai" className="footer-link">Zoho vs Gyan VaniAi</Link>
+              <Link to="/services/whatsapp-catalog-crm" className="footer-link">WhatsApp Catalog CRM</Link>
+              <Link to="/tools/whatsapp-pricing-calculator" className="footer-link">Pricing Calculator</Link>
+              <Link to="/services/crm-development" className="footer-link">Custom AI CRM</Link>
               <Link to="/industries/enterprise" className="footer-link">Enterprise CRM</Link>
             </div>
             <div className="link-group">

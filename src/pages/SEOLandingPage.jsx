@@ -119,7 +119,7 @@ const seoDataMap = {
       { url: '/services/whatsapp-automation', text: 'WhatsApp CRM Automation' }
     ],
     faqs: [
-      { q: 'Why build a custom CRM instead of Salesforce or HubSpot?', a: 'Custom CRM fits your workflow, pricing model, and channels (like WhatsApp Coexistence) without forcing your team into rigid templates or unused modules.' },
+      { q: 'Why build a custom CRM instead of off-the-shelf platforms?', a: 'A custom CRM fits your exact workflow, pricing model, and channels (like WhatsApp Coexistence) without forcing your team into rigid templates or unused modules.' },
       { q: 'Does your CRM support WhatsApp?', a: 'Yes. We offer official WhatsApp Business API integration with Coexistence so mobile app and CRM work on the same number.' }
     ]
   },

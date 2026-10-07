@@ -39,12 +39,9 @@ const ContentRefresh = lazy(() => import('./pages/admin/ContentRefresh'));
 const SeoDashboard = lazy(() => import('./pages/admin/SeoDashboard'));
 const CookieConsentPage = lazy(() => import('./pages/admin/CookieConsentPage'));
 
-// New high-value SEO, AEO & comparison pages
+// New high-value SEO, AEO & resource pages
 const WhatsAppCatalogCrmPage = lazy(() => import('./pages/WhatsAppCatalogCrmPage'));
 const WhatsAppPricingCalculatorPage = lazy(() => import('./pages/WhatsAppPricingCalculatorPage'));
-const SalesforceComparePage = lazy(() => import('./pages/SalesforceComparePage'));
-const HubSpotComparePage = lazy(() => import('./pages/HubSpotComparePage'));
-const ZohoComparePage = lazy(() => import('./pages/ZohoComparePage'));
 const CrmMigrationGuidePage = lazy(() => import('./pages/CrmMigrationGuidePage'));
 const VoiceAiLatencyBenchmarkPage = lazy(() => import('./pages/VoiceAiLatencyBenchmarkPage'));
 const SipArchitectureGuidePage = lazy(() => import('./pages/SipArchitectureGuidePage'));
@@ -220,10 +217,8 @@ function App() {
                 <Route path="/services/whatsapp-catalog-crm" element={<WhatsAppCatalogCrmPage />} />
                 <Route path="/tools/whatsapp-pricing-calculator" element={<WhatsAppPricingCalculatorPage />} />
 
-                {/* CRM Comparisons */}
-                <Route path="/compare/salesforce-vs-gyanvaniai" element={<SalesforceComparePage />} />
-                <Route path="/compare/hubspot-vs-gyanvaniai" element={<HubSpotComparePage />} />
-                <Route path="/compare/zoho-vs-gyanvaniai" element={<ZohoComparePage />} />
+                {/* Comparison Redirects */}
+                <Route path="/compare/*" element={<Navigate to="/services/crm-development" replace />} />
 
                 {/* Guides & Resources */}
                 <Route path="/guides/crm-migration" element={<CrmMigrationGuidePage />} />

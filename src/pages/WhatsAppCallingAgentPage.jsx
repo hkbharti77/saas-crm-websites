@@ -79,7 +79,7 @@ const voiceCallingAiFacts = [
   },
   {
     question: "Integrations",
-    answer: "Meta WhatsApp Business API, Asterisk, FreePBX, Twilio, Razorpay, HubSpot, Salesforce, and custom REST webhooks."
+    answer: "Meta WhatsApp Business API, Asterisk, FreePBX, Twilio, Razorpay, enterprise CRMs, and custom REST webhooks."
   }
 ];
 
@@ -194,7 +194,7 @@ const pipelineStages = [
 // Integrations for Section 7
 const integrationsList = [
   { name: 'WhatsApp Cloud API', type: 'Official Meta Platform', icon: <MessageSquare size={20} /> },
-  { name: 'Salesforce & HubSpot', type: 'Bi-Directional CRM', icon: <Database size={20} /> },
+  { name: 'Enterprise CRM Sync', type: 'Bi-Directional CRM', icon: <Database size={20} /> },
   { name: 'Google & Outlook', type: 'Calendar Availability', icon: <Calendar size={20} /> },
   { name: 'Pinecone & Qdrant', type: 'Vector RAG Knowledge', icon: <Layers size={20} /> },
   { name: 'Twilio & SIP Trunks', type: 'Telephony Infrastructure', icon: <PhoneCall size={20} /> },
@@ -249,7 +249,7 @@ const pageFaqs = [
   },
   {
     q: 'Does the WhatsApp calling agent integrate with our existing CRM?',
-    a: 'Absolutely. We provide direct bi-directional synchronization with Gyan VaniAi CRM, Salesforce, HubSpot, Zoho, and custom PostgreSQL/MySQL backends. After every call, the complete audio recording, structured summary, transcript, and updated deal properties are synced automatically.'
+    a: 'Absolutely. We provide direct bi-directional synchronization with Gyan VaniAi CRM, your existing CRM systems, and custom PostgreSQL/MySQL backends. After every call, the complete audio recording, structured summary, transcript, and updated deal properties are synced automatically.'
   },
   {
     q: 'How does the AI hand conversations over to human team members?',

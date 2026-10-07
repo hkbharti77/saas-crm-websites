@@ -851,9 +851,6 @@ export async function runRegressionAudit() {
   const roadmapPages = [
     '/services/whatsapp-catalog-crm',
     '/tools/whatsapp-pricing-calculator',
-    '/compare/salesforce-vs-gyanvaniai',
-    '/compare/hubspot-vs-gyanvaniai',
-    '/compare/zoho-vs-gyanvaniai',
     '/guides/crm-migration',
     '/resources/voice-ai-latency-benchmark',
     '/resources/sip-architecture',
