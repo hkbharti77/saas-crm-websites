@@ -1,8 +1,9 @@
 import React from 'react';
 import { ShieldCheck, Zap, Server } from 'lucide-react';
+import { renderLucideIcon } from '../utils/iconMap';
 import './TrustBar.css';
 
-const integrations = [
+const DEFAULT_INTEGRATIONS = [
   { name: 'WhatsApp Cloud API', type: 'Meta Tech Provider' },
   { name: 'CRM Integrations', type: 'REST API & Webhooks' },
   { name: 'Custom Pipelines', type: 'Real-Time Sync' },
@@ -11,18 +12,32 @@ const integrations = [
   { name: 'PostgreSQL', type: 'Isolated Tenant DB' },
 ];
 
-export default function TrustBar() {
+const DEFAULT_BADGES = [
+  { label: 'SOC2 Ready Architecture', icon: 'ShieldCheck' },
+  { label: 'Official Meta Tech Provider', icon: 'Zap' },
+  { label: '99.9% Platform SLA', icon: 'Server' },
+];
+
+export default function TrustBar({
+  heading: customHeading,
+  integrations: dynamicIntegrations,
+  badges: dynamicBadges,
+}) {
+  const heading = customHeading || 'Built to connect with your core tech stack';
+  const integrations = dynamicIntegrations && dynamicIntegrations.length > 0 ? dynamicIntegrations : DEFAULT_INTEGRATIONS;
+  const badges = dynamicBadges && dynamicBadges.length > 0 ? dynamicBadges : DEFAULT_BADGES;
+
   return (
     <section className="trust-section" aria-label="Enterprise integrations and trust indicators">
       <div className="container">
         <div className="trust-inner">
           <p className="trust-heading">
-            Built to connect with your core tech stack
+            {heading}
           </p>
 
           <div className="trust-logos-grid">
-            {integrations.map((item) => (
-              <div key={item.name} className="trust-logo-card">
+            {integrations.map((item, idx) => (
+              <div key={item.name || idx} className="trust-logo-card">
                 <span className="trust-logo-name">{item.name}</span>
                 <span className="trust-logo-type">{item.type}</span>
               </div>
@@ -30,20 +45,17 @@ export default function TrustBar() {
           </div>
 
           <div className="trust-badges-row">
-            <div className="trust-badge-item">
-              <ShieldCheck size={16} className="trust-badge-icon" />
-              <span>SOC2 Ready Architecture</span>
-            </div>
-            <div className="trust-badge-dot">•</div>
-            <div className="trust-badge-item">
-              <Zap size={16} className="trust-badge-icon" />
-              <span>Official Meta Tech Provider</span>
-            </div>
-            <div className="trust-badge-dot">•</div>
-            <div className="trust-badge-item">
-              <Server size={16} className="trust-badge-icon" />
-              <span>99.9% Platform SLA</span>
-            </div>
+            {badges.map((b, idx) => (
+              <React.Fragment key={idx}>
+                {idx > 0 && <div className="trust-badge-dot">•</div>}
+                <div className="trust-badge-item">
+                  {renderLucideIcon(b.icon, { size: 16, className: 'trust-badge-icon' }) || (
+                    <ShieldCheck size={16} className="trust-badge-icon" />
+                  )}
+                  <span>{b.label}</span>
+                </div>
+              </React.Fragment>
+            ))}
           </div>
         </div>
       </div>

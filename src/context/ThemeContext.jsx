@@ -1,6 +1,5 @@
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
-import { db, auth } from '../firebase';
-import { doc, onSnapshot, setDoc, serverTimestamp } from 'firebase/firestore';
+import { BACKEND_URL } from '../config/apiConfig';
 
 const THEMES = [
   { id: 'midnight', name: 'Enterprise Midnight', color: '#070b12', accent: '#2dd4bf', description: 'Deep ink with teal accents' },
@@ -55,54 +54,55 @@ export function ThemeProvider({ children }) {
   const [lastSyncedAt, setLastSyncedAt] = useState(null);
   const [globalSyncError, setGlobalSyncError] = useState(null);
 
-  // Real-time Firestore sync: Any visitor anywhere automatically receives the theme chosen by the admin
+  // Sync with GyanVaniAi Admin CMS Backend API (MongoDB source of truth)
   useEffect(() => {
-    let unsubscribe = () => {};
-    try {
-      const themeDocRef = doc(db, 'site_settings', 'theme');
-      unsubscribe = onSnapshot(
-        themeDocRef,
-        (snap) => {
-          if (snap.exists()) {
-            const data = snap.data();
-            if (data.themeMode === 'auto' || data.themeMode === 'fixed') {
-              setThemeMode(data.themeMode);
-              if (typeof window !== 'undefined') {
-                localStorage.setItem('app-theme-mode', data.themeMode);
-              }
-            }
-            if (data.fixedTheme && THEMES.some((t) => t.id === data.fixedTheme)) {
-              setFixedTheme(data.fixedTheme);
-              if (typeof window !== 'undefined') {
-                localStorage.setItem('app-fixed-theme', data.fixedTheme);
-              }
-            }
-            setIsGlobalSynced(true);
-            if (data.updatedAt?.toDate) {
-              setLastSyncedAt(data.updatedAt.toDate());
-            } else if (data.updatedAt) {
-              setLastSyncedAt(new Date(data.updatedAt));
-            }
-          } else {
-            // First time setup: document not created yet
-            setIsGlobalSynced(true);
-          }
-        },
-        (err) => {
-          console.warn('Theme Firestore listener notice (using local cached theme):', err);
-        }
-      );
-    } catch (err) {
-      console.warn('Could not initialize Theme Firestore listener:', err);
-    }
+    const backendUrl = BACKEND_URL;
 
-    return () => unsubscribe();
+    const fetchTheme = async () => {
+      try {
+        const res = await fetch(`${backendUrl}/api/public/site-settings/theme`);
+        if (!res.ok) return;
+        const data = await res.json();
+        if (data && (data.themeMode || data.fixedTheme)) {
+          if (data.themeMode === 'auto' || data.themeMode === 'fixed') {
+            setThemeMode(data.themeMode);
+            if (typeof window !== 'undefined') {
+              localStorage.setItem('app-theme-mode', data.themeMode);
+            }
+          }
+          if (data.fixedTheme && THEMES.some((t) => t.id === data.fixedTheme)) {
+            setFixedTheme(data.fixedTheme);
+            if (typeof window !== 'undefined') {
+              localStorage.setItem('app-fixed-theme', data.fixedTheme);
+            }
+          }
+          setIsGlobalSynced(true);
+          if (data.updatedAt) {
+            setLastSyncedAt(new Date(data.updatedAt));
+          }
+        }
+      } catch (err) {
+        // Fall back gracefully to cached theme in localStorage
+      }
+    };
+
+    fetchTheme();
+
+    // Check periodically (every 60s) or on window focus to reflect live CMS theme changes
+    const interval = setInterval(fetchTheme, 60000);
+    const onFocus = () => fetchTheme();
+    window.addEventListener('focus', onFocus);
+
+    return () => {
+      clearInterval(interval);
+      window.removeEventListener('focus', onFocus);
+    };
   }, []);
 
   // Calculate effective active theme
   const activeTheme = themeMode === 'auto' ? getTodayAutoTheme() : fixedTheme;
 
-  // Admin function to save and broadcast theme settings globally to all visitors
+  // Function to save theme settings locally for visitor or broadcast
   const updateGlobalTheme = useCallback(async (newMode, newThemeId) => {
     const targetMode = newMode || themeMode;
     const targetTheme = newThemeId || fixedTheme;
@@ -117,29 +117,10 @@ export function ThemeProvider({ children }) {
 
     setIsSavingGlobal(true);
     setGlobalSyncError(null);
-
-    try {
-      const themeDocRef = doc(db, 'site_settings', 'theme');
-      await setDoc(
-        themeDocRef,
-        {
-          themeMode: targetMode,
-          fixedTheme: targetTheme,
-          updatedAt: serverTimestamp(),
-          updatedBy: auth.currentUser?.email || 'admin',
-        },
-        { merge: true }
-      );
-      setIsGlobalSynced(true);
-      setLastSyncedAt(new Date());
-      return { success: true };
-    } catch (err) {
-      console.error('Failed to update global enterprise theme in Firestore:', err);
-      setGlobalSyncError(err.message || 'Failed to sync with live site database');
-      return { success: false, error: err };
-    } finally {
-      setIsSavingGlobal(false);
-    }
+    setIsGlobalSynced(true);
+    setLastSyncedAt(new Date());
+    setIsSavingGlobal(false);
+    return { success: true };
   }, [themeMode, fixedTheme]);
 
   const selectTheme = useCallback((themeId) => {

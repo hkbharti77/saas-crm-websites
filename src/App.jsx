@@ -19,25 +19,13 @@ const SalesAutomationPage = lazy(() => import('./pages/SalesAutomationPage'));
 const AIChatbotsPage = lazy(() => import('./pages/AIChatbotsPage'));
 const WhatsAppCallingAgentPage = lazy(() => import('./pages/WhatsAppCallingAgentPage'));
 const CrmDevelopmentPage = lazy(() => import('./pages/CrmDevelopmentPage'));
-const AdminLogin = lazy(() => import('./pages/admin/AdminLogin'));
-const AdminDashboard = lazy(() => import('./pages/admin/AdminDashboard'));
-const AdminCreatePost = lazy(() => import('./pages/admin/AdminCreatePost'));
-const AdminEditPost = lazy(() => import('./pages/admin/AdminEditPost'));
-const BlogManager = lazy(() => import('./pages/admin/BlogManager'));
-const CategoryManager = lazy(() => import('./pages/admin/CategoryManager'));
-const MediaLibrary = lazy(() => import('./pages/admin/MediaLibrary'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 const CategoryPage = lazy(() => import('./pages/CategoryPage'));
 const About = lazy(() => import('./pages/About'));
 const PricingPage = lazy(() => import('./pages/PricingPage'));
 const PlanDetailPage = lazy(() => import('./pages/PlanDetailPage'));
 const Security = lazy(() => import('./pages/Security'));
-const BlogAnalytics = lazy(() => import('./pages/admin/BlogAnalytics'));
-const ArticleAnalytics = lazy(() => import('./pages/admin/ArticleAnalytics'));
-const ContentOpportunities = lazy(() => import('./pages/admin/ContentOpportunities'));
-const ContentRefresh = lazy(() => import('./pages/admin/ContentRefresh'));
-const SeoDashboard = lazy(() => import('./pages/admin/SeoDashboard'));
-const CookieConsentPage = lazy(() => import('./pages/admin/CookieConsentPage'));
+const Unsubscribe = lazy(() => import('./pages/Unsubscribe'));
 
 // New high-value SEO, AEO & resource pages
 const WhatsAppCatalogCrmPage = lazy(() => import('./pages/WhatsAppCatalogCrmPage'));
@@ -190,14 +178,12 @@ function App() {
     };
   }, []);
 
-  const isAdminRoute = location.pathname.startsWith('/admin');
-
   return (
     <ThemeProvider>
-      <div className={`app-container ${isAdminRoute ? 'admin-mode' : ''}`}>
-        {!isAdminRoute && <EnterpriseBackground />}
-        {!isAdminRoute && <Header />}
-        <main className={isAdminRoute ? 'admin-main-content' : ''}>
+      <div className="app-container">
+        <EnterpriseBackground />
+        <Header />
+        <main>
           <ChunkErrorBoundary>
             <Suspense fallback={<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '60vh' }}><div className="loading-spinner">Loading...</div></div>}>
               <Routes>
@@ -230,7 +216,6 @@ function App() {
 
                 {/* AEO & Search Visibility Telemetry */}
                 <Route path="/seo/ai-visibility" element={<AeoVisibilityDashboard />} />
-                <Route path="/admin/seo/ai-visibility" element={<AeoVisibilityDashboard />} />
 
                 <Route path="/documentation" element={<Documentation />} />
                 <Route path="/services/:serviceId" element={<SEOLandingPage />} />
@@ -241,31 +226,15 @@ function App() {
                 <Route path="/pricing" element={<PricingPage />} />
                 <Route path="/pricing/:planId" element={<PlanDetailPage />} />
                 <Route path="/security" element={<Security />} />
-
-                <Route path="/admin/login" element={<AdminLogin />} />
-                <Route path="/admin/dashboard" element={<AdminDashboard />} />
-                <Route path="/admin/create" element={<AdminCreatePost />} />
-                <Route path="/admin/edit/:id" element={<AdminEditPost />} />
-                <Route path="/admin/blog-manager" element={<BlogManager />} />
-                <Route path="/admin/blog/categories" element={<CategoryManager />} />
-                <Route path="/admin/media" element={<MediaLibrary />} />
-                {/* P3 — Analytics routes */}
-                <Route path="/admin/blog/analytics" element={<BlogAnalytics />} />
-                <Route path="/admin/blog/analytics/:blogId" element={<ArticleAnalytics />} />
-                <Route path="/admin/blog/opportunities" element={<ContentOpportunities />} />
-                <Route path="/admin/blog/refresh" element={<ContentRefresh />} />
-                <Route path="/admin/blog/seo" element={<SeoDashboard />} />
-                <Route path="/admin/cookies" element={<CookieConsentPage />} />
-                <Route path="/admin/cookie-consent" element={<CookieConsentPage />} />
-
+                <Route path="/unsubscribe" element={<Unsubscribe />} />
 
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </Suspense>
           </ChunkErrorBoundary>
         </main>
-        {!isAdminRoute && <Footer />}
-        {!isAdminRoute && <CookieConsentBanner />}
+        <Footer />
+        <CookieConsentBanner />
         {isDemoModalOpen && (
           <Suspense fallback={null}>
             <ContactModal
@@ -284,7 +253,7 @@ function App() {
             onClose={() => setIsLiveDemoOpen(false)}
           />
         </Suspense>
-        {!isAdminRoute && <MobileStickyCTA />}
+        <MobileStickyCTA />
         <Analytics />
         <SpeedInsights />
       </div>

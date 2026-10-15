@@ -380,3 +380,176 @@
     padding: 1.25rem;
   }
 }
+
+/* ── Compliance Badges ───────────────────────────────────────────────────── */
+.cookie-compliance-badges {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex-shrink: 0;
+}
+
+.cookie-law-badge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--primary-color) 16%, transparent);
+  color: var(--primary-color);
+  border: 1px solid color-mix(in srgb, var(--primary-color) 30%, transparent);
+  white-space: nowrap;
+}
+
+/* ── Floating Re-open Pill ───────────────────────────────────────────────── */
+.cookie-floating-pill {
+  position: fixed;
+  bottom: 1.25rem;
+  left: 1.25rem;
+  z-index: 99998;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  background: var(--bg-card, rgba(13, 20, 34, 0.92));
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  backdrop-filter: blur(12px);
+}
+
+.cookie-floating-pill:hover {
+  transform: scale(1.12);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* ── Modal Compliance Bar ────────────────────────────────────────────────── */
+.cookie-modal-compliance {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.875rem;
+  padding: 0.6rem 0.85rem;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--primary-color) 8%, transparent);
+  border: 1px solid color-mix(in srgb, var(--primary-color) 20%, transparent);
+}
+
+.cookie-compliance-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-right: 0.15rem;
+}
+
+/* ── Preference Item Expand Button ───────────────────────────────────────── */
+.cookie-pref-main {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.25rem;
+  width: 100%;
+}
+
+.cookie-pref-expand-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0;
+  text-align: left;
+  font-family: inherit;
+}
+
+.cookie-pref-expand-btn h4 {
+  font-size: 0.925rem;
+  font-weight: 650;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.cookie-expand-chevron {
+  font-size: 0.65rem;
+  color: var(--text-secondary);
+  margin-left: 0.25rem;
+}
+
+/* ── Legal Basis Text ────────────────────────────────────────────────────── */
+.cookie-legal-basis {
+  display: block;
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  margin-top: 0.3rem;
+  opacity: 0.75;
+  font-style: italic;
+}
+
+/* ── Cookie Detail Table (expanded) ─────────────────────────────────────── */
+.cookie-detail-table {
+  margin-top: 0.85rem;
+  border-top: 1px solid var(--border-color);
+  padding-top: 0.75rem;
+  overflow-x: auto;
+}
+
+.cookie-detail-table table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.75rem;
+}
+
+.cookie-detail-table th {
+  text-align: left;
+  font-weight: 700;
+  color: var(--text-secondary);
+  padding: 0.3rem 0.5rem;
+  border-bottom: 1px solid var(--border-color);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.cookie-detail-table td {
+  padding: 0.4rem 0.5rem;
+  color: var(--text-primary);
+  border-bottom: 1px solid color-mix(in srgb, var(--border-color) 50%, transparent);
+  vertical-align: middle;
+}
+
+.cookie-detail-table code {
+  background: color-mix(in srgb, var(--text-primary) 10%, transparent);
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+  font-family: ui-monospace, Menlo, Monaco, monospace;
+  font-size: 0.7rem;
+}
+
+/* ── Modal Footer Count + Buttons ───────────────────────────────────────── */
+.cookie-modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.cookie-accepted-count {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.cookie-footer-btns {
+  display: flex;
+  gap: 0.65rem;
+}
+

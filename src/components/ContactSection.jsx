@@ -4,6 +4,7 @@ import { CheckCircle, Check, XCircle, CheckCircle2, Lock, MapPin } from 'lucide-
 import 'react-phone-number-input/style.css';
 import PhoneInput, { isValidPhoneNumber } from 'react-phone-number-input';
 import { trackContactFormSubmit, trackEmailClick } from '../utils/analytics';
+import { API_BASE_URL } from '../config/apiConfig';
 import './ContactSection.css';
 
 const WhatsAppIcon = ({ size = 18, color = "currentColor" }) => (
@@ -22,6 +23,7 @@ export default function ContactSection({
 }) {
   const [phone, setPhone] = useState();
   const [values, setValues] = useState({ name: '', email: '', company: '', message: '' });
+  const [honeypot, setHoneypot] = useState('');
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -96,38 +98,42 @@ export default function ContactSection({
     
     setIsSubmitting(true);
     try {
-      const apiBaseUrl = import.meta.env.VITE_CRM_API_URL || 'http://localhost:8080';
-      const businessId = import.meta.env.VITE_CRM_BUSINESS_ID || '840c4a19-6805-4995-84f3-53c7baff658f';
-
+      const cmsApiBase = API_BASE_URL;
       const payload = {
-        name: values.name,
-        email: values.email,
+        name: values.name.trim(),
+        email: values.email.trim(),
         phone: phone || '',
-        subject: `Lead from ${values.company || 'Website'}`,
-        message: values.message,
-        consentTimestamp: new Date().toISOString(),
+        company: values.company?.trim() || '',
+        subject: `Lead from ${values.company?.trim() || 'Website Contact Form'}`,
+        message: values.message.trim(),
+        source: 'website_contact_section',
+        consent: consentGiven,
         consentVersion: 'DPDP-2023-v1',
+        _hp_company: honeypot,
       };
 
-      const response = await fetch(`${apiBaseUrl}/api/v1/public/contact/${businessId}`, {
-        method: "POST",
-        body: JSON.stringify(payload),
-        headers: { 
-          "Content-Type": "application/json",
-          "Accept": "application/json" 
+      const response = await fetch(`${cmsApiBase}/api/public/contact`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
         },
+        body: JSON.stringify(payload),
       });
 
+      const data = await response.json();
       if (response.ok) {
         setIsSuccess(true);
         trackContactFormSubmit();
       } else {
-        alert("Oops! There was a problem submitting your demo request. Please try again.");
+        alert(data.error || 'Oops! There was a problem submitting your demo request. Please try again.');
       }
-    } catch {
-      alert("Network error. Please try again.");
+    } catch (err) {
+      console.error('Contact section submission error:', err);
+      alert(err?.message ? `Network error: ${err.message}. Please refresh the page and verify backend is running on port 5000.` : 'Network error. Please refresh the page and try again.');
+    } finally {
+      setIsSubmitting(false);
     }
-    setIsSubmitting(false);
   };
 
   return (
@@ -232,6 +238,18 @@ export default function ContactSection({
               </div>
             ) : (
               <form onSubmit={handleSubmit} noValidate>
+                {/* Invisible bot honeypot field */}
+                <input
+                  type="text"
+                  name="_hp_company"
+                  value={honeypot}
+                  onChange={(e) => setHoneypot(e.target.value)}
+                  style={{ display: 'none' }}
+                  tabIndex="-1"
+                  autoComplete="off"
+                  aria-hidden="true"
+                />
+
                 {/* 1. Full Name */}
                 <div className="form-group">
                   <label htmlFor="input-contact-name" className="form-label">

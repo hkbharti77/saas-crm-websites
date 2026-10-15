@@ -23,12 +23,8 @@ import WhatsAppCallingAgentPage from './pages/WhatsAppCallingAgentPage';
 import CrmDevelopmentPage from './pages/CrmDevelopmentPage';
 import BlogSearch from './pages/BlogSearch';
 import CategoryPage from './pages/CategoryPage';
-import AdminLogin from './pages/admin/AdminLogin';
-import AdminDashboard from './pages/admin/AdminDashboard';
-import AdminCreatePost from './pages/admin/AdminCreatePost';
 import Security from './pages/Security';
 import Documentation from './pages/Documentation';
-import AdminEditPost from './pages/admin/AdminEditPost';
 import NotFound from './pages/NotFound';
 import PricingPage from './pages/PricingPage';
 import PlanDetailPage from './pages/PlanDetailPage';
@@ -73,7 +69,6 @@ function ServerApp() {
             <Route path="/resources/mcp-ai-agent-tool-calling" element={<McpToolCallingGuidePage />} />
             <Route path="/resources/where-to-find-us" element={<WhereToFindUsPage />} />
             <Route path="/seo/ai-visibility" element={<AeoVisibilityDashboard />} />
-            <Route path="/admin/seo/ai-visibility" element={<AeoVisibilityDashboard />} />
             <Route path="/documentation" element={<Documentation />} />
             <Route path="/security" element={<Security />} />
             <Route path="/services/:serviceId" element={<SEOLandingPage />} />
@@ -83,10 +78,6 @@ function ServerApp() {
             <Route path="/about" element={<About />} />
             <Route path="/pricing" element={<PricingPage />} />
             <Route path="/pricing/:planId" element={<PlanDetailPage />} />
-            <Route path="/admin/login" element={<AdminLogin />} />
-            <Route path="/admin/dashboard" element={<AdminDashboard />} />
-            <Route path="/admin/create" element={<AdminCreatePost />} />
-            <Route path="/admin/edit/:id" element={<AdminEditPost />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>

@@ -3,8 +3,6 @@ import { useParams, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { ArrowLeft, Calendar, Clock, User, Share2, Copy, Send, ChevronLeft, ChevronRight, MessageCircle, Globe, TrendingUp, ShieldCheck, ExternalLink, CheckCircle2 } from 'lucide-react';
 
-import { auth, db } from '../firebase';
-import { collection, query, where, getDocs, limit, orderBy } from 'firebase/firestore';
 import ContactModal from '../components/ContactModal';
 import {
   trackBlogView,
@@ -24,6 +22,7 @@ import {
 import { sanitizeBlogHtml } from '../utils/sanitizeBlogHtml';
 import BlogCTA from '../components/BlogCTA';
 import { STATIC_BLOG_FALLBACKS } from '../data/staticBlogData';
+import { API_BASE_URL } from '../config/apiConfig';
 import './BlogPost.css';
 
 // Extract headings from HTML content for TOC and enhance HTML (code blocks, tables, FAQs)
@@ -147,29 +146,30 @@ export default function BlogPost() {
 
     async function fetchPost() {
       try {
-        const q = query(collection(db, 'blogs'), where('slugId', '==', id));
-        let querySnapshot = await getDocs(q);
+        const cmsApiBase = API_BASE_URL;
+        const searchParams = typeof window !== 'undefined' ? new URLSearchParams(window.location.search) : null;
+        const previewToken = searchParams ? searchParams.get('preview') : null;
+        const previewQuery = previewToken ? `?preview=${encodeURIComponent(previewToken)}` : '';
 
-        if (querySnapshot.empty) {
-          const qId = query(collection(db, 'blogs'), where('__name__', '==', id));
-          querySnapshot = await getDocs(qId);
+        const res = await fetch(`${cmsApiBase}/api/public/posts/${id}${previewQuery}`);
+        if (res.ok) {
+          const data = await res.json();
+          if (data.post) {
+            setPost(data.post);
+            if (data.post.prevPost) setPrevPost(data.post.prevPost);
+            if (data.post.nextPost) setNextPost(data.post.nextPost);
+            setLoading(false);
+            return;
+          }
         }
 
-        if (!querySnapshot.empty) {
-          const docData = querySnapshot.docs[0].data();
-          const isUnpublished = docData.status === 'draft' || docData.status === 'scheduled' || docData.status === 'archived';
-          if (isUnpublished && !auth.currentUser) {
-            setPost(STATIC_BLOG_FALLBACKS[id] || null);
-          } else {
-            setPost({ id: querySnapshot.docs[0].id, ...docData });
-          }
-        } else if (STATIC_BLOG_FALLBACKS[id]) {
+        if (STATIC_BLOG_FALLBACKS[id]) {
           setPost(STATIC_BLOG_FALLBACKS[id]);
         } else {
           setPost(null);
         }
       } catch (error) {
-        console.error('Error fetching post: ', error);
+        console.warn('Backend API notice: falling back to static post data:', error);
         if (STATIC_BLOG_FALLBACKS[id]) {
           setPost(STATIC_BLOG_FALLBACKS[id]);
         } else {
@@ -230,80 +230,43 @@ export default function BlogPost() {
   useEffect(() => {
     async function fetchPrevNext() {
       if (!post || post.status !== 'published') return;
+      if (prevPost && nextPost) return;
       try {
-        const q = query(
-          collection(db, 'blogs'),
-          where('status', '==', 'published'),
-          orderBy('createdAt', 'desc')
-        );
-        const snap = await getDocs(q);
-        if (!snap.empty) {
-          const publishedList = snap.docs.map(d => ({ id: d.id, ...d.data() }));
-          const currentIdx = publishedList.findIndex(p => p.id === post.id || p.slugId === post.slugId || p.slugId === id);
+        const cmsApiBase = API_BASE_URL;
+        const res = await fetch(`${cmsApiBase}/api/public/posts?limit=50`);
+        if (res.ok) {
+          const data = await res.json();
+          const publishedList = data.posts || [];
+          const currentIdx = publishedList.findIndex(p => p.id === post.id || p.slugId === post.slugId || p.slug === post.slug || p.slug === id);
 
           if (currentIdx !== -1) {
-            setNextPost(currentIdx > 0 ? publishedList[currentIdx - 1] : null);
-            setPrevPost(currentIdx < publishedList.length - 1 ? publishedList[currentIdx + 1] : null);
+            if (!nextPost) setNextPost(currentIdx > 0 ? publishedList[currentIdx - 1] : null);
+            if (!prevPost) setPrevPost(currentIdx < publishedList.length - 1 ? publishedList[currentIdx + 1] : null);
           }
         }
       } catch (err) {
-        console.error('Failed to fetch prev/next articles', err);
+        console.warn('Failed to fetch prev/next articles:', err);
       }
     }
     fetchPrevNext();
-  }, [post, id]);
+  }, [post, id, prevPost, nextPost]);
 
   useEffect(() => {
     async function fetchRelated() {
       if (!post) return;
       try {
-        const candidates = new Map();
-
-        if (post.categoryId || post.category) {
-          const catField = post.categoryId ? 'categoryId' : 'category';
-          const catVal = post.categoryId || post.category;
-          const catQ = query(
-            collection(db, 'blogs'),
-            where('status', '==', 'published'),
-            where(catField, '==', catVal),
-            limit(10)
-          );
-          const catSnap = await getDocs(catQ);
-          catSnap.forEach(d => {
-            if (d.id !== post.id) candidates.set(d.id, { id: d.id, ...d.data(), _score: 10 });
-          });
+        const cmsApiBase = API_BASE_URL;
+        const catQuery = post.category ? `?category=${encodeURIComponent(post.category)}&limit=5` : '?limit=5';
+        const res = await fetch(`${cmsApiBase}/api/public/posts${catQuery}`);
+        if (res.ok) {
+          const data = await res.json();
+          const related = (data.posts || [])
+            .filter(p => p.id !== post.id && p.slug !== post.slug && p.slugId !== post.slugId)
+            .slice(0, 3);
+          setRelatedPosts(related);
         }
-
-        if (post.tags && post.tags.length > 0) {
-          const tagQ = query(
-            collection(db, 'blogs'),
-            where('status', '==', 'published'),
-            where('tags', 'array-contains-any', post.tags),
-            limit(10)
-          );
-          const tagSnap = await getDocs(tagQ);
-          tagSnap.forEach(d => {
-            if (d.id === post.id) return;
-            const data = d.data();
-            const sharedTags = (data.tags || []).filter(t => (post.tags || []).includes(t)).length;
-            if (candidates.has(d.id)) {
-              candidates.get(d.id)._score += sharedTags * 3;
-            } else {
-              candidates.set(d.id, { id: d.id, ...data, _score: sharedTags * 3 });
-            }
-          });
-        }
-
-        const ranked = Array.from(candidates.values()).sort((a, b) => {
-          if (b._score !== a._score) return b._score - a._score;
-          const tsA = a.publishedAt?.toMillis ? a.publishedAt.toMillis() : 0;
-          const tsB = b.publishedAt?.toMillis ? b.publishedAt.toMillis() : 0;
-          return tsB - tsA;
-        }).slice(0, 3);
-
-        setRelatedPosts(ranked);
       } catch (err) {
-        console.error('Failed to fetch related posts', err);
+        console.warn('Failed to fetch related posts:', err);
       }
     }
     fetchRelated();

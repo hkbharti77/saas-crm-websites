@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { Search, X, Calendar, ArrowRight, Trash2 } from 'lucide-react';
-import { db } from '../firebase';
-import { collection, getDocs, query, orderBy } from 'firebase/firestore';
 import SeoHead from '../components/SeoHead';
 import {
   searchAndRank,
@@ -12,6 +10,7 @@ import {
   clearRecentSearches,
 } from '../utils/searchEngine';
 import { trackBlogSearch } from '../utils/blogAnalytics';
+import { API_BASE_URL } from '../config/apiConfig';
 import './BlogSearch.css';
 
 export default function BlogSearch() {
@@ -38,20 +37,20 @@ export default function BlogSearch() {
     });
   }, [searchParams]);
 
-  // Load published blogs from Firestore
+  // Load published blogs from CMS backend API
   useEffect(() => {
     async function fetchBlogs() {
       try {
-        const q = query(collection(db, 'blogs'), orderBy('createdAt', 'desc'));
-        const snap = await getDocs(q);
-        if (!snap.empty) {
-          const list = snap.docs
-            .map(doc => ({ id: doc.id, ...doc.data() }))
-            .filter(b => b.status === 'published'); // Strictly published posts
-          setBlogs(list);
+        const cmsApiBase = API_BASE_URL;
+        const res = await fetch(`${cmsApiBase}/api/public/posts?limit=100`);
+        if (res.ok) {
+          const data = await res.json();
+          if (data.posts) {
+            setBlogs(data.posts);
+          }
         }
       } catch (err) {
-        console.error('Error fetching blogs for search:', err);
+        console.warn('Error fetching blogs for search from backend API:', err);
       } finally {
         setLoading(false);
       }

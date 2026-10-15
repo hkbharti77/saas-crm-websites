@@ -2,14 +2,13 @@ import React, { useEffect, useState, useMemo } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { ArrowRight, Calendar, Clock, Search, TrendingUp, Tag as TagIcon, Sparkles } from 'lucide-react';
-import { db } from '../firebase';
-import { collection, getDocs, query, orderBy } from 'firebase/firestore';
 import ContactModal from '../components/ContactModal';
 import { trackBookDemo } from '../utils/analytics';
 import SeoHead from '../components/SeoHead';
 import { buildBlogIndexSchema } from '../utils/blogSeo';
 import { STATIC_BLOG_LIST } from '../data/staticBlogData';
 import PersonalizedRecommendations from '../components/PersonalizedRecommendations';
+import { API_BASE_URL } from '../config/apiConfig';
 import './Blog.css';
 
 export default function Blog() {
@@ -28,32 +27,17 @@ export default function Blog() {
 
     async function fetchBlogs() {
       try {
-        let querySnapshot;
-        try {
-          const q = query(collection(db, 'blogs'), orderBy('createdAt', 'desc'));
-          querySnapshot = await getDocs(q);
-        } catch (idxErr) {
-          console.warn('Firestore index fallback: fetching blogs without orderBy:', idxErr);
-          querySnapshot = await getDocs(collection(db, 'blogs'));
-        }
-
-        if (querySnapshot && !querySnapshot.empty) {
-          const blogsList = querySnapshot.docs
-            .map((doc) => ({
-              id: doc.id,
-              ...doc.data(),
-            }))
-            // Strictly expose ONLY published posts to public visitors
-            .filter((b) => b.status === 'published')
-            .sort((a, b) => {
-              const dateA = a.createdAt?.toDate ? a.createdAt.toDate().getTime() : new Date(a.createdAt || a.date || 0).getTime();
-              const dateB = b.createdAt?.toDate ? b.createdAt.toDate().getTime() : new Date(b.createdAt || b.date || 0).getTime();
-              return dateB - dateA;
-            });
-          setBlogs(blogsList);
+        const cmsApiBase = API_BASE_URL;
+        const res = await fetch(`${cmsApiBase}/api/public/posts?limit=50`);
+        if (res.ok) {
+          const data = await res.json();
+          if (data.posts && data.posts.length > 0) {
+            setBlogs(data.posts);
+            return;
+          }
         }
       } catch (error) {
-        console.error('Error fetching blogs: ', error);
+        console.warn('Backend API notice: using static blog data fallback:', error);
       } finally {
         setLoading(false);
       }

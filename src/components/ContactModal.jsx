@@ -3,6 +3,7 @@ import { X, CheckCircle, Check, XCircle } from 'lucide-react';
 import 'react-phone-number-input/style.css';
 import PhoneInput, { isValidPhoneNumber } from 'react-phone-number-input';
 import { trackContactFormSubmit } from '../utils/analytics';
+import { API_BASE_URL } from '../config/apiConfig';
 
 const WhatsAppIcon = ({ size = 16, color = "currentColor" }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill={color}>
@@ -13,6 +14,7 @@ const WhatsAppIcon = ({ size = 16, color = "currentColor" }) => (
 export default function ContactModal({ isOpen, onClose, prefillMessage = '' }) {
   const [phone, setPhone] = useState();
   const [values, setValues] = useState({ name: '', email: '', message: prefillMessage });
+  const [honeypot, setHoneypot] = useState('');
   const [touched, setTouched] = useState({ name: false, email: false, phone: false });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -91,38 +93,41 @@ export default function ContactModal({ isOpen, onClose, prefillMessage = '' }) {
     
     setIsSubmitting(true);
     try {
-      const apiBaseUrl = import.meta.env.VITE_CRM_API_URL || 'http://localhost:8080';
-      const businessId = import.meta.env.VITE_CRM_BUSINESS_ID || '840c4a19-6805-4995-84f3-53c7baff658f';
-
+      const cmsApiBase = API_BASE_URL;
       const payload = {
-        name: values.name,
-        email: values.email,
+        name: values.name.trim(),
+        email: values.email.trim(),
         phone: phone || '',
-        subject: `Lead from Website Modal`,
-        message: values.message,
-        consentTimestamp: new Date().toISOString(),
+        subject: 'Demo Walkthrough Request (Modal)',
+        message: values.message.trim(),
+        source: 'website_demo_modal',
+        consent: consentGiven,
         consentVersion: 'DPDP-2023-v1',
+        _hp_company: honeypot,
       };
 
-      const response = await fetch(`${apiBaseUrl}/api/v1/public/contact/${businessId}`, {
-        method: "POST",
-        body: JSON.stringify(payload),
-        headers: { 
-          "Content-Type": "application/json",
-          "Accept": "application/json" 
+      const response = await fetch(`${cmsApiBase}/api/public/contact`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
         },
+        body: JSON.stringify(payload),
       });
 
+      const data = await response.json();
       if (response.ok) {
         setIsSuccess(true);
         trackContactFormSubmit();
       } else {
-        alert("Oops! There was a problem submitting your form");
+        alert(data.error || 'Oops! There was a problem submitting your request. Please try again.');
       }
-    } catch {
-      alert("Network error. Please try again.");
+    } catch (err) {
+      console.error('Contact modal submission error:', err);
+      alert(err?.message ? `Network error: ${err.message}. Please refresh the page and verify backend is running on port 5000.` : 'Network error. Please refresh the page and try again.');
+    } finally {
+      setIsSubmitting(false);
     }
-    setIsSubmitting(false);
   };
 
   if (!isOpen) return null;
@@ -147,6 +152,17 @@ export default function ContactModal({ isOpen, onClose, prefillMessage = '' }) {
           </div>
         ) : (
           <form onSubmit={handleSubmit}>
+            {/* Invisible bot honeypot field */}
+            <input
+              type="text"
+              name="_hp_company"
+              value={honeypot}
+              onChange={(e) => setHoneypot(e.target.value)}
+              style={{ display: 'none' }}
+              tabIndex="-1"
+              autoComplete="off"
+              aria-hidden="true"
+            />
             <div className="form-group">
               <label className="form-label" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                 Name

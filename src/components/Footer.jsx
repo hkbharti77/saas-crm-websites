@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, MapPin } from 'lucide-react';
 import { trackEmailClick, trackNewsletterSubscribe } from '../utils/analytics';
+import { fetchLandingPageData } from '../services/landingPageService';
+import { API_BASE_URL } from '../config/apiConfig';
 import './Footer.css';
 
 const FacebookIcon = ({ size = 20 }) => (
@@ -37,37 +39,110 @@ const WhatsAppIcon = ({ size = 20, color = "currentColor" }) => (
   </svg>
 );
 
-export default function Footer() {
+export default function Footer({
+  tagline: customTagline,
+  socialLinks: customSocialLinks,
+  copyright: customCopyright,
+}) {
+  const [footerData, setFooterData] = useState({
+    tagline: customTagline || 'Autonomous AI CRM and revenue operations software engineered for high-velocity teams.',
+    socialLinks: customSocialLinks || {
+      whatsapp: 'https://wa.me/918700620913?text=Hi%20Gyan%20VaniAi%2C%20I%20would%20like%20to%20connect%20regarding%20your%20AI%20CRM%20solutions.',
+      email: 'mailto:contact@gyanvaniai.com',
+      maps: 'https://maps.app.goo.gl/Ts3kKh9L8fe4m9AP6',
+      facebook: 'https://www.facebook.com/gyanvaniai/',
+      linkedin: 'https://www.linkedin.com/company/gyan-vaniai',
+      github: 'https://github.com/gyanvaniai',
+    },
+    copyright: customCopyright || '© 2026 Gyan VaniAi. All rights reserved.',
+  });
+
+  useEffect(() => {
+    if (customTagline && customSocialLinks) return;
+    let mounted = true;
+    fetchLandingPageData().then((data) => {
+      if (mounted && data?.sections?.footer) {
+        const f = data.sections.footer;
+        setFooterData({
+          tagline: customTagline || f.tagline || 'Autonomous AI CRM and revenue operations software engineered for high-velocity teams.',
+          socialLinks: customSocialLinks || f.socialLinks || footerData.socialLinks,
+          copyright: customCopyright || f.copyright || '© 2026 Gyan VaniAi. All rights reserved.',
+        });
+      }
+    });
+    const handleUpdate = (e) => {
+      if (mounted && e.detail?.sections?.footer) {
+        const f = e.detail.sections.footer;
+        setFooterData({
+          tagline: customTagline || f.tagline || 'Autonomous AI CRM and revenue operations software engineered for high-velocity teams.',
+          socialLinks: customSocialLinks || f.socialLinks || footerData.socialLinks,
+          copyright: customCopyright || f.copyright || '© 2026 Gyan VaniAi. All rights reserved.',
+        });
+      }
+    };
+
+    window.addEventListener('gyanvani:landing_page_updated', handleUpdate);
+    return () => {
+      mounted = false;
+      window.removeEventListener('gyanvani:landing_page_updated', handleUpdate);
+    };
+  }, [customTagline, customSocialLinks, customCopyright]);
+
+  const tagline = footerData.tagline;
+  const socialLinks = footerData.socialLinks;
+  const copyright = footerData.copyright;
+
   const [email, setEmail] = useState('');
+  const [honeypot, setHoneypot] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
+  const [statusMessage, setStatusMessage] = useState(null);
+  const [statusType, setStatusType] = useState('success'); // 'success' | 'info' | 'error'
 
   const handleSubscribe = async (e) => {
     e.preventDefault();
-    if (!email) return;
+    if (!email || isSubmitting) return;
 
     setIsSubmitting(true);
-    const formData = new FormData();
-    formData.append("email", email);
-    formData.append("_subject", "New Newsletter Subscription!");
+    setStatusMessage(null);
 
     try {
-      const response = await fetch("https://formspree.io/f/mzdqyerw", {
-        method: "POST",
-        body: formData,
-        headers: { Accept: "application/json" },
+      const cmsApiBase = API_BASE_URL;
+      const response = await fetch(`${cmsApiBase}/api/public/newsletter/subscribe`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          email: email.trim(),
+          source: 'footer',
+          _hp_company: honeypot,
+        }),
       });
+
+      const data = await response.json();
+
       if (response.ok) {
-        setIsSuccess(true);
-        setEmail('');
-        trackNewsletterSubscribe();
+        if (data.alreadySubscribed) {
+          setStatusType('info');
+          setStatusMessage("You're already subscribed to our newsletter.");
+        } else {
+          setStatusType('success');
+          setStatusMessage('Thank you for subscribing! Stay tuned for updates.');
+          setEmail('');
+          trackNewsletterSubscribe();
+        }
       } else {
-        alert("Oops! There was a problem subscribing.");
+        setStatusType('error');
+        setStatusMessage(data.error || 'Failed to subscribe. Please try again.');
       }
-    } catch {
-      alert("Oops! There was a problem subscribing.");
+    } catch (err) {
+      console.warn('Newsletter subscription error:', err);
+      setStatusType('error');
+      setStatusMessage('Network connection error. Please try again shortly.');
+    } finally {
+      setIsSubmitting(false);
     }
-    setIsSubmitting(false);
   };
 
   return (
@@ -80,42 +155,54 @@ export default function Footer() {
               <span className="logo-text">Gyan VaniAi</span>
             </div>
             <p className="text-muted text-sm" style={{ maxWidth: '300px' }}>
-              Autonomous AI CRM and revenue operations software engineered for high-velocity teams.
+              {tagline}
             </p>
             <div className="social-links">
-              <a
-                href="https://wa.me/918700620913?text=Hi%20Gyan%20VaniAi%2C%20I%20would%20like%20to%20connect%20regarding%20your%20AI%20CRM%20solutions."
-                target="_blank"
-                rel="noopener noreferrer"
-                id="link-footer-whatsapp"
-                className="social-icon"
-                aria-label="Chat with us on WhatsApp"
-              >
-                <WhatsAppIcon size={20} color="currentColor" />
-              </a>
-              <a
-                href="mailto:contact@gyanvaniai.com"
-                id="link-footer-email"
-                className="social-icon"
-                onClick={() => trackEmailClick('footer')}
-                aria-label="Email Us"
-              >
-                <Mail size={20} />
-              </a>
-              <a
-                href="https://maps.app.goo.gl/Ts3kKh9L8fe4m9AP6"
-                target="_blank"
-                rel="noopener noreferrer"
-                id="link-footer-maps"
-                className="social-icon"
-                aria-label="Find Gyan VaniAi Technologies on Google Maps"
-                title="Office Location on Google Maps"
-              >
-                <MapPin size={20} />
-              </a>
-              <a href="https://www.facebook.com/gyanvaniai/" target="_blank" rel="noopener noreferrer" className="social-icon" aria-label="Visit our Facebook page"><FacebookIcon size={20} /></a>
-              <a href="https://www.linkedin.com/company/gyan-vaniai" target="_blank" rel="noopener noreferrer" className="social-icon" aria-label="Visit our LinkedIn page"><LinkedinIcon size={20} /></a>
-              <a href="https://github.com/gyanvaniai" target="_blank" rel="noopener noreferrer" className="social-icon" aria-label="Visit Gyan VaniAi on GitHub"><GithubIcon size={20} /></a>
+              {socialLinks.whatsapp && (
+                <a
+                  href={socialLinks.whatsapp}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  id="link-footer-whatsapp"
+                  className="social-icon"
+                  aria-label="Chat with us on WhatsApp"
+                >
+                  <WhatsAppIcon size={20} color="currentColor" />
+                </a>
+              )}
+              {socialLinks.email && (
+                <a
+                  href={socialLinks.email.startsWith('mailto:') ? socialLinks.email : `mailto:${socialLinks.email}`}
+                  id="link-footer-email"
+                  className="social-icon"
+                  onClick={() => trackEmailClick('footer')}
+                  aria-label="Email Us"
+                >
+                  <Mail size={20} />
+                </a>
+              )}
+              {socialLinks.maps && (
+                <a
+                  href={socialLinks.maps}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  id="link-footer-maps"
+                  className="social-icon"
+                  aria-label="Find Gyan VaniAi Technologies on Google Maps"
+                  title="Office Location on Google Maps"
+                >
+                  <MapPin size={20} />
+                </a>
+              )}
+              {socialLinks.facebook && (
+                <a href={socialLinks.facebook} target="_blank" rel="noopener noreferrer" className="social-icon" aria-label="Visit our Facebook page"><FacebookIcon size={20} /></a>
+              )}
+              {socialLinks.linkedin && (
+                <a href={socialLinks.linkedin} target="_blank" rel="noopener noreferrer" className="social-icon" aria-label="Visit our LinkedIn page"><LinkedinIcon size={20} /></a>
+              )}
+              {socialLinks.github && (
+                <a href={socialLinks.github} target="_blank" rel="noopener noreferrer" className="social-icon" aria-label="Visit Gyan VaniAi on GitHub"><GithubIcon size={20} /></a>
+              )}
             </div>
           </div>
 
@@ -170,34 +257,81 @@ export default function Footer() {
           </div>
 
           <div className="footer-cta">
-            <h3 className="link-title">Stay updated</h3>
-            {isSuccess ? (
-              <div style={{ padding: '0.75rem', background: 'rgba(16, 185, 129, 0.1)', color: '#10b981', borderRadius: '8px', fontSize: '0.9rem', border: '1px solid rgba(16, 185, 129, 0.2)' }}>
-                Thanks for subscribing!
+            <h3 className="link-title" style={{ letterSpacing: '0.08em', fontWeight: 800 }}>STAY UPDATED</h3>
+            
+            {statusMessage && (
+              <div
+                style={{
+                  padding: '0.75rem 0.85rem',
+                  marginBottom: '0.65rem',
+                  borderRadius: '8px',
+                  fontSize: '0.85rem',
+                  lineHeight: '1.4',
+                  background:
+                    statusType === 'success'
+                      ? 'rgba(16, 185, 129, 0.12)'
+                      : statusType === 'info'
+                      ? 'rgba(56, 189, 248, 0.12)'
+                      : 'rgba(239, 68, 68, 0.12)',
+                  color:
+                    statusType === 'success'
+                      ? '#10b981'
+                      : statusType === 'info'
+                      ? '#38bdf8'
+                      : '#ef4444',
+                  border: `1px solid ${
+                    statusType === 'success'
+                      ? 'rgba(16, 185, 129, 0.25)'
+                      : statusType === 'info'
+                      ? 'rgba(56, 189, 248, 0.25)'
+                      : 'rgba(239, 68, 68, 0.25)'
+                  }`,
+                }}
+              >
+                {statusType === 'success' && '✓ '}
+                {statusMessage}
               </div>
-            ) : (
-              <form onSubmit={handleSubscribe} className="newsletter-form">
-                <input
-                  type="email"
-                  placeholder="Enter work email"
-                  className="input-field"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                  disabled={isSubmitting}
-                  aria-label="Email for newsletter subscription"
-                />
-                <button type="submit" className="btn btn-primary btn-subscribe" disabled={isSubmitting} aria-label="Subscribe to newsletter">
-                  <span>{isSubmitting ? '...' : 'Subscribe'}</span>
-                </button>
-              </form>
             )}
+
+            <form onSubmit={handleSubscribe} className="newsletter-form">
+              {/* Invisible bot honeypot field */}
+              <input
+                type="text"
+                name="_hp_company"
+                value={honeypot}
+                onChange={(e) => setHoneypot(e.target.value)}
+                style={{ display: 'none' }}
+                tabIndex="-1"
+                autoComplete="off"
+                aria-hidden="true"
+              />
+
+              <input
+                type="email"
+                placeholder="Enter work email"
+                className="input-field"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                disabled={isSubmitting}
+                aria-label="Work email for newsletter subscription"
+              />
+
+              <button
+                type="submit"
+                className="btn btn-primary btn-subscribe"
+                disabled={isSubmitting}
+                aria-label="Subscribe to newsletter"
+              >
+                <span>{isSubmitting ? 'Subscribing...' : 'Subscribe'}</span>
+              </button>
+            </form>
           </div>
         </div>
 
         <div className="footer-bottom">
           <p className="text-sm text-muted">
-            © 2026 Gyan VaniAi. All rights reserved. · <Link to="/privacy" className="link-inline">Privacy</Link> · <Link to="/terms" className="link-inline">Terms</Link> · <Link to="/security" className="link-inline">Security</Link>
+            {copyright} · <Link to="/privacy" className="link-inline">Privacy</Link> · <Link to="/terms" className="link-inline">Terms</Link> · <Link to="/security" className="link-inline">Security</Link> · <Link to="/unsubscribe" className="link-inline">Unsubscribe</Link>
           </p>
         </div>
       </div>

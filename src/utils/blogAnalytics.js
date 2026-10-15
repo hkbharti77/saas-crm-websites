@@ -17,12 +17,6 @@
  *   Increments counters atomically using FieldValue.increment()
  *   GA4 Custom Events fired safely via trackGA4Event adapter
  *   Fire-and-forget: never throws, never blocks the UI
- */
-
-import { db } from '../firebase.js';
-
-import { doc, setDoc, increment, serverTimestamp } from 'firebase/firestore';
-
 // ─── GA4 Safe Adapter ─────────────────────────────────────────────────────────
 
 /**
@@ -47,15 +41,6 @@ function trackGA4Event(eventName, parameters = {}) {
   }
 }
 
-// ─── Date helpers ─────────────────────────────────────────────────────────────
-function getUtcDateString() {
-  return new Date().toISOString().slice(0, 10); // YYYY-MM-DD UTC
-}
-
-function getDocId(blogId) {
-  return `${blogId}_${getUtcDateString()}`;
-}
-
 // ─── Seen-session guard ────────────────────────────────────────────────────────
 // Track which (blogId, event) pairs we've already sent this session
 // to avoid double-counting on React strict-mode double-mounts or re-navigations.
@@ -66,31 +51,6 @@ function hasFired(blogId, event) {
   if (_fired.has(key)) return true;
   _fired.add(key);
   return false;
-}
-
-// ─── Core write function ───────────────────────────────────────────────────────
-async function writeIncrement(blogId, post, fields) {
-  if (typeof window === 'undefined') return; // SSG/SSR guard
-  if (!blogId) return;
-
-  const docId = getDocId(blogId);
-  const docRef = doc(db, 'analytics_blog_daily', docId);
-
-  const base = {
-    blogId,
-    slug: post?.slugId || post?.id || blogId,
-    category: post?.category || '',
-    tags: post?.tags || [],
-    date: getUtcDateString(),
-    lastUpdated: serverTimestamp(),
-  };
-
-  try {
-    await setDoc(docRef, { ...base, ...fields }, { merge: true });
-  } catch (err) {
-    // Never break the UI for analytics failures
-    if (import.meta.env.DEV) console.debug('[BlogAnalytics] write failed', err);
-  }
 }
 
 // ─── Public API ───────────────────────────────────────────────────────────────
@@ -104,24 +64,7 @@ export function trackBlogView(post) {
   if (!post?.id || post?.status !== 'published') return;
   if (hasFired(post.id, 'view')) return;
 
-  // Build optional referrer field (domain only, non-PII)
-  let lastReferrer;
-  try {
-    if (typeof document !== 'undefined' && document.referrer) {
-      const refUrl = new URL(document.referrer);
-      if (typeof window !== 'undefined' && refUrl.hostname !== window.location.hostname) {
-        lastReferrer = refUrl.hostname;
-      }
-    }
-  } catch { /* ignore malformed referrer */ }
-
-  // 1. Write to Firestore
-  writeIncrement(post.id, post, {
-    views: increment(1),
-    ...(lastReferrer ? { lastReferrer } : {}),
-  });
-
-  // 2. Fire GA4 custom event
+  // Fire GA4 custom event
   trackGA4Event('blog_post_view', {
     blog_id: post.id,
     category: post.category || '',
@@ -137,15 +80,6 @@ export function trackBlogScroll(post, depth) {
   if (!post?.id || post?.status !== 'published') return;
   const eventKey = `scroll_${depth}`;
   if (hasFired(post.id, eventKey)) return;
-
-  const fieldMap = {
-    25: { scroll25: increment(1) },
-    50: { scroll50: increment(1) },
-    75: { scroll75: increment(1) },
-    100: { scroll100: increment(1) },
-  };
-  const fields = fieldMap[depth];
-  if (fields) writeIncrement(post.id, post, fields);
 
   // GA4 event: blog_scroll
   trackGA4Event('blog_scroll', {
@@ -167,7 +101,6 @@ export function trackBlogScroll(post, depth) {
  */
 export function trackBlogCta(post, ctaName = 'book_demo') {
   if (!post?.id || post?.status !== 'published') return;
-  writeIncrement(post.id, post, { ctaClicks: increment(1) });
 
   // GA4 event: blog_cta_click
   trackGA4Event('blog_cta_click', {
@@ -183,7 +116,6 @@ export function trackBlogCta(post, ctaName = 'book_demo') {
  */
 export function trackBlogShare(post, method = 'unknown') {
   if (!post?.id || post?.status !== 'published') return;
-  writeIncrement(post.id, post, { shares: increment(1) });
 
   // GA4 event: blog_share
   trackGA4Event('blog_share', {
@@ -206,7 +138,6 @@ export function trackBlogShare(post, method = 'unknown') {
  */
 export function trackBlogRelated(post, relatedBlogId = null) {
   if (!post?.id || post?.status !== 'published') return;
-  writeIncrement(post.id, post, { relatedClicks: increment(1) });
 
   // GA4 event: blog_related_click
   trackGA4Event('blog_related_click', {

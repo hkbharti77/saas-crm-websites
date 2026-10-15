@@ -1,37 +1,19 @@
-import { initializeApp, getApps } from 'firebase/app';
-import { getFirestore, collection, getDocs, query, orderBy } from 'firebase/firestore';
-
 const SITE = 'https://www.gyanvaniai.com';
-
-function getDb() {
-  const firebaseConfig = {
-    apiKey: process.env.VITE_FIREBASE_API_KEY || process.env.FIREBASE_API_KEY,
-    authDomain: process.env.VITE_FIREBASE_AUTH_DOMAIN || process.env.FIREBASE_AUTH_DOMAIN,
-    projectId: process.env.VITE_FIREBASE_PROJECT_ID || process.env.FIREBASE_PROJECT_ID,
-    storageBucket: process.env.VITE_FIREBASE_STORAGE_BUCKET || process.env.FIREBASE_STORAGE_BUCKET,
-    messagingSenderId: process.env.VITE_FIREBASE_MESSAGING_SENDER_ID || process.env.FIREBASE_MESSAGING_SENDER_ID,
-    appId: process.env.VITE_FIREBASE_APP_ID || process.env.FIREBASE_APP_ID,
-  };
-
-  if (!firebaseConfig.projectId || !firebaseConfig.apiKey) {
-    throw new Error('Firebase env vars missing for blog sitemap');
-  }
-
-  const app = getApps().length ? getApps()[0] : initializeApp(firebaseConfig);
-  return getFirestore(app);
-}
 
 function toIso(value) {
   if (!value) return new Date().toISOString().slice(0, 10);
-  if (typeof value?.toDate === 'function') {
-    return value.toDate().toISOString().slice(0, 10);
-  }
-  if (value.seconds != null) {
-    return new Date(value.seconds * 1000).toISOString().slice(0, 10);
-  }
   const d = new Date(value);
   if (!Number.isNaN(d.getTime())) return d.toISOString().slice(0, 10);
   return new Date().toISOString().slice(0, 10);
+}
+
+function escapeXml(str = '') {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&apos;');
 }
 
 export default async function handler(req, res) {
@@ -47,40 +29,36 @@ export default async function handler(req, res) {
   }
 
   try {
-    const db = getDb();
-    const q = query(collection(db, 'blogs'), orderBy('createdAt', 'desc'));
-    const snap = await getDocs(q);
+    const cmsApiBase = (
+      process.env.VITE_BACKEND_URL ||
+      process.env.VITE_API_URL ||
+      process.env.VITE_CMS_API_URL ||
+      process.env.CMS_API_URL ||
+      process.env.BACKEND_URL ||
+      'http://localhost:5000'
+    ).replace(/\/+$/, '');
+    const apiRes = await fetch(`${cmsApiBase}/api/public/posts?limit=100`);
+    let posts = [];
+    if (apiRes.ok) {
+      const data = await apiRes.json();
+      posts = data.posts || [];
+    }
 
-    const urls = snap.docs
-      .filter((doc) => {
-        const d = doc.data();
-        return d.status !== 'draft' && d.status !== 'scheduled' && d.status !== 'archived';
-      })
-      .map((doc) => {
-        const data = doc.data();
-        const slug = data.slugId || doc.id;
-        const lastmod = toIso(data.updatedAt || data.publishedAt || data.createdAt || data.date);
-      const priority = data.featured ? '0.9' : '0.8';
-      const image = data.image || data.thumbnail || data.coverImage;
-      const title = data.title || 'Blog Post';
-      
-      // Escape XML special characters
-      const escapeXml = (str) => {
-        if (!str) return '';
-        return String(str)
-          .replace(/&/g, '&amp;')
-          .replace(/</g, '&lt;')
-          .replace(/>/g, '&gt;')
-          .replace(/"/g, '&quot;')
-          .replace(/'/g, '&apos;');
-      };
-      
-      const imageTag = image ? `
+    const urls = posts.map((post) => {
+      const slug = post.slugId || post.slug || post.id;
+      const lastmod = toIso(post.updatedAt || post.publishedAt || post.createdAt || post.date);
+      const priority = post.isFeatured || post.featured ? '0.9' : '0.8';
+      const image = post.imageUrl || post.image || post.thumbnail || post.coverImage;
+      const title = post.title || 'Blog Post';
+
+      const imageTag = image
+        ? `
     <image:image>
       <image:loc>${escapeXml(image)}</image:loc>
       <image:title>${escapeXml(title)}</image:title>
-    </image:image>` : '';
-      
+    </image:image>`
+        : '';
+
       return `  <url>
     <loc>${SITE}/blog/${slug}</loc>
     <lastmod>${lastmod}</lastmod>

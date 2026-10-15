@@ -63,9 +63,6 @@ const routes = [
   '/resources/mcp-ai-agent-tool-calling',
   '/resources/where-to-find-us',
   '/seo/ai-visibility',
-  '/admin/login',
-  '/admin/dashboard',
-  '/admin/create',
   '/404'
 ];
 

@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowRight, Calendar, Folder } from 'lucide-react';
-import { db } from '../firebase';
-import { collection, getDocs, query, where, orderBy } from 'firebase/firestore';
 import { slugify } from '../utils/slugify';
 import SeoHead from '../components/SeoHead';
 import NotFound from './NotFound';
+import { API_BASE_URL } from '../config/apiConfig';
 import './Blog.css';
 
 export default function CategoryPage() {
@@ -21,71 +20,50 @@ export default function CategoryPage() {
     async function fetchCategoryAndPosts() {
       setLoading(true);
       try {
-        // Try to find category by slug
-        const catSnap = await getDocs(
-          query(collection(db, 'categories'), where('slug', '==', slug))
-        );
+        const cmsApiBase = API_BASE_URL;
 
+        // Fetch categories and posts matching category
+        const [catRes, postsRes] = await Promise.all([
+          fetch(`${cmsApiBase}/api/public/categories`),
+          fetch(`${cmsApiBase}/api/public/posts?category=${encodeURIComponent(slug)}&limit=50`),
+        ]);
+
+        let resolvedName = slug;
         let resolvedCategory = null;
 
-        if (!catSnap.empty) {
-          const catDoc = catSnap.docs[0];
-          resolvedCategory = { id: catDoc.id, ...catDoc.data() };
+        if (catRes.ok) {
+          const catData = await catRes.json();
+          const found = (catData.categories || []).find(
+            (c) => slugify(c.name) === slug || c.name.toLowerCase() === slug.toLowerCase()
+          );
+          if (found) {
+            resolvedName = found.name;
+            resolvedCategory = { name: found.name, slug, count: found.count };
+          }
         }
 
-        // Fetch published posts
-        if (resolvedCategory) {
-          // Match by categoryId (preferred) or by category name
-          const byIdSnap = await getDocs(
-            query(
-              collection(db, 'blogs'),
-              where('status', '==', 'published'),
-              where('categoryId', '==', resolvedCategory.id),
-              orderBy('publishedAt', 'desc')
-            )
-          );
-
-          if (!byIdSnap.empty) {
-            const posts = byIdSnap.docs.map(d => ({ id: d.id, ...d.data() }));
-            setBlogs(posts);
-            setCategory(resolvedCategory);
-            return;
-          }
-
-          // Fallback to category name match
-          const byNameSnap = await getDocs(
-            query(
-              collection(db, 'blogs'),
-              where('status', '==', 'published'),
-              where('category', '==', resolvedCategory.name),
-              orderBy('publishedAt', 'desc')
-            )
-          );
-          const posts = byNameSnap.docs.map(d => ({ id: d.id, ...d.data() }));
-          setBlogs(posts);
-          setCategory(resolvedCategory);
-        } else {
-          // Try matching slug against slugified category name on blog posts
-          const allSnap = await getDocs(
-            query(collection(db, 'blogs'), where('status', '==', 'published'))
-          );
-          const matched = allSnap.docs
-            .map(d => ({ id: d.id, ...d.data() }))
-            .filter(b => b.category && slugify(b.category) === slug)
-            .sort((a, b) => {
-              const ta = a.publishedAt?.toMillis ? a.publishedAt.toMillis() : 0;
-              const tb = b.publishedAt?.toMillis ? b.publishedAt.toMillis() : 0;
-              return tb - ta;
-            });
-
-          if (matched.length === 0) {
-            setNotFound(true);
-            return;
-          }
-
-          setCategory({ name: matched[0].category, slug });
-          setBlogs(matched);
+        let categoryPosts = [];
+        if (postsRes.ok) {
+          const postsData = await postsRes.json();
+          categoryPosts = postsData.posts || [];
         }
+
+        // If no posts found directly with slug, retry with resolved full name
+        if (categoryPosts.length === 0 && resolvedName !== slug) {
+          const retryRes = await fetch(`${cmsApiBase}/api/public/posts?category=${encodeURIComponent(resolvedName)}&limit=50`);
+          if (retryRes.ok) {
+            const retryData = await retryRes.json();
+            categoryPosts = retryData.posts || [];
+          }
+        }
+
+        if (categoryPosts.length === 0 && !resolvedCategory) {
+          setNotFound(true);
+          return;
+        }
+
+        setCategory(resolvedCategory || { name: resolvedName, slug });
+        setBlogs(categoryPosts);
       } catch (error) {
         console.error('Error fetching category page:', error);
         setNotFound(true);

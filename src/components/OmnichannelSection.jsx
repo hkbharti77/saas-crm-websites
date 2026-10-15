@@ -15,9 +15,10 @@ import {
 import { trackBookDemo } from '../utils/analytics';
 import OrbitingCircles from './ui/OrbitingCircles';
 import Card3DTilt from './ui/Card3DTilt';
+import { renderLucideIcon } from '../utils/iconMap';
 import './OmnichannelSection.css';
 
-const channels = [
+const DEFAULT_CHANNELS = [
   {
     id: 'whatsapp',
     icon: <MessageSquare size={24} />,
@@ -74,16 +75,26 @@ const channels = [
   },
 ];
 
-export default function OmnichannelSection({ onBookDemo }) {
+export default function OmnichannelSection({
+  onBookDemo,
+  title: customTitle,
+  subtitle: customSubtitle,
+  centerNode: customCenterNode,
+  channels: dynamicChannels
+}) {
   const [activeChannelId, setActiveChannelId] = useState('whatsapp');
+  const title = customTitle || 'One AI agent. Every customer conversation.';
+  const subtitle = customSubtitle || 'Unify your communication channels into an autonomous revenue engine with continuous CRM memory.';
+  const centerNode = customCenterNode || { tag: 'Central Engine', title: 'Gyan VaniAi Brain' };
+  const channels = dynamicChannels && dynamicChannels.length > 0 ? dynamicChannels : DEFAULT_CHANNELS;
 
   return (
     <section className="section bg-tinted" id="omnichannel">
       <div className="container">
         <div className="section-header section-header--center">
-<h2 className="h2">One AI agent. Every customer conversation.</h2>
+          <h2 className="h2">{title}</h2>
           <p className="text-lg text-muted" style={{ marginTop: '0.85rem' }}>
-            Unify your communication channels into an autonomous revenue engine with continuous CRM memory.
+            {subtitle}
           </p>
         </div>
 
@@ -98,8 +109,8 @@ export default function OmnichannelSection({ onBookDemo }) {
               <div className="orbit-core-pulse"></div>
             </div>
             <div className="orbit-center-label">
-              <span className="orbit-center-tag">Central Engine</span>
-              <strong>Gyan VaniAi Brain</strong>
+              <span className="orbit-center-tag">{centerNode.tag || 'Central Engine'}</span>
+              <strong>{centerNode.title || 'Gyan VaniAi Brain'}</strong>
             </div>
           </div>
 
@@ -203,7 +214,9 @@ export default function OmnichannelSection({ onBookDemo }) {
                 >
                   <div className="omnichannel-card">
                     <div className="omnichannel-card-header">
-                      <div className="omnichannel-icon">{ch.icon}</div>
+                      <div className="omnichannel-icon">
+                        {renderLucideIcon(ch.icon, { size: 24 }) || <MessageSquare size={24} />}
+                      </div>
                       <div className="omnichannel-header-right">
                         <span className="omnichannel-stat-badge">{ch.stat}</span>
                         <span className="omnichannel-badge">{ch.highlight}</span>

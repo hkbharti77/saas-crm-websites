@@ -12,6 +12,7 @@ import {
 } from 'lucide-react';
 import Card3DTilt from './ui/Card3DTilt';
 import AnimatedBeam from './ui/AnimatedBeam';
+import { renderLucideIcon } from '../utils/iconMap';
 import './Process.css';
 
 const workflowSteps = [
@@ -241,7 +242,7 @@ export default function Process({
                     )}
                   </div>
                   <div className="workflow-icon-box">
-                    {typeof step.icon === 'string' ? (
+                    {typeof step.icon === 'string' && (step.icon.startsWith('/') || step.icon.startsWith('http')) ? (
                       <img 
                         src={step.icon} 
                         alt="" 
@@ -252,7 +253,7 @@ export default function Process({
                         loading="lazy" 
                       />
                     ) : (
-                      step.icon
+                      renderLucideIcon(step.icon, { size: 20 }) || step.icon
                     )}
                   </div>
                   <h3 className="workflow-card-title">{step.title}</h3>

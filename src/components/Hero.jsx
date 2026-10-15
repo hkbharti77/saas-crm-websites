@@ -17,11 +17,12 @@ import { trackBookDemo } from '../utils/analytics';
 import { useTheme } from '../context/ThemeContext';
 import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
 const ParticleGlobe3D = React.lazy(() => import('./ui/ParticleGlobe3D'));
-const Card3DTilt = React.lazy(() => import('./ui/Card3DTilt'));
 import { Helmet } from 'react-helmet-async';
+import { ICON_MAP } from '../utils/iconMap';
+import Card3DTilt from './ui/Card3DTilt';
 import './Hero.css';
 
-const HERO_SLIDES = [
+const DEFAULT_HERO_SLIDES = [
   {
     id: 'slide-1',
     badge: 'AI-POWERED REVENUE PLATFORM',
@@ -90,7 +91,16 @@ const HERO_SLIDES = [
 
 const AUTO_SCROLL_INTERVAL = 6000; // 6 seconds per slide
 
-export default function Hero({ onBookDemo }) {
+export default function Hero({
+  onBookDemo = () => {},
+  slides: dynamicSlides = null,
+  primaryCta = null,
+  whatsappCta = null,
+  secondaryCta = null,
+  aeoTargetQuery = null,
+  aeoSummary = null
+}) {
+  const HERO_SLIDES = dynamicSlides && dynamicSlides.length > 0 ? dynamicSlides : DEFAULT_HERO_SLIDES;
   const { theme } = useTheme();
   const isLight = theme === 'light';
   const prefersReducedMotion = useReducedMotion();
@@ -101,6 +111,13 @@ export default function Hero({ onBookDemo }) {
   const [isPaused, setIsPaused] = useState(false);
   const autoScrollTimerRef = useRef(null);
 
+  // Keep currentSlide within valid bounds if slides change dynamically
+  useEffect(() => {
+    if (currentSlide >= HERO_SLIDES.length) {
+      setCurrentSlide(0);
+    }
+  }, [HERO_SLIDES.length, currentSlide]);
+
   const handleBookDemo = (source) => {
     trackBookDemo(source);
     onBookDemo();
@@ -109,12 +126,12 @@ export default function Hero({ onBookDemo }) {
   const nextSlide = useCallback(() => {
     setDirection(1);
     setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length);
-  }, []);
+  }, [HERO_SLIDES.length]);
 
   const prevSlide = useCallback(() => {
     setDirection(-1);
     setCurrentSlide((prev) => (prev - 1 + HERO_SLIDES.length) % HERO_SLIDES.length);
-  }, []);
+  }, [HERO_SLIDES.length]);
 
   const goToSlide = (index) => {
     if (index === currentSlide) return;
@@ -124,7 +141,7 @@ export default function Hero({ onBookDemo }) {
 
   // Auto-scroll loop
   useEffect(() => {
-    if (isPaused) return;
+    if (isPaused || HERO_SLIDES.length <= 1) return;
 
     autoScrollTimerRef.current = setInterval(() => {
       nextSlide();
@@ -135,9 +152,9 @@ export default function Hero({ onBookDemo }) {
         clearInterval(autoScrollTimerRef.current);
       }
     };
-  }, [isPaused, nextSlide, currentSlide]);
+  }, [isPaused, nextSlide, currentSlide, HERO_SLIDES.length]);
 
-  const activeSlideData = HERO_SLIDES[currentSlide];
+  const activeSlideData = HERO_SLIDES[currentSlide] || HERO_SLIDES[0] || DEFAULT_HERO_SLIDES[0];
 
   return (
     <section
@@ -148,8 +165,19 @@ export default function Hero({ onBookDemo }) {
       onMouseLeave={() => setIsPaused(false)}
     >
       <Helmet>
-        <link rel="preload" as="image" href="/hero_robot_dark.webp" fetchPriority="high" />
+        <link rel="preload" as="image" href={activeSlideData.imageDark || "/hero_robot_dark.webp"} fetchPriority="high" />
       </Helmet>
+
+      {/* Semantic AEO & LLM Retrieval Micro-markup */}
+      <div 
+        className="sr-only" 
+        data-aeo-entity="GyanVaniAi" 
+        data-aeo-intent={aeoTargetQuery || "What is Gyan VaniAi AI CRM Platform?"}
+        data-speakable="true"
+        aria-hidden="true"
+      >
+        <p>{aeoSummary || `${activeSlideData.titlePrefix || 'Autonomous AI CRM for'} ${activeSlideData.titleGradient || 'high-velocity revenue teams'}: ${activeSlideData.subtitle || 'Capture, enrich, qualify, assign and convert leads.'}`}</p>
+      </div>
       {/* Background Subtle Ambient Media Layer with Fluid Framer Motion */}
       <div className="hero-media-container" aria-hidden="true">
         <AnimatePresence initial={false} custom={direction} mode="popLayout">
@@ -194,8 +222,8 @@ export default function Hero({ onBookDemo }) {
             className="hero-media-slide-motion"
           >
             <img
-              src={isLight ? activeSlideData.imageLight : activeSlideData.imageDark}
-              alt={activeSlideData.altText}
+              src={isLight ? (activeSlideData.imageLight || activeSlideData.imageDark || '/hero_robot_light.webp') : (activeSlideData.imageDark || activeSlideData.imageLight || '/hero_robot_dark.webp')}
+              alt={activeSlideData.altText || 'Gyan VaniAi Enterprise Autonomous AI System'}
               width="1920"
               height="1080"
               fetchPriority={currentSlide === 0 ? 'high' : 'auto'}
@@ -260,41 +288,47 @@ export default function Hero({ onBookDemo }) {
                     id="btn-hero-book-demo"
                     type="button"
                     className="btn btn-primary hero-btn-primary"
-                    onClick={() => handleBookDemo(`hero-slide-${currentSlide + 1}`)}
-                    title={`${targeting?.country || 'Global'} - Click to ${targeting?.cta || 'Book a Demo'}`}
+                    onClick={() => {
+                      if (primaryCta?.action === 'link' && primaryCta?.destination) {
+                        window.location.href = primaryCta.destination;
+                      } else {
+                        handleBookDemo(`hero-slide-${currentSlide + 1}`);
+                      }
+                    }}
+                    title={`${targeting?.country || 'Global'} - Click to ${primaryCta?.label || targeting?.cta || 'Book a Demo'}`}
                   >
-                    <span>{targeting?.cta || 'Book a Demo'}</span>
+                    <span>{primaryCta?.label || targeting?.cta || 'Book a Demo'}</span>
                     <ArrowRight size={18} />
                   </button>
                   <a
                     id="btn-hero-whatsapp"
-                    href="https://wa.me/918700620913?text=Hi%20Gyan%20VaniAi%2C%20I%20would%20like%20to%20book%20a%20consultation."
+                    href={whatsappCta?.destination || "https://wa.me/918700620913?text=Hi%20Gyan%20VaniAi%2C%20I%20would%20like%20to%20book%20a%20consultation."}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn hero-btn-whatsapp"
                     title="Chat with Gyan VaniAi WhatsApp AI Agent"
                   >
                     <MessageSquare size={18} className="whatsapp-icon" />
-                    <span>WhatsApp AI Demo</span>
+                    <span>{whatsappCta?.label || 'WhatsApp AI Demo'}</span>
                   </a>
                   <a
                     id="btn-hero-explore"
-                    href="#capabilities"
+                    href={secondaryCta?.destination || "#capabilities"}
                     className="btn btn-outline hero-btn-secondary"
                   >
-                    <span>Explore Platform</span>
+                    <span>{secondaryCta?.label || 'Explore Platform'}</span>
                     <ArrowRight size={18} />
                   </a>
                 </div>
 
                 {/* Dynamic Telemetry Row */}
                 <div className="hero-telemetry-row">
-                  {activeSlideData.telemetry.map((item, tIdx) => {
-                    const ItemIcon = item.icon;
+                  {(activeSlideData.telemetry || []).filter(item => (item?.text && item.text.trim()) || (item?.value && item.value.trim())).map((item, tIdx) => {
+                    const ItemIcon = typeof item.icon === 'string' ? (ICON_MAP[item.icon] || Zap) : item.icon;
                     return (
                       <div key={tIdx} className="hero-telemetry-pill">
                         <span className={`telemetry-dot ${item.dot}`}></span>
-                        <ItemIcon size={13} className="telemetry-icon" />
+                        {ItemIcon && <ItemIcon size={13} className="telemetry-icon" />}
                         <span>{item.text}<strong>{item.value}</strong></span>
                       </div>
                     );
@@ -342,9 +376,9 @@ export default function Hero({ onBookDemo }) {
               </button>
 
               <div className="carousel-slide-counter">
-                <span>0{currentSlide + 1}</span>
+                <span>{String(currentSlide + 1).padStart(2, '0')}</span>
                 <span className="counter-sep">/</span>
-                <span>0{HERO_SLIDES.length}</span>
+                <span>{String(HERO_SLIDES.length).padStart(2, '0')}</span>
               </div>
             </div>
 
@@ -405,10 +439,10 @@ export default function Hero({ onBookDemo }) {
                     <div className="hero-float-content">
                       <div className="hero-float-header">
                         <span className="hero-float-dot pulse-emerald"></span>
-                        <span className="hero-float-title">{activeSlideData.badge}</span>
+                        <span className="hero-float-title">{activeSlideData?.badge || 'AI CRM'}</span>
                       </div>
-                      <div className="hero-float-metric">{activeSlideData.telemetry[0].value}</div>
-                      <div className="hero-float-label">{activeSlideData.telemetry[0].text.replace(':', '')}</div>
+                      <div className="hero-float-metric">{activeSlideData?.telemetry?.[0]?.value || '98/100 Intent'}</div>
+                      <div className="hero-float-label">{(activeSlideData?.telemetry?.[0]?.text || 'AI Lead Scoring:').replace(':', '')}</div>
                     </div>
                   </Card3DTilt>
 
@@ -418,15 +452,15 @@ export default function Hero({ onBookDemo }) {
                         <span className="hero-float-dot pulse-cyan"></span>
                         <span className="hero-float-title">Continuous Sync</span>
                       </div>
-                      <div className="hero-float-metric">{activeSlideData.telemetry[1].value}</div>
-                      <div className="hero-float-label">{activeSlideData.telemetry[1].text.replace(':', '')}</div>
+                      <div className="hero-float-metric">{activeSlideData?.telemetry?.[1]?.value || '$2.4M ARR (+38%)'}</div>
+                      <div className="hero-float-label">{(activeSlideData?.telemetry?.[1]?.text || 'Pipeline:').replace(':', '')}</div>
                     </div>
                   </Card3DTilt>
 
                   <Card3DTilt className="hero-3d-float-card hero-3d-card-status" maxRotation={12} scale={1.04}>
                     <div className="hero-float-status-pill">
                       <span className="hero-status-live-pulse"></span>
-                      <span>99.99% Cloud SLA</span>
+                      <span>{activeSlideData?.telemetry?.[2]?.value || '99.99% Cloud SLA'}</span>
                     </div>
                   </Card3DTilt>
                 </React.Suspense>

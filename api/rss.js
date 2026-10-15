@@ -1,25 +1,4 @@
-import { initializeApp, getApps } from 'firebase/app';
-import { getFirestore, collection, getDocs, query, orderBy } from 'firebase/firestore';
-
 const SITE = 'https://www.gyanvaniai.com';
-
-function getDb() {
-  const firebaseConfig = {
-    apiKey: process.env.VITE_FIREBASE_API_KEY || process.env.FIREBASE_API_KEY,
-    authDomain: process.env.VITE_FIREBASE_AUTH_DOMAIN || process.env.FIREBASE_AUTH_DOMAIN,
-    projectId: process.env.VITE_FIREBASE_PROJECT_ID || process.env.FIREBASE_PROJECT_ID,
-    storageBucket: process.env.VITE_FIREBASE_STORAGE_BUCKET || process.env.FIREBASE_STORAGE_BUCKET,
-    messagingSenderId: process.env.VITE_FIREBASE_MESSAGING_SENDER_ID || process.env.FIREBASE_MESSAGING_SENDER_ID,
-    appId: process.env.VITE_FIREBASE_APP_ID || process.env.FIREBASE_APP_ID,
-  };
-
-  if (!firebaseConfig.projectId || !firebaseConfig.apiKey) {
-    throw new Error('Firebase env vars missing for RSS');
-  }
-
-  const app = getApps().length ? getApps()[0] : initializeApp(firebaseConfig);
-  return getFirestore(app);
-}
 
 function escapeXml(str = '') {
   return String(str)
@@ -32,8 +11,6 @@ function escapeXml(str = '') {
 
 function toRfc822(value) {
   if (!value) return new Date().toUTCString();
-  if (typeof value?.toDate === 'function') return value.toDate().toUTCString();
-  if (value.seconds != null) return new Date(value.seconds * 1000).toUTCString();
   const d = new Date(value);
   if (!Number.isNaN(d.getTime())) return d.toUTCString();
   return new Date().toUTCString();
@@ -56,32 +33,36 @@ export default async function handler(req, res) {
   }
 
   try {
-    const db = getDb();
-    const q = query(collection(db, 'blogs'), orderBy('createdAt', 'desc'));
-    const snap = await getDocs(q);
+    const cmsApiBase = (
+      process.env.VITE_BACKEND_URL ||
+      process.env.VITE_API_URL ||
+      process.env.VITE_CMS_API_URL ||
+      process.env.CMS_API_URL ||
+      process.env.BACKEND_URL ||
+      'http://localhost:5000'
+    ).replace(/\/+$/, '');
+    const apiRes = await fetch(`${cmsApiBase}/api/public/posts?limit=100`);
+    let posts = [];
+    if (apiRes.ok) {
+      const data = await apiRes.json();
+      posts = data.posts || [];
+    }
 
-    const items = snap.docs
-      .filter((doc) => {
-        const d = doc.data();
-        return d.status !== 'draft' && d.status !== 'scheduled' && d.status !== 'archived';
-      })
-      .map((doc) => {
-        const data = doc.data();
-        const slug = data.slugId || doc.id;
-        const link = `${SITE}/blog/${slug}`;
-        const description = escapeXml(
-          (data.seoDescription || data.excerpt || stripHtml(data.content || '')).slice(0, 300)
-        );
-        return `    <item>
-      <title>${escapeXml(data.seoTitle || data.title || 'Untitled')}</title>
+    const items = posts.map((post) => {
+      const slug = post.slugId || post.slug || post.id;
+      const link = `${SITE}/blog/${slug}`;
+      const description = escapeXml(
+        (post.seoDescription || post.excerpt || stripHtml(post.content || '')).slice(0, 300)
+      );
+      return `    <item>
+      <title>${escapeXml(post.seoTitle || post.title || 'Untitled')}</title>
       <link>${link}</link>
       <description>${description}</description>
-      <pubDate>${toRfc822(data.publishedAt || data.createdAt || data.date)}</pubDate>
+      <pubDate>${toRfc822(post.publishedAt || post.createdAt || post.date)}</pubDate>
       <guid isPermaLink="true">${link}</guid>
     </item>`;
     });
 
-    // Keep flagship service entries so RSS stays useful even with few posts
     const serviceItems = `
     <item>
       <title>WhatsApp Coexistence Mode: Run Phone App and AI CRM on Same Number</title>
