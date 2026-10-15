@@ -520,13 +520,17 @@ export default function BlogPost() {
           <div className="blog-editorial-container blog-hero-image-wrap">
             <div className="blog-hero-image-frame">
               <img
-                src={post.imageUrl}
+                src={post.imageUrl || '/portfolio_crm.webp'}
                 alt={`${post.title} | Gyan VaniAi`}
                 width="1200"
                 height="675"
                 fetchPriority="high"
                 decoding="sync"
                 className="blog-hero-image"
+                onError={(e) => {
+                  e.currentTarget.onerror = null;
+                  e.currentTarget.src = '/portfolio_crm.webp';
+                }}
               />
             </div>
           </div>
