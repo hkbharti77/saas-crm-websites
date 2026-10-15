@@ -3,6 +3,8 @@
  * Reads exclusively from environment variables (import.meta.env)
  */
 
+const PRODUCTION_CMS_BACKEND = 'https://api-cms.gyanvaniai.info';
+
 const rawBackendUrl = (
   import.meta.env.VITE_BACKEND_URL ||
   import.meta.env.VITE_API_URL ||
@@ -17,7 +19,7 @@ function resolveBackendUrl() {
   if (rawBackendUrl) {
     // If on a live public domain, never call localhost (prevents ERR_CONNECTION_REFUSED)
     if (isBrowser && !isLocalHost && (rawBackendUrl.includes('localhost') || rawBackendUrl.includes('127.0.0.1'))) {
-      return '';
+      return PRODUCTION_CMS_BACKEND;
     }
     return rawBackendUrl;
   }
@@ -27,7 +29,8 @@ function resolveBackendUrl() {
     return 'http://localhost:5000';
   }
 
-  return '';
+  // Live production storefront fallback
+  return PRODUCTION_CMS_BACKEND;
 }
 
 export const BACKEND_URL = resolveBackendUrl();

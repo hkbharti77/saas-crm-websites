@@ -1,7 +1,7 @@
 // Client-side landing page data loader with local caching & instant fallbacks
 import { API_BASE_URL } from '../config/apiConfig';
 
-const CACHE_KEY = 'gyanvani_public_landing_page_v1';
+const CACHE_KEY = 'gyanvani_public_landing_page_v2';
 let memoryCache = null;
 
 // Cross-tab real-time sync with CMS Admin Portal
