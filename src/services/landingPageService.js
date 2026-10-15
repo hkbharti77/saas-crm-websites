@@ -54,7 +54,11 @@ export async function fetchLandingPageData(options = {}) {
     }
   }
 
-  // 3. Network fetch
+  // 3. Network fetch (only when backend API is configured)
+  if (!API_BASE_URL) {
+    return null;
+  }
+
   try {
     const cacheBuster = `?_t=${Date.now()}`;
     const res = await fetch(`${API_BASE_URL}/api/public/landing-page${cacheBuster}`, {
@@ -82,6 +86,7 @@ export async function fetchLandingPageData(options = {}) {
 }
 
 export async function refreshLandingPageDataInBackground() {
+  if (!API_BASE_URL) return;
   try {
     const cacheBuster = `?_t=${Date.now()}`;
     const res = await fetch(`${API_BASE_URL}/api/public/landing-page${cacheBuster}`, {

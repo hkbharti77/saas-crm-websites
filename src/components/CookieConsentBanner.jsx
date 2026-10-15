@@ -105,6 +105,7 @@ const CookieConsentBanner = () => {
 
     const payload = { status, preferences: finalPrefs, userAgent: navigator.userAgent, language: navigator.language || null, referrer: document.referrer || null, pageUrl: window.location.href, consentVersion: '2.0', ...geo };
 
+    if (!BACKEND_URL) return;
     try {
       await fetch(BACKEND_URL + '/api/public/cookie-consent/record', {
         method: 'POST',

@@ -17,7 +17,6 @@ import { trackBookDemo } from '../utils/analytics';
 import { useTheme } from '../context/ThemeContext';
 import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
 const ParticleGlobe3D = React.lazy(() => import('./ui/ParticleGlobe3D'));
-import { Helmet } from 'react-helmet-async';
 import { ICON_MAP } from '../utils/iconMap';
 import Card3DTilt from './ui/Card3DTilt';
 import './Hero.css';
@@ -164,9 +163,7 @@ export default function Hero({
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
-      <Helmet>
-        <link rel="preload" as="image" href={activeSlideData.imageDark || "/hero_robot_dark.webp"} fetchPriority="high" />
-      </Helmet>
+
 
       {/* Semantic AEO & LLM Retrieval Micro-markup */}
       <div 

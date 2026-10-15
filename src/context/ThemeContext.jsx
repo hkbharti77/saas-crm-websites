@@ -56,6 +56,7 @@ export function ThemeProvider({ children }) {
 
   // Sync with GyanVaniAi Admin CMS Backend API (MongoDB source of truth)
   useEffect(() => {
+    if (!BACKEND_URL) return;
     const backendUrl = BACKEND_URL;
 
     const fetchTheme = async () => {
