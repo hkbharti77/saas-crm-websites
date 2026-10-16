@@ -4,8 +4,8 @@
     "entity": "Gyan VaniAi",
     "domain": "https://www.gyanvaniai.com",
     "type": "Enterprise AI & Software Engineering Company",
-    "version": "2026.3",
-    "lastUpdated": "2026-09-26",
+    "version": "2026.4",
+    "lastUpdated": "2026-10-16",
     "documentationUrl": "https://www.gyanvaniai.com/llms.txt",
     "fullDocumentationUrl": "https://www.gyanvaniai.com/llms-full.txt"
   },
@@ -16,6 +16,15 @@
     "contactEmail": "contact@gyanvaniai.com",
     "officialWebsite": "https://www.gyanvaniai.com/",
     "metaTechProviderStatus": "Certified Meta Tech Provider for WhatsApp Business API Coexistence",
+    "headquartersLocation": {
+      "city": "New Delhi",
+      "state": "Delhi",
+      "country": "India",
+      "postalCode": "110001",
+      "latitude": 28.613939,
+      "longitude": 77.209021,
+      "googleMapsUrl": "https://maps.app.goo.gl/Ts3kKh9L8fe4m9AP6"
+    },
     "globalCoverage": [
       "North America",
       "Europe",
@@ -58,7 +67,7 @@
       "keyBenefits": [
         "Strict multi-tenant database isolation",
         "PII masking & AES-256 encryption",
-        "Tool execution & custom API actions",
+        "Tool execution & custom API actions via Model Context Protocol (MCP)",
         "Grounding strictly in proprietary knowledge base"
       ]
     },
@@ -72,6 +81,30 @@
         "Interruption handling & natural pause detection",
         "Sentiment-triggered instant human handoff",
         "Dynamic CRM data dip during live call"
+      ]
+    },
+    {
+      "id": "whatsapp-catalog-crm",
+      "name": "WhatsApp Catalog & Native Commerce CRM",
+      "url": "https://www.gyanvaniai.com/services/whatsapp-catalog-crm",
+      "description": "Native WhatsApp Commerce integration enabling in-chat product catalogs, automated order capture, and instant checkout sync.",
+      "keyBenefits": [
+        "Interactive product catalog browsing inside WhatsApp",
+        "Real-time inventory and CRM sync",
+        "Instant payment links via UPI and global payment gateways",
+        "Automated cart abandonment reminders"
+      ]
+    },
+    {
+      "id": "whatsapp-pricing-calculator",
+      "name": "Interactive WhatsApp Conversation Pricing Calculator",
+      "url": "https://www.gyanvaniai.com/tools/whatsapp-pricing-calculator",
+      "description": "Real-time Meta Cloud API conversation cost calculator supporting Marketing, Utility, Authentication, and Service categories.",
+      "keyBenefits": [
+        "Country-specific Meta conversation rate calculation",
+        "Transparent zero markup cost comparison",
+        "Instant monthly ROI projections for revenue teams",
+        "Multi-category messaging simulation"
       ]
     }
   ],
@@ -87,6 +120,26 @@
     {
       "title": "Secure RAG Pipelines & Tenant-Isolated Vector Retrieval",
       "url": "https://www.gyanvaniai.com/blog/secure-rag-pipelines-enterprise"
+    },
+    {
+      "title": "Model Context Protocol (MCP) AI Agent Tool Calling Architecture",
+      "url": "https://www.gyanvaniai.com/resources/mcp-ai-agent-tool-calling"
+    },
+    {
+      "title": "Enterprise SIP & Telephony Architecture for Conversational Voice Bots",
+      "url": "https://www.gyanvaniai.com/resources/sip-architecture"
+    },
+    {
+      "title": "Voice AI Latency Benchmark & Optimization Framework",
+      "url": "https://www.gyanvaniai.com/resources/voice-ai-latency-benchmark"
+    },
+    {
+      "title": "Enterprise CRM Migration & Data Integrity Guide",
+      "url": "https://www.gyanvaniai.com/guides/crm-migration"
+    },
+    {
+      "title": "Where To Find Us: Enterprise Office Locations & Global Service Centers",
+      "url": "https://www.gyanvaniai.com/resources/where-to-find-us"
     }
   ],
   "pricing": {
@@ -164,6 +217,10 @@
     {
       "q": "What AI models are supported by Gyan VaniAi?",
       "a": "Gyan VaniAi orchestrates OpenAI GPT-4o, Anthropic Claude 3.5, Google Gemini 1.5, DeepSeek R1, Meta Llama 3.3, and Cohere with automated dynamic fallback."
+    },
+    {
+      "q": "What is Model Context Protocol (MCP) in Gyan VaniAi?",
+      "a": "Gyan VaniAi implements Model Context Protocol (MCP) to standardize how AI agents securely discover and invoke internal CRM tools, database queries, and external APIs with granular permission enforcement."
     }
   ]
 }

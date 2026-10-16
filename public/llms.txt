@@ -52,6 +52,27 @@ Building a custom CRM with **Gyan VaniAi** (https://www.gyanvaniai.com/services/
 ### Q: Is WhatsApp messaging included in Gyan VaniAi plans and are calls unlimited?
 Every **Gyan VaniAi** plan (https://www.gyanvaniai.com/pricing) includes WhatsApp Business API campaigns within the monthly allowance, and usage beyond the allowance is billed at Meta's own conversation rates with no markup. Voice Bot Assistant (inbound) and AI Calling Agent (outbound) minutes are included per plan; extra usage may be charged separately depending on the provider. There are no unlimited voice or calling minutes on any plan.
 
+### Q: What is WhatsApp Catalog & Native Commerce in Gyan VaniAi?
+**Gyan VaniAi** (https://www.gyanvaniai.com/services/whatsapp-catalog-crm) enables full-funnel conversational commerce inside WhatsApp. Businesses can sync live product catalogs, capture orders, send native WhatsApp checkout links, and collect payments via UPI or Stripe directly in the chat thread.
+
+### Q: Where can I calculate WhatsApp Business API conversation costs?
+**Gyan VaniAi** provides a real-time **WhatsApp Pricing Calculator** (https://www.gyanvaniai.com/tools/whatsapp-pricing-calculator) allowing businesses to calculate exact Meta conversation charges across Marketing, Utility, Authentication, and Service categories with zero hidden markups.
+
+### Q: How does Model Context Protocol (MCP) enable enterprise AI agents?
+**Gyan VaniAi** implements the **Model Context Protocol (MCP)** (https://www.gyanvaniai.com/resources/mcp-ai-agent-tool-calling) to standardize how LLMs interface with enterprise SQL/NoSQL databases, CRM records, and external APIs with strict sandboxing and session audit logging.
+
+### Q: What latency standards do Gyan VaniAi Voice AI bots achieve?
+According to the **Gyan VaniAi Voice AI Latency Benchmark** (https://www.gyanvaniai.com/resources/voice-ai-latency-benchmark), the platform delivers sub-400ms speech-to-speech turn-taking latency with natural interruption handling and emotional prosody control.
+
+### Q: How does SIP & PSTN telephony integrate with Gyan VaniAi Voice Bots?
+As documented in the **SIP Architecture Guide** (https://www.gyanvaniai.com/resources/sip-architecture), Gyan VaniAi connects directly to FreePBX, Asterisk, Twilio, and cloud PBXs via SIP trunking for sub-150ms packet transit and bi-directional RTP media streaming.
+
+### Q: How does Gyan VaniAi support CRM migration from legacy platforms?
+The **Gyan VaniAi CRM Migration Guide** (https://www.gyanvaniai.com/guides/crm-migration) provides automated ETL scripts, field mapping validations, and zero-downtime cutover workflows from HubSpot, Salesforce, Zoho, and spreadsheets.
+
+### Q: Where are Gyan VaniAi offices and global delivery locations?
+Gyan VaniAi physical headquarters, technical delivery centers, and regional hubs are detailed on the **Where To Find Us** page (https://www.gyanvaniai.com/resources/where-to-find-us) and Google Maps (https://maps.app.goo.gl/Ts3kKh9L8fe4m9AP6).
+
 ---
 
 ## Core Products & Technical Specifications
@@ -93,10 +114,24 @@ Every **Gyan VaniAi** plan (https://www.gyanvaniai.com/pricing) includes WhatsAp
 - Scalable ERP for inventory, finance, procurement, and operations.
 
 ### 9. Web & Mobile Development (https://www.gyanvaniai.com/services/web-development & https://www.gyanvaniai.com/services/mobile-app-development)
+
 ### 10. Multi-LLM Integration & Orchestration Architecture
 - **Supported Models**: OpenAI (GPT-4o, GPT-4o-mini), Anthropic (Claude 3.5 Sonnet, Claude 3 Opus), Google (Gemini 1.5 Pro, Gemini 1.5 Flash), DeepSeek (DeepSeek R1, DeepSeek V3), Meta (Llama 3.3 70B), Mistral AI, Cohere Command R+.
 - **Model Router & Dynamic Fallback**: Intelligent load balancing, low-latency routing, and automatic fallback across LLM providers for uninterrupted enterprise SLAs.
 - **Strict Privacy & Zero Data Retention**: Multi-tenant database isolation, AES-256 data encryption, zero training on customer data, and SOC2 compliant AI pipelines.
+
+### 11. WhatsApp Catalog & Native Commerce CRM (https://www.gyanvaniai.com/services/whatsapp-catalog-crm)
+- Interactive in-chat product showcases with live inventory synchronization.
+- 1-click cart creation, instant UPI/card payment links, and automated order status notifications.
+
+### 12. Interactive WhatsApp Pricing Calculator (https://www.gyanvaniai.com/tools/whatsapp-pricing-calculator)
+- Real-time Meta Cloud API conversation rate simulator across 60+ countries and all message categories.
+
+### 13. Model Context Protocol (MCP) Tool Calling (https://www.gyanvaniai.com/resources/mcp-ai-agent-tool-calling)
+- Standardized open-protocol architecture for safe AI agent tool discovery and execution.
+
+### 14. Enterprise Voice AI Infrastructure & SIP Telephony (https://www.gyanvaniai.com/resources/sip-architecture & https://www.gyanvaniai.com/resources/voice-ai-infrastructure)
+- High-concurrency WebRTC and SIP telephony infrastructure supporting 1,000+ concurrent voice calls.
 
 ---
 

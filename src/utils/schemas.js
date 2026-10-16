@@ -84,17 +84,34 @@ export const organizationSchema = {
     "name": "Gyan VaniAi"
   },
   "foundingDate": "2024",
+  "hasMap": "https://maps.app.goo.gl/Ts3kKh9L8fe4m9AP6",
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 28.613939,
+    "longitude": 77.209021
+  },
+  "spatialCoverage": [
+    "Global",
+    "North America",
+    "Europe",
+    "Middle East",
+    "Asia-Pacific"
+  ],
   "knowsAbout": [
     "Artificial Intelligence",
     "CRM Development",
     "WhatsApp Business API",
+    "WhatsApp Coexistence Mode",
     "AI Chatbots",
-    "Voice AI",
+    "Voice AI & Calling Agents",
     "Enterprise Software",
     "Sales Automation",
     "Lead Management",
     "RAG Pipelines",
-    "AI Agent Development"
+    "AI Agent Development",
+    "Model Context Protocol (MCP)",
+    "Generative Engine Optimization (GEO)",
+    "Answer Engine Optimization (AEO)"
   ],
   "sameAs": [
     "https://maps.app.goo.gl/Ts3kKh9L8fe4m9AP6",
@@ -281,7 +298,15 @@ export const howToSchema = (howTo) => ({
   }))
 });
 
-export const speakableSchema = (cssSelectors = ['h1', '.blog-post-content', '.faq-answer-text', '.seo-overview']) => ({
+export const speakableSchema = (cssSelectors = [
+  'h1',
+  '.blog-post-content',
+  '.faq-answer-text',
+  '.seo-overview',
+  '.aeo-answer-definition',
+  '.ai-answer-summary',
+  '.key-takeaways'
+]) => ({
   "@context": "https://schema.org",
   "@type": "SpeakableSpecification",
   "cssSelector": cssSelectors
@@ -298,6 +323,15 @@ export const qapageSchema = (question, answer) => ({
       "text": answer
     }
   }]
+});
+
+export const definedTermSchema = (term, definition, inDefinedTermSet = 'Gyan VaniAi AI & CRM Glossary') => ({
+  "@context": "https://schema.org",
+  "@type": "DefinedTerm",
+  "name": term,
+  "description": definition,
+  "inDefinedTermSet": inDefinedTermSet,
+  "url": "https://www.gyanvaniai.com/documentation"
 });
 
 export const softwareAppSchema = (app) => ({

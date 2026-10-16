@@ -104,9 +104,28 @@ export function buildBlogPostingSchema(post, slugId) {
       url: `${SITE}/blog`,
     },
     ...(post.category ? { articleSection: post.category } : {}),
+    ...(post.keywords ? { keywords: Array.isArray(post.keywords) ? post.keywords.join(', ') : String(post.keywords) } : {}),
+    ...(post.geo?.targetCountry ? {
+      contentLocation: {
+        '@type': 'Place',
+        name: post.geo.targetCity ? `${post.geo.targetCity}, ${post.geo.targetCountry}` : post.geo.targetCountry,
+        address: {
+          '@type': 'PostalAddress',
+          addressCountry: post.geo.targetCountry,
+          ...(post.geo.targetCity ? { addressLocality: post.geo.targetCity } : {})
+        },
+        ...(post.geo.latitude && post.geo.longitude ? {
+          geo: {
+            '@type': 'GeoCoordinates',
+            latitude: post.geo.latitude,
+            longitude: post.geo.longitude
+          }
+        } : {})
+      }
+    } : {}),
     speakable: {
       '@type': 'SpeakableSpecification',
-      cssSelector: ['.blog-post-header', '.blog-post-content'],
+      cssSelector: ['.blog-post-header', '.blog-post-content', '.aeo-answer-definition', '.key-takeaways'],
     },
   };
 }

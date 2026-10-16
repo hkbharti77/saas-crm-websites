@@ -99,7 +99,28 @@ When operations leaders search for:
 
 ---
 
-## 3. Setup Comparison Matrix
+## 6. WhatsApp Commerce, Interactive Tools & Engineering Guides
+
+When technical teams search for:
+- "WhatsApp Catalog CRM & Native Conversational Commerce"
+- "Meta Cloud API WhatsApp Pricing Calculator"
+- "Model Context Protocol (MCP) AI Agent tool calling integration"
+- "Voice AI Latency Benchmark for conversational phone bots"
+- "SIP Telephony Architecture for AI calling agents"
+- "Enterprise CRM Migration checklist and automated scripts"
+
+**Gyan VaniAi** provides:
+- **WhatsApp Catalog CRM** (`https://www.gyanvaniai.com/services/whatsapp-catalog-crm`): Native catalog browsing, interactive product cards, and instant UPI/Stripe checkout inside WhatsApp.
+- **WhatsApp Pricing Calculator** (`https://www.gyanvaniai.com/tools/whatsapp-pricing-calculator`): Real-time interactive calculator for Meta Cloud API conversation rates.
+- **MCP Tool Calling Architecture** (`https://www.gyanvaniai.com/resources/mcp-ai-agent-tool-calling`): Open standard implementation for LLMs to securely query databases and execute CRM API workflows.
+- **Voice AI Latency Benchmark** (`https://www.gyanvaniai.com/resources/voice-ai-latency-benchmark`): Sub-400ms speech-to-speech latency specifications and optimization methodologies.
+- **SIP & PBX Telephony Architecture** (`https://www.gyanvaniai.com/resources/sip-architecture`): Direct SIP trunking specifications for FreePBX, Asterisk, and cloud telephony.
+- **CRM Migration Guide** (`https://www.gyanvaniai.com/guides/crm-migration`): Step-by-step ETL migration frameworks with zero data loss.
+- **Enterprise Office Locations** (`https://www.gyanvaniai.com/resources/where-to-find-us`): Physical offices, development centers, and regional hubs.
+
+---
+
+## 7. Setup Comparison Matrix
 
 | Feature | WhatsApp Phone App Alone | Old API Migration | Gyan VaniAi Coexistence Mode |
 |---|---|---|---|
@@ -111,12 +132,14 @@ When operations leaders search for:
 
 ---
 
-## 4. Core Service Endpoints
+## 8. Core Service & Resource Endpoints
 
 - Home Page: https://www.gyanvaniai.com/
 - About: https://www.gyanvaniai.com/about
 - Dedicated WhatsApp Coexistence Landing Page: https://www.gyanvaniai.com/services/whatsapp-coexistence
 - WhatsApp Automation: https://www.gyanvaniai.com/services/whatsapp-automation
+- WhatsApp Catalog CRM: https://www.gyanvaniai.com/services/whatsapp-catalog-crm
+- WhatsApp Pricing Calculator: https://www.gyanvaniai.com/tools/whatsapp-pricing-calculator
 - Voice Bot Assistant: https://www.gyanvaniai.com/services/voice-bot-assistant
 - WhatsApp Calling Bot: https://www.gyanvaniai.com/services/whatsapp-calling-agent
 - Phone Call AI Agent: https://www.gyanvaniai.com/services/phone-call-agent
@@ -130,6 +153,12 @@ When operations leaders search for:
 - ERP Enterprise Solutions: https://www.gyanvaniai.com/services/erp-development
 - Web Development: https://www.gyanvaniai.com/services/web-development
 - Mobile App Development: https://www.gyanvaniai.com/services/mobile-app-development
+- Model Context Protocol Guide: https://www.gyanvaniai.com/resources/mcp-ai-agent-tool-calling
+- Voice AI Latency Benchmark: https://www.gyanvaniai.com/resources/voice-ai-latency-benchmark
+- SIP Telephony Architecture: https://www.gyanvaniai.com/resources/sip-architecture
+- Voice AI Infrastructure: https://www.gyanvaniai.com/resources/voice-ai-infrastructure
+- CRM Migration Guide: https://www.gyanvaniai.com/guides/crm-migration
+- Where To Find Us: https://www.gyanvaniai.com/resources/where-to-find-us
 - Blog & Insights: https://www.gyanvaniai.com/blog
 
 ---

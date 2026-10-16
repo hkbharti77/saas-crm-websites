@@ -9,18 +9,23 @@ export const generateHreflangTags = () => {
 };
 
 /**
- * Geographic meta tags (geo.region, geo.placename, geo.position, ICBM) are obsolete
- * 2000s Dublin Core / GeoURL tags. Google and Bing explicitly ignore them for web
- * ranking and geotargeting. Omitting them avoids fake local-storefront signals for a
- * global B2B SaaS platform. Legitimate international targeting is established via
- * Schema.org Organization areaServed and HTML language declarations.
+ * Geographic meta tags (geo.region, geo.placename, geo.position, ICBM)
+ * Configured with enterprise headquarters and customizable for localized service pages.
  */
-export const getGeoTargeting = () => {
+export const getGeoTargeting = (customGeo = null) => {
+  if (customGeo && (customGeo.region || customGeo.city || customGeo.targetCountry || customGeo.latitude)) {
+    return {
+      'geo.region': customGeo.region || customGeo.targetCountry || 'IN-DL',
+      'geo.placename': customGeo.city ? `${customGeo.city}, ${customGeo.targetCountry || 'India'}` : (customGeo.placename || 'New Delhi'),
+      'geo.position': (customGeo.latitude && customGeo.longitude) ? `${customGeo.latitude};${customGeo.longitude}` : (customGeo.position || '28.613939;77.209021'),
+      'ICBM': (customGeo.latitude && customGeo.longitude) ? `${customGeo.latitude}, ${customGeo.longitude}` : (customGeo.icbm || '28.613939, 77.209021')
+    };
+  }
   return {
-    'geo.region': '',
-    'geo.placename': '',
-    'geo.position': '',
-    'ICBM': ''
+    'geo.region': 'IN-DL',
+    'geo.placename': 'New Delhi',
+    'geo.position': '28.613939;77.209021',
+    'ICBM': '28.613939, 77.209021'
   };
 };
 

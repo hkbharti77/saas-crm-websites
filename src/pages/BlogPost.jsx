@@ -351,15 +351,23 @@ export default function BlogPost() {
     return <NotFound />;
   }
 
-  const pageTitle = post.seoTitle ? `${post.seoTitle} | Gyan VaniAi Blog` : `${post.title} | Gyan VaniAi Blog`;
-  const description = post.seoDescription || resolveDescription(post);
-  const image = post.ogImageUrl || post.imageUrl || 'https://www.gyanvaniai.com/hero_dashboard.webp';
-  const canonical = post.canonicalUrl || blogPostUrl(id);
+  const pageTitle = (post.seo?.metaTitle || post.seoTitle) 
+    ? `${post.seo?.metaTitle || post.seoTitle} | Gyan VaniAi Blog` 
+    : `${post.title} | Gyan VaniAi Blog`;
+  const description = post.seo?.metaDescription || post.seoDescription || resolveDescription(post);
+  const image = post.seo?.ogImage || post.ogImageUrl || post.imageUrl || 'https://www.gyanvaniai.com/hero_dashboard.webp';
+  const canonical = post.seo?.canonicalUrl || post.canonicalUrl || blogPostUrl(id);
+  const aeoQuestion = post.aeo?.directQuestion || post.aeoDirectQuestion || `What is ${post.title}?`;
+  const aeoAnswer = post.aeo?.directAnswer || post.aeoDirectAnswer || post.excerpt;
+  const geo = post.geo || null;
+  const keywords = post.seo?.keywords || post.keywords || post.tags || [];
 
   const safePost = {
     ...post,
-    title: post.seoTitle || post.title,
+    title: post.seo?.metaTitle || post.seoTitle || post.title,
     description: description,
+    geo: geo,
+    keywords: keywords,
   };
   const schema = [buildBlogPostingSchema(safePost, id), buildBlogBreadcrumbSchema(safePost, id)];
 
@@ -373,8 +381,10 @@ export default function BlogPost() {
         type="article"
         schema={schema.length === 1 ? schema[0] : schema}
         preloadImage={post.imageUrl}
-        aeoQuestion={post.aeoDirectQuestion || `What is ${post.title}?`}
-        aeoAnswer={post.aeoDirectAnswer || post.excerpt}
+        aeoQuestion={aeoQuestion}
+        aeoAnswer={aeoAnswer}
+        geo={geo}
+        keywords={keywords}
       />
       <Helmet>
         {post.imageUrl && <link rel="preload" as="image" href={post.imageUrl} fetchPriority="high" />}

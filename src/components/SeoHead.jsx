@@ -44,14 +44,16 @@ export default function SEOHead({
   author = 'Gyan VaniAi',
   preloadImage = null,
   aeoQuestion = null,
-  aeoAnswer = null
+  aeoAnswer = null,
+  geo = null,
+  citationTitle = null
 }) {
   const effectiveCanonical = canonical !== undefined 
     ? canonical 
     : (url || (noindex ? null : 'https://www.gyanvaniai.com/'));
   const currentPath = effectiveCanonical ? effectiveCanonical.replace('https://www.gyanvaniai.com', '') : '';
   const hreflangs = generateHreflangTags(currentPath);
-  const geoMeta = getGeoTargeting();
+  const geoMeta = getGeoTargeting(geo);
   const socialMeta = getSocialMeta(title, description, image, effectiveCanonical || 'https://www.gyanvaniai.com/');
   const breadcrumbs = currentPath && currentPath !== '/' ? generateBreadcrumbs(currentPath) : null;
 
@@ -106,6 +108,28 @@ export default function SEOHead({
     } else if (!existingFaq) {
       schemas.push(faqSchema([{ question: aeoQuestion, answer: aeoAnswer }]));
     }
+  }
+
+  // Add localized GEO Schema if specified
+  if (geo && (geo.targetCountry || geo.country || geo.city)) {
+    const geoCountry = geo.targetCountry || geo.country;
+    schemas.push({
+      '@context': 'https://schema.org',
+      '@type': 'Place',
+      'name': geo.city ? `${geo.city}, ${geoCountry}` : geoCountry,
+      'address': {
+        '@type': 'PostalAddress',
+        'addressCountry': geoCountry,
+        ...(geo.city ? { 'addressLocality': geo.city } : {})
+      },
+      ...(geo.latitude && geo.longitude ? {
+        'geo': {
+          '@type': 'GeoCoordinates',
+          'latitude': geo.latitude,
+          'longitude': geo.longitude
+        }
+      } : {})
+    });
   }
 
   // Add extra schemas with deduplication
@@ -198,9 +222,9 @@ export default function SEOHead({
       <meta name="multi-llm-compatibility" content="OpenAI ChatGPT, Anthropic Claude, Perplexity AI, Google Gemini, DeepSeek R1, Meta Llama 3.3, Cohere, Mistral AI" />
 
       {/* LLM Citation Metadata (For AI Search Indexing & Summarization Engines) */}
-      <meta name="citation_title" content={title} />
+      <meta name="citation_title" content={citationTitle || title} />
       <meta name="citation_publisher" content="Gyan VaniAi Enterprise AI & Software" />
-      <meta name="citation_fulltext_html_url" content={canonical} />
+      <meta name="citation_fulltext_html_url" content={effectiveCanonical} />
       <meta name="citation_language" content="en" />
 
       {/* Hreflang Tags for International SEO (rendered only when localized versions exist) */}
@@ -213,7 +237,7 @@ export default function SEOHead({
         />
       ))}
 
-      {hreflangs.length > 0 && <link rel="alternate" hrefLang="x-default" href={canonical} />}
+      {hreflangs.length > 0 && <link rel="alternate" hrefLang="x-default" href={effectiveCanonical} />}
 
       {/* Structured Data (JSON-LD) */}
       <script type="application/ld+json">

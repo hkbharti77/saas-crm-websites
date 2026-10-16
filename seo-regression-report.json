@@ -1,10 +1,10 @@
 {
-  "timestamp": "2026-10-07T17:34:21.494Z",
+  "timestamp": "2026-10-16T04:43:18.422Z",
   "domain": "https://www.gyanvaniai.com",
   "summary": {
-    "totalPagesAudited": 57,
+    "totalPagesAudited": 54,
     "indexablePages": 52,
-    "nonIndexableUtilityPages": 5,
+    "nonIndexableUtilityPages": 2,
     "sitemapUrls": 52,
     "criticalErrorsCount": 0,
     "warningsCount": 0,

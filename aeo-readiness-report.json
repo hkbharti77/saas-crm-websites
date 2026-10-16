@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-10-07T05:19:52.355Z",
+  "timestamp": "2026-10-16T04:43:03.361Z",
   "targetDomain": "https://www.gyanvaniai.com",
   "score": {
     "total": 100,
@@ -26,21 +26,21 @@
   "manifestAudit": {
     "llmsTxt": {
       "exists": true,
-      "bytes": 14553,
+      "bytes": 17994,
       "hasPricing": true,
       "hasCoexistence": true
     },
     "llmsFullTxt": {
       "exists": true,
-      "bytes": 9659,
+      "bytes": 12128,
       "hasCoexistenceMatrix": true
     },
     "llmSummaryJson": {
       "exists": true,
       "validJson": true,
-      "productsCount": 4,
+      "productsCount": 6,
       "plansCount": 4,
-      "faqsCount": 4
+      "faqsCount": 5
     }
   },
   "factualConsistencyAudit": {
@@ -63,11 +63,11 @@
     "adminProtected": true
   },
   "htmlPagesAudit": {
-    "totalPages": 56,
-    "speakableCoverage": 56,
-    "faqCoverage": 48,
-    "jsonLdCoverage": 56,
-    "directAnswerCoverage": 56
+    "totalPages": 53,
+    "speakableCoverage": 53,
+    "faqCoverage": 45,
+    "jsonLdCoverage": 53,
+    "directAnswerCoverage": 53
   },
   "errors": [],
   "warnings": []

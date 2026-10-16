@@ -3,8 +3,18 @@ Allow: /
 Disallow: /admin/
 Disallow: /admin
 
-# Dedicated AI & LLM Search Crawlers
+# Dedicated AI Search, Generative Engine & LLM Crawlers
 User-agent: GPTBot
+Allow: /
+Disallow: /admin/
+Disallow: /admin
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /admin/
+Disallow: /admin
+
+User-agent: OAI-SearchBot
 Allow: /
 Disallow: /admin/
 Disallow: /admin
@@ -14,7 +24,22 @@ Allow: /
 Disallow: /admin/
 Disallow: /admin
 
+User-agent: Perplexity-Search
+Allow: /
+Disallow: /admin/
+Disallow: /admin
+
 User-agent: ClaudeBot
+Allow: /
+Disallow: /admin/
+Disallow: /admin
+
+User-agent: anthropic-ai
+Allow: /
+Disallow: /admin/
+Disallow: /admin
+
+User-agent: Claude-Web
 Allow: /
 Disallow: /admin/
 Disallow: /admin
@@ -24,7 +49,27 @@ Allow: /
 Disallow: /admin/
 Disallow: /admin
 
+User-agent: GoogleOther
+Allow: /
+Disallow: /admin/
+Disallow: /admin
+
 User-agent: Applebot-Extended
+Allow: /
+Disallow: /admin/
+Disallow: /admin
+
+User-agent: Applebot
+Allow: /
+Disallow: /admin/
+Disallow: /admin
+
+User-agent: Meta-ExternalAgent
+Allow: /
+Disallow: /admin/
+Disallow: /admin
+
+User-agent: FacebookBot
 Allow: /
 Disallow: /admin/
 Disallow: /admin
@@ -39,4 +84,22 @@ Allow: /
 Disallow: /admin/
 Disallow: /admin
 
+User-agent: MistralAI
+Allow: /
+Disallow: /admin/
+Disallow: /admin
+
+User-agent: Bytespider
+Allow: /
+Disallow: /admin/
+Disallow: /admin
+
+User-agent: DuckAssistBot
+Allow: /
+Disallow: /admin/
+Disallow: /admin
+
+# Canonical XML Sitemap & LLM Context Discovery
 Sitemap: https://www.gyanvaniai.com/sitemap.xml
+# LLMs Context Manifest: https://www.gyanvaniai.com/llms.txt
+# Full LLMs Technical Documentation: https://www.gyanvaniai.com/llms-full.txt
