@@ -36,6 +36,27 @@ function extractHeadingsAndTransformHtml(htmlContent) {
   const doc = parser.parseFromString(htmlContent, 'text/html');
   const headings = [];
 
+  // 0. Safeguard: Article body must not contain <h1> (article title in the hero is the only valid H1).
+  // If an <h1> was accidentally pasted or saved into the body:
+  // - If it has long prose (>100 chars or ends in sentence punctuation), convert to <p>.
+  // - If it is a heading/section title, convert to <h2> so it is indexed properly in TOC and adheres to SEO rules.
+  doc.querySelectorAll('h1').forEach((h1) => {
+    const text = h1.textContent.trim();
+    if (!text) {
+      h1.remove();
+      return;
+    }
+    if (text.length > 100 || text.includes('. ') || text.includes('.\n')) {
+      const p = doc.createElement('p');
+      p.innerHTML = h1.innerHTML;
+      h1.parentNode.replaceChild(p, h1);
+    } else {
+      const h2 = doc.createElement('h2');
+      h2.innerHTML = h1.innerHTML;
+      h1.parentNode.replaceChild(h2, h1);
+    }
+  });
+
   // 1. Extract Headings (H2, H3) and assign safe IDs
   doc.querySelectorAll('h2, h3').forEach((heading, index) => {
     const id = `heading-${index}`;
