@@ -104,7 +104,18 @@ const CookieConsentBanner = () => {
       }
     } catch {}
 
-    const payload = { status, preferences: finalPrefs, userAgent: navigator.userAgent, language: navigator.language || null, referrer: document.referrer || null, pageUrl: window.location.href, consentVersion: '2.0', ...geo };
+    const payload = {
+      status,
+      preferences: finalPrefs,
+      channel: 'crm',
+      source: 'crm_cookie_banner',
+      userAgent: navigator.userAgent,
+      language: navigator.language || null,
+      referrer: document.referrer || null,
+      pageUrl: window.location.href,
+      consentVersion: '2.0',
+      ...geo,
+    };
 
     if (!BACKEND_URL) return;
     try {
