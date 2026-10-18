@@ -63,7 +63,7 @@ const CookieConsentBanner = () => {
         if (saved) { const p = JSON.parse(saved); if (p.preferences) return p.preferences; }
       }
     } catch {}
-    return { necessary: true, functional: true, analytics: true, marketing: false };
+    return { necessary: true, functional: false, analytics: false, marketing: false };
   });
 
   useEffect(() => {
@@ -92,6 +92,7 @@ const CookieConsentBanner = () => {
     };
     try {
       localStorage.setItem(COOKIE_CONSENT_KEY, JSON.stringify({ status, preferences: finalPrefs, timestamp: new Date().toISOString(), version: '2.0' }));
+      window.dispatchEvent(new CustomEvent('cookie-consent-updated', { detail: { preferences: finalPrefs, status } }));
     } catch {}
     setVisible(false); setShowPreferences(false); setShowFloating(true);
 

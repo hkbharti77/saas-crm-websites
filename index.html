@@ -152,33 +152,56 @@
 
     <title data-rh="true">Autonomous AI CRM & Revenue Operations | Gyan VaniAi</title>
 
-    <!-- Microsoft Clarity (Only on production) -->
-    <script type="text/javascript" defer>
-      window.addEventListener('load', function() {
-        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') return;
-        (function(c,l,a,r,i,t,y){
-          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-        })(window,document,"clarity","script","xfxahvnxk7");
-      });
-    </script>
-    <!-- Google tag (gtag.js) (Only on production) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RN6FQWDQ6M"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+    <!-- DPDP Act 2023 & GDPR Compliant Analytics Gating: Only loads once affirmative analytics consent is verified -->
+    <script type="text/javascript">
+      (function() {
+        function initConsentedAnalytics() {
+          if (window.__analyticsInitialized) return;
+          if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') return;
 
-      if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
-        gtag('config', 'G-RN6FQWDQ6M', { 'send_page_view': true });
-      }
+          try {
+            var consentData = localStorage.getItem('gyanvaniai_cookie_consent');
+            if (!consentData) return;
+            var parsed = JSON.parse(consentData);
+            if (!parsed || !parsed.preferences || !parsed.preferences.analytics) return;
+          } catch (e) {
+            return;
+          }
+
+          window.__analyticsInitialized = true;
+
+          // 1. Google Analytics (gtag.js)
+          var ga = document.createElement('script');
+          ga.async = true;
+          ga.src = "https://www.googletagmanager.com/gtag/js?id=G-RN6FQWDQ6M";
+          document.head.appendChild(ga);
+
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-RN6FQWDQ6M', { 'send_page_view': true });
+
+          // 2. Microsoft Clarity (Session Replay)
+          (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+          })(window,document,"clarity","script","xfxahvnxk7");
+
+          // 3. Cloudflare Web Analytics
+          var cf = document.createElement('script');
+          cf.type = 'module';
+          cf.src = 'https://static.cloudflareinsights.com/beacon.min.js';
+          cf.dataset.cfBeacon = '{"token": "e68d0475ffde4e0ba1f1c7e1250d9e69"}';
+          document.head.appendChild(cf);
+        }
+
+        window.addEventListener('load', initConsentedAnalytics);
+        window.addEventListener('cookie-consent-updated', initConsentedAnalytics);
+      })();
     </script>
 
-    <!-- Gyan VaniAi Chat Widget Stylesheet (non-blocking: widget script only injects after window load) -->
-    <link rel="preload" as="style" href="https://api.gyanvaniai.online/styles.css" />
-    <link rel="stylesheet" media="print" onload="this.media='all'" href="https://api.gyanvaniai.online/styles.css" />
-    <noscript><link rel="stylesheet" href="https://api.gyanvaniai.online/styles.css" /></noscript>
+    <!-- Gyan VaniAi Chat Widget Stylesheet (deferred until affirmative consent or user click) -->
     <style>
       #crm-chat-widget,
       #chat-toggle {
@@ -236,18 +259,49 @@
   <body>
     <div id="root"></div>
 
-    <!-- Gyan VaniAi Chat Widget Script (Deferred initialization to prevent UI flashing) -->
+    <!-- DPDP Act 2023 & GDPR Compliant Chat Widget Gating: Only loads once functional/analytics consent is verified or user interacts -->
     <script>
-      window.addEventListener('load', function() {
-        // Give the browser 1 second to fully paint the UI before injecting the chat widget
-        setTimeout(function() {
+      (function() {
+        function initChatWidget() {
+          if (window.__chatWidgetInitialized) return;
+          try {
+            var consentData = localStorage.getItem('gyanvaniai_cookie_consent');
+            if (consentData) {
+              var parsed = JSON.parse(consentData);
+              if (parsed && parsed.preferences && (parsed.preferences.functional || parsed.preferences.analytics)) {
+                loadScript();
+                return;
+              }
+            }
+          } catch (e) {}
+        }
+
+        function loadScript() {
+          if (window.__chatWidgetInitialized) return;
+          window.__chatWidgetInitialized = true;
+          if (!document.querySelector('link[href*="api.gyanvaniai.online/styles.css"]')) {
+            var link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = 'https://api.gyanvaniai.online/styles.css';
+            document.head.appendChild(link);
+          }
           var script = document.createElement('script');
           script.src = "https://api.gyanvaniai.online/chat-widget.js";
           script.setAttribute('data-business-id', "378e6be1-4f4f-4dfe-a374-be26195fb3c8");
           script.async = true;
           document.body.appendChild(script);
-        }, 1000);
-      });
+        }
+
+        window.addEventListener('load', initChatWidget);
+        window.addEventListener('cookie-consent-updated', initChatWidget);
+
+        // User-initiated lazy-load: clicking any chat bubble or widget trigger mounts the script
+        window.addEventListener('click', function(e) {
+          if (e.target && (e.target.closest('#crm-chat-widget') || e.target.closest('.chat-button') || e.target.closest('[data-chat-trigger]'))) {
+            loadScript();
+          }
+        }, { passive: true });
+      })();
     </script>
     
     <!-- SEO Semantic Fallback Content for Crawlers & Browsers without JS -->
@@ -323,17 +377,7 @@
       </footer>
     </noscript>
 
-    <!-- Cloudflare Web Analytics (production only) -->
-    <script>
-      if (window.location.hostname !== 'localhost') {
-        var s = document.createElement('script');
-        s.type = 'module';
-        s.src = 'https://static.cloudflareinsights.com/beacon.min.js';
-        s.dataset.cfBeacon = '{"token": "e68d0475ffde4e0ba1f1c7e1250d9e69"}';
-        document.head.appendChild(s);
-      }
-    </script>
-    <!-- End Cloudflare Web Analytics -->
+
 
     <script type="module" src="/src/main.jsx"></script>
   </body>

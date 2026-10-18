@@ -87,6 +87,30 @@ function App() {
   const [modalPrefill, setModalPrefill] = useState('');
   const hasTriggeredRef = useRef({});
 
+  // DPDP Act 2023 / GDPR Gating: Only mount Vercel Analytics if affirmative consent is present
+  const [hasAnalyticsConsent, setHasAnalyticsConsent] = useState(() => {
+    try {
+      if (typeof window !== 'undefined') {
+        const saved = localStorage.getItem('gyanvaniai_cookie_consent');
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          return Boolean(parsed?.preferences?.analytics);
+        }
+      }
+    } catch {}
+    return false;
+  });
+
+  useEffect(() => {
+    const handleConsentUpdate = (e) => {
+      if (e?.detail?.preferences) {
+        setHasAnalyticsConsent(Boolean(e.detail.preferences.analytics));
+      }
+    };
+    window.addEventListener('cookie-consent-updated', handleConsentUpdate);
+    return () => window.removeEventListener('cookie-consent-updated', handleConsentUpdate);
+  }, []);
+
   // Canonical host enforcement: redirect old domain or non-www to canonical https://www.gyanvaniai.com
   useEffect(() => {
     if (typeof window !== 'undefined' && window.location) {
@@ -254,8 +278,8 @@ function App() {
           />
         </Suspense>
         <MobileStickyCTA />
-        <Analytics />
-        <SpeedInsights />
+        {hasAnalyticsConsent && <Analytics />}
+        {hasAnalyticsConsent && <SpeedInsights />}
       </div>
     </ThemeProvider>
   );

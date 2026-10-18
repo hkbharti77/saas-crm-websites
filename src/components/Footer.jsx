@@ -94,6 +94,7 @@ export default function Footer({
 
   const [email, setEmail] = useState('');
   const [honeypot, setHoneypot] = useState('');
+  const [newsletterConsent, setNewsletterConsent] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [statusMessage, setStatusMessage] = useState(null);
   const [statusType, setStatusType] = useState('success'); // 'success' | 'info' | 'error'
@@ -116,6 +117,8 @@ export default function Footer({
         body: JSON.stringify({
           email: email.trim(),
           source: 'footer',
+          consent: true,
+          consentVersion: 'DPDP-2023-v2',
           _hp_company: honeypot,
         }),
       });
@@ -306,25 +309,40 @@ export default function Footer({
                 aria-hidden="true"
               />
 
-              <input
-                type="email"
-                placeholder="Enter work email"
-                className="input-field"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                disabled={isSubmitting}
-                aria-label="Work email for newsletter subscription"
-              />
+              <div style={{ display: 'flex', gap: '0.5rem', width: '100%' }}>
+                <input
+                  type="email"
+                  placeholder="Enter work email"
+                  className="input-field"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  disabled={isSubmitting}
+                  aria-label="Work email for newsletter subscription"
+                />
 
-              <button
-                type="submit"
-                className="btn btn-primary btn-subscribe"
-                disabled={isSubmitting}
-                aria-label="Subscribe to newsletter"
-              >
-                <span>{isSubmitting ? 'Subscribing...' : 'Subscribe'}</span>
-              </button>
+                <button
+                  type="submit"
+                  className="btn btn-primary btn-subscribe"
+                  disabled={isSubmitting || !newsletterConsent}
+                  aria-label="Subscribe to newsletter"
+                >
+                  <span>{isSubmitting ? 'Subscribing...' : 'Subscribe'}</span>
+                </button>
+              </div>
+
+              <label style={{ display: 'flex', alignItems: 'flex-start', gap: '6px', cursor: 'pointer', fontSize: '0.74rem', color: 'var(--text-muted)', marginTop: '0.5rem', lineHeight: '1.4' }}>
+                <input
+                  type="checkbox"
+                  checked={newsletterConsent}
+                  onChange={(e) => setNewsletterConsent(e.target.checked)}
+                  style={{ marginTop: '2px', cursor: 'pointer' }}
+                  required
+                />
+                <span>
+                  I consent to Gyan VaniAi sending me product updates and tech insights under India's <strong>DPDP Act, 2023</strong>. <Link to="/privacy" style={{ color: 'var(--primary-color)', textDecoration: 'underline' }}>Privacy Notice</Link>. Unsubscribe anytime with 1-click.
+                </span>
+              </label>
             </form>
           </div>
         </div>

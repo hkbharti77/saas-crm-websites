@@ -61,63 +61,99 @@ export default function TermsConditions() {
           <a href="#agreement" className={`legal-nav-link ${activeSection === 'agreement' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('agreement'); }}>1. Agreement to Terms</a>
           <a href="#messaging" className={`legal-nav-link ${activeSection === 'messaging' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('messaging'); }}>2. Messaging Opt-in &amp; Compliance</a>
           <a href="#cookie-processing" className={`legal-nav-link ${activeSection === 'cookie-processing' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('cookie-processing'); }}>3. Cookie Consent Data Processing</a>
-          <a href="#usage" className={`legal-nav-link ${activeSection === 'usage' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('usage'); }}>4. Platform Usage</a>
+          <a href="#usage" className={`legal-nav-link ${activeSection === 'usage' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('usage'); }}>4. Platform Usage &amp; Intellectual Property</a>
           <a href="#liability" className={`legal-nav-link ${activeSection === 'liability' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('liability'); }}>5. Limitation of Liability</a>
-          <a href="#demo-policy" className={`legal-nav-link ${activeSection === 'demo-policy' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('demo-policy'); }}>6. Live Demo Platform &amp; 7-Day Data Retention Policy</a>
-          <a href="#deletion" className={`legal-nav-link ${activeSection === 'deletion' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('deletion'); }}>7. User Data Deletion</a>
+          <a href="#demo-policy" className={`legal-nav-link ${activeSection === 'demo-policy' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('demo-policy'); }}>6. Live Demo &amp; 7-Day Retention</a>
+          <a href="#deletion" className={`legal-nav-link ${activeSection === 'deletion' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('deletion'); }}>7. User Data Deletion &amp; Rights</a>
+          <a href="#governing-law" className={`legal-nav-link ${activeSection === 'governing-law' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('governing-law'); }}>8. Governing Law &amp; Jurisdiction</a>
+          <a href="#dark-patterns" className={`legal-nav-link ${activeSection === 'dark-patterns' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('dark-patterns'); }}>9. Prohibition of Dark Patterns</a>
+          <a href="#grievance" className={`legal-nav-link ${activeSection === 'grievance' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('grievance'); }}>10. Grievance Redressal Mechanism</a>
         </aside>
         
         <div className="legal-content glass-panel" style={{ padding: '3rem', borderRadius: 'var(--radius-lg)' }}>
           <section id="agreement" className="legal-section">
             <h2 className="h2">1. Agreement to Terms</h2>
-            <p className="text-muted">By accessing our website and utilizing our AI platforms (including CRMLite and AI Stock Kundli), you agree to be bound by these Terms and Conditions. If you disagree with any part of the terms, please do not use our services.</p>
+            <p className="text-muted">By accessing our website and utilizing our AI platforms (including CRMLite, AI Stock Kundli, and custom workflow automations), you agree to be bound by these Terms and Conditions. If you disagree with any part of these terms, please discontinue use of our platforms immediately.</p>
           </section>
 
           <section id="messaging" className="legal-section">
             <h2 className="h2">2. Messaging Opt-in &amp; Compliance</h2>
-            <p className="text-muted">Gyan VaniAi utilizes WhatsApp and SMS automation to deliver core services. By opting in via our forms, you agree to receive automated interactions.</p>
-            <p className="text-muted">You acknowledge that you are the authorized user of the phone number provided. We do not tolerate spam; if you use our CRM tools to automate messaging to your own clients, you are strictly responsible for ensuring you have obtained explicit opt-in consent from your end-users in accordance with WhatsApp Business API policies and local telecommunication laws.</p>
+            <p className="text-muted">Gyan VaniAi utilizes WhatsApp Business Cloud API and SMS automation to deliver core communications, appointment confirmations, and workflow notifications. By providing your phone number on our website forms, you grant affirmative consent to receive transactional and relevant service updates.</p>
+            <p className="text-muted">You acknowledge that you are the authorized subscriber of the phone number provided. We enforce zero tolerance for spam: if you utilize our CRM tools or WhatsApp bots to communicate with your own clients, you warrant that you have obtained prior verifiable opt-in consent from your end-users in strict adherence to Meta WhatsApp Business Messaging Policies, TRAI regulations (TCCCPR 2018), and the Digital Personal Data Protection Act, 2023.</p>
+            <p className="text-muted"><strong>1-Click Opt-Out:</strong> Any recipient may withdraw consent and immediately terminate messaging by replying <code>STOP</code>, <code>UNSUBSCRIBE</code>, or <code>CANCEL</code> to any WhatsApp message, or via our public <a href="/privacy" style={{ color: 'var(--primary-color)' }}>Privacy Rights Portal</a>.</p>
           </section>
 
           <section id="cookie-processing" className="legal-section">
             <h2 className="h2">3. Cookie Consent Data Processing</h2>
             <p className="text-muted">By using this website and interacting with our cookie consent banner, you acknowledge and agree to the following:</p>
             <ul className="text-muted" style={{ paddingLeft: '1.5rem', margin: '1rem 0', display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
-              <li><strong>Consent Audit Logging:</strong> When you click any option on the cookie consent banner (Accept All, Reject All, Essential Only, or Save Preferences), we record your decision alongside your public IP address, approximate geographic location (city, region, country), browser type, language, the page URL, and a timestamp. This is strictly for legal compliance purposes.</li>
-              <li><strong>Legal Basis:</strong> This processing is carried out under Legitimate Interest and Legal Obligation (GDPR Art. 6(1)(c) &amp; 6(1)(f); India DPDP Act 2023 Section 6), as we are required to maintain verifiable evidence of consent.</li>
-              <li><strong>No Profiling:</strong> The IP address and location data recorded during consent logging is never used for behavioural profiling, advertising targeting, or sold to any third party. It is held in a private, access-controlled database visible only to authorised administrators.</li>
-              <li><strong>Third-Party Geolocation:</strong> Geographic location data is resolved from your IP address using the ipapi.co API. By using this site, you acknowledge that your IP address may be processed by this third-party service for this purpose.</li>
-              <li><strong>Retention:</strong> Consent audit records are retained for a maximum of 12 months and then permanently deleted.</li>
-              <li><strong>Your Right to Access &amp; Delete:</strong> You may request access to or deletion of your consent record at any time by submitting a request with the subject line <em>"Consent Data Request"</em>. We will respond to your request within 15 business days.</li>
+              <li><strong>Consent Audit Logging:</strong> When you click any option on the cookie consent banner (Accept All, Reject All, Essential Only, or Save Preferences), we record your decision alongside your public IP address, approximate geographic location (city, region, country), browser type, language, the page URL, and a timestamp. This is strictly for statutory compliance verification.</li>
+              <li><strong>Legal Grounds:</strong> Consent audit logging is maintained pursuant to our statutory compliance obligations under India DPDP Act 2023 Section 6 (Verifiable Consent) and Section 8 (Reasonable Security Safeguards &amp; Auditability), as well as GDPR Article 6(1)(c) and Article 7(1).</li>
+              <li><strong>No Profiling:</strong> The IP address and location data recorded during consent logging is never used for behavioural profiling, advertising targeting, or sold to any third party. It is stored in an access-controlled, encrypted database visible only to authorised compliance administrators.</li>
+              <li><strong>Retention TTL:</strong> In compliance with Section 8(7) of the DPDP Act 2023, consent audit records are retained for a maximum of 12 months (31,536,000 seconds) via automated database TTL indexes and then permanently expunged.</li>
+              <li><strong>Your Statutory Rights:</strong> You may request access to, correction of, or complete erasure of your consent record at any time through our interactive <a href="/privacy#privacy-contact" style={{ color: 'var(--primary-color)' }}>Data Subject Rights Portal</a>.</li>
             </ul>
           </section>
 
           <section id="usage" className="legal-section">
-            <h2 className="h2">4. Platform Usage</h2>
-            <p className="text-muted">Our Enterprise AI and WhatsApp automation services must be used for lawful purposes only. You are strictly prohibited from utilizing our API endpoints or RAG pipelines to generate or distribute illicit, harmful, or spam content.</p>
-            <p className="text-muted">All software, designs, algorithms, and logic developed by Gyan VaniAi remain our intellectual property unless explicitly transferred in a separate enterprise agreement.</p>
+            <h2 className="h2">4. Platform Usage &amp; Intellectual Property</h2>
+            <p className="text-muted">Our Enterprise AI, WhatsApp automation, and custom CRM services must be used for lawful purposes only. You are strictly prohibited from utilizing our API endpoints or RAG pipelines to generate or distribute illicit, defamatory, sexually explicit, fraudulent, or harassing content.</p>
+            <p className="text-muted">All software code, user interface designs, AI agent architectures, algorithms, trademarks, and documentation developed by Gyan VaniAi remain the exclusive intellectual property of Gyan VaniAi Technologies unless transferred under a separate executed Master Services Agreement (MSA).</p>
           </section>
 
           <section id="liability" className="legal-section">
             <h2 className="h2">5. Limitation of Liability</h2>
-            <p className="text-muted">While our AI agents are highly optimized, Gyan VaniAi does not guarantee 100% uptime or completely error-free AI generations. We shall not be held liable for any indirect, incidental, or consequential business damages arising from the use of our software or platforms.</p>
+            <p className="text-muted">While our AI agents and CRM platforms undergo rigorous unit, integration, and security testing, Gyan VaniAi does not warrant 100% uninterrupted uptime or completely hallucination-free generative AI outputs. To the maximum extent permitted by applicable Indian law, Gyan VaniAi shall not be liable for indirect, incidental, punitive, or consequential commercial damages, loss of business revenue, or third-party service provider outages (e.g. Meta Cloud API, AWS, or telecom network latency).</p>
           </section>
 
           <section id="demo-policy" className="legal-section">
             <h2 className="h2">6. Live Demo Platform &amp; 7-Day Data Retention Policy</h2>
-            <a href="https://connect.gyanvaniai.online" target="_blank" rel="noopener noreferrer" className="text-muted" style={{ display: 'inline-block', marginBottom: '1.25rem', marginTop: '-0.75rem', fontSize: '0.9rem' }}>connect.gyanvaniai.online</a>
-            <p className="text-muted">Gyan VaniAi provides access to a live software demo environment hosted at <a href="https://connect.gyanvaniai.online/" target="_blank" rel="noopener noreferrer">https://connect.gyanvaniai.online/</a>. By creating a demo account or utilizing this environment, you agree to the following Demo Data Retention Policy:</p>
+            <p className="text-muted">Gyan VaniAi provides access to an interactive software demo environment hosted at <a href="https://connect.gyanvaniai.online/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--primary-color)' }}>https://connect.gyanvaniai.online/</a>. By creating a demo account or utilizing this sandbox, you agree to the following Demo Data Retention Policy:</p>
             <ul className="text-muted" style={{ paddingLeft: '1.5rem', margin: '1rem 0', display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
-              <li><strong>7-Day Evaluation Period:</strong> Your demo account is provided for evaluation and testing purposes. The 7-day evaluation period begins when your demo account is created.</li>
-              <li><strong>Automatic Data Deletion:</strong> If you do not upgrade to a paid plan before the evaluation period ends, demo data associated with your account may be permanently deleted from active systems, including your profile, test records, configurations, and other demo-generated data.</li>
-              <li><strong>Data Retention &amp; Backups:</strong> Data deleted under this policy may remain temporarily in system backups or security logs until their applicable retention periods expire. Certain information may be retained where required by applicable law, security requirements, dispute resolution, or other legitimate purposes.</li>
-              <li><strong>Your Responsibility:</strong> Please export or otherwise preserve any information you wish to keep before the 7-day evaluation period ends. Except where required by applicable law, Gyan VaniAi is not responsible for data permanently deleted in accordance with this policy.</li>
+              <li><strong>7-Day Evaluation Period:</strong> Demo accounts are provisioned exclusively for non-production evaluation and architectural testing.</li>
+              <li><strong>Automatic Purpose-Exhaustion Purge:</strong> Unless upgraded to an active enterprise subscription before the evaluation period concludes, demo records, mock leads, conversation threads, and configurations are permanently expunged in accordance with our automated purpose-exhaustion retention schedules.</li>
+              <li><strong>Your Responsibility:</strong> You must not upload live unredacted customer PII or production financial credentials into public demo sandbox accounts. Please export any test datasets you wish to preserve prior to evaluation expiry.</li>
             </ul>
           </section>
 
           <section id="deletion" className="legal-section">
-            <h2 className="h2">7. User Data Deletion</h2>
-            <p className="text-muted">In accordance with our Privacy Policy, users have the right to request the deletion of their personal data. By requesting data deletion, you acknowledge that access to certain services, accounts, and historical data will be permanently revoked.</p>
+            <h2 className="h2">7. User Data Deletion &amp; Statutory Rights</h2>
+            <p className="text-muted">In accordance with Section 12 of the Digital Personal Data Protection Act, 2023, you hold the statutory right to request complete erasure of your personal data when the specified purpose of processing is fulfilled. Detailed data deletion workflows and automated ticket generation are available on our <a href="/privacy" style={{ color: 'var(--primary-color)' }}>Privacy Policy page</a>.</p>
+          </section>
+
+          <section id="governing-law" className="legal-section">
+            <h2 className="h2">8. Governing Law &amp; Dispute Resolution</h2>
+            <p className="text-muted">These Terms and Conditions shall be governed by, construed, and enforced in accordance with the laws of the Republic of India, including the Information Technology Act, 2000, the Digital Personal Data Protection Act, 2023, the Consumer Protection Act, 2019, and the Indian Contract Act, 1872.</p>
+            <p className="text-muted">Any legal dispute, controversy, or claim arising out of or relating to these Terms or the breach, termination, or invalidity thereof, shall be subject to the exclusive jurisdiction of the competent courts located in <strong>New Delhi, Republic of India</strong>.</p>
+          </section>
+
+          <section id="dark-patterns" className="legal-section">
+            <h2 className="h2">9. Prohibition of Dark Patterns &amp; Fair Dealing</h2>
+            <p className="text-muted">In strict accordance with the <em>Guidelines for Prevention and Regulation of Dark Patterns, 2023</em> issued by the Central Consumer Protection Authority (CCPA) under Section 18 of the Consumer Protection Act, 2019, Gyan VaniAi affirms:</p>
+            <ul className="text-muted" style={{ paddingLeft: '1.5rem', margin: '1rem 0', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+              <li><strong>No False Urgency:</strong> We do not fabricate artificial scarcity or countdown timers to induce purchases.</li>
+              <li><strong>No Basket Sneaking or Hidden Fees:</strong> Pricing displayed across our platforms is clear, itemized, and transparent.</li>
+              <li><strong>No Confirm Shaming:</strong> Opt-out and rejection choices on cookie banners and newsletter subscriptions are neutral and free of guilt-inducing language.</li>
+              <li><strong>No Forced Action:</strong> Visitors are not forced to consent to unnecessary marketing or analytics tracking as a condition of accessing public marketing content.</li>
+              <li><strong>Easy Cancellation:</strong> Subscription cancellations and consent withdrawals are as easy to complete as initial signups, with zero deceptive obstacle courses.</li>
+            </ul>
+          </section>
+
+          <section id="grievance" className="legal-section">
+            <h2 className="h2">10. Grievance Redressal Mechanism</h2>
+            <p className="text-muted">In compliance with Section 13 of the Digital Personal Data Protection Act, 2023 read with Rule 11 of the DPDP Rules, 2025, any consumer or Data Principal grievance regarding these Terms, privacy practices, or data handling will be resolved by our designated Grievance Redressal Officer:</p>
+            <div style={{ background: 'rgba(255, 255, 255, 0.04)', padding: '1.25rem 1.5rem', borderRadius: '8px', border: '1px solid var(--border-color)', margin: '1rem 0' }}>
+              <p style={{ margin: '0 0 0.5rem 0', fontWeight: 'bold', color: 'var(--text-primary)' }}>Grievance Redressal Officer Contact Dossier:</p>
+              <ul className="text-muted" style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.35rem', fontSize: '0.92rem' }}>
+                <li><strong>Officer Name:</strong> Himanshu Bharti</li>
+                <li><strong>Designation:</strong> Lead Privacy Compliance Officer &amp; Grievance Redressal Officer</li>
+                <li><strong>Entity:</strong> Gyan VaniAi Technologies</li>
+                <li><strong>Address:</strong> New Delhi, 110001, India</li>
+                <li><strong>Direct Email:</strong> <a href="mailto:contact@gyanvaniai.com" style={{ color: 'var(--primary-color)', fontWeight: '600' }}>contact@gyanvaniai.com</a></li>
+                <li><strong>Acknowledgment:</strong> Within 24 hours</li>
+                <li><strong>Statutory Resolution Deadline:</strong> Maximum 15 business days (Rule 11)</li>
+              </ul>
+            </div>
           </section>
         </div>
       </div>

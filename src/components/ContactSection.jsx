@@ -359,21 +359,21 @@ export default function ContactSection({
                   </div>
                 </div>
 
-                {/* DPDP Act 2023 Explicit Consent Checkbox */}
-                <div className="form-group" style={{ margin: '0.85rem 0 0.5rem 0' }}>
-                  <label style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem', cursor: 'pointer', fontSize: '0.8rem', color: 'var(--text-secondary)' }}>
+                {/* Terms and Privacy Agreement */}
+                <div className="form-group" style={{ margin: '0.75rem 0 0.85rem 0' }}>
+                  <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer', fontSize: '0.82rem', color: 'var(--text-secondary)' }}>
                     <input
                       type="checkbox"
                       checked={consentGiven}
                       onChange={(e) => { setConsentGiven(e.target.checked); if(e.target.checked) setConsentError(false); }}
-                      style={{ marginTop: '2px', cursor: 'pointer' }}
+                      style={{ cursor: 'pointer', width: '16px', height: '16px', accentColor: 'var(--primary-color)' }}
                       required
                     />
                     <span>
-                      I explicitly consent to Gyan VaniAi processing my personal data under India's <strong>DPDP Act, 2023</strong> for demo scheduling and sales response. Read our <Link to="/privacy" style={{ color: 'var(--primary-color)', textDecoration: 'underline' }}>Privacy Policy</Link>.
+                      I agree to the <Link to="/terms" target="_blank" style={{ color: 'var(--primary-color)', textDecoration: 'underline' }}>Terms &amp; Conditions</Link> and <Link to="/privacy" target="_blank" style={{ color: 'var(--primary-color)', textDecoration: 'underline' }}>Privacy Policy</Link>.
                     </span>
                   </label>
-                  {consentError && <span className="form-error-msg">You must give explicit consent to proceed.</span>}
+                  {consentError && <span className="form-error-msg">Please accept the Terms &amp; Conditions and Privacy Policy to proceed.</span>}
                 </div>
 
                 {/* 6. CTA Button */}
