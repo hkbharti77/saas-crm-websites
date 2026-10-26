@@ -1,6 +1,15 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RN6FQWDQ6M"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-RN6FQWDQ6M');
+    </script>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="renderer" content="webkit" />
@@ -170,18 +179,7 @@
 
           window.__analyticsInitialized = true;
 
-          // 1. Google Analytics (gtag.js)
-          var ga = document.createElement('script');
-          ga.async = true;
-          ga.src = "https://www.googletagmanager.com/gtag/js?id=G-RN6FQWDQ6M";
-          document.head.appendChild(ga);
-
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-RN6FQWDQ6M', { 'send_page_view': true });
-
-          // 2. Microsoft Clarity (Session Replay)
+          // 1. Microsoft Clarity (Session Replay)
           (function(c,l,a,r,i,t,y){
             c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
             t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
