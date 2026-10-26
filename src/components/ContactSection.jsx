@@ -106,6 +106,7 @@ export default function ContactSection({
         company: values.company?.trim() || '',
         subject: `Lead from ${values.company?.trim() || 'Website Contact Form'}`,
         message: values.message.trim(),
+        channel: 'crm',
         source: 'website_contact_section',
         consent: consentGiven,
         consentVersion: 'DPDP-2023-v1',

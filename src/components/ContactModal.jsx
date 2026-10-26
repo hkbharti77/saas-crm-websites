@@ -148,6 +148,7 @@ export default function ContactModal({ isOpen, onClose, prefillMessage = '' }) {
         phone: phone || '',
         subject: `[${values.inquiryType || 'General'}] Website Inquiry`,
         message: values.message.trim(),
+        channel: 'crm',
         source: 'website_connect_modal',
         consent: consentGiven,
         consentVersion: 'DPDP-2023-v1',
