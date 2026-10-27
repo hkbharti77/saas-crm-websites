@@ -467,22 +467,65 @@ const seoDataMap = {
     ]
   },
   'ivr-solutions': {
-    metaTitle: 'Smart IVR Solutions | Intelligent Call Routing | Gyan VaniAi',
-    metaDescription: 'Intelligent Interactive Voice Response systems built for modern customer journeys with CRM data-dips and speech recognition.',
-    h1: 'Smart IVR Solutions',
-    subtitle: 'Intelligent Interactive Voice Response systems built for modern customer journeys.',
-    overview: 'Gyan VaniAi develops dynamic IVR systems that use voice recognition and data-dips into your CRM to personalize routing, drastically reducing customer frustration. Skip the "Press 1 for Sales" menus and let customers speak naturally.',
-    whoFor: 'Medium to large enterprises that want to modernize their aging IVR trees and improve first-call resolution (FCR) rates.',
-    deliverables: ['Dynamic call routing', 'CRM database integration', 'Multi-level menus', 'Speech recognition (ASR)'],
-    benefits: ['Personalized Routing', 'Speech Recognition', 'CRM Data-Dips', 'Improved FCR'],
-    image: '/portfolio_stock.webp',
-    imageAlt: 'Smart IVR call routing flow by Gyan VaniAi',
+    metaTitle: 'Smart IVR Solutions & Conversational Call Routing | Gyan VaniAi',
+    metaDescription: 'Enterprise Conversational IVR systems with real-time speech recognition (ASR), CRM database-dips, and sub-second SIP call escalation.',
+    h1: 'Smart IVR & Conversational Voice Routing',
+    subtitle: 'Replace rigid "Press 1 for Sales" phone trees with natural voice speech recognition, real-time CRM database dips, and sub-second SIP call escalation.',
+    overview: 'Gyan VaniAi architects enterprise-grade Conversational IVR systems that understand natural spoken intent, query live CRM customer databases instantaneously, and dynamically route callers to the right agent or autonomous voice resolution. No frustrating multi-level touch-tone keypads—customers speak naturally in over 40+ languages, receive instant answers to routine queries, and escalate with full conversational context.',
+    whoFor: 'Enterprises, high-volume contact centers, healthcare networks, financial institutions, and service providers handling hundreds of calls daily and aiming to increase First Contact Resolution (FCR) while reducing telecom hold times.',
+    deliverables: [
+      'Natural Language ASR & Intent Extraction',
+      'Sub-200ms CRM Data-Dip Customer Identification',
+      'Dynamic Contextual Call Steering & SIP Trunk Routing',
+      'Omnichannel WhatsApp & SMS Follow-up Automation',
+      'Real-time Telephony Sentiment & Agent Queue Telemetry',
+      'Zero-Drop Human Handoff with Full Call Audio & Transcript Briefings'
+    ],
+    benefits: [
+      'Natural Spoken Speech Recognition (No DTMF keypad frustration)',
+      'Real-time CRM Data-Dip Personalization',
+      'Instant SIP Handoff with Complete Context',
+      '40%+ Reduction in Average Handle Time (AHT)'
+    ],
+    image: '/ivr-solutions-hero.webp',
+    imageAlt: 'Gyan VaniAi Smart IVR and Intelligent Call Routing System Dashboard',
+    capabilitiesTitle: 'Core Smart IVR Capabilities',
+    capabilities: [
+      { title: 'Adaptive Speech Recognition (ASR)', desc: 'Transcribes accents, dialects, and ambient noise in real-time, matching spoken caller requests directly to knowledge bases.' },
+      { title: 'Instant CRM Data-Dip', desc: 'Recognizes caller phone numbers on pickup, fetching account tier, open support tickets, and recent purchases within milliseconds.' },
+      { title: 'Dynamic Priority Queuing', desc: 'Automatically prioritizes VIP clients, active high-priority escalations, and revenue-generating inquiries ahead of standard hold queues.' },
+      { title: 'Deflection to WhatsApp & SMS', desc: 'Allows callers to seamlessly transition repetitive transactions (receipts, tracking links, document uploads) to WhatsApp while on the call.' },
+      { title: 'Multi-Language Conversational AI', desc: 'Communicates fluently in English, Hindi, and 40+ regional dialects without requiring rigid pre-recorded voice menus.' },
+      { title: 'SIP Trunking & Softswitch Telephony', desc: 'Engineered on standards-compliant SIP protocols, FreeSWITCH, Asterisk, Twilio, and cloud telecom carriers for 99.99% uptime.' }
+    ],
+    workflowHeading: 'How Gyan VaniAi Smart IVR Resolves & Routes Calls',
+    workflowSubtitle: 'From carrier SIP ingestion to acoustic intent triage, CRM database dips, and instant live agent transfer.',
+    customSteps: [
+      { stepNum: '01', category: 'Telephony', title: 'Carrier Ingestion', desc: 'Inbound call connects via high-throughput SIP trunk with caller ID ingestion.' },
+      { stepNum: '02', category: 'ASR', title: 'Acoustic Speech-to-Text', desc: 'Caller speaks naturally; neural ASR transcribes intent with sub-180ms latency.' },
+      { stepNum: '03', category: 'CRM Dip', title: 'Real-Time CRM Data Dip', desc: 'Instant database lookup fetches customer tier, ticket history, and recent orders.' },
+      { stepNum: '04', category: 'Logic', title: 'Smart Intent Steering', desc: 'Resolves self-service requests or calculates the optimal routing path.' },
+      { stepNum: '05', category: 'Handoff', title: 'Context-Rich SIP Transfer', desc: 'Transfers call to a live specialist along with audio summary and customer briefing.' }
+    ],
+    outcomesTitle: 'Measurable Telephony ROI & Operational Impact',
+    outcomesSubtitle: 'Modernizing legacy IVRs delivers immediate operational savings and superior customer satisfaction.',
+    outcomes: [
+      { title: '70% Call Deflection', desc: 'Automate repetitive status inquiries, appointments, and password resets directly through intelligent voice self-service.' },
+      { title: 'Sub-400ms Turnaround', desc: 'Engineered with high-throughput WebSockets and optimized SIP signaling for zero perceptible lag.' },
+      { title: 'Zero Repetition for Callers', desc: 'Live agents receive the caller’s full issue summary on screen before answering, eliminating repetitive customer explanations.' },
+      { title: 'Omnichannel Continuation', desc: 'Dispatch WhatsApp confirmation links, receipts, and PDFs directly during or immediately after the voice call.' }
+    ],
     relatedLinks: [
       { url: '/services/phone-call-agent', text: 'Phone Call AI Agents' },
-      { url: '/services/crm-development', text: 'CRM Development' }
+      { url: '/services/crm-development', text: 'CRM Development' },
+      { url: '/services/human-handoff-systems', text: 'Human Handoff Systems' }
     ],
-    faqs: [
-      { q: 'Can the IVR identify callers automatically?', a: 'Yes. By dipping into your CRM database, the IVR can recognize the caller ID, greet them by name, and predict why they are calling based on recent tickets or orders.' }
+    customFaqs: [
+      { question: 'Can the Smart IVR identify callers automatically?', answer: 'Yes. By dipping into your CRM database via real-time API or webhook, the IVR recognizes the caller phone number, greets them by name, and anticipates the call purpose based on open tickets, recent bookings, or deliveries.' },
+      { question: 'How is Conversational IVR different from traditional touch-tone IVR?', answer: 'Traditional IVRs force callers through rigid, nested DTMF menus ("Press 1 for Sales, Press 2 for Billing"). Our Conversational IVR lets callers speak freely in their natural language, understands context, answers routine questions immediately, or transfers to the exact right queue.' },
+      { question: 'What telephony providers and PBX systems do you support?', answer: 'We support all standard SIP trunking providers, Asterisk, FreeSWITCH, Twilio, Exotel, Tata Tele, Cisco Webex, and Microsoft Teams Phone, ensuring seamless integration with your existing telephony infrastructure.' },
+      { question: 'Can the IVR transfer calls to human agents with full context?', answer: 'Yes. Using SIP REFER or warm transfers, the call is transferred to your contact center agents alongside a screen-pop showing the caller transcript, verified identity, and sentiment analysis so customers never have to repeat themselves.' },
+      { question: 'Can callers switch from voice to WhatsApp during the call?', answer: 'Yes. Our IVR can automatically send an interactive WhatsApp message (e.g., payment links, address verification, document upload forms) while the caller remains on the line or after hanging up.' }
     ]
   },
   'human-handoff-systems': {
@@ -761,22 +804,65 @@ const seoDataMap = {
     ]
   },
   legal: {
-    metaTitle: 'Legal Practice CRM & Client Intake Software | Gyan VaniAi',
-    metaDescription: 'Legal CRM for client intake, matter tracking, and secure communication. Automate follow-ups and document workflows for law firms.',
-    h1: 'Legal Software Solutions',
-    subtitle: 'Client intake, matter tracking, and secure follow-ups so firms spend less time on admin and more on cases.',
-    overview: 'Gyan VaniAi develops legal practice CRM and intake software for law firms: lead capture, matter stages, reminders, and controlled client communication, with architecture oriented toward confidentiality.',
-    whoFor: 'Law firms and legal consultancies that need structured intake and matter management without heavy legacy tools.',
-    deliverables: ['Client intake CRM', 'Matter pipelines', 'Reminder automation', 'Document workflow hooks', 'Secure access roles'],
-    benefits: ['Client Intake', 'Matter Tracking', 'Reminder Automation', 'Access Control'],
-    image: '/portfolio_stock.webp',
-    imageAlt: 'Legal practice CRM by Gyan VaniAi',
+    metaTitle: 'Legal Practice CRM & Case Management Software | Gyan VaniAi',
+    metaDescription: 'Legal CRM for client intake, matter tracking, and privileged communication. Automate follow-ups, conflict checks, and document workflows for law firms.',
+    h1: 'Legal Practice CRM & Case Management Software',
+    subtitle: 'Streamline client intake, automate matter tracking pipelines, and ensure strict privilege confidentiality for modern law firms and legal advisors.',
+    overview: 'Gyan VaniAi builds tailor-made Legal Practice CRM and Matter Management platforms engineered for high-velocity law practices, legal consultancies, and corporate counsel teams. Replace disjointed spreadsheets and cumbersome legacy tools with an intuitive, unified platform: digitized client intake, automated conflict-of-interest checks, milestone-based matter pipelines, court deadline calendaring, and encrypted WhatsApp/client portal communication.',
+    whoFor: 'Boutique law firms, corporate legal departments, litigation practices, intellectual property consultancies, and independent legal counsels managing growing caseloads.',
+    deliverables: [
+      'Interactive Case Pipeline & Kanban Matter Boards',
+      'Self-Service Client Intake Portals with Document Vaults',
+      'Automated Conflict-of-Interest & KYC Screening',
+      'Statutory Deadline & Court Hearing Calendar Alerts',
+      'Privileged Communication Channel via Encrypted WhatsApp & Portals',
+      'Billable Hours Telemetry, Retainer Balances & Invoicing Sync'
+    ],
+    benefits: [
+      'Role-Based Privilege & 256-Bit Encryption',
+      'Zero-Friction WhatsApp Client Intake',
+      'Automated Hearing Reminders & Deadlines',
+      'Transparent Matter Stages & Real-Time Telemetry'
+    ],
+    image: '/legal-crm-hero.webp',
+    imageAlt: 'Gyan VaniAi Legal Practice CRM and Case Pipeline Dashboard',
+    capabilitiesTitle: 'Core Legal CRM Capabilities',
+    capabilities: [
+      { title: 'Matter Stage Pipelines', desc: 'Custom kanban boards for intake, discovery, pre-trial preparation, settlement negotiations, and active litigation stages.' },
+      { title: 'Privileged Document Repository', desc: 'Encrypted document vault with version control, automatic metadata tagging, and strict role-based access governance.' },
+      { title: 'WhatsApp Legal Notices & Updates', desc: 'Automated, secure dispatch of upcoming hearing dates, fee invoices, and document sign-off requests via official WhatsApp API.' },
+      { title: 'Statutory Deadline & Court Calendaring', desc: 'Automated rule-based computation of limitation periods, court filing deadlines, and sync with Google/Outlook calendars.' },
+      { title: 'Time & Retainer Ledger', desc: 'One-click billable hour timers, trust accounting logs, and automated monthly retainer balance reports for clients.' },
+      { title: 'Audit-Ready Compliance & Security', desc: 'Granular access logs documenting every matter view, document export, and client communication timestamp with 256-bit encryption.' }
+    ],
+    workflowHeading: 'The Lifecycle of a Legal Matter in Gyan VaniAi CRM',
+    workflowSubtitle: 'From initial prospective inquiry to conflict verification, retainer signing, and case resolution.',
+    customSteps: [
+      { stepNum: '01', category: 'Intake', title: 'Digital Client Intake', desc: 'Prospective clients submit matter details and documents via encrypted intake portals or official WhatsApp.' },
+      { stepNum: '02', category: 'Conflict', title: 'Conflict-of-Interest Verification', desc: 'Automated scans cross-check adverse parties against historical firm records to ensure ethical clearance.' },
+      { stepNum: '03', category: 'Retainer', title: 'Engagement Letter & E-Sign', desc: 'Dispatch custom retainer agreements with instant e-signatures and digital retainer deposit collection.' },
+      { stepNum: '04', category: 'Matter', title: 'Case Milestones & Discovery', desc: 'Associate attorneys collaborate on discovery tasks, evidence logs, and court hearing preparation.' },
+      { stepNum: '05', category: 'Closure', title: 'Resolution & Audit Archive', desc: 'Automated final billing statement generation, trust account reconciliation, and secure encrypted archiving.' }
+    ],
+    outcomesTitle: 'Measurable Law Firm Productivity & Client Trust',
+    outcomesSubtitle: 'Designed to free partners and associates from administrative drag so they can focus on winning cases.',
+    outcomes: [
+      { title: '80% Faster Client Intake', desc: 'Automated intake questionnaires and document checklists eliminate endless preliminary email exchanges.' },
+      { title: 'Zero Missed Court Deadlines', desc: 'Automated multi-channel reminders (SMS, WhatsApp, Calendar) alert attorneys and clients ahead of crucial filings.' },
+      { title: 'Complete Confidentiality', desc: 'Strict tenant isolation, role-based permissions, and immutable access audit trails protect attorney-client privilege.' },
+      { title: '25% Higher Billable Capture', desc: 'Integrated activity and communication timers ensure all consultation and drafting time is accurately recorded.' }
+    ],
     relatedLinks: [
       { url: '/services/crm-development', text: 'CRM Development' },
-      { url: '/services/web-development', text: 'Web Portals' }
+      { url: '/services/web-development', text: 'Secure Web Portals' },
+      { url: '/services/whatsapp-automation', text: 'WhatsApp Client Updates' }
     ],
-    faqs: [
-      { q: 'Is the system suitable for confidential client data?', a: 'We design with role-based access, audit-friendly logs, and secure hosting practices appropriate for professional services data.' }
+    customFaqs: [
+      { question: 'Is Gyan VaniAi Legal CRM compliant with client confidentiality and privilege standards?', answer: 'Yes. We architect every legal CRM with end-to-end 256-bit encryption at rest and in transit, strict role-based access controls, tenant isolation, and detailed immutable audit logs to protect attorney-client privilege.' },
+      { question: 'Can clients submit case details and documents via WhatsApp?', answer: 'Yes. Clients can initiate inquiries, receive appointment reminders, and safely submit PDF documents, contracts, or identification proof through official WhatsApp Business API integrated with your CRM repository.' },
+      { question: 'Does the CRM perform automated conflict-of-interest checks?', answer: 'Yes. When a new prospect or opposing party is entered, the system searches existing matters, contacts, and adverse party databases to flag potential ethical conflicts immediately.' },
+      { question: 'Can the system handle trust accounting and retainer billing?', answer: 'Yes. The platform tracks billable hours by attorney or paralegal, maintains separate trust/operating account ledgers, and generates itemized legal invoices compliant with standard accounting practices.' },
+      { question: 'Can we migrate our existing matters from legacy systems or spreadsheets?', answer: 'Yes. We provide complete data migration services, securely importing your historical matters, contacts, active documents, and notes into your modern Gyan VaniAi Legal CRM.' }
     ]
   },
   travel: {
