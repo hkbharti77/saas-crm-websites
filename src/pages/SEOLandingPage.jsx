@@ -13,6 +13,8 @@ import HealthcarePage from './HealthcarePage';
 import RealEstatePage from './RealEstatePage';
 import RetailPage from './RetailPage';
 import FinancePage from './FinancePage';
+import IvrSolutionsPage from './IvrSolutionsPage';
+import LegalPage from './LegalPage';
 import NotFound from './NotFound';
 
 const SITE = 'https://www.gyanvaniai.com';
@@ -941,6 +943,14 @@ export default function SEOLandingPage() {
 
   if (pageId === 'finance' || pageId === 'fintech') {
     return <FinancePage />;
+  }
+
+  if (pageId === 'ivr-solutions') {
+    return <IvrSolutionsPage />;
+  }
+
+  if (pageId === 'legal') {
+    return <LegalPage />;
   }
 
   if (!hasKnownPage) {

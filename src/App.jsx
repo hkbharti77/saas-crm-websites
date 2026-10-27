@@ -26,6 +26,8 @@ const PricingPage = lazy(() => import('./pages/PricingPage'));
 const PlanDetailPage = lazy(() => import('./pages/PlanDetailPage'));
 const Security = lazy(() => import('./pages/Security'));
 const Unsubscribe = lazy(() => import('./pages/Unsubscribe'));
+const IvrSolutionsPage = lazy(() => import('./pages/IvrSolutionsPage'));
+const LegalPage = lazy(() => import('./pages/LegalPage'));
 
 // New high-value SEO, AEO & resource pages
 const WhatsAppCatalogCrmPage = lazy(() => import('./pages/WhatsAppCatalogCrmPage'));
@@ -222,6 +224,8 @@ function App() {
                 <Route path="/services/whatsapp-calling-agent" element={<WhatsAppCallingAgentPage />} />
                 <Route path="/services/crm-development" element={<CrmDevelopmentPage />} />
                 <Route path="/services/whatsapp-calling-agent-bots" element={<Navigate to="/services/whatsapp-calling-agent" replace />} />
+                <Route path="/services/ivr-solutions" element={<IvrSolutionsPage />} />
+                <Route path="/industries/legal" element={<LegalPage />} />
                 
                 {/* Specialized Commercial & Tool Pages */}
                 <Route path="/services/whatsapp-catalog-crm" element={<WhatsAppCatalogCrmPage />} />
