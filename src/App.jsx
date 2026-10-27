@@ -19,6 +19,7 @@ const SalesAutomationPage = lazy(() => import('./pages/SalesAutomationPage'));
 const AIChatbotsPage = lazy(() => import('./pages/AIChatbotsPage'));
 const WhatsAppCallingAgentPage = lazy(() => import('./pages/WhatsAppCallingAgentPage'));
 const CrmDevelopmentPage = lazy(() => import('./pages/CrmDevelopmentPage'));
+const HrmsDevelopmentPage = lazy(() => import('./pages/HrmsDevelopmentPage'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 const CategoryPage = lazy(() => import('./pages/CategoryPage'));
 const About = lazy(() => import('./pages/About'));
@@ -223,6 +224,7 @@ function App() {
                 <Route path="/services/ai-chatbots" element={<AIChatbotsPage />} />
                 <Route path="/services/whatsapp-calling-agent" element={<WhatsAppCallingAgentPage />} />
                 <Route path="/services/crm-development" element={<CrmDevelopmentPage />} />
+                <Route path="/services/hrms-development" element={<HrmsDevelopmentPage />} />
                 <Route path="/services/whatsapp-calling-agent-bots" element={<Navigate to="/services/whatsapp-calling-agent" replace />} />
                 <Route path="/services/ivr-solutions" element={<IvrSolutionsPage />} />
                 <Route path="/industries/legal" element={<LegalPage />} />

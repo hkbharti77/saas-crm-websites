@@ -1,14 +1,15 @@
 /* ==========================================================================
-   Enterprise Contact / Book a Demo Modal (Sleek, Compact, Enterprise-Grade)
-   Eliminates excessive gaps, perfectly balanced typography, theme-adaptive
+   Enterprise Contact / Book a Demo Modal (7-Theme Adaptive, Enterprise-Grade)
+   Full high-contrast support for: Midnight, Aurora, Slate, Quantum, Amber, 
+   Sapphire (Dark Themes) and Light Pearl Enterprise.
    ========================================================================== */
 
 .enterprise-modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(8, 14, 26, 0.75);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+  background: rgba(4, 8, 16, 0.78);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -31,12 +32,14 @@
   position: relative;
   width: 100%;
   max-width: 560px;
-  background: var(--bg-card, #ffffff);
-  border: 1px solid var(--border-color, rgba(15, 23, 42, 0.12));
-  border-radius: 12px;
-  box-shadow: 0 20px 48px -10px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.06);
+  background: var(--bg-card, #0d1422);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border-color, rgba(255, 255, 255, 0.12));
+  border-radius: 14px;
+  box-shadow: 0 25px 60px -12px rgba(0, 0, 0, 0.7), 0 0 0 1px var(--border-color, rgba(255, 255, 255, 0.08));
   padding: 1.45rem 1.65rem 1.35rem;
-  color: var(--text-primary, #0f172a);
+  color: var(--text-primary, #f8fafc);
   max-height: calc(100dvh - 2rem);
   overflow-y: auto;
   scrollbar-width: thin;
@@ -55,23 +58,84 @@
   }
 }
 
-/* Light theme card background */
-:root:not([data-theme="midnight"]):not([data-theme="aurora"]):not([data-theme="cyberpunk"]):not([data-theme="obsidian"]) .enterprise-modal-card {
-  background: #ffffff;
-  box-shadow: 0 20px 45px -12px rgba(15, 23, 42, 0.18), 0 6px 16px -4px rgba(15, 23, 42, 0.06);
+/* ==========================================================================
+   THEME-SPECIFIC CARD & AMBIENT GLOW ADAPTATIONS (ALL 7 THEMES)
+   ========================================================================== */
+
+/* 1. Midnight Theme */
+[data-theme="midnight"] .enterprise-modal-card {
+  background: #090e1a;
+  border-color: rgba(45, 212, 191, 0.22);
+  box-shadow: 0 25px 65px -12px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(45, 212, 191, 0.15);
+  color: #f8fafc;
 }
 
-/* Modal Close Button */
+/* 2. Aurora Theme */
+[data-theme="aurora"] .enterprise-modal-card {
+  background: #041613;
+  border-color: rgba(16, 185, 129, 0.25);
+  box-shadow: 0 25px 65px -12px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(16, 185, 129, 0.18);
+  color: #f0fdf4;
+}
+
+/* 3. Slate Theme */
+[data-theme="slate"] .enterprise-modal-card {
+  background: #0d1527;
+  border-color: rgba(56, 189, 248, 0.24);
+  box-shadow: 0 25px 65px -12px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(56, 189, 248, 0.18);
+  color: #f8fafc;
+}
+
+/* 4. Quantum Theme */
+[data-theme="quantum"] .enterprise-modal-card {
+  background: #031722;
+  border-color: rgba(6, 182, 212, 0.25);
+  box-shadow: 0 25px 65px -12px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(6, 182, 212, 0.18);
+  color: #ecfeff;
+}
+
+/* 5. Amber Theme */
+[data-theme="amber"] .enterprise-modal-card {
+  background: #171109;
+  border-color: rgba(245, 158, 11, 0.25);
+  box-shadow: 0 25px 65px -12px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(245, 158, 11, 0.18);
+  color: #fffdfa;
+}
+
+/* 6. Sapphire Theme */
+[data-theme="sapphire"] .enterprise-modal-card {
+  background: #071126;
+  border-color: rgba(96, 165, 250, 0.25);
+  box-shadow: 0 25px 65px -12px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(96, 165, 250, 0.18);
+  color: #f8fafc;
+}
+
+/* 7. Light Pearl Theme */
+[data-theme="light"] .enterprise-modal-overlay {
+  background: rgba(15, 23, 42, 0.65);
+}
+
+[data-theme="light"] .enterprise-modal-card {
+  background: #ffffff;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.22), 0 6px 18px -4px rgba(15, 23, 42, 0.08);
+  color: #0f172a;
+}
+
+/* ==========================================================================
+   CLOSE BUTTON (THEME-ADAPTIVE)
+   ========================================================================== */
+
 .enterprise-modal-close {
   position: absolute;
   top: 1.15rem;
   right: 1.15rem;
-  width: 28px;
-  height: 28px;
+  width: 30px;
+  height: 30px;
   border-radius: 6px;
   background: transparent;
   border: 1px solid transparent;
-  color: var(--text-secondary, #64748b);
+  color: var(--text-secondary, #94a3b8);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -81,17 +145,23 @@
 }
 
 .enterprise-modal-close:hover {
-  background: rgba(15, 23, 42, 0.08);
-  color: var(--text-primary, #0f172a);
-}
-
-[data-theme="midnight"] .enterprise-modal-close:hover,
-[data-theme="aurora"] .enterprise-modal-close:hover {
   background: rgba(255, 255, 255, 0.1);
-  color: #ffffff;
+  color: var(--text-primary, #ffffff);
 }
 
-/* Modal Header: Compact & Aligned */
+[data-theme="light"] .enterprise-modal-close {
+  color: #64748b;
+}
+
+[data-theme="light"] .enterprise-modal-close:hover {
+  background: rgba(15, 23, 42, 0.08);
+  color: #0f172a;
+}
+
+/* ==========================================================================
+   MODAL HEADER: BRAND, TITLE, SUBTITLE
+   ========================================================================== */
+
 .enterprise-modal-header {
   margin-bottom: 0.95rem;
   padding-right: 2rem;
@@ -116,28 +186,43 @@
   font-size: 1.12rem;
   font-weight: 800;
   letter-spacing: -0.025em;
-  color: var(--primary-color, #0f766e);
+  color: var(--primary-color, #2dd4bf);
   font-family: var(--font-display, inherit);
   line-height: 1.1;
 }
 
+[data-theme="light"] .enterprise-modal-brand-name {
+  color: #0f766e;
+}
+
 .enterprise-modal-title {
-  font-size: 1.25rem;
+  font-size: 1.28rem;
   font-weight: 700;
   letter-spacing: -0.02em;
-  color: var(--text-primary, #0f172a);
+  color: var(--text-primary, #f8fafc);
   margin: 0 0 0.15rem 0;
   line-height: 1.2;
 }
 
+[data-theme="light"] .enterprise-modal-title {
+  color: #0f172a;
+}
+
 .enterprise-modal-subtitle {
   font-size: 0.82rem;
-  color: var(--text-secondary, #64748b);
+  color: var(--text-secondary, #94a3b8);
   margin: 0;
   line-height: 1.35;
 }
 
-/* Form Layout: 2 Columns Grid with tighter gaps */
+[data-theme="light"] .enterprise-modal-subtitle {
+  color: #475569;
+}
+
+/* ==========================================================================
+   FORM GRID LAYOUT & LABELS
+   ========================================================================== */
+
 .enterprise-modal-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -161,8 +246,12 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: var(--text-secondary, #64748b);
+  color: var(--text-secondary, #94a3b8);
   margin-bottom: 0.28rem;
+}
+
+[data-theme="light"] .enterprise-field-label {
+  color: #475569;
 }
 
 .enterprise-field-label-left {
@@ -177,7 +266,10 @@
   font-size: 0.78rem;
 }
 
-/* Inputs, Select, Textarea: Crisp & Slim (38px height) */
+/* ==========================================================================
+   INPUTS, SELECT, TEXTAREA (DARK BASE + LIGHT MODE OVERRIDES)
+   ========================================================================== */
+
 .enterprise-input,
 .enterprise-select,
 .enterprise-textarea {
@@ -185,9 +277,9 @@
   padding: 0.48rem 0.75rem;
   font-size: 0.83rem;
   font-family: inherit;
-  color: var(--text-primary, #0f172a);
-  background: var(--input-bg, #f8fafc);
-  border: 1px solid var(--input-border, rgba(15, 23, 42, 0.14));
+  color: var(--text-primary, #f8fafc);
+  background: var(--input-bg, rgba(15, 23, 42, 0.7));
+  border: 1px solid var(--input-border, rgba(255, 255, 255, 0.14));
   border-radius: 6px;
   outline: none;
   transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
@@ -195,16 +287,9 @@
   min-height: 38px;
 }
 
-:root:not([data-theme="midnight"]):not([data-theme="aurora"]):not([data-theme="cyberpunk"]):not([data-theme="obsidian"]) .enterprise-input,
-:root:not([data-theme="midnight"]):not([data-theme="aurora"]):not([data-theme="cyberpunk"]):not([data-theme="obsidian"]) .enterprise-select,
-:root:not([data-theme="midnight"]):not([data-theme="aurora"]):not([data-theme="cyberpunk"]):not([data-theme="obsidian"]) .enterprise-textarea {
-  background: #f8fafc;
-  border-color: #e2e8f0;
-}
-
 .enterprise-input::placeholder,
 .enterprise-textarea::placeholder {
-  color: var(--text-muted, #94a3b8);
+  color: var(--text-muted, #64748b);
   opacity: 0.85;
   font-size: 0.83rem;
 }
@@ -218,16 +303,16 @@
 .enterprise-input:focus,
 .enterprise-select:focus,
 .enterprise-textarea:focus {
-  border-color: var(--primary-color, #0f766e);
-  background: var(--bg-card, #ffffff);
-  box-shadow: 0 0 0 2.5px color-mix(in srgb, var(--primary-color) 16%, transparent);
+  border-color: var(--primary-color, #2dd4bf);
+  background: var(--input-bg, rgba(15, 23, 42, 0.85));
+  box-shadow: 0 0 0 2.5px color-mix(in srgb, var(--primary-color) 25%, transparent);
 }
 
 .enterprise-input.field-error,
 .enterprise-select.field-error,
 .enterprise-textarea.field-error {
   border-color: #ef4444 !important;
-  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.14) !important;
+  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.2) !important;
 }
 
 .enterprise-field-error-msg {
@@ -240,7 +325,38 @@
   gap: 0.2rem;
 }
 
-/* Custom Select styling with Chevron */
+/* Light Mode Overrides for Inputs */
+[data-theme="light"] .enterprise-input,
+[data-theme="light"] .enterprise-select,
+[data-theme="light"] .enterprise-textarea {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+  color: #0f172a;
+}
+
+[data-theme="light"] .enterprise-input::placeholder,
+[data-theme="light"] .enterprise-textarea::placeholder {
+  color: #94a3b8;
+}
+
+[data-theme="light"] .enterprise-input:hover,
+[data-theme="light"] .enterprise-select:hover,
+[data-theme="light"] .enterprise-textarea:hover {
+  border-color: #94a3b8;
+}
+
+[data-theme="light"] .enterprise-input:focus,
+[data-theme="light"] .enterprise-select:focus,
+[data-theme="light"] .enterprise-textarea:focus {
+  border-color: #0f766e;
+  background: #ffffff;
+  box-shadow: 0 0 0 2.5px rgba(15, 118, 110, 0.18);
+}
+
+/* ==========================================================================
+   SELECT ELEMENT & NATIVE OPTIONS (HIGH-CONTRAST IN ALL THEMES)
+   ========================================================================== */
+
 .enterprise-select-wrapper {
   position: relative;
   width: 100%;
@@ -254,22 +370,77 @@
   line-height: 1.3;
 }
 
+.enterprise-select.is-placeholder {
+  color: var(--text-muted, #94a3b8);
+}
+
+[data-theme="light"] .enterprise-select.is-placeholder {
+  color: #94a3b8;
+}
+
+.enterprise-select option {
+  background: #090e1a;
+  color: #f8fafc;
+}
+
+[data-theme="midnight"] .enterprise-select option {
+  background: #090e1a;
+  color: #f8fafc;
+}
+
+[data-theme="aurora"] .enterprise-select option {
+  background: #041613;
+  color: #f0fdf4;
+}
+
+[data-theme="slate"] .enterprise-select option {
+  background: #0d1527;
+  color: #f8fafc;
+}
+
+[data-theme="quantum"] .enterprise-select option {
+  background: #031722;
+  color: #ecfeff;
+}
+
+[data-theme="amber"] .enterprise-select option {
+  background: #171109;
+  color: #fffdfa;
+}
+
+[data-theme="sapphire"] .enterprise-select option {
+  background: #071126;
+  color: #f8fafc;
+}
+
+[data-theme="light"] .enterprise-select option {
+  background: #ffffff;
+  color: #0f172a;
+}
+
 .enterprise-select-chevron {
   position: absolute;
   right: 0.75rem;
   top: 50%;
   transform: translateY(-50%);
   pointer-events: none;
-  color: var(--text-secondary, #64748b);
+  color: var(--text-secondary, #94a3b8);
   transition: transform 0.15s ease;
 }
 
-/* Phone input integration (Matches exact 38px height) */
+[data-theme="light"] .enterprise-select-chevron {
+  color: #64748b;
+}
+
+/* ==========================================================================
+   PHONE NUMBER INPUT (Matches exact 38px height)
+   ========================================================================== */
+
 .enterprise-phone-wrapper .PhoneInput {
   display: flex;
   align-items: center;
-  background: var(--input-bg, #f8fafc);
-  border: 1px solid var(--input-border, rgba(15, 23, 42, 0.14));
+  background: var(--input-bg, rgba(15, 23, 42, 0.7));
+  border: 1px solid var(--input-border, rgba(255, 255, 255, 0.14));
   border-radius: 6px;
   padding: 0 0.65rem;
   transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
@@ -278,24 +449,19 @@
   box-sizing: border-box;
 }
 
-:root:not([data-theme="midnight"]):not([data-theme="aurora"]):not([data-theme="cyberpunk"]):not([data-theme="obsidian"]) .enterprise-phone-wrapper .PhoneInput {
-  background: #f8fafc;
-  border-color: #e2e8f0;
-}
-
 .enterprise-phone-wrapper .PhoneInput:hover {
   border-color: var(--text-secondary, #94a3b8);
 }
 
 .enterprise-phone-wrapper .PhoneInput:focus-within {
-  border-color: var(--primary-color, #0f766e);
-  background: var(--bg-card, #ffffff);
-  box-shadow: 0 0 0 2.5px color-mix(in srgb, var(--primary-color) 16%, transparent);
+  border-color: var(--primary-color, #2dd4bf);
+  background: var(--input-bg, rgba(15, 23, 42, 0.85));
+  box-shadow: 0 0 0 2.5px color-mix(in srgb, var(--primary-color) 25%, transparent);
 }
 
 .enterprise-phone-wrapper .PhoneInput.field-error {
   border-color: #ef4444 !important;
-  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.14) !important;
+  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.2) !important;
 }
 
 .enterprise-phone-wrapper .PhoneInputCountry {
@@ -315,18 +481,28 @@
   cursor: pointer;
 }
 
+.enterprise-phone-wrapper .PhoneInputCountrySelect option {
+  background: #090e1a;
+  color: #f8fafc;
+}
+
+[data-theme="light"] .enterprise-phone-wrapper .PhoneInputCountrySelect option {
+  background: #ffffff;
+  color: #0f172a;
+}
+
 .enterprise-phone-wrapper .PhoneInputCountryIcon {
   width: 20px;
   height: 14px;
   border-radius: 2px;
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25);
 }
 
 .enterprise-phone-wrapper .PhoneInputCountrySelectArrow {
-  opacity: 0.6;
+  opacity: 0.7;
   margin-left: 0.3rem;
-  border-color: var(--text-secondary, #64748b);
-  border-top-color: var(--text-secondary, #64748b);
+  border-color: var(--text-secondary, #94a3b8);
+  border-top-color: var(--text-secondary, #94a3b8);
 }
 
 .enterprise-phone-wrapper .PhoneInputInput {
@@ -334,14 +510,51 @@
   border: none !important;
   outline: none !important;
   background: transparent !important;
-  color: var(--text-primary, #0f172a);
+  color: var(--text-primary, #f8fafc);
   font-size: 0.83rem;
   font-family: inherit;
   padding: 0;
   height: 100%;
 }
 
-/* Textarea wrapper & counter: Compact */
+.enterprise-phone-wrapper .PhoneInputInput::placeholder {
+  color: var(--text-muted, #64748b);
+  opacity: 0.85;
+}
+
+/* Light Mode Overrides for Phone Input */
+[data-theme="light"] .enterprise-phone-wrapper .PhoneInput {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+}
+
+[data-theme="light"] .enterprise-phone-wrapper .PhoneInput:hover {
+  border-color: #94a3b8;
+}
+
+[data-theme="light"] .enterprise-phone-wrapper .PhoneInput:focus-within {
+  border-color: #0f766e;
+  background: #ffffff;
+  box-shadow: 0 0 0 2.5px rgba(15, 118, 110, 0.18);
+}
+
+[data-theme="light"] .enterprise-phone-wrapper .PhoneInputInput {
+  color: #0f172a;
+}
+
+[data-theme="light"] .enterprise-phone-wrapper .PhoneInputInput::placeholder {
+  color: #94a3b8;
+}
+
+[data-theme="light"] .enterprise-phone-wrapper .PhoneInputCountrySelectArrow {
+  border-color: #64748b;
+  border-top-color: #64748b;
+}
+
+/* ==========================================================================
+   TEXTAREA WRAPPER & CHAR COUNTER
+   ========================================================================== */
+
 .enterprise-textarea-wrapper {
   position: relative;
 }
@@ -356,18 +569,28 @@
 
 .enterprise-char-count {
   position: absolute;
-  bottom: 0.25rem;
+  bottom: 0.3rem;
   right: 0.45rem;
   font-size: 0.68rem;
   color: var(--text-muted, #94a3b8);
   pointer-events: none;
-  background: var(--bg-card, #ffffff);
-  padding: 1px 4px;
-  border-radius: 3px;
+  background: rgba(8, 14, 26, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 1px 5px;
+  border-radius: 4px;
   line-height: 1;
 }
 
-/* Footer Section: Tight, balanced, aligned */
+[data-theme="light"] .enterprise-char-count {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+  color: #64748b;
+}
+
+/* ==========================================================================
+   FOOTER SECTION: CONSENT & SUBMIT BUTTON
+   ========================================================================== */
+
 .enterprise-modal-footer {
   display: flex;
   align-items: center;
@@ -382,11 +605,15 @@
   align-items: center;
   gap: 0.5rem;
   font-size: 0.76rem;
-  color: var(--text-secondary, #64748b);
+  color: var(--text-secondary, #94a3b8);
   cursor: pointer;
   user-select: none;
   flex: 1;
   line-height: 1.35;
+}
+
+[data-theme="light"] .enterprise-terms-label {
+  color: #475569;
 }
 
 .enterprise-checkbox {
@@ -394,24 +621,36 @@
   height: 15px;
   margin: 0;
   border-radius: 3px;
-  accent-color: var(--primary-color, #0f766e);
+  accent-color: var(--primary-color, #2dd4bf);
   cursor: pointer;
   flex-shrink: 0;
 }
 
+[data-theme="light"] .enterprise-checkbox {
+  accent-color: #0f766e;
+}
+
 .enterprise-terms-link {
-  color: var(--text-primary, #0f172a);
+  color: var(--text-primary, #f8fafc);
   font-weight: 600;
   text-decoration: underline;
-  text-underline-offset: 2px;
+  text-underline-offset: 3px;
   transition: color 0.15s ease;
 }
 
 .enterprise-terms-link:hover {
-  color: var(--primary-color, #0f766e);
+  color: var(--primary-color, #2dd4bf);
 }
 
-/* Send Request Button: Compact & Sharp (38px height) */
+[data-theme="light"] .enterprise-terms-link {
+  color: #0f172a;
+}
+
+[data-theme="light"] .enterprise-terms-link:hover {
+  color: #0f766e;
+}
+
+/* Send Request Button */
 .enterprise-submit-btn {
   display: inline-flex;
   align-items: center;
@@ -419,7 +658,7 @@
   gap: 0.45rem;
   padding: 0 1.25rem;
   height: 38px;
-  background: var(--gradient-primary, linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%));
+  background: var(--gradient-primary, linear-gradient(135deg, #0f766e 0%, #2dd4bf 100%));
   color: #ffffff;
   border: none;
   border-radius: 6px;
@@ -429,15 +668,15 @@
   letter-spacing: 0.04em;
   cursor: pointer;
   white-space: nowrap;
-  box-shadow: 0 3px 10px color-mix(in srgb, var(--primary-color, #2563eb) 30%, transparent);
+  box-shadow: 0 4px 14px color-mix(in srgb, var(--primary-color, #2563eb) 35%, transparent);
   transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
   flex-shrink: 0;
 }
 
 .enterprise-submit-btn:hover:not(:disabled) {
   transform: translateY(-1px);
-  box-shadow: 0 5px 16px color-mix(in srgb, var(--primary-color, #2563eb) 40%, transparent);
-  filter: brightness(1.06);
+  box-shadow: 0 6px 18px color-mix(in srgb, var(--primary-color, #2563eb) 45%, transparent);
+  filter: brightness(1.08);
 }
 
 .enterprise-submit-btn:active:not(:disabled) {
@@ -450,24 +689,32 @@
   transform: none;
 }
 
-/* Instant WhatsApp Helper Row */
+/* ==========================================================================
+   INSTANT WHATSAPP HELPER ROW
+   ========================================================================== */
+
 .enterprise-instant-chat {
   margin-top: 0.75rem;
   padding-top: 0.65rem;
-  border-top: 1px solid var(--border-color, rgba(15, 23, 42, 0.07));
+  border-top: 1px solid var(--border-color, rgba(255, 255, 255, 0.1));
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.4rem;
   font-size: 0.76rem;
-  color: var(--text-secondary, #64748b);
+  color: var(--text-secondary, #94a3b8);
   text-align: center;
+}
+
+[data-theme="light"] .enterprise-instant-chat {
+  border-color: rgba(15, 23, 42, 0.08);
+  color: #64748b;
 }
 
 .enterprise-whatsapp-link {
   display: inline-flex;
   align-items: center;
-  gap: 0.3rem;
+  gap: 0.35rem;
   color: #25D366;
   font-weight: 600;
   text-decoration: none;
@@ -479,7 +726,10 @@
   opacity: 0.9;
 }
 
-/* Success State */
+/* ==========================================================================
+   SUCCESS STATE (THEME-ADAPTIVE)
+   ========================================================================== */
+
 .enterprise-modal-success {
   text-align: center;
   padding: 1.8rem 1rem 1rem;
@@ -490,36 +740,48 @@
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  background: color-mix(in srgb, var(--primary-color, #0f766e) 12%, transparent);
+  background: color-mix(in srgb, var(--primary-color, #0f766e) 15%, transparent);
   color: var(--primary-color, #0f766e);
   display: inline-flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 0.95rem;
-  box-shadow: 0 0 0 6px color-mix(in srgb, var(--primary-color, #0f766e) 6%, transparent);
+  box-shadow: 0 0 0 6px color-mix(in srgb, var(--primary-color, #0f766e) 8%, transparent);
 }
 
 .enterprise-success-title {
   font-size: 1.35rem;
   font-weight: 800;
   letter-spacing: -0.02em;
-  color: var(--text-primary, #0f172a);
+  color: var(--text-primary, #f8fafc);
   margin-bottom: 0.35rem;
+}
+
+[data-theme="light"] .enterprise-success-title {
+  color: #0f172a;
 }
 
 .enterprise-success-desc {
   font-size: 0.85rem;
-  color: var(--text-secondary, #475569);
+  color: var(--text-secondary, #94a3b8);
   max-width: 380px;
   margin: 0 auto 1.35rem;
   line-height: 1.45;
 }
 
-/* Responsive Breakpoints */
+[data-theme="light"] .enterprise-success-desc {
+  color: #475569;
+}
+
+/* ==========================================================================
+   RESPONSIVE BREAKPOINTS (MOBILE & TABLET)
+   ========================================================================== */
+
 @media (max-width: 600px) {
   .enterprise-modal-card {
     padding: 1.25rem 1.15rem 1.15rem;
     max-height: calc(100dvh - 1.5rem);
+    border-radius: 12px;
   }
 
   .enterprise-modal-header {
@@ -527,7 +789,7 @@
   }
 
   .enterprise-modal-title {
-    font-size: 1.15rem;
+    font-size: 1.18rem;
   }
 
   .enterprise-modal-grid {

@@ -341,7 +341,7 @@ export default function ContactModal({ isOpen, onClose, prefillMessage = '' }) {
                       value={values.inquiryType}
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      className={`enterprise-select ${errors.inquiryType ? 'field-error' : ''}`}
+                      className={`enterprise-select ${!values.inquiryType ? 'is-placeholder' : ''} ${errors.inquiryType ? 'field-error' : ''}`}
                       required
                     >
                       <option value="" disabled>Select inquiry type</option>
