@@ -96,7 +96,11 @@ export default function LegalPage() {
   const adminCostSavings = adminHoursSaved * adminHourlyCost;
   const totalMonthlyImpact = billableRevenueGain + adminCostSavings;
   const projectedAnnualImpact = totalMonthlyImpact * 12;
-  const roiMultiple = Math.round(totalMonthlyImpact / softwareCost);
+  // Net ROI (%) = ((total benefit - subscription cost) / subscription cost) × 100
+  // Guard against division-by-zero if softwareCost is 0 or invalid
+  const roiPct = softwareCost > 0
+    ? Math.round(((totalMonthlyImpact - softwareCost) / softwareCost) * 100)
+    : 0;
 
   const toggleFaq = (index) => {
     setOpenFaq(openFaq === index ? -1 : index);
@@ -602,7 +606,7 @@ export default function LegalPage() {
                     </span>
                   </div>
                   <div style={{ fontWeight: '750', color: 'var(--lg-emerald)', whiteSpace: 'nowrap' }}>
-                    {roiMultiple}x Practice ROI
+                    Estimated ROI: {roiPct.toLocaleString()}%
                   </div>
                 </div>
 
