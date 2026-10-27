@@ -33,7 +33,8 @@ const SITE = 'https://www.gyanvaniai.com';
 
 export default function LegalPage() {
   const [activeSimTab, setActiveSimTab] = useState(0);
-  const [caseCount, setCaseCount] = useState(65);
+  const [caseCount, setCaseCount] = useState(40);
+  const [currency, setCurrency] = useState('INR');
   const [openFaq, setOpenFaq] = useState(0);
 
   // Live Matter Lifecycle Steps
@@ -76,10 +77,26 @@ export default function LegalPage() {
     }
   ];
 
-  // Legal Practice Efficiency Math
-  const adminHoursSaved = Math.round(caseCount * 4.8);
-  const billableHoursCaptured = Math.round(caseCount * 2.4);
-  const additionalRevenueUSD = Math.round(billableHoursCaptured * 280);
+  // Realistic Legal Practice Economics:
+  // - Reclaims ~2.2 administrative hours per active matter/month (intake KYC, conflict checks, court calendar sync, WhatsApp status follow-ups)
+  // - Converts ~45% of reclaimed time into billable advisory hours or drafting capacity (~1.0 billable hr / matter)
+  // - India (INR): Billable Advocate Rate = ₹1,500/hr | Paralegal/Admin overhead = ₹400/hr | CRM Plan = ₹4,999/mo ($59/mo)
+  // - Global (USD): Boutique Attorney Billing = $175/hr | Paralegal/Admin overhead = $35/hr | CRM Plan = $59/mo
+  const deflectionAdminHoursPerCase = 2.2;
+  const adminHoursSaved = Math.round(caseCount * deflectionAdminHoursPerCase);
+  const billableHoursCaptured = Math.round(adminHoursSaved * 0.45);
+
+  const isINR = currency === 'INR';
+  const currencySymbol = isINR ? '₹' : '$';
+  const hourlyBillableRate = isINR ? 1500 : 175;
+  const adminHourlyCost = isINR ? 400 : 35;
+  const softwareCost = isINR ? 4999 : 59;
+
+  const billableRevenueGain = billableHoursCaptured * hourlyBillableRate;
+  const adminCostSavings = adminHoursSaved * adminHourlyCost;
+  const totalMonthlyImpact = billableRevenueGain + adminCostSavings;
+  const projectedAnnualImpact = totalMonthlyImpact * 12;
+  const roiMultiple = Math.round(totalMonthlyImpact / softwareCost);
 
   const toggleFaq = (index) => {
     setOpenFaq(openFaq === index ? -1 : index);
@@ -526,19 +543,43 @@ export default function LegalPage() {
                 <h2 style={{ fontSize: 'clamp(1.75rem, 3.5vw, 2.25rem)', fontWeight: 800, margin: '0.5rem 0 0.85rem 0', color: 'var(--text-primary)' }}>
                   Calculate Your Law Firm Impact
                 </h2>
-                <p style={{ fontSize: '0.95rem', color: 'var(--text-muted)', lineHeight: 1.6, marginBottom: '1.5rem' }}>
-                  Adjust the slider to your firm's average monthly active caseload to see estimated administrative hours reclaimed and additional billable revenue captured.
+                <p style={{ fontSize: '0.95rem', color: 'var(--text-muted)', lineHeight: 1.6, marginBottom: '1.25rem' }}>
+                  Adjust the slider to your firm's average monthly active caseload to calculate estimated administrative hours reclaimed and billable capacity unlocked.
                 </p>
+
+                {/* Currency toggle and benchmark badge */}
+                <div className="lg-calc-header-controls">
+                  <div className="lg-currency-toggle" role="group" aria-label="Select Currency">
+                    <button
+                      type="button"
+                      className={`lg-currency-btn ${currency === 'INR' ? 'active' : ''}`}
+                      onClick={() => setCurrency('INR')}
+                    >
+                      ₹ INR (India)
+                    </button>
+                    <button
+                      type="button"
+                      className={`lg-currency-btn ${currency === 'USD' ? 'active' : ''}`}
+                      onClick={() => setCurrency('USD')}
+                    >
+                      $ USD (Global)
+                    </button>
+                  </div>
+                  <div className="lg-calc-benchmark-tag">
+                    <Sparkles size={14} color="var(--lg-emerald)" />
+                    <span>Benchmark: 2.2h Admin Saved/Matter • Plans from ₹1,999/mo ($19/mo)</span>
+                  </div>
+                </div>
 
                 <div style={{ marginBottom: '1.25rem' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontWeight: 700, marginBottom: '0.5rem' }}>
-                    <span>Active Matters Managed:</span>
-                    <span style={{ color: 'var(--lg-emerald)', fontSize: '1.2rem', fontWeight: 800 }}>{caseCount} Active Matters</span>
+                    <span style={{ color: 'var(--text-primary)' }}>Active Matters Managed:</span>
+                    <span style={{ color: 'var(--lg-emerald)', fontSize: '1.25rem', fontWeight: 850 }}>{caseCount} Active Matters</span>
                   </div>
                   <input
                     type="range"
                     min="10"
-                    max="300"
+                    max="200"
                     step="5"
                     value={caseCount}
                     onChange={(e) => setCaseCount(Number(e.target.value))}
@@ -546,17 +587,30 @@ export default function LegalPage() {
                     aria-label="Active Matters Managed"
                   />
                   <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.8rem', color: 'var(--text-muted)' }}>
-                    <span>10 Matters</span>
-                    <span>150 Matters</span>
-                    <span>300+ Matters</span>
+                    <span>10 Matters (Solo)</span>
+                    <span>100 Matters</span>
+                    <span>200+ Matters (Firm)</span>
                   </div>
                 </div>
 
-                <div style={{ marginTop: '2rem' }}>
+                {/* Economics Breakdown Pill */}
+                <div className="lg-calc-breakdown-pill">
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <TrendingUp size={16} color="var(--lg-emerald)" />
+                    <span>
+                      <strong>Practice Economics:</strong> Saves <strong>2.2 admin hrs</strong> (~{isINR ? '₹400/hr' : '$35/hr'}) + Recaptures <strong>1.0 billable hr</strong> (~{isINR ? '₹1,500/hr' : '$175/hr'}) per matter
+                    </span>
+                  </div>
+                  <div style={{ fontWeight: '750', color: 'var(--lg-emerald)', whiteSpace: 'nowrap' }}>
+                    {roiMultiple}x Practice ROI
+                  </div>
+                </div>
+
+                <div style={{ marginTop: '1.75rem' }}>
                   <button
                     type="button"
                     className="lg-btn-primary"
-                    onClick={() => handleOpenDemo(`Legal Practice CRM Setup for ${caseCount} active cases`)}
+                    onClick={() => handleOpenDemo(`Legal Practice CRM Setup for ${caseCount} active matters (${currency})`)}
                   >
                     Schedule Practice Management Audit <ArrowRight size={17} />
                   </button>
@@ -567,16 +621,25 @@ export default function LegalPage() {
                 <div className="lg-roi-stat-box">
                   <div className="lg-roi-val">{adminHoursSaved} hrs</div>
                   <div className="lg-roi-lbl">Admin Hours Saved / Month</div>
+                  <div className="lg-roi-sub">Intake, conflicts, court calendar & WhatsApp queries</div>
                 </div>
 
                 <div className="lg-roi-stat-box">
                   <div className="lg-roi-val">{billableHoursCaptured} hrs</div>
-                  <div className="lg-roi-lbl">Extra Billable Hours Captured</div>
+                  <div className="lg-roi-lbl">Billable Hours Recaptured</div>
+                  <div className="lg-roi-sub">High-value drafting & legal counsel capacity</div>
                 </div>
 
-                <div className="lg-roi-stat-box" style={{ gridColumn: 'span 2' }}>
-                  <div className="lg-roi-val">${additionalRevenueUSD.toLocaleString()}</div>
-                  <div className="lg-roi-lbl">Estimated Monthly Billable Revenue Gain</div>
+                <div className="lg-roi-stat-box lg-roi-stat-box-highlight">
+                  <div className="lg-roi-val">{currencySymbol}{totalMonthlyImpact.toLocaleString()}</div>
+                  <div className="lg-roi-lbl">Estimated Monthly Value</div>
+                  <div className="lg-roi-sub">Billable recovery + paralegal overhead savings</div>
+                </div>
+
+                <div className="lg-roi-stat-box lg-roi-stat-box-highlight">
+                  <div className="lg-roi-val">{currencySymbol}{projectedAnnualImpact.toLocaleString()}</div>
+                  <div className="lg-roi-lbl">Projected Annual Impact</div>
+                  <div className="lg-roi-sub">Compounded practice expansion & matter velocity</div>
                 </div>
               </div>
             </div>
