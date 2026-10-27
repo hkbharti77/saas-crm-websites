@@ -10,6 +10,8 @@ import {
   Clock,
   CheckCircle2,
   ArrowRight,
+  ChevronRight,
+  Check,
   Plus,
   Minus,
   Briefcase,
@@ -21,7 +23,8 @@ import {
   MessageSquare,
   Sparkles,
   TrendingUp,
-  FolderGit2
+  FolderGit2,
+  Bot
 } from 'lucide-react';
 import ContactSection from '../components/ContactSection';
 import './LegalPage.css';
@@ -159,137 +162,245 @@ export default function LegalPage() {
       />
 
       <div className="legal-page">
-        <div className="legal-bg-glow-1" />
-        <div className="legal-bg-glow-2" />
+        {/* Ambient Glow Aura */}
+        <div className="lg-bg-glow-1" />
 
-        {/* Hero Section */}
-        <section className="legal-hero">
-          <div className="legal-container">
-            <nav aria-label="Breadcrumb" style={{ marginBottom: '1.5rem', fontSize: '0.85rem', fontWeight: '500' }}>
+        {/* --- EXECUTIVE HERO SECTION --- */}
+        <section className="lg-hero">
+          <div className="container" style={{ maxWidth: '1280px' }}>
+            <nav aria-label="Breadcrumb" style={{ marginBottom: '1.25rem', fontSize: '0.85rem' }}>
               <ol style={{ display: 'flex', gap: '0.5rem', listStyle: 'none', padding: 0, margin: 0, color: 'var(--text-muted)' }}>
                 <li><Link to="/" style={{ color: 'inherit' }}>Home</Link></li>
                 <li aria-hidden="true">/</li>
                 <li>Industries</li>
                 <li aria-hidden="true">/</li>
-                <li style={{ color: '#10b981' }}>Legal Solutions</li>
+                <li style={{ color: 'var(--lg-emerald)', fontWeight: '600' }}>Legal Practice</li>
               </ol>
             </nav>
 
-            <div className="legal-hero-grid">
+            <div className="lg-hero-grid">
+              {/* Left Column: Focused Copy & Action CTAs */}
               <div>
-                <div className="legal-badge">
-                  <Scale size={14} />
-                  <span>Enterprise Legal Technology</span>
+                <div className="lg-hero-badge">
+                  <span className="lg-pulse-dot" />
+                  <span>2026 LEGAL CRM & CASE PLATFORM</span>
                 </div>
-                <h1 className="legal-hero-title">
-                  Legal Practice CRM & <span className="gradient-text">Case Management</span> Software
+
+                <h1 className="lg-hero-title">
+                  Legal Practice CRM & <span className="lg-gradient-text">Case Management</span> Software
                 </h1>
-                <p className="legal-hero-desc">
-                  Streamline client intake, automate matter tracking pipelines, and ensure strict privilege confidentiality for modern law firms, advocates, and corporate counsel.
+
+                <p className="lg-hero-subtitle">
+                  Streamline client intake, automate matter tracking pipelines, and ensure strict privilege confidentiality for modern law firms, advocates, and corporate legal teams.
                 </p>
 
-                <div className="legal-hero-benefits">
-                  <div className="legal-benefit-item">
-                    <CheckCircle2 size={20} color="#10b981" />
-                    <span>Role-based privilege protection with 256-bit AES data encryption</span>
+                <div className="lg-hero-checklist">
+                  <div className="lg-checklist-item">
+                    <CheckCircle2 size={16} color="var(--lg-emerald)" />
+                    <span>256-Bit AES privilege vault protection</span>
                   </div>
-                  <div className="legal-benefit-item">
-                    <CheckCircle2 size={20} color="#10b981" />
-                    <span>Zero-friction WhatsApp client intake & document collection</span>
+                  <div className="lg-checklist-item">
+                    <CheckCircle2 size={16} color="var(--lg-emerald)" />
+                    <span>Zero-friction WhatsApp client intake</span>
                   </div>
-                  <div className="legal-benefit-item">
-                    <CheckCircle2 size={20} color="#10b981" />
-                    <span>Automated conflict-of-interest checks across all historical records</span>
+                  <div className="lg-checklist-item">
+                    <CheckCircle2 size={16} color="var(--lg-emerald)" />
+                    <span>Automated ethical conflict screening</span>
                   </div>
-                  <div className="legal-benefit-item">
-                    <CheckCircle2 size={20} color="#10b981" />
-                    <span>Court hearing alerts & statutory deadline multi-calendar sync</span>
+                  <div className="lg-checklist-item">
+                    <CheckCircle2 size={16} color="var(--lg-emerald)" />
+                    <span>Court statutory deadline calendar sync</span>
                   </div>
                 </div>
 
-                <div className="legal-hero-actions">
+                <div className="lg-hero-cta-group">
                   <button
                     type="button"
-                    className="btn btn-primary"
-                    style={{ background: '#10b981', borderColor: '#10b981' }}
-                    onClick={() => handleOpenDemo('Legal CRM Deployment Consultation')}
+                    className="lg-btn-hero-primary"
+                    onClick={() => handleOpenDemo('Legal Practice CRM Consultation')}
                   >
-                    Deploy Legal CRM <ArrowRight size={18} />
+                    Schedule Practice Demo <ArrowRight size={18} />
                   </button>
                   <a
                     href="https://wa.me/918700620913?text=Hi%20Gyan%20VaniAi%2C%20I%20am%20interested%20in%20Legal%20Practice%20CRM%20Software."
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="btn"
-                    style={{
-                      background: '#25D366',
-                      color: '#ffffff',
-                      fontWeight: '700',
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '0.5rem',
-                      boxShadow: '0 4px 16px rgba(37, 211, 102, 0.3)'
-                    }}
+                    className="lg-btn-hero-whatsapp"
                   >
                     <MessageSquare size={18} />
                     <span>Consult on WhatsApp</span>
                   </a>
+                  <button
+                    type="button"
+                    className="lg-btn-hero-link"
+                    onClick={() => document.getElementById('roi-calculator')?.scrollIntoView({ behavior: 'smooth' })}
+                  >
+                    Calculate ROI <ChevronRight size={16} />
+                  </button>
+                </div>
+
+                <div className="lg-hero-trust-micro">
+                  <div className="lg-trust-check">
+                    <Check size={16} color="var(--lg-emerald)" /> Bar Ethics Ready
+                  </div>
+                  <div>•</div>
+                  <div className="lg-trust-check">
+                    <Check size={16} color="var(--lg-emerald)" /> Zero Privilege Leaks
+                  </div>
+                  <div>•</div>
+                  <div className="lg-trust-check">
+                    <Check size={16} color="var(--lg-emerald)" /> SOC2 Compliant
+                  </div>
                 </div>
               </div>
 
-              <div className="legal-hero-img-wrap">
-                <img
-                  src="/legal-crm-hero.webp"
-                  alt="Gyan VaniAi Legal Practice CRM and Case Pipeline Dashboard"
-                  width="1000"
-                  height="600"
-                  className="legal-hero-img"
-                  fetchPriority="high"
-                  decoding="sync"
-                />
+              {/* Right Column: Interactive Browser Frame Mockup & Floating Badges */}
+              <div className="lg-hero-stage">
+                <div className="lg-hero-stage-glow" />
+
+                {/* Floating Badge 1: Conflict Scan Status */}
+                <div className="lg-float-badge lg-float-badge-1">
+                  <div className="lg-float-icon">
+                    <ShieldCheck size={20} />
+                  </div>
+                  <div>
+                    <div className="lg-float-title">Conflict Screening</div>
+                    <div className="lg-float-val">
+                      <span className="lg-pulse-dot" style={{ width: 6, height: 6 }} /> Zero Conflicts (85ms)
+                    </div>
+                  </div>
+                </div>
+
+                {/* Floating Badge 2: Privilege Vault */}
+                <div className="lg-float-badge lg-float-badge-2">
+                  <div className="lg-float-icon" style={{ color: '#06b6d4', background: 'rgba(6, 182, 212, 0.12)' }}>
+                    <Lock size={19} />
+                  </div>
+                  <div>
+                    <div className="lg-float-title">Privilege File Vault</div>
+                    <div className="lg-float-val">256-Bit AES Encrypted</div>
+                  </div>
+                </div>
+
+                {/* macOS / Browser Mockup Window */}
+                <div className="lg-mockup-window">
+                  <div className="lg-mockup-header">
+                    <div className="lg-window-dots">
+                      <span className="lg-dot lg-dot-red" />
+                      <span className="lg-dot lg-dot-yellow" />
+                      <span className="lg-dot lg-dot-green" />
+                    </div>
+                    <div className="lg-mockup-url">
+                      <Lock size={12} color="var(--lg-emerald)" />
+                      <span>app.gyanvaniai.com/legal/cases/active</span>
+                    </div>
+                    <div className="lg-mockup-secure">
+                      <Sparkles size={13} />
+                      <span>Privilege Secured</span>
+                    </div>
+                  </div>
+                  <img
+                    src="/legal-crm-hero.webp"
+                    alt="Gyan VaniAi Legal Practice CRM and Case Pipeline Dashboard"
+                    width="1000"
+                    height="562"
+                    className="lg-mockup-img"
+                    fetchPriority="high"
+                    decoding="sync"
+                  />
+                </div>
               </div>
             </div>
 
-            {/* Telemetry Bar */}
-            <div className="legal-telemetry-bar">
-              <div className="legal-telemetry-item">
-                <div className="legal-telemetry-val">80%</div>
-                <div className="legal-telemetry-label">Faster Client Intake</div>
+            {/* --- Hero Telemetry / Metrics Banner --- */}
+            <div className="lg-hero-metrics">
+              <div className="lg-metric-card">
+                <div className="lg-metric-icon">
+                  <Clock size={22} />
+                </div>
+                <div>
+                  <div className="lg-metric-val">80% Faster</div>
+                  <div className="lg-metric-lbl">Confidential Client Intake</div>
+                </div>
               </div>
-              <div className="legal-telemetry-item">
-                <div className="legal-telemetry-val">0</div>
-                <div className="legal-telemetry-label">Missed Court Deadlines</div>
+
+              <div className="lg-metric-card">
+                <div className="lg-metric-icon">
+                  <Calendar size={22} />
+                </div>
+                <div>
+                  <div className="lg-metric-val">0 Missed</div>
+                  <div className="lg-metric-lbl">Statutory Court Deadlines</div>
+                </div>
               </div>
-              <div className="legal-telemetry-item">
-                <div className="legal-telemetry-val">+25%</div>
-                <div className="legal-telemetry-label">Billable Capture Gain</div>
+
+              <div className="lg-metric-card">
+                <div className="lg-metric-icon">
+                  <TrendingUp size={22} />
+                </div>
+                <div>
+                  <div className="lg-metric-val">+25% Gain</div>
+                  <div className="lg-metric-lbl">Billable Hours Captured</div>
+                </div>
               </div>
-              <div className="legal-telemetry-item">
-                <div className="legal-telemetry-val">256-Bit</div>
-                <div className="legal-telemetry-label">Privilege Encryption</div>
+
+              <div className="lg-metric-card">
+                <div className="lg-metric-icon">
+                  <ShieldCheck size={22} />
+                </div>
+                <div>
+                  <div className="lg-metric-val">256-Bit AES</div>
+                  <div className="lg-metric-lbl">Privilege Vault Encryption</div>
+                </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Live Interactive Matter Simulator */}
-        <section className="legal-section legal-section-alt">
-          <div className="legal-container">
-            <div className="legal-section-header">
-              <div className="legal-badge">Interactive Matter Lifecycle</div>
-              <h2 className="legal-section-title">Experience the Legal Case Workflow</h2>
-              <p className="legal-section-subtitle">
-                See how a prospective client is onboarded, verified against ethical conflict rosters, and managed through active litigation stages.
+        {/* --- COMPLIANCE & TRUST MARQUEE BAR --- */}
+        <section className="lg-trust-bar">
+          <div className="container" style={{ maxWidth: '1280px' }}>
+            <div className="lg-trust-grid">
+              <div className="lg-trust-item"><Scale size={18} color="var(--lg-emerald)" /> Bar Ethics Compliant</div>
+              <div className="lg-trust-item"><Lock size={18} color="var(--lg-emerald)" /> 256-Bit AES Encryption</div>
+              <div className="lg-trust-item"><ShieldCheck size={18} color="var(--lg-emerald)" /> Automated Conflict Check</div>
+              <div className="lg-trust-item"><FileText size={18} color="var(--lg-emerald)" /> Tamper-Evident E-Sign</div>
+              <div className="lg-trust-item"><Calendar size={18} color="var(--lg-emerald)" /> Statutory Deadline Sync</div>
+            </div>
+          </div>
+        </section>
+
+        {/* --- DEDICATED INTERACTIVE MATTER SIMULATOR SECTION --- */}
+        <section className="container" style={{ maxWidth: '1280px' }}>
+          <div className="lg-sim-section">
+            <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+              <span className="lg-hero-badge">INTERACTIVE MATTER LIFECYCLE</span>
+              <h2 style={{ fontSize: 'clamp(1.75rem, 3.5vw, 2.25rem)', fontWeight: 800, margin: '0.5rem 0', color: 'var(--text-primary)' }}>
+                Experience the Legal Case Workflow
+              </h2>
+              <p style={{ fontSize: '0.95rem', color: 'var(--text-muted)', maxWidth: '680px', marginInline: 'auto' }}>
+                See how a prospective client is onboarded, verified against ethical conflict rosters, and guided through active litigation stages.
               </p>
             </div>
 
-            <div className="legal-sim-container">
-              <div className="legal-sim-tabs">
+            <div className="lg-simulator-container">
+              <div className="lg-simulator-header">
+                <div className="lg-window-dots">
+                  <span className="lg-dot lg-dot-red" />
+                  <span className="lg-dot lg-dot-yellow" />
+                  <span className="lg-dot lg-dot-green" />
+                </div>
+                <span style={{ fontSize: '0.825rem', fontWeight: 700, color: 'var(--lg-emerald)', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                  <Sparkles size={16} /> LIVE CASE LIFECYCLE SIMULATOR
+                </span>
+              </div>
+
+              <div className="lg-sim-tabs">
                 {simulatorSteps.map((step, idx) => (
                   <button
                     key={step.id}
                     type="button"
-                    className={`legal-sim-tab-btn ${activeSimTab === idx ? 'active' : ''}`}
+                    className={`lg-sim-tab ${activeSimTab === idx ? 'active' : ''}`}
                     onClick={() => setActiveSimTab(idx)}
                   >
                     {step.icon}
@@ -298,182 +409,215 @@ export default function LegalPage() {
                 ))}
               </div>
 
-              <div className="legal-sim-content">
-                <div className="legal-sim-badge">
-                  {simulatorSteps[activeSimTab].badge}
+              <div className="lg-sim-body">
+                <div style={{ marginBottom: '1rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.5rem' }}>
+                  <span className="lg-chip">{simulatorSteps[activeSimTab].badge}</span>
+                  <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)', display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}>
+                    <ShieldCheck size={16} color="var(--lg-emerald)" />
+                    {simulatorSteps[activeSimTab].statusNote}
+                  </span>
                 </div>
 
-                <div className="legal-call-bubble-wrap">
-                  <div className="legal-bubble legal-bubble-client">
-                    <div style={{ fontSize: '0.78rem', fontWeight: '700', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: '0.35rem' }}>
-                      Client Action / Stage
+                <div className="lg-chat-preview">
+                  <div className="lg-chat-msg lg-chat-client">
+                    <div style={{ fontSize: '0.75rem', opacity: 0.85, marginBottom: '0.25rem', fontWeight: 700, textTransform: 'uppercase' }}>
+                      Client Stage / Inbound Inquiry
                     </div>
                     <div>{simulatorSteps[activeSimTab].clientMsg}</div>
                   </div>
 
-                  <div className="legal-bubble legal-bubble-firm">
-                    <div style={{ fontSize: '0.78rem', fontWeight: '700', textTransform: 'uppercase', color: '#a7f3d0', marginBottom: '0.35rem' }}>
-                      Gyan VaniAi Legal CRM System
+                  <div className="lg-chat-msg lg-chat-firm">
+                    <div style={{ fontSize: '0.75rem', color: 'var(--lg-emerald)', fontWeight: 700, marginBottom: '0.25rem', display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
+                      <Bot size={15} /> Gyan VaniAi Legal CRM System
                     </div>
                     <div>{simulatorSteps[activeSimTab].firmResponse}</div>
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
-                <div className="legal-sim-status-note">
-                  <ShieldCheck size={18} />
-                  <span>{simulatorSteps[activeSimTab].statusNote}</span>
+        {/* --- BENTO GRID CAPABILITIES SHOWCASE --- */}
+        <section style={{ padding: '3.5rem 0' }}>
+          <div className="container" style={{ maxWidth: '1280px' }}>
+            <div style={{ textAlign: 'center', maxWidth: '750px', marginInline: 'auto', marginBottom: '2.5rem' }}>
+              <span className="lg-hero-badge">PLATFORM PILLARS</span>
+              <h2 style={{ fontSize: 'clamp(1.75rem, 3.5vw, 2.25rem)', fontWeight: 800, margin: '0.5rem 0', color: 'var(--text-primary)' }}>
+                Built for Modern Law Firms & Counsel
+              </h2>
+              <p style={{ fontSize: '0.95rem', color: 'var(--text-muted)' }}>
+                Enterprise capabilities designed to remove administrative overhead, protect attorney-client privilege, and capture every billable hour.
+              </p>
+            </div>
+
+            <div className="lg-bento-grid">
+              {/* Card 1 (Col 8) */}
+              <div className="lg-bento-card lg-bento-card-1 lg-bento-col-8">
+                <div className="lg-bento-icon-wrapper">
+                  <FolderGit2 size={24} />
+                </div>
+                <h3 className="lg-bento-title">Kanban Matter Pipelines & Case Milestones</h3>
+                <p className="lg-bento-desc">
+                  Visual stage management from initial intake to discovery, trial preparation, settlement, and matter archiving. Automatically compute statutory limitation dates, assign action items to associates, and track billable milestones seamlessly.
+                </p>
+                <div style={{ marginTop: '1.25rem', display: 'flex', gap: '0.65rem', flexWrap: 'wrap' }}>
+                  <span className="lg-chip">Visual Stage Pipeline</span>
+                  <span className="lg-chip">Statutory Deadline Engine</span>
+                  <span className="lg-chip">Multi-Calendar Sync</span>
+                </div>
+              </div>
+
+              {/* Card 2 (Col 4) */}
+              <div className="lg-bento-card lg-bento-card-2 lg-bento-col-4">
+                <div className="lg-bento-icon-wrapper">
+                  <ShieldAlert size={24} />
+                </div>
+                <h3 className="lg-bento-title">Automated Conflict Screening</h3>
+                <p className="lg-bento-desc">
+                  Instant phonetic and entity scans across active clients, past matters, corporate subsidiaries, and opposing counsels before engagement letters are dispatched.
+                </p>
+                <div style={{ marginTop: '1.25rem', display: 'flex', gap: '0.65rem', flexWrap: 'wrap' }}>
+                  <span className="lg-chip">Sub-Second Scan</span>
+                  <span className="lg-chip">Ethics Clearance Logs</span>
+                </div>
+              </div>
+
+              {/* Card 3 (Col 4) */}
+              <div className="lg-bento-card lg-bento-card-3 lg-bento-col-4">
+                <div className="lg-bento-icon-wrapper">
+                  <Clock size={24} />
+                </div>
+                <h3 className="lg-bento-title">Billable Time & Retainer Ledger</h3>
+                <p className="lg-bento-desc">
+                  One-click activity timers, automated trust account reconciliations (IOLTA compliant), and transparent LEDES/UTBMS itemized billing statements.
+                </p>
+                <div style={{ marginTop: '1.25rem', display: 'flex', gap: '0.65rem', flexWrap: 'wrap' }}>
+                  <span className="lg-chip">IOLTA Compliant</span>
+                  <span className="lg-chip">1-Click Timers</span>
+                </div>
+              </div>
+
+              {/* Card 4 (Col 8) */}
+              <div className="lg-bento-card lg-bento-card-4 lg-bento-col-8">
+                <div className="lg-bento-icon-wrapper">
+                  <Lock size={24} />
+                </div>
+                <h3 className="lg-bento-title">Privileged Document Vault & WhatsApp Portal</h3>
+                <p className="lg-bento-desc">
+                  Role-based encrypted evidence repository with version control and OCR search. Allow verified clients to check case milestone updates, submit court documents, and sign engagement agreements directly on WhatsApp with zero friction.
+                </p>
+                <div style={{ marginTop: '1.25rem', display: 'flex', gap: '0.65rem', flexWrap: 'wrap' }}>
+                  <span className="lg-chip">256-Bit AES Vault</span>
+                  <span className="lg-chip">WhatsApp Direct Intake</span>
+                  <span className="lg-chip">Granular Access Control</span>
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Core Capabilities */}
-        <section className="legal-section">
-          <div className="legal-container">
-            <div className="legal-section-header">
-              <div className="legal-badge">Platform Pillars</div>
-              <h2 className="legal-section-title">Built for Modern Law Firms & Counsel</h2>
-              <p className="legal-section-subtitle">
-                Six tailored capabilities designed to remove administrative overhead and safeguard attorney-client privilege.
-              </p>
-            </div>
+        {/* --- INTERACTIVE ROI CALCULATOR --- */}
+        <section id="roi-calculator" className="container" style={{ maxWidth: '1280px' }}>
+          <div className="lg-roi-box">
+            <div className="lg-roi-grid">
+              <div>
+                <span className="lg-hero-badge">PRACTICE PRODUCTIVITY CALCULATOR</span>
+                <h2 style={{ fontSize: 'clamp(1.75rem, 3.5vw, 2.25rem)', fontWeight: 800, margin: '0.5rem 0 0.85rem 0', color: 'var(--text-primary)' }}>
+                  Calculate Your Law Firm Impact
+                </h2>
+                <p style={{ fontSize: '0.95rem', color: 'var(--text-muted)', lineHeight: 1.6, marginBottom: '1.5rem' }}>
+                  Adjust the slider to your firm's average monthly active caseload to see estimated administrative hours reclaimed and additional billable revenue captured.
+                </p>
 
-            <div className="legal-caps-grid">
-              <div className="legal-cap-card">
-                <div className="legal-cap-icon-wrap"><FolderGit2 size={24} /></div>
-                <h3 className="legal-cap-title">Kanban Matter Stage Pipelines</h3>
-                <p className="legal-cap-desc">Visual boards for intake, discovery, trial prep, settlement negotiations, and closure, complete with automated stage progression tasks.</p>
-              </div>
-
-              <div className="legal-cap-card">
-                <div className="legal-cap-icon-wrap"><Lock size={24} /></div>
-                <h3 className="legal-cap-title">Privileged Document Vault</h3>
-                <p className="legal-cap-desc">Encrypted evidence repository with version control, automatic metadata tagging, OCR text extraction, and strict role-based access.</p>
-              </div>
-
-              <div className="legal-cap-card">
-                <div className="legal-cap-icon-wrap"><Calendar size={24} /></div>
-                <h3 className="legal-cap-title">Court Calendaring & Statutory Deadlines</h3>
-                <p className="legal-cap-desc">Automated limitation date computation and hearing notifications synced directly with Google Calendar, Outlook, and client WhatsApp.</p>
-              </div>
-
-              <div className="legal-cap-card">
-                <div className="legal-cap-icon-wrap"><Clock size={24} /></div>
-                <h3 className="legal-cap-title">Billable Time & Retainer Ledger</h3>
-                <p className="legal-cap-desc">One-click activity timers, automated trust account reconciliations, and itemized billing statements compliant with legal accounting standards.</p>
-              </div>
-
-              <div className="legal-cap-card">
-                <div className="legal-cap-icon-wrap"><ShieldAlert size={24} /></div>
-                <h3 className="legal-cap-title">Conflict-of-Interest Verification</h3>
-                <p className="legal-cap-desc">Instant automated scans cross-check adverse parties, corporate subsidiaries, and past clients to ensure 100% ethical compliance.</p>
-              </div>
-
-              <div className="legal-cap-card">
-                <div className="legal-cap-icon-wrap"><MessageSquare size={24} /></div>
-                <h3 className="legal-cap-title">WhatsApp Client Portal</h3>
-                <p className="legal-cap-desc">Allow verified clients to check case milestone updates, submit documents, and sign engagement agreements directly on WhatsApp.</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Practice Efficiency Calculator */}
-        <section className="legal-section legal-section-alt">
-          <div className="legal-container">
-            <div className="legal-section-header">
-              <div className="legal-badge">Firm Productivity</div>
-              <h2 className="legal-section-title">Calculate Your Law Firm Impact</h2>
-              <p className="legal-section-subtitle">
-                Estimate the administrative hours reclaimed and additional billable revenue captured by centralizing cases in Gyan VaniAi Legal CRM.
-              </p>
-            </div>
-
-            <div className="legal-calc-card">
-              <div className="legal-calc-slider-wrap">
-                <div className="legal-calc-slider-header">
-                  <span className="legal-calc-label">Active Matters / Cases Managed:</span>
-                  <span className="legal-calc-value-display">{caseCount} Active Matters</span>
-                </div>
-                <input
-                  type="range"
-                  min="10"
-                  max="300"
-                  step="5"
-                  value={caseCount}
-                  onChange={(e) => setCaseCount(Number(e.target.value))}
-                  className="legal-range-input"
-                  aria-label="Active Matters Managed"
-                />
-              </div>
-
-              <div className="legal-calc-results">
-                <div className="legal-calc-res-item">
-                  <div className="legal-calc-res-num">{adminHoursSaved} hrs</div>
-                  <div className="legal-calc-res-lbl">Admin Hours Saved / Month</div>
+                <div style={{ marginBottom: '1.25rem' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontWeight: 700, marginBottom: '0.5rem' }}>
+                    <span>Active Matters Managed:</span>
+                    <span style={{ color: 'var(--lg-emerald)', fontSize: '1.2rem', fontWeight: 800 }}>{caseCount} Active Matters</span>
+                  </div>
+                  <input
+                    type="range"
+                    min="10"
+                    max="300"
+                    step="5"
+                    value={caseCount}
+                    onChange={(e) => setCaseCount(Number(e.target.value))}
+                    className="lg-slider"
+                    aria-label="Active Matters Managed"
+                  />
+                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.8rem', color: 'var(--text-muted)' }}>
+                    <span>10 Matters</span>
+                    <span>150 Matters</span>
+                    <span>300+ Matters</span>
+                  </div>
                 </div>
 
-                <div className="legal-calc-res-item">
-                  <div className="legal-calc-res-num">{billableHoursCaptured} hrs</div>
-                  <div className="legal-calc-res-lbl">Extra Billable Hours Captured</div>
-                </div>
-
-                <div className="legal-calc-res-item">
-                  <div className="legal-calc-res-num">${additionalRevenueUSD.toLocaleString()}</div>
-                  <div className="legal-calc-res-lbl">Potential Monthly Revenue Gain</div>
-                </div>
-              </div>
-
-              <div style={{ textAlign: 'center', marginTop: '2.5rem' }}>
-                <button
-                  type="button"
-                  className="btn btn-primary"
-                  style={{ background: '#10b981', borderColor: '#10b981' }}
-                  onClick={() => handleOpenDemo(`Legal Practice CRM Setup for ${caseCount} active cases`)}
-                >
-                  Schedule Practice Management Audit <ArrowRight size={18} />
-                </button>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* FAQ Section */}
-        <section className="legal-section">
-          <div className="legal-container">
-            <div className="legal-section-header">
-              <div className="legal-badge">Practice FAQs</div>
-              <h2 className="legal-section-title">Frequently Asked Questions</h2>
-              <p className="legal-section-subtitle">
-                Common questions on confidentiality, regulatory compliance, and migrating your firm's active caseload.
-              </p>
-            </div>
-
-            <div className="legal-faq-wrap">
-              {faqs.map((faq, idx) => (
-                <div key={idx} className="legal-faq-item">
+                <div style={{ marginTop: '2rem' }}>
                   <button
                     type="button"
-                    className="legal-faq-trigger"
-                    onClick={() => toggleFaq(idx)}
-                    aria-expanded={openFaq === idx}
+                    className="lg-btn-primary"
+                    onClick={() => handleOpenDemo(`Legal Practice CRM Setup for ${caseCount} active cases`)}
                   >
-                    <span>{faq.q}</span>
-                    {openFaq === idx ? <Minus size={20} color="#10b981" /> : <Plus size={20} color="#10b981" />}
+                    Schedule Practice Management Audit <ArrowRight size={17} />
                   </button>
-                  {openFaq === idx && (
-                    <div className="legal-faq-body">
-                      {faq.a}
-                    </div>
-                  )}
                 </div>
-              ))}
+              </div>
+
+              <div className="lg-roi-stats-wrap">
+                <div className="lg-roi-stat-box">
+                  <div className="lg-roi-val">{adminHoursSaved} hrs</div>
+                  <div className="lg-roi-lbl">Admin Hours Saved / Month</div>
+                </div>
+
+                <div className="lg-roi-stat-box">
+                  <div className="lg-roi-val">{billableHoursCaptured} hrs</div>
+                  <div className="lg-roi-lbl">Extra Billable Hours Captured</div>
+                </div>
+
+                <div className="lg-roi-stat-box" style={{ gridColumn: 'span 2' }}>
+                  <div className="lg-roi-val">${additionalRevenueUSD.toLocaleString()}</div>
+                  <div className="lg-roi-lbl">Estimated Monthly Billable Revenue Gain</div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* Global Contact Section */}
+        {/* --- FAQ SECTION --- */}
+        <section className="container" style={{ maxWidth: '1280px', padding: '3.5rem 1.5rem' }}>
+          <div style={{ textAlign: 'center', maxWidth: '750px', marginInline: 'auto', marginBottom: '2.5rem' }}>
+            <span className="lg-hero-badge">PRACTICE FAQS</span>
+            <h2 style={{ fontSize: 'clamp(1.75rem, 3.5vw, 2.25rem)', fontWeight: 800, margin: '0.5rem 0', color: 'var(--text-primary)' }}>
+              Frequently Asked Questions
+            </h2>
+            <p style={{ fontSize: '0.95rem', color: 'var(--text-muted)' }}>
+              Common questions regarding attorney-client confidentiality, Bar ethics compliance, and migrating your caseload.
+            </p>
+          </div>
+
+          <div className="lg-faq-wrap">
+            {faqs.map((faq, idx) => (
+              <div key={idx} className="lg-faq-item">
+                <button
+                  type="button"
+                  className="lg-faq-trigger"
+                  onClick={() => toggleFaq(idx)}
+                  aria-expanded={openFaq === idx}
+                >
+                  <span>{faq.q}</span>
+                  {openFaq === idx ? <Minus size={20} color="var(--lg-emerald)" /> : <Plus size={20} color="var(--lg-emerald)" />}
+                </button>
+                {openFaq === idx && (
+                  <div className="lg-faq-body">
+                    {faq.a}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* --- GLOBAL CONTACT SECTION --- */}
         <ContactSection />
       </div>
     </>

@@ -22,7 +22,11 @@ import {
   TrendingUp,
   Clock,
   Radio,
-  Server
+  Server,
+  ChevronRight,
+  Check,
+  Globe,
+  Headphones
 } from 'lucide-react';
 import ContactSection from '../components/ContactSection';
 import './IvrSolutionsPage.css';
@@ -163,55 +167,58 @@ export default function IvrSolutionsPage() {
         <div className="ivr-bg-glow-1" />
         <div className="ivr-bg-glow-2" />
 
-        {/* Hero Section */}
+        {/* --- EXECUTIVE HERO SECTION --- */}
         <section className="ivr-hero">
           <div className="ivr-container">
-            <nav aria-label="Breadcrumb" style={{ marginBottom: '1.5rem', fontSize: '0.85rem', fontWeight: '500' }}>
+            <nav aria-label="Breadcrumb" style={{ marginBottom: '1.25rem', fontSize: '0.85rem' }}>
               <ol style={{ display: 'flex', gap: '0.5rem', listStyle: 'none', padding: 0, margin: 0, color: 'var(--text-muted)' }}>
                 <li><Link to="/" style={{ color: 'inherit' }}>Home</Link></li>
                 <li aria-hidden="true">/</li>
                 <li>Services</li>
                 <li aria-hidden="true">/</li>
-                <li style={{ color: 'var(--primary-color)' }}>Smart IVR Solutions</li>
+                <li style={{ color: 'var(--primary-color)', fontWeight: '600' }}>Smart IVR Solutions</li>
               </ol>
             </nav>
 
             <div className="ivr-hero-grid">
+              {/* Left Column: Focused Copy & Action CTAs */}
               <div>
                 <div className="ivr-badge">
-                  <Radio size={14} />
-                  <span>Next-Gen Enterprise Telephony</span>
+                  <span className="ivr-pulse-dot" />
+                  <span>2026 CONVERSATIONAL TELEPHONY & IVR</span>
                 </div>
+
                 <h1 className="ivr-hero-title">
                   Smart IVR & <span className="gradient-text">Conversational Voice</span> Routing
                 </h1>
+
                 <p className="ivr-hero-desc">
                   Replace frustrating "Press 1 for Sales" phone trees with natural voice speech recognition, real-time CRM database dips, and sub-second SIP call escalation.
                 </p>
 
                 <div className="ivr-hero-benefits">
                   <div className="ivr-benefit-item">
-                    <CheckCircle2 size={20} color="var(--primary-color)" />
-                    <span>Natural spoken speech recognition in 40+ languages (No keypad menus)</span>
+                    <CheckCircle2 size={16} color="var(--primary-color)" />
+                    <span>Spoken speech recognition in 40+ languages</span>
                   </div>
                   <div className="ivr-benefit-item">
-                    <CheckCircle2 size={20} color="var(--primary-color)" />
-                    <span>Sub-200ms CRM database dips for instant caller identification</span>
+                    <CheckCircle2 size={16} color="var(--primary-color)" />
+                    <span>Sub-200ms real-time CRM database dips</span>
                   </div>
                   <div className="ivr-benefit-item">
-                    <CheckCircle2 size={20} color="var(--primary-color)" />
-                    <span>Zero-drop live human handoff with full call audio and transcript briefing</span>
+                    <CheckCircle2 size={16} color="var(--primary-color)" />
+                    <span>Zero-drop warm agent SIP transfer</span>
                   </div>
                   <div className="ivr-benefit-item">
-                    <CheckCircle2 size={20} color="var(--primary-color)" />
-                    <span>Omnichannel continuation: push instant receipts & links to WhatsApp</span>
+                    <CheckCircle2 size={16} color="var(--primary-color)" />
+                    <span>Live WhatsApp continuation & payment links</span>
                   </div>
                 </div>
 
                 <div className="ivr-hero-actions">
                   <button
                     type="button"
-                    className="btn btn-primary"
+                    className="ivr-btn-hero-primary"
                     onClick={() => handleOpenDemo('Smart IVR Deployment Inquiry')}
                   >
                     Deploy Smart IVR <ArrowRight size={18} />
@@ -220,53 +227,126 @@ export default function IvrSolutionsPage() {
                     href="https://wa.me/918700620913?text=Hi%20Gyan%20VaniAi%2C%20I%20am%20interested%20in%20Smart%20IVR%20Solutions."
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="btn"
-                    style={{
-                      background: '#25D366',
-                      color: '#ffffff',
-                      fontWeight: '700',
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '0.5rem',
-                      boxShadow: '0 4px 16px rgba(37, 211, 102, 0.3)'
-                    }}
+                    className="ivr-btn-hero-whatsapp"
                   >
                     <MessageSquare size={18} />
                     <span>Test on WhatsApp</span>
                   </a>
                 </div>
+
+                <div className="ivr-hero-trust-micro">
+                  <div className="ivr-trust-check">
+                    <Check size={16} color="var(--primary-color)" /> Sub-180ms Latency
+                  </div>
+                  <div>•</div>
+                  <div className="ivr-trust-check">
+                    <Check size={16} color="var(--primary-color)" /> 99.99% SIP Uptime
+                  </div>
+                  <div>•</div>
+                  <div className="ivr-trust-check">
+                    <Check size={16} color="var(--primary-color)" /> RFC-Compliant WebSockets
+                  </div>
+                </div>
               </div>
 
-              <div className="ivr-hero-img-wrap">
-                <img
-                  src="/ivr-solutions-hero.webp"
-                  alt="Gyan VaniAi Smart IVR and Intelligent Call Routing System Dashboard"
-                  width="1000"
-                  height="600"
-                  className="ivr-hero-img"
-                  fetchPriority="high"
-                  decoding="sync"
-                />
+              {/* Right Column: Interactive Browser Frame Mockup & Floating Badges */}
+              <div className="ivr-hero-stage">
+                <div className="ivr-hero-stage-glow" />
+
+                {/* Floating Badge 1: ASR Latency */}
+                <div className="ivr-float-badge ivr-float-badge-1">
+                  <div className="ivr-float-icon">
+                    <Headphones size={20} />
+                  </div>
+                  <div>
+                    <div className="ivr-float-title">Speech Recognition</div>
+                    <div className="ivr-float-val">
+                      <span className="ivr-pulse-dot" style={{ width: 6, height: 6 }} /> Sub-180ms Latency (ASR)
+                    </div>
+                  </div>
+                </div>
+
+                {/* Floating Badge 2: Database Dip */}
+                <div className="ivr-float-badge ivr-float-badge-2">
+                  <div className="ivr-float-icon" style={{ color: '#06b6d4', background: 'rgba(6, 182, 212, 0.12)' }}>
+                    <Database size={19} />
+                  </div>
+                  <div>
+                    <div className="ivr-float-title">CRM Database Dip</div>
+                    <div className="ivr-float-val">Caller Verified (85ms)</div>
+                  </div>
+                </div>
+
+                {/* macOS / WebSoftswitch Mockup Window */}
+                <div className="ivr-mockup-window">
+                  <div className="ivr-mockup-header">
+                    <div className="ivr-window-dots">
+                      <span className="ivr-dot ivr-dot-red" />
+                      <span className="ivr-dot ivr-dot-yellow" />
+                      <span className="ivr-dot ivr-dot-green" />
+                    </div>
+                    <div className="ivr-mockup-url">
+                      <Radio size={12} color="var(--primary-color)" />
+                      <span>app.gyanvaniai.com/telephony/sip-trunk/live</span>
+                    </div>
+                    <div className="ivr-mockup-secure">
+                      <Sparkles size={13} />
+                      <span>Active SIP Bridge</span>
+                    </div>
+                  </div>
+                  <img
+                    src="/ivr-solutions-hero.webp"
+                    alt="Gyan VaniAi Smart IVR and Intelligent Call Routing System Dashboard"
+                    width="1000"
+                    height="562"
+                    className="ivr-mockup-img"
+                    fetchPriority="high"
+                    decoding="sync"
+                  />
+                </div>
               </div>
             </div>
 
-            {/* Telemetry Bar */}
-            <div className="ivr-telemetry-bar">
-              <div className="ivr-telemetry-item">
-                <div className="ivr-telemetry-val">70%</div>
-                <div className="ivr-telemetry-label">First-Call Deflection</div>
+            {/* --- Hero Telemetry / Metrics Banner --- */}
+            <div className="ivr-hero-metrics">
+              <div className="ivr-metric-card">
+                <div className="ivr-metric-icon">
+                  <Zap size={22} />
+                </div>
+                <div>
+                  <div className="ivr-metric-val">70% Deflected</div>
+                  <div className="ivr-metric-lbl">First-Call Automated Resolution</div>
+                </div>
               </div>
-              <div className="ivr-telemetry-item">
-                <div className="ivr-telemetry-val">&lt; 180ms</div>
-                <div className="ivr-telemetry-label">ASR Intent Latency</div>
+
+              <div className="ivr-metric-card">
+                <div className="ivr-metric-icon">
+                  <Clock size={22} />
+                </div>
+                <div>
+                  <div className="ivr-metric-val">&lt; 180ms</div>
+                  <div className="ivr-metric-lbl">Spoken ASR Intent Latency</div>
+                </div>
               </div>
-              <div className="ivr-telemetry-item">
-                <div className="ivr-telemetry-val">40+</div>
-                <div className="ivr-telemetry-label">Languages & Dialects</div>
+
+              <div className="ivr-metric-card">
+                <div className="ivr-metric-icon">
+                  <Globe size={22} />
+                </div>
+                <div>
+                  <div className="ivr-metric-val">40+ Languages</div>
+                  <div className="ivr-metric-lbl">Global Dialects & Accents</div>
+                </div>
               </div>
-              <div className="ivr-telemetry-item">
-                <div className="ivr-telemetry-val">99.99%</div>
-                <div className="ivr-telemetry-label">SIP Telephony SLA</div>
+
+              <div className="ivr-metric-card">
+                <div className="ivr-metric-icon">
+                  <ShieldCheck size={22} />
+                </div>
+                <div>
+                  <div className="ivr-metric-val">99.99% SLA</div>
+                  <div className="ivr-metric-lbl">Carrier SIP Telephony Uptime</div>
+                </div>
               </div>
             </div>
           </div>
