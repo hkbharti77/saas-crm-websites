@@ -36,6 +36,7 @@ const SITE = 'https://www.gyanvaniai.com';
 export default function IvrSolutionsPage() {
   const [activeSimTab, setActiveSimTab] = useState(0);
   const [callVolume, setCallVolume] = useState(8000);
+  const [currency, setCurrency] = useState('INR');
   const [openFaq, setOpenFaq] = useState(0);
 
   // Live Call Simulation Steps
@@ -78,9 +79,23 @@ export default function IvrSolutionsPage() {
     }
   ];
 
-  // Telephony ROI Math
-  const hoursSavedPerMonth = Math.round((callVolume * 0.65 * 4.5) / 60);
-  const costReductionUSD = Math.round(callVolume * 1.85);
+  // Realistic Enterprise Telephony Economics:
+  // - 65% tier-1 inquiry deflection rate (order tracking, cancellations, FAQs, scheduling)
+  // - Average Handle Time (AHT) = 4.5 minutes
+  // - India (INR): Live agent call cost = ₹10 | Smart IVR automated call cost = ₹1.80 | Net savings = ₹8.20/call
+  // - Global (USD): Live agent call cost = $1.25 | Smart IVR automated call cost = $0.22 | Net savings = $0.95/call
+  const deflectionRate = 0.65;
+  const deflectedCalls = Math.round(callVolume * deflectionRate);
+  const hoursSavedPerMonth = Math.round((deflectedCalls * 4.5) / 60);
+
+  const isINR = currency === 'INR';
+  const currencySymbol = isINR ? '₹' : '$';
+  const humanCallCost = isINR ? '₹10' : '$1.25';
+  const ivrCallCost = isINR ? '₹1.80' : '$0.22';
+  const netSavingsPerCall = isINR ? 8.20 : 0.95;
+
+  const monthlySavings = Math.round(deflectedCalls * netSavingsPerCall);
+  const annualSavings = monthlySavings * 12;
   const fcrImprovement = 42;
 
   const toggleFaq = (index) => {
@@ -471,6 +486,29 @@ export default function IvrSolutionsPage() {
             </div>
 
             <div className="ivr-calc-card">
+              <div className="ivr-calc-header-controls">
+                <div className="ivr-currency-toggle" role="group" aria-label="Select Currency">
+                  <button
+                    type="button"
+                    className={`ivr-currency-btn ${currency === 'INR' ? 'active' : ''}`}
+                    onClick={() => setCurrency('INR')}
+                  >
+                    ₹ INR (India)
+                  </button>
+                  <button
+                    type="button"
+                    className={`ivr-currency-btn ${currency === 'USD' ? 'active' : ''}`}
+                    onClick={() => setCurrency('USD')}
+                  >
+                    $ USD (Global)
+                  </button>
+                </div>
+                <div className="ivr-calc-benchmark-tag">
+                  <Sparkles size={14} color="var(--primary-color)" />
+                  <span>Benchmark: 4.5m AHT • 65% Automated Resolution • Plans from ₹1,999/mo ($19/mo)</span>
+                </div>
+              </div>
+
               <div className="ivr-calc-slider-wrap">
                 <div className="ivr-calc-slider-header">
                   <span className="ivr-calc-label">Monthly Inbound Call Volume:</span>
@@ -479,13 +517,29 @@ export default function IvrSolutionsPage() {
                 <input
                   type="range"
                   min="1000"
-                  max="50000"
+                  max="100000"
                   step="1000"
                   value={callVolume}
                   onChange={(e) => setCallVolume(Number(e.target.value))}
                   className="ivr-range-input"
                   aria-label="Monthly Inbound Call Volume"
                 />
+                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: '0.4rem' }}>
+                  <span>1,000 calls</span>
+                  <span>50,000 calls</span>
+                  <span>100,000+ calls</span>
+                </div>
+              </div>
+
+              {/* Per-Call Comparison Pill */}
+              <div className="ivr-calc-breakdown-pill">
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <TrendingUp size={16} color="var(--primary-color)" />
+                  <span><strong>Cost Per Call:</strong> Live Agent: <span style={{ textDecoration: 'line-through', opacity: 0.75 }}>{humanCallCost}</span> → Smart IVR: <span style={{ color: 'var(--primary-color)', fontWeight: '750' }}>{ivrCallCost}</span></span>
+                </div>
+                <div style={{ fontWeight: '700', color: 'var(--primary-color)' }}>
+                  Save 82% per automated call
+                </div>
               </div>
 
               <div className="ivr-calc-results">
@@ -495,21 +549,26 @@ export default function IvrSolutionsPage() {
                 </div>
 
                 <div className="ivr-calc-res-item">
-                  <div className="ivr-calc-res-num">${costReductionUSD.toLocaleString()}</div>
+                  <div className="ivr-calc-res-num">{deflectedCalls.toLocaleString()}</div>
+                  <div className="ivr-calc-res-lbl">Calls Resolved Autonomously (65%)</div>
+                </div>
+
+                <div className="ivr-calc-res-item ivr-calc-res-item-highlight">
+                  <div className="ivr-calc-res-num">{currencySymbol}{monthlySavings.toLocaleString()}</div>
                   <div className="ivr-calc-res-lbl">Estimated Monthly Savings</div>
                 </div>
 
-                <div className="ivr-calc-res-item">
-                  <div className="ivr-calc-res-num">+{fcrImprovement}%</div>
-                  <div className="ivr-calc-res-lbl">First Contact Resolution Gain</div>
+                <div className="ivr-calc-res-item ivr-calc-res-item-highlight">
+                  <div className="ivr-calc-res-num">{currencySymbol}{annualSavings.toLocaleString()}</div>
+                  <div className="ivr-calc-res-lbl">Projected Annual Savings</div>
                 </div>
               </div>
 
-              <div style={{ textAlign: 'center', marginTop: '2.5rem' }}>
+              <div style={{ textAlign: 'center', marginTop: '2.25rem' }}>
                 <button
                   type="button"
-                  className="btn btn-primary"
-                  onClick={() => handleOpenDemo(`Smart IVR ROI Estimate for ${callVolume.toLocaleString()} calls/mo`)}
+                  className="ivr-btn-hero-primary"
+                  onClick={() => handleOpenDemo(`Smart IVR ROI Estimate for ${callVolume.toLocaleString()} calls/mo (${currency})`)}
                 >
                   Request Detailed Contact Center Audit <ArrowRight size={18} />
                 </button>
