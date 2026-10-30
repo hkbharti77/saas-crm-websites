@@ -23,7 +23,18 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-RN6FQWDQ6M"></script>
 
     <!-- Cloudflare Web Analytics (Cookieless aggregate browser performance telemetry) -->
-    <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "e68d0475ffde4e0ba1f1c7e1250d9e69"}'></script>
+    <script>
+      (function() {
+        var h = window.location.hostname;
+        if (h && h !== 'localhost' && h !== '127.0.0.1') {
+          var cf = document.createElement('script');
+          cf.defer = true;
+          cf.src = 'https://static.cloudflareinsights.com/beacon.min.js';
+          cf.setAttribute('data-cf-beacon', '{"token": "e68d0475ffde4e0ba1f1c7e1250d9e69"}');
+          document.head.appendChild(cf);
+        }
+      })();
+    </script>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="renderer" content="webkit" />
@@ -414,49 +425,57 @@
         }, { passive: true });
         // Sanitize any third-party widget template syntax leaks & eliminate fallback elements
         function cleanWidgetToggle() {
-          var toggle = document.getElementById('chat-toggle');
-          if (toggle) {
-            // Prevent third-party fallback onerror
-            var img = toggle.querySelector('img');
-            if (img && img.onerror) {
-              img.onerror = null;
-            }
-            var child = toggle.firstChild;
-            while (child) {
-              var next = child.nextSibling;
-              // Remove anything that is not the robot img (removes fallback SVGs, text nodes, and paths)
-              if (child.tagName !== 'IMG') {
-                toggle.removeChild(child);
+          try {
+            var toggle = document.getElementById('chat-toggle');
+            if (toggle) {
+              // Safely remove any fallback onerror attribute without reading the property
+              var img = toggle.querySelector('img');
+              if (img) {
+                try {
+                  if (img.hasAttribute && img.hasAttribute('onerror')) {
+                    img.removeAttribute('onerror');
+                  }
+                } catch(e) {}
               }
-              child = next;
-            }
-          }
-          var widget = document.getElementById('crm-chat-widget');
-          if (widget) {
-            var wChild = widget.firstChild;
-            while (wChild) {
-              var wNext = wChild.nextSibling;
-              if (wChild.nodeType === 3 && wChild.nodeValue && wChild.nodeValue.trim()) {
-                widget.removeChild(wChild);
-              }
-              wChild = wNext;
-            }
-            // Strip any rogue syntax text nodes in child elements (except tooltip and panel)
-            var allElements = widget.getElementsByTagName('*');
-            for (var i = 0; i < allElements.length; i++) {
-              var el = allElements[i];
-              if (el.id === 'chat-tooltip' || el.classList.contains('chat-tooltip-text') || el.closest('#chat-panel')) {
-                continue;
-              }
-              var c = el.firstChild;
-              while (c) {
-                var nextC = c.nextSibling;
-                if (c.nodeType === 3 && c.nodeValue && (c.nodeValue.indexOf(';') !== -1 || c.nodeValue.indexOf('>') !== -1 || c.nodeValue.indexOf('"') !== -1)) {
-                  el.removeChild(c);
+              var child = toggle.firstChild;
+              while (child) {
+                var next = child.nextSibling;
+                // Remove anything that is not the robot img (removes fallback SVGs, text nodes, and paths)
+                if (child.tagName !== 'IMG') {
+                  toggle.removeChild(child);
                 }
-                c = nextC;
+                child = next;
               }
             }
+            var widget = document.getElementById('crm-chat-widget');
+            if (widget) {
+              var wChild = widget.firstChild;
+              while (wChild) {
+                var wNext = wChild.nextSibling;
+                if (wChild.nodeType === 3 && wChild.nodeValue && wChild.nodeValue.trim()) {
+                  widget.removeChild(wChild);
+                }
+                wChild = wNext;
+              }
+              // Strip any rogue syntax text nodes in child elements (except tooltip and panel)
+              var allElements = widget.getElementsByTagName('*');
+              for (var i = 0; i < allElements.length; i++) {
+                var el = allElements[i];
+                if (el.id === 'chat-tooltip' || (el.classList && el.classList.contains('chat-tooltip-text')) || (el.closest && el.closest('#chat-panel'))) {
+                  continue;
+                }
+                var c = el.firstChild;
+                while (c) {
+                  var nextC = c.nextSibling;
+                  if (c.nodeType === 3 && c.nodeValue && (c.nodeValue.indexOf(';') !== -1 || c.nodeValue.indexOf('>') !== -1 || c.nodeValue.indexOf('"') !== -1)) {
+                    el.removeChild(c);
+                  }
+                  c = nextC;
+                }
+              }
+            }
+          } catch(err) {
+            // Silently suppress DOM mutation race conditions from third-party scripts
           }
         }
 

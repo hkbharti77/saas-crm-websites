@@ -211,7 +211,7 @@ const CookieConsentBanner = () => {
             </p>
             <div className="cookie-pref-list">
               {COOKIE_CATEGORIES.map(cat => (
-                <div key={cat.key} className={cookie-pref-item}>
+                <div key={cat.key} className="cookie-pref-item">
                   <div className="cookie-pref-main">
                     <div className="cookie-pref-text">
                       <button type="button" className="cookie-pref-expand-btn" onClick={() => setExpandedCat(expandedCat === cat.key ? null : cat.key)}>
