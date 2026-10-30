@@ -47,9 +47,10 @@ export const organizationSchema = {
   ],
   "address": {
     "@type": "PostalAddress",
-    "addressLocality": "New Delhi",
-    "addressRegion": "Delhi",
-    "postalCode": "110001",
+    "streetAddress": "Dakbangla Chowk",
+    "addressLocality": "Simri Bakhtiarpur",
+    "addressRegion": "Bihar",
+    "postalCode": "852127",
     "addressCountry": "IN"
   },
   "areaServed": [
@@ -156,9 +157,10 @@ export const localBusinessSchema = {
   "priceRange": "$$",
   "address": {
     "@type": "PostalAddress",
-    "addressLocality": "New Delhi",
-    "addressRegion": "Delhi",
-    "postalCode": "110001",
+    "streetAddress": "Dakbangla Chowk",
+    "addressLocality": "Simri Bakhtiarpur",
+    "addressRegion": "Bihar",
+    "postalCode": "852127",
     "addressCountry": "IN"
   },
   "sameAs": [

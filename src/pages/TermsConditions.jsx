@@ -148,7 +148,7 @@ export default function TermsConditions() {
                 <li><strong>Officer Name:</strong> Himanshu Bharti</li>
                 <li><strong>Designation:</strong> Lead Privacy Compliance Officer &amp; Grievance Redressal Officer</li>
                 <li><strong>Entity:</strong> Gyan VaniAi Technologies</li>
-                <li><strong>Address:</strong> New Delhi, 110001, India</li>
+                <li><strong>Address:</strong> Dakbangla Chowk, Simri Bakhtiarpur, Bihar 852127, India</li>
                 <li><strong>Direct Email:</strong> <a href="mailto:contact@gyanvaniai.com" style={{ color: 'var(--primary-color)', fontWeight: '600' }}>contact@gyanvaniai.com</a></li>
                 <li><strong>Acknowledgment:</strong> Within 24 hours</li>
                 <li><strong>Statutory Resolution Deadline:</strong> Maximum 15 business days (Rule 11)</li>

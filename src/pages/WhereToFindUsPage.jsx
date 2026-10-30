@@ -96,7 +96,7 @@ export default function WhereToFindUsPage() {
                 <strong className="where-nap-val">
                   <a href="https://maps.app.goo.gl/Ts3kKh9L8fe4m9AP6" target="_blank" rel="noopener noreferrer" className="where-link">Gyan VaniAi Technologies</a>
                 </strong>
-                <span className="where-nap-note">Verified Google Maps location</span>
+                <span className="where-nap-note">Dakbangla Chowk, Simri Bakhtiarpur, Bihar 852127 · Verified Google Maps</span>
               </div>
               <div className="where-nap-item">
                 <span className="where-nap-label">Official Website URL</span>
