@@ -427,6 +427,21 @@
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
 }
 
+@media (max-width: 768px) {
+  .cookie-floating-pill {
+    bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+    left: calc(14px + env(safe-area-inset-left, 0px));
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 1.1rem;
+    transition: bottom 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  body.has-mobile-sticky-cta .cookie-floating-pill {
+    bottom: calc(76px + env(safe-area-inset-bottom, 0px));
+  }
+}
+
 /* ── Modal Compliance Bar ────────────────────────────────────────────────── */
 .cookie-modal-compliance {
   display: flex;

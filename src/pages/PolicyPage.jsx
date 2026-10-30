@@ -387,11 +387,58 @@ export default function PolicyPage() {
             <ul className="text-muted" style={{ paddingLeft: '1.5rem', margin: '1rem 0', display: 'flex', flexDirection: 'column', gap: '0.45rem' }}>
               <li><strong>IP Address &amp; Approximate Location:</strong> Public IP and city/region/country derived at the moment of your consent decision.</li>
               <li><strong>Browser &amp; Device Environment:</strong> Browser type, operating system, and language preferences.</li>
-              <li><strong>Consent Decisions:</strong> Explicit status (accepted, rejected, or customized category choices).</li>
+              <li><strong>Consent Decisions:</strong> Explicit status (accepted, rejected, or customized category choices across functional, analytics, session replay, and marketing).</li>
               <li><strong>Referrer URL &amp; Timestamp:</strong> The exact URL visited and the UTC timestamp of the consent decision.</li>
             </ul>
-            <p className="text-muted"><strong>Purpose &amp; Non-Profiling:</strong> Consent audit logs are maintained solely to establish statutory compliance under Section 6 of the DPDP Act, 2023. This data is never used for advertising, behavioural profiling, or commercial resale.</p>
+            <p className="text-muted"><strong>Purpose &amp; Non-Profiling:</strong> Consent audit logs are maintained solely to establish statutory compliance under Section 6 of the DPDP Act, 2023 and GDPR Article 7(1). This data is never used for advertising, behavioural profiling, or commercial resale.</p>
             <p className="text-muted"><strong>Retention:</strong> Consent audit records are retained for exactly <strong>12 months</strong> (31,536,000 seconds) via automated database TTL index schedules, after which they are permanently expunged.</p>
+
+            <h3 className="h3" style={{ fontSize: '1.15rem', marginTop: '1.75rem', marginBottom: '0.75rem' }}>3.1 Telemetry, Measurement &amp; Analytics Framework</h3>
+            <p className="text-muted">To maintain infrastructure reliability and understand technical performance without compromising individual privacy, our site uses the following tiered telemetry framework:</p>
+
+            <div style={{ overflowX: 'auto', margin: '1rem 0' }}>
+              <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.88rem', textAlign: 'left' }}>
+                <thead>
+                  <tr style={{ borderBottom: '1px solid var(--border-color)', color: 'var(--text-primary)' }}>
+                    <th style={{ padding: '0.75rem 0.5rem' }}>Provider &amp; Tool</th>
+                    <th style={{ padding: '0.75rem 0.5rem' }}>Data Collected &amp; Flow</th>
+                    <th style={{ padding: '0.75rem 0.5rem' }}>ePrivacy / Device Storage</th>
+                    <th style={{ padding: '0.75rem 0.5rem' }}>Lawful Basis</th>
+                    <th style={{ padding: '0.75rem 0.5rem' }}>Consent &amp; Revocation</th>
+                  </tr>
+                </thead>
+                <tbody style={{ color: 'var(--text-muted)' }}>
+                  <tr style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.05)' }}>
+                    <td style={{ padding: '0.75rem 0.5rem' }}><strong>Vercel Web Analytics</strong></td>
+                    <td style={{ padding: '0.75rem 0.5rem' }}>Aggregate page paths, device operating system, browser family. Strict pathname-only URL sanitization (query parameters stripped).</td>
+                    <td style={{ padding: '0.75rem 0.5rem' }}>Cookieless; uses 24h rotating request-derived hash. No client-side storage.</td>
+                    <td style={{ padding: '0.75rem 0.5rem' }}>Legitimate Interest (Aggregate operational metrics).</td>
+                    <td style={{ padding: '0.75rem 0.5rem' }}>Operational telemetry; opt-out honored via browser privacy signals.</td>
+                  </tr>
+                  <tr style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.05)' }}>
+                    <td style={{ padding: '0.75rem 0.5rem' }}><strong>Cloudflare Web Analytics</strong></td>
+                    <td style={{ padding: '0.75rem 0.5rem' }}>Aggregate browser performance timings (LCP, FID/INP, CLS) and HTTP response telemetry.</td>
+                    <td style={{ padding: '0.75rem 0.5rem' }}>Cookieless beacon reading browser Performance APIs. Zero persistent identifiers.</td>
+                    <td style={{ padding: '0.75rem 0.5rem' }}>Legitimate Interest (Service availability &amp; latency monitoring).</td>
+                    <td style={{ padding: '0.75rem 0.5rem' }}>Non-profiling telemetry; honors Global Privacy Control (GPC).</td>
+                  </tr>
+                  <tr style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.05)' }}>
+                    <td style={{ padding: '0.75rem 0.5rem' }}><strong>Google Analytics 4 (GA4)</strong></td>
+                    <td style={{ padding: '0.75rem 0.5rem' }}>Page navigation metrics. In default state, transmits cookieless pings without cookies. Full session metrics only on consent.</td>
+                    <td style={{ padding: '0.75rem 0.5rem' }}>Default: Cookieless.<br />Consented: <code>_ga</code> cookies (up to 14 months).</td>
+                    <td style={{ padding: '0.75rem 0.5rem' }}>Google Consent Mode v2 (Default: Denied; Consented: Affirmative Opt-In).</td>
+                    <td style={{ padding: '0.75rem 0.5rem' }}>Dynamically managed via Cookie Preferences. Withdrawal updates state to <code>denied</code>.</td>
+                  </tr>
+                  <tr style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.05)' }}>
+                    <td style={{ padding: '0.75rem 0.5rem' }}><strong>Microsoft Clarity</strong></td>
+                    <td style={{ padding: '0.75rem 0.5rem' }}>Interaction trajectories, mouse movements, scroll depth, click heatmaps for UX debugging. Sensitive text inputs automatically masked.</td>
+                    <td style={{ padding: '0.75rem 0.5rem' }}>Device storage: <code>_clck</code> (1yr), <code>_clsk</code> (24h).</td>
+                    <td style={{ padding: '0.75rem 0.5rem' }}>Consent — GDPR Art.6(1)(a) &amp; ePrivacy Art.5(3).</td>
+                    <td style={{ padding: '0.75rem 0.5rem' }}>Strictly gated behind affirmative Session Replay consent. Revocation immediately dispatches <code>clarity("consent", false)</code>.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </section>
 
           <section id="consent" className="legal-section">
@@ -425,6 +472,9 @@ export default function PolicyPage() {
               <li><strong>Amazon Web Services (AWS) &amp; Google Cloud:</strong> Secure cloud database hosting, serverless functions, and encrypted document storage.</li>
               <li><strong>Cloudflare:</strong> CDN edge caching, DDoS mitigation, and SSL/TLS 1.3 encryption.</li>
               <li><strong>ipapi.co:</strong> Anonymized IP-to-country geolocation verification for statutory consent auditing.</li>
+              <li><strong>Vercel Inc.:</strong> Serverless infrastructure hosting and cookieless aggregate web analytics.</li>
+              <li><strong>Google LLC:</strong> Web measurement via Google Analytics with Google Consent Mode v2.</li>
+              <li><strong>Microsoft Corporation:</strong> User experience and session replay diagnostics via Microsoft Clarity (only upon explicit affirmative consent).</li>
             </ul>
             <h3 className="h3" style={{ fontSize: '1.15rem', marginTop: '1.25rem', marginBottom: '0.5rem' }}>Cross-Border Transfers under DPDP Act §16</h3>
             <p className="text-muted">Where data is transferred outside the territory of India for cloud computation, such transfer adheres strictly to Section 16 of the DPDP Act, 2023. Data is never transferred to any territory or nation restricted or blacklisted by the Central Government of India.</p>

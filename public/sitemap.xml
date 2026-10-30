@@ -385,6 +385,12 @@
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
+  <url>
+    <loc>https://www.gyanvaniai.com/unsubscribe</loc>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
   <!-- High-Value Services & Tools -->
   <url>
     <loc>https://www.gyanvaniai.com/services/whatsapp-catalog-crm</loc>

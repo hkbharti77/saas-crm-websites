@@ -16,7 +16,6 @@ import {
 import { trackBookDemo } from '../utils/analytics';
 import { useTheme } from '../context/ThemeContext';
 import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
-const ParticleGlobe3D = React.lazy(() => import('./ui/ParticleGlobe3D'));
 import { ICON_MAP } from '../utils/iconMap';
 import Card3DTilt from './ui/Card3DTilt';
 import './Hero.css';
@@ -109,6 +108,11 @@ export default function Hero({
   const [direction, setDirection] = useState(1);
   const [isPaused, setIsPaused] = useState(false);
   const autoScrollTimerRef = useRef(null);
+  const isInitialMountRef = useRef(true);
+
+  useEffect(() => {
+    isInitialMountRef.current = false;
+  }, []);
 
   // Keep currentSlide within valid bounds if slides change dynamically
   useEffect(() => {
@@ -193,12 +197,14 @@ export default function Hero({
                 opacity: 0.94,
                 scale: 1,
                 filter: 'blur(0px)',
-                transition: {
-                  x: { type: 'spring', stiffness: 230, damping: 28 },
-                  opacity: { duration: 0.7, ease: [0.16, 1, 0.3, 1] },
-                  scale: { duration: 0.9, ease: [0.16, 1, 0.3, 1] },
-                  filter: { duration: 0.5 }
-                }
+                transition: isInitialMountRef.current && currentSlide === 0
+                  ? { duration: 0 }
+                  : {
+                      x: { type: 'spring', stiffness: 230, damping: 28 },
+                      opacity: { duration: 0.7, ease: [0.16, 1, 0.3, 1] },
+                      scale: { duration: 0.9, ease: [0.16, 1, 0.3, 1] },
+                      filter: { duration: 0.5 }
+                    }
               },
               exit: (dir) => ({
                 x: prefersReducedMotion ? 0 : (dir > 0 ? -110 : 110),
@@ -213,7 +219,7 @@ export default function Hero({
                 }
               })
             }}
-            initial="enter"
+            initial={isInitialMountRef.current && currentSlide === 0 ? false : "enter"}
             animate="center"
             exit="exit"
             className="hero-media-slide-motion"
@@ -251,10 +257,12 @@ export default function Hero({
                     opacity: 1,
                     y: 0,
                     filter: 'blur(0px)',
-                    transition: {
-                      duration: 0.45,
-                      ease: [0.16, 1, 0.3, 1]
-                    }
+                    transition: isInitialMountRef.current && currentSlide === 0
+                      ? { duration: 0 }
+                      : {
+                          duration: 0.45,
+                          ease: [0.16, 1, 0.3, 1]
+                        }
                   },
                   exit: (dir) => ({
                     opacity: 0,
@@ -266,7 +274,7 @@ export default function Hero({
                     }
                   })
                 }}
-                initial="enter"
+                initial={isInitialMountRef.current && currentSlide === 0 ? false : "enter"}
                 animate="center"
                 exit="exit"
                 className="hero-text-animator"
@@ -411,16 +419,8 @@ export default function Hero({
             </div>
           </div>
 
-          {/* Right: Interactive 3D Motion Stage */}
+          {/* Right: Interactive Telemetry HUD */}
           <div className="hero-3d-stage" aria-label="3D AI Revenue Hub">
-            <div className="hero-3d-stage-halo"></div>
-            
-            <div className="hero-3d-canvas-wrapper">
-              <React.Suspense fallback={<div className="particle-globe-placeholder" />}>
-                <ParticleGlobe3D size={420} isLight={isLight} dotCount={150} />
-              </React.Suspense>
-            </div>
-
             {/* Floating 3D Perspective Telemetry Cards with Spring Motion on Slide Change */}
             <AnimatePresence mode="wait">
               <motion.div

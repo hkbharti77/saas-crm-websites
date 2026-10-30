@@ -114,46 +114,6 @@ body.dark-theme .hero-media-veil {
   perspective: 1200px;
 }
 
-.hero-3d-stage-halo {
-  position: absolute;
-  width: 380px;
-  height: 380px;
-  border-radius: 50%;
-  background: radial-gradient(circle, var(--mesh-color-1, rgba(20, 184, 166, 0.2)) 0%, transparent 70%);
-  filter: blur(40px);
-  pointer-events: none;
-  z-index: 0;
-}
-
-.hero-3d-canvas-wrapper {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Skeleton placeholder while ParticleGlobe3D lazy-loads — prevents layout shift */
-.particle-globe-placeholder {
-  width: 420px;
-  height: 420px;
-  border-radius: 50%;
-  background: radial-gradient(
-    circle,
-    color-mix(in srgb, var(--primary-color) 10%, transparent) 0%,
-    color-mix(in srgb, var(--bg-card) 60%, transparent) 60%,
-    transparent 100%
-  );
-  animation: globeShimmer 1.8s ease-in-out infinite alternate;
-  will-change: opacity;
-  pointer-events: none;
-}
-
-@keyframes globeShimmer {
-  0%   { opacity: 0.3; transform: scale(0.97); }
-  100% { opacity: 0.7; transform: scale(1.02); }
-}
-
 /* Floating 3D Telemetry Cards */
 .hero-3d-float-card {
   position: absolute !important;

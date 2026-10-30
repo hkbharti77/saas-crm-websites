@@ -535,10 +535,14 @@ function runAudit() {
     console.log('');
   }
 
-  // Save report to file
-  const reportPath = path.resolve(rootDir, 'indexing-audit-report.json');
-  fs.writeFileSync(reportPath, JSON.stringify(report, null, 2), 'utf8');
-  console.log(`📄 Comprehensive report saved to: indexing-audit-report.json\n`);
+  // Save report to file (try-catch for sandboxed environments)
+  try {
+    const reportPath = path.resolve(rootDir, 'indexing-audit-report.json');
+    fs.writeFileSync(reportPath, JSON.stringify(report, null, 2), 'utf8');
+    console.log(`📄 Comprehensive report saved to: indexing-audit-report.json\n`);
+  } catch (err) {
+    console.log(`ℹ️ Report logging to disk skipped (${err.message}). Audit complete.\n`);
+  }
 
   return report;
 }

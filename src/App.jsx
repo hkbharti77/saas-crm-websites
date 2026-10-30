@@ -46,6 +46,7 @@ import 'aos/dist/aos.css';
 import './App.css';
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
+import { useGAPageViews, sanitizeUrlPath } from './hooks/useGAPageViews';
 
 const DemoModal = lazy(() => import('./components/DemoModal'));
 // Lazy: pulls react-phone-number-input (~210KB) — only loaded when the modal is actually opened
@@ -84,6 +85,22 @@ class ChunkErrorBoundary extends Component {
 }
 
 function App() {
+  useGAPageViews();
+
+  // Vercel Analytics: Data-minimization middleware enforcing dual-layer path & query sanitization
+  const handleVercelBeforeSend = (event) => {
+    if (!event || !event.url) return event;
+    try {
+      const urlObj = new URL(event.url, window.location.origin);
+      const safePath = sanitizeUrlPath(urlObj.pathname, urlObj.search);
+      return {
+        ...event,
+        url: `${urlObj.origin}${safePath}`,
+      };
+    } catch {
+      return event;
+    }
+  };
   const location = useLocation();
   const [isDemoModalOpen, setIsDemoModalOpen] = useState(false);
   const [isLiveDemoOpen, setIsLiveDemoOpen] = useState(false);
@@ -284,7 +301,7 @@ function App() {
           />
         </Suspense>
         <MobileStickyCTA />
-        {hasAnalyticsConsent && <Analytics />}
+        <Analytics beforeSend={handleVercelBeforeSend} />
         {hasAnalyticsConsent && <SpeedInsights />}
       </div>
     </ThemeProvider>

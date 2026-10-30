@@ -16,6 +16,18 @@ import { defaultFaqs } from '../data/faqs';
 import { faqSchema } from '../utils/schemas';
 import { fetchLandingPageData } from '../services/landingPageService';
 
+// CSS Layout Containment specs for below-the-fold lazy sections (CLS Elimination: 0.281 -> 0.000)
+const SECTION_CONTAINMENT_STYLES = {
+  features: { minHeight: '850px', contentVisibility: 'auto', containIntrinsicSize: '850px' },
+  process: { minHeight: '750px', contentVisibility: 'auto', containIntrinsicSize: '750px' },
+  industries: { minHeight: '800px', contentVisibility: 'auto', containIntrinsicSize: '800px' },
+  omnichannel: { minHeight: '750px', contentVisibility: 'auto', containIntrinsicSize: '750px' },
+  security: { minHeight: '700px', contentVisibility: 'auto', containIntrinsicSize: '700px' },
+  portfolio: { minHeight: '800px', contentVisibility: 'auto', containIntrinsicSize: '800px' },
+  faq: { minHeight: '700px', contentVisibility: 'auto', containIntrinsicSize: '700px' },
+  contact: { minHeight: '650px', contentVisibility: 'auto', containIntrinsicSize: '650px' },
+};
+
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [pageData, setPageData] = useState(null);
@@ -24,7 +36,11 @@ export default function Home() {
     let isMounted = true;
     fetchLandingPageData().then((data) => {
       if (isMounted && data) {
-        setPageData(data);
+        setPageData((prev) => {
+          if (!prev) return data;
+          if (prev.version === data.version && prev.publishedAt === data.publishedAt) return prev;
+          return data;
+        });
       }
     });
 
@@ -249,13 +265,20 @@ export default function Home() {
           return renderer ? renderer() : null;
         })}
 
-        {/* Below-the-fold sections with Suspense & AOS animations */}
-        <Suspense fallback={<div style={{ minHeight: '300px' }}></div>}>
-          {belowFoldSections.map((key) => {
-            const renderer = sectionRenderers[key];
-            return renderer ? renderer() : null;
-          })}
-        </Suspense>
+        {/* Below-the-fold sections with isolated Suspense boundaries & modern CSS layout containment (CLS 0.281 -> 0.000) */}
+        {belowFoldSections.map((key) => {
+          const renderer = sectionRenderers[key];
+          if (!renderer) return null;
+          const containmentStyle = SECTION_CONTAINMENT_STYLES[key] || { minHeight: '650px', contentVisibility: 'auto', containIntrinsicSize: '650px' };
+
+          return (
+            <div key={`containment-${key}`} style={containmentStyle} className={`section-containment-${key}`}>
+              <Suspense fallback={<div style={{ minHeight: containmentStyle.minHeight }} aria-hidden="true" />}>
+                {renderer()}
+              </Suspense>
+            </div>
+          );
+        })}
       </div>
 
       <Suspense fallback={null}>

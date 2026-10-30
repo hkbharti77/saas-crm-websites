@@ -38,6 +38,18 @@ const COOKIE_CATEGORIES = [
     ],
   },
   {
+    key: 'sessionReplay',
+    label: 'Session Replay & Heatmaps',
+    description: 'Captures anonymised user interaction telemetry (mouse movements, clicks, scrolling) via Microsoft Clarity to identify interface friction and UX defects.',
+    alwaysOn: false,
+    legalBasis: 'Consent — GDPR Art.6(1)(a) & ePrivacy Art.5(3) / DPDP Act 2023 §6',
+    retention: '30 days',
+    examples: [
+      { name: '_clck', purpose: 'Microsoft Clarity user identifier', duration: '1yr', provider: 'Microsoft' },
+      { name: '_clsk', purpose: 'Microsoft Clarity session state', duration: '24h', provider: 'Microsoft' },
+    ],
+  },
+  {
     key: 'marketing',
     label: 'Marketing & Personalisation',
     description: 'Delivers relevant ads and measures campaign performance. May share data with third-party ad networks.',
@@ -63,7 +75,7 @@ const CookieConsentBanner = () => {
         if (saved) { const p = JSON.parse(saved); if (p.preferences) return p.preferences; }
       }
     } catch {}
-    return { necessary: true, functional: false, analytics: false, marketing: false };
+    return { necessary: true, functional: false, analytics: false, sessionReplay: false, marketing: false };
   });
 
   useEffect(() => {
@@ -87,8 +99,11 @@ const CookieConsentBanner = () => {
 
   const saveConsent = async (status, customPrefs = null) => {
     const finalPrefs = customPrefs || {
-      necessary: true, functional: status === 'all',
-      analytics: status === 'all', marketing: status === 'all',
+      necessary: true,
+      functional: status === 'all',
+      analytics: status === 'all',
+      sessionReplay: status === 'all',
+      marketing: status === 'all',
     };
     try {
       localStorage.setItem(COOKIE_CONSENT_KEY, JSON.stringify({ status, preferences: finalPrefs, timestamp: new Date().toISOString(), version: '2.0' }));
@@ -130,8 +145,8 @@ const CookieConsentBanner = () => {
   };
 
   const handleAcceptAll = () => saveConsent('all');
-  const handleEssentialOnly = () => saveConsent('essential', { necessary: true, functional: false, analytics: false, marketing: false });
-  const handleRejectAll = () => saveConsent('rejected', { necessary: true, functional: false, analytics: false, marketing: false });
+  const handleEssentialOnly = () => saveConsent('essential', { necessary: true, functional: false, analytics: false, sessionReplay: false, marketing: false });
+  const handleRejectAll = () => saveConsent('rejected', { necessary: true, functional: false, analytics: false, sessionReplay: false, marketing: false });
   const handleSavePrefs = () => saveConsent('custom', preferences);
   const togglePref = (key) => { if (key === 'necessary') return; setPreferences(p => ({ ...p, [key]: !p[key] })); };
   const acceptedCount = Object.values(preferences).filter(Boolean).length;

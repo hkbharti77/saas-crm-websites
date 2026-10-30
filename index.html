@@ -1,15 +1,29 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RN6FQWDQ6M"></script>
+    <!-- Google tag (gtag.js) with Google Consent Mode v2 (GDPR & DPDP 2023 Compliant) -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
 
-      gtag('config', 'G-RN6FQWDQ6M');
+      // 1. Initial default state: DENIED (Privacy-by-default before user interaction)
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'wait_for_update': 500
+      });
+
+      gtag('js', new Date());
+      gtag('config', 'G-RN6FQWDQ6M', {
+        send_page_view: false // Managed by useGAPageViews in React Router
+      });
     </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RN6FQWDQ6M"></script>
+
+    <!-- Cloudflare Web Analytics (Cookieless aggregate browser performance telemetry) -->
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "e68d0475ffde4e0ba1f1c7e1250d9e69"}'></script>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="renderer" content="webkit" />
@@ -78,6 +92,10 @@
     <meta name="multi-llm-compatibility" content="OpenAI ChatGPT, Anthropic Claude, Perplexity AI, Google Gemini, DeepSeek R1, Meta Llama 3.3, Cohere, Mistral AI" />
     <meta name="citation_publisher" content="Gyan VaniAi Enterprise AI &amp; Software" />
     <meta name="citation_language" content="en" />
+
+    <!-- High-Priority Static LCP Preload: Discovered immediately by browser's speculative preload scanner -->
+    <link rel="preload" as="image" href="/hero_robot_dark.webp" type="image/webp" fetchpriority="high" media="(prefers-color-scheme: dark)" />
+    <link rel="preload" as="image" href="/hero_robot_light.webp" type="image/webp" fetchpriority="high" media="(prefers-color-scheme: light)" />
 
     <!-- Critical LCP image preloads — injected at HTML parse time, before the JS bundle executes.
          Mirrors ThemeContext logic (localStorage app-theme-mode / app-fixed-theme + 7-day rotation). -->
@@ -161,53 +179,88 @@
 
     <title data-rh="true">Autonomous AI CRM & Revenue Operations | Gyan VaniAi</title>
 
-    <!-- DPDP Act 2023 & GDPR Compliant Analytics Gating: Only loads once affirmative analytics consent is verified -->
+    <!-- Telemetry Consent Lifecycle Manager (Grant, Update, Revocation) -->
     <script type="text/javascript">
       (function() {
-        function initConsentedAnalytics() {
-          if (window.__analyticsInitialized) return;
+        function applyConsentState(prefs) {
+          if (!prefs) return;
           if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') return;
 
-          try {
-            var consentData = localStorage.getItem('gyanvaniai_cookie_consent');
-            if (!consentData) return;
-            var parsed = JSON.parse(consentData);
-            if (!parsed || !parsed.preferences || !parsed.preferences.analytics) return;
-          } catch (e) {
-            return;
+          var hasAnalytics = Boolean(prefs.analytics);
+          var hasMarketing = Boolean(prefs.marketing);
+          var hasSessionReplay = Boolean(prefs.sessionReplay);
+
+          // Complete 4-field Google Consent Mode v2 mapping
+          if (typeof window.gtag === 'function') {
+            window.gtag('consent', 'update', {
+              'analytics_storage': hasAnalytics ? 'granted' : 'denied',
+              'ad_storage': hasMarketing ? 'granted' : 'denied',
+              'ad_user_data': hasMarketing ? 'granted' : 'denied',
+              'ad_personalization': hasMarketing ? 'granted' : 'denied'
+            });
           }
 
-          window.__analyticsInitialized = true;
-
-          // 1. Microsoft Clarity (Session Replay)
-          (function(c,l,a,r,i,t,y){
-            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-          })(window,document,"clarity","script","xfxahvnxk7");
-
-          // 3. Cloudflare Web Analytics
-          var cf = document.createElement('script');
-          cf.type = 'module';
-          cf.src = 'https://static.cloudflareinsights.com/beacon.min.js';
-          cf.dataset.cfBeacon = '{"token": "e68d0475ffde4e0ba1f1c7e1250d9e69"}';
-          document.head.appendChild(cf);
+          // Microsoft Clarity: Governed by sessionReplay with Consent Mode v2 & active revocation
+          if (hasSessionReplay) {
+            if (!window.__clarityInitialized) {
+              window.__clarityInitialized = true;
+              (function(c,l,a,r,i,t,y){
+                c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+                t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+                y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+              })(window,document,"clarity","script","xfxahvnxk7");
+            }
+            if (typeof window.clarity === 'function') {
+              try {
+                window.clarity("consentv2", {
+                  analytics_Storage: "granted",
+                  ad_Storage: hasMarketing ? "granted" : "denied",
+                  analytics_storage: "granted",
+                  ad_storage: hasMarketing ? "granted" : "denied"
+                });
+              } catch(e) {}
+              window.clarity("consent", true);
+            }
+          } else {
+            // Active revocation if Clarity is already loaded in page memory
+            if (typeof window.clarity === 'function') {
+              try {
+                window.clarity("consentv2", {
+                  analytics_Storage: "denied",
+                  ad_Storage: "denied",
+                  analytics_storage: "denied",
+                  ad_storage: "denied"
+                });
+              } catch(e) {}
+              window.clarity("consent", false);
+            }
+          }
         }
 
-        window.addEventListener('load', initConsentedAnalytics);
-        window.addEventListener('cookie-consent-updated', initConsentedAnalytics);
+        // Handle updates dispatched from CookieConsentBanner
+        window.addEventListener('cookie-consent-updated', function(e) {
+          applyConsentState(e?.detail?.preferences);
+        });
+
+        // Check pre-existing consent on initial page execution
+        try {
+          var saved = localStorage.getItem('gyanvaniai_cookie_consent');
+          if (saved) {
+            var parsed = JSON.parse(saved);
+            if (parsed && parsed.preferences) {
+              applyConsentState(parsed.preferences);
+            }
+          }
+        } catch(e) {}
       })();
     </script>
 
     <!-- Gyan VaniAi Chat Widget Stylesheet (deferred until affirmative consent or user click) -->
     <style>
-      #crm-chat-widget,
-      #chat-toggle {
+      #crm-chat-widget {
         --text-primary: #0f172a !important;
         --text-secondary: #475569 !important;
         --text-muted: #64748b !important;
-      }
-      #crm-chat-widget {
         position: fixed !important;
         bottom: 24px !important;
         right: 24px !important;
@@ -215,38 +268,98 @@
         top: auto !important;
         z-index: 9999 !important;
       }
+      /* Gyan VaniAi Branded Chat Widget Button (No fallback) */
       #crm-chat-widget .chat-button,
       #chat-toggle {
-        width: 52px !important;
-        height: 52px !important;
-        background: #0f766e !important;
-        border-radius: 50% !important;
-        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.22) !important;
+        width: auto !important;
+        height: auto !important;
+        min-width: 48px !important;
+        min-height: 48px !important;
+        background: transparent !important;
+        background-color: transparent !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        border: none !important;
+        overflow: visible !important;
+        padding: 0 !important;
         transition: transform 0.2s ease !important;
+        /* Completely suppress stray third-party template text leaks */
+        font-size: 0 !important;
+        line-height: 0 !important;
+        color: transparent !important;
+        text-indent: -9999px !important;
       }
       #crm-chat-widget .chat-button:hover,
       #chat-toggle:hover {
+        background: transparent !important;
+        background-color: transparent !important;
+        box-shadow: none !important;
         transform: scale(1.06) !important;
+      }
+      #crm-chat-widget .chat-button img,
+      #chat-toggle img {
+        width: auto !important;
+        height: auto !important;
+        max-height: 64px !important;
+        max-width: 200px !important;
+        border-radius: 0 !important;
+        object-fit: contain !important;
+        display: block !important;
+        background: transparent !important;
+        font-size: initial !important;
+        text-indent: 0 !important;
+      }
+      /* Hide all fallback svg and path elements unconditionally */
+      #crm-chat-widget .chat-button svg,
+      #crm-chat-widget .chat-button path,
+      #chat-toggle svg,
+      #chat-toggle path {
+        display: none !important;
       }
       #crm-chat-widget .chat-tooltip {
         background: #ffffff !important;
       }
       #crm-chat-widget .chat-tooltip-text {
+        font-size: 13px !important;
+        line-height: normal !important;
         color: #0f172a !important;
         font-weight: 600 !important;
       }
-      @media (max-width: 640px) {
+      #crm-chat-widget .chat-panel {
+        font-size: 14px !important;
+        color: #0f172a !important;
+      }
+      @media (max-width: 768px) {
         #crm-chat-widget {
           left: auto !important;
           right: calc(14px + env(safe-area-inset-right, 0px)) !important;
           bottom: calc(14px + env(safe-area-inset-bottom, 0px)) !important;
           pointer-events: none !important;
+          transition: bottom 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        }
+        body.has-mobile-sticky-cta #crm-chat-widget {
+          bottom: calc(76px + env(safe-area-inset-bottom, 0px)) !important;
+        }
+        .cookie-floating-pill {
+          bottom: calc(14px + env(safe-area-inset-bottom, 0px)) !important;
+          left: calc(14px + env(safe-area-inset-left, 0px)) !important;
+          width: 2.5rem !important;
+          height: 2.5rem !important;
+          font-size: 1.1rem !important;
+          transition: bottom 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s ease, box-shadow 0.2s ease !important;
+        }
+        body.has-mobile-sticky-cta .cookie-floating-pill {
+          bottom: calc(76px + env(safe-area-inset-bottom, 0px)) !important;
         }
         #crm-chat-widget > * {
           pointer-events: auto !important;
         }
         #crm-chat-widget .chat-button {
           margin-left: auto !important;
+        }
+        #crm-chat-widget .chat-button img,
+        #chat-toggle img {
+          max-height: 52px !important;
         }
         #crm-chat-widget .chat-tooltip {
           display: none !important;
@@ -299,6 +412,60 @@
             loadScript();
           }
         }, { passive: true });
+        // Sanitize any third-party widget template syntax leaks & eliminate fallback elements
+        function cleanWidgetToggle() {
+          var toggle = document.getElementById('chat-toggle');
+          if (toggle) {
+            // Prevent third-party fallback onerror
+            var img = toggle.querySelector('img');
+            if (img && img.onerror) {
+              img.onerror = null;
+            }
+            var child = toggle.firstChild;
+            while (child) {
+              var next = child.nextSibling;
+              // Remove anything that is not the robot img (removes fallback SVGs, text nodes, and paths)
+              if (child.tagName !== 'IMG') {
+                toggle.removeChild(child);
+              }
+              child = next;
+            }
+          }
+          var widget = document.getElementById('crm-chat-widget');
+          if (widget) {
+            var wChild = widget.firstChild;
+            while (wChild) {
+              var wNext = wChild.nextSibling;
+              if (wChild.nodeType === 3 && wChild.nodeValue && wChild.nodeValue.trim()) {
+                widget.removeChild(wChild);
+              }
+              wChild = wNext;
+            }
+            // Strip any rogue syntax text nodes in child elements (except tooltip and panel)
+            var allElements = widget.getElementsByTagName('*');
+            for (var i = 0; i < allElements.length; i++) {
+              var el = allElements[i];
+              if (el.id === 'chat-tooltip' || el.classList.contains('chat-tooltip-text') || el.closest('#chat-panel')) {
+                continue;
+              }
+              var c = el.firstChild;
+              while (c) {
+                var nextC = c.nextSibling;
+                if (c.nodeType === 3 && c.nodeValue && (c.nodeValue.indexOf(';') !== -1 || c.nodeValue.indexOf('>') !== -1 || c.nodeValue.indexOf('"') !== -1)) {
+                  el.removeChild(c);
+                }
+                c = nextC;
+              }
+            }
+          }
+        }
+
+        if (typeof window !== 'undefined' && window.MutationObserver) {
+          var observer = new MutationObserver(function() {
+            cleanWidgetToggle();
+          });
+          observer.observe(document.documentElement, { childList: true, subtree: true });
+        }
       })();
     </script>
     

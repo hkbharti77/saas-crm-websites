@@ -31,6 +31,22 @@ export default function MobileStickyCTA() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Sync body class so floating widgets (chat, cookie pill) float cleanly above sticky bar
+  useEffect(() => {
+    if (typeof document !== 'undefined') {
+      if (isVisible) {
+        document.body.classList.add('has-mobile-sticky-cta');
+      } else {
+        document.body.classList.remove('has-mobile-sticky-cta');
+      }
+    }
+    return () => {
+      if (typeof document !== 'undefined') {
+        document.body.classList.remove('has-mobile-sticky-cta');
+      }
+    };
+  }, [isVisible]);
+
   const handleClick = () => {
     trackBookDemo('mobile-sticky-cta');
     const contactSection = document.getElementById('contact');
