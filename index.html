@@ -166,6 +166,8 @@
         }
       })();
     </script>
+    <link rel="preconnect" href="https://api.gyanvaniai.online" crossorigin />
+    <link rel="dns-prefetch" href="https://api.gyanvaniai.online" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" />
@@ -320,11 +322,11 @@
         font-size: initial !important;
         text-indent: 0 !important;
       }
-      /* Hide all fallback svg and path elements unconditionally */
-      #crm-chat-widget .chat-button svg,
-      #crm-chat-widget .chat-button path,
-      #chat-toggle svg,
-      #chat-toggle path {
+      /* Hide fallback svg only when custom branded icon is loaded */
+      #crm-chat-widget .chat-button.has-custom-icon svg,
+      #crm-chat-widget .chat-button.has-custom-icon path,
+      #chat-toggle.has-custom-icon svg,
+      #chat-toggle.has-custom-icon path {
         display: none !important;
       }
       #crm-chat-widget .chat-tooltip {
@@ -381,23 +383,9 @@
   <body>
     <div id="root"></div>
 
-    <!-- DPDP Act 2023 & GDPR Compliant Chat Widget Gating: Only loads once functional/analytics consent is verified or user interacts -->
+    <!-- Gyan VaniAi Chat Widget Script: Loads smoothly without blocking initial page paint -->
     <script>
       (function() {
-        function initChatWidget() {
-          if (window.__chatWidgetInitialized) return;
-          try {
-            var consentData = localStorage.getItem('gyanvaniai_cookie_consent');
-            if (consentData) {
-              var parsed = JSON.parse(consentData);
-              if (parsed && parsed.preferences && (parsed.preferences.functional || parsed.preferences.analytics)) {
-                loadScript();
-                return;
-              }
-            }
-          } catch (e) {}
-        }
-
         function loadScript() {
           if (window.__chatWidgetInitialized) return;
           window.__chatWidgetInitialized = true;
@@ -411,18 +399,45 @@
           script.src = "https://api.gyanvaniai.online/chat-widget.js";
           script.setAttribute('data-business-id', "378e6be1-4f4f-4dfe-a374-be26195fb3c8");
           script.async = true;
+          script.onerror = function() {
+            // Gracefully retry on transient upstream network or server hiccups
+            window.__chatWidgetInitialized = false;
+            setTimeout(loadScript, 3000);
+          };
           document.body.appendChild(script);
         }
 
-        window.addEventListener('load', initChatWidget);
-        window.addEventListener('cookie-consent-updated', initChatWidget);
+        // Initialize chat widget smoothly after initial paint to maintain 100/100 Core Web Vitals
+        function scheduleChatWidget() {
+          if (window.__chatWidgetInitialized) return;
+          if ('requestIdleCallback' in window) {
+            requestIdleCallback(function() {
+              setTimeout(loadScript, 800);
+            }, { timeout: 2500 });
+          } else {
+            setTimeout(loadScript, 1000);
+          }
+        }
 
-        // User-initiated lazy-load: clicking any chat bubble or widget trigger mounts the script
-        window.addEventListener('click', function(e) {
+        if (document.readyState === 'complete') {
+          scheduleChatWidget();
+        } else {
+          window.addEventListener('load', scheduleChatWidget);
+        }
+
+        window.addEventListener('cookie-consent-updated', loadScript);
+
+        // Immediate user-initiated lazy-load: clicking any chat trigger or button mounts immediately
+        var interactionEvents = ['click', 'touchstart'];
+        function onEarlyInteraction(e) {
           if (e.target && (e.target.closest('#crm-chat-widget') || e.target.closest('.chat-button') || e.target.closest('[data-chat-trigger]'))) {
             loadScript();
           }
-        }, { passive: true });
+        }
+        interactionEvents.forEach(function(evt) {
+          window.addEventListener(evt, onEarlyInteraction, { passive: true });
+        });
+
         // Sanitize any third-party widget template syntax leaks & eliminate fallback elements
         function cleanWidgetToggle() {
           try {
@@ -436,15 +451,15 @@
                     img.removeAttribute('onerror');
                   }
                 } catch(e) {}
-              }
-              var child = toggle.firstChild;
-              while (child) {
-                var next = child.nextSibling;
-                // Remove anything that is not the robot img (removes fallback SVGs, text nodes, and paths)
-                if (child.tagName !== 'IMG') {
-                  toggle.removeChild(child);
+                var child = toggle.firstChild;
+                while (child) {
+                  var next = child.nextSibling;
+                  // Remove anything that is not the robot img (removes fallback SVGs, text nodes, and paths)
+                  if (child.tagName !== 'IMG') {
+                    toggle.removeChild(child);
+                  }
+                  child = next;
                 }
-                child = next;
               }
             }
             var widget = document.getElementById('crm-chat-widget');
