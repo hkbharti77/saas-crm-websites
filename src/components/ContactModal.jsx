@@ -43,13 +43,18 @@ export default function ContactModal({ isOpen, onClose, prefillMessage = '' }) {
   const [consentError, setConsentError] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [prevProps, setPrevProps] = useState({ isOpen, prefillMessage });
+
+  if (isOpen !== prevProps.isOpen || prefillMessage !== prevProps.prefillMessage) {
+    setPrevProps({ isOpen, prefillMessage });
+    if (isOpen && prefillMessage && !values.message) {
+      setValues(prev => ({ ...prev, message: prefillMessage }));
+    }
+  }
 
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
-      if (prefillMessage && !values.message) {
-        setValues(prev => ({ ...prev, message: prefillMessage }));
-      }
     } else {
       document.body.style.overflow = '';
     }
@@ -57,7 +62,7 @@ export default function ContactModal({ isOpen, onClose, prefillMessage = '' }) {
     return () => {
       document.body.style.overflow = '';
     };
-  }, [isOpen, prefillMessage]);
+  }, [isOpen]);
 
   const handleClose = () => {
     setIsSuccess(false);

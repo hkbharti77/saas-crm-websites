@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
-  Activity,
   HeartPulse,
   ShieldCheck,
   Calendar,
   MessageSquare,
   Clock,
-  CheckCircle2,
   ArrowRight,
   Plus,
   Minus,
@@ -18,7 +16,6 @@ import {
   Building2,
   BrainCircuit,
   Bot,
-  Zap,
   ChevronRight,
   TrendingUp,
   Award,

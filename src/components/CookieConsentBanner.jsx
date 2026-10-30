@@ -66,7 +66,18 @@ const COOKIE_CATEGORIES = [
 const CookieConsentBanner = () => {
   const [visible, setVisible] = useState(false);
   const [showPreferences, setShowPreferences] = useState(false);
-  const [showFloating, setShowFloating] = useState(false);
+  const [showFloating, setShowFloating] = useState(() => {
+    try {
+      if (typeof window !== 'undefined') {
+        const isTest = window.location.search.includes('show_cookies=1') || window.location.hash.includes('cookie-consent');
+        if (isTest) return false;
+        return Boolean(localStorage.getItem(COOKIE_CONSENT_KEY));
+      }
+    } catch {
+      /* ignore */
+    }
+    return false;
+  });
   const [expandedCat, setExpandedCat] = useState(null);
   const [preferences, setPreferences] = useState(() => {
     try {
@@ -74,7 +85,9 @@ const CookieConsentBanner = () => {
         const saved = localStorage.getItem(COOKIE_CONSENT_KEY);
         if (saved) { const p = JSON.parse(saved); if (p.preferences) return p.preferences; }
       }
-    } catch {}
+    } catch {
+      /* ignore */
+    }
     return { necessary: true, functional: false, analytics: false, sessionReplay: false, marketing: false };
   });
 
@@ -88,8 +101,6 @@ const CookieConsentBanner = () => {
       const saved = localStorage.getItem(COOKIE_CONSENT_KEY);
       if (!saved || isTest) {
         timer = setTimeout(() => setVisible(true), isTest ? 250 : 900);
-      } else {
-        setShowFloating(true);
       }
     } catch { timer = setTimeout(() => setVisible(true), 900); }
     const handleOpen = () => { setVisible(true); setShowFloating(false); };
@@ -108,7 +119,9 @@ const CookieConsentBanner = () => {
     try {
       localStorage.setItem(COOKIE_CONSENT_KEY, JSON.stringify({ status, preferences: finalPrefs, timestamp: new Date().toISOString(), version: '2.0' }));
       window.dispatchEvent(new CustomEvent('cookie-consent-updated', { detail: { preferences: finalPrefs, status } }));
-    } catch {}
+    } catch {
+      /* ignore */
+    }
     setVisible(false); setShowPreferences(false); setShowFloating(true);
 
     let geo = { city: null, region: null, country: null, countryCode: null };
@@ -117,7 +130,9 @@ const CookieConsentBanner = () => {
         const geoData = await getVisitorGeo();
         if (geoData) geo = { city: geoData.city || null, region: geoData.region || null, country: geoData.countryName || geoData.country || null, countryCode: geoData.country || null };
       }
-    } catch {}
+    } catch {
+      /* ignore */
+    }
 
     const payload = {
       status,
@@ -139,7 +154,7 @@ const CookieConsentBanner = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
       });
-    } catch (err) {
+    } catch {
       // Non-blocking error handling
     }
   };

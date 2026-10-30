@@ -3,26 +3,19 @@ import { Link } from 'react-router-dom';
 import SEOHead from '../components/SeoHead';
 import ContactSection from '../components/ContactSection';
 import RelatedLinks from '../components/RelatedLinks';
-import EnterpriseCRMHeroVisual from '../components/EnterpriseCRMHeroVisual';
 import Card3DTilt from '../components/ui/Card3DTilt';
 import NumberTicker from '../components/ui/NumberTicker';
 import BorderBeam from '../components/ui/BorderBeam';
 import Particles from '../components/ui/Particles';
 import SpotlightCard from '../components/ui/SpotlightCard';
-import Meteors from '../components/ui/Meteors';
-import ShimmerButton from '../components/ui/ShimmerButton';
 
 import { 
   Sparkles,
   ArrowRight, 
   CheckCircle2, 
-  Zap, 
   Database, 
   BrainCircuit, 
   ShieldCheck, 
-  Users, 
-  Layers, 
-  Bot, 
   Smartphone, 
   RefreshCw, 
   Sliders, 
@@ -30,21 +23,11 @@ import {
   BarChart3, 
   ChevronDown, 
   ChevronUp, 
-  Code, 
   Workflow, 
-  Lock, 
   Building2, 
   Check, 
-  X, 
   HelpCircle, 
-  Send, 
-  Radio,
-  FileSpreadsheet,
-  TrendingUp,
-  Cpu,
-  Inbox,
-  UserCheck,
-  Briefcase
+  Cpu
 } from 'lucide-react';
 import AiAnswerSummaryBlock from '../components/AiAnswerSummaryBlock';
 import './CrmDevelopmentPage.css';

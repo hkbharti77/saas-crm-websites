@@ -117,7 +117,9 @@ function App() {
           return Boolean(parsed?.preferences?.analytics);
         }
       }
-    } catch {}
+    } catch {
+      /* ignore */
+    }
     return false;
   });
 

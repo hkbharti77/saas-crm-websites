@@ -18,7 +18,9 @@ if (typeof window !== 'undefined' && window.BroadcastChannel) {
         });
       }
     };
-  } catch (_) {}
+  } catch {
+    /* ignore */
+  }
 }
 
 export function clearLandingPageCache() {
@@ -26,7 +28,9 @@ export function clearLandingPageCache() {
   if (typeof window !== 'undefined' && window.sessionStorage) {
     try {
       sessionStorage.removeItem(CACHE_KEY);
-    } catch (_) {}
+    } catch {
+      /* ignore */
+    }
   }
 }
 
@@ -49,7 +53,7 @@ export async function fetchLandingPageData(options = {}) {
         refreshLandingPageDataInBackground();
         return parsed;
       }
-    } catch (e) {
+    } catch {
       // Ignore sessionStorage read errors
     }
   }
@@ -74,7 +78,9 @@ export async function fetchLandingPageData(options = {}) {
       if (typeof window !== 'undefined' && window.sessionStorage) {
         try {
           sessionStorage.setItem(CACHE_KEY, JSON.stringify(data));
-        } catch (_) {}
+        } catch {
+          /* ignore */
+        }
       }
       return data;
     }
@@ -101,7 +107,9 @@ export async function refreshLandingPageDataInBackground() {
       if (typeof window !== 'undefined' && window.sessionStorage) {
         try {
           sessionStorage.setItem(CACHE_KEY, JSON.stringify(fresh));
-        } catch (_) {}
+        } catch {
+          /* ignore */
+        }
       }
 
       // If version or published content changed, notify live page components to re-render immediately!
@@ -112,7 +120,7 @@ export async function refreshLandingPageDataInBackground() {
         window.dispatchEvent(new CustomEvent('gyanvani:landing_page_updated', { detail: fresh }));
       }
     }
-  } catch (_) {
+  } catch {
     // Silent background revalidation failure
   }
 }

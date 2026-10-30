@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowUpRight, TrendingUp, Clock, Zap, ShieldCheck } from 'lucide-react';
+import { ArrowUpRight, Clock } from 'lucide-react';
 import { renderLucideIcon } from '../utils/iconMap';
 import './Portfolio.css';
 

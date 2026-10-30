@@ -70,6 +70,16 @@ function PrivacyRequestForm() {
       flexDirection: 'column',
       gap: '1.25rem'
     }}>
+      {/* Anti-spam honeypot */}
+      <input
+        type="text"
+        name="_hp_company"
+        value={honeypot}
+        onChange={(e) => setHoneypot(e.target.value)}
+        style={{ display: 'none' }}
+        tabIndex={-1}
+        autoComplete="off"
+      />
       <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
         <label style={{ fontWeight: '500', fontSize: '0.95rem', color: 'var(--text-primary)' }}>Full Name *</label>
         <input

@@ -5,13 +5,10 @@ import {
   ChevronDown, 
   ShieldCheck, 
   GitFork, 
-  CheckCircle2, 
   Cpu, 
   ArrowRight,
   Send,
-  Lock,
-  RefreshCw,
-  Sliders
+  Lock
 } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 import './MetaInteractiveSandbox.css';
@@ -39,7 +36,7 @@ export default function MetaInteractiveSandbox({ onBookDemo }) {
   // HSM Sandbox State
   const [selectedHsm, setSelectedHsm] = useState('marketing');
   const [hsmRecipientName, setHsmRecipientName] = useState('Alex Morgan');
-  const [hsmDiscountCode, setHsmDiscountCode] = useState('VIP25');
+  const hsmDiscountCode = 'VIP25';
   const [testSent, setTestSent] = useState(false);
 
   // Dynamic Calculations

@@ -108,18 +108,15 @@ export default function Hero({
   const [direction, setDirection] = useState(1);
   const [isPaused, setIsPaused] = useState(false);
   const autoScrollTimerRef = useRef(null);
-  const isInitialMountRef = useRef(true);
-
-  useEffect(() => {
-    isInitialMountRef.current = false;
-  }, []);
 
   // Keep currentSlide within valid bounds if slides change dynamically
-  useEffect(() => {
+  const [prevSlidesLength, setPrevSlidesLength] = useState(HERO_SLIDES.length);
+  if (HERO_SLIDES.length !== prevSlidesLength) {
+    setPrevSlidesLength(HERO_SLIDES.length);
     if (currentSlide >= HERO_SLIDES.length) {
       setCurrentSlide(0);
     }
-  }, [HERO_SLIDES.length, currentSlide]);
+  }
 
   const handleBookDemo = (source) => {
     trackBookDemo(source);
@@ -197,14 +194,12 @@ export default function Hero({
                 opacity: 0.94,
                 scale: 1,
                 filter: 'blur(0px)',
-                transition: isInitialMountRef.current && currentSlide === 0
-                  ? { duration: 0 }
-                  : {
-                      x: { type: 'spring', stiffness: 230, damping: 28 },
-                      opacity: { duration: 0.7, ease: [0.16, 1, 0.3, 1] },
-                      scale: { duration: 0.9, ease: [0.16, 1, 0.3, 1] },
-                      filter: { duration: 0.5 }
-                    }
+                transition: {
+                  x: { type: 'spring', stiffness: 230, damping: 28 },
+                  opacity: { duration: 0.7, ease: [0.16, 1, 0.3, 1] },
+                  scale: { duration: 0.9, ease: [0.16, 1, 0.3, 1] },
+                  filter: { duration: 0.5 }
+                }
               },
               exit: (dir) => ({
                 x: prefersReducedMotion ? 0 : (dir > 0 ? -110 : 110),
@@ -219,7 +214,7 @@ export default function Hero({
                 }
               })
             }}
-            initial={isInitialMountRef.current && currentSlide === 0 ? false : "enter"}
+            initial="enter"
             animate="center"
             exit="exit"
             className="hero-media-slide-motion"
@@ -243,7 +238,7 @@ export default function Hero({
           {/* Left: Value Proposition & Navigation */}
           <div className="hero-content">
             {/* Active Slide Content with Direction-Aware Motion Transition */}
-            <AnimatePresence mode="wait" custom={direction}>
+            <AnimatePresence initial={false} mode="wait" custom={direction}>
               <motion.div 
                 key={`content-${currentSlide}`} 
                 custom={direction}
@@ -257,12 +252,10 @@ export default function Hero({
                     opacity: 1,
                     y: 0,
                     filter: 'blur(0px)',
-                    transition: isInitialMountRef.current && currentSlide === 0
-                      ? { duration: 0 }
-                      : {
-                          duration: 0.45,
-                          ease: [0.16, 1, 0.3, 1]
-                        }
+                    transition: {
+                      duration: 0.45,
+                      ease: [0.16, 1, 0.3, 1]
+                    }
                   },
                   exit: (dir) => ({
                     opacity: 0,
@@ -274,7 +267,7 @@ export default function Hero({
                     }
                   })
                 }}
-                initial={isInitialMountRef.current && currentSlide === 0 ? false : "enter"}
+                initial="enter"
                 animate="center"
                 exit="exit"
                 className="hero-text-animator"

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ShieldCheck, Zap, Server } from 'lucide-react';
+import { ShieldCheck } from 'lucide-react';
 import { renderLucideIcon } from '../utils/iconMap';
 import './TrustBar.css';
 

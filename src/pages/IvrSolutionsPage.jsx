@@ -13,17 +13,13 @@ import {
   ShieldCheck,
   MessageSquare,
   Activity,
-  Layers,
   Sparkles,
   Plus,
   Minus,
-  Bot,
-  Sliders,
   TrendingUp,
   Clock,
   Radio,
   Server,
-  ChevronRight,
   Check,
   Globe,
   Headphones
@@ -96,7 +92,6 @@ export default function IvrSolutionsPage() {
 
   const monthlySavings = Math.round(deflectedCalls * netSavingsPerCall);
   const annualSavings = monthlySavings * 12;
-  const fcrImprovement = 42;
 
   const toggleFaq = (index) => {
     setOpenFaq(openFaq === index ? -1 : index);

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Database, UserCheck, Activity, Bot, MessageSquare, Workflow, Target, BarChart3, ArrowRight } from 'lucide-react';
+import { Database, ArrowRight } from 'lucide-react';
 import { trackBookDemo } from '../utils/analytics';
 import Card3DTilt from './ui/Card3DTilt';
 import { renderLucideIcon } from '../utils/iconMap';

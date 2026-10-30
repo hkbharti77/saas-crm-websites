@@ -14,17 +14,12 @@ import {
   Minus,
   Clock,
   TrendingUp,
-  Award,
   Sparkles,
   Bot,
   BrainCircuit,
-  MapPin,
   Check,
   ChevronRight,
-  Key,
-  Layers,
-  Zap,
-  Tag
+  Layers
 } from 'lucide-react';
 import ContactSection from '../components/ContactSection';
 import './RealEstatePage.css';

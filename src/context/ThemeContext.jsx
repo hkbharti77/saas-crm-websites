@@ -82,7 +82,7 @@ export function ThemeProvider({ children }) {
             setLastSyncedAt(new Date(data.updatedAt));
           }
         }
-      } catch (err) {
+      } catch {
         // Fall back gracefully to cached theme in localStorage
       }
     };

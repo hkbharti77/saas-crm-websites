@@ -26,12 +26,6 @@ const GithubIcon = ({ size = 20 }) => (
   </svg>
 );
 
-const XTwitterIcon = ({ size = 20 }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M4 4l11.733 16h4.267l-11.733-16z"></path>
-    <path d="M4 20l6.768-6.768m2.464-2.464L20 4"></path>
-  </svg>
-);
 
 const WhatsAppIcon = ({ size = 20, color = "currentColor" }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill={color}>
@@ -63,21 +57,21 @@ export default function Footer({
     fetchLandingPageData().then((data) => {
       if (mounted && data?.sections?.footer) {
         const f = data.sections.footer;
-        setFooterData({
-          tagline: customTagline || f.tagline || 'Autonomous AI CRM and revenue operations software engineered for high-velocity teams.',
-          socialLinks: customSocialLinks || f.socialLinks || footerData.socialLinks,
-          copyright: customCopyright || f.copyright || '© 2026 Gyan VaniAi. All rights reserved.',
-        });
+        setFooterData((prev) => ({
+          tagline: customTagline || f.tagline || prev.tagline,
+          socialLinks: customSocialLinks || f.socialLinks || prev.socialLinks,
+          copyright: customCopyright || f.copyright || prev.copyright,
+        }));
       }
     });
     const handleUpdate = (e) => {
       if (mounted && e.detail?.sections?.footer) {
         const f = e.detail.sections.footer;
-        setFooterData({
-          tagline: customTagline || f.tagline || 'Autonomous AI CRM and revenue operations software engineered for high-velocity teams.',
-          socialLinks: customSocialLinks || f.socialLinks || footerData.socialLinks,
-          copyright: customCopyright || f.copyright || '© 2026 Gyan VaniAi. All rights reserved.',
-        });
+        setFooterData((prev) => ({
+          tagline: customTagline || f.tagline || prev.tagline,
+          socialLinks: customSocialLinks || f.socialLinks || prev.socialLinks,
+          copyright: customCopyright || f.copyright || prev.copyright,
+        }));
       }
     };
 

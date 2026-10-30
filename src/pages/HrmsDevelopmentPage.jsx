@@ -13,15 +13,12 @@ import {
   ArrowRight, 
   CheckCircle2, 
   Zap, 
-  Database, 
-  BrainCircuit, 
   ShieldCheck, 
   Users, 
   Layers, 
   Clock, 
   Calendar, 
   DollarSign, 
-  BarChart3, 
   ChevronDown, 
   ChevronUp, 
   Workflow, 
@@ -29,11 +26,8 @@ import {
   Building2, 
   Check, 
   HelpCircle, 
-  FileSpreadsheet, 
   UserCheck, 
-  Briefcase,
   Award,
-  FileText,
   Smartphone
 } from 'lucide-react';
 

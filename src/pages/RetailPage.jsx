@@ -7,23 +7,16 @@ import {
   MessageSquare,
   Truck,
   CreditCard,
-  Database,
   ShieldCheck,
   ArrowRight,
   Plus,
   Minus,
   Clock,
   TrendingUp,
-  Award,
   Sparkles,
   Bot,
   BrainCircuit,
-  Tag,
-  Check,
-  ChevronRight,
   RefreshCw,
-  Layers,
-  Zap,
   Store
 } from 'lucide-react';
 import ContactSection from '../components/ContactSection';

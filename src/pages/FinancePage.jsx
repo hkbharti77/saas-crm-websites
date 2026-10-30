@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import SeoHead from '../components/SeoHead';
 import {
-  Landmark,
   ShieldCheck,
   Lock,
   Zap,
@@ -14,21 +13,14 @@ import {
   ArrowRight,
   Plus,
   Minus,
-  Users,
   Database,
   BrainCircuit,
   Bot,
   ChevronRight,
-  Award,
   Sparkles,
-  Check,
   FileText,
-  BarChart3,
-  PieChart,
-  Building,
   Scale,
-  KeyRound,
-  ShieldAlert
+  KeyRound
 } from 'lucide-react';
 import ContactSection from '../components/ContactSection';
 import './FinancePage.css';

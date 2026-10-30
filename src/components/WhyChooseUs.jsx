@@ -1,5 +1,5 @@
 import React from 'react';
-import { ShieldCheck, Lock, Database, FileText, KeyRound, Server, ArrowRight } from 'lucide-react';
+import { KeyRound, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { renderLucideIcon } from '../utils/iconMap';
 import './WhyChooseUs.css';

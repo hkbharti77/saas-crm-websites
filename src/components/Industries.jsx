@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Laptop, Home, Building2, ShoppingBag, Landmark, GraduationCap, Factory, Briefcase, ArrowRight } from 'lucide-react';
+import { Laptop, ArrowRight } from 'lucide-react';
 import { renderLucideIcon } from '../utils/iconMap';
 import './Industries.css';
 
