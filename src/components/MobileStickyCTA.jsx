@@ -7,23 +7,31 @@ export default function MobileStickyCTA() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      // Only show after scrolling past 300px (hero) and hide when user is at the contact form
-      const scrollY = window.scrollY || document.documentElement.scrollTop;
-      const contactEl = document.getElementById('contact');
-      
-      let nearBottom = false;
-      if (contactEl) {
-        const rect = contactEl.getBoundingClientRect();
-        if (rect.top <= window.innerHeight * 0.75) {
-          nearBottom = true;
-        }
-      }
+    let ticking = false;
 
-      if (scrollY > 320 && !nearBottom) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          // Only show after scrolling past 300px (hero) and hide when user is at the contact form
+          const scrollY = window.scrollY || document.documentElement.scrollTop;
+          const contactEl = document.getElementById('contact');
+          
+          let nearBottom = false;
+          if (contactEl) {
+            const rect = contactEl.getBoundingClientRect();
+            if (rect.top <= window.innerHeight * 0.75) {
+              nearBottom = true;
+            }
+          }
+
+          if (scrollY > 320 && !nearBottom) {
+            setIsVisible(true);
+          } else {
+            setIsVisible(false);
+          }
+          ticking = false;
+        });
+        ticking = true;
       }
     };
 

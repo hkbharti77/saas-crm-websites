@@ -220,25 +220,33 @@ function App() {
 
     const currentPath = location.pathname;
 
+    let ticking = false;
+
     const handleScroll = () => {
       if (hasTriggeredRef.current[currentPath]) return;
 
-      const scrollTop = window.scrollY || document.documentElement.scrollTop;
-      const docHeight =
-        document.documentElement.scrollHeight -
-        document.documentElement.clientHeight;
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const scrollTop = window.scrollY || document.documentElement.scrollTop;
+          const docHeight =
+            document.documentElement.scrollHeight -
+            document.documentElement.clientHeight;
 
-      if (docHeight <= 100) return; // Ignore very short pages
+          if (docHeight > 100) {
+            const scrollPct = (scrollTop / docHeight) * 100;
 
-      const scrollPct = (scrollTop / docHeight) * 100;
-
-      if (scrollPct >= 75) {
-        hasTriggeredRef.current[currentPath] = true;
-        const sessionKey = `demo_modal_75_${currentPath}`;
-        if (!sessionStorage.getItem(sessionKey)) {
-          sessionStorage.setItem(sessionKey, 'true');
-          setIsDemoModalOpen(true);
-        }
+            if (scrollPct >= 75) {
+              hasTriggeredRef.current[currentPath] = true;
+              const sessionKey = `demo_modal_75_${currentPath}`;
+              if (!sessionStorage.getItem(sessionKey)) {
+                sessionStorage.setItem(sessionKey, 'true');
+                setIsDemoModalOpen(true);
+              }
+            }
+          }
+          ticking = false;
+        });
+        ticking = true;
       }
     };
 

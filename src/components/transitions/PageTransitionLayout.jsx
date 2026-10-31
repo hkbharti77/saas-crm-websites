@@ -54,12 +54,14 @@ export default function PageTransitionLayout() {
   const variants = getBookPageVariants(prefersReducedMotion);
 
   const handleAnimationComplete = () => {
-    // Re-synchronize AOS viewport reveal triggers for the active page
-    try {
-      AOS.refresh();
-    } catch {
-      /* ignore */
-    }
+    // Re-synchronize AOS viewport reveal triggers in an animation frame to prevent forced synchronous reflow
+    requestAnimationFrame(() => {
+      try {
+        AOS.refresh();
+      } catch {
+        /* ignore */
+      }
+    });
   };
 
   return (

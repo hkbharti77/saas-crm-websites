@@ -294,32 +294,42 @@ export default function BlogPost() {
   }, [post]);
 
   useEffect(() => {
+    let ticking = false;
+
     const handleScroll = () => {
-      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const scrolled = window.scrollY;
-      if (scrollHeight <= 0) return;
-      const progress = Math.min(100, Math.max(0, (scrolled / scrollHeight) * 100));
-      setReadProgress(progress);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+          const scrolled = window.scrollY;
+          if (scrollHeight > 0) {
+            const progress = Math.min(100, Math.max(0, (scrolled / scrollHeight) * 100));
+            setReadProgress(progress);
 
-      if (post && post.status === 'published') {
-        recordReadingProgress(post.id, progress);
+            if (post && post.status === 'published') {
+              recordReadingProgress(post.id, progress);
 
-        [25, 50, 75, 100].forEach(depth => {
-          if (progress >= depth && !scrollMilestonesRef.current.has(depth)) {
-            scrollMilestonesRef.current.add(depth);
-            trackBlogScroll(post, depth);
+              [25, 50, 75, 100].forEach((depth) => {
+                if (progress >= depth && !scrollMilestonesRef.current.has(depth)) {
+                  scrollMilestonesRef.current.add(depth);
+                  trackBlogScroll(post, depth);
+                }
+              });
+            }
           }
+
+          if (headings.length > 0) {
+            for (let i = headings.length - 1; i >= 0; i--) {
+              const el = document.getElementById(headings[i].id);
+              if (el && el.getBoundingClientRect().top <= 140) {
+                setActiveHeadingId(headings[i].id);
+                break;
+              }
+            }
+          }
+
+          ticking = false;
         });
-      }
-
-      if (headings.length > 0) {
-        for (let i = headings.length - 1; i >= 0; i--) {
-          const el = document.getElementById(headings[i].id);
-          if (el && el.getBoundingClientRect().top <= 140) {
-            setActiveHeadingId(headings[i].id);
-            break;
-          }
-        }
+        ticking = true;
       }
     };
 
