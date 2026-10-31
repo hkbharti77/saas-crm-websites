@@ -6,6 +6,7 @@ import EnterpriseBackground from './components/EnterpriseBackground';
 import CookieConsentBanner from './components/CookieConsentBanner';
 import Home from './pages/Home';
 import { ThemeProvider } from './context/ThemeContext';
+import PageTransitionLayout from './components/transitions/PageTransitionLayout';
 
 const PolicyPage = lazy(() => import('./pages/PolicyPage'));
 const TermsConditions = lazy(() => import('./pages/TermsConditions'));
@@ -53,6 +54,45 @@ const DemoModal = lazy(() => import('./components/DemoModal'));
 const ContactModal = lazy(() => import('./components/ContactModal'));
 import MobileStickyCTA from './components/MobileStickyCTA';
 
+// Prefetch all lazy route chunks at browser idle time to eliminate navigation delays
+const LAZY_ROUTE_PREFETCHES = [
+  () => import('./pages/About'),
+  () => import('./pages/PricingPage'),
+  () => import('./pages/Blog'),
+  () => import('./pages/BlogPost'),
+  () => import('./pages/PolicyPage'),
+  () => import('./pages/TermsConditions'),
+  () => import('./pages/Security'),
+  () => import('./pages/Documentation'),
+  () => import('./pages/WhatsAppCoexistencePage'),
+  () => import('./pages/SalesAutomationPage'),
+  () => import('./pages/AIChatbotsPage'),
+  () => import('./pages/WhatsAppCallingAgentPage'),
+  () => import('./pages/CrmDevelopmentPage'),
+  () => import('./pages/HrmsDevelopmentPage'),
+  () => import('./pages/IvrSolutionsPage'),
+  () => import('./pages/WhatsAppCatalogCrmPage'),
+  () => import('./pages/WhatsAppPricingCalculatorPage'),
+  () => import('./pages/CrmMigrationGuidePage'),
+  () => import('./pages/VoiceAiLatencyBenchmarkPage'),
+  () => import('./pages/SipArchitectureGuidePage'),
+  () => import('./pages/VoiceAiInfrastructurePage'),
+  () => import('./pages/McpToolCallingGuidePage'),
+  () => import('./pages/WhereToFindUsPage'),
+  () => import('./pages/SEOLandingPage'),
+  () => import('./pages/PlanDetailPage'),
+  () => import('./pages/BlogSearch'),
+  () => import('./pages/CategoryPage'),
+];
+
+function prefetchLazyRoutes() {
+  if (typeof window === 'undefined') return;
+  const schedule = window.requestIdleCallback || ((cb) => setTimeout(cb, 200));
+  LAZY_ROUTE_PREFETCHES.forEach((load, i) => {
+    schedule(() => { load().catch(() => {}); }, { timeout: 4000 + i * 300 });
+  });
+}
+
 class ChunkErrorBoundary extends Component {
   constructor(props) {
     super(props);
@@ -86,6 +126,11 @@ class ChunkErrorBoundary extends Component {
 
 function App() {
   useGAPageViews();
+
+  // Prefetch all lazy page chunks after first paint so subsequent navigations are instant
+  useEffect(() => {
+    prefetchLazyRoutes();
+  }, []);
 
   // Vercel Analytics: Data-minimization middleware enforcing dual-layer path & query sanitization
   const handleVercelBeforeSend = (event) => {
@@ -143,7 +188,7 @@ function App() {
     }
   }, []);
 
-  // Scroll to hash target or scroll to top on route change
+  // Scroll to hash target when present
   useEffect(() => {
     if (location.hash) {
       const targetId = location.hash.replace('#', '');
@@ -153,8 +198,6 @@ function App() {
           element.scrollIntoView({ behavior: 'smooth' });
         }, 120);
       }
-    } else if (!location.pathname.startsWith('/admin')) {
-      window.scrollTo(0, 0);
     }
   }, [location.pathname, location.hash]);
 
@@ -231,53 +274,60 @@ function App() {
         <Header />
         <main>
           <ChunkErrorBoundary>
-            <Suspense fallback={<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '60vh' }}><div className="loading-spinner">Loading...</div></div>}>
+            <Suspense fallback={
+              <div className="route-loading-fallback">
+                <div className="route-spinner" aria-hidden="true" />
+                <span className="route-loading-text">Loading Gyan VaniAi...</span>
+              </div>
+            }>
               <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/blog" element={<Blog />} />
-                <Route path="/blog/search" element={<BlogSearch />} />
-                <Route path="/blog/:id" element={<BlogPost />} />
-                <Route path="/category/:slug" element={<CategoryPage />} />
-                <Route path="/services/whatsapp-coexistence" element={<WhatsAppCoexistencePage />} />
-                <Route path="/services/sales-automation" element={<SalesAutomationPage />} />
-                <Route path="/services/ai-chatbots" element={<AIChatbotsPage />} />
-                <Route path="/services/whatsapp-calling-agent" element={<WhatsAppCallingAgentPage />} />
-                <Route path="/services/crm-development" element={<CrmDevelopmentPage />} />
-                <Route path="/services/hrms-development" element={<HrmsDevelopmentPage />} />
-                <Route path="/services/whatsapp-calling-agent-bots" element={<Navigate to="/services/whatsapp-calling-agent" replace />} />
-                <Route path="/services/ivr-solutions" element={<IvrSolutionsPage />} />
-                <Route path="/industries/legal" element={<LegalPage />} />
-                
-                {/* Specialized Commercial & Tool Pages */}
-                <Route path="/services/whatsapp-catalog-crm" element={<WhatsAppCatalogCrmPage />} />
-                <Route path="/tools/whatsapp-pricing-calculator" element={<WhatsAppPricingCalculatorPage />} />
+                <Route element={<PageTransitionLayout />}>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/blog" element={<Blog />} />
+                  <Route path="/blog/search" element={<BlogSearch />} />
+                  <Route path="/blog/:id" element={<BlogPost />} />
+                  <Route path="/category/:slug" element={<CategoryPage />} />
+                  <Route path="/services/whatsapp-coexistence" element={<WhatsAppCoexistencePage />} />
+                  <Route path="/services/sales-automation" element={<SalesAutomationPage />} />
+                  <Route path="/services/ai-chatbots" element={<AIChatbotsPage />} />
+                  <Route path="/services/whatsapp-calling-agent" element={<WhatsAppCallingAgentPage />} />
+                  <Route path="/services/crm-development" element={<CrmDevelopmentPage />} />
+                  <Route path="/services/hrms-development" element={<HrmsDevelopmentPage />} />
+                  <Route path="/services/whatsapp-calling-agent-bots" element={<Navigate to="/services/whatsapp-calling-agent" replace />} />
+                  <Route path="/services/ivr-solutions" element={<IvrSolutionsPage />} />
+                  <Route path="/industries/legal" element={<LegalPage />} />
+                  
+                  {/* Specialized Commercial & Tool Pages */}
+                  <Route path="/services/whatsapp-catalog-crm" element={<WhatsAppCatalogCrmPage />} />
+                  <Route path="/tools/whatsapp-pricing-calculator" element={<WhatsAppPricingCalculatorPage />} />
 
-                {/* Comparison Redirects */}
-                <Route path="/compare/*" element={<Navigate to="/services/crm-development" replace />} />
+                  {/* Comparison Redirects */}
+                  <Route path="/compare/*" element={<Navigate to="/services/crm-development" replace />} />
 
-                {/* Guides & Resources */}
-                <Route path="/guides/crm-migration" element={<CrmMigrationGuidePage />} />
-                <Route path="/resources/voice-ai-latency-benchmark" element={<VoiceAiLatencyBenchmarkPage />} />
-                <Route path="/resources/sip-architecture" element={<SipArchitectureGuidePage />} />
-                <Route path="/resources/voice-ai-infrastructure" element={<VoiceAiInfrastructurePage />} />
-                <Route path="/resources/mcp-ai-agent-tool-calling" element={<McpToolCallingGuidePage />} />
-                <Route path="/resources/where-to-find-us" element={<WhereToFindUsPage />} />
+                  {/* Guides & Resources */}
+                  <Route path="/guides/crm-migration" element={<CrmMigrationGuidePage />} />
+                  <Route path="/resources/voice-ai-latency-benchmark" element={<VoiceAiLatencyBenchmarkPage />} />
+                  <Route path="/resources/sip-architecture" element={<SipArchitectureGuidePage />} />
+                  <Route path="/resources/voice-ai-infrastructure" element={<VoiceAiInfrastructurePage />} />
+                  <Route path="/resources/mcp-ai-agent-tool-calling" element={<McpToolCallingGuidePage />} />
+                  <Route path="/resources/where-to-find-us" element={<WhereToFindUsPage />} />
 
-                {/* AEO & Search Visibility Telemetry */}
-                <Route path="/seo/ai-visibility" element={<AeoVisibilityDashboard />} />
+                  {/* AEO & Search Visibility Telemetry */}
+                  <Route path="/seo/ai-visibility" element={<AeoVisibilityDashboard />} />
 
-                <Route path="/documentation" element={<Documentation />} />
-                <Route path="/services/:serviceId" element={<SEOLandingPage />} />
-                <Route path="/industries/:industryId" element={<SEOLandingPage />} />
-                <Route path="/privacy" element={<PolicyPage />} />
-                <Route path="/terms" element={<TermsConditions />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/pricing" element={<PricingPage />} />
-                <Route path="/pricing/:planId" element={<PlanDetailPage />} />
-                <Route path="/security" element={<Security />} />
-                <Route path="/unsubscribe" element={<Unsubscribe />} />
+                  <Route path="/documentation" element={<Documentation />} />
+                  <Route path="/services/:serviceId" element={<SEOLandingPage />} />
+                  <Route path="/industries/:industryId" element={<SEOLandingPage />} />
+                  <Route path="/privacy" element={<PolicyPage />} />
+                  <Route path="/terms" element={<TermsConditions />} />
+                  <Route path="/about" element={<About />} />
+                  <Route path="/pricing" element={<PricingPage />} />
+                  <Route path="/pricing/:planId" element={<PlanDetailPage />} />
+                  <Route path="/security" element={<Security />} />
+                  <Route path="/unsubscribe" element={<Unsubscribe />} />
 
-                <Route path="*" element={<NotFound />} />
+                  <Route path="*" element={<NotFound />} />
+                </Route>
               </Routes>
             </Suspense>
           </ChunkErrorBoundary>

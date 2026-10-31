@@ -288,13 +288,13 @@ export default function WhatsAppCoexistencePage() {
               
               {/* Left Column: Copy & Actions */}
               <div className="coexistence-hero-left">
-                <nav aria-label="Breadcrumb" className="coexistence-breadcrumb" style={{ marginBottom: '1.25rem', fontSize: '0.85rem', fontWeight: '500' }}>
-                  <ol style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', listStyle: 'none', padding: 0, margin: 0, color: 'var(--text-muted)' }}>
+                <nav aria-label="Breadcrumb" className="coexistence-breadcrumb" style={{ marginBottom: '1.25rem', fontSize: '0.85rem', fontWeight: '550' }}>
+                  <ol style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', listStyle: 'none', padding: 0, margin: 0, color: 'var(--text-secondary)' }}>
                     <li><Link to="/" style={{ color: 'inherit' }}>Home</Link></li>
                     <li aria-hidden="true">/</li>
                     <li>Services</li>
                     <li aria-hidden="true">/</li>
-                    <li style={{ color: 'var(--primary-color)' }}>WhatsApp Coexistence</li>
+                    <li style={{ color: 'var(--primary-color)', fontWeight: '700' }}>WhatsApp Coexistence</li>
                   </ol>
                 </nav>
 

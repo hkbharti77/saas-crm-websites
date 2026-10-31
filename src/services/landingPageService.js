@@ -65,12 +65,16 @@ export async function fetchLandingPageData(options = {}) {
 
   try {
     const cacheBuster = `?_t=${Date.now()}`;
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 3000);
     const res = await fetch(`${API_BASE_URL}/api/public/landing-page${cacheBuster}`, {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
       },
+      signal: controller.signal,
     });
+    clearTimeout(timeoutId);
 
     if (res.ok) {
       const data = await res.json();
@@ -95,9 +99,13 @@ export async function refreshLandingPageDataInBackground() {
   if (!API_BASE_URL) return;
   try {
     const cacheBuster = `?_t=${Date.now()}`;
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 3000);
     const res = await fetch(`${API_BASE_URL}/api/public/landing-page${cacheBuster}`, {
       headers: { 'Accept': 'application/json' },
+      signal: controller.signal,
     });
+    clearTimeout(timeoutId);
     if (res.ok) {
       const fresh = await res.json();
       const previousVersion = memoryCache?.version;

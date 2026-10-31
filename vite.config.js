@@ -205,6 +205,37 @@ export default defineConfig(({ mode }) => {
     },
     build: {
       chunkSizeWarningLimit: 1500,
+      rollupOptions: {
+        output: {
+          manualChunks(id) {
+            // Vendor chunks — stable long-lived caches
+            if (id.includes('node_modules/react') || id.includes('node_modules/react-dom')) {
+              return 'vendor-react';
+            }
+            if (id.includes('node_modules/react-router-dom') || id.includes('node_modules/react-router') || id.includes('node_modules/@remix-run')) {
+              return 'vendor-router';
+            }
+            if (id.includes('node_modules/lucide-react')) {
+              return 'vendor-icons';
+            }
+            if (id.includes('node_modules/aos')) {
+              return 'vendor-aos';
+            }
+            if (id.includes('node_modules/firebase')) {
+              return 'vendor-firebase';
+            }
+            if (id.includes('node_modules/framer-motion')) {
+              return 'vendor-motion';
+            }
+            if (id.includes('node_modules/three') || id.includes('node_modules/@react-three')) {
+              return 'vendor-three';
+            }
+            if (id.includes('node_modules')) {
+              return 'vendor-misc';
+            }
+          },
+        },
+      },
     }
   };
 });

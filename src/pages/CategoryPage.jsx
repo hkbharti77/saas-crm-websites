@@ -77,8 +77,13 @@ export default function CategoryPage() {
 
   if (loading) {
     return (
-      <div className="blog-container" style={{ textAlign: 'center', padding: '6rem 2rem' }}>
-        <div className="loading-spinner">Loading...</div>
+      <div
+        className="blog-container page-loading-container"
+        aria-busy="true"
+        aria-label="Loading category articles"
+      >
+        <div className="route-spinner" aria-hidden="true" />
+        <span className="route-loading-text">Loading category articles...</span>
       </div>
     );
   }

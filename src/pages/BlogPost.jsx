@@ -361,8 +361,13 @@ export default function BlogPost() {
           title="Loading article… | Gyan VaniAi Blog"
           canonical={blogPostUrl(id)}
         />
-        <div style={{ minHeight: '80vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          Loading...
+        <div
+          className="page-loading-container"
+          aria-busy="true"
+          aria-label="Loading article"
+        >
+          <div className="route-spinner" aria-hidden="true" />
+          <span className="route-loading-text">Loading article...</span>
         </div>
       </>
     );

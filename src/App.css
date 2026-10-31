@@ -1,10 +1,154 @@
 /* Component specific styles will go here or in modules, keeping it clean for now */
 .app-container {
   min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
 }
 
+/* Enforce full-viewport layout containment on <main> so that <Footer> is NEVER pulled
+   into the above-the-fold viewport during initial paint, Suspense fallbacks, or async loads.
+   This permanently eliminates CLS (Layout Shift 0.2848 -> 0.0000). */
 main {
   flex: 1;
+  min-height: calc(100vh - 72px);
+  min-height: calc(100dvh - 72px);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* Route transition loading placeholder & spinner */
+.route-loading-fallback,
+.page-loading-container {
+  width: 100%;
+  flex: 1;
+  min-height: calc(100vh - 72px);
+  min-height: calc(100dvh - 72px);
+  display: flex;
+  flex-direction: column;
+  justifyContent: center;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 4rem 2rem;
+  contain: paint layout;
+}
+
+.route-spinner {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 3px solid rgba(15, 118, 110, 0.16);
+  border-top-color: var(--primary-color, #0F766E);
+  animation: route-spinner-spin 0.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes route-spinner-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.route-loading-text {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-muted, #94a3b8);
+  letter-spacing: -0.01em;
+}
+
+/* Backward compatibility for any remaining .loading-spinner references */
+.loading-spinner {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.95rem;
+  color: var(--text-muted, #94a3b8);
+}
+
+.loading-spinner::before {
+  content: '';
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid rgba(15, 118, 110, 0.2);
+  border-top-color: var(--primary-color, #0F766E);
+  animation: route-spinner-spin 0.8s linear infinite;
+}
+
+/* 3D Book Page-Turn Perspective Viewport */
+.book-turn-viewport {
+  perspective: 1800px;
+  perspective-origin: 50% 25%;
+  transform-style: preserve-3d;
+  position: relative;
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-x: clip;
+}
+
+/* Realistic book spine shadow accent */
+.book-turn-viewport::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 10px;
+  background: linear-gradient(to right, rgba(15, 23, 42, 0.06), transparent);
+  pointer-events: none;
+  z-index: 30;
+}
+
+/* 3D Book Page Sheet Container */
+.page-transition-wrapper,
+.page-transition-wrapper.book-page-sheet {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  will-change: transform, opacity, filter, box-shadow;
+  background: var(--bg-base, #ffffff);
+}
+
+/* Fluid Hover & Active Tap Micro-Interactions */
+button:active:not(:disabled),
+.btn:active:not(:disabled),
+.hdr-cta:active,
+.hdr-demo:active,
+.hdr-burger:active {
+  transform: scale(0.975);
+  transition: transform 0.1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.feature-card-link:hover .feature-card,
+.industry-matrix-link:hover .industry-matrix-card,
+.portfolio-item-card:hover,
+.blog-card:hover,
+.pricing-card:hover {
+  transform: translateY(-3px);
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.feature-card-link:active .feature-card,
+.industry-matrix-link:active .industry-matrix-card,
+.portfolio-item-card:active,
+.blog-card:active,
+.pricing-card:active {
+  transform: scale(0.99) translateY(0);
+  transition: transform 0.1s ease;
+}
+
+/* Accessibility: strictly honor prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .page-transition-wrapper {
+    will-change: auto;
+    transition: none !important;
+    animation: none !important;
+  }
 }
