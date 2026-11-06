@@ -19,7 +19,6 @@ import {
   TrendingUp,
   Cpu
 } from 'lucide-react';
-import ContactModal from '../components/ContactModal';
 import Card3DTilt from '../components/ui/Card3DTilt';
 import AnimatedBeam from '../components/ui/AnimatedBeam';
 import BorderBeam from '../components/ui/BorderBeam';
@@ -179,7 +178,6 @@ const faqs = [
 ];
 
 export default function WhatsAppCoexistencePage() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [openFaqIndices, setOpenFaqIndices] = useState(new Set([0, 1]));
   const { theme } = useTheme();
   const isLight = theme === 'light';
@@ -313,7 +311,7 @@ export default function WhatsAppCoexistencePage() {
                   <button 
                     id="btn-coexistence-hero-demo"
                     className="btn btn-primary coexistence-hero-btn" 
-                    onClick={() => { trackBookDemo('coexistence-hero'); setIsModalOpen(true); }}
+                    onClick={() => { trackBookDemo('coexistence-hero'); window.dispatchEvent(new CustomEvent('open-demo-modal')); }}
                   >
                     <span>Connect Your WhatsApp Number</span>
                     <ArrowRight size={18} />
@@ -584,7 +582,7 @@ export default function WhatsAppCoexistencePage() {
           <MetaInteractiveSandbox 
             onBookDemo={() => {
               trackBookDemo('coexistence-sandbox');
-              setIsModalOpen(true);
+              window.dispatchEvent(new CustomEvent('open-demo-modal'));
             }} 
           />
         </section>
@@ -780,7 +778,7 @@ export default function WhatsAppCoexistencePage() {
                 id="btn-coexistence-cta-demo"
                 type="button"
                 className="btn btn-primary"
-                onClick={() => { trackBookDemo('coexistence-bottom'); setIsModalOpen(true); }}
+                onClick={() => { trackBookDemo('coexistence-bottom'); window.dispatchEvent(new CustomEvent('open-demo-modal')); }}
                 style={{ padding: '0.95rem 2.25rem', fontSize: '1.05rem', fontWeight: '700' }}
               >
                 <span>Book a Free Live Demo</span>
@@ -821,8 +819,6 @@ export default function WhatsAppCoexistencePage() {
         </section>
 
       </div>
-
-      <ContactModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </>
   );
 }

@@ -10,7 +10,6 @@ const WhyChooseUs = lazy(() => import('../components/WhyChooseUs'));
 const Portfolio = lazy(() => import('../components/Portfolio'));
 const FAQ = lazy(() => import('../components/FAQ'));
 const ContactSection = lazy(() => import('../components/ContactSection'));
-const ContactModal = lazy(() => import('../components/ContactModal'));
 import SeoHead from '../components/SeoHead';
 import { defaultFaqs } from '../data/faqs';
 import { faqSchema } from '../utils/schemas';
@@ -29,8 +28,11 @@ const SECTION_CONTAINMENT_STYLES = {
 };
 
 export default function Home() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [pageData, setPageData] = useState(null);
+
+  const openModal = () => {
+    window.dispatchEvent(new CustomEvent('open-demo-modal'));
+  };
 
   useEffect(() => {
     let isMounted = true;
@@ -80,7 +82,7 @@ export default function Home() {
       return (
         <Hero
           key="sec-hero"
-          onBookDemo={() => setIsModalOpen(true)}
+          onBookDemo={openModal}
           slides={hero.slides}
           primaryCta={hero.primaryCta}
           whatsappCta={hero.whatsappCta}
@@ -110,7 +112,7 @@ export default function Home() {
       return (
         <div key="sec-features" data-aos="fade-up">
           <Features
-            onBookDemo={() => setIsModalOpen(true)}
+            onBookDemo={openModal}
             heading={feat.heading}
             subtitle={feat.subtitle}
             capabilities={feat.capabilities}
@@ -158,7 +160,7 @@ export default function Home() {
       return (
         <div key="sec-omnichannel" data-aos="fade-up">
           <OmnichannelSection
-            onBookDemo={() => setIsModalOpen(true)}
+            onBookDemo={openModal}
             title={omni.title}
             subtitle={omni.subtitle}
             centerNode={omni.centerNode}
@@ -280,10 +282,6 @@ export default function Home() {
           );
         })}
       </div>
-
-      <Suspense fallback={null}>
-        <ContactModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
-      </Suspense>
     </>
   );
 }

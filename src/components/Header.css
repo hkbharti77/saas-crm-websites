@@ -508,6 +508,7 @@ body:not(.dark-theme) .hdr-live-demo-badge {
 .hdr-primary-cta {
   display: inline-flex;
   align-items: center;
+  cursor: pointer;
   gap: 0.4rem;
   padding: 0.52rem 1.15rem;
   border-radius: 9px;
@@ -844,6 +845,7 @@ body:not(.dark-theme) .hdr-mobile-demo-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
   gap: 0.5rem;
   width: 100%;
   padding: 0.9rem 1rem;

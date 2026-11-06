@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { X, CheckCircle2, Send, ChevronDown, Check, XCircle } from 'lucide-react';
 import 'react-phone-number-input/style.css';
 import PhoneInput, { isValidPhoneNumber } from 'react-phone-number-input';
@@ -73,6 +74,17 @@ export default function ContactModal({ isOpen, onClose, prefillMessage = '' }) {
     setConsentError(false);
     onClose();
   };
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        handleClose();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -184,9 +196,9 @@ export default function ContactModal({ isOpen, onClose, prefillMessage = '' }) {
     }
   };
 
-  if (!isOpen) return null;
+  if (typeof document === 'undefined' || !isOpen) return null;
 
-  return (
+  return createPortal(
     <div className="enterprise-modal-overlay" onClick={handleClose} role="dialog" aria-modal="true" aria-labelledby="connect-modal-title">
       <div className="enterprise-modal-card" onClick={e => e.stopPropagation()}>
         {/* Close Button */}
@@ -444,6 +456,7 @@ export default function ContactModal({ isOpen, onClose, prefillMessage = '' }) {
           </>
         )}
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }

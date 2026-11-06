@@ -83,6 +83,8 @@ const LAZY_ROUTE_PREFETCHES = [
   () => import('./pages/PlanDetailPage'),
   () => import('./pages/BlogSearch'),
   () => import('./pages/CategoryPage'),
+  () => import('./components/ContactModal'),
+  () => import('./components/DemoModal'),
 ];
 
 function prefetchLazyRoutes() {
@@ -257,8 +259,10 @@ function App() {
   // Global listener for custom demo modal triggers
   useEffect(() => {
     const handleCustomOpen = (e) => {
-      if (e.detail?.prefill) {
+      if (e?.detail?.prefill) {
         setModalPrefill(e.detail.prefill);
+      } else if (e?.detail?.prefillMessage) {
+        setModalPrefill(e.detail.prefillMessage);
       }
       setIsDemoModalOpen(true);
     };
@@ -354,12 +358,14 @@ function App() {
             />
           </Suspense>
         )}
-        <Suspense fallback={null}>
-          <DemoModal
-            isOpen={isLiveDemoOpen}
-            onClose={() => setIsLiveDemoOpen(false)}
-          />
-        </Suspense>
+        {isLiveDemoOpen && (
+          <Suspense fallback={null}>
+            <DemoModal
+              isOpen={isLiveDemoOpen}
+              onClose={() => setIsLiveDemoOpen(false)}
+            />
+          </Suspense>
+        )}
         <MobileStickyCTA />
         <Analytics beforeSend={handleVercelBeforeSend} />
         {hasAnalyticsConsent && <SpeedInsights />}

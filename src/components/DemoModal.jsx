@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { X, ExternalLink, AlertTriangle, ShieldAlert, Clock, Database, Check } from 'lucide-react';
 import './DemoModal.css';
 
@@ -16,7 +17,18 @@ export default function DemoModal({ isOpen, onClose }) {
     };
   }, [isOpen]);
 
-  if (!isOpen) return null;
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, onClose]);
+
+  if (typeof document === 'undefined' || !isOpen) return null;
 
   const handleLaunch = () => {
     if (!agreed) return;
@@ -24,7 +36,7 @@ export default function DemoModal({ isOpen, onClose }) {
     onClose();
   };
 
-  return (
+  return createPortal(
     <div className="demo-modal-overlay" onClick={onClose} role="dialog" aria-modal="true" aria-labelledby="demo-modal-heading">
       <div className="demo-modal-content" onClick={(e) => e.stopPropagation()}>
         <button className="demo-modal-close" onClick={onClose} aria-label="Close demo modal">
@@ -125,6 +137,7 @@ export default function DemoModal({ isOpen, onClose }) {
           </div>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }

@@ -25,7 +25,6 @@ import {
   Globe,
   Check
 } from 'lucide-react';
-import ContactModal from '../components/ContactModal';
 import ContactSection from '../components/ContactSection';
 import Card3DTilt from '../components/ui/Card3DTilt';
 import AnimatedBeam from '../components/ui/AnimatedBeam';
@@ -274,7 +273,6 @@ const pageFaqs = [
 ];
 
 export default function WhatsAppCallingAgentPage() {
-  const [isDemoModalOpen, setIsDemoModalOpen] = useState(false);
   const [activePipelineStep, setActivePipelineStep] = useState(0);
   const [openFaqIndices, setOpenFaqIndices] = useState(new Set([0, 1]));
 
@@ -310,7 +308,9 @@ export default function WhatsAppCallingAgentPage() {
 
   const handleBookDemo = (source = 'whatsapp-calling-hero') => {
     trackBookDemo(source);
-    setIsDemoModalOpen(true);
+    window.dispatchEvent(new CustomEvent('open-demo-modal', {
+      detail: { prefill: 'I would like to book a demo of the WhatsApp Calling Agent Bots.' }
+    }));
   };
 
   const canonicalUrl = `${SITE}/services/whatsapp-calling-agent`;
@@ -1101,13 +1101,6 @@ export default function WhatsAppCallingAgentPage() {
             ]}
           />
         </div>
-
-        {/* Demo Modal Trigger */}
-        <ContactModal
-          isOpen={isDemoModalOpen}
-          onClose={() => setIsDemoModalOpen(false)}
-          prefillMessage="I would like to book a demo of the WhatsApp Calling Agent Bots."
-        />
       </div>
     </>
   );

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Navigate } from 'react-router-dom';
 import { ArrowRight, CheckCircle } from 'lucide-react';
-import ContactModal from '../components/ContactModal';
 import SeoHead from '../components/SeoHead';
 
 const serviceData = {
@@ -47,7 +46,6 @@ const serviceData = {
 export default function ServicePage() {
   const { serviceId } = useParams();
   const service = serviceData[serviceId];
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -94,7 +92,9 @@ export default function ServicePage() {
         <div style={{ textAlign: 'center' }}>
           <h2 className="h3" style={{ marginBottom: '1.5rem', color: 'var(--text-primary)' }}>Ready to get started?</h2>
           <button 
-            onClick={() => setIsModalOpen(true)}
+            onClick={() => window.dispatchEvent(new CustomEvent('open-demo-modal', {
+              detail: { prefill: `I am interested in your ${service.title} services. Please provide more information.` }
+            }))}
             className="btn btn-primary" 
             style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '1rem 2rem', fontSize: '1.1rem', borderRadius: '12px' }}
           >
@@ -102,12 +102,6 @@ export default function ServicePage() {
           </button>
         </div>
       </div>
-      
-      <ContactModal 
-        isOpen={isModalOpen} 
-        onClose={() => setIsModalOpen(false)} 
-        prefillMessage={`I am interested in your ${service.title} services. Please provide more information.`}
-      />
     </div>
     </>
   );

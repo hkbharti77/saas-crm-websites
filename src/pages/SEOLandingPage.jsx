@@ -1074,7 +1074,7 @@ export default function SEOLandingPage() {
                   <button
                     type="button"
                     className="btn btn-primary"
-                    onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                    onClick={() => window.dispatchEvent(new CustomEvent('open-demo-modal'))}
                   >
                     {pageData.ctaButtonText || 'Get a Free Consultation'} <ArrowRight size={20} />
                   </button>

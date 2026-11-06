@@ -120,7 +120,11 @@ export default function Hero({
 
   const handleBookDemo = (source) => {
     trackBookDemo(source);
-    onBookDemo();
+    if (onBookDemo) {
+      onBookDemo();
+    } else {
+      window.dispatchEvent(new CustomEvent('open-demo-modal'));
+    }
   };
 
   const nextSlide = useCallback(() => {
@@ -287,7 +291,7 @@ export default function Hero({
                     type="button"
                     className="btn btn-primary hero-btn-primary"
                     onClick={() => {
-                      if (primaryCta?.action === 'link' && primaryCta?.destination) {
+                      if (primaryCta?.action === 'link' && primaryCta?.destination && primaryCta.destination !== '#contact') {
                         window.location.href = primaryCta.destination;
                       } else {
                         handleBookDemo(`hero-slide-${currentSlide + 1}`);

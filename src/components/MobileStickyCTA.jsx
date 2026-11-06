@@ -55,14 +55,10 @@ export default function MobileStickyCTA() {
     };
   }, [isVisible]);
 
-  const handleClick = () => {
+  const handleClick = (e) => {
+    if (e) e.preventDefault();
     trackBookDemo('mobile-sticky-cta');
-    const contactSection = document.getElementById('contact');
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth' });
-    } else {
-      window.dispatchEvent(new CustomEvent('open-demo-modal'));
-    }
+    window.dispatchEvent(new CustomEvent('open-demo-modal'));
   };
 
   if (!isVisible) return null;

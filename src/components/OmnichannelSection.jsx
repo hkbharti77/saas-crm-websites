@@ -256,7 +256,8 @@ export default function OmnichannelSection({
               className="btn btn-primary"
               onClick={() => {
                 trackBookDemo('omnichannel');
-                onBookDemo && onBookDemo();
+                if (onBookDemo) onBookDemo();
+                window.dispatchEvent(new CustomEvent('open-demo-modal'));
               }}
             >
               <span>See Live Omnichannel Demo</span>

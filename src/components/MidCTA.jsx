@@ -18,7 +18,8 @@ export default function MidCTA({ onBookDemo }) {
           className="btn btn-primary mid-cta-btn"
           onClick={() => {
             trackBookDemo('mid-cta');
-            onBookDemo && onBookDemo();
+            if (onBookDemo) onBookDemo();
+            window.dispatchEvent(new CustomEvent('open-demo-modal'));
           }}
         >
           Contact Us <ArrowRight size={18} />

@@ -3,7 +3,6 @@ import { useParams, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { ArrowLeft, Calendar, Clock, User, Share2, Copy, Send, ChevronLeft, ChevronRight, MessageCircle, Globe, TrendingUp, ShieldCheck } from 'lucide-react';
 
-import ContactModal from '../components/ContactModal';
 import {
   trackBlogView,
   trackBlogScroll,
@@ -153,7 +152,6 @@ export default function BlogPost() {
   const { id } = useParams();
   const [post, setPost] = useState(() => STATIC_BLOG_FALLBACKS[id] || null);
   const [loading, setLoading] = useState(!STATIC_BLOG_FALLBACKS[id]);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [readProgress, setReadProgress] = useState(0);
   const [activeHeadingId, setActiveHeadingId] = useState('');
   const [prevPost, setPrevPost] = useState(null);
@@ -676,7 +674,7 @@ export default function BlogPost() {
 
               {/* Integrated CTA Block */}
               <div className="blog-cta-container">
-                <BlogCTA post={post} onOpenDemo={() => setIsModalOpen(true)} />
+                <BlogCTA post={post} onOpenDemo={() => window.dispatchEvent(new CustomEvent('open-demo-modal'))} />
               </div>
 
               {/* Adjacent Article Navigation (Prev / Next) */}
@@ -756,8 +754,6 @@ export default function BlogPost() {
           </div>
         </div>
       </article>
-
-      <ContactModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </>
   );
 }

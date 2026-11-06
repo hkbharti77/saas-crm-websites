@@ -271,6 +271,12 @@ export default function Header() {
     window.dispatchEvent(new CustomEvent('open-live-demo'));
   };
 
+  const handleBookDemo = (e) => {
+    if (e) e.preventDefault();
+    closeAll();
+    window.dispatchEvent(new CustomEvent('open-demo-modal'));
+  };
+
   // Determine active states for parent category dropdowns
   const isSolutionsActive =
     location.pathname.startsWith('/services') &&
@@ -527,10 +533,15 @@ export default function Header() {
             </div>
 
             {/* Desktop Primary CTA: Book a Demo */}
-            <a href="/#contact" className="hdr-primary-cta" onClick={closeAll}>
+            <button
+              type="button"
+              className="hdr-primary-cta"
+              onClick={handleBookDemo}
+              aria-label="Book a Demo"
+            >
               <span>Book a Demo</span>
               <ArrowRight size={14} className="hdr-cta-arrow" aria-hidden="true" />
-            </a>
+            </button>
 
             {/* Mobile Hamburger Toggle Button (Hidden on Desktop) */}
             <button
@@ -732,10 +743,15 @@ export default function Header() {
               <span className="hdr-live-demo-badge">7-DAY</span>
             </button>
 
-            <a href="/#contact" className="hdr-mobile-cta-btn" onClick={closeAll}>
+            <button
+              type="button"
+              className="hdr-mobile-cta-btn"
+              onClick={handleBookDemo}
+              aria-label="Book a Demo"
+            >
               <span>Book a Demo</span>
               <ArrowRight size={15} aria-hidden="true" />
-            </a>
+            </button>
           </div>
         </div>
       </div>

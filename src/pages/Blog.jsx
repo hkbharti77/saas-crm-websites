@@ -2,7 +2,6 @@ import React, { useEffect, useState, useMemo } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { ArrowRight, Calendar, Clock, Search, TrendingUp, Tag as TagIcon, Sparkles } from 'lucide-react';
-import ContactModal from '../components/ContactModal';
 import { trackBookDemo } from '../utils/analytics';
 import SeoHead from '../components/SeoHead';
 import { buildBlogIndexSchema } from '../utils/blogSeo';
@@ -14,7 +13,6 @@ import './Blog.css';
 export default function Blog() {
   const [blogs, setBlogs] = useState(STATIC_BLOG_LIST);
   const [loading, setLoading] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [brokenImages, setBrokenImages] = useState({});
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [selectedTag, setSelectedTag] = useState('');
@@ -366,7 +364,7 @@ export default function Blog() {
                   className="btn btn-primary"
                   onClick={() => {
                     trackBookDemo('blog-feed-bottom');
-                    setIsModalOpen(true);
+                    window.dispatchEvent(new CustomEvent('open-demo-modal'));
                   }}
                   style={{ padding: '0.9rem 2.25rem', fontSize: '1.025rem', fontWeight: '700' }}
                 >
@@ -378,8 +376,6 @@ export default function Blog() {
           )}
         </div>
       </div>
-
-      <ContactModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </>
   );
 }

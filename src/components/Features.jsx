@@ -116,7 +116,8 @@ export default function Features({
             className="btn btn-primary"
             onClick={() => {
               trackBookDemo('capabilities');
-              onBookDemo && onBookDemo();
+              if (onBookDemo) onBookDemo();
+              window.dispatchEvent(new CustomEvent('open-demo-modal'));
             }}
           >
             <span>{bottomCta?.buttonText || 'Book a Demo'}</span>
