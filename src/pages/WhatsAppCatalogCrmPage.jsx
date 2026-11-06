@@ -96,6 +96,11 @@ export default function WhatsAppCatalogCrmPage() {
     }
   ];
 
+  const allFaqItems = [
+    ...aiSummaryItems,
+    ...faqs.map(f => ({ question: f.q, answer: f.a }))
+  ];
+
   const serviceSchema = {
     '@context': 'https://schema.org',
     '@type': 'Service',
@@ -147,7 +152,7 @@ export default function WhatsAppCatalogCrmPage() {
       </section>
 
       {/* Direct AI Answer Extraction Block */}
-      <AiAnswerSummaryBlock items={aiSummaryItems} title="WhatsApp Catalog CRM: Technical & Architectural Facts" />
+      <AiAnswerSummaryBlock items={allFaqItems} title="WhatsApp Catalog CRM: Technical & Architectural Facts" />
 
       {/* Features Grid */}
       <section className="catalog-features-section">
@@ -201,7 +206,7 @@ export default function WhatsAppCatalogCrmPage() {
 
       {/* FAQs */}
       <div className="container" style={{ margin: '3rem auto' }}>
-        <FAQ items={faqs} title="Frequently Asked Questions on WhatsApp Catalog CRM" />
+        <FAQ items={faqs} includeSchema={false} title="Frequently Asked Questions on WhatsApp Catalog CRM" />
       </div>
 
       {/* Contact Section */}

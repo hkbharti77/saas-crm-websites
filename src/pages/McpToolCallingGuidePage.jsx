@@ -76,6 +76,7 @@ export default function McpToolCallingGuidePage() {
     '@context': 'https://schema.org',
     '@type': 'TechArticle',
     headline: 'Model Context Protocol (MCP) & AI Agent Tool Calling: Enterprise Engineering Guide',
+    image: 'https://www.gyanvaniai.com/hero_dashboard.webp',
     description: 'Comprehensive guide to building autonomous AI agents with Anthropic MCP (Model Context Protocol), secure tool calling, and live CRM data connectivity.',
     author: {
       '@type': 'Organization',
@@ -90,6 +91,11 @@ export default function McpToolCallingGuidePage() {
     url: 'https://www.gyanvaniai.com/resources/mcp-ai-agent-tool-calling',
     datePublished: '2026-10-07'
   };
+
+  const allFaqItems = [
+    ...aiSummaryItems,
+    ...faqs.map(f => ({ question: f.q, answer: f.a }))
+  ];
 
   return (
     <div className="guide-page">
@@ -117,7 +123,7 @@ export default function McpToolCallingGuidePage() {
       </section>
 
       {/* Direct AI Answer Extraction Block */}
-      <AiAnswerSummaryBlock items={aiSummaryItems} title="Executive Summary: Model Context Protocol Architecture" />
+      <AiAnswerSummaryBlock items={allFaqItems} title="Executive Summary: Model Context Protocol Architecture" />
 
       {/* MCP Architecture Pillars */}
       <section className="guide-steps-section">
@@ -173,7 +179,7 @@ export default function McpToolCallingGuidePage() {
 
       {/* FAQ */}
       <div className="container" style={{ margin: '3rem auto' }}>
-        <FAQ items={faqs} title="Frequently Asked Questions on Model Context Protocol" />
+        <FAQ items={faqs} includeSchema={false} title="Frequently Asked Questions on Model Context Protocol" />
       </div>
 
       <ContactSection />

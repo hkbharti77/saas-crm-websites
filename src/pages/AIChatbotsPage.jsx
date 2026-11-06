@@ -307,10 +307,15 @@ export default function AIChatbotsPage() {
     image: `${SITE}/hero-ai-chatbots.svg`
   };
 
+  const allChatbotFaqs = [
+    ...chatbotAiFacts.map(f => ({ q: f.question, a: f.answer })),
+    ...faqs
+  ];
+
   const chatbotFaqSchema = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: faqs.map((f) => ({
+    mainEntity: allChatbotFaqs.map((f) => ({
       '@type': 'Question',
       name: f.q,
       acceptedAnswer: {
@@ -402,8 +407,7 @@ export default function AIChatbotsPage() {
         </div>
       </section>
 
-      {/* AI Answer Extraction Block */}
-      <AiAnswerSummaryBlock items={chatbotAiFacts} title="AI Chatbots: Architecture & Technical Reference" />
+
 
       {/* ==========================================================================
          2. OVERVIEW / WHO IT'S FOR / WHAT YOU GET (3 CARDS)

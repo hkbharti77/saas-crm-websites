@@ -207,10 +207,15 @@ export default function CrmDevelopmentPage() {
     }
   ];
 
+  const allCrmFaqs = [
+    ...crmAiFacts.map(f => ({ q: f.question, a: f.answer })),
+    ...faqData
+  ];
+
   const crmFaqSchema = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: faqData.map((f) => ({
+    mainEntity: allCrmFaqs.map((f) => ({
       '@type': 'Question',
       name: f.q,
       acceptedAnswer: {
@@ -349,8 +354,7 @@ export default function CrmDevelopmentPage() {
           </div>
         </section>
 
-        {/* Direct AI Answer Extraction Block */}
-        <AiAnswerSummaryBlock items={crmAiFacts} title="Custom AI CRM: Architecture & Engineering Q&A Reference" />
+
 
         {/* ==========================================
             INTERACTIVE ROI SAVINGS CALCULATOR

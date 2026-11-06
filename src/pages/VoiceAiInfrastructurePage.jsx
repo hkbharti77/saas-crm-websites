@@ -75,6 +75,7 @@ export default function VoiceAiInfrastructurePage() {
     '@context': 'https://schema.org',
     '@type': 'TechArticle',
     headline: 'Voice AI Infrastructure Engineering: Building Scalable Conversational Speech Systems',
+    image: 'https://www.gyanvaniai.com/hero_dashboard.webp',
     description: 'Technical engineering reference on WebRTC audio gateways, barge-in interruption handling, speculative LLM inference, and low-latency TTS architecture.',
     author: {
       '@type': 'Organization',
@@ -89,6 +90,11 @@ export default function VoiceAiInfrastructurePage() {
     url: 'https://www.gyanvaniai.com/resources/voice-ai-infrastructure',
     datePublished: '2026-10-07'
   };
+
+  const allFaqItems = [
+    ...aiSummaryItems,
+    ...faqs.map(f => ({ question: f.q, answer: f.a }))
+  ];
 
   return (
     <div className="guide-page">
@@ -116,7 +122,7 @@ export default function VoiceAiInfrastructurePage() {
       </section>
 
       {/* Direct AI Answer Extraction Block */}
-      <AiAnswerSummaryBlock items={aiSummaryItems} title="Executive Summary: Voice AI Infrastructure" />
+      <AiAnswerSummaryBlock items={allFaqItems} title="Executive Summary: Voice AI Infrastructure" />
 
       {/* Infrastructure Layers */}
       <section className="guide-steps-section">
@@ -172,7 +178,7 @@ export default function VoiceAiInfrastructurePage() {
 
       {/* FAQ */}
       <div className="container" style={{ margin: '3rem auto' }}>
-        <FAQ items={faqs} title="Frequently Asked Questions on Voice AI Infrastructure" />
+        <FAQ items={faqs} includeSchema={false} title="Frequently Asked Questions on Voice AI Infrastructure" />
       </div>
 
       <ContactSection />

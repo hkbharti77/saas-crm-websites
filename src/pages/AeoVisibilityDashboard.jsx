@@ -87,7 +87,6 @@ export default function AeoVisibilityDashboard() {
       <SeoHead
         title="AEO AI Visibility & Authority Dashboard | Gyan VaniAi Internal"
         description="Internal telemetry for Answer Engine Optimization (AEO), AI citations (Google AI Overviews, ChatGPT Search, Perplexity), GSC organic metrics, and authority acquisition."
-        canonical="https://www.gyanvaniai.com/seo/ai-visibility"
         noindex={true}
       />
 

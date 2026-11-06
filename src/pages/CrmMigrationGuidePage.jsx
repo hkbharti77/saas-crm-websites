@@ -77,6 +77,7 @@ export default function CrmMigrationGuidePage() {
     '@context': 'https://schema.org',
     '@type': 'TechArticle',
     headline: 'Enterprise CRM Migration Guide: Zero-Downtime Data & WhatsApp Transfer',
+    image: 'https://www.gyanvaniai.com/hero_dashboard.webp',
     description: 'Technical blueprint for migrating leads, pipelines, and WhatsApp numbers from legacy CRMs to Gyan VaniAi with zero downtime.',
     author: {
       '@type': 'Organization',
@@ -91,6 +92,11 @@ export default function CrmMigrationGuidePage() {
     url: 'https://www.gyanvaniai.com/guides/crm-migration',
     datePublished: '2026-10-07'
   };
+
+  const allFaqItems = [
+    ...aiSummaryItems,
+    ...faqs.map(f => ({ question: f.q, answer: f.a }))
+  ];
 
   return (
     <div className="guide-page">
@@ -119,7 +125,7 @@ export default function CrmMigrationGuidePage() {
       </section>
 
       {/* Direct AI Answer Extraction Block */}
-      <AiAnswerSummaryBlock items={aiSummaryItems} title="Executive Summary: CRM Migration Architecture" />
+      <AiAnswerSummaryBlock items={allFaqItems} title="Executive Summary: CRM Migration Architecture" />
 
       {/* Migration Steps Section */}
       <section className="guide-steps-section">
@@ -175,7 +181,7 @@ export default function CrmMigrationGuidePage() {
 
       {/* FAQ */}
       <div className="container" style={{ margin: '3rem auto' }}>
-        <FAQ items={faqs} title="Frequently Asked Questions on CRM Migration" />
+        <FAQ items={faqs} includeSchema={false} title="Frequently Asked Questions on CRM Migration" />
       </div>
 
       <ContactSection />

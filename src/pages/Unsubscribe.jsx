@@ -139,7 +139,7 @@ export default function Unsubscribe() {
       <SeoHead
         title="Unsubscribe from Newsletter | GyanVaniAi"
         description="Manage your GyanVaniAi email subscription preferences."
-        canonical="https://www.gyanvaniai.com/unsubscribe"
+        noindex={true}
       />
 
       <div

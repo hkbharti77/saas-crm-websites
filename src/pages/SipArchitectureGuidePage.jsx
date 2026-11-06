@@ -76,6 +76,7 @@ export default function SipArchitectureGuidePage() {
     '@context': 'https://schema.org',
     '@type': 'TechArticle',
     headline: 'SIP Trunking Architecture Guide for Conversational Voice AI',
+    image: 'https://www.gyanvaniai.com/hero_dashboard.webp',
     description: 'Enterprise guide to SIP trunking, SBC deployment, SRTP media bridging, and PBX integration for real-time voice AI agents.',
     author: {
       '@type': 'Organization',
@@ -90,6 +91,11 @@ export default function SipArchitectureGuidePage() {
     url: 'https://www.gyanvaniai.com/resources/sip-architecture',
     datePublished: '2026-10-07'
   };
+
+  const allFaqItems = [
+    ...aiSummaryItems,
+    ...faqs.map(f => ({ question: f.q, answer: f.a }))
+  ];
 
   return (
     <div className="guide-page">
@@ -117,7 +123,7 @@ export default function SipArchitectureGuidePage() {
       </section>
 
       {/* Direct AI Answer Extraction Block */}
-      <AiAnswerSummaryBlock items={aiSummaryItems} title="Executive Summary: SIP Telephony Architecture" />
+      <AiAnswerSummaryBlock items={allFaqItems} title="Executive Summary: SIP Telephony Architecture" />
 
       {/* Architecture Pillars */}
       <section className="guide-steps-section">
@@ -173,7 +179,7 @@ export default function SipArchitectureGuidePage() {
 
       {/* FAQ */}
       <div className="container" style={{ margin: '3rem auto' }}>
-        <FAQ items={faqs} title="Frequently Asked Questions on SIP Architecture" />
+        <FAQ items={faqs} includeSchema={false} title="Frequently Asked Questions on SIP Architecture" />
       </div>
 
       <ContactSection />

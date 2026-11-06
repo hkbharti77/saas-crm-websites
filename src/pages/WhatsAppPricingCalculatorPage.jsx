@@ -121,6 +121,11 @@ export default function WhatsAppPricingCalculatorPage() {
     }
   ];
 
+  const allFaqItems = [
+    ...aiSummaryItems,
+    ...faqs.map(f => ({ question: f.q, answer: f.a }))
+  ];
+
   const toolSchema = {
     '@context': 'https://schema.org',
     '@type': 'SoftwareApplication',
@@ -163,7 +168,7 @@ export default function WhatsAppPricingCalculatorPage() {
       </section>
 
       {/* Direct AI Answer Extraction Block */}
-      <AiAnswerSummaryBlock items={aiSummaryItems} title="Meta WhatsApp Conversation Pricing Rules & Facts" />
+      <AiAnswerSummaryBlock items={allFaqItems} title="Meta WhatsApp Conversation Pricing Rules & Facts" />
 
       {/* Interactive Calculator Section */}
       <section className="calc-app-section">
@@ -376,7 +381,7 @@ export default function WhatsAppPricingCalculatorPage() {
 
       {/* FAQs */}
       <div className="container" style={{ margin: '3rem auto' }}>
-        <FAQ items={faqs} title="Frequently Asked Questions About WhatsApp API Pricing" />
+        <FAQ items={faqs} includeSchema={false} title="Frequently Asked Questions About WhatsApp API Pricing" />
       </div>
 
       {/* Contact Section */}

@@ -82,6 +82,7 @@ export default function VoiceAiLatencyBenchmarkPage() {
     '@context': 'https://schema.org',
     '@type': 'TechArticle',
     headline: 'Voice AI Latency Benchmark: Sub-300ms Conversational Turnaround Engineering',
+    image: 'https://www.gyanvaniai.com/hero_dashboard.webp',
     description: 'Empirical benchmark and architecture breakdown of full-duplex sub-300ms voice AI pipelines across VAD, STT, LLM, and TTS.',
     author: {
       '@type': 'Organization',
@@ -96,6 +97,11 @@ export default function VoiceAiLatencyBenchmarkPage() {
     url: 'https://www.gyanvaniai.com/resources/voice-ai-latency-benchmark',
     datePublished: '2026-10-07'
   };
+
+  const allFaqItems = [
+    ...aiSummaryItems,
+    ...faqs.map(f => ({ question: f.q, answer: f.a }))
+  ];
 
   return (
     <div className="guide-page">
@@ -123,7 +129,7 @@ export default function VoiceAiLatencyBenchmarkPage() {
       </section>
 
       {/* Direct AI Answer Extraction Block */}
-      <AiAnswerSummaryBlock items={aiSummaryItems} title="Executive Summary: Sub-300ms Voice Pipeline" />
+      <AiAnswerSummaryBlock items={allFaqItems} title="Executive Summary: Sub-300ms Voice Pipeline" />
 
       {/* Latency Pipeline Table */}
       <section className="guide-steps-section">
@@ -196,7 +202,7 @@ export default function VoiceAiLatencyBenchmarkPage() {
 
       {/* FAQ */}
       <div className="container" style={{ margin: '3rem auto' }}>
-        <FAQ items={faqs} title="Frequently Asked Questions on Voice AI Latency" />
+        <FAQ items={faqs} includeSchema={false} title="Frequently Asked Questions on Voice AI Latency" />
       </div>
 
       <ContactSection />

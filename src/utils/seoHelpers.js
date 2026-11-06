@@ -16,16 +16,12 @@ export const getGeoTargeting = (customGeo = null) => {
   if (customGeo && (customGeo.region || customGeo.city || customGeo.targetCountry || customGeo.latitude)) {
     return {
       'geo.region': customGeo.region || customGeo.targetCountry || 'IN-DL',
-      'geo.placename': customGeo.city ? `${customGeo.city}, ${customGeo.targetCountry || 'India'}` : (customGeo.placename || 'New Delhi'),
-      'geo.position': (customGeo.latitude && customGeo.longitude) ? `${customGeo.latitude};${customGeo.longitude}` : (customGeo.position || '28.613939;77.209021'),
-      'ICBM': (customGeo.latitude && customGeo.longitude) ? `${customGeo.latitude}, ${customGeo.longitude}` : (customGeo.icbm || '28.613939, 77.209021')
+      'geo.placename': customGeo.city ? `${customGeo.city}, ${customGeo.targetCountry || 'India'}` : (customGeo.placename || 'New Delhi')
     };
   }
   return {
     'geo.region': 'IN-DL',
-    'geo.placename': 'New Delhi',
-    'geo.position': '28.613939;77.209021',
-    'ICBM': '28.613939, 77.209021'
+    'geo.placename': 'New Delhi'
   };
 };
 

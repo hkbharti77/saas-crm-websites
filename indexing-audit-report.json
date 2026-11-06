@@ -1,0 +1,407 @@
+{
+  "timestamp": "2026-11-06T06:49:28.706Z",
+  "summary": {
+    "totalHtmlFiles": 55,
+    "indexablePages": 52,
+    "noindexPages": 3,
+    "sitemapUrls": 52,
+    "duplicateCanonicalsCount": 0,
+    "brokenInternalLinksCount": 0,
+    "redirectChainsCount": 0,
+    "orphanCandidatesCount": 0,
+    "issuesCount": 0
+  },
+  "indexablePages": [
+    {
+      "route": "/about",
+      "title": "About Gyan VaniAi | Enterprise AI &amp; Software Development",
+      "canonical": "https://www.gyanvaniai.com/about",
+      "rootLength": 54354
+    },
+    {
+      "route": "/blog",
+      "title": "Blog - Gyan VaniAi | Insights on AI &amp; CRM",
+      "canonical": "https://www.gyanvaniai.com/blog",
+      "rootLength": 44506
+    },
+    {
+      "route": "/blog/multi-agent-orchestration-future",
+      "title": "The Future of Multi-Agent AI Orchestration in Enterprise Operations | Gyan VaniAi Blog",
+      "canonical": "https://www.gyanvaniai.com/blog/multi-agent-orchestration-future",
+      "rootLength": 47119
+    },
+    {
+      "route": "/blog/secure-rag-pipelines-enterprise",
+      "title": "Building Zero-Hallucination Secure RAG Pipelines for Enterprise Systems | Gyan VaniAi Blog",
+      "canonical": "https://www.gyanvaniai.com/blog/secure-rag-pipelines-enterprise",
+      "rootLength": 46817
+    },
+    {
+      "route": "/blog/whatsapp-business-api-automation",
+      "title": "Meta WhatsApp Business API Automation Guide | Gyan VaniAi Blog",
+      "canonical": "https://www.gyanvaniai.com/blog/whatsapp-business-api-automation",
+      "rootLength": 47626
+    },
+    {
+      "route": "/documentation",
+      "title": "Documentation &amp; Platform Technical Guides | Gyan VaniAi",
+      "canonical": "https://www.gyanvaniai.com/documentation",
+      "rootLength": 51076
+    },
+    {
+      "route": "/guides/crm-migration",
+      "title": "Enterprise CRM Migration Guide 2026 | Zero-Downtime Blueprint | Gyan VaniAi",
+      "canonical": "https://www.gyanvaniai.com/guides/crm-migration",
+      "rootLength": 61410
+    },
+    {
+      "route": "/",
+      "title": "Autonomous AI CRM &amp; Revenue Operations | Gyan VaniAi",
+      "canonical": "https://www.gyanvaniai.com/",
+      "rootLength": 53128
+    },
+    {
+      "route": "/industries/education",
+      "title": "Education Software Development | SIS &amp; Learning Portals | Gyan VaniAi",
+      "canonical": "https://www.gyanvaniai.com/industries/education",
+      "rootLength": 95827
+    },
+    {
+      "route": "/industries/enterprise",
+      "title": "Enterprise CRM Software | Scalable Organization Platform | Gyan VaniAi",
+      "canonical": "https://www.gyanvaniai.com/industries/enterprise",
+      "rootLength": 94626
+    },
+    {
+      "route": "/industries/finance",
+      "title": "FinTech CRM &amp; Conversational Banking Platform 2026 | Gyan VaniAi",
+      "canonical": "https://www.gyanvaniai.com/industries/finance",
+      "rootLength": 77078
+    },
+    {
+      "route": "/industries/government",
+      "title": "Government &amp; Public Sector Software Solutions | Gyan VaniAi",
+      "canonical": "https://www.gyanvaniai.com/industries/government",
+      "rootLength": 95842
+    },
+    {
+      "route": "/industries/healthcare",
+      "title": "Healthcare CRM &amp; Patient Automation Platform 2026 | Gyan VaniAi",
+      "canonical": "https://www.gyanvaniai.com/industries/healthcare",
+      "rootLength": 79464
+    },
+    {
+      "route": "/industries/hospitality",
+      "title": "Hospitality CRM &amp; Booking Automation | Gyan VaniAi",
+      "canonical": "https://www.gyanvaniai.com/industries/hospitality",
+      "rootLength": 95835
+    },
+    {
+      "route": "/industries/legal",
+      "title": "Legal Practice CRM &amp; Case Management Software | Gyan VaniAi",
+      "canonical": "https://www.gyanvaniai.com/industries/legal",
+      "rootLength": 83479
+    },
+    {
+      "route": "/industries/logistics",
+      "title": "Logistics Software &amp; Tracking Systems | Gyan VaniAi",
+      "canonical": "https://www.gyanvaniai.com/industries/logistics",
+      "rootLength": 95859
+    },
+    {
+      "route": "/industries/manufacturing",
+      "title": "Manufacturing Software &amp; ERP Solutions | Gyan VaniAi",
+      "canonical": "https://www.gyanvaniai.com/industries/manufacturing",
+      "rootLength": 95858
+    },
+    {
+      "route": "/industries/real-estate",
+      "title": "Real Estate CRM &amp; WhatsApp Lead Automation 2026 | Gyan VaniAi",
+      "canonical": "https://www.gyanvaniai.com/industries/real-estate",
+      "rootLength": 79828
+    },
+    {
+      "route": "/industries/retail",
+      "title": "Retail CRM &amp; WhatsApp Commerce Automation 2026 | Gyan VaniAi",
+      "canonical": "https://www.gyanvaniai.com/industries/retail",
+      "rootLength": 81065
+    },
+    {
+      "route": "/industries/travel",
+      "title": "Travel Agency CRM &amp; Booking Automation | Gyan VaniAi",
+      "canonical": "https://www.gyanvaniai.com/industries/travel",
+      "rootLength": 95809
+    },
+    {
+      "route": "/pricing/enterprise",
+      "title": "Enterprise Plan: Custom AI CRM Pricing | Gyan VaniAi",
+      "canonical": "https://www.gyanvaniai.com/pricing/enterprise",
+      "rootLength": 45021
+    },
+    {
+      "route": "/pricing/growth",
+      "title": "Growth Plan ₹4,999/mo: AI CRM + Calling Agent | Gyan VaniAi",
+      "canonical": "https://www.gyanvaniai.com/pricing/growth",
+      "rootLength": 49846
+    },
+    {
+      "route": "/pricing",
+      "title": "Gyan VaniAi Pricing | AI CRM Plans from ₹1,999/mo",
+      "canonical": "https://www.gyanvaniai.com/pricing",
+      "rootLength": 86163
+    },
+    {
+      "route": "/pricing/scale",
+      "title": "Scale Plan ₹9,999/mo for High-Volume Teams | Gyan VaniAi",
+      "canonical": "https://www.gyanvaniai.com/pricing/scale",
+      "rootLength": 47561
+    },
+    {
+      "route": "/pricing/starter",
+      "title": "Starter Plan: ₹1,999/mo AI CRM &amp; WhatsApp | Gyan VaniAi",
+      "canonical": "https://www.gyanvaniai.com/pricing/starter",
+      "rootLength": 51849
+    },
+    {
+      "route": "/privacy",
+      "title": "Privacy Policy | Gyan VaniAi",
+      "canonical": "https://www.gyanvaniai.com/privacy",
+      "rootLength": 62008
+    },
+    {
+      "route": "/resources/mcp-ai-agent-tool-calling",
+      "title": "MCP &amp; AI Agent Tool Calling Guide 2026 | Enterprise Protocol | Gyan VaniAi",
+      "canonical": "https://www.gyanvaniai.com/resources/mcp-ai-agent-tool-calling",
+      "rootLength": 62400
+    },
+    {
+      "route": "/resources/sip-architecture",
+      "title": "SIP Architecture Guide 2026 | Enterprise Telephony &amp; Voice AI | Gyan VaniAi",
+      "canonical": "https://www.gyanvaniai.com/resources/sip-architecture",
+      "rootLength": 62865
+    },
+    {
+      "route": "/resources/voice-ai-infrastructure",
+      "title": "Voice AI Infrastructure Guide 2026 | Full-Duplex Architecture | Gyan VaniAi",
+      "canonical": "https://www.gyanvaniai.com/resources/voice-ai-infrastructure",
+      "rootLength": 63287
+    },
+    {
+      "route": "/resources/voice-ai-latency-benchmark",
+      "title": "Voice AI Latency Benchmark 2026 | Sub-300ms Turnaround | Gyan VaniAi",
+      "canonical": "https://www.gyanvaniai.com/resources/voice-ai-latency-benchmark",
+      "rootLength": 61806
+    },
+    {
+      "route": "/resources/where-to-find-us",
+      "title": "Official Brand Presence &amp; Verified Listings | Where to Find Us | Gyan VaniAi",
+      "canonical": "https://www.gyanvaniai.com/resources/where-to-find-us",
+      "rootLength": 79826
+    },
+    {
+      "route": "/security",
+      "title": "Enterprise AI Security &amp; Data Protection | Gyan VaniAi",
+      "canonical": "https://www.gyanvaniai.com/security",
+      "rootLength": 47839
+    },
+    {
+      "route": "/services/ai-agent-development",
+      "title": "Custom AI Agent Development Company | Gyan VaniAi",
+      "canonical": "https://www.gyanvaniai.com/services/ai-agent-development",
+      "rootLength": 94413
+    },
+    {
+      "route": "/services/ai-chatbots",
+      "title": "AI Chatbot Development Company | Custom RAG Chatbots | Gyan VaniAi",
+      "canonical": "https://www.gyanvaniai.com/services/ai-chatbots",
+      "rootLength": 104334
+    },
+    {
+      "route": "/services/ai-development",
+      "title": "AI Software Development Company | Custom AI Solutions | Gyan VaniAi",
+      "canonical": "https://www.gyanvaniai.com/services/ai-development",
+      "rootLength": 96896
+    },
+    {
+      "route": "/services/crm-development",
+      "title": "Custom AI CRM Development Company | Zero Seat Fees | Gyan VaniAi",
+      "canonical": "https://www.gyanvaniai.com/services/crm-development",
+      "rootLength": 94282
+    },
+    {
+      "route": "/services/erp-development",
+      "title": "Custom ERP Software Development | Gyan VaniAi",
+      "canonical": "https://www.gyanvaniai.com/services/erp-development",
+      "rootLength": 96025
+    },
+    {
+      "route": "/services/hrms-development",
+      "title": "HRMS Software Development | Custom HR Systems | Gyan VaniAi",
+      "canonical": "https://www.gyanvaniai.com/services/hrms-development",
+      "rootLength": 95978
+    },
+    {
+      "route": "/services/human-handoff-systems",
+      "title": "AI to Human Handoff Systems | Agent Escalation | Gyan VaniAi",
+      "canonical": "https://www.gyanvaniai.com/services/human-handoff-systems",
+      "rootLength": 95867
+    },
+    {
+      "route": "/services/ivr-solutions",
+      "title": "Smart IVR Solutions &amp; Conversational Voice Routing | Gyan VaniAi",
+      "canonical": "https://www.gyanvaniai.com/services/ivr-solutions",
+      "rootLength": 79154
+    },
+    {
+      "route": "/services/lead-management",
+      "title": "Lead Management Software | Capture &amp; Convert | Gyan VaniAi",
+      "canonical": "https://www.gyanvaniai.com/services/lead-management",
+      "rootLength": 94652
+    },
+    {
+      "route": "/services/mobile-app-development",
+      "title": "Business Mobile App Development | React Native &amp; Flutter | Gyan VaniAi",
+      "canonical": "https://www.gyanvaniai.com/services/mobile-app-development",
+      "rootLength": 95895
+    },
+    {
+      "route": "/services/phone-call-agent",
+      "title": "AI Phone Call Agent Assistant | SIP &amp; PBX Telephony | Gyan VaniAi",
+      "canonical": "https://www.gyanvaniai.com/services/phone-call-agent",
+      "rootLength": 98201
+    },
+    {
+      "route": "/services/sales-automation",
+      "title": "Sales Automation Software | Workflow &amp; Pipeline | Gyan VaniAi",
+      "canonical": "https://www.gyanvaniai.com/services/sales-automation",
+      "rootLength": 92477
+    },
+    {
+      "route": "/services/voice-bot-assistant",
+      "title": "AI Voice Bot Assistant | Conversational Voice AI | Gyan VaniAi",
+      "canonical": "https://www.gyanvaniai.com/services/voice-bot-assistant",
+      "rootLength": 87002
+    },
+    {
+      "route": "/services/web-development",
+      "title": "Custom Web Application Development | Gyan VaniAi",
+      "canonical": "https://www.gyanvaniai.com/services/web-development",
+      "rootLength": 95995
+    },
+    {
+      "route": "/services/whatsapp-automation",
+      "title": "WhatsApp Automation &amp; CRM | Meta Business API | Gyan VaniAi",
+      "canonical": "https://www.gyanvaniai.com/services/whatsapp-automation",
+      "rootLength": 99081
+    },
+    {
+      "route": "/services/whatsapp-calling-agent",
+      "title": "WhatsApp Calling Agent Bots | Voice AI Automation | Gyan VaniAi",
+      "canonical": "https://www.gyanvaniai.com/services/whatsapp-calling-agent",
+      "rootLength": 126105
+    },
+    {
+      "route": "/services/whatsapp-catalog-crm",
+      "title": "WhatsApp Catalog CRM | In-Chat Product Orders &amp; Sync | Gyan VaniAi",
+      "canonical": "https://www.gyanvaniai.com/services/whatsapp-catalog-crm",
+      "rootLength": 65217
+    },
+    {
+      "route": "/services/whatsapp-coexistence",
+      "title": "WhatsApp Coexistence Mode | Mobile App &amp; CRM Sync | Gyan VaniAi",
+      "canonical": "https://www.gyanvaniai.com/services/whatsapp-coexistence",
+      "rootLength": 87896
+    },
+    {
+      "route": "/terms",
+      "title": "Terms &amp; Conditions | Gyan VaniAi",
+      "canonical": "https://www.gyanvaniai.com/terms",
+      "rootLength": 46730
+    },
+    {
+      "route": "/tools/whatsapp-pricing-calculator",
+      "title": "WhatsApp Meta Pricing Calculator 2026 | Cloud API Cost Estimator | Gyan VaniAi",
+      "canonical": "https://www.gyanvaniai.com/tools/whatsapp-pricing-calculator",
+      "rootLength": 64404
+    }
+  ],
+  "noindexPages": [
+    {
+      "route": "/404",
+      "title": "Page Not Found | Gyan VaniAi",
+      "canonical": null
+    },
+    {
+      "route": "/seo/ai-visibility",
+      "title": "AEO AI Visibility &amp; Authority Dashboard | Gyan VaniAi Internal",
+      "canonical": null
+    },
+    {
+      "route": "/unsubscribe",
+      "title": "Page Not Found | Gyan VaniAi",
+      "canonical": null
+    }
+  ],
+  "canonicalUrls": {},
+  "duplicateCanonicals": [],
+  "brokenInternalLinks": [],
+  "redirectChains": [],
+  "statusErrors": [],
+  "sitemapInconsistencies": [],
+  "orphanCandidates": [],
+  "internalClickDepths": {
+    "/about": 1,
+    "/blog": 1,
+    "/blog/multi-agent-orchestration-future": 2,
+    "/blog/secure-rag-pipelines-enterprise": 2,
+    "/blog/whatsapp-business-api-automation": 2,
+    "/documentation": 1,
+    "/guides/crm-migration": 1,
+    "/": 0,
+    "/industries/education": 1,
+    "/industries/enterprise": 1,
+    "/industries/finance": 1,
+    "/industries/government": 1,
+    "/industries/healthcare": 1,
+    "/industries/hospitality": 1,
+    "/industries/legal": 1,
+    "/industries/logistics": 1,
+    "/industries/manufacturing": 1,
+    "/industries/real-estate": 1,
+    "/industries/retail": 1,
+    "/industries/travel": 1,
+    "/pricing/enterprise": 2,
+    "/pricing/growth": 2,
+    "/pricing": 1,
+    "/pricing/scale": 2,
+    "/pricing/starter": 2,
+    "/privacy": 1,
+    "/resources/mcp-ai-agent-tool-calling": 1,
+    "/resources/sip-architecture": 1,
+    "/resources/voice-ai-infrastructure": 1,
+    "/resources/voice-ai-latency-benchmark": 1,
+    "/resources/where-to-find-us": 1,
+    "/security": 1,
+    "/services/ai-agent-development": 1,
+    "/services/ai-chatbots": 1,
+    "/services/ai-development": 1,
+    "/services/crm-development": 1,
+    "/services/erp-development": 1,
+    "/services/hrms-development": 1,
+    "/services/human-handoff-systems": 1,
+    "/services/ivr-solutions": 1,
+    "/services/lead-management": 2,
+    "/services/mobile-app-development": 1,
+    "/services/phone-call-agent": 1,
+    "/services/sales-automation": 1,
+    "/services/voice-bot-assistant": 1,
+    "/services/web-development": 1,
+    "/services/whatsapp-automation": 1,
+    "/services/whatsapp-calling-agent": 1,
+    "/services/whatsapp-catalog-crm": 1,
+    "/services/whatsapp-coexistence": 1,
+    "/terms": 1,
+    "/tools/whatsapp-pricing-calculator": 1
+  },
+  "warnings": []
+}

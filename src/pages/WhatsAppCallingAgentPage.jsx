@@ -330,10 +330,15 @@ export default function WhatsAppCallingAgentPage() {
     image: `${SITE}/hero_dashboard.webp`
   };
 
+  const allVoiceFaqs = [
+    ...voiceCallingAiFacts.map(f => ({ q: f.question, a: f.answer })),
+    ...pageFaqs
+  ];
+
   const faqSchema = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: pageFaqs.map((item) => ({
+    mainEntity: allVoiceFaqs.map((item) => ({
       '@type': 'Question',
       name: item.q,
       acceptedAnswer: {
@@ -539,8 +544,7 @@ export default function WhatsAppCallingAgentPage() {
           </div>
         </section>
 
-        {/* AI Answer Extraction Block */}
-        <AiAnswerSummaryBlock items={voiceCallingAiFacts} title="WhatsApp Voice Calling Agent: Architectural Q&A Reference" />
+
 
         {/* =========================================================================
             2. TRUST / VALUE STRIP

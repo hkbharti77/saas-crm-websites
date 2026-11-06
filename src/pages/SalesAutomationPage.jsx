@@ -337,10 +337,15 @@ export default function SalesAutomationPage() {
     ]
   };
 
+  const allSalesFaqs = [
+    ...salesAiFacts.map(f => ({ q: f.question, a: f.answer })),
+    ...salesFaqs
+  ];
+
   const faqSchema = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: salesFaqs.map((faq) => ({
+    mainEntity: allSalesFaqs.map((faq) => ({
       '@type': 'Question',
       name: faq.q,
       acceptedAnswer: { '@type': 'Answer', text: faq.a }
@@ -438,8 +443,7 @@ export default function SalesAutomationPage() {
           </div>
         </section>
 
-        {/* AI Answer Extraction Block */}
-        <AiAnswerSummaryBlock items={salesAiFacts} title="Sales Automation: Architecture & Capability Facts" />
+
 
         {/* ==================================================================
             2. OVERVIEW / WHO IT'S FOR / WHAT YOU GET (3 ENTERPRISE CARDS)

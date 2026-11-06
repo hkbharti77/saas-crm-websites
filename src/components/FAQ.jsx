@@ -4,11 +4,21 @@ import { Helmet } from 'react-helmet-async';
 import { defaultFaqs } from '../data/faqs';
 import './FAQ.css';
 
-export default function FAQ({ includeSchema = true, customFaqs = null, title = "Frequently Asked Questions", subtitle = "Everything you need to know about our AI CRMs, integrations, and deployment timelines." }) {
+export default function FAQ({ 
+  includeSchema = true, 
+  customFaqs = null, 
+  items = null,
+  title = "Frequently Asked Questions", 
+  subtitle = "Everything you need to know about our AI CRMs, integrations, and deployment timelines." 
+}) {
   // Allow multiple FAQs to be open simultaneously (defaults to first 2 open for instant reading)
   const [openSet, setOpenSet] = useState(new Set([0, 1]));
 
-  const activeFaqs = customFaqs || defaultFaqs;
+  const rawFaqs = customFaqs || items || defaultFaqs;
+  const activeFaqs = rawFaqs.map(f => ({
+    question: f.question || f.q,
+    answer: f.answer || f.a
+  }));
   const allOpen = openSet.size === activeFaqs.length;
 
   const toggleFAQ = (index) => {

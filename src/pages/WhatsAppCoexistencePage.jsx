@@ -17,7 +17,9 @@ import {
   Lock,
   Radio,
   TrendingUp,
-  Cpu
+  Cpu,
+  CheckCircle2,
+  MessageSquare
 } from 'lucide-react';
 import Card3DTilt from '../components/ui/Card3DTilt';
 import AnimatedBeam from '../components/ui/AnimatedBeam';
@@ -182,12 +184,12 @@ export default function WhatsAppCoexistencePage() {
   const { theme } = useTheme();
   const isLight = theme === 'light';
 
-  // Animated beam container refs for dual-fanout pipeline
+  // Animated beam container and circle node refs for dual-fanout pipeline
   const beamContainerRef = useRef(null);
-  const customerNodeRef = useRef(null);
-  const metaGatewayNodeRef = useRef(null);
-  const mobileNodeRef = useRef(null);
-  const crmNodeRef = useRef(null);
+  const customerCircleRef = useRef(null);
+  const metaCircleRef = useRef(null);
+  const mobileCircleRef = useRef(null);
+  const crmCircleRef = useRef(null);
 
   useEffect(() => {
     if (!window.location.hash) {
@@ -231,10 +233,15 @@ export default function WhatsAppCoexistencePage() {
     image: 'https://www.gyanvaniai.com/whatsapp_coexistence_light.webp'
   };
 
+  const allCoexistenceFaqs = [
+    ...coexistenceAiFacts.map(f => ({ q: f.question, a: f.answer })),
+    ...faqs
+  ];
+
   const coexistenceFaqSchema = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: faqs.map((f) => ({
+    mainEntity: allCoexistenceFaqs.map((f) => ({
       '@type': 'Question',
       name: f.q,
       acceptedAnswer: {
@@ -432,8 +439,7 @@ export default function WhatsAppCoexistencePage() {
           </div>
         </section>
 
-        {/* AI Answer Extraction Block */}
-        <AiAnswerSummaryBlock items={coexistenceAiFacts} title="WhatsApp Coexistence: Architectural Q&A Reference" />
+
 
         {/* =========================================================================
             2. 8 UNLOCKED SUPERPOWERS GRID (Wrapped in 3D Card Tilt)
@@ -508,69 +514,182 @@ export default function WhatsAppCoexistencePage() {
               Every message travels through Meta official global gateway, fanning out in sub-300ms latency to both your physical phone and AI CRM webhook cluster.
             </p>
 
+            {/* Desktop / Tablet Interactive Stage */}
             <div ref={beamContainerRef} className="coex-beam-stage" aria-label="Meta Coexistence Dual Fanout Gateway Stage">
-              {/* Customer Node */}
-              <div ref={customerNodeRef} className="coex-beam-node customer">
-                <div className="coex-beam-circle">
-                  <Radio size={22} color="var(--primary-color)" />
+              {/* Telemetry Status Bar */}
+              <div className="coex-stage-topbar">
+                <div className="coex-stage-pill live">
+                  <span className="coex-live-beacon"></span>
+                  <span>Meta Official Fanout Protocol</span>
                 </div>
-                <span className="coex-beam-label">Inbound Customer Message</span>
-                <span className="coex-beam-sub">Official WABA Number</span>
+                <div className="coex-stage-pill metric">
+                  <Zap size={13} color="#25D366" />
+                  <span>Latency: &lt;280ms P99</span>
+                </div>
+                <div className="coex-stage-pill secure">
+                  <Lock size={13} color="var(--primary-color)" />
+                  <span>Dual-Socket Encrypted</span>
+                </div>
               </div>
 
-              {/* Central Meta Cloud Gateway with Magic UI Ripple */}
-              <div ref={metaGatewayNodeRef} className="coex-beam-node meta-hub">
-                <Ripple mainCircleSize={110} numCircles={4} circleColor="rgba(37, 211, 102, 0.3)" />
-                <div className="coex-beam-circle meta-circle">
-                  <GitFork size={26} color="#ffffff" />
-                </div>
-                <span className="coex-beam-label">Meta Cloud API Gateway</span>
-                <span className="coex-beam-sub">Sub-300ms Dual Fanout</span>
-              </div>
-
-              {/* Branch Container */}
-              <div className="coex-beam-destinations">
-                {/* Branch A: Mobile App */}
-                <div ref={mobileNodeRef} className="coex-beam-node branch branch-a">
-                  <div className="coex-beam-circle">
-                    <Smartphone size={22} color="#25D366" />
+              {/* Topology Grid: Column 1 (Customer) | Column 2 (Meta Hub) | Column 3 (Branches A & B) */}
+              <div className="coex-beam-grid">
+                {/* 1. Customer Inbound Node */}
+                <div className="coex-beam-node customer-node">
+                  <span className="coex-node-chip inbound-chip">Incoming Traffic</span>
+                  <div ref={customerCircleRef} className="coex-beam-circle customer-circle">
+                    <Radio size={24} color="#25D366" className="coex-pulse-icon" />
                   </div>
-                  <span className="coex-beam-label">Branch A: WhatsApp Mobile</span>
-                  <span className="coex-beam-sub">Reps Read & Reply on Phone</span>
+                  <div className="coex-beam-text-group">
+                    <h4 className="coex-beam-label">Inbound Customer</h4>
+                    <span className="coex-beam-sub">Official WABA Number</span>
+                    <span className="coex-beam-detail">Single Number Identity (+91/+1)</span>
+                  </div>
                 </div>
 
-                {/* Branch B: CRM & AI Agent */}
-                <div ref={crmNodeRef} className="coex-beam-node branch branch-b">
-                  <div className="coex-beam-circle">
-                    <Bot size={22} color="var(--primary-color)" />
+                {/* 2. Central Meta Cloud Gateway Hub with Centered Ripple */}
+                <div className="coex-beam-node meta-hub">
+                  <span className="coex-node-chip meta-chip">Central Router</span>
+                  <div className="coex-meta-circle-wrap">
+                    <Ripple mainCircleSize={80} numCircles={3} circleColor="rgba(37, 211, 102, 0.28)" />
+                    <div ref={metaCircleRef} className="coex-beam-circle meta-circle">
+                      <GitFork size={28} color="#ffffff" />
+                    </div>
                   </div>
-                  <span className="coex-beam-label">Branch B: Gyan VaniAi CRM</span>
-                  <span className="coex-beam-sub">24/7 AI Auto-Replies & Sync</span>
+                  <div className="coex-beam-text-group">
+                    <h4 className="coex-beam-label">Meta Cloud API Gateway</h4>
+                    <span className="coex-beam-sub">Instant Packet Fanout</span>
+                    <span className="coex-beam-badge">⚡ &lt;300ms Sub-Stream Split</span>
+                  </div>
+                </div>
+
+                {/* 3. Dual Destination Branches Container */}
+                <div className="coex-beam-destinations">
+                  {/* Branch A: WhatsApp Mobile App */}
+                  <div className="coex-beam-node branch-node branch-a">
+                    <div ref={mobileCircleRef} className="coex-beam-circle branch-circle mobile-circle">
+                      <Smartphone size={22} color="#25D366" />
+                    </div>
+                    <div className="coex-beam-text-group branch-text">
+                      <div className="coex-branch-header">
+                        <span className="coex-branch-tag tag-a">Branch A</span>
+                        <h4 className="coex-beam-label">WhatsApp Mobile App</h4>
+                      </div>
+                      <span className="coex-beam-sub">Reps read & reply on iOS/Android</span>
+                      <span className="coex-beam-status phone"><span className="status-dot"></span> Mobile Socket Active</span>
+                    </div>
+                  </div>
+
+                  {/* Branch B: Gyan VaniAi CRM */}
+                  <div className="coex-beam-node branch-node branch-b">
+                    <div ref={crmCircleRef} className="coex-beam-circle branch-circle crm-circle">
+                      <Bot size={22} color="#06b6d4" />
+                    </div>
+                    <div className="coex-beam-text-group branch-text">
+                      <div className="coex-branch-header">
+                        <span className="coex-branch-tag tag-b">Branch B</span>
+                        <h4 className="coex-beam-label">Gyan VaniAi AI CRM</h4>
+                      </div>
+                      <span className="coex-beam-sub">24/7 AI agent bot & auto-tagging</span>
+                      <span className="coex-beam-status crm"><span className="status-dot"></span> Webhook Dispatch Synced</span>
+                    </div>
+                  </div>
                 </div>
               </div>
 
-              {/* Animated Beams linking nodes */}
+              {/* Animated Beams: Customer -> Meta -> Branch A & Branch B */}
               <AnimatedBeam
                 containerRef={beamContainerRef}
-                fromRef={customerNodeRef}
-                toRef={metaGatewayNodeRef}
-                duration={2.5}
+                fromRef={customerCircleRef}
+                toRef={metaCircleRef}
+                duration={2.2}
                 delay={0}
+                curvature={0}
+                pathWidth={2.5}
+                pathColor="rgba(37, 211, 102, 0.28)"
+                gradientStartColor="#25D366"
+                gradientStopColor="#10B981"
               />
               <AnimatedBeam
                 containerRef={beamContainerRef}
-                fromRef={metaGatewayNodeRef}
-                toRef={mobileNodeRef}
-                duration={2.5}
-                delay={0.6}
+                fromRef={metaCircleRef}
+                toRef={mobileCircleRef}
+                duration={2.2}
+                delay={0.35}
+                curvature={-38}
+                pathWidth={2.5}
+                pathColor="rgba(37, 211, 102, 0.28)"
+                gradientStartColor="#25D366"
+                gradientStopColor="#34d399"
               />
               <AnimatedBeam
                 containerRef={beamContainerRef}
-                fromRef={metaGatewayNodeRef}
-                toRef={crmNodeRef}
-                duration={2.5}
-                delay={0.6}
+                fromRef={metaCircleRef}
+                toRef={crmCircleRef}
+                duration={2.2}
+                delay={0.35}
+                curvature={38}
+                pathWidth={2.5}
+                pathColor="rgba(6, 182, 212, 0.28)"
+                gradientStartColor="#10B981"
+                gradientStopColor="#06B6D4"
               />
+            </div>
+
+            {/* Mobile-Optimized Sequential Diagram (< 880px) */}
+            <div className="coex-mobile-topology-stack" aria-hidden="true">
+              <div className="coex-mobile-step">
+                <div className="coex-mobile-step-num">1</div>
+                <div className="coex-mobile-step-card">
+                  <div className="coex-mobile-step-icon"><Radio size={22} color="#25D366" /></div>
+                  <div className="coex-mobile-step-content">
+                    <strong>Inbound Customer Message</strong>
+                    <p>Customer sends WhatsApp to your official verified WABA number.</p>
+                    <span className="coex-branch-tag">Single Identity</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="coex-mobile-divider">
+                <span className="coex-mobile-div-label">⚡ &lt;280ms Official Meta Fanout</span>
+                <span className="coex-mobile-div-line"></span>
+              </div>
+
+              <div className="coex-mobile-step">
+                <div className="coex-mobile-step-num">2</div>
+                <div className="coex-mobile-step-card meta-step-card">
+                  <div className="coex-mobile-step-icon meta"><GitFork size={22} color="#ffffff" /></div>
+                  <div className="coex-mobile-step-content">
+                    <strong>Meta Cloud API Gateway Hub</strong>
+                    <p>Splits incoming packet into two concurrent real-time delivery sockets.</p>
+                    <span className="coex-branch-tag meta-badge">Sub-300ms Fanout</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="coex-mobile-divider">
+                <span className="coex-mobile-div-label">↳ Dual Simultaneous Deliveries ↲</span>
+                <span className="coex-mobile-div-line"></span>
+              </div>
+
+              <div className="coex-mobile-branches">
+                <div className="coex-mobile-step-card branch-card">
+                  <div className="coex-mobile-step-icon phone"><Smartphone size={20} color="#25D366" /></div>
+                  <div className="coex-mobile-step-content">
+                    <span className="coex-branch-tag tag-a">Branch A</span>
+                    <strong>WhatsApp Mobile Phone</strong>
+                    <p>Sales reps read & reply natively on iPhone/Android with zero latency.</p>
+                  </div>
+                </div>
+                <div className="coex-mobile-step-card branch-card">
+                  <div className="coex-mobile-step-icon crm"><Bot size={20} color="#06B6D4" /></div>
+                  <div className="coex-mobile-step-content">
+                    <span className="coex-branch-tag tag-b">Branch B</span>
+                    <strong>Gyan VaniAi CRM</strong>
+                    <p>AI agent auto-replies, updates pipelines, logs transcripts & syncs tickets.</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>

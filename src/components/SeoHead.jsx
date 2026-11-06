@@ -48,9 +48,9 @@ export default function SEOHead({
   geo = null,
   citationTitle = null
 }) {
-  const effectiveCanonical = canonical !== undefined 
-    ? canonical 
-    : (url || (noindex ? null : 'https://www.gyanvaniai.com/'));
+  const effectiveCanonical = noindex
+    ? null
+    : (canonical !== undefined ? canonical : (url || 'https://www.gyanvaniai.com/'));
   const currentPath = effectiveCanonical ? effectiveCanonical.replace('https://www.gyanvaniai.com', '') : '';
   const hreflangs = generateHreflangTags(currentPath);
   const geoMeta = getGeoTargeting(geo);
@@ -175,8 +175,6 @@ export default function SEOHead({
       {/* Geographic Targeting (rendered only when specified) */}
       {geoMeta['geo.region'] && <meta name="geo.region" content={geoMeta['geo.region']} />}
       {geoMeta['geo.placename'] && <meta name="geo.placename" content={geoMeta['geo.placename']} />}
-      {geoMeta['geo.position'] && <meta name="geo.position" content={geoMeta['geo.position']} />}
-      {geoMeta.ICBM && <meta name="ICBM" content={geoMeta.ICBM} />}
 
       {/* Distribution & Coverage */}
       <meta name="distribution" content="Global" />
