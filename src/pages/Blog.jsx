@@ -30,7 +30,17 @@ export default function Blog() {
         if (res.ok) {
           const data = await res.json();
           if (data.posts && data.posts.length > 0) {
-            setBlogs(data.posts);
+            const normalizedPosts = data.posts.map((p) => {
+              const rawImg = typeof p.featuredImage === 'string'
+                ? p.featuredImage
+                : (p.featuredImage?.url || p.imageUrl || p.coverImage || '');
+              const resolvedImg = rawImg?.startsWith('/uploads/') ? `${cmsApiBase}${rawImg}` : rawImg;
+              return {
+                ...p,
+                imageUrl: resolvedImg || p.imageUrl,
+              };
+            });
+            setBlogs(normalizedPosts);
             return;
           }
         }

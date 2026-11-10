@@ -53,15 +53,24 @@ export default function AnimatedBeam({
       const svgWidth = Math.round(containerRect.width);
       const svgHeight = Math.round(containerRect.height);
 
+      if (svgWidth <= 0 || svgHeight <= 0) return;
+
       setSvgDimensions(prev => {
         if (prev.width === svgWidth && prev.height === svgHeight) return prev;
         return { width: svgWidth, height: svgHeight };
       });
 
       const startX = fromRect.left - containerRect.left + fromRect.width / 2 + startXOffset;
-      const startY = fromRect.top - containerRect.top + fromRect.height / 2 + startYOffset;
+      let startY = fromRect.top - containerRect.top + fromRect.height / 2 + startYOffset;
       const endX = toRect.left - containerRect.left + toRect.width / 2 + endXOffset;
-      const endY = toRect.top - containerRect.top + toRect.height / 2 + endYOffset;
+      let endY = toRect.top - containerRect.top + toRect.height / 2 + endYOffset;
+
+      // Lock horizontal beam if vertical difference is small (e.g. flex row layout, subpixel reflow)
+      if (curvature === 0 && Math.abs(startY - endY) <= 12) {
+        const midY = (startY + endY) / 2;
+        startY = midY;
+        endY = midY;
+      }
 
       const controlX = (startX + endX) / 2;
       const controlY = (startY + endY) / 2 + curvature;
@@ -72,19 +81,35 @@ export default function AnimatedBeam({
 
     updatePath();
 
+    // Multi-phase sync for font loading, AOS transforms, and container layout stabilization
+    const rafId = requestAnimationFrame(updatePath);
+    const timer1 = setTimeout(updatePath, 60);
+    const timer2 = setTimeout(updatePath, 250);
+    const timer3 = setTimeout(updatePath, 600);
+
+    if (typeof document !== 'undefined' && document.fonts?.ready) {
+      document.fonts.ready.then(updatePath).catch(() => {});
+    }
+
     const resizeObserver = new ResizeObserver(() => {
       updatePath();
     });
 
-    if (containerRef?.current) {
-      resizeObserver.observe(containerRef.current);
-    }
+    if (containerRef?.current) resizeObserver.observe(containerRef.current);
+    if (fromRef?.current) resizeObserver.observe(fromRef.current);
+    if (toRef?.current) resizeObserver.observe(toRef.current);
 
     window.addEventListener('resize', updatePath);
+    window.addEventListener('scroll', updatePath, { passive: true });
 
     return () => {
+      cancelAnimationFrame(rafId);
+      clearTimeout(timer1);
+      clearTimeout(timer2);
+      clearTimeout(timer3);
       resizeObserver.disconnect();
       window.removeEventListener('resize', updatePath);
+      window.removeEventListener('scroll', updatePath);
     };
   }, [containerRef, fromRef, toRef, curvature, startXOffset, startYOffset, endXOffset, endYOffset]);
 
@@ -93,11 +118,12 @@ export default function AnimatedBeam({
   return (
     <svg
       fill="none"
-      width={svgDimensions.width || '100%'}
-      height={svgDimensions.height || '100%'}
+      width="100%"
+      height="100%"
       xmlns="http://www.w3.org/2000/svg"
       className={`animated-beam-svg ${className}`}
       viewBox={svgDimensions.width && svgDimensions.height ? `0 0 ${svgDimensions.width} ${svgDimensions.height}` : undefined}
+      preserveAspectRatio="none"
     >
       <defs>
         <filter id={`glow-${id}`} x="-20%" y="-20%" width="140%" height="140%">

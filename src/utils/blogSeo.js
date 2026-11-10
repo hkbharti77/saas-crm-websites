@@ -68,22 +68,33 @@ export function buildBlogPostingSchema(post, slugId) {
     inLanguage: 'en',
     datePublished: published,
     dateModified: modified,
-    author: (post.author && !post.author.toLowerCase().includes('team') && !post.author.toLowerCase().includes('gyan vaniai'))
-      ? {
+    author: (() => {
+      const aName = (typeof post.author === 'object' && post.author?.name)
+        ? post.author.name
+        : (post.authorDetails?.name || (typeof post.author === 'string' ? post.author : ''));
+      const aLinkedin = (typeof post.author === 'object' && post.author?.linkedin)
+        ? post.author.linkedin
+        : (post.authorDetails?.linkedin || post.authorLinkedin || '');
+
+      if (aName && !aName.toLowerCase().includes('team') && !aName.toLowerCase().includes('gyan vaniai')) {
+        return {
           '@type': 'Person',
-          name: post.author,
+          name: aName,
+          ...(aLinkedin ? { sameAs: aLinkedin } : {}),
           worksFor: {
             '@type': 'Organization',
             '@id': `${SITE}/#organization`,
             name: 'Gyan VaniAi'
           }
-        }
-      : {
-          '@type': 'Organization',
-          '@id': `${SITE}/#organization`,
-          name: post.author || 'Gyan VaniAi Product Team',
-          url: `${SITE}/about`
-        },
+        };
+      }
+      return {
+        '@type': 'Organization',
+        '@id': `${SITE}/#organization`,
+        name: aName || 'Gyan VaniAi Product Team',
+        url: `${SITE}/about`
+      };
+    })(),
     publisher: {
       '@type': 'Organization',
       '@id': `${SITE}/#organization`,

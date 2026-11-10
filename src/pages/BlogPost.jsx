@@ -174,7 +174,15 @@ export default function BlogPost() {
         if (res.ok) {
           const data = await res.json();
           if (data.post) {
-            setPost(data.post);
+            const rawImg = typeof data.post.featuredImage === 'string'
+              ? data.post.featuredImage
+              : (data.post.featuredImage?.url || data.post.imageUrl || data.post.coverImage || '');
+            const resolvedImg = rawImg?.startsWith('/uploads/') ? `${cmsApiBase}${rawImg}` : rawImg;
+            const normalizedPost = {
+              ...data.post,
+              imageUrl: resolvedImg || data.post.imageUrl,
+            };
+            setPost(normalizedPost);
             if (data.post.prevPost) setPrevPost(data.post.prevPost);
             if (data.post.nextPost) setNextPost(data.post.nextPost);
             setLoading(false);
@@ -405,6 +413,37 @@ export default function BlogPost() {
   };
   const schema = [buildBlogPostingSchema(safePost, id), buildBlogBreadcrumbSchema(safePost, id)];
 
+  // Clean Author Details (LinkedIn-style card)
+  const authorName = (typeof post.author === 'object' && post.author?.name)
+    ? post.author.name
+    : (post.authorDetails?.name || (typeof post.author === 'string' && post.author ? post.author : 'Himanshu Bharti'));
+
+  const authorRole = (typeof post.author === 'object' && post.author?.role)
+    ? post.author.role
+    : (post.authorDetails?.role || post.authorRole || 'SOFTWARE ENGINEER');
+
+  const rawAuthorAvatar = (typeof post.author === 'object' && (post.author?.avatar || post.author?.image))
+    ? (post.author.avatar || post.author.image)
+    : (post.authorDetails?.avatar || post.authorAvatar || post.authorImage || '');
+  const authorAvatar = rawAuthorAvatar?.startsWith('/uploads/') ? `${API_BASE_URL}${rawAuthorAvatar}` : rawAuthorAvatar;
+
+  const isHimanshu = authorName.toLowerCase().includes('himanshu');
+  const authorLinkedin = (typeof post.author === 'object' && post.author?.linkedin)
+    ? post.author.linkedin
+    : (post.authorDetails?.linkedin || post.authorLinkedin || (isHimanshu ? 'https://www.linkedin.com/in/himanshu-bharti-4b772b1bb/' : ''));
+
+  const authorBio = (typeof post.author === 'object' && post.author?.bio)
+    ? post.author.bio
+    : (post.authorDetails?.bio || post.authorBio || `${authorName} is a ${authorRole.toLowerCase()} with hands-on experience in building modern web applications, backend architecture, and emerging AI application workflows.`);
+
+  const authorInitials = authorName
+    .split(' ')
+    .filter(Boolean)
+    .map((p) => p[0])
+    .slice(0, 2)
+    .join('')
+    .toUpperCase() || 'HB';
+
   return (
     <>
       <SeoHead
@@ -481,13 +520,13 @@ export default function BlogPost() {
 
             {/* Editorial Metadata Bar */}
             <div className="blog-editorial-meta">
-              {post.author && (
+              {authorName && (
                 <div className="meta-item">
                   <User size={15} className="meta-icon" />
-                  <span>{post.author}</span>
+                  <span>{authorName}</span>
                 </div>
               )}
-              {post.author && post.date && <span className="meta-dot" aria-hidden="true">•</span>}
+              {authorName && post.date && <span className="meta-dot" aria-hidden="true">•</span>}
               {post.date && (
                 <div className="meta-item">
                   <Calendar size={15} className="meta-icon" />
@@ -560,11 +599,17 @@ export default function BlogPost() {
         </header>
 
         {/* Hero Image */}
-        {post.imageUrl && (
+        {(post.imageUrl || post.featuredImage) && (
           <div className="blog-editorial-container blog-hero-image-wrap">
             <div className="blog-hero-image-frame">
               <img
-                src={post.imageUrl || '/portfolio_crm.webp'}
+                src={(() => {
+                  const raw = typeof post.featuredImage === 'string'
+                    ? post.featuredImage
+                    : (post.featuredImage?.url || post.imageUrl || '/portfolio_crm.webp');
+                  if (raw && raw.startsWith('/uploads/')) return `${API_BASE_URL}${raw}`;
+                  return raw || '/portfolio_crm.webp';
+                })()}
                 alt={`${post.title} | Gyan VaniAi`}
                 width="1200"
                 height="675"
@@ -636,39 +681,53 @@ export default function BlogPost() {
                 </div>
               )}
 
-              {/* Author & Editorial Credibility Card */}
-              <section className="blog-author-card" aria-label="Author and editorial information">
-                <div className="author-card-header">
-                  <div className="author-avatar-badge">
-                    <User size={24} />
-                  </div>
-                  <div className="author-info-main">
-                    <div className="author-name-row">
-                      <h3 className="author-name">{post.author || 'Gyan VaniAi Architecture Team'}</h3>
-                      <span className="author-badge">Verified Expert</span>
+              {/* Author Card - Clean LinkedIn Style */}
+              <section className="blog-author-card" aria-label="Author information">
+                <div className="blog-author-avatar-wrap">
+                  {authorAvatar ? (
+                    <img
+                      src={authorAvatar}
+                      alt={authorName}
+                      className="blog-author-avatar-img"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <div className="blog-author-avatar-fallback" aria-hidden="true">
+                      {authorInitials}
                     </div>
-                    <p className="author-role">Enterprise Systems &amp; AI Research Group at Gyan VaniAi</p>
-                  </div>
+                  )}
                 </div>
 
-                <p className="author-bio">
-                  Authored by the engineering and solutions team at Gyan VaniAi. Focused on high-throughput Meta Cloud API integrations, autonomous multi-agent tool calling, sub-400ms voice pipelines, and single-tenant enterprise CRM architecture.
-                </p>
+                <div className="blog-author-content">
+                  <h3 className="blog-author-name">{authorName}</h3>
 
-                <div className="author-editorial-bar">
-                  <div className="editorial-badge">
-                    <ShieldCheck size={16} color="#10b981" />
-                    <span>Fact-checked &amp; reviewed under Gyan VaniAi Technical Standards.</span>
+                  <div className="blog-author-role-row">
+                    {authorLinkedin ? (
+                      <a
+                        href={authorLinkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="blog-author-linkedin-link"
+                        aria-label={`${authorName} on LinkedIn`}
+                      >
+                        <svg className="blog-author-linkedin-icon" viewBox="0 0 24 24" fill="currentColor" width="17" height="17" aria-hidden="true">
+                          <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                        </svg>
+                        <span className="blog-author-role-text">{authorRole.toUpperCase()}</span>
+                      </a>
+                    ) : (
+                      <span className="blog-author-linkedin-link static">
+                        <svg className="blog-author-linkedin-icon" viewBox="0 0 24 24" fill="currentColor" width="17" height="17" aria-hidden="true">
+                          <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                        </svg>
+                        <span className="blog-author-role-text">{authorRole.toUpperCase()}</span>
+                      </span>
+                    )}
                   </div>
-                  <div className="author-social-links">
-                    <a href="https://github.com/gyanvaniai" target="_blank" rel="noopener noreferrer" className="author-link" aria-label="Gyan VaniAi on GitHub">
-                      GitHub
-                    </a>
-                    <span>·</span>
-                    <a href="https://www.linkedin.com/company/gyan-vaniai" target="_blank" rel="noopener noreferrer" className="author-link" aria-label="Gyan VaniAi on LinkedIn">
-                      LinkedIn
-                    </a>
-                  </div>
+
+                  <p className="blog-author-bio">
+                    {authorBio}
+                  </p>
                 </div>
               </section>
 

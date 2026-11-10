@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useMemo } from 'react';
 import { 
   UserPlus, 
   Database, 
@@ -92,12 +92,66 @@ export default function Process({
   const currentSteps = steps || workflowSteps;
   const activeStepData = currentSteps[activeStep] || currentSteps[0];
 
-  // Animated Beam refs
+  // Animated Beam refs attached directly to circles for exact horizontal center alignment
   const beamContainerRef = useRef(null);
   const node1Ref = useRef(null);
   const node2Ref = useRef(null);
   const node3Ref = useRef(null);
   const node4Ref = useRef(null);
+
+  // Derive 4 milestone stage nodes dynamically from currentSteps
+  const milestoneNodes = useMemo(() => {
+    const total = currentSteps.length;
+    const indices = total >= 8 
+      ? [0, 2, 5, 7] 
+      : total === 6 
+      ? [0, 1, 3, 5] 
+      : total === 5 
+      ? [0, 1, 3, 4] 
+      : total === 4 
+      ? [0, 1, 2, 3] 
+      : [0, Math.min(1, total - 1), Math.min(2, total - 1), Math.min(3, total - 1)];
+
+    const fallbackIcons = [
+      <UserPlus size={22} />,
+      <BrainCircuit size={22} />,
+      <Bot size={22} />,
+      <CheckCircle2 size={22} />
+    ];
+
+    const fallbackLabels = [
+      { num: '01', title: 'Intake', sub: 'Multichannel' },
+      { num: '03', title: 'NLU Intent', sub: 'Live NLP' },
+      { num: '06', title: '24/7 Agent', sub: 'Autonomous' },
+      { num: '08', title: 'Closed-Won', sub: 'ERP Sync' }
+    ];
+
+    return indices.map((stepIdx, mIdx) => {
+      const step = currentSteps[stepIdx] || {};
+      const fallback = fallbackLabels[mIdx];
+      
+      let iconElement = fallbackIcons[mIdx];
+      if (step.icon) {
+        if (typeof step.icon === 'string') {
+          iconElement = renderLucideIcon(step.icon, 22) || fallbackIcons[mIdx];
+        } else if (React.isValidElement(step.icon)) {
+          iconElement = step.icon;
+        }
+      }
+
+      const num = step.stepNum || fallback.num;
+      const title = steps ? (step.title || fallback.title) : fallback.title;
+      const sub = steps ? (step.category || fallback.sub) : fallback.sub;
+
+      return {
+        stepIndex: stepIdx,
+        num,
+        title,
+        sub,
+        icon: iconElement
+      };
+    });
+  }, [currentSteps, steps]);
 
   return (
     <section className="section bg-tinted" id="how-it-works" style={{ padding: '5rem 0' }}>
@@ -114,51 +168,47 @@ export default function Process({
           <div className="process-beam-aura"></div>
 
           <div 
-            ref={node1Ref} 
-            className={`process-beam-node ${activeStep === 0 ? 'active' : ''}`}
-            onClick={() => setActiveStep(0)}
+            className={`process-beam-node ${activeStep === milestoneNodes[0].stepIndex ? 'active' : ''}`}
+            onClick={() => setActiveStep(milestoneNodes[0].stepIndex)}
           >
-            <div className="process-beam-circle">
-              <UserPlus size={22} />
+            <div ref={node1Ref} className="process-beam-circle">
+              {milestoneNodes[0].icon}
             </div>
-            <span className="process-beam-lbl">01. Intake</span>
-            <span className="process-beam-sub">Multichannel</span>
+            <span className="process-beam-lbl">{milestoneNodes[0].num}. {milestoneNodes[0].title}</span>
+            <span className="process-beam-sub">{milestoneNodes[0].sub}</span>
           </div>
 
           <div 
-            ref={node2Ref} 
-            className={`process-beam-node ${activeStep === 2 ? 'active' : ''}`}
-            onClick={() => setActiveStep(2)}
+            className={`process-beam-node ${activeStep === milestoneNodes[1].stepIndex ? 'active' : ''}`}
+            onClick={() => setActiveStep(milestoneNodes[1].stepIndex)}
           >
-            <div className="process-beam-circle">
-              <BrainCircuit size={22} />
+            <div ref={node2Ref} className="process-beam-circle">
+              {milestoneNodes[1].icon}
             </div>
-            <span className="process-beam-lbl">03. NLU Intent</span>
-            <span className="process-beam-sub">Live NLP</span>
+            <span className="process-beam-lbl">{milestoneNodes[1].num}. {milestoneNodes[1].title}</span>
+            <span className="process-beam-sub">{milestoneNodes[1].sub}</span>
           </div>
 
           <div 
-            ref={node3Ref} 
-            className={`process-beam-node ${activeStep === 5 ? 'active' : ''}`}
-            onClick={() => setActiveStep(5)}
+            className={`process-beam-node ${activeStep === milestoneNodes[2].stepIndex ? 'active' : ''}`}
+            onClick={() => setActiveStep(milestoneNodes[2].stepIndex)}
           >
-            <div className="process-beam-circle">
-              <Bot size={22} />
+            <div ref={node3Ref} className="process-beam-circle">
+              {milestoneNodes[2].icon}
             </div>
-            <span className="process-beam-lbl">06. 24/7 Agent</span>
-            <span className="process-beam-sub">Autonomous</span>
+            <span className="process-beam-lbl">{milestoneNodes[2].num}. {milestoneNodes[2].title}</span>
+            <span className="process-beam-sub">{milestoneNodes[2].sub}</span>
           </div>
 
           <div 
-            ref={node4Ref} 
-            className={`process-beam-node ${activeStep === 7 ? 'active' : ''}`}
-            onClick={() => setActiveStep(7)}
+            className={`process-beam-node ${activeStep === milestoneNodes[3].stepIndex ? 'active' : ''}`}
+            onClick={() => setActiveStep(milestoneNodes[3].stepIndex)}
           >
-            <div className="process-beam-circle">
-              <CheckCircle2 size={22} />
+            <div ref={node4Ref} className="process-beam-circle">
+              {milestoneNodes[3].icon}
             </div>
-            <span className="process-beam-lbl">08. Closed-Won</span>
-            <span className="process-beam-sub">ERP Sync</span>
+            <span className="process-beam-lbl">{milestoneNodes[3].num}. {milestoneNodes[3].title}</span>
+            <span className="process-beam-sub">{milestoneNodes[3].sub}</span>
           </div>
 
           {/* Animated Laser Beams Connecting Stages */}

@@ -700,38 +700,34 @@ export default function WhatsAppCallingAgentPage() {
             {/* 3D Animated Laser Beam Visual Hub */}
             <div ref={beamContainerRef} className="wa-beam-stage" aria-label="3D Pipeline Connector Stage">
               <div 
-                ref={beamNode1Ref} 
                 className={`wa-beam-node ${activePipelineStep === 0 ? 'active' : ''}`}
                 onClick={() => setActivePipelineStep(0)}
               >
-                <div className="wa-beam-circle"><PhoneCall size={20} /></div>
+                <div ref={beamNode1Ref} className="wa-beam-circle"><PhoneCall size={20} /></div>
                 <span className="wa-beam-node-name">01. Call Ingestion</span>
               </div>
 
               <div 
-                ref={beamNode2Ref} 
                 className={`wa-beam-node ${activePipelineStep === 2 ? 'active' : ''}`}
                 onClick={() => setActivePipelineStep(2)}
               >
-                <div className="wa-beam-circle"><BrainCircuit size={20} /></div>
+                <div ref={beamNode2Ref} className="wa-beam-circle"><BrainCircuit size={20} /></div>
                 <span className="wa-beam-node-name">03. NLU Intent</span>
               </div>
 
               <div 
-                ref={beamNode3Ref} 
                 className={`wa-beam-node ${activePipelineStep === 5 ? 'active' : ''}`}
                 onClick={() => setActivePipelineStep(5)}
               >
-                <div className="wa-beam-circle"><Database size={20} /></div>
+                <div ref={beamNode3Ref} className="wa-beam-circle"><Database size={20} /></div>
                 <span className="wa-beam-node-name">06. CRM Action</span>
               </div>
 
               <div 
-                ref={beamNode4Ref} 
                 className={`wa-beam-node ${activePipelineStep === 7 ? 'active' : ''}`}
                 onClick={() => setActivePipelineStep(7)}
               >
-                <div className="wa-beam-circle"><Headset size={20} /></div>
+                <div ref={beamNode4Ref} className="wa-beam-circle"><Headset size={20} /></div>
                 <span className="wa-beam-node-name">08. Human Handoff</span>
               </div>
 

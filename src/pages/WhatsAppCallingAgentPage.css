@@ -739,6 +739,7 @@
   border: 1px solid color-mix(in srgb, var(--wa-primary) 22%, var(--border-color));
   border-radius: var(--wa-radius-lg);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
 }
 
 .wa-beam-node {
@@ -767,6 +768,9 @@
   justify-content: center;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
   transition: all 0.25s ease;
+  position: relative;
+  z-index: 6;
+  flex-shrink: 0;
 }
 
 .wa-beam-node.active .wa-beam-circle {

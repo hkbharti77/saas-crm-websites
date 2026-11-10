@@ -326,7 +326,7 @@
   border: 1px solid color-mix(in srgb, var(--primary-color) 20%, var(--border-color));
   border-radius: var(--radius-lg, 16px);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-  overflow: visible;
+  overflow: hidden;
 }
 
 .process-beam-aura {
@@ -335,6 +335,7 @@
   border-radius: inherit;
   background: radial-gradient(circle at 50% 50%, color-mix(in srgb, var(--primary-color) 12%, transparent) 0%, transparent 80%);
   pointer-events: none;
+  z-index: 1;
 }
 
 .process-beam-node {
@@ -345,6 +346,7 @@
   align-items: center;
   cursor: pointer;
   transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  text-align: center;
 }
 
 .process-beam-node:hover {
@@ -370,6 +372,9 @@
   justify-content: center;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
   transition: all 0.25s ease;
+  position: relative;
+  z-index: 6;
+  flex-shrink: 0;
 }
 
 .process-beam-lbl {
@@ -378,12 +383,14 @@
   color: var(--text-primary);
   margin-top: 0.5rem;
   letter-spacing: -0.01em;
+  white-space: nowrap;
 }
 
 .process-beam-sub {
   font-size: 0.72rem;
   font-weight: 600;
   color: var(--text-muted);
+  white-space: nowrap;
 }
 
 /* Card 3D Wrap */
@@ -394,8 +401,9 @@
 
 @media (max-width: 768px) {
   .process-beam-stage {
-    padding: 0 1rem;
+    padding: 0 1.25rem;
     height: 120px;
+    margin: 1.25rem auto 2.25rem;
   }
   .process-beam-circle {
     width: 44px;
@@ -406,6 +414,20 @@
   }
   .process-beam-sub {
     display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .process-beam-stage {
+    padding: 0 0.75rem;
+    height: 110px;
+  }
+  .process-beam-circle {
+    width: 38px;
+    height: 38px;
+  }
+  .process-beam-lbl {
+    font-size: 0.65rem;
   }
 }
 
