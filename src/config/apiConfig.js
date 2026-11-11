@@ -1,7 +1,9 @@
 /**
  * Centralized Backend & API Configuration for GyanVaniAi Storefront
- * Reads exclusively from environment variables (import.meta.env)
+ * Connects directly to production CMS backend or local development server
  */
+
+export const PRODUCTION_CMS_BACKEND = 'https://api-cms.gyanvaniai.info';
 
 const rawBackendUrl = (
   import.meta.env.VITE_BACKEND_URL ||
@@ -15,25 +17,20 @@ function resolveBackendUrl() {
   const isLocalHost = isBrowser && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
 
   if (rawBackendUrl) {
-    // If running in browser on localhost or during SSG build, allow configured URL
-    if (!isBrowser || isLocalHost) {
-      return rawBackendUrl;
+    // If on a live public domain in browser, never call localhost (prevents ERR_CONNECTION_REFUSED)
+    if (isBrowser && !isLocalHost && (rawBackendUrl.includes('localhost') || rawBackendUrl.includes('127.0.0.1'))) {
+      return PRODUCTION_CMS_BACKEND;
     }
-    // If rawBackendUrl points to a non-localhost remote URL, use it
-    if (!rawBackendUrl.includes('localhost') && !rawBackendUrl.includes('127.0.0.1')) {
-      return rawBackendUrl;
-    }
-    // If on a live public domain with localhost config, return empty string for relative proxying
-    return '';
+    return rawBackendUrl;
   }
 
   // Local development fallback
-  if (!isBrowser || isLocalHost) {
+  if (isBrowser && isLocalHost) {
     return 'http://localhost:5000';
   }
 
-  // Production fallback: relative endpoint for reverse proxy
-  return '';
+  // Live production storefront and SSG build fallback
+  return PRODUCTION_CMS_BACKEND;
 }
 
 export const BACKEND_URL = resolveBackendUrl();
@@ -46,18 +43,19 @@ export const IS_BACKEND_CONFIGURED = Boolean(BACKEND_URL);
  * @returns {string} Fully qualified URL or empty string if not configured
  */
 export function getApiUrl(endpoint = '') {
-  if (!BACKEND_URL) return '';
-  if (!endpoint) return BACKEND_URL;
+  const base = BACKEND_URL || PRODUCTION_CMS_BACKEND;
+  if (!endpoint) return base;
   if (endpoint.startsWith('http://') || endpoint.startsWith('https://')) {
     return endpoint;
   }
   const cleanEndpoint = endpoint.startsWith('/') ? endpoint : `/${endpoint}`;
-  return `${BACKEND_URL}${cleanEndpoint}`;
+  return `${base}${cleanEndpoint}`;
 }
 
 export default {
   BACKEND_URL,
   API_BASE_URL,
   IS_BACKEND_CONFIGURED,
+  PRODUCTION_CMS_BACKEND,
   getApiUrl,
 };

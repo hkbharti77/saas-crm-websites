@@ -125,6 +125,14 @@
   ],
   "rewrites": [
     {
+      "source": "/api/public/:path*",
+      "destination": "https://api-cms.gyanvaniai.info/api/public/:path*"
+    },
+    {
+      "source": "/uploads/:path*",
+      "destination": "https://api-cms.gyanvaniai.info/uploads/:path*"
+    },
+    {
       "source": "/media/:path*",
       "destination": "/api/media?path=:path*"
     },
