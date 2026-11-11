@@ -170,7 +170,7 @@ export default function BlogPost() {
         const previewToken = searchParams ? searchParams.get('preview') : null;
         const previewQuery = previewToken ? `?preview=${encodeURIComponent(previewToken)}` : '';
 
-        const res = await fetch(`${cmsApiBase}/api/public/posts/${id}${previewQuery}`);
+        const res = await fetch(`${cmsApiBase}/api/public/posts/${encodeURIComponent(id)}?channel=all${previewQuery ? `&${previewQuery.replace(/^\?/, '')}` : ''}`);
         if (res.ok) {
           const data = await res.json();
           if (data.post) {
