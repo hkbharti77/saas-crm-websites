@@ -132,9 +132,11 @@ export default function CategoryPage() {
           </div>
         ) : (
           <div className="blog-grid">
-            {blogs.map((post) => (
+            {blogs.map((post) => {
+              const postSlug = post.slug || post.slugId || post.id;
+              return (
               <article key={post.id} className="blog-card">
-                <Link to={`/blog/${post.slugId || post.id}`} className="blog-card-image-link">
+                <Link to={`/blog/${postSlug}`} className="blog-card-image-link">
                   <img
                     src={post.imageUrl || 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=400&q=80'}
                     alt={post.title}
@@ -150,7 +152,7 @@ export default function CategoryPage() {
                     <span className="blog-card-category">{post.category}</span>
                   )}
                   <h2 className="blog-card-title">
-                    <Link to={`/blog/${post.slugId || post.id}`}>{post.title}</Link>
+                    <Link to={`/blog/${postSlug}`}>{post.title}</Link>
                   </h2>
                   <p className="blog-card-excerpt">{post.excerpt}</p>
                   <div className="blog-card-meta">
@@ -162,12 +164,12 @@ export default function CategoryPage() {
                       <span className="blog-card-read-time">{post.readTime}</span>
                     )}
                   </div>
-                  <Link to={`/blog/${post.slugId || post.id}`} className="blog-card-link">
+                  <Link to={`/blog/${postSlug}`} className="blog-card-link">
                     Read Article <ArrowRight size={14} />
                   </Link>
                 </div>
               </article>
-            ))}
+            );})}
           </div>
         )}
 

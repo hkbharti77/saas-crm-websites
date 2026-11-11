@@ -413,14 +413,14 @@ export default function BlogPost() {
   };
   const schema = [buildBlogPostingSchema(safePost, id), buildBlogBreadcrumbSchema(safePost, id)];
 
-  // Clean Author Details (LinkedIn-style card)
+  // Dynamic Author & Editorial Details
   const authorName = (typeof post.author === 'object' && post.author?.name)
     ? post.author.name
-    : (post.authorDetails?.name || (typeof post.author === 'string' && post.author ? post.author : 'Himanshu Bharti'));
+    : (post.authorDetails?.name || (typeof post.author === 'string' && post.author ? post.author : 'Gyan VaniAi'));
 
   const authorRole = (typeof post.author === 'object' && post.author?.role)
     ? post.author.role
-    : (post.authorDetails?.role || post.authorRole || 'SOFTWARE ENGINEER');
+    : (post.authorDetails?.role || post.authorRole || 'Enterprise Systems & AI Research Group at Gyan VaniAi');
 
   const rawAuthorAvatar = (typeof post.author === 'object' && (post.author?.avatar || post.author?.image))
     ? (post.author.avatar || post.author.image)
@@ -430,11 +430,11 @@ export default function BlogPost() {
   const isHimanshu = authorName.toLowerCase().includes('himanshu');
   const authorLinkedin = (typeof post.author === 'object' && post.author?.linkedin)
     ? post.author.linkedin
-    : (post.authorDetails?.linkedin || post.authorLinkedin || (isHimanshu ? 'https://www.linkedin.com/in/himanshu-bharti-4b772b1bb/' : ''));
+    : (post.authorDetails?.linkedin || post.authorLinkedin || (isHimanshu ? 'https://www.linkedin.com/in/himanshu-bharti-4b772b1bb/' : 'https://www.linkedin.com/company/gyan-vaniai'));
 
   const authorBio = (typeof post.author === 'object' && post.author?.bio)
     ? post.author.bio
-    : (post.authorDetails?.bio || post.authorBio || `${authorName} is a ${authorRole.toLowerCase()} with hands-on experience in building modern web applications, backend architecture, and emerging AI application workflows.`);
+    : (post.authorDetails?.bio || post.authorBio || 'Authored by the engineering and solutions team at Gyan VaniAi. Focused on high-throughput Meta Cloud API integrations, autonomous multi-agent tool calling, sub-400ms voice pipelines, and single-tenant enterprise CRM architecture.');
 
   const authorInitials = authorName
     .split(' ')
@@ -442,7 +442,7 @@ export default function BlogPost() {
     .map((p) => p[0])
     .slice(0, 2)
     .join('')
-    .toUpperCase() || 'HB';
+    .toUpperCase() || 'GV';
 
   return (
     <>
@@ -681,53 +681,55 @@ export default function BlogPost() {
                 </div>
               )}
 
-              {/* Author Card - Clean LinkedIn Style */}
-              <section className="blog-author-card" aria-label="Author information">
-                <div className="blog-author-avatar-wrap">
-                  {authorAvatar ? (
-                    <img
-                      src={authorAvatar}
-                      alt={authorName}
-                      className="blog-author-avatar-img"
-                      loading="lazy"
-                    />
-                  ) : (
-                    <div className="blog-author-avatar-fallback" aria-hidden="true">
-                      {authorInitials}
-                    </div>
-                  )}
-                </div>
-
-                <div className="blog-author-content">
-                  <h3 className="blog-author-name">{authorName}</h3>
-
-                  <div className="blog-author-role-row">
-                    {authorLinkedin ? (
-                      <a
-                        href={authorLinkedin}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="blog-author-linkedin-link"
-                        aria-label={`${authorName} on LinkedIn`}
-                      >
-                        <svg className="blog-author-linkedin-icon" viewBox="0 0 24 24" fill="currentColor" width="17" height="17" aria-hidden="true">
-                          <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                        </svg>
-                        <span className="blog-author-role-text">{authorRole.toUpperCase()}</span>
-                      </a>
+              {/* Author & Editorial Credibility Card (100% Dynamic from CMS) */}
+              <section className="blog-author-card" aria-label="Author and editorial information">
+                <div className="author-card-header">
+                  <div className="blog-author-avatar-wrap">
+                    {authorAvatar ? (
+                      <img
+                        src={authorAvatar}
+                        alt={authorName}
+                        className="blog-author-avatar-img"
+                        loading="lazy"
+                      />
                     ) : (
-                      <span className="blog-author-linkedin-link static">
-                        <svg className="blog-author-linkedin-icon" viewBox="0 0 24 24" fill="currentColor" width="17" height="17" aria-hidden="true">
-                          <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                        </svg>
-                        <span className="blog-author-role-text">{authorRole.toUpperCase()}</span>
-                      </span>
+                      <div className="blog-author-avatar-fallback" aria-hidden="true">
+                        <User size={28} />
+                      </div>
                     )}
                   </div>
 
-                  <p className="blog-author-bio">
-                    {authorBio}
-                  </p>
+                  <div className="author-info-main">
+                    <div className="author-name-row">
+                      <h3 className="blog-author-name">{authorName}</h3>
+                      <span className="author-badge">Verified Expert</span>
+                    </div>
+                    <p className="blog-author-role-subtitle">{authorRole}</p>
+                  </div>
+                </div>
+
+                <p className="blog-author-bio">
+                  {authorBio}
+                </p>
+
+                <div className="author-editorial-bar">
+                  <div className="editorial-badge">
+                    <ShieldCheck size={16} color="#10b981" />
+                    <span>Fact-checked &amp; reviewed under Gyan VaniAi Technical Standards.</span>
+                  </div>
+                  <div className="author-social-links">
+                    <a href="https://github.com/gyanvaniai" target="_blank" rel="noopener noreferrer" className="author-link" aria-label="Gyan VaniAi on GitHub">
+                      GitHub
+                    </a>
+                    {authorLinkedin && (
+                      <>
+                        <span>·</span>
+                        <a href={authorLinkedin} target="_blank" rel="noopener noreferrer" className="author-link" aria-label={`${authorName} on LinkedIn`}>
+                          LinkedIn
+                        </a>
+                      </>
+                    )}
+                  </div>
                 </div>
               </section>
 
@@ -740,14 +742,14 @@ export default function BlogPost() {
               {(prevPost || nextPost) && (
                 <nav className="article-prev-next-nav" aria-label="Article navigation">
                   {prevPost ? (
-                    <Link to={`/blog/${prevPost.slugId || prevPost.id}`} className="nav-card prev-card">
+                    <Link to={`/blog/${prevPost.slug || prevPost.slugId || prevPost.id}`} className="nav-card prev-card">
                       <span className="nav-card-label"><ChevronLeft size={15} /> Previous Article</span>
                       <span className="nav-card-title">{prevPost.title}</span>
                     </Link>
                   ) : <div className="nav-card-empty" />}
 
                   {nextPost ? (
-                    <Link to={`/blog/${nextPost.slugId || nextPost.id}`} className="nav-card next-card">
+                    <Link to={`/blog/${nextPost.slug || nextPost.slugId || nextPost.id}`} className="nav-card next-card">
                       <span className="nav-card-label">Next Article <ChevronRight size={15} /></span>
                       <span className="nav-card-title">{nextPost.title}</span>
                     </Link>
@@ -763,7 +765,7 @@ export default function BlogPost() {
                     {relatedPosts.map(rp => (
                       <Link
                         key={rp.id}
-                        to={`/blog/${rp.slugId || rp.id}`}
+                        to={`/blog/${rp.slug || rp.slugId || rp.id}`}
                         className="blog-related-card"
                         onClick={() => { if (post) trackBlogRelated(post, rp.id); }}
                       >

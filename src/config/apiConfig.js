@@ -3,8 +3,6 @@
  * Reads exclusively from environment variables (import.meta.env)
  */
 
-const PRODUCTION_CMS_BACKEND = 'https://api-cms.gyanvaniai.info';
-
 const rawBackendUrl = (
   import.meta.env.VITE_BACKEND_URL ||
   import.meta.env.VITE_API_URL ||
@@ -17,11 +15,16 @@ function resolveBackendUrl() {
   const isLocalHost = isBrowser && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
 
   if (rawBackendUrl) {
-    // If on a live public domain, never call localhost (prevents ERR_CONNECTION_REFUSED)
-    if (isBrowser && !isLocalHost && (rawBackendUrl.includes('localhost') || rawBackendUrl.includes('127.0.0.1'))) {
-      return PRODUCTION_CMS_BACKEND;
+    // If running in browser on localhost or during SSG build, allow configured URL
+    if (!isBrowser || isLocalHost) {
+      return rawBackendUrl;
     }
-    return rawBackendUrl;
+    // If rawBackendUrl points to a non-localhost remote URL, use it
+    if (!rawBackendUrl.includes('localhost') && !rawBackendUrl.includes('127.0.0.1')) {
+      return rawBackendUrl;
+    }
+    // If on a live public domain with localhost config, return empty string for relative proxying
+    return '';
   }
 
   // Local development fallback
@@ -29,8 +32,8 @@ function resolveBackendUrl() {
     return 'http://localhost:5000';
   }
 
-  // Live production storefront fallback
-  return PRODUCTION_CMS_BACKEND;
+  // Production fallback: relative endpoint for reverse proxy
+  return '';
 }
 
 export const BACKEND_URL = resolveBackendUrl();

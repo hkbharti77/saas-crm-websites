@@ -46,7 +46,7 @@ export default function PersonalizedRecommendations({ _blogs = [] }) {
         {recentList.slice(0, 4).map((item) => (
           <Link
             key={item.id}
-            to={`/blog/${item.slugId || item.id}`}
+            to={`/blog/${item.slug || item.slugId || item.id}`}
             style={{
               padding: '0.85rem 1rem',
               background: 'var(--bg-card)',

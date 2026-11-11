@@ -163,7 +163,7 @@ export default function Blog() {
         {/* 2. FEATURED ARTICLE SECTION */}
         {featuredArticle && selectedCategory === 'All' && !selectedTag && (
           <section className="featured-article-section container" aria-label="Featured Article">
-            <Link to={`/blog/${featuredArticle.slugId || featuredArticle.id}`} className="featured-article-card">
+            <Link to={`/blog/${featuredArticle.slug || featuredArticle.slugId || featuredArticle.id}`} className="featured-article-card">
               <div className="featured-image-container">
                 {featuredArticle.imageUrl && !brokenImages[featuredArticle.id] ? (
                   <img
@@ -265,7 +265,7 @@ export default function Blog() {
             </div>
             <div className="trending-grid">
               {trendingArticles.map((item) => (
-                <Link key={item.id} to={`/blog/${item.slugId || item.id}`} className="trending-card">
+                <Link key={item.id} to={`/blog/${item.slug || item.slugId || item.id}`} className="trending-card">
                   <span className="trending-category">{item.category}</span>
                   <h4 className="trending-title">{item.title}</h4>
                   <span className="trending-readtime">{item.readTime || '5 min read'}</span>
@@ -310,7 +310,7 @@ export default function Blog() {
             <>
               <div className="blog-grid">
                 {regularArticles.map((post) => {
-                  const slug = post.slugId || post.id;
+                  const slug = post.slug || post.slugId || post.id;
                   const hasImage = post.imageUrl && !brokenImages[post.id];
 
                   return (

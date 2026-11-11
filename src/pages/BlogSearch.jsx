@@ -103,7 +103,7 @@ export default function BlogSearch() {
     const matches = [];
     blogs.forEach(b => {
       if ((b.title || '').toLowerCase().includes(q)) {
-        matches.push({ type: 'Article', text: b.title, slug: b.slugId || b.id });
+        matches.push({ type: 'Article', text: b.title, slug: b.slug || b.slugId || b.id });
       }
     });
 
@@ -289,7 +289,7 @@ export default function BlogSearch() {
             {searchResults.map(post => (
               <Link
                 key={post.id}
-                to={`/blog/${post.slugId || post.id}`}
+                to={`/blog/${post.slug || post.slugId || post.id}`}
                 className="search-result-card"
               >
                 <div className="search-result-body">
