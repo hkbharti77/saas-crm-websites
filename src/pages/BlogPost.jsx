@@ -390,7 +390,35 @@ export default function BlogPost() {
   }
 
   if (!post) {
-    return <NotFound />;
+    const portfolioUrl = `https://hkbharti77.website/#blog?article=${encodeURIComponent(id)}`;
+    return (
+      <div className="min-h-[65vh] flex flex-col items-center justify-center p-6 text-center max-w-xl mx-auto my-12">
+        <div className="w-16 h-16 rounded-2xl bg-sky-50 dark:bg-sky-950/60 border border-sky-200 dark:border-sky-800 flex items-center justify-center text-sky-600 dark:text-sky-400 mb-5 shadow-xs">
+          <Globe size={30} />
+        </div>
+        <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mb-3">
+          Looking for this article?
+        </h1>
+        <p className="text-slate-600 dark:text-slate-400 mb-6 text-sm leading-relaxed">
+          This publication may belong to the <strong>Engineering Portfolio</strong> channel (<code className="text-xs bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded">hkbharti77.website</code>) or has a different URL slug.
+        </p>
+        <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
+          <a
+            href={portfolioUrl}
+            className="w-full sm:w-auto px-6 py-3 bg-sky-600 hover:bg-sky-700 text-white font-bold rounded-xl text-sm transition-all shadow-sm flex items-center justify-center gap-2"
+          >
+            <span>Open on Portfolio Website</span>
+            <ChevronRight size={16} />
+          </a>
+          <Link
+            to="/blog"
+            className="w-full sm:w-auto px-6 py-3 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 font-semibold rounded-xl text-sm transition-colors"
+          >
+            Explore GyanVaniAi Articles
+          </Link>
+        </div>
+      </div>
+    );
   }
 
   const pageTitle = (post.seo?.metaTitle || post.seoTitle) 
