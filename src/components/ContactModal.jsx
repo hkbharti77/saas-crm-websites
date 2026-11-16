@@ -42,6 +42,7 @@ export default function ContactModal({ isOpen, onClose, prefillMessage = '' }) {
   });
   const [consentGiven, setConsentGiven] = useState(false);
   const [consentError, setConsentError] = useState(false);
+  const [ndaRequired, setNdaRequired] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [prevProps, setPrevProps] = useState({ isOpen, prefillMessage });
@@ -72,6 +73,7 @@ export default function ContactModal({ isOpen, onClose, prefillMessage = '' }) {
     setTouched({ name: false, email: false, phone: false, inquiryType: false, message: false });
     setConsentGiven(false);
     setConsentError(false);
+    setNdaRequired(false);
     onClose();
   };
 
@@ -169,6 +171,7 @@ export default function ContactModal({ isOpen, onClose, prefillMessage = '' }) {
         source: 'website_connect_modal',
         consent: consentGiven,
         consentVersion: 'DPDP-2023-v1',
+        ndaRequired: ndaRequired,
         _hp_company: honeypot,
       };
 
@@ -405,6 +408,21 @@ export default function ContactModal({ isOpen, onClose, prefillMessage = '' }) {
                 </div>
               </div>
 
+              {/* NDA Optional Checkbox — full-width row above consent+submit */}
+              <label className="enterprise-terms-label" style={{ marginTop: '0.9rem', width: '100%', alignItems: 'flex-start' }}>
+                <input
+                  type="checkbox"
+                  className="enterprise-checkbox"
+                  checked={ndaRequired}
+                  onChange={(e) => setNdaRequired(e.target.checked)}
+                  style={{ marginTop: '1px' }}
+                />
+                <span>
+                  Mutual Non-Disclosure Agreement (NDA) required prior to code examination or architecture handover.{' '}
+                  <span style={{ opacity: 0.6 }}>(OPTIONAL)</span>
+                </span>
+              </label>
+
               {/* Consent and Submit Button */}
               <div className="enterprise-modal-footer">
                 <label className="enterprise-terms-label">
@@ -419,7 +437,7 @@ export default function ContactModal({ isOpen, onClose, prefillMessage = '' }) {
                     required
                   />
                   <span>
-                    I agree to the Gyan VaniAi <a href="/privacy" target="_blank" rel="noopener noreferrer" className="enterprise-terms-link">Privacy Policy</a> and <a href="/terms" target="_blank" rel="noopener noreferrer" className="enterprise-terms-link">Terms</a> <span className="enterprise-required-star">*</span>
+                    I confirm I am 18 years of age or older, and agree to the Gyan VaniAi <a href="/privacy" target="_blank" rel="noopener noreferrer" className="enterprise-terms-link">Privacy Policy</a> and <a href="/terms" target="_blank" rel="noopener noreferrer" className="enterprise-terms-link">Terms</a> <span className="enterprise-required-star">*</span>
                   </span>
                 </label>
 
@@ -435,7 +453,7 @@ export default function ContactModal({ isOpen, onClose, prefillMessage = '' }) {
 
               {consentError && (
                 <span className="enterprise-field-error-msg" style={{ marginTop: '0.35rem' }}>
-                  Please agree to the Privacy Policy and Terms to submit your request.
+                  Please confirm you are 18+ and agree to the Privacy Policy and Terms to submit your request.
                 </span>
               )}
 

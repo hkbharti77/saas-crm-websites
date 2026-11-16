@@ -72,6 +72,7 @@ export default function ContactSection({
 
   const [consentGiven, setConsentGiven] = useState(false);
   const [consentError, setConsentError] = useState(false);
+  const [ndaRequired, setNdaRequired] = useState(false);
 
   const errors = getErrors();
 
@@ -110,6 +111,7 @@ export default function ContactSection({
         source: 'website_contact_section',
         consent: consentGiven,
         consentVersion: 'DPDP-2023-v1',
+        ndaRequired: ndaRequired,
         _hp_company: honeypot,
       };
 
@@ -360,6 +362,22 @@ export default function ContactSection({
                   </div>
                 </div>
 
+                {/* NDA Optional Checkbox */}
+                <div className="form-group" style={{ margin: '0.5rem 0 0 0' }}>
+                  <label style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem', cursor: 'pointer', fontSize: '0.82rem', color: 'var(--text-secondary)' }}>
+                    <input
+                      type="checkbox"
+                      checked={ndaRequired}
+                      onChange={(e) => setNdaRequired(e.target.checked)}
+                      style={{ cursor: 'pointer', width: '16px', height: '16px', accentColor: 'var(--primary-color)', marginTop: '1px', flexShrink: 0 }}
+                    />
+                    <span>
+                      Mutual Non-Disclosure Agreement (NDA) required prior to code examination or architecture handover.{' '}
+                      <span style={{ opacity: 0.6 }}>(OPTIONAL)</span>
+                    </span>
+                  </label>
+                </div>
+
                 {/* Terms and Privacy Agreement */}
                 <div className="form-group" style={{ margin: '0.75rem 0 0.85rem 0' }}>
                   <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer', fontSize: '0.82rem', color: 'var(--text-secondary)' }}>
@@ -371,10 +389,10 @@ export default function ContactSection({
                       required
                     />
                     <span>
-                      I agree to the <Link to="/terms" target="_blank" style={{ color: 'var(--primary-color)', textDecoration: 'underline' }}>Terms &amp; Conditions</Link> and <Link to="/privacy" target="_blank" style={{ color: 'var(--primary-color)', textDecoration: 'underline' }}>Privacy Policy</Link>.
+                      I confirm I am 18 years of age or older, and agree to the <Link to="/terms" target="_blank" style={{ color: 'var(--primary-color)', textDecoration: 'underline' }}>Terms &amp; Conditions</Link> and <Link to="/privacy" target="_blank" style={{ color: 'var(--primary-color)', textDecoration: 'underline' }}>Privacy Policy</Link>.
                     </span>
                   </label>
-                  {consentError && <span className="form-error-msg">Please accept the Terms &amp; Conditions and Privacy Policy to proceed.</span>}
+                  {consentError && <span className="form-error-msg">Please confirm you are 18+ and accept the Terms &amp; Privacy Policy to proceed.</span>}
                 </div>
 
                 {/* 6. CTA Button */}
