@@ -343,7 +343,7 @@ export default function Footer({
 
         <div className="footer-bottom">
           <p className="text-sm text-muted">
-            {copyright} · <Link to="/privacy" className="link-inline">Privacy</Link> · <Link to="/terms" className="link-inline">Terms</Link> · <Link to="/security" className="link-inline">Security</Link> · <Link to="/unsubscribe" className="link-inline">Unsubscribe</Link>
+            {copyright} · <Link to="/privacy" className="link-inline">Privacy</Link> · <Link to="/terms" className="link-inline">Terms</Link> · <Link to="/security" className="link-inline">Security</Link> · <button type="button" onClick={() => window.dispatchEvent(new CustomEvent('open-cookie-banner'))} className="link-inline" style={{ background: 'none', border: 'none', padding: 0, font: 'inherit', cursor: 'pointer' }}>Cookie Settings</button> · <Link to="/unsubscribe" className="link-inline">Unsubscribe</Link>
           </p>
         </div>
       </div>

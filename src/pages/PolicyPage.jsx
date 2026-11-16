@@ -576,6 +576,7 @@ export default function PolicyPage() {
                 <li><strong>Entity:</strong> Gyan VaniAi Technologies</li>
                 <li><strong>Official Address:</strong> Dakbangla Chowk, Simri Bakhtiarpur, Bihar 852127, India</li>
                 <li><strong>Statutory Grievance Email:</strong> <a href="mailto:contact@gyanvaniai.com" style={{ color: 'var(--primary-color)', fontWeight: '600' }}>contact@gyanvaniai.com</a></li>
+                <li><strong>Statutory Compliance Telephone:</strong> <a href="tel:+918700620913" style={{ color: 'var(--primary-color)', fontWeight: '600' }}>+91 87006 20913</a> (Mon–Fri, 10:00–18:00 IST)</li>
                 <li><strong>Statutory Acknowledgment:</strong> Within 24 hours of ticket creation</li>
                 <li><strong>Target Resolution SLA:</strong> 15 business days (Maximum 30 days for complex erasures)</li>
               </ul>
