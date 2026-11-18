@@ -155,14 +155,32 @@ export function useGAPageViews() {
         // ignore
       }
 
+      let utmSource = null;
+      let utmMedium = null;
+      let utmCampaign = null;
+      try {
+        const sp = new URLSearchParams(location.search);
+        utmSource = sp.get('utm_source');
+        utmMedium = sp.get('utm_medium');
+        utmCampaign = sp.get('utm_campaign');
+      } catch {
+        // ignore
+      }
+
       const payload = JSON.stringify({
         path: safePath,
         title: safeTitle,
         referrer: document.referrer || null,
+        hostname: typeof window !== 'undefined' ? window.location.hostname : 'www.gyanvaniai.com',
         channel: 'crm',
         consent: consentStatus,
         countryCode,
         countryName,
+        utmSource,
+        utmMedium,
+        utmCampaign,
+        event: 'pageview',
+        flag: consentStatus ? 'consent_granted' : 'consent_essential',
       });
 
       const hitEndpoint = `${backendBase}/api/public/analytics/hit`;

@@ -1,0 +1,850 @@
+/* ==========================================================================
+   SIP Architecture Guide 2026 — Enterprise Telephony & Voice AI
+   Dedicated Design System & Theme Styles
+   ========================================================================== */
+
+.sip-guide-page {
+  --sip-primary: #0f766e;
+  --sip-primary-hover: #0d9488;
+  --sip-teal: #14b8a6;
+  --sip-cyan: #06b6d4;
+  --sip-accent: #2dd4bf;
+  --sip-dark-card: rgba(13, 20, 34, 0.78);
+  --sip-border: rgba(45, 212, 191, 0.16);
+  --sip-border-hover: rgba(45, 212, 191, 0.4);
+  --sip-glow: rgba(20, 184, 166, 0.15);
+
+  position: relative;
+  overflow-x: hidden;
+  padding-top: 5rem;
+  color: var(--text-primary, #f8fafc);
+  background: var(--bg-base, #060a12);
+}
+
+.sip-container {
+  max-width: 1240px;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+
+/* --- Atmospheric Background Glows --- */
+.sip-hero-bg-glow {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 900px;
+  height: 480px;
+  background: radial-gradient(ellipse at 50% 15%, rgba(15, 118, 110, 0.22) 0%, rgba(6, 182, 212, 0.08) 45%, transparent 75%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ==========================================================================
+   1. HERO SECTION
+   ========================================================================== */
+.sip-hero {
+  position: relative;
+  z-index: 1;
+  padding: 3rem 0 3.5rem;
+  text-align: center;
+}
+
+.sip-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 1.1rem;
+  background: rgba(15, 118, 110, 0.16);
+  border: 1px solid rgba(45, 212, 191, 0.35);
+  color: #2dd4bf;
+  font-size: 0.825rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-radius: 9999px;
+  margin-bottom: 1.5rem;
+  backdrop-filter: blur(8px);
+}
+
+.sip-hero-badge .pulse-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #2dd4bf;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #2dd4bf;
+  animation: sipPulse 2s infinite ease-in-out;
+}
+
+@keyframes sipPulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.35); opacity: 0.6; }
+}
+
+.sip-hero-title {
+  font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+  font-weight: 850;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+  max-width: 980px;
+  margin: 0 auto 1.25rem;
+}
+
+.sip-hero-title .gradient-text {
+  background: linear-gradient(135deg, #ffffff 15%, #2dd4bf 65%, #06b6d4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.sip-hero-subtitle {
+  font-size: 1.125rem;
+  line-height: 1.65;
+  color: var(--text-secondary, #94a3b8);
+  max-width: 840px;
+  margin: 0 auto 2.25rem;
+}
+
+/* Telephony Metrics Bar */
+.sip-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.25rem;
+  max-width: 1040px;
+  margin: 0 auto 2.75rem;
+}
+
+.sip-metric-card {
+  background: rgba(13, 20, 34, 0.7);
+  border: 1px solid var(--sip-border);
+  border-radius: 14px;
+  padding: 1.25rem 1rem;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.sip-metric-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--sip-border-hover);
+}
+
+.sip-metric-val {
+  font-size: 1.85rem;
+  font-weight: 850;
+  color: #2dd4bf;
+  line-height: 1.1;
+  font-family: monospace;
+  margin-bottom: 0.35rem;
+}
+
+.sip-metric-label {
+  font-size: 0.825rem;
+  color: #94a3b8;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.sip-hero-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.sip-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.65rem;
+  background: linear-gradient(135deg, #0f766e 0%, #14b8a6 100%);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.95rem;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: 0 4px 18px rgba(15, 118, 110, 0.4);
+  transition: all 0.22s ease;
+}
+
+.sip-btn-primary:hover {
+  background: linear-gradient(135deg, #0d9488 0%, #2dd4bf 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(45, 212, 191, 0.35);
+  color: #ffffff;
+}
+
+.sip-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #e2e8f0;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-radius: 10px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.sip-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #2dd4bf;
+  color: #2dd4bf;
+}
+
+/* ==========================================================================
+   2. SECTION SHARED STYLES
+   ========================================================================== */
+.sip-section {
+  padding: 4.5rem 0;
+  position: relative;
+  z-index: 1;
+}
+
+.sip-section-header {
+  text-align: center;
+  max-width: 820px;
+  margin: 0 auto 3rem;
+}
+
+.sip-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.85rem;
+  background: rgba(15, 118, 110, 0.15);
+  border: 1px solid rgba(45, 212, 191, 0.28);
+  color: #2dd4bf;
+  font-size: 0.775rem;
+  font-weight: 750;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-radius: 9999px;
+  margin-bottom: 0.75rem;
+}
+
+.sip-section-title {
+  font-size: clamp(1.85rem, 3.2vw, 2.5rem);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  color: #ffffff;
+  margin-bottom: 0.85rem;
+}
+
+.sip-section-desc {
+  font-size: 1.05rem;
+  color: #94a3b8;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ==========================================================================
+   3. MULTI-TIER ARCHITECTURE ENGINE VISUALIZER
+   ========================================================================== */
+.sip-arch-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.sip-arch-card {
+  background: rgba(13, 20, 34, 0.82);
+  border: 1px solid var(--sip-border);
+  border-radius: 16px;
+  padding: 1.85rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.25s ease;
+  backdrop-filter: blur(12px);
+}
+
+.sip-arch-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--sip-border-hover);
+  box-shadow: 0 12px 35px rgba(15, 118, 110, 0.18);
+}
+
+.sip-arch-card-badge {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  font-size: 0.72rem;
+  font-weight: 800;
+  font-family: monospace;
+  color: #2dd4bf;
+  background: rgba(15, 118, 110, 0.2);
+  padding: 0.2rem 0.6rem;
+  border-radius: 6px;
+  border: 1px solid rgba(45, 212, 191, 0.3);
+}
+
+.sip-arch-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(15, 118, 110, 0.25) 0%, rgba(6, 182, 212, 0.15) 100%);
+  border: 1px solid rgba(45, 212, 191, 0.35);
+  color: #2dd4bf;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+}
+
+.sip-arch-title {
+  font-size: 1.2rem;
+  font-weight: 750;
+  color: #ffffff;
+  margin-bottom: 0.65rem;
+}
+
+.sip-arch-desc {
+  font-size: 0.925rem;
+  color: #94a3b8;
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
+  flex-grow: 1;
+}
+
+.sip-arch-specs {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.sip-arch-specs li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.825rem;
+  color: #cbd5e1;
+}
+
+.sip-arch-specs li svg {
+  color: #2dd4bf;
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   4. INTERACTIVE PROTOCOL LADDER / SEQUENCE DIAGRAM
+   ========================================================================== */
+.sip-ladder-wrap {
+  background: rgba(10, 16, 28, 0.85);
+  border: 1px solid var(--sip-border);
+  border-radius: 18px;
+  padding: 2.25rem;
+  backdrop-filter: blur(12px);
+  margin-top: 2rem;
+}
+
+.sip-ladder-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 1.25rem;
+  margin-bottom: 1.75rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.sip-ladder-entity-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  text-align: center;
+  padding: 0.75rem;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.sip-ladder-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.sip-ladder-item {
+  display: grid;
+  grid-template-columns: 80px 1fr 180px;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1.1rem 1.4rem;
+  background: rgba(13, 20, 34, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  transition: all 0.2s ease;
+}
+
+.sip-ladder-item:hover {
+  background: rgba(15, 118, 110, 0.1);
+  border-color: rgba(45, 212, 191, 0.35);
+}
+
+.sip-ladder-step-num {
+  font-size: 0.85rem;
+  font-family: monospace;
+  font-weight: 800;
+  color: #2dd4bf;
+}
+
+.sip-ladder-center {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.sip-ladder-signal {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-weight: 750;
+  font-size: 0.95rem;
+  color: #ffffff;
+}
+
+.sip-method-pill {
+  font-family: monospace;
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 0.2rem 0.55rem;
+  border-radius: 6px;
+  letter-spacing: 0.02em;
+}
+
+.sip-method-pill.invite {
+  background: rgba(59, 130, 246, 0.2);
+  color: #60a5fa;
+  border: 1px solid rgba(59, 130, 246, 0.4);
+}
+
+.sip-method-pill.status {
+  background: rgba(234, 179, 8, 0.2);
+  color: #facc15;
+  border: 1px solid rgba(234, 179, 8, 0.4);
+}
+
+.sip-method-pill.ok {
+  background: rgba(34, 197, 94, 0.2);
+  color: #4ade80;
+  border: 1px solid rgba(34, 197, 94, 0.4);
+}
+
+.sip-method-pill.rtp {
+  background: rgba(168, 85, 247, 0.2);
+  color: #c084fc;
+  border: 1px solid rgba(168, 85, 247, 0.4);
+}
+
+.sip-method-pill.refer {
+  background: rgba(244, 63, 94, 0.2);
+  color: #fb7185;
+  border: 1px solid rgba(244, 63, 94, 0.4);
+}
+
+.sip-ladder-desc {
+  font-size: 0.85rem;
+  color: #94a3b8;
+  margin: 0;
+}
+
+.sip-ladder-direction {
+  font-size: 0.8rem;
+  font-weight: 700;
+  font-family: monospace;
+  color: #2dd4bf;
+  text-align: right;
+}
+
+/* ==========================================================================
+   5. PBX CONFIGURATION BLUEPRINT TABS & CODE VIEWER
+   ========================================================================== */
+.sip-config-box {
+  background: #090e1a;
+  border: 1px solid var(--sip-border);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+  margin-top: 2rem;
+}
+
+.sip-config-tabs {
+  display: flex;
+  background: rgba(15, 23, 42, 0.75);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  overflow-x: auto;
+}
+
+.sip-config-tab {
+  padding: 0.95rem 1.4rem;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: #94a3b8;
+  font-weight: 650;
+  font-size: 0.88rem;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sip-config-tab:hover {
+  color: #ffffff;
+}
+
+.sip-config-tab.active {
+  color: #2dd4bf;
+  background: rgba(15, 118, 110, 0.12);
+  border-bottom-color: #2dd4bf;
+}
+
+.sip-config-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 1.4rem;
+  background: rgba(13, 20, 34, 0.5);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.sip-config-filename {
+  font-family: monospace;
+  font-size: 0.825rem;
+  color: #cbd5e1;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.sip-copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.75rem;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #cbd5e1;
+  font-size: 0.775rem;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.sip-copy-btn:hover {
+  background: rgba(15, 118, 110, 0.25);
+  border-color: #2dd4bf;
+  color: #2dd4bf;
+}
+
+.sip-code-block {
+  padding: 1.25rem 1.4rem;
+  margin: 0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 0.875rem;
+  line-height: 1.65;
+  color: #e2e8f0;
+  background: #090e1a;
+  overflow-x: auto;
+  white-space: pre;
+}
+
+/* ==========================================================================
+   6. CODEC & TRANSCODING MATRIX TABLE
+   ========================================================================== */
+.sip-table-wrap {
+  overflow-x: auto;
+  background: rgba(13, 20, 34, 0.75);
+  border: 1px solid var(--sip-border);
+  border-radius: 16px;
+  margin-top: 2rem;
+  backdrop-filter: blur(12px);
+}
+
+.sip-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.sip-table th,
+.sip-table td {
+  padding: 1.15rem 1.4rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  font-size: 0.92rem;
+}
+
+.sip-table th {
+  background: rgba(15, 23, 42, 0.85);
+  color: #ffffff;
+  font-weight: 750;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  border-bottom: 1px solid rgba(45, 212, 191, 0.3);
+}
+
+.sip-table tbody tr {
+  transition: background 0.18s ease;
+}
+
+.sip-table tbody tr:hover td {
+  background: rgba(15, 118, 110, 0.08);
+}
+
+.sip-badge-tag {
+  display: inline-block;
+  padding: 0.25rem 0.6rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 750;
+  font-family: monospace;
+}
+
+.sip-badge-tag.rec {
+  background: rgba(34, 197, 94, 0.15);
+  color: #4ade80;
+  border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.sip-badge-tag.std {
+  background: rgba(59, 130, 246, 0.15);
+  color: #60a5fa;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+/* ==========================================================================
+   7. INTERACTIVE TELEPHONY BANDWIDTH & SIZING CALCULATOR
+   ========================================================================== */
+.sip-calc-card {
+  background: rgba(13, 20, 34, 0.85);
+  border: 1px solid var(--sip-border);
+  border-radius: 18px;
+  padding: 2.5rem;
+  backdrop-filter: blur(14px);
+  margin-top: 2rem;
+}
+
+.sip-calc-controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 2.25rem;
+}
+
+.sip-calc-field label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 0.65rem;
+}
+
+.sip-calc-options {
+  display: flex;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+}
+
+.sip-calc-opt-btn {
+  padding: 0.6rem 1.1rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #cbd5e1;
+  font-size: 0.85rem;
+  font-weight: 650;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.sip-calc-opt-btn:hover {
+  border-color: #2dd4bf;
+  color: #ffffff;
+}
+
+.sip-calc-opt-btn.active {
+  background: rgba(15, 118, 110, 0.25);
+  border-color: #2dd4bf;
+  color: #2dd4bf;
+  box-shadow: 0 0 12px rgba(45, 212, 191, 0.2);
+}
+
+.sip-calc-results {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.25rem;
+  background: rgba(10, 16, 28, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 1.5rem;
+}
+
+.sip-calc-stat {
+  text-align: center;
+}
+
+.sip-calc-stat-val {
+  font-size: 1.75rem;
+  font-weight: 850;
+  color: #2dd4bf;
+  font-family: monospace;
+  line-height: 1.1;
+  margin-bottom: 0.35rem;
+}
+
+.sip-calc-stat-label {
+  font-size: 0.8rem;
+  color: #94a3b8;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* ==========================================================================
+   8. REGULATORY & COMPLIANCE SECTION
+   ========================================================================== */
+.sip-reg-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.sip-reg-card {
+  background: rgba(13, 20, 34, 0.7);
+  border: 1px solid var(--sip-border);
+  border-radius: 14px;
+  padding: 1.65rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1.1rem;
+}
+
+.sip-reg-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: rgba(15, 118, 110, 0.2);
+  color: #2dd4bf;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.sip-reg-title {
+  font-size: 1.08rem;
+  font-weight: 750;
+  color: #ffffff;
+  margin-bottom: 0.4rem;
+}
+
+.sip-reg-desc {
+  font-size: 0.88rem;
+  color: #94a3b8;
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* ==========================================================================
+   9. RELATED GUIDES CLUSTER
+   ========================================================================== */
+.sip-cluster-card {
+  background: rgba(13, 20, 34, 0.85);
+  border: 1px solid var(--sip-border);
+  border-radius: 18px;
+  padding: 2.5rem;
+  text-align: center;
+  backdrop-filter: blur(12px);
+}
+
+.sip-cluster-title {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 1.5rem;
+}
+
+.sip-cluster-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.sip-cluster-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.35rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  color: #2dd4bf;
+  font-size: 0.9rem;
+  font-weight: 650;
+  text-decoration: none;
+  transition: all 0.22s ease;
+}
+
+.sip-cluster-pill:hover {
+  background: rgba(15, 118, 110, 0.2);
+  border-color: #2dd4bf;
+  transform: translateY(-2px);
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   RESPONSIVENESS
+   ========================================================================== */
+@media (max-width: 900px) {
+  .sip-calc-controls {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  .sip-ladder-item {
+    grid-template-columns: 1fr;
+    gap: 0.65rem;
+  }
+  .sip-ladder-direction {
+    text-align: left;
+  }
+  .sip-hero-title {
+    font-size: 2.1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .sip-metrics-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .sip-calc-results {
+    grid-template-columns: 1fr 1fr;
+  }
+  .sip-ladder-wrap {
+    padding: 1.25rem;
+  }
+}
