@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
+import { BACKEND_URL } from '../config/apiConfig';
 
 const ALLOWED_QUERY_KEYS = new Set(['page', 'tab', 'sort', 'filter']);
 
@@ -115,9 +116,49 @@ export function useGAPageViews() {
     if (lastDispatchedRef.current === safePath) return;
     lastDispatchedRef.current = safePath;
 
-    window.gtag('event', 'page_view', {
-      page_path: safePath,
-      page_title: safeTitle,
-    });
+    // 1. Google Analytics 4 Dispatch
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', 'page_view', {
+        page_path: safePath,
+        page_title: safeTitle,
+      });
+    }
+
+    // 2. First-Party Native Visitor Telemetry (Cookieless, DPDP 2023 & GDPR Compliant)
+    try {
+      const backendBase = BACKEND_URL || 'https://api-cms.gyanvaniai.info';
+      const consentData = localStorage.getItem('gyanvaniai_cookie_consent');
+      let consentStatus = false;
+      if (consentData) {
+        try {
+          const parsed = JSON.parse(consentData);
+          consentStatus = Boolean(parsed.preferences?.analytics || parsed.status === 'all');
+        } catch {
+          // ignore
+        }
+      }
+
+      const payload = JSON.stringify({
+        path: safePath,
+        title: safeTitle,
+        referrer: document.referrer || null,
+        channel: 'crm',
+        consent: consentStatus,
+      });
+
+      const hitEndpoint = `${backendBase}/api/public/analytics/hit`;
+      if (typeof navigator !== 'undefined' && navigator.sendBeacon) {
+        navigator.sendBeacon(hitEndpoint, new Blob([payload], { type: 'application/json' }));
+      } else {
+        fetch(hitEndpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: payload,
+          keepalive: true,
+        }).catch(() => {});
+      }
+    } catch {
+      // Non-blocking
+    }
   }, [location.pathname, location.search]);
 }
