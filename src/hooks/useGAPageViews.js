@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import { BACKEND_URL } from '../config/apiConfig';
+import { getVisitorGeo } from '../utils/geoDetection';
 
 const ALLOWED_QUERY_KEYS = new Set(['page', 'tab', 'sort', 'filter']);
 
@@ -146,6 +147,9 @@ export function useGAPageViews() {
           const geo = JSON.parse(geoRaw);
           countryCode = geo.country || geo.countryCode || null;
           countryName = geo.countryName || null;
+        } else {
+          // Warm up client geo cache in background for subsequent hits
+          getVisitorGeo().catch(() => {});
         }
       } catch {
         // ignore
