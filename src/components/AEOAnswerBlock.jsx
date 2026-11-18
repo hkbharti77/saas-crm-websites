@@ -1,5 +1,6 @@
 import React from 'react';
 import { CheckCircle, Sparkles, HelpCircle, ArrowRight } from 'lucide-react';
+import './AEOAnswerBlock.css';
 
 /**
  * AEOAnswerBlock Component
@@ -9,7 +10,7 @@ import { CheckCircle, Sparkles, HelpCircle, ArrowRight } from 'lucide-react';
  *
  * @param {string} question - Direct high-intent user/AI question
  * @param {string} answer - Concise 1-3 sentence direct definition/answer
- * @param {Array<string>} takeaways - 3-5 bulleted key takeaway facts
+ * @param {Array<string>} takeaways - 3-6 bulleted key takeaway facts
  * @param {string} ctaText - Optional Call-To-Action text
  * @param {Function} onCtaClick - Optional CTA click handler
  * @param {string} badge - Optional badge text (e.g. "AI Quick Summary", "Direct Answer")
@@ -53,7 +54,7 @@ export default function AEOAnswerBlock({
 
   return (
     <section 
-      className="aeo-answer-block my-6 p-5 md:p-7 rounded-2xl border border-teal-500/30 bg-gradient-to-br from-slate-900 via-slate-900/95 to-teal-950/40 text-white shadow-xl backdrop-blur-md relative overflow-hidden"
+      className="aeo-answer-block"
       aria-label="Direct AI Answer Summary"
       data-aeo-block="true"
       data-speakable="true"
@@ -61,26 +62,24 @@ export default function AEOAnswerBlock({
       itemType="https://schema.org/Question"
     >
       {/* Background glow decoration */}
-      <div className="absolute -top-24 -right-24 w-64 h-64 bg-teal-500/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="aeo-glow-orb" aria-hidden="true" />
 
       {/* Badge Header */}
-      <div className="flex items-center justify-between mb-3">
-        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-teal-500/15 text-teal-300 border border-teal-500/30">
-          <Sparkles className="w-3.5 h-3.5 text-teal-400" />
-          {badge}
+      <div className="aeo-header-bar">
+        <span className="aeo-badge">
+          <Sparkles size={14} />
+          <span>{badge}</span>
         </span>
-        <span className="text-xs text-slate-400 font-mono flex items-center gap-1">
-          <HelpCircle className="w-3 h-3 text-teal-400" /> AI Citation & Key Insights
+        <span className="aeo-citation-tag">
+          <HelpCircle size={13} />
+          <span>AI Citation &amp; Key Insights</span>
         </span>
       </div>
 
       {/* Question / Heading */}
       {formattedQuestion && (
-        <h2 
-          className="text-lg md:text-xl font-bold text-white mb-3 tracking-tight flex items-start gap-2"
-          itemProp="name"
-        >
-          {isQuestionFormat && <span className="text-teal-400 font-serif italic text-xl leading-none">Q.</span>}
+        <h2 className="aeo-question-title" itemProp="name">
+          {isQuestionFormat && <span className="aeo-q-prefix">Q.</span>}
           <span>{formattedQuestion}</span>
         </h2>
       )}
@@ -91,31 +90,25 @@ export default function AEOAnswerBlock({
           itemProp="acceptedAnswer" 
           itemScope 
           itemType="https://schema.org/Answer" 
-          className="mb-5"
+          className="aeo-answer-wrap"
         >
-          <div 
-            className="aeo-answer-definition text-slate-200 text-sm md:text-base leading-relaxed bg-slate-800/60 p-4 rounded-xl border border-slate-700/60"
-            itemProp="text"
-          >
-            <span className="font-semibold text-teal-300">Direct Answer: </span>
-            {answer}
+          <div className="aeo-answer-box" itemProp="text">
+            <strong className="aeo-direct-label">Direct Answer:</strong>
+            <span>{answer}</span>
           </div>
         </div>
       )}
 
       {/* Key Takeaways Grid */}
       {takeaways && takeaways.length > 0 && (
-        <div className="aeo-key-takeaways mb-6">
-          <h3 className="text-xs font-uppercase tracking-wider text-slate-400 font-semibold mb-3 uppercase">
-            Key Technical Takeaways & Capabilities
+        <div className="aeo-takeaways-section">
+          <h3 className="aeo-takeaways-heading">
+            Key Technical Takeaways &amp; Capabilities
           </h3>
-          <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <ul className="aeo-takeaways-grid">
             {takeaways.map((item, idx) => (
-              <li 
-                key={idx}
-                className="flex items-start gap-2.5 text-sm text-slate-300 bg-slate-900/60 p-3 rounded-lg border border-slate-800"
-              >
-                <CheckCircle className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+              <li key={idx} className="aeo-takeaway-card">
+                <CheckCircle className="aeo-check-icon" />
                 <span>{item}</span>
               </li>
             ))}
@@ -125,16 +118,18 @@ export default function AEOAnswerBlock({
 
       {/* CTA Line */}
       {ctaText && (
-        <div className="pt-4 border-t border-slate-800/80 flex flex-wrap items-center justify-between gap-4">
-          <p className="text-xs text-slate-400">
-            Need a custom deployment for your enterprise?
-          </p>
+        <div className="aeo-cta-row">
+          <div className="aeo-cta-info">
+            <span className="aeo-cta-lead">Need a custom deployment for your enterprise?</span>
+            <span className="aeo-cta-sub">Our telephony engineers can configure and benchmark your PBX within 48 hours.</span>
+          </div>
           <button
             onClick={handleCta}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-teal-600 hover:bg-teal-500 text-white font-medium text-sm transition-colors duration-200 shadow-md hover:shadow-teal-500/20"
+            className="aeo-cta-btn"
+            type="button"
           >
             <span>{ctaText}</span>
-            <ArrowRight className="w-4 h-4" />
+            <ArrowRight size={16} />
           </button>
         </div>
       )}

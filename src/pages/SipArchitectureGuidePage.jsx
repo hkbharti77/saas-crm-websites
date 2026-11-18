@@ -16,8 +16,6 @@ import {
   Terminal, 
   Database, 
   CheckCircle2, 
-  Copy, 
-  Check, 
   Layers, 
   Clock, 
   Globe, 
@@ -25,21 +23,19 @@ import {
   Sliders, 
   PhoneForwarded, 
   Headphones, 
-  FileCode2, 
   Network,
   Sparkles,
-  CheckCircle
+  CheckCircle,
+  Mic,
+  BrainCircuit
 } from 'lucide-react';
 import AiAnswerSummaryBlock from '../components/AiAnswerSummaryBlock';
-import AEOAnswerBlock from '../components/AEOAnswerBlock';
 import FAQ from '../components/FAQ';
 import ContactSection from '../components/ContactSection';
 import SpotlightCard from '../components/ui/SpotlightCard';
 import './SipArchitectureGuidePage.css';
 
 export default function SipArchitectureGuidePage() {
-  const [activeTab, setActiveTab] = useState('asterisk');
-  const [copiedCode, setCopiedCode] = useState(false);
   const [channels, setChannels] = useState(100);
   const [selectedCodec, setSelectedCodec] = useState('opus');
 
@@ -50,15 +46,19 @@ export default function SipArchitectureGuidePage() {
   const requiredSbcCores = Math.max(2, Math.ceil(channels / 250));
   const estimatedMonthlyMinutes = (channels * 30 * 8 * 60).toLocaleString(); // 8 hrs/day utilization
 
-  const handleCopyCode = (codeText) => {
-    if (typeof navigator !== 'undefined' && navigator.clipboard) {
-      navigator.clipboard.writeText(codeText);
-      setCopiedCode(true);
-      setTimeout(() => setCopiedCode(false), 2000);
-    }
-  };
-
   const aiSummaryItems = [
+    {
+      question: "What is the Enterprise SIP Architecture for Conversational Voice AI?",
+      answer: "Gyan VaniAi's SIP Architecture is a carrier-grade telephony gateway that bridges legacy enterprise telecom infrastructure (PSTN, PBX, SIP trunks) and WhatsApp Voice APIs directly with low-latency streaming Voice AI models. Operating via geo-distributed Session Border Controllers (SBC), it translates inbound SRTP audio packets into binary PCM WebSocket streams in under 12ms, enabling full-duplex conversations with human-like latency under 300ms.",
+      bullets: [
+        "Carrier-Grade Session Border Controllers (SBC) handle TLS 1.3 termination, topology hiding, and DDoS flood protection",
+        "Sub-10ms full-duplex media translation bridges SRTP UDP packets directly into binary PCM WebSockets for neural VAD and streaming STT",
+        "Complies with Indian telecom regulations (DoT & TRAI) by strictly separating domestic Indian PSTN trunks from international VoIP routing",
+        "Supports warm human handoff via SIP REFER with contextual CRM payloads injected into custom SIP headers (X-GyanVani-CRM-Data)",
+        "Broad PBX interoperability tested with Asterisk PJSIP, FreeSWITCH, Cisco CUCM, Avaya Aura, and Twilio Elastic SIP Trunking",
+        "Hardware-accelerated zero-transcoding bypass for Opus 48kHz and G.711u preserves crystal-clear speech quality and sub-300ms turnaround"
+      ]
+    },
     {
       question: "What is the Gyan VaniAi SIP Architecture?",
       answer: "A carrier-grade telephony gateway architecture that connects enterprise PBX phone systems (Asterisk, FreeSWITCH, Cisco CUCM, Avaya) and WhatsApp Calling APIs directly to Gyan VaniAi's sub-300ms real-time conversational AI audio pipeline via secure SIP trunks."
@@ -85,44 +85,58 @@ export default function SipArchitectureGuidePage() {
     {
       stepNum: "01",
       icon: <Network size={24} />,
-      title: "Carrier Ingestion & SIP Trunking",
-      desc: "Connects directly to Tier-1 telco providers (Airtel, Tata Tele, Jio, Twilio) and official WhatsApp Voice Calling endpoints with redundant Anycast IP failover.",
-      specs: ["RFC 3261 SIP 2.0 Compliance", "Dual-homed SIP Trunks", "Sub-5ms Carrier Interconnect"]
+      title: "Carrier Ingestion & Redundant Trunks",
+      desc: "Connects directly to Tier-1 telco providers (Airtel, Tata Tele, Jio, Twilio) and official WhatsApp Voice endpoints with Anycast IP failover.",
+      specs: ["RFC 3261 SIP 2.0 Compliance", "Dual-Homed SIP Trunks", "Sub-5ms Carrier Interconnect"]
     },
     {
       stepNum: "02",
       icon: <ShieldCheck size={24} />,
-      title: "Carrier-Grade Session Border Controller (SBC)",
-      desc: "Terminates mTLS signaling and SRTP media, enforces topology hiding, protects core AI clusters from DDoS flood attacks, and manages NAT traversal via STUN/ICE.",
-      specs: ["TLS 1.3 & AES-256 SRTP", "Topology Hiding & Rate Limiting", "Geo-Distributed Anycast Clusters"]
+      title: "Carrier-Grade Session Border Controller",
+      desc: "Terminates mTLS signaling and SRTP media, enforces topology hiding, protects core AI clusters from DDoS flood attacks, and manages NAT traversal.",
+      specs: ["TLS 1.3 & AES-256 SRTP", "Topology Hiding & Rate Limiting", "Geo-Distributed Anycast Nodes"]
     },
     {
       stepNum: "03",
       icon: <Radio size={24} />,
-      title: "Full-Duplex SRTP to WebSocket Media Bridge",
-      desc: "Translates inbound RTP UDP audio packets into binary PCM WebSocket streams in under 10ms, forwarding audio chunks directly into our streaming inference engines.",
-      specs: ["Sub-10ms Translation Delay", "Opus <-> PCM 16kHz/48kHz", "Adaptive Jitter Buffer & PLC"]
+      title: "Full-Duplex SRTP to WebSocket Bridge",
+      desc: "Translates inbound RTP UDP audio packets into binary PCM WebSocket streams in under 10ms, forwarding audio chunks directly into our streaming engines.",
+      specs: ["Sub-10ms Packet Translation", "Opus <-> PCM 16kHz/48kHz", "Adaptive Jitter Buffer & PLC"]
     },
     {
       stepNum: "04",
-      icon: <Cpu size={24} />,
-      title: "Real-Time Streaming Voice AI Pipeline",
-      desc: "Powers human-like conversations using streaming neural VAD for instant barge-in cut-off (<40ms), low-latency STT, speculative LLM reasoning, and chunked streaming TTS.",
-      specs: ["<40ms Neural VAD Cut-off", "Sub-80ms First Token TTFT", "Dual-Channel Audio Recording"]
+      icon: <Activity size={24} />,
+      title: "Neural Acoustic Processing & Fast VAD",
+      desc: "Real-time energy and neural Silero VAD monitors acoustic channels. When caller speech is detected, active audio output is cut within 40ms.",
+      specs: ["<40ms Barge-In Interruption", "Neural Echo Cancellation (AEC)", "RNNoise Ambient Filtering"]
     },
     {
       stepNum: "05",
-      icon: <PhoneForwarded size={24} />,
-      title: "Dynamic Call Transfer & Human Handoff",
-      desc: "Executes SIP REFER attended transfers to human agent PBX extensions when complex issues arise, injecting structured CRM context payloads directly into the SIP headers.",
-      specs: ["SIP REFER (RFC 3515)", "Contextual SIP X-Headers", "CRM Screen-Pop Synchronization"]
+      icon: <Mic size={24} />,
+      title: "Streaming Speech-to-Text (ASR) Engine",
+      desc: "Converts binary audio frames into text tokens in real time, yielding partial transcripts before the caller finishes speaking.",
+      specs: ["Deepgram Nova-2 / Whisper", "Sub-90ms Partial Inference", "Indian Accents & Multilingual"]
     },
     {
       stepNum: "06",
-      icon: <Lock size={24} />,
-      title: "DoT & TRAI Regulatory Compliance",
-      desc: "Enforces Indian telecom compliance by strictly partitioning domestic PSTN lines from international VoIP gateways, verifying CLI presentation, and retaining encrypted CDRs.",
-      specs: ["OSP Regulatory Partitioning", "CLI Verification & Anti-Spoofing", "Compliant CDR Audit Logs"]
+      icon: <BrainCircuit size={24} />,
+      title: "Speculative LLM Reasoning & Tool Calling",
+      desc: "Processes RAG context chunks, prompt constraints, and CRM profiles using high-throughput LPU inference hardware to yield first response tokens.",
+      specs: ["Sub-80ms First Token (TTFT)", "Groq LPUs & TensorRT-LLM", "Model Context Protocol (MCP)"]
+    },
+    {
+      stepNum: "07",
+      icon: <Volume2 size={24} />,
+      title: "Chunked Streaming Voice Synthesis (TTS)",
+      desc: "Synthesizes speech audio phrase-by-phrase upon detecting semantic punctuation boundaries, feeding outbound audio before sentence completion.",
+      specs: ["Cartesia Sonic & ElevenLabs", "Sub-70ms First Audio Chunk", "Opus 48kHz HD Audio Stream"]
+    },
+    {
+      stepNum: "08",
+      icon: <PhoneForwarded size={24} />,
+      title: "Dynamic Call Transfer & Human Handoff",
+      desc: "Executes SIP REFER attended transfers to human agent PBX extensions with structured CRM lead context injected directly into SIP headers.",
+      specs: ["SIP REFER (RFC 3515)", "Custom SIP X-Headers", "DoT/TRAI OSP Compliance"]
     }
   ];
 
@@ -184,161 +198,6 @@ export default function SipArchitectureGuidePage() {
       desc: "Call teardown upon hangup. Session metrics, dual-channel audio recordings, and CDR analytics are synced to CRM."
     }
   ];
-
-  const pbxConfigs = {
-    asterisk: {
-      filename: "pjsip.conf (Asterisk 18 / 20 / FreePBX)",
-      code: `; ========================================================
-; Gyan VaniAi SIP Trunk Configuration for Asterisk PJSIP
-; ========================================================
-
-[transport-tls]
-type=transport
-protocol=tls
-bind=0.0.0.0:5061
-cert_file=/etc/asterisk/keys/asterisk.crt
-priv_key_file=/etc/asterisk/keys/asterisk.key
-method=tlsv1_2
-
-[gyanvani-trunk]
-type=registration
-transport=transport-tls
-outbound_auth=gyanvani-auth
-server_uri=sip:sip.gyanvaniai.com:5061
-client_uri=sip:ENTERPRISE_TRUNK_ID@sip.gyanvaniai.com:5061
-retry_interval=60
-expiration=3600
-
-[gyanvani-auth]
-type=auth
-auth_type=userpass
-username=ENTERPRISE_TRUNK_ID
-password=SECURE_SIP_TRUNK_SECRET
-realm=sip.gyanvaniai.com
-
-[gyanvani-aor]
-type=aor
-contact=sip:sip.gyanvaniai.com:5061
-qualify_frequency=30
-
-[gyanvani-endpoint]
-type=endpoint
-transport=transport-tls
-context=from-gyanvani-ai
-disallow=all
-allow=opus
-allow=ulaw
-allow=alaw
-aors=gyanvani-aor
-auth=gyanvani-auth
-outbound_auth=gyanvani-auth
-media_encryption=sdes
-direct_media=no
-trust_id_inbound=yes
-send_rpid=yes
-send_pai=yes
-dtmf_mode=rfc4733`
-    },
-    freeswitch: {
-      filename: "sip_profiles/external/gyanvani.xml (FreeSWITCH)",
-      code: `<!-- ========================================================
-     Gyan VaniAi SIP Gateway for FreeSWITCH
-     ======================================================== -->
-<include>
-  <gateway name="gyanvani_voice_ai">
-    <param name="realm" value="sip.gyanvaniai.com"/>
-    <param name="username" value="ENTERPRISE_TRUNK_ID"/>
-    <param name="password" value="SECURE_SIP_TRUNK_SECRET"/>
-    <param name="register" value="true"/>
-    <param name="register-transport" value="tls"/>
-    <param name="retry-seconds" value="30"/>
-    <param name="ping" value="25"/>
-    <param name="caller-id-in-from" value="true"/>
-    
-    <!-- Codec Negotiation & SRTP Security -->
-    <variables>
-      <variable name="codec_string" value="OPUS,PCMU,PCMA"/>
-      <variable name="rtp_secure_media" value="true"/>
-      <variable name="rtp_has_crypto" value="true"/>
-      <variable name="sip_h_X-Tenant-ID" value="TENANT_98214"/>
-    </variables>
-  </gateway>
-</include>`
-    },
-    cisco: {
-      filename: "Cisco Unified Communications Manager (CUCM SIP Trunk)",
-      code: `! ========================================================
-! Cisco CUCM SIP Trunk Configuration Guide (IOS-XE CUBE)
-! ========================================================
-
-voice class uri GYANVANI_SIP sip
- host ipv4:103.186.22.10
-
-voice class codec 1
- codec preference 1 opus
- codec preference 2 g711ulaw
-
-voice class sip-options-keepalive 100
- down-interval 15
- up-interval 30
- retry 3
-
-dial-peer voice 2000 voip
- description OUTBOUND_TO_GYANVANI_VOICE_AI
- destination-pattern 91[1-9].........$
- session protocol sipv2
- session target dns:sip.gyanvaniai.com
- session transport tcp tls
- voice-class codec 1
- voice-class sip options-keepalive 100
- srtp
- dtmf-relay rtp-nte
- no vad`
-    },
-    avaya: {
-      filename: "Avaya Aura Session Manager (SIP Entity & Routing)",
-      code: `// ========================================================
-// Avaya Aura Session Manager (ASM) Entity Setup
-// ========================================================
-
-1. System Manager (SMGR) -> Routing -> SIP Entities -> Add
-   - Name: GyanVani_Voice_AI_SBC
-   - FQDN / IP: sip.gyanvaniai.com
-   - Type: SIP Trunk
-   - Port: 5061 (TLS)
-   - Trust Group: Default Enterprise Root CA
-
-2. Entity Links -> Add
-   - Name: ASM_to_GyanVani_TLS
-   - SIP Entity 1: Primary_ASM
-   - SIP Entity 2: GyanVani_Voice_AI_SBC
-   - Protocol: TLS (Port 5061)
-
-3. Routing Policies -> Add
-   - Pattern: Voice AI Inbound/Outbound Routing
-   - Time of Day: 24x7 Unrestricted Routing`
-    },
-    twilio: {
-      filename: "Twilio Elastic SIP Trunking URI & Termination",
-      code: `{
-  "trunk": {
-    "friendly_name": "GyanVani-Voice-AI-Elastic-Trunk",
-    "domain_name": "gyanvani-enterprise.pstn.twilio.com",
-    "secure": true,
-    "origination": {
-      "sip_url": "sip:sip.gyanvaniai.com:5061;transport=tls",
-      "priority": 1,
-      "weight": 100,
-      "enabled": true
-    },
-    "disaster_recovery": {
-      "method": "POST",
-      "url": "https://api.gyanvaniai.com/v1/telephony/failover"
-    }
-  }
-}`
-    }
-  };
 
   const codecComparison = [
     {
@@ -469,9 +328,7 @@ dial-peer voice 2000 voip
       {/* Hero Section */}
       <section className="sip-hero">
         <div className="sip-container">
-          <div style={{ marginBottom: '1.25rem' }}>
-            <Breadcrumbs />
-          </div>
+          <Breadcrumbs />
 
           <div className="sip-hero-badge">
             <span className="pulse-dot" />
@@ -515,9 +372,9 @@ dial-peer voice 2000 voip
               <Layers size={18} />
               <span>Explore Architecture Stack</span>
             </a>
-            <a href="#pbx-configurations" className="sip-btn-secondary">
-              <FileCode2 size={18} />
-              <span>PBX Configuration Snippets</span>
+            <a href="#codec-matrix" className="sip-btn-secondary">
+              <Volume2 size={18} />
+              <span>Codec & Quality Matrix</span>
             </a>
             <a href="#telephony-calculator" className="sip-btn-secondary">
               <Sliders size={18} />
@@ -527,24 +384,8 @@ dial-peer voice 2000 voip
         </div>
       </section>
 
-      {/* Direct AI Answer & Executive Summary Block */}
+      {/* Background AI Citation & Structured Search Engine Metadata (Invisible on UI) */}
       <AiAnswerSummaryBlock items={allFaqItems} title="Executive Summary: SIP Telephony Architecture for Voice AI" />
-
-      <div className="sip-container" style={{ margin: '1rem auto 3rem' }}>
-        <AEOAnswerBlock
-          question="What is the Enterprise SIP Architecture for Conversational Voice AI?"
-          answer="Gyan VaniAi's SIP Architecture is a carrier-grade telephony gateway that bridges legacy enterprise telecom infrastructure (PSTN, PBX, SIP trunks) and WhatsApp Voice APIs directly with low-latency streaming Voice AI models. Operating via geo-distributed Session Border Controllers (SBC), it translates inbound SRTP audio packets into binary PCM WebSocket streams in under 12ms, enabling full-duplex conversations with human-like latency under 300ms."
-          takeaways={[
-            "Carrier-Grade Session Border Controllers (SBC) handle TLS 1.3 termination, topology hiding, and DDoS flood protection.",
-            "Sub-10ms full-duplex media translation bridges SRTP UDP packets directly into binary PCM WebSockets for neural VAD and streaming STT.",
-            "Complies with Indian telecom regulations (DoT & TRAI) by strictly separating domestic Indian PSTN trunks from international VoIP routing.",
-            "Supports warm human handoff via SIP REFER with contextual CRM payloads injected into custom SIP headers (X-GyanVani-CRM-Data).",
-            "Broad PBX interoperability tested with Asterisk PJSIP, FreeSWITCH, Cisco CUCM, Avaya Aura, and Twilio Elastic SIP Trunking."
-          ]}
-          ctaText="Request Architecture Consultation"
-          badge="Executive Architectural Summary"
-        />
-      </div>
 
       {/* Multi-Tier Architecture Engine Visualizer */}
       <section className="sip-section" id="architecture-stack">
@@ -554,7 +395,7 @@ dial-peer voice 2000 voip
               <Network size={14} />
               <span>System Topology</span>
             </div>
-            <h2 className="sip-section-title">The 5-Tier Voice AI Telephony Architecture</h2>
+            <h2 className="sip-section-title">The 8-Tier Voice AI Telephony Architecture</h2>
             <p className="sip-section-desc">
               How Gyan VaniAi securely interfaces carrier-grade telecom switches with ultra-fast neural speech pipelines.
             </p>
@@ -638,77 +479,8 @@ dial-peer voice 2000 voip
         </div>
       </section>
 
-      {/* PBX Configuration Blueprints */}
-      <section className="sip-section" id="pbx-configurations">
-        <div className="sip-container">
-          <div className="sip-section-header">
-            <div className="sip-eyebrow">
-              <FileCode2 size={14} />
-              <span>Production Config Snippets</span>
-            </div>
-            <h2 className="sip-section-title">Enterprise PBX Integration Blueprints</h2>
-            <p className="sip-section-desc">
-              Copy-and-paste configurations for leading enterprise PBX platforms, IP switches, and elastic cloud trunks.
-            </p>
-          </div>
-
-          <div className="sip-config-box">
-            <div className="sip-config-tabs">
-              <button 
-                className={`sip-config-tab ${activeTab === 'asterisk' ? 'active' : ''}`}
-                onClick={() => setActiveTab('asterisk')}
-              >
-                <span>Asterisk / FreePBX</span>
-              </button>
-              <button 
-                className={`sip-config-tab ${activeTab === 'freeswitch' ? 'active' : ''}`}
-                onClick={() => setActiveTab('freeswitch')}
-              >
-                <span>FreeSWITCH</span>
-              </button>
-              <button 
-                className={`sip-config-tab ${activeTab === 'cisco' ? 'active' : ''}`}
-                onClick={() => setActiveTab('cisco')}
-              >
-                <span>Cisco CUCM / CUBE</span>
-              </button>
-              <button 
-                className={`sip-config-tab ${activeTab === 'avaya' ? 'active' : ''}`}
-                onClick={() => setActiveTab('avaya')}
-              >
-                <span>Avaya Aura</span>
-              </button>
-              <button 
-                className={`sip-config-tab ${activeTab === 'twilio' ? 'active' : ''}`}
-                onClick={() => setActiveTab('twilio')}
-              >
-                <span>Twilio Elastic SIP</span>
-              </button>
-            </div>
-
-            <div className="sip-config-header">
-              <div className="sip-config-filename">
-                <FileCode2 size={16} />
-                <span>{pbxConfigs[activeTab].filename}</span>
-              </div>
-              <button 
-                className="sip-copy-btn" 
-                onClick={() => handleCopyCode(pbxConfigs[activeTab].code)}
-              >
-                {copiedCode ? <Check size={14} /> : <Copy size={14} />}
-                <span>{copiedCode ? 'Copied!' : 'Copy Config'}</span>
-              </button>
-            </div>
-
-            <pre className="sip-code-block">
-              <code>{pbxConfigs[activeTab].code}</code>
-            </pre>
-          </div>
-        </div>
-      </section>
-
       {/* Codec Negotiation & Transcoding Matrix */}
-      <section className="sip-section" style={{ background: 'rgba(0, 0, 0, 0.25)' }}>
+      <section className="sip-section" id="codec-matrix" style={{ background: 'rgba(0, 0, 0, 0.25)' }}>
         <div className="sip-container">
           <div className="sip-section-header">
             <div className="sip-eyebrow">
