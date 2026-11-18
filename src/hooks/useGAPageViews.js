@@ -138,12 +138,27 @@ export function useGAPageViews() {
         }
       }
 
+      let countryCode = null;
+      let countryName = null;
+      try {
+        const geoRaw = localStorage.getItem('gyanvaniai_visitor_geo');
+        if (geoRaw) {
+          const geo = JSON.parse(geoRaw);
+          countryCode = geo.country || geo.countryCode || null;
+          countryName = geo.countryName || null;
+        }
+      } catch {
+        // ignore
+      }
+
       const payload = JSON.stringify({
         path: safePath,
         title: safeTitle,
         referrer: document.referrer || null,
         channel: 'crm',
         consent: consentStatus,
+        countryCode,
+        countryName,
       });
 
       const hitEndpoint = `${backendBase}/api/public/analytics/hit`;
