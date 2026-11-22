@@ -579,12 +579,11 @@ body.dark-theme .seo-diagram-card img {
   filter: invert(1) hue-rotate(180deg) brightness(0.95) contrast(0.9);
 }
 
-[data-theme="midnight"] .seo-landing-page .hero-visual img,
-[data-theme="aurora"] .seo-landing-page .hero-visual img,
-[data-theme="quantum"] .seo-landing-page .hero-visual img,
-[data-theme="sapphire"] .seo-landing-page .hero-visual img,
-body.dark-theme .seo-landing-page .hero-visual img {
-  filter: invert(1) hue-rotate(180deg) brightness(0.95) contrast(0.9);
+/* Hero visuals must NEVER be inverted in dark mode - they are built dark */
+.seo-landing-page .hero-visual img,
+.hero-visual img,
+img[src*="hero-"] {
+  filter: none !important;
 }
 
 [data-theme="midnight"] .workflow-icon-box img,

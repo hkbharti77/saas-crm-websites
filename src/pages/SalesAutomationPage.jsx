@@ -361,7 +361,7 @@ export default function SalesAutomationPage() {
         canonical={PAGE_URL}
         image={`${SITE}/portfolio_ai.webp`}
         schema={[serviceSchema, breadcrumbSchema, faqSchema]}
-        preloadImage="/hero-sales-automation.svg"
+        preloadImage="/service-sales-automation.webp"
       />
 
       <div className="sales-automation-page">
@@ -429,12 +429,12 @@ export default function SalesAutomationPage() {
               {/* Right Column: Hero Visual Asset */}
               <div className="sales-mockup-wrapper">
                 <img
-                  src="/hero-sales-automation.svg"
+                  src="/service-sales-automation.webp"
                   alt="Sales & Revenue Automation Dashboard by Gyan VaniAi"
                   width="1000"
                   height="750"
                   className="sales-hero-img"
-                  style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '1rem', boxShadow: 'var(--shadow-hover)' }}
+                  style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '1rem', boxShadow: 'var(--shadow-hover)', filter: 'none' }}
                   fetchPriority="high"
                   decoding="sync"
                 />

@@ -304,7 +304,7 @@ export default function AIChatbotsPage() {
     areaServed: 'Worldwide',
     description: 'Custom AI chatbots with RAG knowledge grounding, sub-300ms latency, WhatsApp integration, and human handoff.',
     url: `${SITE}/services/ai-chatbots`,
-    image: `${SITE}/hero-ai-chatbots.svg`
+    image: `${SITE}/service-ai-chatbot.webp`
   };
 
   const allChatbotFaqs = [
@@ -331,8 +331,8 @@ export default function AIChatbotsPage() {
         title="AI Chatbot Development Company | Custom RAG Chatbots | Gyan VaniAi"
         description="Build custom AI chatbots with RAG knowledge grounding, API workflows, CRM integration, and human handoff across WhatsApp and web channels."
         canonical={`${SITE}/services/ai-chatbots`}
-        image={`${SITE}/hero-ai-chatbots.svg`}
-        preloadImage="/hero-ai-chatbots.svg"
+        image={`${SITE}/service-ai-chatbot.webp`}
+        preloadImage="/service-ai-chatbot.webp"
         schema={[serviceSchema, chatbotFaqSchema]}
       />
 
@@ -393,12 +393,12 @@ export default function AIChatbotsPage() {
             {/* Purpose-Built AI Chatbot Hero Visual */}
             <div className="chatbots-mockup-wrapper">
               <img
-                src="/hero-ai-chatbots.svg"
+                src="/service-ai-chatbot.webp"
                 alt="Enterprise AI Chatbot & RAG Assistant Platform by Gyan VaniAi"
                 width="1000"
                 height="750"
                 className="chatbots-hero-img"
-                style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '1rem', boxShadow: 'var(--shadow-hover)' }}
+                style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '1rem', boxShadow: 'var(--shadow-hover)', filter: 'none' }}
                 fetchPriority="high"
                 decoding="sync"
               />
