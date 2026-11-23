@@ -389,7 +389,7 @@ export default function ContactSection({
                       required
                     />
                     <span>
-                      I confirm I am 18 years of age or older, and agree to the <Link to="/terms" target="_blank" style={{ color: 'var(--primary-color)', textDecoration: 'underline' }}>Terms &amp; Conditions</Link> and <Link to="/privacy" target="_blank" style={{ color: 'var(--primary-color)', textDecoration: 'underline' }}>Privacy Policy</Link>.
+                      I confirm I am 18 years of age or older, and agree to the <Link to="/terms" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--primary-color)', textDecoration: 'underline' }}>Terms &amp; Conditions</Link> and <Link to="/privacy" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--primary-color)', textDecoration: 'underline' }}>Privacy Policy</Link>.
                     </span>
                   </label>
                   {consentError && <span className="form-error-msg">Please confirm you are 18+ and accept the Terms &amp; Privacy Policy to proceed.</span>}
@@ -408,7 +408,7 @@ export default function ContactSection({
                 {/* 7. Trust Microcopy */}
                 <p className="contact-trust-microcopy">
                   <Lock size={12} className="microcopy-lock-icon" />
-                  <span>Your information is kept private under our <Link to="/privacy" style={{ color: 'var(--primary-color)', textDecoration: 'underline', fontWeight: '550' }}>Privacy Policy</Link>. No spam.</span>
+                  <span>Your information is kept private under our <Link to="/privacy" style={{ color: 'var(--primary-color)', textDecoration: 'underline', fontWeight: 500 }}>Privacy Policy</Link>. No spam.</span>
                 </p>
               </form>
             )}

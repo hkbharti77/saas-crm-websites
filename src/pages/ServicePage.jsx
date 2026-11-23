@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useParams, Navigate } from 'react-router-dom';
 import { ArrowRight, CheckCircle } from 'lucide-react';
 import SeoHead from '../components/SeoHead';
@@ -64,7 +64,7 @@ export default function ServicePage() {
         image={`https://www.gyanvaniai.com${service.imageUrl}`}
         preloadImage={service.imageUrl}
       />
-      <div className="service-page" style={{ background: 'var(--bg-main)' }}>
+      <div className="service-page" style={{ background: 'var(--bg-base)' }}>
         <div className="container" style={{ padding: '6rem 1rem 4rem', maxWidth: '900px', margin: '0 auto', minHeight: '80vh' }}>
         <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
           <h1 className="h1" style={{ marginBottom: '1.5rem', color: 'var(--text-primary)' }}>{service.title}</h1>

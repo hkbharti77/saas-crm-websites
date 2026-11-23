@@ -1,11 +1,4 @@
-import { v2 as cloudinary } from 'cloudinary';
-
-if (process.env.CLOUDINARY_URL) {
-  cloudinary.config({
-    cloudinary_url: process.env.CLOUDINARY_URL,
-    secure: true,
-  });
-}
+import { getCloudinaryClient } from './_cloudinary.js';
 
 export default async function handler(req, res) {
   const { path: rawPath } = req.query || {};
@@ -23,6 +16,11 @@ export default async function handler(req, res) {
   mediaKey = mediaKey.replace(/^\/+/, '').split('?')[0];
 
   try {
+    const cloudinary = await getCloudinaryClient();
+    if (!cloudinary) {
+      return res.status(404).json({ error: 'Media asset not found' });
+    }
+
     const secureUrl = cloudinary.url(mediaKey, {
       secure: true,
       resource_type: 'image',

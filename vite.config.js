@@ -1,8 +1,10 @@
+import fs from 'node:fs';
 import path from 'path';
+import dotenv from 'dotenv';
 import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
-import { v2 as cloudinary } from 'cloudinary';
+import { getCloudinaryClient, isValidCloudinaryUrl } from './api/_cloudinary.js';
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
@@ -14,15 +16,32 @@ export default defineConfig(({ mode }) => {
     }
   });
 
-  if (process.env.CLOUDINARY_URL) {
+  // Apply local-only .env.local overrides (gitignored) so local settings override
+  // any inherited shell/container placeholder env vars (e.g. localhost:5000).
+  const localEnvPath = path.resolve(process.cwd(), '.env.local');
+  const localViteDefine = {};
+  if (fs.existsSync(localEnvPath)) {
     try {
-      cloudinary.config(process.env.CLOUDINARY_URL);
-    } catch (e) {
-      console.warn('Cloudinary config notice:', e);
+      const parsedLocal = dotenv.parse(fs.readFileSync(localEnvPath, 'utf8'));
+      Object.entries(parsedLocal).forEach(([key, value]) => {
+        if (value) {
+          process.env[key] = value;
+          if (key.startsWith('VITE_')) {
+            localViteDefine[`import.meta.env.${key}`] = JSON.stringify(value);
+          }
+        }
+      });
+    } catch (err) {
+      console.warn('Notice reading .env.local:', err?.message || err);
     }
   }
 
+  if (process.env.CLOUDINARY_URL && !isValidCloudinaryUrl(process.env.CLOUDINARY_URL)) {
+    console.warn("Cloudinary dev middleware notice: CLOUDINARY_URL is invalid and will be ignored until it begins with 'cloudinary://'.");
+  }
+
   return {
+    define: localViteDefine,
     plugins: [
       react(),
       tailwindcss(),
@@ -69,6 +88,12 @@ export default defineConfig(({ mode }) => {
             }
 
             try {
+              const aiHandlerPath = path.resolve(process.cwd(), 'api/ai.js');
+              if (!fs.existsSync(aiHandlerPath)) {
+                res.statusCode = 501;
+                res.setHeader('Content-Type', 'application/json');
+                return res.end(JSON.stringify({ error: 'Local /api/ai endpoint is not configured in this repository.' }));
+              }
               const { default: handler } = await import('./api/ai.js');
               const urlObj = new URL(req.url, 'http://localhost');
               const mockReq = {
@@ -126,13 +151,18 @@ export default defineConfig(({ mode }) => {
                   .replace(/\.[^/.]+$/, '')
                   .replace(/[^a-z0-9]/g, '-');
 
+                const cloudinary = await getCloudinaryClient();
+                if (!cloudinary) {
+                  throw new Error('Cloudinary is not configured');
+                }
+
                 const uploadResponse = await cloudinary.uploader.upload(dataUri, {
                   folder: 'blog',
                   public_id: `${Date.now()}-${cleanFileName}`,
                   resource_type: 'auto',
                 });
 
-                const host = req.headers.host || 'localhost:5173';
+                const host = req.headers.host || 'localhost:3000';
                 const protocol = host.includes('localhost') ? 'http' : 'https';
                 const maskedUrl = `${protocol}://${host}/media/${uploadResponse.public_id}`;
 
@@ -177,6 +207,9 @@ export default defineConfig(({ mode }) => {
               const mediaKey = urlParts.replace(/^\/+/, '');
               if (!mediaKey) return next();
 
+              const cloudinary = await getCloudinaryClient();
+              if (!cloudinary) return next();
+
               const secureUrl = cloudinary.url(mediaKey, {
                 secure: true,
                 resource_type: 'image',
@@ -204,15 +237,25 @@ export default defineConfig(({ mode }) => {
       },
     },
     server: {
-      port: 5173,
+      port: 3000,
       proxy: {
         '/api': {
-          target: 'http://localhost:5000',
+          target: (
+            process.env.VITE_BACKEND_URL ||
+            process.env.VITE_API_URL ||
+            process.env.VITE_CMS_API_URL ||
+            'http://localhost:5000'
+          ).trim().replace(/\/+$/, ''),
           changeOrigin: true,
           secure: false,
         },
         '/uploads': {
-          target: 'http://localhost:5000',
+          target: (
+            process.env.VITE_BACKEND_URL ||
+            process.env.VITE_API_URL ||
+            process.env.VITE_CMS_API_URL ||
+            'http://localhost:5000'
+          ).trim().replace(/\/+$/, ''),
           changeOrigin: true,
           secure: false,
         },

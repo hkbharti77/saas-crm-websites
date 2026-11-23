@@ -865,7 +865,19 @@ export default function HrmsDevelopmentPage() {
           <div className="hrms-faq-list">
             {faqData.map((faq, idx) => (
               <div key={idx} className={`hrms-faq-item ${openFaqIndex === idx ? 'open' : ''}`}>
-                <div className="hrms-faq-question" onClick={() => toggleFaq(idx)}>
+                <div
+                  className="hrms-faq-question"
+                  role="button"
+                  tabIndex={0}
+                  aria-expanded={openFaqIndex === idx}
+                  onClick={() => toggleFaq(idx)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      toggleFaq(idx);
+                    }
+                  }}
+                >
                   <span>{faq.q}</span>
                   {openFaqIndex === idx ? <ChevronUp size={20} color="#a78bfa" /> : <ChevronDown size={20} color="#94a3b8" />}
                 </div>

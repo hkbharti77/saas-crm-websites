@@ -1,60 +1,40 @@
-import React, { useState, useEffect } from 'react';
-import { useLocation, useNavigationType, useOutlet } from 'react-router-dom';
+import React, { useState, useCallback } from 'react';
+import { useLocation, useOutlet } from 'react-router-dom';
 import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
 import AOS from 'aos';
-import { getBookPageVariants, getNavigationDirection } from './transitionConfig';
+import { getPageEnterVariants } from './transitionConfig';
 
+/**
+ * Freezes the outgoing route element during its brief 80ms fade-out so
+ * AnimatePresence never flashes incoming content inside an exiting wrapper.
+ */
 function FrozenOutlet() {
-  const o = useOutlet();
-  const [outlet] = useState(o);
+  const outlet = useOutlet();
+  const [frozen] = useState(outlet);
+  return frozen;
+}
 
-  // Scroll to top upon entering a new route (if no anchor hash present)
-  useEffect(() => {
+/**
+ * Framer Motion AnimatePresence Page Transition Layout
+ * - Preserves instant first-paint LCP (initial={false}).
+ * - Wraps main route content in AnimatePresence for crisp 80ms fade-out ->
+ *   150ms fade-in + subtle 8px upward lift across all page switches.
+ * - Resets scroll cleanly on exit completion and clears transform at rest
+ *   so native position: sticky works on every child page.
+ */
+export default function PageTransitionLayout() {
+  const location = useLocation();
+  const prefersReducedMotion = useReducedMotion();
+  const variants = getPageEnterVariants(prefersReducedMotion);
+
+  const handleExitComplete = useCallback(() => {
     if (!window.location.hash) {
-      window.scrollTo(0, 0);
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
     }
   }, []);
 
-  return outlet;
-}
-
-export default function PageTransitionLayout() {
-  const location = useLocation();
-  const navigationType = useNavigationType();
-  const prefersReducedMotion = useReducedMotion();
-
-  // State-driven navigation tracking compliant with React 19 rules
-  const [navState, setNavState] = useState({
-    activePath: location.pathname,
-    prevPath: location.pathname,
-    prevIdx: typeof window !== 'undefined' ? (window.history.state?.idx ?? 0) : 0,
-    direction: 1,
-  });
-
-  // Adjust direction state during render phase on route navigation
-  if (location.pathname !== navState.activePath) {
-    const currentIdx = typeof window !== 'undefined' ? (window.history.state?.idx ?? 0) : 0;
-    const newDir = getNavigationDirection({
-      currentPath: location.pathname,
-      prevPath: navState.activePath,
-      navigationType,
-      currentHistoryIdx: currentIdx,
-      prevHistoryIdx: navState.prevIdx,
-      explicitDirection: location.state?.direction,
-    });
-
-    setNavState({
-      activePath: location.pathname,
-      prevPath: navState.activePath,
-      prevIdx: currentIdx,
-      direction: newDir,
-    });
-  }
-
-  const variants = getBookPageVariants(prefersReducedMotion);
-
-  const handleAnimationComplete = () => {
-    // Re-synchronize AOS viewport reveal triggers in an animation frame to prevent forced synchronous reflow
+  const handleAnimationComplete = useCallback((definition) => {
+    if (definition !== 'animate') return;
     requestAnimationFrame(() => {
       try {
         AOS.refresh();
@@ -62,20 +42,23 @@ export default function PageTransitionLayout() {
         /* ignore */
       }
     });
-  };
+  }, []);
 
   return (
-    <div className="book-turn-viewport">
-      <AnimatePresence mode="wait" initial={false} custom={navState.direction}>
+    <div className="page-transition-viewport">
+      <AnimatePresence
+        mode="wait"
+        initial={false}
+        onExitComplete={handleExitComplete}
+      >
         <motion.div
           key={location.pathname}
-          custom={navState.direction}
           initial="initial"
           animate="animate"
           exit="exit"
           variants={variants}
           onAnimationComplete={handleAnimationComplete}
-          className="page-transition-wrapper book-page-sheet"
+          className="page-transition-wrapper"
         >
           <FrozenOutlet />
         </motion.div>

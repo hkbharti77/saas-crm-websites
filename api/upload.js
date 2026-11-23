@@ -1,12 +1,4 @@
-import { v2 as cloudinary } from 'cloudinary';
-
-if (process.env.CLOUDINARY_URL) {
-  try {
-    cloudinary.config(process.env.CLOUDINARY_URL);
-  } catch (e) {
-    console.warn('Cloudinary config notice in api/upload:', e);
-  }
-}
+import { getCloudinaryClient } from './_cloudinary.js';
 
 export const config = {
   api: {
@@ -136,6 +128,13 @@ export default async function handler(req, res) {
       .toLowerCase()
       .replace(/\.[^/.]+$/, '')
       .replace(/[^a-z0-9]/g, '-');
+
+    const cloudinary = await getCloudinaryClient();
+    if (!cloudinary) {
+      return res.status(503).json({
+        error: 'Image upload storage is not configured.',
+      });
+    }
 
     const uploadResponse = await cloudinary.uploader.upload(dataUri, {
       folder: 'blog',

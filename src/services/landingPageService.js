@@ -3,6 +3,8 @@ import { API_BASE_URL } from '../config/apiConfig';
 
 const CACHE_KEY = 'gyanvani_public_landing_page_v2';
 let memoryCache = null;
+let inFlightPromise = null;
+let backgroundRefreshPromise = null;
 
 // Cross-tab real-time sync with CMS Admin Portal
 if (typeof window !== 'undefined' && window.BroadcastChannel) {
@@ -25,6 +27,7 @@ if (typeof window !== 'undefined' && window.BroadcastChannel) {
 
 export function clearLandingPageCache() {
   memoryCache = null;
+  inFlightPromise = null;
   if (typeof window !== 'undefined' && window.sessionStorage) {
     try {
       sessionStorage.removeItem(CACHE_KEY);
@@ -63,72 +66,97 @@ export async function fetchLandingPageData(options = {}) {
     return null;
   }
 
-  try {
-    const cacheBuster = `?_t=${Date.now()}`;
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 3000);
-    const res = await fetch(`${API_BASE_URL}/api/public/landing-page${cacheBuster}`, {
-      method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-      },
-      signal: controller.signal,
-    });
-    clearTimeout(timeoutId);
-
-    if (res.ok) {
-      const data = await res.json();
-      memoryCache = data;
-      if (typeof window !== 'undefined' && window.sessionStorage) {
-        try {
-          sessionStorage.setItem(CACHE_KEY, JSON.stringify(data));
-        } catch {
-          /* ignore */
-        }
-      }
-      return data;
-    }
-  } catch (err) {
-    console.warn('Landing page dynamic fetch notice (using defaults):', err.message);
+  // Deduplicate simultaneous component mounts into a single network request
+  if (!force && inFlightPromise) {
+    return inFlightPromise;
   }
 
-  return null;
+  const requestPromise = (async () => {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort('timeout'), 6000);
+
+    try {
+      const cacheBuster = `?_t=${Date.now()}`;
+      const res = await fetch(`${API_BASE_URL}/api/public/landing-page${cacheBuster}`, {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+        },
+        signal: controller.signal,
+      });
+
+      if (res.ok) {
+        const data = await res.json();
+        memoryCache = data;
+        if (typeof window !== 'undefined' && window.sessionStorage) {
+          try {
+            sessionStorage.setItem(CACHE_KEY, JSON.stringify(data));
+          } catch {
+            /* ignore */
+          }
+        }
+        return data;
+      }
+    } catch (err) {
+      if (err !== 'timeout' && err?.name !== 'AbortError') {
+        console.warn('Landing page dynamic fetch notice (using defaults):', err?.message || err);
+      }
+    } finally {
+      clearTimeout(timeoutId);
+      if (inFlightPromise === requestPromise) {
+        inFlightPromise = null;
+      }
+    }
+
+    return null;
+  })();
+
+  inFlightPromise = requestPromise;
+  return requestPromise;
 }
 
 export async function refreshLandingPageDataInBackground() {
   if (!API_BASE_URL) return;
-  try {
-    const cacheBuster = `?_t=${Date.now()}`;
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 3000);
-    const res = await fetch(`${API_BASE_URL}/api/public/landing-page${cacheBuster}`, {
-      headers: { 'Accept': 'application/json' },
-      signal: controller.signal,
-    });
-    clearTimeout(timeoutId);
-    if (res.ok) {
-      const fresh = await res.json();
-      const previousVersion = memoryCache?.version;
-      const previousTimestamp = memoryCache?.publishedAt;
+  if (backgroundRefreshPromise) return backgroundRefreshPromise;
 
-      memoryCache = fresh;
-      if (typeof window !== 'undefined' && window.sessionStorage) {
-        try {
-          sessionStorage.setItem(CACHE_KEY, JSON.stringify(fresh));
-        } catch {
-          /* ignore */
+  backgroundRefreshPromise = (async () => {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort('timeout'), 6000);
+    try {
+      const cacheBuster = `?_t=${Date.now()}`;
+      const res = await fetch(`${API_BASE_URL}/api/public/landing-page${cacheBuster}`, {
+        headers: { 'Accept': 'application/json' },
+        signal: controller.signal,
+      });
+      if (res.ok) {
+        const fresh = await res.json();
+        const previousVersion = memoryCache?.version;
+        const previousTimestamp = memoryCache?.publishedAt;
+
+        memoryCache = fresh;
+        if (typeof window !== 'undefined' && window.sessionStorage) {
+          try {
+            sessionStorage.setItem(CACHE_KEY, JSON.stringify(fresh));
+          } catch {
+            /* ignore */
+          }
+        }
+
+        // If version or published content changed, notify live page components to re-render immediately!
+        if (
+          typeof window !== 'undefined' &&
+          (previousVersion !== fresh.version || previousTimestamp !== fresh.publishedAt)
+        ) {
+          window.dispatchEvent(new CustomEvent('gyanvani:landing_page_updated', { detail: fresh }));
         }
       }
-
-      // If version or published content changed, notify live page components to re-render immediately!
-      if (
-        typeof window !== 'undefined' &&
-        (previousVersion !== fresh.version || previousTimestamp !== fresh.publishedAt)
-      ) {
-        window.dispatchEvent(new CustomEvent('gyanvani:landing_page_updated', { detail: fresh }));
-      }
+    } catch {
+      // Silent background revalidation failure
+    } finally {
+      clearTimeout(timeoutId);
+      backgroundRefreshPromise = null;
     }
-  } catch {
-    // Silent background revalidation failure
-  }
+  })();
+
+  return backgroundRefreshPromise;
 }

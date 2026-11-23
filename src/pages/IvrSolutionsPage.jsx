@@ -530,7 +530,7 @@ export default function IvrSolutionsPage() {
               <div className="ivr-calc-breakdown-pill">
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                   <TrendingUp size={16} color="var(--primary-color)" />
-                  <span><strong>Cost Per Call:</strong> Live Agent: <span style={{ textDecoration: 'line-through', opacity: 0.75 }}>{humanCallCost}</span> → Smart IVR: <span style={{ color: 'var(--primary-color)', fontWeight: '750' }}>{ivrCallCost}</span></span>
+                  <span><strong>Cost Per Call:</strong> Live Agent: <span style={{ textDecoration: 'line-through', opacity: 0.75 }}>{humanCallCost}</span> → Smart IVR: <span style={{ color: 'var(--primary-color)', fontWeight: 700 }}>{ivrCallCost}</span></span>
                 </div>
                 <div style={{ fontWeight: '700', color: 'var(--primary-color)' }}>
                   Save 82% per automated call

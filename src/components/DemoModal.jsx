@@ -30,16 +30,18 @@ export default function DemoModal({ isOpen, onClose }) {
 
   if (typeof document === 'undefined' || !isOpen) return null;
 
-  const handleLaunch = () => {
-    if (!agreed) return;
-    window.open('https://connect.gyanvaniai.online/', '_blank', 'noopener,noreferrer');
-    onClose();
-  };
-
   return createPortal(
-    <div className="demo-modal-overlay" onClick={onClose} role="dialog" aria-modal="true" aria-labelledby="demo-modal-heading">
-      <div className="demo-modal-content" onClick={(e) => e.stopPropagation()}>
-        <button className="demo-modal-close" onClick={onClose} aria-label="Close demo modal">
+    <div
+      className="demo-modal-overlay"
+      onClick={(e) => {
+        if (e.target === e.currentTarget) onClose();
+      }}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="demo-modal-heading"
+    >
+      <div className="demo-modal-content">
+        <button type="button" className="demo-modal-close" onClick={onClose} aria-label="Close demo modal">
           <X size={20} />
         </button>
 
@@ -116,15 +118,29 @@ export default function DemoModal({ isOpen, onClose }) {
             {!agreed && (
               <span className="demo-consent-helper">Accept the demo data policy to continue.</span>
             )}
-            <button
-              className={`btn btn-primary demo-launch-btn ${!agreed ? 'disabled' : ''}`}
-              onClick={handleLaunch}
-              disabled={!agreed}
-              id="btn-launch-live-demo"
-            >
-              <span>Launch Live Demo</span>
-              <ExternalLink size={16} />
-            </button>
+            {agreed ? (
+              <a
+                href="https://connect.gyanvaniai.online/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-primary demo-launch-btn"
+                onClick={onClose}
+                id="btn-launch-live-demo"
+              >
+                <span>Launch Live Demo</span>
+                <ExternalLink size={16} />
+              </a>
+            ) : (
+              <button
+                type="button"
+                className="btn btn-primary demo-launch-btn disabled"
+                disabled
+                id="btn-launch-live-demo"
+              >
+                <span>Launch Live Demo</span>
+                <ExternalLink size={16} />
+              </button>
+            )}
 
             <a
               href="/terms#demo-policy"

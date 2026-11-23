@@ -11,6 +11,7 @@ const Portfolio = lazy(() => import('../components/Portfolio'));
 const FAQ = lazy(() => import('../components/FAQ'));
 const ContactSection = lazy(() => import('../components/ContactSection'));
 import SeoHead from '../components/SeoHead';
+import { ScrollReveal } from '../components/transitions/ScrollReveal';
 import { defaultFaqs } from '../data/faqs';
 import { faqSchema } from '../utils/schemas';
 import { fetchLandingPageData } from '../services/landingPageService';
@@ -110,7 +111,7 @@ export default function Home() {
       const feat = sections.features || {};
       if (feat.enabled === false) return null;
       return (
-        <div key="sec-features" data-aos="fade-up">
+        <ScrollReveal key="sec-features">
           <Features
             onBookDemo={openModal}
             heading={feat.heading}
@@ -118,7 +119,7 @@ export default function Home() {
             capabilities={feat.capabilities}
             bottomCta={feat.bottomCta}
           />
-        </div>
+        </ScrollReveal>
       );
     },
 
@@ -126,7 +127,7 @@ export default function Home() {
       const proc = sections.process || {};
       if (proc.enabled === false) return null;
       return (
-        <div key="sec-process" data-aos="fade-up">
+        <ScrollReveal key="sec-process">
           <Process
             title={proc.title}
             subtitle={proc.subtitle}
@@ -136,7 +137,7 @@ export default function Home() {
             footerBtnText={proc.footer?.buttonText}
             footerBtnUrl={proc.footer?.buttonUrl}
           />
-        </div>
+        </ScrollReveal>
       );
     },
 
@@ -144,13 +145,13 @@ export default function Home() {
       const ind = sections.industries || {};
       if (ind.enabled === false) return null;
       return (
-        <div key="sec-industries" data-aos="fade-up">
+        <ScrollReveal key="sec-industries">
           <Industries
             title={ind.title}
             subtitle={ind.subtitle}
             list={ind.list}
           />
-        </div>
+        </ScrollReveal>
       );
     },
 
@@ -158,7 +159,7 @@ export default function Home() {
       const omni = sections.omnichannel || {};
       if (omni.enabled === false) return null;
       return (
-        <div key="sec-omnichannel" data-aos="fade-up">
+        <ScrollReveal key="sec-omnichannel">
           <OmnichannelSection
             onBookDemo={openModal}
             title={omni.title}
@@ -166,7 +167,7 @@ export default function Home() {
             centerNode={omni.centerNode}
             channels={omni.channels}
           />
-        </div>
+        </ScrollReveal>
       );
     },
 
@@ -174,14 +175,14 @@ export default function Home() {
       const sec = sections.security || {};
       if (sec.enabled === false) return null;
       return (
-        <div key="sec-security" data-aos="fade-up">
+        <ScrollReveal key="sec-security">
           <WhyChooseUs
             title={sec.title}
             subtitle={sec.subtitle}
             cards={sec.cards}
             cta={sec.cta}
           />
-        </div>
+        </ScrollReveal>
       );
     },
 
@@ -189,14 +190,14 @@ export default function Home() {
       const port = sections.portfolio || {};
       if (port.enabled === false) return null;
       return (
-        <div key="sec-portfolio" data-aos="fade-up">
+        <ScrollReveal key="sec-portfolio">
           <Portfolio
             title={port.title}
             subtitle={port.subtitle}
             metrics={port.metrics}
             caseStudies={port.caseStudies}
           />
-        </div>
+        </ScrollReveal>
       );
     },
 
@@ -204,13 +205,14 @@ export default function Home() {
       const f = sections.faq || {};
       if (f.enabled === false) return null;
       return (
-        <FAQ
-          key="sec-faq"
-          includeSchema={false}
-          title={f.title}
-          subtitle={f.subtitle}
-          customFaqs={f.items}
-        />
+        <ScrollReveal key="sec-faq">
+          <FAQ
+            includeSchema={false}
+            title={f.title}
+            subtitle={f.subtitle}
+            customFaqs={f.items}
+          />
+        </ScrollReveal>
       );
     },
 
@@ -218,13 +220,14 @@ export default function Home() {
       const cont = sections.contact || {};
       if (cont.enabled === false) return null;
       return (
-        <ContactSection
-          key="sec-contact"
-          eyebrow={cont.eyebrow}
-          title={cont.title}
-          subtitle={cont.subtitle}
-          checklist={cont.checklist}
-        />
+        <ScrollReveal key="sec-contact">
+          <ContactSection
+            eyebrow={cont.eyebrow}
+            title={cont.title}
+            subtitle={cont.subtitle}
+            checklist={cont.checklist}
+          />
+        </ScrollReveal>
       );
     },
   };

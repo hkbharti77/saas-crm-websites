@@ -29,7 +29,6 @@ import {
   HelpCircle, 
   Cpu
 } from 'lucide-react';
-import AiAnswerSummaryBlock from '../components/AiAnswerSummaryBlock';
 import './CrmDevelopmentPage.css';
 
 const SITE_URL = 'https://www.gyanvaniai.com';
@@ -876,7 +875,19 @@ export default function CrmDevelopmentPage() {
           <div className="crm-faq-list">
             {faqData.map((faq, idx) => (
               <div key={idx} className={`crm-faq-item ${openFaqIndex === idx ? 'open' : ''}`}>
-                <div className="crm-faq-question" onClick={() => toggleFaq(idx)}>
+                <div
+                  className="crm-faq-question"
+                  role="button"
+                  tabIndex={0}
+                  aria-expanded={openFaqIndex === idx}
+                  onClick={() => toggleFaq(idx)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      toggleFaq(idx);
+                    }
+                  }}
+                >
                   <span>{faq.q}</span>
                   {openFaqIndex === idx ? <ChevronUp size={20} color="#2dd4bf" /> : <ChevronDown size={20} color="#94a3b8" />}
                 </div>

@@ -26,7 +26,7 @@ export default function PersonalizedRecommendations({ _blogs = [] }) {
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem', flexWrap: 'wrap', gap: '0.5rem' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
           <Bookmark size={18} style={{ color: 'var(--primary-color)' }} />
-          <h3 style={{ margin: 0, fontSize: '1.15rem', fontWeight: '750', color: 'var(--text-primary)' }}>Recently Viewed</h3>
+          <h3 style={{ margin: 0, fontSize: '1.15rem', fontWeight: 700, color: 'var(--text-primary)' }}>Recently Viewed</h3>
         </div>
         <button
           type="button"
@@ -34,7 +34,7 @@ export default function PersonalizedRecommendations({ _blogs = [] }) {
           style={{
             display: 'inline-flex', alignItems: 'center', gap: '0.35rem',
             background: 'transparent', border: 'none', color: 'var(--text-muted)',
-            fontSize: '0.8rem', cursor: 'pointer', fontWeight: '600',
+            fontSize: '0.8rem', cursor: 'pointer', fontWeight: 600,
           }}
           title="Reset reading history"
         >
@@ -64,7 +64,7 @@ export default function PersonalizedRecommendations({ _blogs = [] }) {
           >
             <div>
               {item.category && (
-                <span style={{ fontSize: '0.7rem', fontWeight: 700, color: 'var(--primary-color)', textTransform: 'uppercase' }}>
+                <span style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--primary-color)', textTransform: 'uppercase' }}>
                   {item.category}
                 </span>
               )}

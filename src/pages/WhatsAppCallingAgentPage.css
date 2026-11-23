@@ -48,7 +48,7 @@
 .wa-section-eyebrow {
   display: inline-block;
   font-size: 0.75rem;
-  font-weight: 750;
+  font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--wa-primary);
@@ -110,7 +110,7 @@
 .wa-breadcrumb {
   margin-bottom: 2rem;
   font-size: 0.85rem;
-  font-weight: 550;
+  font-weight: 500;
   position: relative;
   z-index: 2;
 }
@@ -164,7 +164,7 @@
   border: 1px solid color-mix(in srgb, var(--wa-primary) 28%, transparent);
   color: var(--wa-primary);
   font-size: 0.775rem;
-  font-weight: 750;
+  font-weight: 700;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   margin-bottom: 1.25rem;
@@ -186,7 +186,7 @@
 
 .wa-hero-h1 {
   font-size: clamp(2.4rem, 4.5vw, 3.4rem);
-  font-weight: 850;
+  font-weight: 800;
   line-height: 1.14;
   letter-spacing: -0.025em;
   color: var(--text-primary);
@@ -223,7 +223,7 @@
 .wa-btn-secondary {
   padding: 0.85rem 1.5rem;
   font-size: 1rem;
-  font-weight: 650;
+  font-weight: 600;
   border-radius: var(--wa-radius-pill);
 }
 
@@ -296,7 +296,7 @@
   align-items: center;
   gap: 0.45rem;
   font-size: 0.78rem;
-  font-weight: 750;
+  font-weight: 700;
   color: var(--text-primary);
 }
 
@@ -313,8 +313,8 @@
   display: flex;
   align-items: center;
   gap: 0.35rem;
-  font-size: 0.72rem;
-  font-weight: 650;
+  font-size: 0.75rem;
+  font-weight: 600;
   color: var(--text-muted);
 }
 
@@ -352,7 +352,7 @@
 
 .wa-caller-name {
   font-size: 0.95rem;
-  font-weight: 750;
+  font-weight: 700;
   color: var(--text-primary);
 }
 
@@ -369,8 +369,8 @@
   border-radius: var(--wa-radius-pill);
   background: color-mix(in srgb, var(--wa-primary) 15%, transparent);
   color: var(--wa-primary);
-  font-size: 0.72rem;
-  font-weight: 750;
+  font-size: 0.75rem;
+  font-weight: 700;
 }
 
 /* Waveform Visualizer */
@@ -452,13 +452,13 @@
 
 .wa-transcript-msg.agent p {
   color: var(--text-primary);
-  font-weight: 550;
+  font-weight: 500;
   margin: 0;
 }
 
 .wa-msg-author {
-  font-size: 0.7rem;
-  font-weight: 750;
+  font-size: 0.75rem;
+  font-weight: 700;
   color: var(--wa-primary);
   display: block;
   margin-bottom: 0.15rem;
@@ -479,7 +479,7 @@
   border: 1px solid var(--border-color);
   padding: 0.45rem 0.65rem;
   border-radius: var(--wa-radius-sm);
-  font-size: 0.74rem;
+  font-size: 0.75rem;
   color: var(--text-secondary);
   white-space: nowrap;
   overflow: hidden;
@@ -525,7 +525,7 @@
   align-items: center;
   gap: 0.5rem;
   font-size: 0.85rem;
-  font-weight: 650;
+  font-weight: 600;
   color: var(--text-primary);
 }
 
@@ -575,7 +575,7 @@
 
 .wa-stat-val {
   font-size: 1.85rem;
-  font-weight: 850;
+  font-weight: 800;
   color: var(--wa-primary);
   letter-spacing: -0.02em;
 }
@@ -624,7 +624,7 @@
 
 .wa-pillar-title {
   font-size: 1.2rem;
-  font-weight: 750;
+  font-weight: 700;
   color: var(--text-primary);
   margin-bottom: 0.65rem;
 }
@@ -704,7 +704,7 @@
 
 .wa-cap-title {
   font-size: 1.18rem;
-  font-weight: 750;
+  font-weight: 700;
   color: var(--text-primary);
   margin-bottom: 0.65rem;
 }
@@ -782,7 +782,7 @@
 
 .wa-beam-node-name {
   font-size: 0.8rem;
-  font-weight: 750;
+  font-weight: 700;
   color: var(--text-primary);
   margin-top: 0.5rem;
 }
@@ -824,15 +824,15 @@
 }
 
 .wa-pipe-step-num {
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   font-weight: 800;
   color: var(--wa-primary);
   letter-spacing: 0.06em;
 }
 
 .wa-pipe-cat {
-  font-size: 0.7rem;
-  font-weight: 650;
+  font-size: 0.75rem;
+  font-weight: 600;
   color: var(--text-muted);
   text-transform: uppercase;
 }
@@ -851,7 +851,7 @@
 
 .wa-pipe-name {
   font-size: 0.98rem;
-  font-weight: 750;
+  font-weight: 700;
   color: var(--text-primary);
   margin-bottom: 0.45rem;
 }
@@ -886,7 +886,7 @@
 }
 
 .wa-stage-badge {
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   font-weight: 800;
   letter-spacing: 0.08em;
   color: var(--wa-primary);
@@ -913,7 +913,7 @@
 .wa-stage-cta {
   border-radius: var(--wa-radius-pill);
   padding: 0.75rem 1.4rem;
-  font-weight: 650;
+  font-weight: 600;
   white-space: nowrap;
 }
 
@@ -966,7 +966,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 750;
+  font-weight: 700;
   font-size: 0.85rem;
 }
 
@@ -1036,8 +1036,8 @@
 }
 
 .wa-bubble-speaker {
-  font-size: 0.72rem;
-  font-weight: 750;
+  font-size: 0.75rem;
+  font-weight: 700;
   color: #25d366;
   margin-bottom: 0.2rem;
 }
@@ -1049,7 +1049,7 @@
 .wa-bubble-time {
   display: block;
   text-align: right;
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   color: #8696a0;
   margin-top: 0.25rem;
 }
@@ -1072,13 +1072,13 @@
   padding-bottom: 1.1rem;
   border-bottom: 1px solid var(--border-color);
   font-size: 0.98rem;
-  font-weight: 750;
+  font-weight: 700;
   color: var(--text-primary);
 }
 
 .wa-panel-live-tag {
   margin-left: auto;
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   font-weight: 800;
   padding: 0.2rem 0.55rem;
   border-radius: var(--wa-radius-pill);
@@ -1180,7 +1180,7 @@
 }
 
 .wa-core-sub {
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   opacity: 0.85;
 }
 
@@ -1227,7 +1227,7 @@
 
 .wa-int-name {
   font-size: 0.9rem;
-  font-weight: 750;
+  font-weight: 700;
   color: var(--text-primary);
   white-space: nowrap;
   overflow: hidden;
@@ -1286,7 +1286,7 @@
 
 .wa-sec-title {
   font-size: 1.18rem;
-  font-weight: 750;
+  font-weight: 700;
   color: #ffffff;
   margin-bottom: 0.65rem;
 }
@@ -1368,7 +1368,7 @@
 
 .wa-faq-q-text {
   font-size: 1.05rem;
-  font-weight: 750;
+  font-weight: 700;
   letter-spacing: -0.01em;
   padding-right: 1.5rem;
 }

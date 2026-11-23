@@ -28,6 +28,10 @@ import Documentation from './pages/Documentation';
 import NotFound from './pages/NotFound';
 import PricingPage from './pages/PricingPage';
 import PlanDetailPage from './pages/PlanDetailPage';
+import HrmsDevelopmentPage from './pages/HrmsDevelopmentPage';
+import IvrSolutionsPage from './pages/IvrSolutionsPage';
+import LegalPage from './pages/LegalPage';
+import Unsubscribe from './pages/Unsubscribe';
 
 // High-Value Content Roadmap & Authority & AEO Pages
 import WhatsAppCatalogCrmPage from './pages/WhatsAppCatalogCrmPage';
@@ -59,7 +63,10 @@ function ServerApp() {
             <Route path="/services/ai-chatbots" element={<AIChatbotsPage />} />
             <Route path="/services/whatsapp-calling-agent" element={<WhatsAppCallingAgentPage />} />
             <Route path="/services/crm-development" element={<CrmDevelopmentPage />} />
+            <Route path="/services/hrms-development" element={<HrmsDevelopmentPage />} />
             <Route path="/services/whatsapp-calling-agent-bots" element={<Navigate to="/services/whatsapp-calling-agent" replace />} />
+            <Route path="/services/ivr-solutions" element={<IvrSolutionsPage />} />
+            <Route path="/industries/legal" element={<LegalPage />} />
             <Route path="/tools/whatsapp-pricing-calculator" element={<WhatsAppPricingCalculatorPage />} />
             <Route path="/compare/*" element={<Navigate to="/services/crm-development" replace />} />
             <Route path="/guides/crm-migration" element={<CrmMigrationGuidePage />} />
@@ -78,6 +85,7 @@ function ServerApp() {
             <Route path="/about" element={<About />} />
             <Route path="/pricing" element={<PricingPage />} />
             <Route path="/pricing/:planId" element={<PlanDetailPage />} />
+            <Route path="/unsubscribe" element={<Unsubscribe />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>

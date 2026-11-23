@@ -58,16 +58,12 @@ export default function BlogCTA({ post, position = 'end', onOpenDemo }) {
   const descText = post.ctaDescription || defaultDescMap[ctaType] || defaultDescMap.book_demo;
   const labelText = post.ctaLabel || defaultLabelMap[ctaType] || defaultLabelMap.book_demo;
 
+  const isExternalUrl = Boolean(safeUrl && safeUrl.startsWith('http'));
+
   const handleClick = (e) => {
     trackBlogCta(post, ctaType, position);
 
-    if (safeUrl) {
-      if (safeUrl.startsWith('http')) {
-        window.open(safeUrl, '_blank', 'noopener,noreferrer');
-      } else {
-        window.location.href = safeUrl;
-      }
-    } else if (typeof onOpenDemo === 'function') {
+    if (!safeUrl && typeof onOpenDemo === 'function') {
       e.preventDefault();
       onOpenDemo();
     }
@@ -84,7 +80,13 @@ export default function BlogCTA({ post, position = 'end', onOpenDemo }) {
 
         <div className="blog-cta-action">
           {safeUrl ? (
-            <a href={safeUrl} onClick={handleClick} className="btn btn-primary blog-cta-button">
+            <a
+              href={safeUrl}
+              target={isExternalUrl ? '_blank' : undefined}
+              rel={isExternalUrl ? 'noopener noreferrer' : undefined}
+              onClick={handleClick}
+              className="btn btn-primary blog-cta-button"
+            >
               <span>{labelText}</span>
               <ArrowRight size={17} style={{ marginLeft: '6px' }} />
             </a>

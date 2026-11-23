@@ -86,7 +86,7 @@
 .demo-url-badge {
   display: inline-block;
   font-size: 0.75rem;
-  font-family: monospace;
+  font-family: var(--font-mono);
   color: var(--primary-color, #0f766e);
   background: var(--mesh-color-1, rgba(15, 118, 110, 0.08));
   padding: 0.1rem 0.45rem;
@@ -388,7 +388,7 @@
   }
 
   .consent-text {
-    font-size: 0.74rem;
+    font-size: 0.75rem;
   }
 }
 

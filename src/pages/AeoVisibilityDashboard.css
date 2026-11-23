@@ -95,14 +95,14 @@
 }
 
 .aeo-tab-btn:hover {
-  background: rgba(255, 255, 255, 0.04);
-  color: #ffffff;
+  background: color-mix(in srgb, var(--primary-color) 8%, transparent);
+  color: var(--text-primary);
 }
 
 .aeo-tab-btn.active {
-  background: rgba(15, 118, 110, 0.2);
-  border-color: rgba(15, 118, 110, 0.4);
-  color: #2dd4bf;
+  background: color-mix(in srgb, var(--primary-color) 16%, transparent);
+  border-color: color-mix(in srgb, var(--primary-color) 38%, transparent);
+  color: var(--primary-color);
 }
 
 .aeo-metrics-grid {
@@ -137,7 +137,8 @@
 .aeo-metric-val {
   font-size: 1.75rem;
   font-weight: 800;
-  color: var(--text-color, #ffffff);
+  font-variant-numeric: tabular-nums;
+  color: var(--text-primary);
   line-height: 1.2;
 }
 
@@ -182,9 +183,9 @@
 }
 
 .aeo-select, .aeo-input, .aeo-textarea {
-  background: var(--bg-surface, rgba(0, 0, 0, 0.3));
-  border: 1px solid var(--border-color, rgba(255, 255, 255, 0.15));
-  color: #ffffff;
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  color: var(--text-primary);
   padding: 0.5rem 0.75rem;
   border-radius: 6px;
   font-size: 0.85rem;
@@ -192,13 +193,13 @@
 
 .aeo-select:focus, .aeo-input:focus, .aeo-textarea:focus {
   outline: none;
-  border-color: #0f766e;
+  border-color: var(--primary-color);
 }
 
 .aeo-table-wrapper {
   overflow-x: auto;
-  background: var(--card-bg, rgba(255, 255, 255, 0.02));
-  border: 1px solid var(--border-color, rgba(255, 255, 255, 0.08));
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
   border-radius: 12px;
 }
 
@@ -211,16 +212,17 @@
 
 .aeo-table th {
   padding: 1rem;
-  background: rgba(255, 255, 255, 0.04);
-  color: var(--text-muted, #94a3b8);
+  background: var(--bg-surface);
+  color: var(--text-secondary);
   font-weight: 600;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid var(--border-color);
   white-space: nowrap;
 }
 
 .aeo-table td {
   padding: 1rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-primary);
   vertical-align: middle;
 }
 
@@ -439,7 +441,7 @@
 .aeo-tag-live {
   background: rgba(16, 185, 129, 0.15);
   color: #10b981;
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   font-weight: 700;
   padding: 0.2rem 0.5rem;
   border-radius: 4px;
@@ -448,7 +450,7 @@
 .aeo-tag-opp {
   background: rgba(15, 118, 110, 0.15);
   color: #2dd4bf;
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   font-weight: 700;
   padding: 0.2rem 0.5rem;
   border-radius: 4px;

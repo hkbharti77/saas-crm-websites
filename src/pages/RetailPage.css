@@ -84,7 +84,7 @@
 
 .rt-hero-title {
   font-size: clamp(2.35rem, 4.8vw, 3.75rem);
-  font-weight: 850;
+  font-weight: 800;
   line-height: 1.1;
   letter-spacing: -0.03em;
   margin-bottom: 1.125rem;
@@ -187,7 +187,7 @@
 
 .rt-stat-val {
   font-size: 1.5rem;
-  font-weight: 850;
+  font-weight: 800;
   color: var(--primary-color);
   line-height: 1.1;
 }
@@ -478,7 +478,7 @@
 
 .rt-bento-title {
   font-size: 1.35rem;
-  font-weight: 750;
+  font-weight: 700;
   margin-bottom: 0.75rem;
   color: var(--text-primary);
 }

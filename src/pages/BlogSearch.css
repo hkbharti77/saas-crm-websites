@@ -114,7 +114,7 @@
 }
 
 .suggestion-type {
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   font-weight: 700;
   color: var(--primary-color);
   padding: 0.2rem 0.5rem;
@@ -287,7 +287,7 @@
 
 .search-card-title {
   font-size: 1.15rem;
-  font-weight: 750;
+  font-weight: 700;
   line-height: 1.35;
   color: var(--text-primary);
   margin: 0 0 0.75rem 0;

@@ -4,21 +4,21 @@
    ========================================================================== */
 
 .sip-guide-page {
-  --sip-primary: #0f766e;
-  --sip-primary-hover: #0d9488;
+  --sip-primary: var(--primary-color, #0f766e);
+  --sip-primary-hover: var(--primary-hover, #0d9488);
   --sip-teal: #14b8a6;
   --sip-cyan: #06b6d4;
-  --sip-accent: #2dd4bf;
-  --sip-dark-card: rgba(13, 20, 34, 0.78);
-  --sip-border: rgba(45, 212, 191, 0.16);
-  --sip-border-hover: rgba(45, 212, 191, 0.4);
-  --sip-glow: rgba(20, 184, 166, 0.15);
+  --sip-accent: var(--primary-color, #2dd4bf);
+  --sip-dark-card: var(--bg-card);
+  --sip-border: color-mix(in srgb, var(--primary-color) 22%, var(--border-color));
+  --sip-border-hover: color-mix(in srgb, var(--primary-color) 48%, var(--border-color));
+  --sip-glow: color-mix(in srgb, var(--primary-color) 15%, transparent);
 
   position: relative;
   overflow-x: hidden;
   padding-top: 0;
-  color: var(--text-primary, #f8fafc);
-  background: var(--bg-base, #060a12);
+  color: var(--text-primary);
+  background: var(--bg-base);
 }
 
 .sip-container {
@@ -60,9 +60,9 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.4rem 1.1rem;
-  background: rgba(15, 118, 110, 0.16);
-  border: 1px solid rgba(45, 212, 191, 0.35);
-  color: #2dd4bf;
+  background: color-mix(in srgb, var(--primary-color) 14%, transparent);
+  border: 1px solid color-mix(in srgb, var(--primary-color) 32%, transparent);
+  color: var(--primary-color);
   font-size: 0.825rem;
   font-weight: 700;
   letter-spacing: 0.04em;
@@ -75,9 +75,9 @@
 .sip-hero-badge .pulse-dot {
   width: 8px;
   height: 8px;
-  background-color: #2dd4bf;
+  background-color: var(--primary-color);
   border-radius: 50%;
-  box-shadow: 0 0 10px #2dd4bf;
+  box-shadow: 0 0 10px var(--primary-color);
   animation: sipPulse 2s infinite ease-in-out;
 }
 
@@ -87,25 +87,28 @@
 }
 
 .sip-hero-title {
-  font-size: clamp(2.2rem, 4.5vw, 3.4rem);
-  font-weight: 850;
-  line-height: 1.15;
+  font-family: var(--font-display);
+  font-size: clamp(2.15rem, 4.4vw, 3.35rem);
+  font-weight: 800;
+  line-height: 1.14;
   letter-spacing: -0.03em;
-  color: #ffffff;
-  max-width: 980px;
+  text-wrap: balance;
+  color: var(--text-primary);
+  max-width: 960px;
   margin: 0 auto 1.25rem;
 }
 
 .sip-hero-title .gradient-text {
-  background: linear-gradient(135deg, #ffffff 15%, #2dd4bf 65%, #06b6d4 100%);
+  background: linear-gradient(135deg, var(--primary-color) 0%, #14b8a6 55%, #06b6d4 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .sip-hero-subtitle {
   font-size: 1.125rem;
   line-height: 1.65;
-  color: var(--text-secondary, #94a3b8);
+  color: var(--text-secondary);
   max-width: 840px;
   margin: 0 auto 2.25rem;
 }
@@ -120,12 +123,13 @@
 }
 
 .sip-metric-card {
-  background: rgba(13, 20, 34, 0.7);
+  background: var(--bg-card);
   border: 1px solid var(--sip-border);
   border-radius: 14px;
   padding: 1.25rem 1rem;
   text-align: center;
   backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-sm);
   transition: transform 0.2s ease, border-color 0.2s ease;
 }
 
@@ -136,16 +140,17 @@
 
 .sip-metric-val {
   font-size: 1.85rem;
-  font-weight: 850;
-  color: #2dd4bf;
+  font-weight: 800;
+  color: var(--primary-color);
   line-height: 1.1;
-  font-family: monospace;
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
   margin-bottom: 0.35rem;
 }
 
 .sip-metric-label {
   font-size: 0.825rem;
-  color: #94a3b8;
+  color: var(--text-muted);
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.04em;
@@ -188,9 +193,9 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.85rem 1.5rem;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  color: #e2e8f0;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
   font-weight: 600;
   font-size: 0.95rem;
   border-radius: 10px;
@@ -200,9 +205,9 @@
 }
 
 .sip-btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: #2dd4bf;
-  color: #2dd4bf;
+  background: color-mix(in srgb, var(--primary-color) 10%, var(--bg-card));
+  border-color: var(--primary-color);
+  color: var(--primary-color);
 }
 
 /* ==========================================================================
@@ -225,11 +230,11 @@
   align-items: center;
   gap: 0.4rem;
   padding: 0.3rem 0.85rem;
-  background: rgba(15, 118, 110, 0.15);
-  border: 1px solid rgba(45, 212, 191, 0.28);
-  color: #2dd4bf;
+  background: color-mix(in srgb, var(--primary-color) 14%, transparent);
+  border: 1px solid color-mix(in srgb, var(--primary-color) 28%, transparent);
+  color: var(--primary-color);
   font-size: 0.775rem;
-  font-weight: 750;
+  font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   border-radius: 9999px;
@@ -237,17 +242,19 @@
 }
 
 .sip-section-title {
+  font-family: var(--font-display);
   font-size: clamp(1.85rem, 3.2vw, 2.5rem);
   font-weight: 800;
   line-height: 1.2;
   letter-spacing: -0.025em;
-  color: #ffffff;
+  text-wrap: balance;
+  color: var(--text-primary);
   margin-bottom: 0.85rem;
 }
 
 .sip-section-desc {
   font-size: 1.05rem;
-  color: #94a3b8;
+  color: var(--text-secondary);
   line-height: 1.6;
   margin: 0;
 }
@@ -263,13 +270,14 @@
 }
 
 .sip-arch-card {
-  background: rgba(13, 20, 34, 0.82);
+  background: var(--bg-card);
   border: 1px solid var(--sip-border);
   border-radius: 16px;
   padding: 1.85rem;
   position: relative;
   display: flex;
   flex-direction: column;
+  box-shadow: var(--shadow-sm);
   transition: all 0.25s ease;
   backdrop-filter: blur(12px);
 }
@@ -277,30 +285,30 @@
 .sip-arch-card:hover {
   transform: translateY(-4px);
   border-color: var(--sip-border-hover);
-  box-shadow: 0 12px 35px rgba(15, 118, 110, 0.18);
+  box-shadow: var(--shadow-md);
 }
 
 .sip-arch-card-badge {
   position: absolute;
   top: 1.5rem;
   right: 1.5rem;
-  font-size: 0.72rem;
-  font-weight: 800;
-  font-family: monospace;
-  color: #2dd4bf;
-  background: rgba(15, 118, 110, 0.2);
+  font-size: 0.75rem;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  color: var(--primary-color);
+  background: color-mix(in srgb, var(--primary-color) 14%, transparent);
   padding: 0.2rem 0.6rem;
   border-radius: 6px;
-  border: 1px solid rgba(45, 212, 191, 0.3);
+  border: 1px solid color-mix(in srgb, var(--primary-color) 28%, transparent);
 }
 
 .sip-arch-icon {
   width: 52px;
   height: 52px;
   border-radius: 12px;
-  background: linear-gradient(135deg, rgba(15, 118, 110, 0.25) 0%, rgba(6, 182, 212, 0.15) 100%);
-  border: 1px solid rgba(45, 212, 191, 0.35);
-  color: #2dd4bf;
+  background: color-mix(in srgb, var(--primary-color) 14%, transparent);
+  border: 1px solid color-mix(in srgb, var(--primary-color) 30%, transparent);
+  color: var(--primary-color);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -309,14 +317,14 @@
 
 .sip-arch-title {
   font-size: 1.2rem;
-  font-weight: 750;
-  color: #ffffff;
+  font-weight: 700;
+  color: var(--text-primary);
   margin-bottom: 0.65rem;
 }
 
 .sip-arch-desc {
   font-size: 0.925rem;
-  color: #94a3b8;
+  color: var(--text-secondary);
   line-height: 1.6;
   margin-bottom: 1.25rem;
   flex-grow: 1;
@@ -326,7 +334,7 @@
   list-style: none;
   padding: 0;
   margin: 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid var(--border-color);
   padding-top: 1rem;
   display: flex;
   flex-direction: column;
@@ -338,11 +346,11 @@
   align-items: center;
   gap: 0.5rem;
   font-size: 0.825rem;
-  color: #cbd5e1;
+  color: var(--text-secondary);
 }
 
 .sip-arch-specs li svg {
-  color: #2dd4bf;
+  color: var(--primary-color);
   flex-shrink: 0;
 }
 
@@ -350,11 +358,12 @@
    4. INTERACTIVE PROTOCOL LADDER / SEQUENCE DIAGRAM
    ========================================================================== */
 .sip-ladder-wrap {
-  background: rgba(10, 16, 28, 0.85);
+  background: var(--bg-card);
   border: 1px solid var(--sip-border);
   border-radius: 18px;
   padding: 2.25rem;
   backdrop-filter: blur(12px);
+  box-shadow: var(--shadow-sm);
   margin-top: 2rem;
 }
 
@@ -362,7 +371,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid var(--border-color);
   padding-bottom: 1.25rem;
   margin-bottom: 1.75rem;
   flex-wrap: wrap;
@@ -374,12 +383,13 @@
   grid-template-columns: 1fr 1fr 1fr;
   text-align: center;
   padding: 0.75rem;
-  background: rgba(15, 23, 42, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
   border-radius: 10px;
   margin-bottom: 1.5rem;
   font-weight: 700;
   font-size: 0.9rem;
+  color: var(--text-primary);
 }
 
 .sip-ladder-steps {
@@ -394,22 +404,22 @@
   align-items: center;
   gap: 1.25rem;
   padding: 1.1rem 1.4rem;
-  background: rgba(13, 20, 34, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
   border-radius: 12px;
   transition: all 0.2s ease;
 }
 
 .sip-ladder-item:hover {
-  background: rgba(15, 118, 110, 0.1);
-  border-color: rgba(45, 212, 191, 0.35);
+  background: color-mix(in srgb, var(--primary-color) 8%, var(--bg-surface));
+  border-color: color-mix(in srgb, var(--primary-color) 35%, var(--border-color));
 }
 
 .sip-ladder-step-num {
   font-size: 0.85rem;
-  font-family: monospace;
+  font-family: var(--font-mono);
   font-weight: 800;
-  color: #2dd4bf;
+  color: var(--primary-color);
 }
 
 .sip-ladder-center {
@@ -422,13 +432,13 @@
   display: flex;
   align-items: center;
   gap: 0.65rem;
-  font-weight: 750;
+  font-weight: 700;
   font-size: 0.95rem;
-  color: #ffffff;
+  color: var(--text-primary);
 }
 
 .sip-method-pill {
-  font-family: monospace;
+  font-family: var(--font-mono);
   font-size: 0.75rem;
   font-weight: 800;
   padding: 0.2rem 0.55rem;
@@ -437,46 +447,52 @@
 }
 
 .sip-method-pill.invite {
-  background: rgba(59, 130, 246, 0.2);
-  color: #60a5fa;
-  border: 1px solid rgba(59, 130, 246, 0.4);
+  background: rgba(59, 130, 246, 0.16);
+  color: #2563eb;
+  border: 1px solid rgba(59, 130, 246, 0.35);
 }
 
 .sip-method-pill.status {
-  background: rgba(234, 179, 8, 0.2);
-  color: #facc15;
-  border: 1px solid rgba(234, 179, 8, 0.4);
+  background: rgba(234, 179, 8, 0.16);
+  color: #b45309;
+  border: 1px solid rgba(234, 179, 8, 0.35);
 }
 
 .sip-method-pill.ok {
-  background: rgba(34, 197, 94, 0.2);
-  color: #4ade80;
-  border: 1px solid rgba(34, 197, 94, 0.4);
+  background: rgba(34, 197, 94, 0.16);
+  color: #15803d;
+  border: 1px solid rgba(34, 197, 94, 0.35);
 }
 
 .sip-method-pill.rtp {
-  background: rgba(168, 85, 247, 0.2);
-  color: #c084fc;
-  border: 1px solid rgba(168, 85, 247, 0.4);
+  background: rgba(168, 85, 247, 0.16);
+  color: #7e22ce;
+  border: 1px solid rgba(168, 85, 247, 0.35);
 }
 
 .sip-method-pill.refer {
-  background: rgba(244, 63, 94, 0.2);
-  color: #fb7185;
-  border: 1px solid rgba(244, 63, 94, 0.4);
+  background: rgba(244, 63, 94, 0.16);
+  color: #be123c;
+  border: 1px solid rgba(244, 63, 94, 0.35);
 }
+
+body.dark-theme .sip-method-pill.invite { color: #60a5fa; }
+body.dark-theme .sip-method-pill.status { color: #facc15; }
+body.dark-theme .sip-method-pill.ok { color: #4ade80; }
+body.dark-theme .sip-method-pill.rtp { color: #c084fc; }
+body.dark-theme .sip-method-pill.refer { color: #fb7185; }
 
 .sip-ladder-desc {
   font-size: 0.85rem;
-  color: #94a3b8;
+  color: var(--text-secondary);
   margin: 0;
 }
 
 .sip-ladder-direction {
   font-size: 0.8rem;
   font-weight: 700;
-  font-family: monospace;
-  color: #2dd4bf;
+  font-family: var(--font-mono);
+  color: var(--primary-color);
   text-align: right;
 }
 
@@ -505,7 +521,7 @@
   border: none;
   border-bottom: 2px solid transparent;
   color: #94a3b8;
-  font-weight: 650;
+  font-weight: 600;
   font-size: 0.88rem;
   cursor: pointer;
   white-space: nowrap;
@@ -535,7 +551,7 @@
 }
 
 .sip-config-filename {
-  font-family: monospace;
+  font-family: var(--font-mono);
   font-size: 0.825rem;
   color: #cbd5e1;
   display: flex;
@@ -567,7 +583,7 @@
 .sip-code-block {
   padding: 1.25rem 1.4rem;
   margin: 0;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-family: var(--font-mono);
   font-size: 0.875rem;
   line-height: 1.65;
   color: #e2e8f0;
@@ -581,10 +597,11 @@
    ========================================================================== */
 .sip-table-wrap {
   overflow-x: auto;
-  background: rgba(13, 20, 34, 0.75);
+  background: var(--bg-card);
   border: 1px solid var(--sip-border);
   border-radius: 16px;
   margin-top: 2rem;
+  box-shadow: var(--shadow-sm);
   backdrop-filter: blur(12px);
 }
 
@@ -597,18 +614,19 @@
 .sip-table th,
 .sip-table td {
   padding: 1.15rem 1.4rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid var(--border-color);
   font-size: 0.92rem;
+  color: var(--text-primary);
 }
 
 .sip-table th {
-  background: rgba(15, 23, 42, 0.85);
-  color: #ffffff;
-  font-weight: 750;
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  font-weight: 700;
   text-transform: uppercase;
   font-size: 0.78rem;
   letter-spacing: 0.06em;
-  border-bottom: 1px solid rgba(45, 212, 191, 0.3);
+  border-bottom: 1px solid color-mix(in srgb, var(--primary-color) 30%, var(--border-color));
 }
 
 .sip-table tbody tr {
@@ -616,7 +634,7 @@
 }
 
 .sip-table tbody tr:hover td {
-  background: rgba(15, 118, 110, 0.08);
+  background: color-mix(in srgb, var(--primary-color) 6%, transparent);
 }
 
 .sip-badge-tag {
@@ -624,31 +642,35 @@
   padding: 0.25rem 0.6rem;
   border-radius: 6px;
   font-size: 0.75rem;
-  font-weight: 750;
-  font-family: monospace;
+  font-weight: 700;
+  font-family: var(--font-mono);
 }
 
 .sip-badge-tag.rec {
   background: rgba(34, 197, 94, 0.15);
-  color: #4ade80;
+  color: #15803d;
   border: 1px solid rgba(34, 197, 94, 0.3);
 }
 
 .sip-badge-tag.std {
   background: rgba(59, 130, 246, 0.15);
-  color: #60a5fa;
+  color: #1d4ed8;
   border: 1px solid rgba(59, 130, 246, 0.3);
 }
+
+body.dark-theme .sip-badge-tag.rec { color: #4ade80; }
+body.dark-theme .sip-badge-tag.std { color: #60a5fa; }
 
 /* ==========================================================================
    7. INTERACTIVE TELEPHONY BANDWIDTH & SIZING CALCULATOR
    ========================================================================== */
 .sip-calc-card {
-  background: rgba(13, 20, 34, 0.85);
+  background: var(--bg-card);
   border: 1px solid var(--sip-border);
   border-radius: 18px;
   padding: 2.5rem;
   backdrop-filter: blur(14px);
+  box-shadow: var(--shadow-sm);
   margin-top: 2rem;
 }
 
@@ -663,7 +685,7 @@
   display: block;
   font-size: 0.9rem;
   font-weight: 700;
-  color: #ffffff;
+  color: var(--text-primary);
   margin-bottom: 0.65rem;
 }
 
@@ -675,34 +697,34 @@
 
 .sip-calc-opt-btn {
   padding: 0.6rem 1.1rem;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: #cbd5e1;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
   font-size: 0.85rem;
-  font-weight: 650;
+  font-weight: 600;
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
 .sip-calc-opt-btn:hover {
-  border-color: #2dd4bf;
-  color: #ffffff;
+  border-color: var(--primary-color);
+  color: var(--text-primary);
 }
 
 .sip-calc-opt-btn.active {
-  background: rgba(15, 118, 110, 0.25);
-  border-color: #2dd4bf;
-  color: #2dd4bf;
-  box-shadow: 0 0 12px rgba(45, 212, 191, 0.2);
+  background: color-mix(in srgb, var(--primary-color) 18%, transparent);
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+  box-shadow: 0 0 12px color-mix(in srgb, var(--primary-color) 18%, transparent);
 }
 
 .sip-calc-results {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1.25rem;
-  background: rgba(10, 16, 28, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
   border-radius: 14px;
   padding: 1.5rem;
 }
@@ -713,16 +735,17 @@
 
 .sip-calc-stat-val {
   font-size: 1.75rem;
-  font-weight: 850;
-  color: #2dd4bf;
-  font-family: monospace;
+  font-weight: 800;
+  color: var(--primary-color);
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
   line-height: 1.1;
   margin-bottom: 0.35rem;
 }
 
 .sip-calc-stat-label {
   font-size: 0.8rem;
-  color: #94a3b8;
+  color: var(--text-muted);
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.04em;
@@ -739,21 +762,22 @@
 }
 
 .sip-reg-card {
-  background: rgba(13, 20, 34, 0.7);
+  background: var(--bg-card);
   border: 1px solid var(--sip-border);
   border-radius: 14px;
   padding: 1.65rem;
   display: flex;
   align-items: flex-start;
   gap: 1.1rem;
+  box-shadow: var(--shadow-sm);
 }
 
 .sip-reg-icon {
   width: 44px;
   height: 44px;
   border-radius: 10px;
-  background: rgba(15, 118, 110, 0.2);
-  color: #2dd4bf;
+  background: color-mix(in srgb, var(--primary-color) 16%, transparent);
+  color: var(--primary-color);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -762,14 +786,14 @@
 
 .sip-reg-title {
   font-size: 1.08rem;
-  font-weight: 750;
-  color: #ffffff;
+  font-weight: 700;
+  color: var(--text-primary);
   margin-bottom: 0.4rem;
 }
 
 .sip-reg-desc {
   font-size: 0.88rem;
-  color: #94a3b8;
+  color: var(--text-secondary);
   line-height: 1.55;
   margin: 0;
 }
@@ -778,18 +802,19 @@
    9. RELATED GUIDES CLUSTER
    ========================================================================== */
 .sip-cluster-card {
-  background: rgba(13, 20, 34, 0.85);
+  background: var(--bg-card);
   border: 1px solid var(--sip-border);
   border-radius: 18px;
   padding: 2.5rem;
   text-align: center;
+  box-shadow: var(--shadow-sm);
   backdrop-filter: blur(12px);
 }
 
 .sip-cluster-title {
   font-size: 1.4rem;
   font-weight: 800;
-  color: #ffffff;
+  color: var(--text-primary);
   margin-bottom: 1.5rem;
 }
 
@@ -805,21 +830,21 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.75rem 1.35rem;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
   border-radius: 10px;
-  color: #2dd4bf;
+  color: var(--primary-color);
   font-size: 0.9rem;
-  font-weight: 650;
+  font-weight: 600;
   text-decoration: none;
   transition: all 0.22s ease;
 }
 
 .sip-cluster-pill:hover {
-  background: rgba(15, 118, 110, 0.2);
-  border-color: #2dd4bf;
+  background: color-mix(in srgb, var(--primary-color) 14%, var(--bg-surface));
+  border-color: var(--primary-color);
   transform: translateY(-2px);
-  color: #ffffff;
+  color: var(--text-primary);
 }
 
 /* ==========================================================================

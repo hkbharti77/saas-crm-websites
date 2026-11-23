@@ -1,7 +1,17 @@
 /**
- * Global 3D Book Page-Turn Transition Configuration
- * GyanVaniAI Enterprise Book Page-Flip Navigation
+ * Enterprise Route Transition Configuration
+ * Delegates standardized page-lift timing & variants to src/lib/motion.config.js.
  */
+
+import {
+  MOTION_EASE,
+  MOTION_DURATION,
+  createPageLiftVariants,
+} from '../../lib/motion.config';
+
+export const ROUTE_TRANSITION_EASE = MOTION_EASE.enter;
+export const ROUTE_TRANSITION_DURATION = MOTION_DURATION.pageEnter;
+export const ROUTE_EXIT_DURATION = MOTION_DURATION.pageExit;
 
 export const BOOK_PAGES = [
   { path: '/', title: 'Home' },
@@ -24,7 +34,7 @@ export const BOOK_PAGES = [
 ];
 
 /**
- * Determine navigation direction (+1 = Next / Forward, -1 = Previous / Back)
+ * Determine navigation direction (+1 = Forward, -1 = Back)
  */
 export function getNavigationDirection({
   currentPath,
@@ -50,96 +60,27 @@ export function getNavigationDirection({
     return index === -1 ? 999 : index;
   };
 
-  const currRank = getRank(currentPath);
-  const prevRank = getRank(prevPath);
-
-  if (currRank < prevRank) return -1;
-  return 1;
+  return getRank(currentPath) < getRank(prevPath) ? -1 : 1;
 }
 
 /**
- * 3D Book Page-Flip Variants
- * Turns pages like a physical book:
- * - Forward (Next): spine on left, flips leftward (-68deg), incoming unfolds from 52deg to 0deg.
- * - Backward (Prev): spine on right, flips rightward (+68deg), incoming unfolds from -52deg to 0deg.
+ * Crisp 150ms fade-in + subtle 8px lift variants for Framer Motion AnimatePresence.
+ */
+export function getPageEnterVariants(prefersReducedMotion = false) {
+  return createPageLiftVariants(prefersReducedMotion);
+}
+
+/**
+ * Backward compatibility aliases
  */
 export function getBookPageVariants(prefersReducedMotion = false) {
-  if (prefersReducedMotion) {
-    return {
-      initial: { opacity: 0 },
-      animate: {
-        opacity: 1,
-        transition: { duration: 0.14, ease: 'linear' },
-      },
-      exit: {
-        opacity: 0,
-        transition: { duration: 0.1, ease: 'linear' },
-      },
-    };
-  }
-
-  return {
-    initial: (direction = 1) => {
-      const isBack = direction === -1;
-      return {
-        transformOrigin: isBack ? 'right center' : 'left center',
-        rotateY: isBack ? -52 : 52,
-        x: isBack ? -28 : 28,
-        scale: 0.975,
-        opacity: 0,
-        filter: 'brightness(0.92)',
-        boxShadow: isBack
-          ? 'inset 24px 0 28px -10px rgba(0, 0, 0, 0.22)'
-          : 'inset -24px 0 28px -10px rgba(0, 0, 0, 0.22)',
-      };
-    },
-    animate: (direction = 1) => {
-      const isBack = direction === -1;
-      return {
-        transformOrigin: isBack ? 'right center' : 'left center',
-        rotateY: 0,
-        x: 0,
-        scale: 1,
-        opacity: 1,
-        filter: 'brightness(1)',
-        boxShadow: 'inset 0 0 0 rgba(0, 0, 0, 0)',
-        transition: {
-          duration: 0.36,
-          ease: [0.22, 1, 0.36, 1],
-        },
-      };
-    },
-    exit: (direction = 1) => {
-      const isBack = direction === -1;
-      return {
-        transformOrigin: isBack ? 'right center' : 'left center',
-        rotateY: isBack ? 68 : -68,
-        x: isBack ? 20 : -20,
-        scale: 0.965,
-        opacity: 0,
-        filter: 'brightness(0.88)',
-        boxShadow: isBack
-          ? 'inset -30px 0 35px -8px rgba(0, 0, 0, 0.32), 16px 0 32px rgba(0, 0, 0, 0.2)'
-          : 'inset 30px 0 35px -8px rgba(0, 0, 0, 0.32), -16px 0 32px rgba(0, 0, 0, 0.2)',
-        transition: {
-          duration: 0.32,
-          ease: [0.4, 0, 0.7, 1],
-        },
-      };
-    },
-  };
+  return createPageLiftVariants(prefersReducedMotion);
 }
 
-/**
- * Backward compatibility alias for getRouteTransitionVariants
- */
-export function getRouteTransitionVariants(pathname, prefersReducedMotion = false) {
-  return getBookPageVariants(prefersReducedMotion);
+export function getRouteTransitionVariants(_pathname, prefersReducedMotion = false) {
+  return createPageLiftVariants(prefersReducedMotion);
 }
 
-/**
- * Backward compatibility helper for route classification
- */
 export function getRouteType(pathname) {
   if (pathname === '/') return 'home';
   if (pathname.startsWith('/pricing')) return 'pricing';

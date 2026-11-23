@@ -11,7 +11,6 @@ import {
 } from '../utils/blogAnalytics';
 import { recordRecentView, recordReadingProgress } from '../utils/personalizationEngine';
 import SeoHead from '../components/SeoHead';
-import NotFound from './NotFound';
 import {
   blogPostUrl,
   resolveDescription,
@@ -345,7 +344,7 @@ export default function BlogPost() {
 
   const handleShare = (method) => {
     if (!post) return;
-    const shareUrl = window.location.href;
+    const shareUrl = typeof window !== 'undefined' ? window.location.href : blogPostUrl(id);
     const shareTitle = post.title;
 
     trackBlogShare(post, method);
@@ -355,12 +354,6 @@ export default function BlogPost() {
         setCopyNotification(true);
         setTimeout(() => setCopyNotification(false), 2500);
       }).catch(() => {});
-    } else if (method === 'whatsapp') {
-      window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(shareTitle + ' - ' + shareUrl)}`, '_blank', 'noopener,noreferrer');
-    } else if (method === 'linkedin') {
-      window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`, '_blank', 'noopener,noreferrer');
-    } else if (method === 'twitter') {
-      window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(shareTitle)}`, '_blank', 'noopener,noreferrer');
     } else if (method === 'native') {
       if (navigator.share) {
         navigator.share({ title: shareTitle, url: shareUrl }).catch(() => {});
@@ -464,13 +457,10 @@ export default function BlogPost() {
     ? post.author.bio
     : (post.authorDetails?.bio || post.authorBio || 'Authored by the engineering and solutions team at Gyan VaniAi. Focused on high-throughput Meta Cloud API integrations, autonomous multi-agent tool calling, sub-400ms voice pipelines, and single-tenant enterprise CRM architecture.');
 
-  const authorInitials = authorName
-    .split(' ')
-    .filter(Boolean)
-    .map((p) => p[0])
-    .slice(0, 2)
-    .join('')
-    .toUpperCase() || 'GV';
+  const sharePageUrl = typeof window !== 'undefined' ? window.location.href : canonical;
+  const whatsappShareHref = `https://api.whatsapp.com/send?text=${encodeURIComponent(`${post.title} - ${sharePageUrl}`)}`;
+  const linkedinShareHref = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(sharePageUrl)}`;
+  const twitterShareHref = `https://twitter.com/intent/tweet?url=${encodeURIComponent(sharePageUrl)}&text=${encodeURIComponent(post.title)}`;
 
   return (
     <>
@@ -583,33 +573,39 @@ export default function BlogPost() {
                 <Copy size={14} />
                 {copyNotification ? 'Copied!' : 'Copy Link'}
               </button>
-              <button
-                type="button"
-                onClick={() => handleShare('whatsapp')}
+              <a
+                href={whatsappShareHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackBlogShare(post, 'whatsapp')}
                 className="share-btn share-whatsapp"
                 title="Share on WhatsApp"
                 aria-label="Share on WhatsApp"
               >
                 <Send size={14} /> WhatsApp
-              </button>
-              <button
-                type="button"
-                onClick={() => handleShare('linkedin')}
+              </a>
+              <a
+                href={linkedinShareHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackBlogShare(post, 'linkedin')}
                 className="share-btn share-linkedin"
                 title="Share on LinkedIn"
                 aria-label="Share on LinkedIn"
               >
                 <Globe size={14} /> LinkedIn
-              </button>
-              <button
-                type="button"
-                onClick={() => handleShare('twitter')}
+              </a>
+              <a
+                href={twitterShareHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackBlogShare(post, 'twitter')}
                 className="share-btn share-twitter"
                 title="Share on X / Twitter"
                 aria-label="Share on X"
               >
                 <MessageCircle size={14} /> X
-              </button>
+              </a>
 
               {typeof navigator !== 'undefined' && navigator.share && (
                 <button

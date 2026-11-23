@@ -244,7 +244,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -319,7 +319,7 @@
 
 .enterprise-field-error-msg {
   color: #ef4444;
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   font-weight: 500;
   margin-top: 0.2rem;
   display: flex;
@@ -574,7 +574,7 @@
   position: absolute;
   bottom: 0.3rem;
   right: 0.45rem;
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   color: var(--text-muted, #94a3b8);
   pointer-events: none;
   background: rgba(8, 14, 26, 0.85);

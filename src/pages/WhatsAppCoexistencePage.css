@@ -88,7 +88,7 @@ body.dark-theme .coexistence-hero-section .hero-media-veil {
   background: color-mix(in srgb, var(--primary-color) 12%, transparent);
   color: var(--primary-color);
   font-size: 0.8125rem;
-  font-weight: 750;
+  font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   margin-bottom: 1.25rem;
@@ -159,7 +159,7 @@ body.dark-theme .coexistence-hero-section .hero-media-veil {
   padding: 0.35rem 0.75rem;
   border-radius: var(--radius-full, 99px);
   font-size: 0.78125rem;
-  font-weight: 550;
+  font-weight: 500;
   color: var(--text-secondary);
   background: color-mix(in srgb, var(--bg-card) 75%, transparent);
   backdrop-filter: blur(12px);
@@ -307,7 +307,7 @@ body.dark-theme .coexistence-hero-section .hero-media-veil {
   align-items: center;
   gap: 0.5rem;
   font-size: 0.92rem;
-  font-weight: 750;
+  font-weight: 700;
   color: var(--text-primary);
 }
 
@@ -320,7 +320,7 @@ body.dark-theme .coexistence-hero-section .hero-media-veil {
   background: color-mix(in srgb, #25D366 15%, transparent);
   color: #128C7E;
   font-size: 0.775rem;
-  font-weight: 750;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.04em;
 }
@@ -386,7 +386,7 @@ body.dark-theme .coexistence-hero-section .hero-media-veil {
 
 .dual-node-title {
   font-size: 0.88rem;
-  font-weight: 750;
+  font-weight: 700;
   color: var(--text-primary);
   margin-bottom: 0.2rem;
 }
@@ -406,8 +406,8 @@ body.dark-theme .coexistence-hero-section .hero-media-veil {
 }
 
 .dual-flow-label {
-  font-size: 0.72rem;
-  font-weight: 750;
+  font-size: 0.75rem;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: var(--text-muted);
@@ -460,7 +460,7 @@ body.dark-theme .coexistence-hero-section .hero-media-veil {
 
 .chat-bubble-tag {
   display: inline-block;
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   font-weight: 700;
   color: var(--primary-color);
   margin-bottom: 0.2rem;
@@ -537,7 +537,7 @@ body.dark-theme .coexistence-hero-section .hero-media-veil {
 
 .capability-title {
   font-size: 1.15rem; /* ~18.5px */
-  font-weight: 750;
+  font-weight: 700;
   color: var(--text-primary);
   margin-bottom: 0.5rem;
   letter-spacing: -0.015em;
@@ -605,7 +605,7 @@ body.dark-theme .coexistence-hero-section .hero-media-veil {
 
 .coexistence-arch-card-title {
   font-size: 1.15rem;
-  font-weight: 750;
+  font-weight: 700;
   color: var(--text-primary);
   margin: 0;
 }
@@ -627,7 +627,7 @@ body.dark-theme .coexistence-hero-section .hero-media-veil {
 
 .coexistence-diagram-title {
   font-size: 1.25rem;
-  font-weight: 750;
+  font-weight: 700;
   color: var(--text-primary);
   text-align: center;
   margin-bottom: 0.5rem;
@@ -670,7 +670,7 @@ body.dark-theme .coexistence-hero-section .hero-media-veil {
 
 .pipeline-step-box h4 {
   font-size: 1.05rem;
-  font-weight: 750;
+  font-weight: 700;
   color: var(--text-primary);
   margin: 0.35rem 0;
 }
@@ -716,7 +716,7 @@ body.dark-theme .coexistence-hero-section .hero-media-veil {
 
 .pipeline-branch-info h5 {
   font-size: 0.95rem;
-  font-weight: 750;
+  font-weight: 700;
   color: var(--text-primary);
   margin: 0 0 0.15rem 0;
 }
@@ -749,7 +749,7 @@ body.dark-theme .coexistence-hero-section .hero-media-veil {
 .comparison-table th {
   padding: 1.25rem 1.4rem;
   font-size: 0.95rem;
-  font-weight: 750;
+  font-weight: 700;
   color: var(--text-primary);
   border-bottom: 2px solid color-mix(in srgb, var(--border-color) 150%, transparent);
   background: color-mix(in srgb, var(--bg-base) 85%, rgba(255, 255, 255, 0.08));
@@ -796,7 +796,7 @@ body.dark-theme .coexistence-hero-section .hero-media-veil {
 
 .status-tag-negative {
   color: #f87171;
-  font-weight: 650;
+  font-weight: 600;
   background: rgba(239, 68, 68, 0.16);
   border: 1px solid rgba(239, 68, 68, 0.35);
   padding: 0.25rem 0.65rem;
@@ -873,7 +873,7 @@ body.dark-theme .coexistence-hero-section .hero-media-veil {
 
 .coexistence-step-title {
   font-size: 1.2rem;
-  font-weight: 750;
+  font-weight: 700;
   color: var(--text-primary);
   margin-bottom: 0.5rem;
 }
@@ -981,7 +981,7 @@ body.dark-theme .coexistence-hero-section .hero-media-veil {
 
 .coexistence-related-title {
   font-size: 0.95rem;
-  font-weight: 750;
+  font-weight: 700;
   color: var(--text-primary);
 }
 
@@ -994,7 +994,7 @@ body.dark-theme .coexistence-hero-section .hero-media-veil {
 
 .coexistence-related-link {
   font-size: 0.92rem;
-  font-weight: 650;
+  font-weight: 600;
   color: var(--primary-color);
   text-decoration: none;
   transition: transform 0.15s ease;
@@ -1065,7 +1065,7 @@ body.dark-theme .coexistence-hero-section .hero-media-veil {
   align-items: center;
   gap: 0.45rem;
   font-size: 0.78rem;
-  font-weight: 750;
+  font-weight: 700;
   color: var(--text-primary);
 }
 
@@ -1087,8 +1087,8 @@ body.dark-theme .coexistence-hero-section .hero-media-veil {
   display: flex;
   align-items: center;
   gap: 0.35rem;
-  font-size: 0.72rem;
-  font-weight: 650;
+  font-size: 0.75rem;
+  font-weight: 600;
   color: var(--text-secondary);
 }
 
@@ -1112,7 +1112,7 @@ body.dark-theme .coexistence-hero-section .hero-media-veil {
   align-items: center;
   gap: 0.5rem;
   font-size: 0.82rem;
-  font-weight: 750;
+  font-weight: 700;
   color: var(--text-primary);
   margin-bottom: 0.75rem;
 }
@@ -1145,8 +1145,8 @@ body.dark-theme .coexistence-hero-section .hero-media-veil {
 }
 
 .coex-bubble-author {
-  font-size: 0.68rem;
-  font-weight: 750;
+  font-size: 0.75rem;
+  font-weight: 700;
   color: #25d366;
   display: block;
   margin-bottom: 0.2rem;
@@ -1158,7 +1158,7 @@ body.dark-theme .coexistence-hero-section .hero-media-veil {
 
 .coex-time {
   display: block;
-  font-size: 0.65rem;
+  font-size: 0.75rem;
   opacity: 0.75;
   text-align: right;
   margin-top: 0.25rem;
@@ -1216,13 +1216,13 @@ body.dark-theme .coexistence-hero-section .hero-media-veil {
 }
 
 .coex-crm-val {
-  font-weight: 650;
+  font-weight: 600;
   color: var(--text-primary);
 }
 
 .coex-crm-val.highlight {
   color: var(--primary-color);
-  font-weight: 750;
+  font-weight: 700;
 }
 
 .coex-crm-val.green {
@@ -1265,7 +1265,7 @@ body.dark-theme .coexistence-hero-section .hero-media-veil {
   align-items: center;
   gap: 0.45rem;
   font-size: 0.75rem;
-  font-weight: 650;
+  font-weight: 600;
   padding: 0.3rem 0.75rem;
   border-radius: 99px;
   background: color-mix(in srgb, var(--bg-card) 75%, transparent);
@@ -1324,7 +1324,7 @@ body.dark-theme .coexistence-hero-section .hero-media-veil {
 }
 
 .coex-node-chip {
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -1406,31 +1406,31 @@ body.dark-theme .coexistence-hero-section .hero-media-veil {
 
 .coex-beam-label {
   font-size: 0.88rem;
-  font-weight: 750;
+  font-weight: 700;
   color: var(--text-primary);
   margin: 0;
   line-height: 1.25;
 }
 
 .coex-beam-sub {
-  font-size: 0.74rem;
+  font-size: 0.75rem;
   color: var(--text-secondary);
   margin-top: 0.25rem;
   line-height: 1.35;
 }
 
 .coex-beam-detail {
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   color: var(--text-muted);
   margin-top: 0.15rem;
-  font-weight: 550;
+  font-weight: 500;
 }
 
 .coex-beam-badge {
   display: inline-flex;
   align-items: center;
   gap: 0.25rem;
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   font-weight: 700;
   color: #10b981;
   background: rgba(16, 185, 129, 0.12);
@@ -1501,8 +1501,8 @@ body.dark-theme .coexistence-hero-section .hero-media-veil {
 }
 
 .coex-branch-tag {
-  font-size: 0.65rem;
-  font-weight: 750;
+  font-size: 0.75rem;
+  font-weight: 700;
   letter-spacing: 0.02em;
   text-transform: uppercase;
   padding: 0.15rem 0.45rem;
@@ -1525,7 +1525,7 @@ body.dark-theme .coexistence-hero-section .hero-media-veil {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   font-weight: 600;
   margin-top: 0.35rem;
 }
@@ -1578,7 +1578,7 @@ body.dark-theme .coexistence-hero-section .hero-media-veil {
     border: 1px solid var(--primary-color);
     color: var(--primary-color);
     font-size: 0.8rem;
-    font-weight: 750;
+    font-weight: 700;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1650,7 +1650,7 @@ body.dark-theme .coexistence-hero-section .hero-media-veil {
   }
 
   .coex-mobile-div-label {
-    font-size: 0.72rem;
+    font-size: 0.75rem;
     font-weight: 700;
     color: #25D366;
     background: rgba(37, 211, 102, 0.1);

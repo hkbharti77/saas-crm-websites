@@ -96,7 +96,7 @@
 
 .crm-hero-h1 {
   font-size: 3.25rem;
-  font-weight: 900;
+  font-weight: 800;
   line-height: 1.12;
   letter-spacing: -0.03em;
   margin-bottom: 1.25rem;
@@ -364,7 +364,7 @@
 
 .crm-savings-amount {
   font-size: 2.75rem;
-  font-weight: 900;
+  font-weight: 800;
   color: #ffffff;
   line-height: 1;
   margin-bottom: 0.5rem;
@@ -523,7 +523,7 @@
 }
 
 .crm-tag-score {
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   font-weight: 700;
   padding: 0.2rem 0.5rem;
   border-radius: 6px;
@@ -698,7 +698,7 @@
 
 .crm-step-num {
   font-size: 2rem;
-  font-weight: 900;
+  font-weight: 800;
   color: rgba(45, 212, 191, 0.3);
   margin-bottom: 1rem;
 }
@@ -1231,7 +1231,7 @@
 
 .crm-sb-score-val {
   font-size: 3.5rem;
-  font-weight: 900;
+  font-weight: 800;
   color: #ffffff;
   margin: 0.5rem 0;
   line-height: 1;

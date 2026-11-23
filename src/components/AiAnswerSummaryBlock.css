@@ -29,7 +29,7 @@
   border: 1px solid color-mix(in srgb, var(--primary-color) 35%, transparent);
   color: var(--primary-color);
   font-size: 0.75rem;
-  font-weight: 750;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
   border-radius: 9999px;
@@ -92,7 +92,7 @@
 
 .ai-fact-question {
   font-size: 1.05rem;
-  font-weight: 750;
+  font-weight: 700;
   color: var(--text-primary);
   margin-bottom: 0.65rem;
   display: flex;
@@ -106,7 +106,7 @@
   font-size: 0.85rem;
   font-weight: 800;
   color: var(--primary-color);
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-family: var(--font-mono);
 }
 
 .ai-fact-answer {

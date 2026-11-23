@@ -49,7 +49,7 @@
 
 .voice-arch-pill-text {
   font-size: 1.12rem;
-  font-weight: 750;
+  font-weight: 700;
   color: var(--text-primary);
   letter-spacing: -0.01em;
 }
@@ -135,7 +135,7 @@
 }
 
 .voice-arch-step-prefix {
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -145,14 +145,14 @@
 .voice-arch-step-digit {
   font-family: var(--font-mono, monospace);
   font-size: 1.4rem;
-  font-weight: 850;
+  font-weight: 800;
   color: var(--text-primary);
   line-height: 1.1;
 }
 
 .voice-arch-step-title {
   font-size: 0.92rem;
-  font-weight: 750;
+  font-weight: 700;
   color: var(--text-primary);
   margin-bottom: 0.85rem;
   line-height: 1.25;
@@ -184,8 +184,8 @@
 .voice-arch-category-badge {
   background: #7c3aed;
   color: #ffffff;
-  font-size: 0.68rem;
-  font-weight: 750;
+  font-size: 0.75rem;
+  font-weight: 700;
   letter-spacing: 0.03em;
   padding: 0.25rem 0.65rem;
   border-radius: var(--radius-full, 99px);
@@ -293,13 +293,13 @@
 
 .voice-arch-int-name {
   font-size: 0.85rem;
-  font-weight: 750;
+  font-weight: 700;
   color: var(--text-primary);
   line-height: 1.2;
 }
 
 .voice-arch-int-sub {
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   color: var(--text-muted);
   line-height: 1.2;
 }

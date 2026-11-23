@@ -399,8 +399,15 @@ export const PRICING_CONFIG = {
   ],
 };
 
+export {
+  formatCurrencyAmount,
+  formatDualCurrencyPrice,
+  formatPlanDualPrice,
+  formatPlanYearlyTotals,
+} from '../utils/formatPricing';
+
 export function formatPrice(amount, currency) {
   if (amount === null || amount === undefined) return null;
   if (currency === 'INR') return `₹${Number(amount).toLocaleString('en-IN')}`;
-  return `$${amount}`;
+  return `$${Number(amount).toLocaleString('en-US')}`;
 }

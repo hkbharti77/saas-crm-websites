@@ -5,10 +5,12 @@
 
 export const PRODUCTION_CMS_BACKEND = 'https://api-cms.gyanvaniai.info';
 
+const metaEnv = (typeof import.meta !== 'undefined' && import.meta.env) ? import.meta.env : {};
+
 const rawBackendUrl = (
-  import.meta.env.VITE_BACKEND_URL ||
-  import.meta.env.VITE_API_URL ||
-  import.meta.env.VITE_CMS_API_URL ||
+  metaEnv.VITE_BACKEND_URL ||
+  metaEnv.VITE_API_URL ||
+  metaEnv.VITE_CMS_API_URL ||
   ''
 ).trim().replace(/\/+$/, '');
 

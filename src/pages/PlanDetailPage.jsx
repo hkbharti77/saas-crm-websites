@@ -2,7 +2,12 @@ import React, { useState } from 'react';
 import { Link, Navigate, useParams } from 'react-router-dom';
 import { Check, X, ChevronDown } from 'lucide-react';
 import SEOHead from '../components/SeoHead';
-import { PRICING_CONFIG, formatPrice } from '../config/pricingConfig';
+import {
+  PRICING_CONFIG,
+  formatDualCurrencyPrice,
+  formatPlanDualPrice,
+  formatPlanYearlyTotals,
+} from '../config/pricingConfig';
 import { planProductSchema, pricingFaqSchema, faqsForPlan } from '../utils/pricingSchemas';
 import { trackPricingPlanClick } from '../utils/analytics';
 import '../components/Pricing.css';
@@ -90,14 +95,13 @@ export default function PlanDetailPage() {
               {plan.price ? (
                 <>
                   <span className="pcard-price">
-                    {formatPrice(plan.price.monthlyInr, 'INR')}
+                    {formatPlanDualPrice(plan.price, 'monthly')}
                   </span>
                   <span className="pcard-period">/mo, monthly billing</span>
                   <div className="pcard-yearly-note">
-                    {formatPrice(plan.price.yearlyInr, 'INR')}/mo with annual billing
-                    (save {PRICING_CONFIG.yearlyDiscountPct}%, {formatPrice(plan.price.yearlyInr * 12, 'INR')}/yr).
-                    USD pricing: {formatPrice(plan.price.monthlyUsd, 'USD')} monthly,
-                    {' '}{formatPrice(plan.price.yearlyUsd, 'USD')} annual.
+                    {formatPlanDualPrice(plan.price, 'yearly')}/mo with annual billing
+                    {' '}(save {PRICING_CONFIG.yearlyDiscountPct}%,{' '}
+                    {formatPlanYearlyTotals(plan.price).annualTotal}/yr).
                   </div>
                 </>
               ) : (
@@ -174,7 +178,7 @@ export default function PlanDetailPage() {
                     <div className="plan-addon-info">
                       <span className="plan-addon-name">{addon.name}</span>
                       <span className="plan-addon-price">
-                        {formatPrice(addon.priceInr, 'INR')}/mo
+                        {formatDualCurrencyPrice(addon.priceInr, addon.priceUsd)}/mo
                       </span>
                     </div>
                     <button

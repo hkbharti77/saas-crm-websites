@@ -22,6 +22,26 @@ const DAILY_SCHEDULE = [
   { day: 'Saturday', themeId: 'sapphire', name: 'Cobalt Enterprise' }
 ];
 
+const VISITOR_OVERRIDE_KEY = 'app-theme-visitor-override';
+
+function safeStorageGet(key) {
+  if (typeof window === 'undefined') return null;
+  try {
+    return window.localStorage.getItem(key);
+  } catch {
+    return null;
+  }
+}
+
+function safeStorageSet(key, value) {
+  if (typeof window === 'undefined') return;
+  try {
+    window.localStorage.setItem(key, value);
+  } catch {
+    // Ignore storage quota or sandboxed iframe security errors
+  }
+}
+
 function getTodayAutoTheme() {
   const dayIndex = new Date().getDay();
   return DAILY_SCHEDULE[dayIndex].themeId;
@@ -32,50 +52,53 @@ const ThemeContext = createContext();
 export function ThemeProvider({ children }) {
   // Theme mode: 'auto' (7-day daily rotation) or 'fixed' (admin/user choice)
   const [themeMode, setThemeMode] = useState(() => {
-    if (typeof window !== 'undefined') {
-      const savedMode = localStorage.getItem('app-theme-mode');
-      return savedMode ? savedMode : 'fixed';
-    }
-    return 'fixed';
+    const savedMode = safeStorageGet('app-theme-mode');
+    return savedMode === 'auto' || savedMode === 'fixed' ? savedMode : 'fixed';
   });
 
   const [fixedTheme, setFixedTheme] = useState(() => {
-    if (typeof window !== 'undefined') {
-      const savedTheme = localStorage.getItem('app-fixed-theme');
-      if (savedTheme && THEMES.some(t => t.id === savedTheme)) {
-        return savedTheme;
-      }
+    const savedTheme = safeStorageGet('app-fixed-theme');
+    if (savedTheme && THEMES.some((t) => t.id === savedTheme)) {
+      return savedTheme;
     }
     return 'midnight';
   });
 
+  const [hasVisitorOverride, setHasVisitorOverride] = useState(
+    () => safeStorageGet(VISITOR_OVERRIDE_KEY) === 'true'
+  );
+  const [todayAutoTheme, setTodayAutoTheme] = useState(() => getTodayAutoTheme());
   const [isGlobalSynced, setIsGlobalSynced] = useState(false);
   const [isSavingGlobal, setIsSavingGlobal] = useState(false);
   const [lastSyncedAt, setLastSyncedAt] = useState(null);
   const [globalSyncError, setGlobalSyncError] = useState(null);
 
-  // Sync with GyanVaniAi Admin CMS Backend API (MongoDB source of truth)
+  // Sync default theme from GyanVaniAi Admin CMS Backend API unless visitor set a local preference
   useEffect(() => {
     if (!BACKEND_URL) return;
     const backendUrl = BACKEND_URL;
 
     const fetchTheme = async () => {
+      // Respect explicit visitor theme selection across reloads, focus, and polling
+      if (hasVisitorOverride || safeStorageGet(VISITOR_OVERRIDE_KEY) === 'true') {
+        return;
+      }
+
       try {
         const res = await fetch(`${backendUrl}/api/public/site-settings/theme`);
         if (!res.ok) return;
         const data = await res.json();
         if (data && (data.themeMode || data.fixedTheme)) {
+          if (safeStorageGet(VISITOR_OVERRIDE_KEY) === 'true') {
+            return;
+          }
           if (data.themeMode === 'auto' || data.themeMode === 'fixed') {
             setThemeMode(data.themeMode);
-            if (typeof window !== 'undefined') {
-              localStorage.setItem('app-theme-mode', data.themeMode);
-            }
+            safeStorageSet('app-theme-mode', data.themeMode);
           }
           if (data.fixedTheme && THEMES.some((t) => t.id === data.fixedTheme)) {
             setFixedTheme(data.fixedTheme);
-            if (typeof window !== 'undefined') {
-              localStorage.setItem('app-fixed-theme', data.fixedTheme);
-            }
+            safeStorageSet('app-fixed-theme', data.fixedTheme);
           }
           setIsGlobalSynced(true);
           if (data.updatedAt) {
@@ -89,7 +112,7 @@ export function ThemeProvider({ children }) {
 
     fetchTheme();
 
-    // Check periodically (every 60s) or on window focus to reflect live CMS theme changes
+    // Check periodically (every 60s) or on window focus for visitors using CMS default
     const interval = setInterval(fetchTheme, 60000);
     const onFocus = () => fetchTheme();
     window.addEventListener('focus', onFocus);
@@ -98,23 +121,23 @@ export function ThemeProvider({ children }) {
       clearInterval(interval);
       window.removeEventListener('focus', onFocus);
     };
-  }, []);
+  }, [hasVisitorOverride]);
 
   // Calculate effective active theme
-  const activeTheme = themeMode === 'auto' ? getTodayAutoTheme() : fixedTheme;
+  const activeTheme = themeMode === 'auto' ? todayAutoTheme : fixedTheme;
 
-  // Function to save theme settings locally for visitor or broadcast
+  // Save theme settings locally for visitor or picker selection
   const updateGlobalTheme = useCallback(async (newMode, newThemeId) => {
     const targetMode = newMode || themeMode;
     const targetTheme = newThemeId || fixedTheme;
 
-    // Immediately update local state & cache for zero-latency UI response
+    setHasVisitorOverride(true);
+    safeStorageSet(VISITOR_OVERRIDE_KEY, 'true');
+
     setThemeMode(targetMode);
     if (newThemeId) setFixedTheme(targetTheme);
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('app-theme-mode', targetMode);
-      if (newThemeId) localStorage.setItem('app-fixed-theme', targetTheme);
-    }
+    safeStorageSet('app-theme-mode', targetMode);
+    if (newThemeId) safeStorageSet('app-fixed-theme', targetTheme);
 
     setIsSavingGlobal(true);
     setGlobalSyncError(null);
@@ -125,13 +148,13 @@ export function ThemeProvider({ children }) {
   }, [themeMode, fixedTheme]);
 
   const selectTheme = useCallback((themeId) => {
-    // Visitor local toggle
+    if (!THEMES.some((t) => t.id === themeId)) return;
+    setHasVisitorOverride(true);
+    safeStorageSet(VISITOR_OVERRIDE_KEY, 'true');
     setThemeMode('fixed');
     setFixedTheme(themeId);
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('app-theme-mode', 'fixed');
-      localStorage.setItem('app-fixed-theme', themeId);
-    }
+    safeStorageSet('app-theme-mode', 'fixed');
+    safeStorageSet('app-fixed-theme', themeId);
   }, []);
 
   // Update DOM attributes for theme styling
@@ -143,24 +166,24 @@ export function ThemeProvider({ children }) {
     body.setAttribute('data-theme', activeTheme);
 
     if (activeTheme === 'light') {
+      root.classList.remove('dark');
       body.classList.remove('dark-theme');
-      localStorage.setItem('theme', 'light');
+      safeStorageSet('theme', 'light');
     } else {
+      root.classList.add('dark');
       body.classList.add('dark-theme');
-      localStorage.setItem('theme', 'dark');
+      safeStorageSet('theme', 'dark');
     }
 
-    localStorage.setItem('app-theme-mode', themeMode);
-    localStorage.setItem('app-fixed-theme', fixedTheme);
+    safeStorageSet('app-theme-mode', themeMode);
+    safeStorageSet('app-fixed-theme', fixedTheme);
   }, [themeMode, fixedTheme, activeTheme]);
 
-  // Check every 30 mins to update auto theme if day changes
+  // Keep React state synced when auto theme rotates across midnight
   useEffect(() => {
     if (themeMode !== 'auto') return;
     const interval = setInterval(() => {
-      const currentAuto = getTodayAutoTheme();
-      document.documentElement.setAttribute('data-theme', currentAuto);
-      document.body.setAttribute('data-theme', currentAuto);
+      setTodayAutoTheme(getTodayAutoTheme());
     }, 60000 * 30);
 
     return () => clearInterval(interval);
@@ -178,7 +201,7 @@ export function ThemeProvider({ children }) {
         selectTheme,
         themes: THEMES,
         dailySchedule: DAILY_SCHEDULE,
-        todayAutoTheme: getTodayAutoTheme(),
+        todayAutoTheme,
         isGlobalSynced,
         isSavingGlobal,
         lastSyncedAt,
@@ -198,4 +221,3 @@ export function useTheme() {
   }
   return context;
 }
-

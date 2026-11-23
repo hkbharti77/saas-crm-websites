@@ -58,7 +58,7 @@
   background: color-mix(in srgb, var(--primary-color) 14%, var(--bg-card));
   border: 1px solid color-mix(in srgb, var(--primary-color) 35%, transparent);
   border-radius: var(--radius-full);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   font-weight: 600;
   color: var(--primary-color);
 }
@@ -85,7 +85,7 @@
 }
 
 .ent-mockup-stat-lbl {
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   font-weight: 600;
   color: var(--text-muted);
   margin-bottom: 0.2rem;
@@ -101,7 +101,7 @@
 }
 
 .ent-mockup-stat-sub {
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   color: var(--primary-color);
   font-weight: 600;
 }
@@ -124,7 +124,7 @@
 
 .ent-mockup-org-name {
   font-size: 0.98rem;
-  font-weight: 750;
+  font-weight: 700;
   color: var(--text-primary);
 }
 
@@ -162,7 +162,7 @@
   background: var(--bg-card);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-sm);
-  font-size: 0.74rem;
+  font-size: 0.75rem;
   font-weight: 600;
   color: var(--text-secondary);
 }
@@ -178,7 +178,7 @@
   padding: 0.35rem 0.45rem;
   background: color-mix(in srgb, var(--text-muted) 12%, transparent);
   border-radius: 4px;
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   font-weight: 600;
   text-align: center;
   color: var(--text-muted);
@@ -237,9 +237,9 @@
 }
 
 .ent-mockup-stream-time {
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   color: var(--text-muted);
-  font-family: monospace;
+  font-family: var(--font-mono);
 }
 
 @media (max-width: 480px) {

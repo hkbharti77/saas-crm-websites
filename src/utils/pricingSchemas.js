@@ -1,4 +1,5 @@
 import { PRICING_CONFIG } from '../config/pricingConfig';
+import { ENGINEERING_PARTNERSHIP_TIERS } from '../config/engineeringPartnershipsConfig';
 
 const BASE = 'https://www.gyanvaniai.com';
 const ORG_ID = `${BASE}/#organization`;
@@ -32,6 +33,36 @@ function offerForPlan(plan) {
       '@type': 'Organization',
       '@id': ORG_ID,
       name: 'Gyan VaniAi',
+    },
+  };
+}
+
+export function engineeringPartnershipsSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    '@id': `${BASE}/pricing#engineering-partnerships`,
+    name: 'Gyan VaniAi Transparent Engineering Partnerships',
+    description:
+      'Predictable velocity, deterministic deliverables, and production-grade AI architectures: Meta WhatsApp & AI Helpdesk Setup (₹24,999 / $299), AI CRM, Voice & Hybrid RAG Sprint (₹69,999 / $850), and Full Enterprise AI & Meta Tech Suite.',
+    provider: {
+      '@type': 'Organization',
+      '@id': ORG_ID,
+      name: 'Gyan VaniAi',
+    },
+    url: `${BASE}/pricing`,
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'Engineering Partnership Tiers',
+      itemListElement: ENGINEERING_PARTNERSHIP_TIERS.map((tier) => ({
+        '@type': 'Offer',
+        name: `${tier.tierLabel}: ${tier.title}`,
+        description: `${tier.summary} Delivery: ${tier.deliveryLine}.`,
+        price: tier.priceInr ?? '0',
+        priceCurrency: 'INR',
+        availability: 'https://schema.org/InStock',
+        url: `${BASE}/pricing?view=partnerships`,
+      })),
     },
   };
 }

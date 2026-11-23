@@ -262,7 +262,7 @@
   border-radius: var(--radius-full);
   background: color-mix(in srgb, #10b981 15%, transparent);
   border: 1px solid color-mix(in srgb, #10b981 35%, transparent);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   font-weight: 600;
   color: #10b981;
 }
@@ -313,7 +313,7 @@
   background: color-mix(in srgb, var(--primary-color) 12%, var(--bg-card));
   border: 1px solid color-mix(in srgb, var(--primary-color) 30%, transparent);
   border-radius: var(--radius-full);
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   font-weight: 700;
   color: var(--primary-color);
   margin-bottom: 0.4rem;
@@ -336,7 +336,7 @@
 
 .chatbots-mockup-action-title {
   font-size: 0.78rem;
-  font-weight: 750;
+  font-weight: 700;
   color: var(--text-primary);
   display: flex;
   align-items: center;
@@ -344,7 +344,7 @@
 }
 
 .chatbots-mockup-action-status {
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   font-weight: 700;
   color: #10b981;
 }
@@ -363,7 +363,7 @@
   background: var(--bg-card);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-sm);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   font-weight: 600;
   color: var(--text-secondary);
 }
@@ -466,7 +466,7 @@
 
 .chatbots-overview-heading {
   font-size: 1.25rem;
-  font-weight: 750;
+  font-weight: 700;
   line-height: 1.35;
   color: var(--text-primary);
   margin-bottom: 0.85rem;
@@ -554,7 +554,7 @@
 
 .chatbots-diff-title {
   font-size: 1.15rem;
-  font-weight: 750;
+  font-weight: 700;
   color: var(--text-primary);
   margin-bottom: 0.65rem;
 }
@@ -609,7 +609,7 @@
   font-size: 0.82rem;
   font-weight: 800;
   color: var(--text-muted);
-  font-family: monospace;
+  font-family: var(--font-mono);
 }
 
 .chatbots-workflow-icon-wrap {
@@ -625,7 +625,7 @@
 
 .chatbots-workflow-title {
   font-size: 1.05rem;
-  font-weight: 750;
+  font-weight: 700;
   color: var(--text-primary);
   margin: 0;
 }
@@ -646,7 +646,7 @@
   background: color-mix(in srgb, var(--primary-color) 8%, var(--bg-card));
   border: 1px solid color-mix(in srgb, var(--primary-color) 25%, transparent);
   border-radius: var(--radius-full);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   font-weight: 600;
   color: var(--primary-color);
   align-self: flex-start;
@@ -700,7 +700,7 @@
 
 .chatbots-cap-title {
   font-size: 1.02rem;
-  font-weight: 750;
+  font-weight: 700;
   color: var(--text-primary);
   margin-bottom: 0.5rem;
 }
@@ -948,7 +948,7 @@
 
 .chatbots-related-title {
   font-size: 1.05rem;
-  font-weight: 750;
+  font-weight: 700;
   color: var(--text-primary);
   margin-bottom: 0.5rem;
 }

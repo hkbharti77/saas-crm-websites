@@ -175,10 +175,8 @@ const CookieConsentBanner = () => {
               <div className="cookie-title-row">
                 <span className="cookie-icon" aria-hidden="true">🍪</span>
                 <h3 className="cookie-heading">We use cookies to enhance your experience</h3>
-                <span className="cookie-compliance-badges">
-                  <span className="cookie-law-badge">GDPR</span>
-                  <span className="cookie-law-badge">DPDP 2023</span>
-                  <span className="cookie-law-badge">CCPA</span>
+                <span className="cookie-compliance-meta" aria-label="Compliance frameworks">
+                  GDPR · DPDP 2023 · CCPA
                 </span>
               </div>
               <p className="cookie-description">
@@ -206,8 +204,13 @@ const CookieConsentBanner = () => {
       )}
 
       {showPreferences && (
-        <div className="cookie-modal-overlay" onClick={() => setShowPreferences(false)}>
-          <div className="cookie-modal-card" onClick={e => e.stopPropagation()} role="dialog" aria-modal="true">
+        <div
+          className="cookie-modal-overlay"
+          role="presentation"
+          onClick={() => setShowPreferences(false)}
+          onKeyDown={(e) => { if (e.key === 'Escape') setShowPreferences(false); }}
+        >
+          <div className="cookie-modal-card" onClick={e => e.stopPropagation()} role="dialog" aria-modal="true" aria-label="Cookie Preferences">
             <div className="cookie-modal-header">
               <div className="cookie-title-row">
                 <span className="cookie-icon">⚙️</span>

@@ -103,7 +103,19 @@ export default function OmnichannelSection({
           <div className="orbit-ambient-glow"></div>
 
           {/* Central AI Brain Node */}
-          <div className="orbit-center-node" onClick={() => setActiveChannelId('core')}>
+          <div
+            className="orbit-center-node"
+            role="button"
+            tabIndex={0}
+            aria-pressed={activeChannelId === 'core'}
+            onClick={() => setActiveChannelId('core')}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                setActiveChannelId('core');
+              }
+            }}
+          >
             <div className="orbit-center-inner">
               <Bot size={34} className="orbit-core-icon" />
               <div className="orbit-core-pulse"></div>
@@ -116,9 +128,18 @@ export default function OmnichannelSection({
 
           {/* Orbit 1: Inner Orbit (WhatsApp & Voice Agents) */}
           <OrbitingCircles radius={105} duration={24} delay={0} pathColor="rgba(20, 184, 166, 0.28)">
-            <div 
+            <div
               className={`orbit-node-pill ${activeChannelId === 'whatsapp' ? 'active' : ''}`}
+              role="button"
+              tabIndex={0}
+              aria-pressed={activeChannelId === 'whatsapp'}
               onClick={() => setActiveChannelId('whatsapp')}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  setActiveChannelId('whatsapp');
+                }
+              }}
               title="Official WhatsApp Cloud API"
             >
               <MessageSquare size={17} color="#25D366" />
@@ -127,9 +148,18 @@ export default function OmnichannelSection({
           </OrbitingCircles>
 
           <OrbitingCircles radius={105} duration={24} delay={12} pathColor="rgba(20, 184, 166, 0.28)">
-            <div 
+            <div
               className={`orbit-node-pill ${activeChannelId === 'voice' ? 'active' : ''}`}
+              role="button"
+              tabIndex={0}
+              aria-pressed={activeChannelId === 'voice'}
               onClick={() => setActiveChannelId('voice')}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  setActiveChannelId('voice');
+                }
+              }}
               title="AI Voice Agents (<300ms)"
             >
               <PhoneCall size={17} color="#06b6d4" />
@@ -139,9 +169,18 @@ export default function OmnichannelSection({
 
           {/* Orbit 2: Middle Orbit (Email & Live Chat) - reverse direction */}
           <OrbitingCircles radius={165} duration={32} delay={0} reverse pathColor="rgba(14, 165, 233, 0.25)">
-            <div 
+            <div
               className={`orbit-node-pill ${activeChannelId === 'email' ? 'active' : ''}`}
+              role="button"
+              tabIndex={0}
+              aria-pressed={activeChannelId === 'email'}
               onClick={() => setActiveChannelId('email')}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  setActiveChannelId('email');
+                }
+              }}
               title="Smart Email Sequences"
             >
               <Mail size={17} color="#f59e0b" />
@@ -150,9 +189,18 @@ export default function OmnichannelSection({
           </OrbitingCircles>
 
           <OrbitingCircles radius={165} duration={32} delay={16} reverse pathColor="rgba(14, 165, 233, 0.25)">
-            <div 
+            <div
               className={`orbit-node-pill ${activeChannelId === 'chat' ? 'active' : ''}`}
+              role="button"
+              tabIndex={0}
+              aria-pressed={activeChannelId === 'chat'}
               onClick={() => setActiveChannelId('chat')}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  setActiveChannelId('chat');
+                }
+              }}
               title="Grounded Web Chatbot"
             >
               <MessageCircle size={17} color="#8b5cf6" />
@@ -162,9 +210,18 @@ export default function OmnichannelSection({
 
           {/* Orbit 3: Outer Orbit (SMS Calling & CRM Sync) */}
           <OrbitingCircles radius={225} duration={42} delay={5} pathColor="rgba(16, 185, 129, 0.2)">
-            <div 
+            <div
               className={`orbit-node-pill ${activeChannelId === 'sms' ? 'active' : ''}`}
+              role="button"
+              tabIndex={0}
+              aria-pressed={activeChannelId === 'sms'}
               onClick={() => setActiveChannelId('sms')}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  setActiveChannelId('sms');
+                }
+              }}
               title="VoIP & Global SMS"
             >
               <Smartphone size={17} color="#10b981" />
@@ -173,9 +230,18 @@ export default function OmnichannelSection({
           </OrbitingCircles>
 
           <OrbitingCircles radius={225} duration={42} delay={26} pathColor="rgba(16, 185, 129, 0.2)">
-            <div 
+            <div
               className={`orbit-node-pill ${activeChannelId === 'crm' ? 'active' : ''}`}
+              role="button"
+              tabIndex={0}
+              aria-pressed={activeChannelId === 'crm'}
               onClick={() => setActiveChannelId('crm')}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  setActiveChannelId('crm');
+                }
+              }}
               title="Unified CRM Timeline Sync"
             >
               <Database size={17} color="#ec4899" />

@@ -6,6 +6,7 @@
   --pr-border: rgba(148, 163, 184, 0.12);
   --pr-border-strong: rgba(148, 163, 184, 0.26);
   --pr-accent: #19D3C5;
+  --pr-on-accent: #04211f;
   --pr-blue: #2563EB;
   --pr-gold: #c9a45c;
   --pr-text: #f1f5f9;
@@ -33,6 +34,7 @@ body[data-theme="light"] .pricing-page-root {
   --pr-border: rgba(15, 23, 42, 0.1);
   --pr-border-strong: rgba(15, 23, 42, 0.2);
   --pr-accent: #0f766e;
+  --pr-on-accent: #ffffff;
   --pr-blue: #2563eb;
   --pr-gold: #b45309;
   --pr-text: #0f172a;
@@ -128,13 +130,13 @@ body[data-theme="light"] .pricing-page-root {
 
 .billing-btn--active {
   background: var(--primary-color);
-  color: #04211f;
+  color: var(--pr-on-accent, #04211f);
 }
 
 .billing-save-pill {
   background: rgba(4, 33, 31, 0.14);
   color: inherit;
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   font-weight: 800;
   padding: 0.14rem 0.5rem;
   border-radius: var(--radius-full, 9999px);
@@ -142,7 +144,7 @@ body[data-theme="light"] .pricing-page-root {
 }
 
 .billing-btn--active .billing-save-pill {
-  background: rgba(4, 33, 31, 0.2);
+  background: color-mix(in srgb, var(--pr-on-accent, #04211f) 18%, transparent);
 }
 
 /* Currency toggle (visually secondary) */
@@ -241,8 +243,8 @@ body[data-theme="light"] .pricing-page-root {
   left: 50%;
   transform: translateX(-50%);
   background: var(--primary-color);
-  color: #04211f;
-  font-size: 0.72rem;
+  color: var(--pr-on-accent, #04211f);
+  font-size: 0.75rem;
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -299,15 +301,17 @@ body[data-theme="light"] .pricing-page-root {
 }
 
 .pcard-price {
-  font-size: 2.35rem;
+  font-size: clamp(1.45rem, 1.85vw, 1.85rem);
   font-weight: 800;
   letter-spacing: -0.03em;
   color: var(--text-primary);
-  line-height: 1;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
 }
 
 .pcard-price--custom {
-  font-size: 2.1rem;
+  font-size: clamp(1.55rem, 2vw, 1.95rem);
   color: var(--plan-accent-soft);
 }
 
@@ -324,6 +328,7 @@ body[data-theme="light"] .pricing-page-root {
   font-weight: 600;
   color: var(--plan-accent-soft, var(--text-muted));
   margin-top: 0.3rem;
+  font-variant-numeric: tabular-nums;
 }
 
 /* ─── Usage chips ─── */
@@ -334,7 +339,7 @@ body[data-theme="light"] .pricing-page-root {
 }
 
 .pcard-limit-chip {
-  font-size: 0.74rem;
+  font-size: 0.75rem;
   font-weight: 600;
   padding: 0.26rem 0.68rem;
   border-radius: var(--radius-full, 9999px);
@@ -359,7 +364,7 @@ body[data-theme="light"] .pricing-page-root {
 
 .pcard-cta--primary {
   background: var(--plan-accent, var(--primary-color));
-  color: #04211f;
+  color: var(--pr-on-accent, #04211f);
   border-color: var(--plan-accent, var(--primary-color));
 }
 
@@ -459,7 +464,7 @@ body[data-theme="light"] .pricing-page-root {
 }
 
 .pcard-feat-cat {
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -707,7 +712,7 @@ body[data-theme="light"] .pricing-page-root {
 
 .pricing-cta-btn--primary {
   background: var(--primary-color);
-  color: #04211f;
+  color: var(--pr-on-accent, #04211f);
   border-color: var(--primary-color);
 }
 

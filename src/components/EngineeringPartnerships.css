@@ -1,0 +1,493 @@
+/* ─── Transparent Engineering Partnerships & Operational Invariants ─── */
+
+.ep-section {
+  background: transparent;
+  padding: 2.5rem 0 5rem;
+}
+
+/* ─── 3-column tier architecture ─── */
+.ep-tier-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+  align-items: stretch;
+  margin-bottom: 5rem;
+}
+
+.ep-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1.35rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 2rem;
+  --ep-accent-soft: color-mix(in srgb, var(--ep-accent, var(--primary-color)) 72%, #ffffff);
+  transition: border-color 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-theme="light"] .ep-card,
+html[data-theme="light"] .ep-card,
+body[data-theme="light"] .ep-card {
+  --ep-accent-soft: var(--ep-accent, var(--primary-color));
+}
+
+.ep-card:hover {
+  border-color: var(--pr-border-strong, rgba(148, 163, 184, 0.28));
+  transform: translateY(-2px);
+}
+
+/* Focal Tier 02: Recommended Velocity */
+.ep-card--recommended {
+  border: 1px solid transparent;
+  background:
+    linear-gradient(var(--pr-surface-2, var(--bg-card)), var(--pr-surface-2, var(--bg-card))) padding-box,
+    linear-gradient(
+      145deg,
+      rgba(25, 211, 197, 0.92) 0%,
+      rgba(37, 99, 235, 0.58) 52%,
+      rgba(25, 211, 197, 0.22) 100%
+    ) border-box;
+  box-shadow: 0 28px 60px -34px rgba(37, 99, 235, 0.42);
+}
+
+[data-theme="light"] .ep-card--recommended,
+html[data-theme="light"] .ep-card--recommended,
+body[data-theme="light"] .ep-card--recommended {
+  background:
+    linear-gradient(#ffffff, #ffffff) padding-box,
+    linear-gradient(
+      145deg,
+      rgba(15, 118, 110, 0.85) 0%,
+      rgba(37, 99, 235, 0.45) 55%,
+      rgba(15, 118, 110, 0.22) 100%
+    ) border-box;
+  box-shadow: 0 24px 52px -30px rgba(15, 23, 42, 0.14);
+}
+
+.ep-card--recommended:hover {
+  box-shadow: 0 32px 64px -30px rgba(37, 99, 235, 0.5);
+}
+
+/* Tier 03: Restrained Enterprise Gold framing */
+.ep-card--enterprise {
+  border-color: color-mix(in srgb, var(--ep-accent, #c9a45c) 32%, var(--border-color));
+  background: linear-gradient(
+    165deg,
+    color-mix(in srgb, var(--ep-accent, #c9a45c) 6%, var(--bg-card)) 0%,
+    var(--bg-card) 52%
+  );
+}
+
+.ep-card--enterprise:hover {
+  border-color: color-mix(in srgb, var(--ep-accent, #c9a45c) 56%, var(--border-color));
+}
+
+.ep-recommended-banner {
+  position: absolute;
+  top: -13px;
+  left: 2rem;
+  background: var(--primary-color);
+  color: var(--pr-on-accent, #04211f);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  padding: 0.28rem 0.85rem;
+  border-radius: 6px;
+  white-space: nowrap;
+  box-shadow: 0 8px 20px -8px color-mix(in srgb, var(--primary-color) 65%, transparent);
+}
+
+/* ─── Unboxed typographic tier metadata ─── */
+.ep-card-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace);
+  font-size: 0.78rem;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.06em;
+}
+
+.ep-tier-label {
+  color: var(--ep-accent-soft, var(--primary-color));
+  font-weight: 700;
+}
+
+.ep-duration-label {
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.ep-meta-sep {
+  color: var(--text-muted);
+  opacity: 0.55;
+}
+
+/* ─── Card title & summary ─── */
+.ep-card-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.ep-card-title {
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  color: var(--text-primary);
+  margin: 0;
+  text-wrap: balance;
+}
+
+.ep-card-summary {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* ─── Dual-currency price block ─── */
+.ep-price-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 1.15rem 0;
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.ep-price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+}
+
+.ep-price-primary {
+  font-size: clamp(1.65rem, 2.2vw, 2.05rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: var(--text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.ep-price-primary--custom {
+  color: var(--ep-accent-soft, var(--pr-gold, #c9a45c));
+}
+
+.ep-price-subrow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  font-size: 0.84rem;
+  line-height: 1.45;
+  font-variant-numeric: tabular-nums;
+}
+
+.ep-price-cadence {
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.ep-delivery-line {
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+/* ─── Scope & Deliverables ─── */
+.ep-deliverables {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  flex: 1;
+}
+
+.ep-section-label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.ep-deliverables-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.72rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ep-deliverable-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  font-size: 0.88rem;
+  line-height: 1.52;
+  color: var(--text-secondary);
+}
+
+.ep-check-icon {
+  color: var(--ep-accent-soft, var(--primary-color));
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+/* ─── Ideal Fit + CTA Footer ─── */
+.ep-card-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-top: auto;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.ep-ideal-fit {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.ep-ideal-fit-label {
+  font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.ep-ideal-fit-text {
+  font-size: 0.86rem;
+  line-height: 1.55;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* ─── CTA Buttons ─── */
+.ep-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  width: 100%;
+  min-height: 46px;
+  padding: 0.75rem 1.25rem;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  white-space: nowrap;
+  border: 1px solid transparent;
+  transition: background-color 0.18s ease, border-color 0.18s ease,
+    color 0.18s ease, transform 0.18s ease, filter 0.18s ease;
+}
+
+.ep-cta-arrow {
+  flex-shrink: 0;
+  transition: transform 0.18s ease;
+}
+
+.ep-cta:hover .ep-cta-arrow {
+  transform: translateX(2px);
+}
+
+.ep-cta--primary {
+  background: var(--primary-color);
+  color: var(--pr-on-accent, #04211f);
+  border-color: var(--primary-color);
+}
+
+.ep-cta--primary:hover {
+  filter: brightness(1.06);
+  transform: translateY(-1px);
+}
+
+.ep-cta--outline {
+  background: transparent;
+  color: var(--text-primary);
+  border-color: var(--pr-border-strong, var(--border-color));
+}
+
+.ep-cta--outline:hover {
+  border-color: var(--primary-color);
+  color: var(--ep-accent-soft, var(--primary-color));
+  background: color-mix(in srgb, var(--primary-color) 8%, transparent);
+}
+
+.ep-cta--enterprise {
+  background: transparent;
+  color: var(--ep-accent-soft, var(--pr-gold, #c9a45c));
+  border-color: color-mix(in srgb, var(--ep-accent, #c9a45c) 46%, transparent);
+}
+
+.ep-cta--enterprise:hover {
+  border-color: var(--ep-accent, #c9a45c);
+  background: color-mix(in srgb, var(--ep-accent, #c9a45c) 10%, transparent);
+  transform: translateY(-1px);
+}
+
+.ep-cta:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* ─── Operational Invariants ─── */
+.ep-invariants-wrap {
+  padding-top: 4rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.ep-invariants-head {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  max-width: 680px;
+  margin-bottom: 2.5rem;
+}
+
+.ep-invariants-eyebrow {
+  font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--primary-color);
+  margin: 0;
+}
+
+.ep-invariants-title {
+  font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.18;
+  color: var(--text-primary);
+  margin: 0;
+  text-wrap: balance;
+}
+
+.ep-invariants-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  background: var(--bg-card);
+  overflow: hidden;
+}
+
+.ep-invariant-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  padding: 2rem 2.25rem;
+  border-bottom: 1px solid var(--border-color);
+  border-right: 1px solid var(--border-color);
+}
+
+.ep-invariant-item:nth-child(2n) {
+  border-right: none;
+}
+
+.ep-invariant-item:nth-last-child(-n + 2) {
+  border-bottom: none;
+}
+
+.ep-invariant-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.25rem;
+}
+
+.ep-invariant-index {
+  font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace);
+  font-size: 0.8rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-muted);
+}
+
+.ep-invariant-icon {
+  color: var(--primary-color);
+  opacity: 0.9;
+}
+
+.ep-invariant-title {
+  font-size: 1.12rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.ep-invariant-desc {
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: var(--text-secondary);
+  margin: 0;
+  max-width: 54ch;
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 1120px) {
+  .ep-tier-grid {
+    grid-template-columns: 1fr;
+    max-width: 640px;
+    margin-left: auto;
+    margin-right: auto;
+    gap: 1.75rem;
+  }
+}
+
+@media (max-width: 760px) {
+  .ep-section {
+    padding: 2.5rem 0 4rem;
+  }
+
+  .ep-card {
+    padding: 1.5rem;
+  }
+
+  .ep-recommended-banner {
+    left: 1.5rem;
+  }
+
+  .ep-invariants-wrap {
+    padding-top: 3rem;
+  }
+
+  .ep-invariants-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ep-invariant-item {
+    padding: 1.5rem;
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .ep-invariant-item:nth-last-child(-n + 2) {
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .ep-invariant-item:last-child {
+    border-bottom: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ep-card,
+  .ep-cta,
+  .ep-cta-arrow {
+    transition: none;
+  }
+}

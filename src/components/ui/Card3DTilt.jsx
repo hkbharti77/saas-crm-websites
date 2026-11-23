@@ -1,88 +1,111 @@
 import React, { useRef, useState } from 'react';
-import { motion, useMotionValue, useSpring, useTransform, useReducedMotion } from 'motion/react';
+import {
+  motion,
+  useMotionTemplate,
+  useMotionValue,
+  useReducedMotion,
+  useSpring,
+  useTransform,
+} from 'motion/react';
 import './Card3DTilt.css';
+
+const TILT_SPRING = { damping: 24, stiffness: 210, mass: 0.55 };
 
 export default function Card3DTilt({
   children,
   className = '',
-  maxRotation = 12,
+  containerClassName = '',
+  perspective = 1000,
+  maxRotation = 8,
   glare = true,
   scale = 1.02,
   style = {},
-  onClick
+  containerStyle = {},
+  onClick,
 }) {
-  const cardRef = useRef(null);
+  const containerRef = useRef(null);
   const [isHovered, setIsHovered] = useState(false);
-  const shouldReduceMotion = useReducedMotion();
+  const shouldReduceMotion = Boolean(useReducedMotion());
 
-  const x = useMotionValue(0.5);
-  const y = useMotionValue(0.5);
+  const pointerX = useMotionValue(0.5);
+  const pointerY = useMotionValue(0.5);
+  const targetScale = useMotionValue(1);
 
-  // Smooth springs for rotation
-  const springConfig = { damping: 20, stiffness: 260, mass: 0.5 };
-  const rotateX = useSpring(
-    useTransform(y, [0, 1], [maxRotation, -maxRotation]),
-    springConfig
-  );
-  const rotateY = useSpring(
-    useTransform(x, [0, 1], [-maxRotation, maxRotation]),
-    springConfig
-  );
+  const smoothX = useSpring(pointerX, TILT_SPRING);
+  const smoothY = useSpring(pointerY, TILT_SPRING);
+
+  const rotateX = useTransform(smoothY, [0, 1], [maxRotation, -maxRotation]);
+  const rotateY = useTransform(smoothX, [0, 1], [-maxRotation, maxRotation]);
+  const smoothScale = useSpring(targetScale, TILT_SPRING);
+
+  const glareX = useTransform(smoothX, [0, 1], [0, 100]);
+  const glareY = useTransform(smoothY, [0, 1], [0, 100]);
+  const glareBackground = useMotionTemplate`radial-gradient(circle 320px at ${glareX}% ${glareY}%, rgba(255, 255, 255, 0.14), transparent 78%)`;
 
   const handleMouseMove = (e) => {
-    if (shouldReduceMotion || !cardRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
-    const normalizedX = (e.clientX - rect.left) / rect.width;
-    const normalizedY = (e.clientY - rect.top) / rect.height;
-    x.set(normalizedX);
-    y.set(normalizedY);
+    if (shouldReduceMotion || !containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    if (!rect.width || !rect.height) return;
+    const normalizedX = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+    const normalizedY = Math.max(0, Math.min(1, (e.clientY - rect.top) / rect.height));
+    pointerX.set(normalizedX);
+    pointerY.set(normalizedY);
   };
 
   const handleMouseEnter = () => {
     setIsHovered(true);
+    if (!shouldReduceMotion) {
+      targetScale.set(scale);
+    }
   };
 
   const handleMouseLeave = () => {
     setIsHovered(false);
-    x.set(0.5);
-    y.set(0.5);
+    pointerX.set(0.5);
+    pointerY.set(0.5);
+    targetScale.set(1);
   };
 
   return (
-    <motion.div
-      ref={cardRef}
-      className={`card-3d-tilt-root ${className}`}
+    <div
+      ref={containerRef}
+      className={`card-3d-perspective ${containerClassName}`.trim()}
+      style={{
+        perspective: `${perspective}px`,
+        ...containerStyle,
+      }}
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onClick={onClick}
-      style={{
-        transformStyle: 'preserve-3d',
-        perspective: 1000,
-        ...style
-      }}
-      animate={
-        shouldReduceMotion
-          ? {}
-          : {
-              rotateX: isHovered ? rotateX.get() : 0,
-              rotateY: isHovered ? rotateY.get() : 0,
-              scale: isHovered ? scale : 1,
-            }
-      }
-      transition={{ duration: 0.2 }}
     >
-      <div className="card-3d-inner" style={{ transformStyle: 'preserve-3d' }}>
-        {children}
-        {glare && isHovered && !shouldReduceMotion && (
-          <motion.div
-            className="card-3d-glare"
-            style={{
-              background: `radial-gradient(circle 320px at ${x.get() * 100}% ${y.get() * 100}%, rgba(255, 255, 255, 0.12), transparent 80%)`
-            }}
-          />
-        )}
-      </div>
-    </motion.div>
+      <motion.div
+        className={`card-3d-tilt-root ${className}`.trim()}
+        style={{
+          transformStyle: 'preserve-3d',
+          ...(shouldReduceMotion
+            ? {}
+            : {
+                rotateX,
+                rotateY,
+                scale: smoothScale,
+              }),
+          ...style,
+        }}
+      >
+        <div className="card-3d-inner" style={{ transformStyle: 'preserve-3d' }}>
+          {children}
+          {glare && !shouldReduceMotion && (
+            <motion.div
+              className="card-3d-glare"
+              style={{
+                background: glareBackground,
+                opacity: isHovered ? 1 : 0,
+              }}
+            />
+          )}
+        </div>
+      </motion.div>
+    </div>
   );
 }

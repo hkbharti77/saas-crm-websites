@@ -111,12 +111,12 @@ body:not(.dark-theme) .hdr-logo-title {
 }
 
 .hdr-logo-tagline {
-  font-size: 0.6rem;
-  font-weight: 650;
+  font-size: 0.75rem;
+  font-weight: 600;
   color: var(--text-secondary, #94a3b8);
-  letter-spacing: 0.06em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
-  line-height: 1;
+  line-height: 1.1;
   margin-top: 2px;
   white-space: nowrap;
 }
@@ -149,7 +149,7 @@ body:not(.dark-theme) .hdr-logo-tagline {
   padding: 0.42rem 0.85rem;
   font-family: inherit;
   font-size: 0.885rem;
-  font-weight: 550;
+  font-weight: 500;
   color: var(--text-secondary, #cbd5e1);
   letter-spacing: -0.01em;
   text-decoration: none;
@@ -186,7 +186,7 @@ body:not(.dark-theme) .hdr-nav-btn:hover {
 .hdr-nav-link.is-active,
 .hdr-nav-btn.is-active {
   color: var(--primary-color, #22d3ee);
-  font-weight: 650;
+  font-weight: 600;
   background: color-mix(in srgb, var(--primary-color, #22d3ee) 12%, transparent);
 }
 
@@ -277,8 +277,8 @@ body:not(.dark-theme) .hdr-dd-panel {
 }
 
 .hdr-col-heading {
-  font-size: 0.72rem;
-  font-weight: 750;
+  font-size: 0.75rem;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--primary-color, #22d3ee);
@@ -374,11 +374,11 @@ body:not(.dark-theme) .hdr-card-title {
 }
 
 .hdr-card-badge {
-  font-size: 0.58rem;
-  font-weight: 800;
-  letter-spacing: 0.06em;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
-  padding: 0.1rem 0.38rem;
+  padding: 0.08rem 0.4rem;
   border-radius: 100px;
   background: color-mix(in srgb, var(--primary-color, #22d3ee) 15%, transparent);
   border: 1px solid color-mix(in srgb, var(--primary-color, #22d3ee) 30%, transparent);
@@ -386,7 +386,7 @@ body:not(.dark-theme) .hdr-card-title {
 }
 
 .hdr-card-desc {
-  font-size: 0.74rem;
+  font-size: 0.78rem;
   color: var(--text-secondary, #94a3b8);
   line-height: 1.4;
   margin: 0;
@@ -420,8 +420,8 @@ body:not(.dark-theme) .hdr-dd-footer {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  font-size: 0.78rem;
-  font-weight: 650;
+  font-size: 0.8rem;
+  font-weight: 600;
   color: var(--primary-color, #22d3ee);
   text-decoration: none;
   transition: gap 0.18s ease, color 0.18s ease;
@@ -482,9 +482,9 @@ body:not(.dark-theme) .hdr-live-demo-link:hover {
   align-items: center;
   padding: 0.12rem 0.45rem;
   border-radius: 100px;
-  font-size: 0.6rem;
-  font-weight: 800;
-  letter-spacing: 0.05em;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
   text-transform: uppercase;
   background: rgba(34, 211, 238, 0.14);
   border: 1px solid rgba(34, 211, 238, 0.35);
@@ -566,8 +566,8 @@ body:not(.dark-theme) .hdr-primary-cta {
   display: none;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   border-radius: 9px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   background: rgba(255, 255, 255, 0.05);
@@ -663,7 +663,7 @@ body:not(.dark-theme) .hdr-mobile-drawer {
   border-radius: 10px;
   font-family: inherit;
   font-size: 1rem;
-  font-weight: 650;
+  font-weight: 600;
   color: var(--text-primary, #f8fafc);
   text-decoration: none;
   background: none;
@@ -852,7 +852,7 @@ body:not(.dark-theme) .hdr-mobile-demo-btn {
   border-radius: 10px;
   font-family: inherit;
   font-size: 1rem;
-  font-weight: 750;
+  font-weight: 700;
   color: #ffffff !important;
   background: linear-gradient(135deg, #0284c7 0%, #0ea5e9 100%);
   border: none;

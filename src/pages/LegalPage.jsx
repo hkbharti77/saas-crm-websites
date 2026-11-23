@@ -574,7 +574,7 @@ export default function LegalPage() {
                 <div style={{ marginBottom: '1.25rem' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontWeight: 700, marginBottom: '0.5rem' }}>
                     <span style={{ color: 'var(--text-primary)' }}>Active Matters Managed:</span>
-                    <span style={{ color: 'var(--lg-emerald)', fontSize: '1.25rem', fontWeight: 850 }}>{caseCount} Active Matters</span>
+                    <span style={{ color: 'var(--lg-emerald)', fontSize: '1.25rem', fontWeight: 800, fontVariantNumeric: 'tabular-nums' }}>{caseCount} Active Matters</span>
                   </div>
                   <input
                     type="range"
@@ -601,7 +601,7 @@ export default function LegalPage() {
                       <strong>Practice Economics:</strong> Saves <strong>2.2 admin hrs</strong> (~{isINR ? '₹400/hr' : '$35/hr'}) + Recaptures <strong>1.0 billable hr</strong> (~{isINR ? '₹1,500/hr' : '$175/hr'}) per matter
                     </span>
                   </div>
-                  <div style={{ fontWeight: '750', color: 'var(--lg-emerald)', whiteSpace: 'nowrap' }}>
+                  <div style={{ fontWeight: 700, fontVariantNumeric: 'tabular-nums', color: 'var(--lg-emerald)', whiteSpace: 'nowrap' }}>
                     Estimated ROI: {roiPct.toLocaleString()}%
                   </div>
                 </div>

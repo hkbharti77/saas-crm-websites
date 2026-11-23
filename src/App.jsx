@@ -1,12 +1,15 @@
-import React, { useEffect, useState, useRef, Suspense, lazy, Component } from 'react';
+import React, { useEffect, useState, useRef, useCallback, Suspense, lazy, Component } from 'react';
 import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
+import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import EnterpriseBackground from './components/EnterpriseBackground';
 import CookieConsentBanner from './components/CookieConsentBanner';
 import Home from './pages/Home';
 import { ThemeProvider } from './context/ThemeContext';
-import PageTransitionLayout from './components/transitions/PageTransitionLayout';
+import RouteProgressBar, { RouteSuspenseFallback } from './components/transitions/RouteProgressBar';
+import { pageTransitionVariants, createPageTransitionVariants } from './lib/motion.config';
+import { prefetchAllIdleRoutes } from './utils/routePrefetch';
 
 const PolicyPage = lazy(() => import('./pages/PolicyPage'));
 const TermsConditions = lazy(() => import('./pages/TermsConditions'));
@@ -54,47 +57,6 @@ const DemoModal = lazy(() => import('./components/DemoModal'));
 const ContactModal = lazy(() => import('./components/ContactModal'));
 import MobileStickyCTA from './components/MobileStickyCTA';
 
-// Prefetch all lazy route chunks at browser idle time to eliminate navigation delays
-const LAZY_ROUTE_PREFETCHES = [
-  () => import('./pages/About'),
-  () => import('./pages/PricingPage'),
-  () => import('./pages/Blog'),
-  () => import('./pages/BlogPost'),
-  () => import('./pages/PolicyPage'),
-  () => import('./pages/TermsConditions'),
-  () => import('./pages/Security'),
-  () => import('./pages/Documentation'),
-  () => import('./pages/WhatsAppCoexistencePage'),
-  () => import('./pages/SalesAutomationPage'),
-  () => import('./pages/AIChatbotsPage'),
-  () => import('./pages/WhatsAppCallingAgentPage'),
-  () => import('./pages/CrmDevelopmentPage'),
-  () => import('./pages/HrmsDevelopmentPage'),
-  () => import('./pages/IvrSolutionsPage'),
-  () => import('./pages/WhatsAppCatalogCrmPage'),
-  () => import('./pages/WhatsAppPricingCalculatorPage'),
-  () => import('./pages/CrmMigrationGuidePage'),
-  () => import('./pages/VoiceAiLatencyBenchmarkPage'),
-  () => import('./pages/SipArchitectureGuidePage'),
-  () => import('./pages/VoiceAiInfrastructurePage'),
-  () => import('./pages/McpToolCallingGuidePage'),
-  () => import('./pages/WhereToFindUsPage'),
-  () => import('./pages/SEOLandingPage'),
-  () => import('./pages/PlanDetailPage'),
-  () => import('./pages/BlogSearch'),
-  () => import('./pages/CategoryPage'),
-  () => import('./components/ContactModal'),
-  () => import('./components/DemoModal'),
-];
-
-function prefetchLazyRoutes() {
-  if (typeof window === 'undefined') return;
-  const schedule = window.requestIdleCallback || ((cb) => setTimeout(cb, 200));
-  LAZY_ROUTE_PREFETCHES.forEach((load, i) => {
-    schedule(() => { load().catch(() => {}); }, { timeout: 4000 + i * 300 });
-  });
-}
-
 class ChunkErrorBoundary extends Component {
   constructor(props) {
     super(props);
@@ -129,9 +91,9 @@ class ChunkErrorBoundary extends Component {
 function App() {
   useGAPageViews();
 
-  // Prefetch all lazy page chunks after first paint so subsequent navigations are instant
+  // Prefetch lazy page chunks during browser idle time so navigations are instant
   useEffect(() => {
-    prefetchLazyRoutes();
+    prefetchAllIdleRoutes();
   }, []);
 
   // Vercel Analytics: Data-minimization middleware enforcing dual-layer path & query sanitization
@@ -152,6 +114,7 @@ function App() {
   const [isDemoModalOpen, setIsDemoModalOpen] = useState(false);
   const [isLiveDemoOpen, setIsLiveDemoOpen] = useState(false);
   const [modalPrefill, setModalPrefill] = useState('');
+  const [modalInquiryType, setModalInquiryType] = useState('');
   const hasTriggeredRef = useRef({});
 
   // DPDP Act 2023 / GDPR Gating: Only mount Vercel Analytics if affirmative consent is present
@@ -204,15 +167,12 @@ function App() {
   }, [location.pathname, location.hash]);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      AOS.init({
-        duration: 650,
-        once: true,
-        easing: 'ease-out-cubic',
-        offset: 60,
-      });
-    }, 400);
-    return () => clearTimeout(timer);
+    AOS.init({
+      duration: 320,
+      once: true,
+      easing: 'ease-out-cubic',
+      offset: 40,
+    });
   }, []);
 
   // Auto-open Book a Demo modal when user scrolls past 75% on any page
@@ -263,7 +223,10 @@ function App() {
         setModalPrefill(e.detail.prefill);
       } else if (e?.detail?.prefillMessage) {
         setModalPrefill(e.detail.prefillMessage);
+      } else {
+        setModalPrefill('');
       }
+      setModalInquiryType(e?.detail?.inquiryType || '');
       setIsDemoModalOpen(true);
     };
 
@@ -279,22 +242,54 @@ function App() {
     };
   }, []);
 
+  const prefersReducedMotion = useReducedMotion();
+  const routeVariants = prefersReducedMotion
+    ? createPageTransitionVariants(true)
+    : pageTransitionVariants;
+
+  const handleRouteExitComplete = useCallback(() => {
+    if (!window.location.hash) {
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    }
+  }, []);
+
+  const handleRouteAnimationComplete = useCallback((definition) => {
+    if (definition !== 'animate') return;
+    requestAnimationFrame(() => {
+      try {
+        AOS.refresh();
+      } catch {
+        /* ignore */
+      }
+    });
+  }, []);
+
   return (
     <ThemeProvider>
       <div className="app-container">
+        <RouteProgressBar />
         <EnterpriseBackground />
         <Header />
         <main>
           <ChunkErrorBoundary>
-            <Suspense fallback={
-              <div className="route-loading-fallback">
-                <div className="route-spinner" aria-hidden="true" />
-                <span className="route-loading-text">Loading Gyan VaniAi...</span>
-              </div>
-            }>
-              <Routes>
-                <Route element={<PageTransitionLayout />}>
-                  <Route path="/" element={<Home />} />
+            <div className="page-transition-viewport">
+              <AnimatePresence
+                mode="wait"
+                initial={false}
+                onExitComplete={handleRouteExitComplete}
+              >
+                <motion.div
+                  key={location.pathname}
+                  initial="initial"
+                  animate="animate"
+                  exit="exit"
+                  variants={routeVariants}
+                  onAnimationComplete={handleRouteAnimationComplete}
+                  className="page-transition-wrapper"
+                >
+                  <Suspense fallback={<RouteSuspenseFallback />}>
+                    <Routes location={location}>
+                      <Route path="/" element={<Home />} />
                   <Route path="/blog" element={<Blog />} />
                   <Route path="/blog/search" element={<BlogSearch />} />
                   <Route path="/blog/:id" element={<BlogPost />} />
@@ -338,10 +333,12 @@ function App() {
                   <Route path="/security" element={<Security />} />
                   <Route path="/unsubscribe" element={<Unsubscribe />} />
 
-                  <Route path="*" element={<NotFound />} />
-                </Route>
-              </Routes>
-            </Suspense>
+                      <Route path="*" element={<NotFound />} />
+                    </Routes>
+                  </Suspense>
+                </motion.div>
+              </AnimatePresence>
+            </div>
           </ChunkErrorBoundary>
         </main>
         <Footer />
@@ -353,8 +350,10 @@ function App() {
               onClose={() => {
                 setIsDemoModalOpen(false);
                 setModalPrefill('');
+                setModalInquiryType('');
               }}
               prefillMessage={modalPrefill}
+              prefillInquiryType={modalInquiryType}
             />
           </Suspense>
         )}

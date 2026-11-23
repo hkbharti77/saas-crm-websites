@@ -1,7 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Check, X, ChevronDown, ShieldCheck, CreditCard, RefreshCcw, Gauge, ShieldAlert } from 'lucide-react';
 import { trackPricingPlanClick, trackPricingView } from '../utils/analytics';
-import { PRICING_CONFIG, formatPrice } from '../config/pricingConfig';
+import {
+  PRICING_CONFIG,
+  formatDualCurrencyPrice,
+  formatPlanDualPrice,
+  formatPlanYearlyTotals,
+} from '../config/pricingConfig';
 import './Pricing.css';
 
 const TRUST_STRIP_ITEMS = [
@@ -15,7 +20,6 @@ export default function Pricing({ onSelectPlan }) {
   const sectionRef = useRef(null);
   const hasFiredView = useRef(false);
   const [billing, setBilling] = useState('monthly');
-  const [currency, setCurrency] = useState(PRICING_CONFIG.currency);
   const [expandedPlan, setExpandedPlan] = useState(null);
   const [openFaq, setOpenFaq] = useState(0);
 
@@ -32,21 +36,6 @@ export default function Pricing({ onSelectPlan }) {
     if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
   }, []);
-
-  function getPrice(plan) {
-    if (plan.isContactUs) return null;
-    if (billing === 'yearly') {
-      return currency === 'INR' ? plan.price.yearlyInr : plan.price.yearlyUsd;
-    }
-    return currency === 'INR' ? plan.price.monthlyInr : plan.price.monthlyUsd;
-  }
-
-  function getYearlySavings(plan) {
-    if (plan.isContactUs) return null;
-    const monthly = currency === 'INR' ? plan.price.monthlyInr : plan.price.monthlyUsd;
-    const yearly = currency === 'INR' ? plan.price.yearlyInr : plan.price.yearlyUsd;
-    return (monthly - yearly) * 12;
-  }
 
   function handleCta(plan) {
     trackPricingPlanClick(plan.name);
@@ -66,8 +55,8 @@ export default function Pricing({ onSelectPlan }) {
     <section className="section pricing-section" id="pricing" ref={sectionRef}>
       <div className="container">
 
-        {/* Billing + currency controls */}
-        <div className="pricing-controls" data-aos="fade-up">
+        {/* Billing period controls */}
+        <div className="pricing-controls">
           <div className="billing-toggle" role="group" aria-label="Billing period">
             <button
               className={`billing-btn ${billing === 'monthly' ? 'billing-btn--active' : ''}`}
@@ -85,30 +74,17 @@ export default function Pricing({ onSelectPlan }) {
               <span className="billing-save-pill">Save {PRICING_CONFIG.yearlyDiscountPct}%</span>
             </button>
           </div>
-
-          <div className="currency-toggle" role="group" aria-label="Currency">
-            <button
-              className={`currency-btn ${currency === 'INR' ? 'currency-btn--active' : ''}`}
-              onClick={() => setCurrency('INR')}
-              aria-pressed={currency === 'INR'}
-            >
-              ₹ INR
-            </button>
-            <button
-              className={`currency-btn ${currency === 'USD' ? 'currency-btn--active' : ''}`}
-              onClick={() => setCurrency('USD')}
-              aria-pressed={currency === 'USD'}
-            >
-              $ USD
-            </button>
-          </div>
         </div>
 
         {/* Plan cards */}
-        <div className="pricing-grid-new" data-aos="fade-up" data-aos-delay="80">
+        <div className="pricing-grid-new">
           {PRICING_CONFIG.plans.map((plan) => {
-            const price = getPrice(plan);
-            const yearlySavings = getYearlySavings(plan);
+            const dualPrice = plan.isContactUs
+              ? null
+              : formatPlanDualPrice(plan.price, billing, { fallback: 'Custom' });
+            const yearlyTotals = plan.isContactUs
+              ? { annualTotal: null, annualSavings: null, hasSavings: false }
+              : formatPlanYearlyTotals(plan.price);
             const PlanIcon = plan.icon;
             const isExpanded = expandedPlan === plan.plan;
 
@@ -133,11 +109,11 @@ export default function Pricing({ onSelectPlan }) {
                   </div>
                 </div>
 
-                {/* Price + billing period */}
+                {/* Dual-currency price + billing period */}
                 <div className="pcard-price-block">
-                  {price !== null ? (
+                  {dualPrice !== null ? (
                     <>
-                      <span className="pcard-price">{formatPrice(price, currency)}</span>
+                      <span className="pcard-price">{dualPrice}</span>
                       <span className="pcard-period">
                         /mo{billing === 'yearly' ? ', billed yearly' : ''}
                       </span>
@@ -145,11 +121,11 @@ export default function Pricing({ onSelectPlan }) {
                   ) : (
                     <span className="pcard-price pcard-price--custom">Custom</span>
                   )}
-                  {billing === 'yearly' && price !== null && (
+                  {billing === 'yearly' && yearlyTotals.annualTotal && (
                     <div className="pcard-yearly-note">
-                      {formatPrice(price * 12, currency)} billed yearly
-                      {yearlySavings > 0 && (
-                        <> · you save {formatPrice(yearlySavings, currency)}</>
+                      {yearlyTotals.annualTotal} billed yearly
+                      {yearlyTotals.hasSavings && yearlyTotals.annualSavings && (
+                        <> · save {yearlyTotals.annualSavings}</>
                       )}
                     </div>
                   )}
@@ -232,12 +208,12 @@ export default function Pricing({ onSelectPlan }) {
         </div>
 
         {/* Usage disclaimer */}
-        <p className="pricing-disclaimer" data-aos="fade-up">
+        <p className="pricing-disclaimer">
           {PRICING_CONFIG.usageDisclaimer}
         </p>
 
         {/* Add-ons */}
-        <div className="pricing-addons" data-aos="fade-up">
+        <div className="pricing-addons">
           <div className="pricing-addons-head">
             <h3 className="pricing-addons-title">Extend your workspace without upgrading</h3>
             <p className="pricing-addons-sub">
@@ -247,7 +223,7 @@ export default function Pricing({ onSelectPlan }) {
           <div className="pricing-addons-grid">
             {PRICING_CONFIG.addons.map((addon) => {
               const AddonIcon = addon.icon;
-              const addonPrice = currency === 'INR' ? addon.priceInr : addon.priceUsd;
+              const addonDualPrice = formatDualCurrencyPrice(addon.priceInr, addon.priceUsd);
               return (
                 <div key={addon.id} className="addon-card" style={{ '--plan-accent': addon.accentColor }}>
                   <div className="pcard-top">
@@ -260,7 +236,7 @@ export default function Pricing({ onSelectPlan }) {
                     </div>
                   </div>
                   <div className="pcard-price-block">
-                    <span className="pcard-price">{formatPrice(addonPrice, currency)}</span>
+                    <span className="pcard-price">{addonDualPrice}</span>
                     <span className="pcard-period">/mo</span>
                   </div>
                   <ul className="addon-includes">
@@ -286,7 +262,7 @@ export default function Pricing({ onSelectPlan }) {
         </div>
 
         {/* Trust strip */}
-        <div className="pricing-trust" data-aos="fade-up">
+        <div className="pricing-trust">
           <h3 className="pricing-trust-title">Simple pricing. Transparent usage.</h3>
           <ul className="pricing-trust-grid" role="list">
             {TRUST_STRIP_ITEMS.map(({ icon: TrustIcon, label }) => (
@@ -299,7 +275,7 @@ export default function Pricing({ onSelectPlan }) {
         </div>
 
         {/* Trial CTA */}
-        <div className="pricing-cta-band" data-aos="fade-up">
+        <div className="pricing-cta-band">
           <div className="pricing-cta-inner">
             <h3 className="pricing-cta-title">See Gyan VaniAi in action</h3>
             <p className="pricing-cta-copy">
@@ -324,7 +300,7 @@ export default function Pricing({ onSelectPlan }) {
         </div>
 
         {/* FAQ */}
-        <div className="pricing-faq" data-aos="fade-up">
+        <div className="pricing-faq">
           <h3 className="pricing-faq-title">Frequently asked questions</h3>
           {PRICING_CONFIG.faqs.map((faq, i) => {
             const isOpen = openFaq === i;

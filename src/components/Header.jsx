@@ -23,6 +23,7 @@ import {
   Sparkles,
 } from 'lucide-react';
 import ThemePicker from './ThemePicker';
+import { prefetchRoute, prefetchModal } from '../utils/routePrefetch';
 import './Header.css';
 
 /* ── Solutions 3-Column Categorized Data ──────────────────── */
@@ -342,7 +343,9 @@ export default function Header() {
                             to={item.to}
                             className="hdr-dd-card"
                             onClick={closeAll}
-                            onMouseEnter={() => item.prefetch?.().catch(() => {})}
+                            onMouseEnter={() => prefetchRoute(item.to)}
+                            onFocus={() => prefetchRoute(item.to)}
+                            onTouchStart={() => prefetchRoute(item.to)}
                             role="menuitem"
                           >
                             <span className="hdr-card-icon" aria-hidden="true">
@@ -383,7 +386,9 @@ export default function Header() {
               to="/services/whatsapp-coexistence"
               className={({ isActive }) => `hdr-nav-link ${isActive ? 'is-active' : ''}`}
               onClick={closeAll}
-              onMouseEnter={() => import('../pages/WhatsAppCoexistencePage').catch(() => {})}
+              onMouseEnter={() => prefetchRoute('/services/whatsapp-coexistence')}
+              onFocus={() => prefetchRoute('/services/whatsapp-coexistence')}
+              onTouchStart={() => prefetchRoute('/services/whatsapp-coexistence')}
             >
               WhatsApp
             </NavLink>
@@ -413,6 +418,9 @@ export default function Header() {
                       to={ind.to}
                       className="hdr-dd-card"
                       onClick={closeAll}
+                      onMouseEnter={() => prefetchRoute(ind.to)}
+                      onFocus={() => prefetchRoute(ind.to)}
+                      onTouchStart={() => prefetchRoute(ind.to)}
                       role="menuitem"
                     >
                       <span className="hdr-card-icon" aria-hidden="true">
@@ -465,7 +473,9 @@ export default function Header() {
                       to={res.to}
                       className="hdr-dd-card"
                       onClick={closeAll}
-                      onMouseEnter={() => res.prefetch?.().catch(() => {})}
+                      onMouseEnter={() => prefetchRoute(res.to)}
+                      onFocus={() => prefetchRoute(res.to)}
+                      onTouchStart={() => prefetchRoute(res.to)}
                       role="menuitem"
                     >
                       <span className="hdr-card-icon" aria-hidden="true">
@@ -484,6 +494,8 @@ export default function Header() {
                     to="/documentation"
                     className="hdr-footer-link"
                     onClick={closeAll}
+                    onMouseEnter={() => prefetchRoute('/documentation')}
+                    onFocus={() => prefetchRoute('/documentation')}
                     role="menuitem"
                   >
                     <span>Explore full documentation & API references</span>
@@ -498,7 +510,9 @@ export default function Header() {
               to="/pricing"
               className={({ isActive }) => `hdr-nav-link ${isActive ? 'is-active' : ''}`}
               onClick={closeAll}
-              onMouseEnter={() => import('../pages/PricingPage').catch(() => {})}
+              onMouseEnter={() => prefetchRoute('/pricing')}
+              onFocus={() => prefetchRoute('/pricing')}
+              onTouchStart={() => prefetchRoute('/pricing')}
             >
               Pricing
             </NavLink>
@@ -508,7 +522,9 @@ export default function Header() {
               to="/about"
               className={({ isActive }) => `hdr-nav-link ${isActive ? 'is-active' : ''}`}
               onClick={closeAll}
-              onMouseEnter={() => import('../pages/About').catch(() => {})}
+              onMouseEnter={() => prefetchRoute('/about')}
+              onFocus={() => prefetchRoute('/about')}
+              onTouchStart={() => prefetchRoute('/about')}
             >
               About
             </NavLink>
@@ -521,6 +537,8 @@ export default function Header() {
               type="button"
               className="hdr-live-demo-link"
               onClick={handleOpenLiveDemo}
+              onMouseEnter={() => prefetchModal('demo')}
+              onFocus={() => prefetchModal('demo')}
               aria-label="Open 7-Day Live Demo Sandbox"
             >
               <span>Live Demo</span>
@@ -537,6 +555,8 @@ export default function Header() {
               type="button"
               className="hdr-primary-cta"
               onClick={handleBookDemo}
+              onMouseEnter={() => prefetchModal('contact')}
+              onFocus={() => prefetchModal('contact')}
               aria-label="Book a Demo"
             >
               <span>Book a Demo</span>
@@ -586,6 +606,7 @@ export default function Header() {
                       to={item.to}
                       className="hdr-mobile-sublink"
                       onClick={closeAll}
+                      onTouchStart={() => prefetchRoute(item.to)}
                     >
                       <span className="hdr-mobile-subicon" aria-hidden="true">
                         {item.icon}
@@ -620,6 +641,7 @@ export default function Header() {
                 `hdr-mobile-direct-link ${isActive ? 'is-active' : ''}`
               }
               onClick={closeAll}
+              onTouchStart={() => prefetchRoute('/services/whatsapp-coexistence')}
             >
               WhatsApp
             </NavLink>
@@ -644,6 +666,7 @@ export default function Header() {
                       to={ind.to}
                       className="hdr-mobile-sublink"
                       onClick={closeAll}
+                      onTouchStart={() => prefetchRoute(ind.to)}
                     >
                       <span className="hdr-mobile-subicon" aria-hidden="true">
                         {ind.icon}
@@ -686,6 +709,7 @@ export default function Header() {
                       to={res.to}
                       className="hdr-mobile-sublink"
                       onClick={closeAll}
+                      onTouchStart={() => prefetchRoute(res.to)}
                     >
                       <span className="hdr-mobile-subicon" aria-hidden="true">
                         {res.icon}
@@ -700,6 +724,7 @@ export default function Header() {
                     to="/documentation"
                     className="hdr-mobile-footer-link"
                     onClick={closeAll}
+                    onTouchStart={() => prefetchRoute('/documentation')}
                   >
                     <span>Explore full documentation</span>
                     <ArrowRight size={13} aria-hidden="true" />
@@ -715,6 +740,7 @@ export default function Header() {
                 `hdr-mobile-direct-link ${isActive ? 'is-active' : ''}`
               }
               onClick={closeAll}
+              onTouchStart={() => prefetchRoute('/pricing')}
             >
               Pricing
             </NavLink>
@@ -726,6 +752,7 @@ export default function Header() {
                 `hdr-mobile-direct-link ${isActive ? 'is-active' : ''}`
               }
               onClick={closeAll}
+              onTouchStart={() => prefetchRoute('/about')}
             >
               About
             </NavLink>

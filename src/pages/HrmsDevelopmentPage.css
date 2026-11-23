@@ -96,7 +96,7 @@
 
 .hrms-hero-h1 {
   font-size: 3.25rem;
-  font-weight: 900;
+  font-weight: 800;
   line-height: 1.12;
   letter-spacing: -0.03em;
   margin-bottom: 1.25rem;
@@ -265,7 +265,7 @@
 }
 
 .hrms-mini-stat-lbl {
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   color: #94a3b8;
   text-transform: uppercase;
   letter-spacing: 0.04em;
@@ -322,7 +322,7 @@
 }
 
 .hrms-row-dept {
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   color: #64748b;
 }
 
@@ -333,7 +333,7 @@
 }
 
 .hrms-row-badge {
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   font-weight: 600;
   padding: 0.2rem 0.55rem;
   border-radius: 6px;
@@ -553,7 +553,7 @@
 
 .hrms-payroll-net-val {
   font-size: 2.75rem;
-  font-weight: 900;
+  font-weight: 800;
   color: #ffffff;
   line-height: 1;
   margin-bottom: 0.5rem;
@@ -789,7 +789,7 @@
 }
 
 .hrms-recruit-score {
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   font-weight: 700;
   padding: 0.2rem 0.5rem;
   border-radius: 6px;
@@ -952,7 +952,7 @@
 
 .hrms-step-num {
   font-size: 2rem;
-  font-weight: 900;
+  font-weight: 800;
   color: rgba(167, 139, 250, 0.3);
   margin-bottom: 1rem;
 }

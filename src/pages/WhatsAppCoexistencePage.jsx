@@ -17,9 +17,7 @@ import {
   Lock,
   Radio,
   TrendingUp,
-  Cpu,
-  CheckCircle2,
-  MessageSquare
+  Cpu
 } from 'lucide-react';
 import Card3DTilt from '../components/ui/Card3DTilt';
 import AnimatedBeam from '../components/ui/AnimatedBeam';
@@ -32,7 +30,6 @@ import Meteors from '../components/ui/Meteors';
 import MetaInteractiveSandbox from '../components/MetaInteractiveSandbox';
 import { trackBookDemo } from '../utils/analytics';
 import { useTheme } from '../context/ThemeContext';
-import AiAnswerSummaryBlock from '../components/AiAnswerSummaryBlock';
 import './WhatsAppCoexistencePage.css';
 
 const coexistenceAiFacts = [
@@ -293,7 +290,7 @@ export default function WhatsAppCoexistencePage() {
               
               {/* Left Column: Copy & Actions */}
               <div className="coexistence-hero-left">
-                <nav aria-label="Breadcrumb" className="coexistence-breadcrumb" style={{ marginBottom: '1.25rem', fontSize: '0.85rem', fontWeight: '550' }}>
+                <nav aria-label="Breadcrumb" className="coexistence-breadcrumb" style={{ marginBottom: '1.25rem', fontSize: '0.85rem', fontWeight: 500 }}>
                   <ol style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', listStyle: 'none', padding: 0, margin: 0, color: 'var(--text-secondary)' }}>
                     <li><Link to="/" style={{ color: 'inherit' }}>Home</Link></li>
                     <li aria-hidden="true">/</li>

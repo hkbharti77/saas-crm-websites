@@ -61,7 +61,7 @@
   align-items: center;
   gap: 0.75rem;
   font-size: 1.25rem;
-  font-weight: 750;
+  font-weight: 700;
   margin-bottom: 1.5rem;
   color: var(--primary-color);
 }
@@ -215,7 +215,7 @@
   border: 1px solid color-mix(in srgb, #10b981 30%, transparent);
   color: #10b981;
   font-size: 0.75rem;
-  font-weight: 750;
+  font-weight: 700;
   border-radius: var(--radius-full, 9999px);
   margin-bottom: 0.5rem;
 }
@@ -235,7 +235,7 @@
   border: 1px solid color-mix(in srgb, var(--primary-color) 30%, transparent);
   color: var(--primary-color);
   font-size: 0.75rem;
-  font-weight: 750;
+  font-weight: 700;
   border-radius: var(--radius-full, 9999px);
   margin-bottom: 0.5rem;
 }
@@ -297,7 +297,7 @@
 
 .where-platform-name {
   font-size: 1.125rem;
-  font-weight: 750;
+  font-weight: 700;
   color: var(--text-primary);
 }
 
@@ -309,7 +309,7 @@
   background: color-mix(in srgb, #10b981 14%, transparent);
   border: 1px solid color-mix(in srgb, #10b981 25%, transparent);
   color: #10b981;
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   font-weight: 800;
   border-radius: 6px;
 }
@@ -326,7 +326,7 @@
   background: color-mix(in srgb, var(--primary-color) 14%, transparent);
   border: 1px solid color-mix(in srgb, var(--primary-color) 25%, transparent);
   color: var(--primary-color);
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   font-weight: 800;
   border-radius: 6px;
 }
@@ -365,7 +365,7 @@
   align-items: center;
   gap: 0.45rem;
   font-size: 0.88rem;
-  font-weight: 650;
+  font-weight: 600;
   color: #10b981;
   text-decoration: underline;
   text-underline-offset: 3px;

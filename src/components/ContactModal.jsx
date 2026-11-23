@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import { X, CheckCircle2, Send, ChevronDown, Check, XCircle } from 'lucide-react';
 import 'react-phone-number-input/style.css';
@@ -24,13 +24,18 @@ const INQUIRY_OPTIONS = [
   'General Inquiry'
 ];
 
-export default function ContactModal({ isOpen, onClose, prefillMessage = '' }) {
+export default function ContactModal({
+  isOpen,
+  onClose,
+  prefillMessage = '',
+  prefillInquiryType = '',
+}) {
   const [phone, setPhone] = useState();
   const [values, setValues] = useState({
     name: '',
     email: '',
-    inquiryType: '',
-    message: prefillMessage || ''
+    inquiryType: null,
+    message: null
   });
   const [honeypot, setHoneypot] = useState('');
   const [touched, setTouched] = useState({
@@ -45,14 +50,10 @@ export default function ContactModal({ isOpen, onClose, prefillMessage = '' }) {
   const [ndaRequired, setNdaRequired] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-  const [prevProps, setPrevProps] = useState({ isOpen, prefillMessage });
+  const [submitError, setSubmitError] = useState('');
 
-  if (isOpen !== prevProps.isOpen || prefillMessage !== prevProps.prefillMessage) {
-    setPrevProps({ isOpen, prefillMessage });
-    if (isOpen && prefillMessage && !values.message) {
-      setValues(prev => ({ ...prev, message: prefillMessage }));
-    }
-  }
+  const effectiveInquiryType = values.inquiryType ?? prefillInquiryType ?? '';
+  const effectiveMessage = values.message ?? prefillMessage ?? '';
 
   useEffect(() => {
     if (isOpen) {
@@ -66,16 +67,17 @@ export default function ContactModal({ isOpen, onClose, prefillMessage = '' }) {
     };
   }, [isOpen]);
 
-  const handleClose = () => {
+  const handleClose = useCallback(() => {
     setIsSuccess(false);
+    setSubmitError('');
     setPhone();
-    setValues({ name: '', email: '', inquiryType: '', message: prefillMessage || '' });
+    setValues({ name: '', email: '', inquiryType: null, message: null });
     setTouched({ name: false, email: false, phone: false, inquiryType: false, message: false });
     setConsentGiven(false);
     setConsentError(false);
     setNdaRequired(false);
     onClose();
-  };
+  }, [onClose]);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -86,7 +88,7 @@ export default function ContactModal({ isOpen, onClose, prefillMessage = '' }) {
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isOpen]);
+  }, [isOpen, handleClose]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -109,10 +111,10 @@ export default function ContactModal({ isOpen, onClose, prefillMessage = '' }) {
     if (touched.phone && phone && !isValidPhoneNumber(phone)) {
       newErrors.phone = 'Please enter a valid phone number';
     }
-    if (touched.inquiryType && !values.inquiryType) {
+    if (touched.inquiryType && !effectiveInquiryType) {
       newErrors.inquiryType = 'Please select an inquiry type';
     }
-    if (touched.message && (values.message.trim().length < 5 || values.message.length > 1000)) {
+    if (touched.message && (effectiveMessage.trim().length < 5 || effectiveMessage.length > 1000)) {
       newErrors.message = 'Message must be between 5 and 1000 characters';
     }
     return newErrors;
@@ -147,10 +149,10 @@ export default function ContactModal({ isOpen, onClose, prefillMessage = '' }) {
     if (phone && !isValidPhoneNumber(phone)) {
       submitErrors.phone = 'Please enter a valid phone number';
     }
-    if (!values.inquiryType) {
+    if (!effectiveInquiryType) {
       submitErrors.inquiryType = 'Please select an inquiry type';
     }
-    if (values.message.trim().length < 5 || values.message.length > 1000) {
+    if (effectiveMessage.trim().length < 5 || effectiveMessage.length > 1000) {
       submitErrors.message = 'Message must be between 5 and 1000 characters';
     }
 
@@ -158,6 +160,7 @@ export default function ContactModal({ isOpen, onClose, prefillMessage = '' }) {
       return;
     }
 
+    setSubmitError('');
     setIsSubmitting(true);
     try {
       const cmsApiBase = API_BASE_URL;
@@ -165,8 +168,8 @@ export default function ContactModal({ isOpen, onClose, prefillMessage = '' }) {
         name: values.name.trim(),
         email: values.email.trim(),
         phone: phone || '',
-        subject: `[${values.inquiryType || 'General'}] Website Inquiry`,
-        message: values.message.trim(),
+        subject: `[${effectiveInquiryType || 'General'}] Website Inquiry`,
+        message: effectiveMessage.trim(),
         channel: 'crm',
         source: 'website_connect_modal',
         consent: consentGiven,
@@ -189,11 +192,11 @@ export default function ContactModal({ isOpen, onClose, prefillMessage = '' }) {
         setIsSuccess(true);
         trackContactFormSubmit();
       } else {
-        alert(data.error || 'Oops! There was a problem submitting your request. Please try again.');
+        setSubmitError(data.error || 'Oops! There was a problem submitting your request. Please try again.');
       }
     } catch (err) {
       console.error('Contact modal submission error:', err);
-      alert(err?.message ? `Network error: ${err.message}. Please verify the backend is running.` : 'Network error. Please try again.');
+      setSubmitError(err?.message ? `Network error: ${err.message}. Please try again shortly.` : 'Network error. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
@@ -202,8 +205,16 @@ export default function ContactModal({ isOpen, onClose, prefillMessage = '' }) {
   if (typeof document === 'undefined' || !isOpen) return null;
 
   return createPortal(
-    <div className="enterprise-modal-overlay" onClick={handleClose} role="dialog" aria-modal="true" aria-labelledby="connect-modal-title">
-      <div className="enterprise-modal-card" onClick={e => e.stopPropagation()}>
+    <div
+      className="enterprise-modal-overlay"
+      onClick={(e) => {
+        if (e.target === e.currentTarget) handleClose();
+      }}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="connect-modal-title"
+    >
+      <div className="enterprise-modal-card">
         {/* Close Button */}
         <button
           className="enterprise-modal-close"
@@ -358,10 +369,10 @@ export default function ContactModal({ isOpen, onClose, prefillMessage = '' }) {
                     <select
                       id="connect-inquiry"
                       name="inquiryType"
-                      value={values.inquiryType}
+                      value={effectiveInquiryType}
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      className={`enterprise-select ${!values.inquiryType ? 'is-placeholder' : ''} ${errors.inquiryType ? 'field-error' : ''}`}
+                      className={`enterprise-select ${!effectiveInquiryType ? 'is-placeholder' : ''} ${errors.inquiryType ? 'field-error' : ''}`}
                       required
                     >
                       <option value="" disabled>Select inquiry type</option>
@@ -389,7 +400,7 @@ export default function ContactModal({ isOpen, onClose, prefillMessage = '' }) {
                     <textarea
                       id="connect-message"
                       name="message"
-                      value={values.message}
+                      value={effectiveMessage}
                       onChange={handleChange}
                       onBlur={handleBlur}
                       className={`enterprise-textarea ${errors.message ? 'field-error' : ''}`}
@@ -399,7 +410,7 @@ export default function ContactModal({ isOpen, onClose, prefillMessage = '' }) {
                       required
                     />
                     <span className="enterprise-char-count">
-                      {values.message.length}/1000
+                      {effectiveMessage.length}/1000
                     </span>
                   </div>
                   {errors.message && (
@@ -452,9 +463,25 @@ export default function ContactModal({ isOpen, onClose, prefillMessage = '' }) {
               </div>
 
               {consentError && (
-                <span className="enterprise-field-error-msg" style={{ marginTop: '0.35rem' }}>
+                <span className="enterprise-field-error-msg" role="alert" style={{ marginTop: '0.35rem' }}>
                   Please confirm you are 18+ and agree to the Privacy Policy and Terms to submit your request.
                 </span>
+              )}
+
+              {submitError && (
+                <div
+                  className="enterprise-field-error-msg"
+                  role="alert"
+                  style={{
+                    marginTop: '0.65rem',
+                    padding: '0.6rem 0.85rem',
+                    borderRadius: '8px',
+                    background: 'rgba(239, 68, 68, 0.1)',
+                    border: '1px solid rgba(239, 68, 68, 0.3)',
+                  }}
+                >
+                  {submitError}
+                </div>
               )}
 
               {/* Instant WhatsApp Option */}

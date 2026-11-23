@@ -34,7 +34,6 @@ import Particles from '../components/ui/Particles';
 import SpotlightCard from '../components/ui/SpotlightCard';
 import Meteors from '../components/ui/Meteors';
 import { trackBookDemo } from '../utils/analytics';
-import AiAnswerSummaryBlock from '../components/AiAnswerSummaryBlock';
 import './WhatsAppCallingAgentPage.css';
 
 const SITE = 'https://www.gyanvaniai.com';

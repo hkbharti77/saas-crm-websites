@@ -24,7 +24,6 @@ import {
   Check
 } from 'lucide-react';
 import ContactSection from '../components/ContactSection';
-import AiAnswerSummaryBlock from '../components/AiAnswerSummaryBlock';
 import './SalesAutomationPage.css';
 
 const SITE = 'https://www.gyanvaniai.com';
