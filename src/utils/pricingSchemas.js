@@ -26,7 +26,25 @@ function offerForPlan(plan) {
     name: `${plan.name} Plan`,
     price: plan.price.monthlyInr,
     priceCurrency: 'INR',
-    description: `${plan.name} plan, billed monthly in INR. Annual billing saves ${PRICING_CONFIG.yearlyDiscountPct} percent.`,
+    priceSpecification: [
+      {
+        '@type': 'UnitPriceSpecification',
+        price: plan.price.monthlyInr,
+        priceCurrency: 'INR',
+        unitCode: 'MON',
+      },
+      ...(plan.price.monthlyUsd
+        ? [
+            {
+              '@type': 'UnitPriceSpecification',
+              price: plan.price.monthlyUsd,
+              priceCurrency: 'USD',
+              unitCode: 'MON',
+            },
+          ]
+        : []),
+    ],
+    description: `${plan.name} plan (${plan.price.monthlyInr} INR / ${plan.price.monthlyUsd} USD per month). Annual billing saves ${PRICING_CONFIG.yearlyDiscountPct} percent.`,
     availability: 'https://schema.org/InStock',
     url: `${BASE}/pricing/${plan.plan}`,
     seller: {
@@ -57,9 +75,17 @@ export function engineeringPartnershipsSchema() {
       itemListElement: ENGINEERING_PARTNERSHIP_TIERS.map((tier) => ({
         '@type': 'Offer',
         name: `${tier.tierLabel}: ${tier.title}`,
-        description: `${tier.summary} Delivery: ${tier.deliveryLine}.`,
+        description: `${tier.summary} Delivery: ${tier.deliveryLine}. Pricing: ${tier.pricePrimary}.`,
         price: tier.priceInr ?? '0',
         priceCurrency: 'INR',
+        ...(tier.priceInr != null && tier.priceUsd != null
+          ? {
+              priceSpecification: [
+                { '@type': 'PriceSpecification', price: tier.priceInr, priceCurrency: 'INR' },
+                { '@type': 'PriceSpecification', price: tier.priceUsd, priceCurrency: 'USD' },
+              ],
+            }
+          : {}),
         availability: 'https://schema.org/InStock',
         url: `${BASE}/pricing?view=partnerships`,
       })),

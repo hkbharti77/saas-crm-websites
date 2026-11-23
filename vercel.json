@@ -27,11 +27,6 @@
       "permanent": true
     },
     {
-      "source": "/compare/:path*",
-      "destination": "https://www.gyanvaniai.com/services/crm-development",
-      "permanent": true
-    },
-    {
       "source": "/services/whatsapp-calling-agent-bots",
       "destination": "https://www.gyanvaniai.com/services/whatsapp-calling-agent",
       "permanent": true
@@ -97,6 +92,18 @@
       "headers": [
         { "key": "X-Robots-Tag", "value": "noindex, nofollow" },
         { "key": "Cache-Control", "value": "no-store, no-cache, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/seo/(.*)",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "noindex, nofollow" }
+      ]
+    },
+    {
+      "source": "/unsubscribe",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "noindex, nofollow" }
       ]
     },
     {

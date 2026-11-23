@@ -251,8 +251,8 @@ export default function WhatsAppCoexistencePage() {
   return (
     <>
       <SeoHead
-        title="WhatsApp Coexistence Mode | Mobile App & CRM Sync | Gyan VaniAi"
-        description="Connect official WhatsApp Cloud API to Gyan VaniAi CRM while retaining your mobile WhatsApp Business app on the exact same phone number."
+        title="WhatsApp Coexistence Mode & Mobile CRM Sync | Gyan VaniAi"
+        description="Run official Meta WhatsApp Cloud API and your mobile WhatsApp Business app on 1 phone number simultaneously. Plans from ₹1,999 / $19 with 0% Meta markup."
         canonical="https://www.gyanvaniai.com/services/whatsapp-coexistence"
         image="https://www.gyanvaniai.com/whatsapp_coexistence_dark.webp"
         keywords="WhatsApp Coexistence, WhatsApp Business API, Dual WhatsApp Mode, WhatsApp CRM Automation, Single Number WhatsApp"
@@ -911,6 +911,10 @@ export default function WhatsAppCoexistencePage() {
           <div className="coexistence-related-bar">
             <span className="coexistence-related-title">WhatsApp CRM Cluster:</span>
             <div className="coexistence-related-links">
+              <Link to="/compare/wati-vs-respond-io-vs-gyanvaniai" className="coexistence-related-link">
+                Gyan VaniAi vs Wati &amp; Respond.io →
+              </Link>
+              <span style={{ color: 'var(--border-color)' }}>|</span>
               <Link to="/services/whatsapp-automation" className="coexistence-related-link">
                 WhatsApp CRM Platform →
               </Link>
@@ -925,10 +929,6 @@ export default function WhatsAppCoexistencePage() {
               <span style={{ color: 'var(--border-color)' }}>|</span>
               <Link to="/pricing" className="coexistence-related-link">
                 WhatsApp CRM Pricing →
-              </Link>
-              <span style={{ color: 'var(--border-color)' }}>|</span>
-              <Link to="/services/lead-management" className="coexistence-related-link">
-                Lead Management Software →
               </Link>
             </div>
           </div>

@@ -43,6 +43,9 @@ import VoiceAiInfrastructurePage from './pages/VoiceAiInfrastructurePage';
 import McpToolCallingGuidePage from './pages/McpToolCallingGuidePage';
 import WhereToFindUsPage from './pages/WhereToFindUsPage';
 import AeoVisibilityDashboard from './pages/AeoVisibilityDashboard';
+import CompareHubPage from './pages/CompareHubPage';
+import ComparisonDetailPage from './pages/ComparisonDetailPage';
+import { WHATSAPP_CRM_COMPARISON, CUSTOM_CRM_COMPARISON } from './config/comparisonsConfig';
 
 function ServerApp() {
   return (
@@ -68,7 +71,16 @@ function ServerApp() {
             <Route path="/services/ivr-solutions" element={<IvrSolutionsPage />} />
             <Route path="/industries/legal" element={<LegalPage />} />
             <Route path="/tools/whatsapp-pricing-calculator" element={<WhatsAppPricingCalculatorPage />} />
-            <Route path="/compare/*" element={<Navigate to="/services/crm-development" replace />} />
+            <Route path="/compare" element={<CompareHubPage />} />
+            <Route
+              path="/compare/wati-vs-respond-io-vs-gyanvaniai"
+              element={<ComparisonDetailPage comparison={WHATSAPP_CRM_COMPARISON} />}
+            />
+            <Route
+              path="/compare/custom-ai-crm-vs-off-the-shelf"
+              element={<ComparisonDetailPage comparison={CUSTOM_CRM_COMPARISON} />}
+            />
+            <Route path="/compare/*" element={<Navigate to="/compare" replace />} />
             <Route path="/guides/crm-migration" element={<CrmMigrationGuidePage />} />
             <Route path="/resources/voice-ai-latency-benchmark" element={<VoiceAiLatencyBenchmarkPage />} />
             <Route path="/resources/sip-architecture" element={<SipArchitectureGuidePage />} />

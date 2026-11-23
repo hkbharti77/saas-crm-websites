@@ -52,7 +52,7 @@ export default function SEOHead({
     ? null
     : (canonical !== undefined ? canonical : (url || 'https://www.gyanvaniai.com/'));
   const currentPath = effectiveCanonical ? effectiveCanonical.replace('https://www.gyanvaniai.com', '') : '';
-  const hreflangs = generateHreflangTags(currentPath);
+  const hreflangs = noindex ? [] : generateHreflangTags(currentPath || '/');
   const geoMeta = getGeoTargeting(geo);
   const socialMeta = getSocialMeta(title, description, image, effectiveCanonical || 'https://www.gyanvaniai.com/');
   const breadcrumbs = currentPath && currentPath !== '/' ? generateBreadcrumbs(currentPath) : null;
@@ -144,6 +144,17 @@ export default function SEOHead({
     }
   }
 
+  // Emit a single unified Schema.org @graph for unambiguous entity linking across AI crawlers
+  const graphNodes = schemas.map((node) => {
+    if (!node || typeof node !== 'object') return node;
+    const { '@context': _ignoredContext, ...rest } = node;
+    return rest;
+  });
+  const unifiedJsonLd = {
+    '@context': 'https://schema.org',
+    '@graph': graphNodes,
+  };
+
   return (
     <Helmet>
       {/* Primary Meta Tags */}
@@ -209,20 +220,17 @@ export default function SEOHead({
       {socialMeta['twitter:site'] && <meta name="twitter:site" content={socialMeta['twitter:site']} />}
       {socialMeta['twitter:creator'] && <meta name="twitter:creator" content={socialMeta['twitter:creator']} />}
 
-      {/* Multi-LLM & Generative Engine Optimization (GEO) Discovery Meta */}
+      {/* Generative Engine Optimization (GEO) Discovery Links */}
       <link rel="author" href="https://www.gyanvaniai.com/llms.txt" />
       <link rel="alternate" type="text/plain" href="https://www.gyanvaniai.com/llms.txt" title="LLM Context Summary" />
       <link rel="alternate" type="text/plain" href="https://www.gyanvaniai.com/llms-full.txt" title="Full LLM Technical Documentation" />
-      <meta name="ai-site-verification" content="gyan-vani-ai-verified-entity" />
-      <meta name="chatgpt-plugin-support" content="enabled" />
-      <meta name="llm-model-access" content="unrestricted" />
-      <meta name="ai-agent-discovery" content="https://www.gyanvaniai.com/llms.txt" />
-      <meta name="multi-llm-compatibility" content="OpenAI ChatGPT, Anthropic Claude, Perplexity AI, Google Gemini, DeepSeek R1, Meta Llama 3.3, Cohere, Mistral AI" />
+      <link rel="alternate" type="application/json" href="https://www.gyanvaniai.com/api/llm-summary.json" title="Structured LLM Entity Summary" />
+      <link rel="alternate" type="application/rss+xml" href="https://www.gyanvaniai.com/rss.xml" title="Gyan VaniAi RSS Feed" />
 
-      {/* LLM Citation Metadata (For AI Search Indexing & Summarization Engines) */}
+      {/* Academic / Answer-Engine Citation Metadata */}
       <meta name="citation_title" content={citationTitle || title} />
       <meta name="citation_publisher" content="Gyan VaniAi Enterprise AI & Software" />
-      <meta name="citation_fulltext_html_url" content={effectiveCanonical} />
+      {effectiveCanonical && <meta name="citation_fulltext_html_url" content={effectiveCanonical} />}
       <meta name="citation_language" content="en" />
 
       {/* Hreflang Tags for International SEO (rendered only when localized versions exist) */}
@@ -237,9 +245,9 @@ export default function SEOHead({
 
       {hreflangs.length > 0 && <link rel="alternate" hrefLang="x-default" href={effectiveCanonical} />}
 
-      {/* Structured Data (JSON-LD) */}
+      {/* Unified Structured Data (Schema.org @graph JSON-LD) */}
       <script type="application/ld+json">
-        {JSON.stringify(schemas, null, 0)}
+        {JSON.stringify(unifiedJsonLd, null, 0)}
       </script>
 
       {/* LCP Image Preload */}

@@ -104,8 +104,8 @@ export default function PricingPage() {
   return (
     <div className="pricing-page-root">
       <SEOHead
-        title="Gyan VaniAi Pricing | Transparent Engineering Partnerships & AI CRM Plans"
-        description="Transparent Engineering Partnerships from ₹24,999 ($299) turnkey WhatsApp AI Helpdesk and ₹69,999 ($850) 2-week Voice & Hybrid RAG sprints, plus SaaS AI CRM plans from ₹1,999/mo."
+        title="AI CRM Pricing & Engineering Partnerships | Gyan VaniAi"
+        description="Transparent Engineering Partnerships from ₹24,999 / $299 (5-day WhatsApp AI Helpdesk) and ₹69,999 / $850 (2-week Voice & RAG sprint), plus SaaS from ₹1,999/mo."
         canonical="https://www.gyanvaniai.com/pricing"
         keywords="AI CRM pricing, Transparent Engineering Partnerships, Meta WhatsApp AI Helpdesk setup, Voice AI RAG sprint, Gyan VaniAi plans, Enterprise Meta Tech Provider"
         schema={schema}

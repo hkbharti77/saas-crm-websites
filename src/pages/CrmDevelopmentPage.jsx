@@ -227,8 +227,8 @@ export default function CrmDevelopmentPage() {
   return (
     <div className="crm-dev-page">
       <SEOHead
-        title="Custom AI CRM Development Company | Zero Seat Fees | Gyan VaniAi"
-        description="Engineered custom AI CRM software with native Meta WhatsApp Coexistence, automated lead scoring, zero per-seat licensing fees, and 100% tailored data architecture."
+        title="Custom AI CRM Development & Zero Seat Fees | Gyan VaniAi"
+        description="Build custom AI CRM software with Meta WhatsApp Coexistence, Voice AI & 100% IP ownership. Fixed sprints from ₹24,999 / $299 with zero per-seat SaaS fees."
         canonical={PAGE_URL}
         keywords={[
           "Custom CRM Development Company",

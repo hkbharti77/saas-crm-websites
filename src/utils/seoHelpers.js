@@ -3,9 +3,15 @@
  * International targeting, hreflang tags, and meta optimization
  */
 
-export const generateHreflangTags = () => {
-  // Return empty array as website is single-locale English; hreflang is only added when distinct localized URLs exist.
-  return [];
+export const generateHreflangTags = (currentPath = '/') => {
+  const cleanPath = !currentPath || currentPath === '/' ? '/' : `/${String(currentPath).replace(/^\/+/, '')}`;
+  const canonicalUrl = `https://www.gyanvaniai.com${cleanPath}`;
+  const locales = ['en-IN', 'en-US', 'en-GB', 'en-AE', 'en-SG'];
+  return locales.map((locale) => ({
+    rel: 'alternate',
+    hreflang: locale,
+    href: canonicalUrl,
+  }));
 };
 
 /**
@@ -15,13 +21,13 @@ export const generateHreflangTags = () => {
 export const getGeoTargeting = (customGeo = null) => {
   if (customGeo && (customGeo.region || customGeo.city || customGeo.targetCountry || customGeo.latitude)) {
     return {
-      'geo.region': customGeo.region || customGeo.targetCountry || 'IN-DL',
-      'geo.placename': customGeo.city ? `${customGeo.city}, ${customGeo.targetCountry || 'India'}` : (customGeo.placename || 'New Delhi')
+      'geo.region': customGeo.region || customGeo.targetCountry || 'IN-UP',
+      'geo.placename': customGeo.city ? `${customGeo.city}, ${customGeo.targetCountry || 'India'}` : (customGeo.placename || 'Noida, Delhi NCR, India')
     };
   }
   return {
-    'geo.region': 'IN-DL',
-    'geo.placename': 'New Delhi'
+    'geo.region': 'IN-UP',
+    'geo.placename': 'Noida, Delhi NCR, India'
   };
 };
 

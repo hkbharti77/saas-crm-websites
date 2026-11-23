@@ -1,15 +1,16 @@
-import React, { useState, useEffect, Suspense, lazy } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import Hero from '../components/Hero';
 import TrustBar from '../components/TrustBar';
+import { lazyWithRetry } from '../utils/lazyWithRetry';
 
-const Features = lazy(() => import('../components/Features'));
-const Process = lazy(() => import('../components/Process'));
-const Industries = lazy(() => import('../components/Industries'));
-const OmnichannelSection = lazy(() => import('../components/OmnichannelSection'));
-const WhyChooseUs = lazy(() => import('../components/WhyChooseUs'));
-const Portfolio = lazy(() => import('../components/Portfolio'));
-const FAQ = lazy(() => import('../components/FAQ'));
-const ContactSection = lazy(() => import('../components/ContactSection'));
+const Features = lazyWithRetry(() => import('../components/Features'));
+const Process = lazyWithRetry(() => import('../components/Process'));
+const Industries = lazyWithRetry(() => import('../components/Industries'));
+const OmnichannelSection = lazyWithRetry(() => import('../components/OmnichannelSection'));
+const WhyChooseUs = lazyWithRetry(() => import('../components/WhyChooseUs'));
+const Portfolio = lazyWithRetry(() => import('../components/Portfolio'));
+const FAQ = lazyWithRetry(() => import('../components/FAQ'));
+const ContactSection = lazyWithRetry(() => import('../components/ContactSection'));
 import SeoHead from '../components/SeoHead';
 import { ScrollReveal } from '../components/transitions/ScrollReveal';
 import { defaultFaqs } from '../data/faqs';
@@ -241,7 +242,7 @@ export default function Home() {
     <>
       <SeoHead
         title={seo.title || "Autonomous AI CRM & Revenue Operations | Gyan VaniAi"}
-        description={seo.description || "Autonomous AI CRM platform for high-velocity revenue teams. Capture, enrich, qualify, assign and convert leads with intelligent AI-powered workflows."}
+        description={seo.description || "Autonomous AI CRM platform with official Meta WhatsApp Coexistence, sub-300ms RAG, and Voice AI calling. SaaS plans from ₹1,999 / $19 & custom sprints."}
         canonical={seo.canonical || "https://www.gyanvaniai.com/"}
         image={seo.image || "https://www.gyanvaniai.com/hero_dashboard.webp"}
         keywords={seo.keywords || "Autonomous AI CRM, Revenue Operations, WhatsApp CRM, AI Lead Qualification, Sales Automation"}

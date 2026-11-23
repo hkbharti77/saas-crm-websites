@@ -44,6 +44,9 @@ const VoiceAiInfrastructurePage = lazy(() => import('./pages/VoiceAiInfrastructu
 const McpToolCallingGuidePage = lazy(() => import('./pages/McpToolCallingGuidePage'));
 const WhereToFindUsPage = lazy(() => import('./pages/WhereToFindUsPage'));
 const AeoVisibilityDashboard = lazy(() => import('./pages/AeoVisibilityDashboard'));
+const CompareHubPage = lazy(() => import('./pages/CompareHubPage'));
+const ComparisonDetailPage = lazy(() => import('./pages/ComparisonDetailPage'));
+import { WHATSAPP_CRM_COMPARISON, CUSTOM_CRM_COMPARISON } from './config/comparisonsConfig';
 
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -68,9 +71,19 @@ class ChunkErrorBoundary extends Component {
   }
 
   componentDidCatch(error) {
-    const isChunkLoadFailed = error?.message?.match(/Failed to fetch dynamically imported module/i) || error?.name === 'ChunkLoadError';
+    const isChunkLoadFailed =
+      error?.message?.match(/Failed to fetch dynamically imported module|Importing a module script failed/i) ||
+      error?.name === 'ChunkLoadError';
     if (isChunkLoadFailed) {
-      window.location.reload();
+      try {
+        const reloadKey = 'gyanvaniai_chunk_reload_once';
+        if (!sessionStorage.getItem(reloadKey)) {
+          sessionStorage.setItem(reloadKey, '1');
+          window.location.reload();
+        }
+      } catch {
+        window.location.reload();
+      }
     }
   }
 
@@ -177,8 +190,12 @@ function App() {
 
   // Auto-open Book a Demo modal when user scrolls past 75% on any page
   useEffect(() => {
-    // Exclude admin dashboard/editor pages and blog pages
-    if (location.pathname.startsWith('/admin') || location.pathname.startsWith('/blog')) return;
+    // Exclude admin, internal SEO telemetry, and blog pages
+    if (
+      location.pathname.startsWith('/admin') ||
+      location.pathname.startsWith('/seo/') ||
+      location.pathname.startsWith('/blog')
+    ) return;
 
     const currentPath = location.pathname;
 
@@ -308,8 +325,17 @@ function App() {
                   <Route path="/services/whatsapp-catalog-crm" element={<WhatsAppCatalogCrmPage />} />
                   <Route path="/tools/whatsapp-pricing-calculator" element={<WhatsAppPricingCalculatorPage />} />
 
-                  {/* Comparison Redirects */}
-                  <Route path="/compare/*" element={<Navigate to="/services/crm-development" replace />} />
+                  {/* Public Comparison Hub & Head-to-Head Pages */}
+                  <Route path="/compare" element={<CompareHubPage />} />
+                  <Route
+                    path="/compare/wati-vs-respond-io-vs-gyanvaniai"
+                    element={<ComparisonDetailPage comparison={WHATSAPP_CRM_COMPARISON} />}
+                  />
+                  <Route
+                    path="/compare/custom-ai-crm-vs-off-the-shelf"
+                    element={<ComparisonDetailPage comparison={CUSTOM_CRM_COMPARISON} />}
+                  />
+                  <Route path="/compare/*" element={<Navigate to="/compare" replace />} />
 
                   {/* Guides & Resources */}
                   <Route path="/guides/crm-migration" element={<CrmMigrationGuidePage />} />

@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-10-07T10:00:00.000Z",
+  "lastUpdated": "2026-11-22T22:00:00.000Z",
   "auditSummary": {
     "totalOpportunities": 13,
     "liveBacklinks": 4,
@@ -16,11 +16,11 @@
       "submissionUrl": "https://maps.app.goo.gl/Ts3kKh9L8fe4m9AP6",
       "brandName": "Gyan VaniAi Technologies",
       "officialWebsite": "https://www.gyanvaniai.com",
-      "description": "Official Google Maps entity, office location, and verified local business listing for Gyan VaniAi Technologies.",
+      "description": "Official Google Maps entity, registered office location (Simri Bakhtiarpur, Bihar 852127), and verified business listing for Gyan VaniAi Technologies.",
       "category": "Google Local Business & Maps Entity",
       "targetPage": "https://www.gyanvaniai.com",
-      "napContactConsistency": "VERIFIED (Name: Gyan VaniAi Technologies, Verified Location)",
-      "notes": "Verified Google Maps listing and office headquarters."
+      "napContactConsistency": "VERIFIED (Registered Office: Simri Bakhtiarpur, Bihar 852127 | Operational HQ: Noida, Delhi NCR)",
+      "notes": "Verified Google Maps listing linked in Organization & LocalBusiness Schema.org graph."
     },
     {
       "platform": "GitHub Organization",
@@ -29,11 +29,11 @@
       "submissionUrl": "https://github.com/gyanvaniai",
       "brandName": "Gyan VaniAi",
       "officialWebsite": "https://www.gyanvaniai.com",
-      "description": "Official open-source repositories, developer SDKs, and automation templates by Gyan VaniAi.",
+      "description": "Official open-source repositories, Meta WhatsApp Coexistence templates, and developer SDKs by Gyan VaniAi.",
       "category": "Developer & Open Source Organization",
       "targetPage": "https://www.gyanvaniai.com",
       "napContactConsistency": "VERIFIED (Name: Gyan VaniAi, Email: contact@gyanvaniai.com, Domain: www.gyanvaniai.com)",
-      "notes": "Verified public GitHub organization with verified domain link and public repository assets."
+      "notes": "High-trust developer domain heavily weighted by Perplexity, Claude, and ChatGPT Search."
     },
     {
       "platform": "LinkedIn Company Profile",
@@ -42,11 +42,11 @@
       "submissionUrl": "https://www.linkedin.com/company/gyan-vaniai",
       "brandName": "Gyan VaniAi",
       "officialWebsite": "https://www.gyanvaniai.com",
-      "description": "Official LinkedIn company page for Gyan VaniAi - Autonomous AI CRM and revenue operations.",
+      "description": "Official LinkedIn company page for Gyan VaniAi — Autonomous AI CRM, Meta WhatsApp Coexistence, and Transparent Engineering Partnerships.",
       "category": "B2B Professional Social Network",
       "targetPage": "https://www.gyanvaniai.com",
-      "napContactConsistency": "VERIFIED (Domain: www.gyanvaniai.com, Headquarters: India)",
-      "notes": "Active corporate page linked in global footer."
+      "napContactConsistency": "VERIFIED (Domain: www.gyanvaniai.com, Operational HQ: Noida, Delhi NCR, India)",
+      "notes": "Active corporate page linked in global footer and Organization sameAs."
     },
     {
       "platform": "Facebook Page",
@@ -55,11 +55,11 @@
       "submissionUrl": "https://www.facebook.com/gyanvaniai/",
       "brandName": "Gyan VaniAi",
       "officialWebsite": "https://www.gyanvaniai.com",
-      "description": "Official Facebook business page for Gyan VaniAi updates, announcements, and product demos.",
+      "description": "Official Facebook business page for Gyan VaniAi updates, Meta Tech Provider announcements, and product demos.",
       "category": "Business Social Profile",
       "targetPage": "https://www.gyanvaniai.com",
       "napContactConsistency": "VERIFIED (Domain: www.gyanvaniai.com)",
-      "notes": "Verified brand asset linked in footer."
+      "notes": "Verified brand asset linked in footer and Organization sameAs."
     }
   ],
   "recommendedAcquisitions": [
@@ -70,11 +70,11 @@
       "submissionUrl": "https://sell.g2.com/list-your-product",
       "brandName": "Gyan VaniAi",
       "officialWebsite": "https://www.gyanvaniai.com",
-      "description": "Autonomous AI CRM and WhatsApp revenue operations platform featuring coexistence, sub-300ms voice AI calling, and lead management.",
+      "description": "Autonomous AI CRM and WhatsApp revenue operations platform featuring Meta Coexistence, sub-300ms Hybrid RAG, sub-600ms Voice AI calling, and Transparent Engineering Partnerships.",
       "category": "CRM Software / WhatsApp Marketing Software / Conversational AI",
       "targetPage": "https://www.gyanvaniai.com",
-      "napContactConsistency": "PENDING CLAIM (Must match Delhi NCR office & contact@gyanvaniai.com)",
-      "notes": "Primary enterprise B2B review hub. Organic reviews require corporate email verification from clients."
+      "napContactConsistency": "PENDING CLAIM (Match Noida / Delhi NCR HQ & contact@gyanvaniai.com)",
+      "notes": "Top B2B software consensus source cited by ChatGPT Search, Perplexity, and Gemini."
     },
     {
       "platform": "Capterra (Gartner Digital Markets)",

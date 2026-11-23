@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Gyan VaniAi — Enterprise AI CRM, WhatsApp Coexistence &amp; Engineering Insights</title>
+    <link>https://www.gyanvaniai.com/</link>
+    <description>Technical architecture guides, head-to-head AI CRM comparisons, WhatsApp Coexistence blueprints, and latency benchmarks from Gyan VaniAi.</description>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 22 Nov 2026 00:00:00 GMT</lastBuildDate>
+    <atom:link href="https://www.gyanvaniai.com/rss.xml" rel="self" type="application/rss+xml" />
+
+    <item>
+      <title>Gyan VaniAi vs. Wati vs. Respond.io vs. AiSensy (2026 WhatsApp AI CRM Comparison)</title>
+      <link>https://www.gyanvaniai.com/compare/wati-vs-respond-io-vs-gyanvaniai</link>
+      <guid isPermaLink="true">https://www.gyanvaniai.com/compare/wati-vs-respond-io-vs-gyanvaniai</guid>
+      <pubDate>Sun, 22 Nov 2026 00:00:00 GMT</pubDate>
+      <description>Objective 2026 comparison covering official Meta WhatsApp Coexistence, zero Meta conversation markup, sub-300ms Hybrid RAG, sub-600ms Voice AI calling, dual INR/USD pricing, and 100% IP ownership.</description>
+    </item>
+
+    <item>
+      <title>Custom AI CRM Engineering vs. Off-the-Shelf SaaS CRMs (HubSpot, Salesforce, Zoho)</title>
+      <link>https://www.gyanvaniai.com/compare/custom-ai-crm-vs-off-the-shelf</link>
+      <guid isPermaLink="true">https://www.gyanvaniai.com/compare/custom-ai-crm-vs-off-the-shelf</guid>
+      <pubDate>Sun, 22 Nov 2026 00:00:00 GMT</pubDate>
+      <description>Compare fixed-timeline Transparent Engineering Partnerships (₹24,999 / $299 and ₹69,999 / $850 with 100% IP ownership) against compounding per-seat SaaS licenses.</description>
+    </item>
+
+    <item>
+      <title>Meta WhatsApp Business API Automation: Cloud API &amp; Coexistence Architecture</title>
+      <link>https://www.gyanvaniai.com/blog/whatsapp-business-api-automation</link>
+      <guid isPermaLink="true">https://www.gyanvaniai.com/blog/whatsapp-business-api-automation</guid>
+      <pubDate>Fri, 16 Oct 2026 00:00:00 GMT</pubDate>
+      <description>Technical blueprint for running WhatsApp Business mobile app and Cloud API AI CRM simultaneously on one number with real-time webhook fanout and zero chat loss.</description>
+    </item>
+
+    <item>
+      <title>Building Tenant-Isolated Hybrid RAG Pipelines Under 300ms Retrieval Latency</title>
+      <link>https://www.gyanvaniai.com/blog/secure-rag-pipelines-enterprise</link>
+      <guid isPermaLink="true">https://www.gyanvaniai.com/blog/secure-rag-pipelines-enterprise</guid>
+      <pubDate>Fri, 16 Oct 2026 00:00:00 GMT</pubDate>
+      <description>Engineering guide to FAISS vector search, cross-encoder reranking, PII masking, and strict multi-tenant database isolation for enterprise AI assistants.</description>
+    </item>
+
+    <item>
+      <title>Multi-Agent AI Orchestration in Enterprise Revenue Operations</title>
+      <link>https://www.gyanvaniai.com/blog/multi-agent-orchestration-future</link>
+      <guid isPermaLink="true">https://www.gyanvaniai.com/blog/multi-agent-orchestration-future</guid>
+      <pubDate>Fri, 16 Oct 2026 00:00:00 GMT</pubDate>
+      <description>How autonomous AI agents coordinate lead scoring, Model Context Protocol (MCP) tool calling, and human handoff across WhatsApp and Voice telephony.</description>
+    </item>
+
+    <item>
+      <title>Voice AI Latency Benchmark: Sub-400ms Turn-Taking &amp; Sub-600ms Full-Duplex Calling</title>
+      <link>https://www.gyanvaniai.com/resources/voice-ai-latency-benchmark</link>
+      <guid isPermaLink="true">https://www.gyanvaniai.com/resources/voice-ai-latency-benchmark</guid>
+      <pubDate>Fri, 16 Oct 2026 00:00:00 GMT</pubDate>
+      <description>Detailed latency breakdown across Deepgram STT, streaming LLM inference, ElevenLabs TTS, and SIP/WebSocket media transport.</description>
+    </item>
+
+    <item>
+      <title>Model Context Protocol (MCP) AI Agent Tool Calling Architecture</title>
+      <link>https://www.gyanvaniai.com/resources/mcp-ai-agent-tool-calling</link>
+      <guid isPermaLink="true">https://www.gyanvaniai.com/resources/mcp-ai-agent-tool-calling</guid>
+      <pubDate>Fri, 16 Oct 2026 00:00:00 GMT</pubDate>
+      <description>Open-protocol blueprint for sandboxed CRM tool discovery, SQL/API access governance, and audit logging in enterprise AI agents.</description>
+    </item>
+  </channel>
+</rss>

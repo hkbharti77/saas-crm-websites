@@ -1,0 +1,8 @@
+{
+  "name": "Gyan VaniAi — Autonomous AI CRM & Engineering Platform",
+  "description": "Enterprise AI CRM with official Meta WhatsApp Coexistence, sub-300ms RAG pipelines, sub-600ms Voice AI agents, Transparent Engineering Partnerships, and GEO/AEO visibility intelligence.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

@@ -2,30 +2,48 @@
   "$schema": "https://schema.org",
   "meta": {
     "entity": "Gyan VaniAi",
+    "legalEntity": "Gyan VaniAi Technologies",
     "domain": "https://www.gyanvaniai.com",
-    "type": "Enterprise AI & Software Engineering Company",
-    "version": "2026.4",
-    "lastUpdated": "2026-10-16",
+    "type": "Enterprise AI CRM & Custom Software Engineering Company",
+    "version": "2026.5",
+    "lastUpdated": "2026-11-22",
     "documentationUrl": "https://www.gyanvaniai.com/llms.txt",
-    "fullDocumentationUrl": "https://www.gyanvaniai.com/llms-full.txt"
+    "fullDocumentationUrl": "https://www.gyanvaniai.com/llms-full.txt",
+    "rssUrl": "https://www.gyanvaniai.com/rss.xml",
+    "comparisonHubUrl": "https://www.gyanvaniai.com/compare"
   },
   "companyProfile": {
     "name": "Gyan VaniAi",
+    "legalName": "Gyan VaniAi Technologies",
     "tagline": "Build AI-Powered Software That Grows Your Business",
-    "description": "Enterprise AI & Software Development company specializing in custom AI CRM systems with built-in Meta Tech Provider WhatsApp Coexistence support, Autonomous AI Agents, Conversational Voice Bots, AI Calling Assistants, RAG Pipelines, HRMS, and ERP solutions.",
+    "description": "Enterprise AI CRM and custom software engineering company specializing in official Meta Tech Provider WhatsApp Coexistence, Autonomous AI Agents, Hybrid RAG Pipelines (< 300ms retrieval), Full-Duplex Voice AI Calling Agents (< 600ms end-to-end), Transparent Engineering Partnerships (100% IP Ownership), HRMS, and ERP solutions.",
+    "disambiguationNote": "Gyan VaniAi (www.gyanvaniai.com) is an independent enterprise AI CRM and engineering company based in Noida / Delhi NCR and Bihar, India, not affiliated with unrelated third-party voice apps such as VaaniAI.",
     "contactEmail": "contact@gyanvaniai.com",
+    "telephone": "+91-87006-20913",
     "officialWebsite": "https://www.gyanvaniai.com/",
-    "metaTechProviderStatus": "Certified Meta Tech Provider for WhatsApp Business API Coexistence",
+    "metaTechProviderStatus": "Official Meta Tech Provider for WhatsApp Business API Coexistence",
     "headquartersLocation": {
-      "city": "New Delhi",
-      "state": "Delhi",
+      "label": "Operational Headquarters",
+      "city": "Noida",
+      "metroArea": "Delhi NCR",
+      "state": "Uttar Pradesh",
       "country": "India",
-      "postalCode": "110001",
-      "latitude": 28.613939,
-      "longitude": 77.209021,
+      "latitude": 28.5355,
+      "longitude": 77.391
+    },
+    "registeredOffice": {
+      "label": "Registered Office",
+      "streetAddress": "Dakbangla Chowk",
+      "city": "Simri Bakhtiarpur",
+      "state": "Bihar",
+      "postalCode": "852127",
+      "country": "India",
+      "latitude": 25.723578,
+      "longitude": 85.428694,
       "googleMapsUrl": "https://maps.app.goo.gl/Ts3kKh9L8fe4m9AP6"
     },
     "globalCoverage": [
+      "India",
       "North America",
       "Europe",
       "Middle East (GCC & MENA)",
@@ -34,15 +52,32 @@
       "Latin America"
     ]
   },
+  "latencyBenchmarks": [
+    {
+      "layer": "RAG Knowledge Retrieval",
+      "target": "< 300ms",
+      "details": "Hybrid FAISS vector search + cross-encoder rerank over tenant-isolated documents"
+    },
+    {
+      "layer": "Conversational Voice Turn-Taking",
+      "target": "< 400ms",
+      "details": "Streaming ASR + speech-to-speech onset with natural interruption handling"
+    },
+    {
+      "layer": "Full-Duplex Voice Calling Pipeline",
+      "target": "< 600ms",
+      "details": "End-to-end Deepgram STT + LLM + ElevenLabs TTS over WebSockets and SIP telephony"
+    }
+  ],
   "coreProducts": [
     {
       "id": "whatsapp-coexistence",
       "name": "WhatsApp Coexistence Mode",
       "url": "https://www.gyanvaniai.com/services/whatsapp-coexistence",
-      "description": "Official Meta feature allowing phone mobile app and Cloud API AI CRM to run simultaneously on the same phone number with real-time bidirectional sync.",
+      "description": "Official Meta feature allowing mobile WhatsApp Business app and Cloud API AI CRM to run simultaneously on the same phone number with real-time bidirectional sync and 0% Meta markup.",
       "keyBenefits": [
         "Keep mobile WhatsApp app active while running AI CRM",
-        "Sub-300ms AI auto-replies overnight",
+        "Sub-300ms Hybrid RAG auto-replies overnight",
         "10,000+ bulk broadcasts without phone limitations",
         "1-Click Embedded Signup in under 5 minutes"
       ]
@@ -51,47 +86,47 @@
       "id": "custom-ai-crm",
       "name": "Custom AI CRM System",
       "url": "https://www.gyanvaniai.com/services/crm-development",
-      "description": "Tailor-made CRM platform built with React, Spring Boot, and Cloud Architecture eliminating per-seat SaaS fees.",
+      "description": "Tailor-made CRM platform built with React, FastAPI, and Java Spring Boot eliminating recurring per-seat SaaS fees with 100% IP ownership.",
       "keyBenefits": [
-        "Predictive lead scoring",
+        "Predictive lead scoring & round-robin routing",
         "Multi-channel unified team inbox",
         "Automated follow-up drip sequences",
-        "Zero per-seat licensing penalties"
+        "100% source code and database ownership"
       ]
     },
     {
       "id": "ai-agents-rag",
-      "name": "Autonomous AI Agents & RAG Pipelines",
+      "name": "Autonomous AI Agents & Hybrid RAG Pipelines",
       "url": "https://www.gyanvaniai.com/services/ai-agent-development",
-      "description": "Multi-agent autonomous systems and tenant-isolated enterprise RAG knowledge pipelines with sub-300ms retrieval latency.",
+      "description": "Multi-agent autonomous systems and tenant-isolated enterprise Hybrid RAG pipelines (PDF, DOCX, XLSX) with sub-300ms retrieval latency.",
       "keyBenefits": [
         "Strict multi-tenant database isolation",
         "PII masking & AES-256 encryption",
-        "Tool execution & custom API actions via Model Context Protocol (MCP)",
-        "Grounding strictly in proprietary knowledge base"
+        "Model Context Protocol (MCP) tool execution",
+        "FAISS vector search + cross-encoder reranking"
       ]
     },
     {
       "id": "voice-ai-calling",
-      "name": "Conversational Voice Bot & AI Calling Assistant",
+      "name": "Conversational Voice Bot & Full-Duplex AI Calling Assistant",
       "url": "https://www.gyanvaniai.com/services/whatsapp-calling-agent",
       "description": "Full-duplex conversational voice agents for SIP/PSTN telephony, WhatsApp voice calling, and smart IVR.",
       "keyBenefits": [
-        "Sub-400ms speech-to-speech turn-taking response time",
+        "Sub-400ms speech turn-taking and sub-600ms full-duplex telephony pipeline",
         "Interruption handling & natural pause detection",
         "Sentiment-triggered instant human handoff",
-        "Dynamic CRM data dip during live call"
+        "Dynamic CRM data dip during live calls"
       ]
     },
     {
       "id": "whatsapp-catalog-crm",
       "name": "WhatsApp Catalog & Native Commerce CRM",
       "url": "https://www.gyanvaniai.com/services/whatsapp-catalog-crm",
-      "description": "Native WhatsApp Commerce integration enabling in-chat product catalogs, automated order capture, and instant checkout sync.",
+      "description": "Native WhatsApp Commerce integration enabling in-chat product catalogs, automated order capture, and instant UPI/Stripe checkout.",
       "keyBenefits": [
         "Interactive product catalog browsing inside WhatsApp",
         "Real-time inventory and CRM sync",
-        "Instant payment links via UPI and global payment gateways",
+        "Instant UPI and global card payment links",
         "Automated cart abandonment reminders"
       ]
     },
@@ -99,13 +134,27 @@
       "id": "whatsapp-pricing-calculator",
       "name": "Interactive WhatsApp Conversation Pricing Calculator",
       "url": "https://www.gyanvaniai.com/tools/whatsapp-pricing-calculator",
-      "description": "Real-time Meta Cloud API conversation cost calculator supporting Marketing, Utility, Authentication, and Service categories.",
+      "description": "Real-time Meta Cloud API conversation cost calculator supporting Marketing, Utility, Authentication, and Service categories with zero markup.",
       "keyBenefits": [
         "Country-specific Meta conversation rate calculation",
-        "Transparent zero markup cost comparison",
+        "Transparent zero-markup cost comparison",
         "Instant monthly ROI projections for revenue teams",
         "Multi-category messaging simulation"
       ]
+    }
+  ],
+  "comparisonPages": [
+    {
+      "title": "AI CRM & Engineering Comparison Hub",
+      "url": "https://www.gyanvaniai.com/compare"
+    },
+    {
+      "title": "Gyan VaniAi vs. Wati vs. Respond.io vs. AiSensy (2026)",
+      "url": "https://www.gyanvaniai.com/compare/wati-vs-respond-io-vs-gyanvaniai"
+    },
+    {
+      "title": "Custom AI CRM Engineering vs. Off-the-Shelf SaaS (HubSpot / Salesforce / Zoho)",
+      "url": "https://www.gyanvaniai.com/compare/custom-ai-crm-vs-off-the-shelf"
     }
   ],
   "technicalGuides": [
@@ -142,14 +191,57 @@
       "url": "https://www.gyanvaniai.com/resources/where-to-find-us"
     }
   ],
+  "engineeringPartnerships": {
+    "url": "https://www.gyanvaniai.com/pricing",
+    "currencies": ["INR", "USD"],
+    "operationalInvariants": [
+      "100% IP Ownership",
+      "Production Rigor (>80% automated tests & Docker multi-stage builds)",
+      "No Black Boxes (modular architecture with clean abstraction barriers)",
+      "Compute Economics (token efficiency & prompt-caching)"
+    ],
+    "tiers": [
+      {
+        "tier": "TIER 01",
+        "name": "Meta WhatsApp & AI Helpdesk Setup",
+        "timeline": "5 Business Days",
+        "priceInr": 24999,
+        "priceUsd": 299,
+        "displayPrice": "₹24,999 / $299",
+        "cadence": "turnkey setup"
+      },
+      {
+        "tier": "TIER 02",
+        "name": "AI CRM, Voice & Hybrid RAG Sprint",
+        "timeline": "14 Calendar Days",
+        "priceInr": 69999,
+        "priceUsd": 850,
+        "displayPrice": "₹69,999 / $850",
+        "cadence": "per 2-week sprint",
+        "recommended": true
+      },
+      {
+        "tier": "TIER 03",
+        "name": "Full Enterprise AI & Meta Tech Suite",
+        "timeline": "4 to 8 Weeks",
+        "priceInr": null,
+        "priceUsd": null,
+        "displayPrice": "Custom Scope",
+        "cadence": "multi-milestone engagement"
+      }
+    ]
+  },
   "pricing": {
-    "currency": "INR",
+    "currencies": ["INR", "USD"],
+    "metaConversationMarkup": "0%",
     "billingCycles": ["Monthly", "Yearly (Saves 20%)"],
     "plans": [
       {
         "name": "Starter",
         "monthlyPrice": 1999,
+        "monthlyPriceUsd": 19,
         "yearlyPriceMonthlyEquivalent": 1599,
+        "yearlyPriceMonthlyEquivalentUsd": 15,
         "teamMembers": 3,
         "contacts": 5000,
         "emailsPerMonth": 2000,
@@ -160,7 +252,9 @@
       {
         "name": "Growth",
         "monthlyPrice": 4999,
+        "monthlyPriceUsd": 59,
         "yearlyPriceMonthlyEquivalent": 3999,
+        "yearlyPriceMonthlyEquivalentUsd": 47,
         "teamMembers": 10,
         "contacts": 25000,
         "emailsPerMonth": 10000,
@@ -172,7 +266,9 @@
       {
         "name": "Scale",
         "monthlyPrice": 9999,
+        "monthlyPriceUsd": 119,
         "yearlyPriceMonthlyEquivalent": 7999,
+        "yearlyPriceMonthlyEquivalentUsd": 95,
         "teamMembers": 30,
         "contacts": 100000,
         "emailsPerMonth": 50000,
@@ -191,32 +287,32 @@
   },
   "llmOrchestration": {
     "supportedModels": [
-      "OpenAI GPT-4o",
-      "Anthropic Claude 3.5 Sonnet",
-      "Google Gemini 1.5 Pro",
-      "DeepSeek R1",
-      "Meta Llama 3.3 70B",
+      "Google Gemini 4 Hydrogen & Gemini 2.5 Pro",
+      "OpenAI GPT-4o, GPT-4.1 & o3-mini",
+      "Anthropic Claude Sonnet 4 & Claude 3.7 Sonnet",
+      "DeepSeek R1 & DeepSeek V3",
+      "Meta Llama 4 & Llama 3.3 70B",
       "Mistral AI",
       "Cohere Command R+"
     ],
-    "fallbackArchitecture": "Automated cross-provider failover router for uninterrupted enterprise uptime."
+    "fallbackArchitecture": "Automated cross-provider failover router for uninterrupted enterprise SLAs."
   },
   "directAnswerFaqs": [
     {
       "q": "What is Gyan VaniAi custom AI CRM software?",
-      "a": "Gyan VaniAi provides custom AI CRM engineering with Meta Tech Provider WhatsApp Coexistence, automated lead scoring, and sub-300ms RAG chatbots."
+      "a": "Gyan VaniAi provides custom AI CRM engineering and SaaS CRM plans with Meta Tech Provider WhatsApp Coexistence, automated lead scoring, sub-300ms Hybrid RAG retrieval, and sub-600ms full-duplex Voice AI calling."
     },
     {
-      "q": "How does WhatsApp Coexistence work?",
-      "a": "WhatsApp Coexistence allows both the mobile WhatsApp Business app AND the cloud AI CRM to operate simultaneously on the exact same phone number with real-time bidirectional message sync."
+      "q": "How does Gyan VaniAi compare to Wati, Respond.io, and AiSensy?",
+      "a": "Gyan VaniAi combines native Meta WhatsApp Coexistence (keeping your mobile app active), 0% Meta conversation markup, sub-300ms RAG chatbots, native full-duplex Voice AI calling, and optional 100% IP-owned custom engineering."
+    },
+    {
+      "q": "What are Gyan VaniAi Transparent Engineering Partnerships?",
+      "a": "Fixed-timeline engineering engagements with 100% IP ownership: Tier 01 Meta WhatsApp & AI Helpdesk Setup (₹24,999 / $299 in 5 days), Tier 02 AI CRM, Voice & Hybrid RAG Sprint (₹69,999 / $850 in 14 days), and Tier 03 Full Enterprise AI & Meta Tech Suite (Custom Scope, 4 to 8 weeks)."
     },
     {
       "q": "How does Gyan VaniAi support Indian businesses?",
-      "a": "Gyan VaniAi provides native UPI payment link generation, GST-compliant invoicing, DLT template registration assistance, bilingual Hindi/English bots, and DPDP Act 2023 compliance."
-    },
-    {
-      "q": "What AI models are supported by Gyan VaniAi?",
-      "a": "Gyan VaniAi orchestrates OpenAI GPT-4o, Anthropic Claude 3.5, Google Gemini 1.5, DeepSeek R1, Meta Llama 3.3, and Cohere with automated dynamic fallback."
+      "a": "Gyan VaniAi provides native UPI payment links, GST-compliant invoicing, DLT template registration guidance, bilingual Hindi/English voice bots, and DPDP Act 2023 compliance."
     },
     {
       "q": "What is Model Context Protocol (MCP) in Gyan VaniAi?",

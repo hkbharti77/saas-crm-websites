@@ -2,104 +2,156 @@ User-agent: *
 Allow: /
 Disallow: /admin/
 Disallow: /admin
+Disallow: /seo/ai-visibility
 
-# Dedicated AI Search, Generative Engine & LLM Crawlers
+# Dedicated AI Search, Generative Engine & LLM Crawlers (2026 Standards)
 User-agent: GPTBot
 Allow: /
 Disallow: /admin/
 Disallow: /admin
+Disallow: /seo/ai-visibility
 
 User-agent: ChatGPT-User
 Allow: /
 Disallow: /admin/
 Disallow: /admin
+Disallow: /seo/ai-visibility
 
 User-agent: OAI-SearchBot
 Allow: /
 Disallow: /admin/
 Disallow: /admin
+Disallow: /seo/ai-visibility
 
 User-agent: PerplexityBot
 Allow: /
 Disallow: /admin/
 Disallow: /admin
+Disallow: /seo/ai-visibility
+
+User-agent: Perplexity-User
+Allow: /
+Disallow: /admin/
+Disallow: /admin
+Disallow: /seo/ai-visibility
 
 User-agent: Perplexity-Search
 Allow: /
 Disallow: /admin/
 Disallow: /admin
+Disallow: /seo/ai-visibility
 
 User-agent: ClaudeBot
 Allow: /
 Disallow: /admin/
 Disallow: /admin
+Disallow: /seo/ai-visibility
+
+User-agent: Claude-SearchBot
+Allow: /
+Disallow: /admin/
+Disallow: /admin
+Disallow: /seo/ai-visibility
+
+User-agent: Claude-User
+Allow: /
+Disallow: /admin/
+Disallow: /admin
+Disallow: /seo/ai-visibility
 
 User-agent: anthropic-ai
 Allow: /
 Disallow: /admin/
 Disallow: /admin
+Disallow: /seo/ai-visibility
 
 User-agent: Claude-Web
 Allow: /
 Disallow: /admin/
 Disallow: /admin
+Disallow: /seo/ai-visibility
 
 User-agent: Google-Extended
 Allow: /
 Disallow: /admin/
 Disallow: /admin
+Disallow: /seo/ai-visibility
 
 User-agent: GoogleOther
 Allow: /
 Disallow: /admin/
 Disallow: /admin
+Disallow: /seo/ai-visibility
+
+User-agent: Google-CloudVertexBot
+Allow: /
+Disallow: /admin/
+Disallow: /admin
+Disallow: /seo/ai-visibility
 
 User-agent: Applebot-Extended
 Allow: /
 Disallow: /admin/
 Disallow: /admin
+Disallow: /seo/ai-visibility
 
 User-agent: Applebot
 Allow: /
 Disallow: /admin/
 Disallow: /admin
+Disallow: /seo/ai-visibility
 
 User-agent: Meta-ExternalAgent
 Allow: /
 Disallow: /admin/
 Disallow: /admin
+Disallow: /seo/ai-visibility
+
+User-agent: Meta-ExternalFetcher
+Allow: /
+Disallow: /admin/
+Disallow: /admin
+Disallow: /seo/ai-visibility
 
 User-agent: FacebookBot
 Allow: /
 Disallow: /admin/
 Disallow: /admin
+Disallow: /seo/ai-visibility
 
 User-agent: Amazonbot
 Allow: /
 Disallow: /admin/
 Disallow: /admin
+Disallow: /seo/ai-visibility
 
 User-agent: cohere-ai
 Allow: /
 Disallow: /admin/
 Disallow: /admin
+Disallow: /seo/ai-visibility
 
 User-agent: MistralAI
 Allow: /
 Disallow: /admin/
 Disallow: /admin
+Disallow: /seo/ai-visibility
 
 User-agent: Bytespider
 Allow: /
 Disallow: /admin/
 Disallow: /admin
+Disallow: /seo/ai-visibility
 
 User-agent: DuckAssistBot
 Allow: /
 Disallow: /admin/
 Disallow: /admin
+Disallow: /seo/ai-visibility
 
-# Canonical XML Sitemap & LLM Context Discovery
+# Canonical XML Sitemap, RSS Feed & LLM Context Discovery
 Sitemap: https://www.gyanvaniai.com/sitemap.xml
+# RSS Syndication Feed: https://www.gyanvaniai.com/rss.xml
 # LLMs Context Manifest: https://www.gyanvaniai.com/llms.txt
 # Full LLMs Technical Documentation: https://www.gyanvaniai.com/llms-full.txt
+# Structured JSON Entity Feed: https://www.gyanvaniai.com/api/llm-summary.json

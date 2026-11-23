@@ -25,7 +25,8 @@ export const organizationSchema = {
     "width": 1200,
     "height": 630
   },
-  "description": "Leading AI CRM and automation platform specializing in WhatsApp Business API, AI chatbots, voice bots, and enterprise software solutions for business growth.",
+  "description": "Enterprise AI CRM and custom software engineering platform specializing in official Meta Tech Provider WhatsApp Coexistence, Hybrid RAG (< 300ms retrieval), Full-Duplex Voice AI calling (< 600ms), and Transparent Engineering Partnerships with 100% IP ownership.",
+  "disambiguatingDescription": "Gyan VaniAi (www.gyanvaniai.com) is an independent enterprise AI CRM, Meta WhatsApp Coexistence, and custom AI engineering company based in Noida / Delhi NCR and Bihar, India; not affiliated with unrelated third-party voice tools such as VaaniAI.",
   "slogan": "Build AI-Powered Software That Grows Your Business",
   "email": "contact@gyanvaniai.com",
   "telephone": "+91-87006-20913",
@@ -47,13 +48,50 @@ export const organizationSchema = {
   ],
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "Dakbangla Chowk",
-    "addressLocality": "Simri Bakhtiarpur",
-    "addressRegion": "Bihar",
-    "postalCode": "852127",
+    "addressLocality": "Noida",
+    "addressRegion": "Uttar Pradesh",
     "addressCountry": "IN"
   },
+  "location": [
+    {
+      "@type": "Place",
+      "name": "Gyan VaniAi Operational Headquarters (Delhi NCR)",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Noida",
+        "addressRegion": "Uttar Pradesh",
+        "addressCountry": "IN"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 28.5355,
+        "longitude": 77.391
+      }
+    },
+    {
+      "@type": "Place",
+      "name": "Gyan VaniAi Technologies Registered Office",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Dakbangla Chowk",
+        "addressLocality": "Simri Bakhtiarpur",
+        "addressRegion": "Bihar",
+        "postalCode": "852127",
+        "addressCountry": "IN"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 25.723578,
+        "longitude": 85.428694
+      },
+      "hasMap": "https://maps.app.goo.gl/Ts3kKh9L8fe4m9AP6"
+    }
+  ],
   "areaServed": [
+    {
+      "@type": "Country",
+      "name": "India"
+    },
     {
       "@type": "Country",
       "name": "United States"
@@ -68,10 +106,6 @@ export const organizationSchema = {
     },
     {
       "@type": "Country",
-      "name": "India"
-    },
-    {
-      "@type": "Country",
       "name": "Singapore"
     },
     {
@@ -80,19 +114,11 @@ export const organizationSchema = {
     }
   ],
   "priceRange": "$$",
-  "founder": {
-    "@type": "Organization",
-    "name": "Gyan VaniAi"
-  },
   "foundingDate": "2024",
   "hasMap": "https://maps.app.goo.gl/Ts3kKh9L8fe4m9AP6",
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": 28.613939,
-    "longitude": 77.209021
-  },
   "spatialCoverage": [
     "Global",
+    "India",
     "North America",
     "Europe",
     "Middle East",
@@ -103,12 +129,13 @@ export const organizationSchema = {
     "CRM Development",
     "WhatsApp Business API",
     "WhatsApp Coexistence Mode",
+    "Meta Tech Provider Architecture",
     "AI Chatbots",
-    "Voice AI & Calling Agents",
+    "Voice AI & Full-Duplex Calling Agents",
     "Enterprise Software",
     "Sales Automation",
     "Lead Management",
-    "RAG Pipelines",
+    "Hybrid RAG Pipelines",
     "AI Agent Development",
     "Model Context Protocol (MCP)",
     "Generative Engine Optimization (GEO)",
@@ -336,20 +363,30 @@ export const definedTermSchema = (term, definition, inDefinedTermSet = 'Gyan Van
   "url": "https://www.gyanvaniai.com/documentation"
 });
 
-export const softwareAppSchema = (app) => ({
+export const softwareAppSchema = (app = {}) => ({
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
+  "@id": "https://www.gyanvaniai.com/#software",
   "name": app.name || "Gyan VaniAi Custom AI CRM & Automation Platform",
-  "description": app.description || "Enterprise AI platform featuring custom CRM, Meta Tech Provider WhatsApp Coexistence mode, AI chatbots, voice bots, and automated lead management.",
+  "description": app.description || "Enterprise AI platform featuring custom CRM, Meta Tech Provider WhatsApp Coexistence mode, Hybrid RAG chatbots (< 300ms retrieval), full-duplex Voice AI calling (< 600ms), and automated lead management.",
   "applicationCategory": "BusinessApplication",
   "operatingSystem": "Web, iOS, Android",
-  "offers": {
-    "@type": "AggregateOffer",
-    "priceCurrency": "INR",
-    "lowPrice": "1999",
-    "highPrice": "9999",
-    "offerCount": "4"
-  },
+  "offers": [
+    {
+      "@type": "AggregateOffer",
+      "priceCurrency": "INR",
+      "lowPrice": "1999",
+      "highPrice": "9999",
+      "offerCount": "4"
+    },
+    {
+      "@type": "AggregateOffer",
+      "priceCurrency": "USD",
+      "lowPrice": "19",
+      "highPrice": "119",
+      "offerCount": "4"
+    }
+  ],
   "aggregateRating": app.rating && app.ratingCount ? {
     "@type": "AggregateRating",
     "ratingValue": app.rating,
@@ -361,6 +398,23 @@ export const softwareAppSchema = (app) => ({
   "publisher": {
     "@id": "https://www.gyanvaniai.com/#organization"
   }
+});
+
+export const comparisonItemListSchema = ({ name, description, url, items = [] }) => ({
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "@id": `${url}#comparison-list`,
+  "name": name,
+  "description": description,
+  "url": url,
+  "numberOfItems": items.length,
+  "itemListElement": items.map((item, idx) => ({
+    "@type": "ListItem",
+    "position": idx + 1,
+    "name": item.name,
+    ...(item.url ? { "url": item.url } : {}),
+    ...(item.description ? { "description": item.description } : {})
+  }))
 });
 
 // Service definitions for structured data

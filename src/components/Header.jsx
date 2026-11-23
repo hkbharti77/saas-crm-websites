@@ -148,6 +148,13 @@ const INDUSTRIES_LIST = [
 /* ── Resources Dropdown Data ──────────────────────────────── */
 const RESOURCES_LIST = [
   {
+    title: 'Platform Comparisons',
+    desc: 'Gyan VaniAi vs Wati, Respond.io, HubSpot & Zoho',
+    to: '/compare',
+    icon: <Scale size={16} />,
+    prefetch: () => import('../pages/CompareHubPage'),
+  },
+  {
     title: 'Blog & Tech Insights',
     desc: 'Articles on autonomous CRM & AI engineering',
     to: '/blog',

@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { evaluateTechnicalGeoHealth } from '../src/utils/aiVisibilityAnalyzer.js';
 
 function getHtmlFiles(dir, fileList = []) {
   if (!fs.existsSync(dir)) return fileList;
@@ -210,6 +211,21 @@ if (fs.existsSync(distDir)) {
 report.score.breakdown.structuredData.score = structuredDataScore;
 report.score.breakdown.semanticDirectAnswers.score = semanticDirectAnswerScore;
 
+function safeRead(p) {
+  return fs.existsSync(p) ? fs.readFileSync(p, 'utf8') : '';
+}
+
+report.geoHealth2026 = evaluateTechnicalGeoHealth({
+  robotsTxt: safeRead(robotsPath),
+  llmsTxt: safeRead(llmsPath),
+  llmsFullTxt: safeRead(llmsFullPath),
+  llmSummaryRaw: safeRead(llmSummaryJsonPath),
+  rssXml: safeRead(path.resolve('public', 'rss.xml')),
+  sitemapXml: safeRead(path.resolve('public', 'sitemap.xml')),
+  indexHtml: safeRead(path.resolve('index.html')),
+  schemasJs: safeRead(path.resolve('src', 'utils', 'schemas.js')),
+});
+
 report.score.total = 
   report.score.breakdown.manifests.score +
   report.score.breakdown.consistency.score +
@@ -222,20 +238,21 @@ console.log(`   - Machine Manifests:       ${report.score.breakdown.manifests.sc
 console.log(`   - Factual Consistency:     ${report.score.breakdown.consistency.score} / 25`);
 console.log(`   - Structured Data/Voice:   ${report.score.breakdown.structuredData.score} / 25`);
 console.log(`   - Semantic Direct Answers: ${report.score.breakdown.semanticDirectAnswers.score} / 25`);
+console.log(`   - 2026 GEO Health Checks:  ${report.geoHealth2026.passedCount} / ${report.geoHealth2026.totalChecks}`);
 console.log('====================================================');
 console.log('📋 AEO STATUS CLASSIFICATION:');
 console.log('   - AEO Technical Readiness:       PASS (Score: ' + report.score.total + '/100)');
-console.log('   - AEO Real-World Citation Telemetry: NOT YET MEASURED (Benchmark defined)');
+console.log('   - 2026 GEO Invariants:           ' + (report.geoHealth2026.allPassed ? 'ALL PASS' : 'NEEDS ATTENTION'));
 console.log('====================================================');
 
 const outPath = path.resolve('aeo-readiness-report.json');
 fs.writeFileSync(outPath, JSON.stringify(report, null, 2), 'utf8');
 console.log(`📄 Comprehensive AEO audit report saved to: ${outPath}`);
 
-if (report.score.total >= 90) {
+if (report.score.total >= 90 && report.geoHealth2026.allPassed) {
   console.log('🎉 AEO Implementation Audit PASSED with Grade A technical readiness!');
   process.exit(0);
 } else {
-  console.warn('⚠️ AEO readiness score below 90%. Review report for improvements.');
+  console.warn('⚠️ AEO readiness or 2026 GEO checks require attention. Review report for improvements.');
   process.exit(0);
 }

@@ -29,6 +29,10 @@ test('SSR entry-server.jsx maintains parity with client App.jsx for key static r
     '/unsubscribe',
     '/resources/sip-architecture',
     '/pricing',
+    '/compare',
+    '/compare/wati-vs-respond-io-vs-gyanvaniai',
+    '/compare/custom-ai-crm-vs-off-the-shelf',
+    '/seo/ai-visibility',
   ];
 
   for (const route of requiredRoutes) {
@@ -390,4 +394,145 @@ test('Dual-currency pricing helper formats INR and USD dynamically across all pr
   assert.ok(pricingSrc.includes('formatDualCurrencyPrice'), 'Pricing.jsx must use formatDualCurrencyPrice for add-ons');
   assert.ok(detailSrc.includes('formatPlanDualPrice'), 'PlanDetailPage.jsx must use formatPlanDualPrice');
 });
+
+test('AI visibility analyzer detects Gyan VaniAi mentions/citations without VaaniAI false positives and builds CSV/URLs', async () => {
+  const {
+    analyzeVisibilityProbeResult,
+    buildExternalProbeUrl,
+    mergeBenchmarkRecords,
+    benchmarksToCsv,
+  } = await import('../src/utils/aiVisibilityAnalyzer.js');
+
+  // 1. Positive brand mention + grounding chunk citation + competitor extraction
+  const positive = analyzeVisibilityProbeResult({
+    query: 'best WhatsApp Coexistence CRM India',
+    answerText: 'Gyan VaniAi offers native Meta WhatsApp Coexistence alongside Wati and Respond.io.',
+    groundingChunks: [
+      { web: { uri: 'https://www.wati.io/pricing', title: 'wati.io' } },
+      { web: { uri: 'https://www.gyanvaniai.com/compare/wati-vs-respond-io-vs-gyanvaniai', title: 'gyanvaniai.com' } },
+    ],
+  });
+  assert.equal(positive.mentioned, true);
+  assert.equal(positive.cited, true);
+  assert.equal(positive.citationPosition, 2);
+  assert.equal(positive.citationUrl, 'https://www.gyanvaniai.com/compare/wati-vs-respond-io-vs-gyanvaniai');
+  assert.ok(positive.competitorsMentioned.includes('Wati'));
+  assert.ok(positive.competitorsMentioned.includes('Respond.io'));
+  assert.equal(positive.competitorsMentioned.includes('VaaniAI'), false, 'Gyan VaniAi must not false-positive as VaaniAI');
+
+  // 2. Unrelated VaaniAI mention must NOT false-positive as Gyan VaniAi
+  const unrelated = analyzeVisibilityProbeResult({
+    query: 'what is VaaniAI',
+    answerText: 'VaaniAI is an unrelated consumer voice tool, distinct from Respond.io.',
+    groundingChunks: [{ web: { uri: 'https://example.com/vaaniai', title: 'example.com' } }],
+  });
+  assert.equal(unrelated.mentioned, false);
+  assert.equal(unrelated.cited, false);
+  assert.ok(unrelated.competitorsMentioned.includes('VaaniAI'));
+
+  // 3. External verification URLs & RFC-4180 CSV export
+  assert.ok(buildExternalProbeUrl('Perplexity', 'Gyan VaniAi pricing').startsWith('https://www.perplexity.ai/search?q='));
+  assert.ok(buildExternalProbeUrl('ChatGPT Search', 'Gyan VaniAi pricing').startsWith('https://chatgpt.com/?q='));
+  assert.ok(buildExternalProbeUrl('Claude', 'Gyan VaniAi pricing').startsWith('https://claude.ai/new?q='));
+
+  const merged = mergeBenchmarkRecords(
+    [{ id: 'b1', query: 'q1', platform: 'Gemini', status: 'Not yet measured', mentioned: false, cited: false }],
+    { b1: { status: 'Measured', mentioned: true, cited: true } }
+  );
+  assert.equal(merged.length, 1);
+  assert.equal(merged[0].status, 'Measured');
+  assert.equal(merged[0].mentioned, true);
+
+  const csv = benchmarksToCsv(merged);
+  assert.ok(csv.includes('ID,Query,Platform,Status,Mentioned,Cited'));
+  assert.ok(csv.includes('b1,q1,Gemini,Measured,YES,YES'));
+});
+
+test('Comparison config formats dual INR/USD/single currency dynamically and preserves canonical entity identity', async () => {
+  const {
+    ALL_COMPARISONS,
+    formatComparisonPrice,
+  } = await import('../src/config/comparisonsConfig.js');
+  const { CANONICAL_ENTITY, LATENCY_BENCHMARKS } = await import('../src/config/entityIdentityConfig.js');
+
+  assert.equal(ALL_COMPARISONS.length, 2);
+  assert.equal(formatComparisonPrice({ inr: 1999, usd: 19, suffix: '/mo' }, 'dual'), '₹1,999 / $19/mo');
+  assert.equal(formatComparisonPrice({ inr: 1999, usd: 19, suffix: '/mo' }, 'inr'), '₹1,999/mo');
+  assert.equal(formatComparisonPrice({ inr: 1999, usd: 19, suffix: '/mo' }, 'usd'), '$19/mo');
+  assert.equal(formatComparisonPrice(null, 'dual'), 'Custom Scope');
+
+  assert.equal(CANONICAL_ENTITY.headquarters.city, 'Noida');
+  assert.equal(CANONICAL_ENTITY.registeredOffice.city, 'Simri Bakhtiarpur');
+  assert.deepEqual(
+    LATENCY_BENCHMARKS.map((b) => b.target),
+    ['< 300ms', '< 400ms', '< 600ms']
+  );
+});
+
+test('Live repository manifests, schemas, RSS, sitemap, and HTML pass all 8 2026 Technical GEO Health checks', async () => {
+  const { evaluateTechnicalGeoHealth } = await import('../src/utils/aiVisibilityAnalyzer.js');
+
+  const read = (rel) => fs.readFileSync(path.join(ROOT, rel), 'utf8');
+  const report = evaluateTechnicalGeoHealth({
+    robotsTxt: read('public/robots.txt'),
+    llmsTxt: read('public/llms.txt'),
+    llmsFullTxt: read('public/llms-full.txt'),
+    llmSummaryRaw: read('public/api/llm-summary.json'),
+    rssXml: read('public/rss.xml'),
+    sitemapXml: read('public/sitemap.xml'),
+    indexHtml: read('index.html'),
+    schemasJs: read('src/utils/schemas.js'),
+  });
+
+  const failed = report.checks.filter((c) => !c.passed).map((c) => `${c.id}: ${c.detail}`);
+  assert.deepEqual(failed, [], 'All 8 2026 Technical GEO Health checks must pass on live repository files');
+  assert.equal(report.passedCount, 8);
+  assert.equal(report.totalChecks, 8);
+  assert.equal(report.allPassed, true);
+
+  // Also ensure AeoVisibilityDashboard never calls window.open or window.alert
+  const dashSrc = read('src/pages/AeoVisibilityDashboard.jsx');
+  assert.equal(/\bwindow\.open\s*\(/.test(dashSrc), false, 'AeoVisibilityDashboard must not call window.open');
+  assert.equal(/\balert\s*\(/.test(dashSrc), false, 'AeoVisibilityDashboard must not call window.alert');
+});
+
+test('Browser SEO & SERP Readiness passes edge routing, depth-1 Header link equity, hreflang, and SERP snippet checks', async () => {
+  const { evaluateBrowserSeoReadiness, PRIORITY_SERP_ROUTES } = await import(
+    '../src/utils/aiVisibilityAnalyzer.js'
+  );
+  const { generateHreflangTags } = await import('../src/utils/seoHelpers.js');
+
+  const hreflangs = generateHreflangTags('/compare');
+  assert.equal(hreflangs.length, 5);
+  assert.deepEqual(
+    hreflangs.map((h) => h.hreflang),
+    ['en-IN', 'en-US', 'en-GB', 'en-AE', 'en-SG']
+  );
+  assert.equal(hreflangs[0].href, 'https://www.gyanvaniai.com/compare');
+
+  const read = (rel) => fs.readFileSync(path.join(ROOT, rel), 'utf8');
+  const prerenderedPages = {};
+  for (const item of PRIORITY_SERP_ROUTES) {
+    const cleanRoute = item.route.replace(/^\/+|\/+$/g, '');
+    const distRelPath = cleanRoute ? `dist/${cleanRoute}/index.html` : 'dist/index.html';
+    const fullPath = path.join(ROOT, distRelPath);
+    if (fs.existsSync(fullPath)) {
+      prerenderedPages[item.route] = fs.readFileSync(fullPath, 'utf8');
+    }
+  }
+
+  const browserSeo = evaluateBrowserSeoReadiness({
+    vercelJsonRaw: read('vercel.json'),
+    sitemapXml: read('public/sitemap.xml'),
+    headerJsx: read('src/components/Header.jsx'),
+    prerenderedPages,
+  });
+
+  const failed = browserSeo.checks.filter((c) => !c.passed).map((c) => `${c.id}: ${c.detail}`);
+  assert.deepEqual(failed, [], 'All 6 Browser SEO & SERP Readiness checks must pass');
+  assert.equal(browserSeo.allPassed, true);
+  assert.equal(browserSeo.routeAudits.length, 7);
+});
+
+
 

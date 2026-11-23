@@ -145,7 +145,13 @@ async function submitBatch() {
   const allFiles = getHtmlFiles('dist');
   const urlList = allFiles
     .map(file => file.replace('dist', '').replace(/\\/g, '/').replace(/\/index\.html$/, '') || '/')
-    .filter(route => !route.startsWith('/admin') && !route.includes('/404'))
+    .filter(
+      route =>
+        !route.startsWith('/admin') &&
+        !route.startsWith('/seo/') &&
+        route !== '/unsubscribe' &&
+        !route.includes('/404')
+    )
     .map(route => BASE_URL + route);
 
   console.log(`� Found ${urlList.length} pages to submit\n`);

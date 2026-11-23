@@ -236,8 +236,21 @@ export default defineConfig(({ mode }) => {
         '@': path.resolve(process.cwd(), './src'),
       },
     },
+    optimizeDeps: {
+      include: [
+        'react',
+        'react-dom',
+        'react-router-dom',
+        'react-helmet-async',
+        'lucide-react',
+        'motion/react',
+        'aos',
+        'react-phone-number-input',
+      ],
+    },
     server: {
       port: 3000,
+      hmr: process.env.DISABLE_HMR !== 'true',
       proxy: {
         '/api': {
           target: (

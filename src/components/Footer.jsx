@@ -232,6 +232,8 @@ export default function Footer({
             </div>
             <div className="link-group">
               <h3 className="link-title">Resources & Guides</h3>
+              <Link to="/compare" className="footer-link">Platform Comparisons</Link>
+              <Link to="/compare/wati-vs-respond-io-vs-gyanvaniai" className="footer-link">Gyan VaniAi vs Wati &amp; Respond.io</Link>
               <Link to="/guides/crm-migration" className="footer-link">CRM Migration Guide</Link>
               <Link to="/resources/voice-ai-latency-benchmark" className="footer-link">Voice AI Latency Benchmark</Link>
               <Link to="/resources/sip-architecture" className="footer-link">SIP Architecture</Link>

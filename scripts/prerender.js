@@ -63,6 +63,9 @@ const routes = [
   '/resources/voice-ai-infrastructure',
   '/resources/mcp-ai-agent-tool-calling',
   '/resources/where-to-find-us',
+  '/compare',
+  '/compare/wati-vs-respond-io-vs-gyanvaniai',
+  '/compare/custom-ai-crm-vs-off-the-shelf',
   '/seo/ai-visibility',
   '/404'
 ];
@@ -93,7 +96,12 @@ async function prerender() {
   if (!fs.existsSync(templatePath)) {
     throw new Error('dist/index.html not found. Run client build first.');
   }
-  const baseTemplate = fs.readFileSync(templatePath, 'utf8');
+  const rawTemplate = fs.readFileSync(templatePath, 'utf8');
+  // Ensure idempotency if prerender.js is re-run without a fresh vite build:
+  // reset #root to empty and strip any prior prerendered head block after the last stylesheet link
+  const baseTemplate = rawTemplate
+    .replace(/<div id="root">[\s\S]*?<\/div>\s*(?=<script src="https:\/\/api\.gyanvaniai\.online)/i, '<div id="root"></div>\n\n    ')
+    .replace(/(<link rel="stylesheet"[^>]*>\s*)[\s\S]*?<\/head>/i, '$1  </head>');
 
   // 3. Render each route
   let successCount = 0;
@@ -104,10 +112,14 @@ async function prerender() {
 
     let html = baseTemplate;
 
-    // Clean up template head: remove default fallback data-rh tags and title from index.html
+    // Clean up template head: remove default fallback data-rh tags and static duplicates from index.html
     html = html.replace(/<title[^>]*>.*?<\/title>/gis, '');
     html = html.replace(/<meta[^>]*data-rh="true"[^>]*\/?>/gis, '');
     html = html.replace(/<link[^>]*data-rh="true"[^>]*\/?>/gis, '');
+    html = html.replace(/<meta\s+name="(?:title|description|robots|googlebot|bingbot|keywords|author|theme-color|coverage|distribution|rating|target|audience|geo\.region|geo\.placename|citation_title|citation_publisher|citation_fulltext_html_url|citation_language|mobile-web-app-capable|apple-mobile-web-app-capable|apple-mobile-web-app-status-bar-style|apple-mobile-web-app-title|twitter:[^"]+)"[^>]*\/?>/gis, '');
+    html = html.replace(/<meta\s+property="(?:og:[^"]+|article:[^"]+)"[^>]*\/?>/gis, '');
+    html = html.replace(/<link\s+rel="(?:canonical|author|alternate|preload)"[^>]*\/?>/gis, '');
+    html = html.replace(/<script\s+type="application\/ld\+json"[^>]*>[\s\S]*?<\/script>/gis, '');
 
     // Extract head elements from React 19 render output
     const extractedHeadTags = [];

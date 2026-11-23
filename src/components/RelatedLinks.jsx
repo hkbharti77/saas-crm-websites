@@ -13,33 +13,33 @@ import './RelatedLinks.css';
 const relatedContent = {
   'whatsapp-automation': [
     { title: 'WhatsApp Coexistence Mode', url: '/services/whatsapp-coexistence', description: 'Run mobile app and CRM on one number simultaneously' },
+    { title: 'Gyan VaniAi vs Wati & Respond.io', url: '/compare/wati-vs-respond-io-vs-gyanvaniai', description: '2026 WhatsApp AI CRM comparison on Coexistence & pricing' },
     { title: 'WhatsApp Calling Agent Bots', url: '/services/whatsapp-calling-agent', description: 'Autonomous conversational voice calls on WhatsApp' },
-    { title: 'Official WhatsApp Cloud API Guide', url: '/blog/whatsapp-business-api-automation', description: 'Complete technical architecture and onboarding guide' },
-    { title: 'WhatsApp CRM Pricing', url: '/pricing', description: 'Turnkey SaaS plans from ₹1,999/month with 7-day trial' }
+    { title: 'WhatsApp CRM Pricing', url: '/pricing', description: 'Turnkey SaaS plans from ₹1,999 / $19 per month with 7-day trial' }
   ],
   'whatsapp-coexistence': [
+    { title: 'Gyan VaniAi vs Wati & Respond.io', url: '/compare/wati-vs-respond-io-vs-gyanvaniai', description: 'Side-by-side matrix on Coexistence, RAG & 0% Meta markup' },
     { title: 'WhatsApp CRM & Automation', url: '/services/whatsapp-automation', description: 'Official Meta Cloud API broadcasts and shared team inbox' },
-    { title: 'WhatsApp Calling Agent Bots', url: '/services/whatsapp-calling-agent', description: 'Sub-300ms voice calling agents on WhatsApp' },
-    { title: 'WhatsApp Cloud API Guide', url: '/blog/whatsapp-business-api-automation', description: 'Dual-surface webhook fanout and Meta signup guide' },
-    { title: 'Custom AI CRM Software', url: '/services/crm-development', description: 'Bespoke CRM with native WhatsApp Coexistence' }
+    { title: 'WhatsApp Calling Agent Bots', url: '/services/whatsapp-calling-agent', description: 'Sub-600ms voice calling agents on WhatsApp' },
+    { title: 'Custom AI CRM Software', url: '/services/crm-development', description: 'Bespoke CRM sprints from ₹24,999 / $299 with 100% IP' }
   ],
   'whatsapp-calling-agent': [
     { title: 'WhatsApp Coexistence Mode', url: '/services/whatsapp-coexistence', description: 'Mobile app and Cloud API on a single phone number' },
     { title: 'Conversational Voice AI Assistants', url: '/services/voice-bot-assistant', description: 'Full-duplex conversational voice agents for support' },
-    { title: 'AI Phone Call Agents', url: '/services/phone-call-agent', description: 'SIP and PBX telephony call center automation' },
+    { title: 'Voice AI Latency Benchmark', url: '/resources/voice-ai-latency-benchmark', description: 'Sub-400ms turn-taking & sub-600ms full-duplex call specs' },
     { title: 'WhatsApp CRM Platform', url: '/services/whatsapp-automation', description: 'Omnichannel WhatsApp marketing and lead pipelines' }
   ],
   'crm-development': [
-    { title: 'Turnkey AI CRM Pricing', url: '/pricing', description: 'SaaS plans from ₹1,999/mo with WhatsApp CRM and 7-day free trial' },
-    { title: 'Lead Management Software', url: '/services/lead-management', description: 'Omnichannel lead capture, enrichment, and AI scoring' },
-    { title: 'Sales Automation Software', url: '/services/sales-automation', description: 'Automated deal pipelines and multi-touch follow-ups' },
-    { title: 'WhatsApp Coexistence Mode', url: '/services/whatsapp-coexistence', description: 'Native Meta Tech Provider WhatsApp sync' }
+    { title: 'Custom AI CRM vs HubSpot & Zoho', url: '/compare/custom-ai-crm-vs-off-the-shelf', description: 'Compare 100% IP-owned sprints vs recurring per-seat SaaS CRMs' },
+    { title: 'Engineering Partnerships & Pricing', url: '/pricing', description: 'Fixed sprints from ₹24,999 / $299 and SaaS from ₹1,999 / $19' },
+    { title: 'WhatsApp Coexistence Mode', url: '/services/whatsapp-coexistence', description: 'Native Meta Tech Provider WhatsApp mobile & CRM sync' },
+    { title: 'Sales Automation Software', url: '/services/sales-automation', description: 'Automated deal pipelines and multi-touch follow-ups' }
   ],
   'lead-management': [
     { title: 'Sales Automation Software', url: '/services/sales-automation', description: 'Automated sales workflows and pipeline velocity' },
     { title: 'Custom CRM Development', url: '/services/crm-development', description: 'Bespoke CRM tailored to your sales methodologies' },
     { title: 'WhatsApp Coexistence Mode', url: '/services/whatsapp-coexistence', description: 'Capture and convert leads directly on WhatsApp' },
-    { title: 'AI Agent Development', url: '/services/ai-agent-development', description: 'Autonomous qualification agents and tool execution' }
+    { title: 'Platform Comparisons (2026)', url: '/compare', description: 'Compare Gyan VaniAi against Wati, Respond.io, HubSpot & Zoho' }
   ],
   'ai-chatbots': [
     { title: 'AI Agent Development', url: '/services/ai-agent-development', description: 'Multi-agent systems with tool-calling and autonomous execution' },
@@ -50,26 +50,26 @@ const relatedContent = {
   'ai-agent-development': [
     { title: 'Multi-Agent Orchestration Guide', url: '/blog/multi-agent-orchestration-future', description: 'The future of autonomous multi-agent operational swarms' },
     { title: 'Custom AI Chatbots', url: '/services/ai-chatbots', description: 'RAG-grounded customer support and qualification chatbots' },
-    { title: 'Sales Automation Software', url: '/services/sales-automation', description: 'Automate repetitive revenue operations with AI' },
+    { title: 'Custom AI CRM vs Off-the-Shelf', url: '/compare/custom-ai-crm-vs-off-the-shelf', description: 'Evaluate custom multi-agent CRM ownership vs SaaS seats' },
     { title: 'Custom CRM Development', url: '/services/crm-development', description: 'Integrate intelligent agents directly into your CRM' }
   ],
   'voice-bot-assistant': [
     { title: 'WhatsApp Calling Agent Bots', url: '/services/whatsapp-calling-agent', description: 'Voice calls and automated campaigns via WhatsApp' },
+    { title: 'Voice AI Latency Benchmark', url: '/resources/voice-ai-latency-benchmark', description: 'Sub-400ms turn-taking & sub-600ms full-duplex voice specs' },
     { title: 'AI Phone Call Agents', url: '/services/phone-call-agent', description: 'Standard phone lines, SIP trunks, and PBX telephony' },
-    { title: 'Smart IVR Solutions', url: '/services/ivr-solutions', description: 'Dynamic IVR with CRM data-dips and speech recognition' },
-    { title: 'AI to Human Handoff Systems', url: '/services/human-handoff-systems', description: 'Live agent warm transfer with full call transcripts' }
+    { title: 'Smart IVR Solutions', url: '/services/ivr-solutions', description: 'Dynamic IVR with CRM data-dips and speech recognition' }
   ],
   'sales-automation': [
     { title: 'Lead Management Software', url: '/services/lead-management', description: 'Automated lead capture, qualification, and routing' },
     { title: 'Custom CRM Development', url: '/services/crm-development', description: 'Custom pipelines with zero per-seat SaaS license fees' },
     { title: 'WhatsApp Coexistence Mode', url: '/services/whatsapp-coexistence', description: 'Close deals on WhatsApp without losing your phone app' },
-    { title: 'AI Agent Development', url: '/services/ai-agent-development', description: 'Autonomous sales agents for pipeline acceleration' }
+    { title: 'Platform Comparisons (2026)', url: '/compare', description: 'Compare Gyan VaniAi vs Wati, Respond.io, HubSpot & Zoho' }
   ],
   'home': [
-    { title: 'WhatsApp Coexistence Mode', url: '/services/whatsapp-coexistence', description: 'Revolutionary dual-surface WhatsApp Business solution' },
-    { title: 'Custom AI CRM Development', url: '/services/crm-development', description: 'Bespoke CRM software built for high-velocity teams' },
-    { title: 'AI Chatbot Development', url: '/services/ai-chatbots', description: 'Sub-300ms RAG chatbots for support and lead qualification' },
-    { title: 'AI CRM Subscription Pricing', url: '/pricing', description: 'Flexible plans from ₹1,999/month with a 7-day free trial' }
+    { title: 'WhatsApp Coexistence Mode', url: '/services/whatsapp-coexistence', description: 'Run mobile app and AI CRM on 1 number simultaneously' },
+    { title: 'Custom AI CRM Development', url: '/services/crm-development', description: 'Bespoke CRM sprints from ₹24,999 / $299 with 100% IP' },
+    { title: 'Platform Comparisons (2026)', url: '/compare', description: 'Gyan VaniAi vs Wati, Respond.io, AiSensy, HubSpot & Zoho' },
+    { title: 'Dual INR / USD Pricing', url: '/pricing', description: 'SaaS plans from ₹1,999 / $19 & fixed engineering sprints' }
   ]
 };
 

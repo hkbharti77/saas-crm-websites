@@ -152,9 +152,11 @@ export function prefetchRoute(rawPath) {
 
 /**
  * Prefetch all lazy route chunks during browser idle time after first paint.
+ * Disabled in Vite dev mode so unvisited routes do not trigger concurrent
+ * on-the-fly dependency re-optimization (504 Outdated Optimize Dep).
  */
 export function prefetchAllIdleRoutes() {
-  if (typeof window === 'undefined') return;
+  if (typeof window === 'undefined' || import.meta.env?.DEV) return;
   const schedule = window.requestIdleCallback || ((cb) => setTimeout(cb, 250));
   IDLE_PREFETCH_LOADERS.forEach((loader, index) => {
     if (prefetchedLoaders.has(loader)) return;
