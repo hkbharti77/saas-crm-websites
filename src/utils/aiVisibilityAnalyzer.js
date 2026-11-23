@@ -483,7 +483,7 @@ export function evaluateBrowserSeoReadiness({
   const checks = [];
 
   // 1. Edge Routing: Verify /compare/* is NOT hijacked by a 301 redirect in vercel.json
-  let vercelCompareUnblocked = false;
+  let vercelCompareUnblocked;
   let vercelNoindexProtected = false;
   try {
     const parsedVercel = JSON.parse(vercelJsonRaw || '{}');
@@ -568,6 +568,8 @@ export function evaluateBrowserSeoReadiness({
     const authorTags = headHtml.match(/<meta\s+name="author"/gi) || [];
     const hreflangTags = headHtml.match(/hreflang="/gi) || [];
     const hasJsonLd = headHtml.includes('application/ld+json') && headHtml.includes('"@graph"');
+    const hasBundledCss = /<link\s+rel="stylesheet"[^>]+href="\/assets\/[^"]+\.css"/i.test(headHtml);
+    const hasBundledJs = /<script\s+type="module"[^>]+src="\/assets\/[^"]+\.js"/i.test(headHtml);
 
     const titleLen = title.length;
     const descLen = description.length;
@@ -581,6 +583,7 @@ export function evaluateBrowserSeoReadiness({
         authorTags.length <= 1
       : true;
     const hreflangOk = html ? hreflangTags.length >= 5 : true;
+    const assetsBundledOk = html ? hasBundledCss && hasBundledJs : true;
 
     return {
       route: item.route,
@@ -600,8 +603,14 @@ export function evaluateBrowserSeoReadiness({
       hreflangCount: html ? hreflangTags.length : 6,
       hreflangOk,
       hasJsonLd: html ? hasJsonLd : true,
+      assetsBundledOk,
       allPassed:
-        titleLengthOk && descLengthOk && canonicalOk && deduplicatedOk && hreflangOk,
+        titleLengthOk &&
+        descLengthOk &&
+        canonicalOk &&
+        deduplicatedOk &&
+        hreflangOk &&
+        assetsBundledOk,
     };
   });
 
@@ -616,15 +625,17 @@ export function evaluateBrowserSeoReadiness({
       : 'One or more priority routes exceed SERP title or meta description character budgets.',
   });
 
-  const allDeduplicated = routeAudits.every((r) => r.deduplicatedOk && r.canonicalOk);
+  const allDeduplicated = routeAudits.every(
+    (r) => r.deduplicatedOk && r.canonicalOk && r.assetsBundledOk
+  );
   checks.push({
     id: 'prerender-head-deduplication',
     category: 'SSG Head Integrity',
-    label: 'Single Canonical & Deduplicated <head> Tags Across Prerendered Routes',
+    label: 'Single Canonical, Deduplicated <head> & Preserved Production CSS/JS Bundles',
     passed: allDeduplicated,
     detail: allDeduplicated
-      ? 'Zero duplicate <title>, <meta name="description">, <meta name="author">, or <link rel="canonical"> tags in prerendered HTML.'
-      : 'Duplicate meta or canonical tags detected in prerendered HTML head.',
+      ? 'Zero duplicate <title>, <meta>, or <link rel="canonical"> tags and all /assets/*.css & /assets/*.js bundles intact in prerendered HTML.'
+      : 'Duplicate meta/canonical tags or missing /assets/*.css & /assets/*.js bundles detected in prerendered HTML head.',
   });
 
   const allHreflang = routeAudits.every((r) => r.hreflangOk);

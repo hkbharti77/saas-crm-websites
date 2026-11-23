@@ -275,6 +275,7 @@ export default defineConfig(({ mode }) => {
       },
     },
     build: {
+      cssCodeSplit: false,
       chunkSizeWarningLimit: 1500,
       rollupOptions: {
         output: {

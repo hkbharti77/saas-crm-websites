@@ -511,13 +511,35 @@ test('Browser SEO & SERP Readiness passes edge routing, depth-1 Header link equi
   assert.equal(hreflangs[0].href, 'https://www.gyanvaniai.com/compare');
 
   const read = (rel) => fs.readFileSync(path.join(ROOT, rel), 'utf8');
+  const viteConfigSrc = read('vite.config.js');
+  const prerenderSrc = read('scripts/prerender.js');
+  assert.ok(
+    viteConfigSrc.includes('cssCodeSplit: false'),
+    'vite.config.js must disable cssCodeSplit so all prerendered routes load complete CSS immediately'
+  );
+  assert.ok(
+    prerenderSrc.includes('CRITICAL SSG ASSET ERROR'),
+    'scripts/prerender.js must assert that Vite production CSS and JS bundles exist in <head>'
+  );
+
   const prerenderedPages = {};
   for (const item of PRIORITY_SERP_ROUTES) {
     const cleanRoute = item.route.replace(/^\/+|\/+$/g, '');
     const distRelPath = cleanRoute ? `dist/${cleanRoute}/index.html` : 'dist/index.html';
     const fullPath = path.join(ROOT, distRelPath);
     if (fs.existsSync(fullPath)) {
-      prerenderedPages[item.route] = fs.readFileSync(fullPath, 'utf8');
+      const html = fs.readFileSync(fullPath, 'utf8');
+      prerenderedPages[item.route] = html;
+
+      const cssMatch = html.match(/<link\s+rel="stylesheet"[^>]+href="(\/assets\/[^"]+\.css)"/i);
+      const jsMatch = html.match(/<script\s+type="module"[^>]+src="(\/assets\/[^"]+\.js)"/i);
+      assert.ok(cssMatch, `${distRelPath} must contain a compiled /assets/*.css stylesheet link in <head>`);
+      assert.ok(jsMatch, `${distRelPath} must contain a compiled /assets/*.js module script in <head>`);
+
+      const cssDiskPath = path.join(ROOT, 'dist', cssMatch[1].replace(/^\/+/, ''));
+      const jsDiskPath = path.join(ROOT, 'dist', jsMatch[1].replace(/^\/+/, ''));
+      assert.ok(fs.existsSync(cssDiskPath), `Referenced CSS asset ${cssMatch[1]} must exist on disk in dist/`);
+      assert.ok(fs.existsSync(jsDiskPath), `Referenced JS asset ${jsMatch[1]} must exist on disk in dist/`);
     }
   }
 
@@ -533,6 +555,7 @@ test('Browser SEO & SERP Readiness passes edge routing, depth-1 Header link equi
   assert.equal(browserSeo.allPassed, true);
   assert.equal(browserSeo.routeAudits.length, 7);
 });
+
 
 
 

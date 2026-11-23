@@ -8,6 +8,8 @@ import {
   buildExternalProbeUrl,
   mergeBenchmarkRecords,
   benchmarksToCsv,
+  PRIORITY_SERP_ROUTES,
+  evaluateBrowserSeoReadiness,
 } from '../utils/aiVisibilityAnalyzer';
 import {
   Bot,
@@ -79,10 +81,15 @@ export default function AeoVisibilityDashboard() {
   const [probeResult, setProbeResult] = useState(null);
   const [probeSavedBanner, setProbeSavedBanner] = useState(false);
 
-  // Technical GEO Health state (live GET /api/ai-visibility/health)
+  // Technical GEO Health & Browser SEO Readiness state (live GET /api/ai-visibility/health)
   const [healthLoading, setHealthLoading] = useState(false);
   const [healthError, setHealthError] = useState(null);
   const [healthReport, setHealthReport] = useState(null);
+  const [browserSeoReport, setBrowserSeoReport] = useState(() =>
+    evaluateBrowserSeoReadiness({})
+  );
+  const [selectedSerpRoute, setSelectedSerpRoute] = useState('/');
+  const [serpDeviceMode, setSerpDeviceMode] = useState('desktop');
 
   // Authority Playbook local status & copy state
   const [authorityStatuses, setAuthorityStatuses] = useState(() =>
@@ -343,6 +350,16 @@ export default function AeoVisibilityDashboard() {
             >
               <ShieldCheck size={16} aria-hidden="true" />
               <span>Technical GEO Health</span>
+            </button>
+            <button
+              type="button"
+              role="tab"
+              aria-selected={activeTab === 'browser-seo'}
+              className={`aeo-tab-btn ${activeTab === 'browser-seo' ? 'active' : ''}`}
+              onClick={() => handleSelectTab('browser-seo')}
+            >
+              <Search size={16} aria-hidden="true" />
+              <span>Browser SEO & SERP Audit</span>
             </button>
             <button
               type="button"
