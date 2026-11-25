@@ -9,7 +9,7 @@
   padding: 5rem 1.5rem;
 }
 
-.bg-alt {
+.security-page .bg-alt {
   background: color-mix(in srgb, var(--bg-base) 95%, var(--primary-color));
 }
 

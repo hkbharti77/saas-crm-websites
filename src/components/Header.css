@@ -933,9 +933,10 @@ body:not(.dark-theme) .hdr-mobile-demo-btn {
    ACCESSIBILITY: PREFERS REDUCED MOTION
    ================================================================ */
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
+  .hdr,
+  .hdr *,
+  .hdr *::before,
+  .hdr *::after {
     transition-duration: 0.001ms !important;
     animation-duration: 0.001ms !important;
   }

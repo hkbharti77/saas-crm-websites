@@ -59,7 +59,7 @@
   font-size: 0.85rem;
 }
 
-.breadcrumb-list {
+.blog-breadcrumb .breadcrumb-list {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -70,23 +70,23 @@
   color: var(--text-muted, #64748b);
 }
 
-.breadcrumb-link {
+.blog-breadcrumb .breadcrumb-link {
   color: var(--text-muted, #64748b);
   text-decoration: none;
   font-weight: 500;
   transition: color 0.2s ease;
 }
 
-.breadcrumb-link:hover {
+.blog-breadcrumb .breadcrumb-link:hover {
   color: var(--primary-color, #0d9488);
 }
 
-.breadcrumb-separator {
+.blog-breadcrumb .breadcrumb-separator {
   color: var(--text-muted, #94a3b8);
   opacity: 0.7;
 }
 
-.breadcrumb-current {
+.blog-breadcrumb .breadcrumb-current {
   color: var(--text-primary);
   font-weight: 600;
 }

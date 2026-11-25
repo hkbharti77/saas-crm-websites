@@ -230,13 +230,13 @@
   color: var(--text-muted);
 }
 
-.link-inline {
+.footer .link-inline {
   color: var(--text-secondary);
   text-decoration: none;
   transition: color 0.2s ease;
 }
 
-.link-inline:hover {
+.footer .link-inline:hover {
   color: var(--primary-color);
 }
 

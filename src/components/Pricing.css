@@ -186,8 +186,7 @@ body[data-theme="light"] .pricing-page-root {
 
 /* ─── Plan card ─── */
 .pricing-card-new,
-.addon-card,
-.plan-hero {
+.addon-card {
   --plan-accent-soft: color-mix(in srgb, var(--plan-accent, var(--primary-color)) 68%, #ffffff);
 }
 

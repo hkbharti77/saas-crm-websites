@@ -556,6 +556,118 @@ test('Browser SEO & SERP Readiness passes edge routing, depth-1 Header link equi
   assert.equal(browserSeo.routeAudits.length, 7);
 });
 
+test('Global CSS isolates resets/primitives in Tailwind v4 layers and prevents cross-file selector collisions in production', () => {
+  const indexCss = fs.readFileSync(path.join(ROOT, 'src/index.css'), 'utf8');
+  const appCss = fs.readFileSync(path.join(ROOT, 'src/App.css'), 'utf8');
+
+  // 1. Both global stylesheets must use @layer base and @layer components
+  assert.ok(indexCss.includes('@layer base'), 'src/index.css must wrap element defaults in @layer base');
+  assert.ok(indexCss.includes('@layer components'), 'src/index.css must wrap shared primitives in @layer components');
+  assert.ok(appCss.includes('@layer base'), 'src/App.css must wrap <main> defaults in @layer base');
+  assert.ok(appCss.includes('@layer components'), 'src/App.css must wrap shell helpers in @layer components');
+
+  // 2. Regression guards for previously identified global bleeds and typos
+  assert.equal(appCss.includes('justifyContent:'), false, 'src/App.css must not contain camelCase justifyContent typo');
+  assert.equal(/\bbutton:active\b/.test(appCss), false, 'src/App.css must not bleed global button:active transforms onto dynamic components');
+  assert.equal(/^\.(?:text-xs|text-sm|text-base|text-lg|tabular-nums)\s*\{/m.test(indexCss), false, 'src/index.css must not redefine unlayered Tailwind typography utilities');
+
+  // 3. Verify zero unlayered bare element rules in index.css / App.css (outside @layer base and #crm-chat-widget)
+  for (const rel of ['src/index.css', 'src/App.css']) {
+    const css = fs.readFileSync(path.join(ROOT, rel), 'utf8').replace(/\/\*[\s\S]*?\*\//g, '');
+    let depth = 0;
+    let inLayer = false;
+    let layerDepth = -1;
+    let inKf = false;
+    let kfDepth = -1;
+    let buf = '';
+    const unlayeredViolations = [];
+
+    for (let i = 0; i < css.length; i++) {
+      const ch = css[i];
+      if (ch === '{') {
+        const sel = buf.trim();
+        buf = '';
+        if (/^@layer\s+(?:base|components|utilities)\b/i.test(sel)) {
+          inLayer = true;
+          layerDepth = depth;
+        } else if (/^@(-webkit-)?keyframes\b/i.test(sel)) {
+          inKf = true;
+          kfDepth = depth;
+        } else if (sel && !sel.startsWith('@') && !inKf && !inLayer) {
+          for (const part of sel.split(',').map((s) => s.trim())) {
+            if (
+              /^(\*|html|body|main|section|h[1-6]|p|a|button|ul|ol|li|img)\b/i.test(part) &&
+              !part.startsWith('body.dark-theme')
+            ) {
+              unlayeredViolations.push(`${rel}: ${part}`);
+            }
+          }
+        }
+        depth++;
+      } else if (ch === '}') {
+        depth--;
+        if (inLayer && depth === layerDepth) { inLayer = false; layerDepth = -1; }
+        if (inKf && depth === kfDepth) { inKf = false; kfDepth = -1; }
+        buf = '';
+      } else if (ch === ';') {
+        buf = '';
+      } else {
+        buf += ch;
+      }
+    }
+    assert.deepEqual(unlayeredViolations, [], `${rel} must not contain unlayered bare element selectors`);
+  }
+
+  // 4. Verify zero unscoped top-level class collisions across all CSS files in src/
+  const cssFiles = walkFiles(path.join(ROOT, 'src'), '.css');
+  const topClassFiles = new Map();
+  for (const file of cssFiles) {
+    const rel = path.relative(ROOT, file);
+    const css = fs.readFileSync(file, 'utf8').replace(/\/\*[\s\S]*?\*\//g, '');
+    let depth = 0;
+    let inKf = false;
+    let kfDepth = -1;
+    let buf = '';
+
+    for (let i = 0; i < css.length; i++) {
+      const ch = css[i];
+      if (ch === '{') {
+        const sel = buf.trim();
+        buf = '';
+        if (/^@(-webkit-)?keyframes\b/i.test(sel)) {
+          inKf = true;
+          kfDepth = depth;
+        } else if (sel && !sel.startsWith('@') && !inKf) {
+          for (const part of sel.split(',').map((s) => s.trim())) {
+            const match = part.match(/^\.([a-zA-Z0-9_-]+)(?::[a-zA-Z-]+(?:\([^)]*\))?)?$/);
+            if (match) {
+              const cls = `.${match[1]}`;
+              if (!topClassFiles.has(cls)) topClassFiles.set(cls, new Set());
+              topClassFiles.get(cls).add(rel);
+            }
+          }
+        }
+        depth++;
+      } else if (ch === '}') {
+        depth--;
+        if (inKf && depth === kfDepth) { inKf = false; kfDepth = -1; }
+        buf = '';
+      } else if (ch === ';') {
+        buf = '';
+      } else {
+        buf += ch;
+      }
+    }
+  }
+
+  const collisions = [...topClassFiles.entries()]
+    .filter(([, set]) => set.size >= 2)
+    .map(([cls, set]) => `${cls} (${Array.from(set).join(', ')})`);
+
+  assert.deepEqual(collisions, [], 'Production CSS bundle must have zero unscoped cross-file class collisions');
+});
+
+
 
 
 

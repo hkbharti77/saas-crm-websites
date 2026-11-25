@@ -311,6 +311,7 @@
 
 /* ─── Plan detail hero ─── */
 .plan-hero {
+  --plan-accent-soft: color-mix(in srgb, var(--plan-accent, var(--primary-color)) 68%, #ffffff);
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 2rem;

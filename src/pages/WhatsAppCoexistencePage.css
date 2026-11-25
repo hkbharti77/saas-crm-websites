@@ -488,7 +488,7 @@ body.dark-theme .coexistence-hero-section .hero-media-veil {
   }
 }
 
-.capability-card {
+.coexistence-page .capability-card {
   background: color-mix(in srgb, var(--bg-card) 92%, rgba(255, 255, 255, 0.05));
   border: 1px solid color-mix(in srgb, var(--border-color) 130%, transparent);
   border-radius: var(--radius-lg, 16px);
@@ -499,7 +499,7 @@ body.dark-theme .coexistence-hero-section .hero-media-veil {
   transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.capability-card:hover {
+.coexistence-page .capability-card:hover {
   transform: translateY(-2px);
   border-color: var(--primary-color);
   box-shadow: 0 12px 32px -4px color-mix(in srgb, var(--primary-color) 25%, rgba(0, 0, 0, 0.5));
@@ -1735,8 +1735,8 @@ body.dark-theme .coexistence-trust-pill {
   color: #f1f5f9;
 }
 
-[data-theme]:not([data-theme="light"]) .capability-card,
-body.dark-theme .capability-card {
+[data-theme]:not([data-theme="light"]) .coexistence-page .capability-card,
+body.dark-theme .coexistence-page .capability-card {
   background: color-mix(in srgb, var(--bg-card) 92%, rgba(255, 255, 255, 0.06));
   border: 1px solid color-mix(in srgb, var(--border-color) 160%, rgba(255, 255, 255, 0.12));
   box-shadow: 0 10px 30px -4px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.05);
