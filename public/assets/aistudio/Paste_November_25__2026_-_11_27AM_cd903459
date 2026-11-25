@@ -1,0 +1,152 @@
+# CRMLite data inventory and website policy drafts
+
+Reviewed 25 November 2026. The evidence comes from the backend and bundled web widget. A model field shows what the software can store. Actual collection depends on the form, tenant settings, enabled integrations and production configuration.
+
+## 1. Hum kaunsa data lete hain?
+
+### Platform accounts and business workspaces
+
+- **Account and staff.** Email, display name, phone, account and tenant IDs, roles, permissions, account status and onboarding consent timestamp. Password-based flows store credentials as password hashes. Staff activity can include availability and last-seen information. Evidence: [User](../src/main/java/com/chatcrmlite/backend/models/User.java), [onboarding](../src/main/java/com/chatcrmlite/backend/controllers/OnboardingController.java) and [password update](../src/main/java/com/chatcrmlite/backend/controllers/UserController.java).
+- **Business profile.** Business name, type and subtype, address, logo, public profile content and configured location coordinates. A saved latitude or longitude is evidence of a business profile field. Device location collection requires a separate frontend check. Evidence: [Tenant](../src/main/java/com/chatcrmlite/backend/models/Tenant.java).
+- **Login and security.** Device name, IP address, session and token identifiers, timestamps, login alerts and IP allowlists where configured. The user model has a biometrics-enabled setting. Biometric sample or template collection was not established. Evidence: [UserSession](../src/main/java/com/chatcrmlite/backend/models/UserSession.java) and [User](../src/main/java/com/chatcrmlite/backend/models/User.java).
+- **Subscription and billing.** Plan, billing cycle, amount, currency, payment status, provider transaction references and invoice delivery status. Stripe and Razorpay integrations exist. Reviewed transaction models contain payment metadata. Verify checkout and webhook logging before making any public statement about card or bank data. Evidence: [BillingTransaction](../src/main/java/com/chatcrmlite/backend/models/BillingTransaction.java) and [PaymentTransaction](../src/main/java/com/chatcrmlite/backend/models/payments/PaymentTransaction.java).
+
+### Business customers, prospects and visitors
+
+- **Contacts and enquiries.** Name, email, phone or WhatsApp identifiers, source, tags and assigned agent. Depending on the form or import, an enquiry can store company, service category, requirement, budget, city, country, age, gender, address, postcode, preferred date, message and additional details. These are possible fields. Each business should list the fields requested by its actual form and remove fields it has no purpose for. Evidence: [Contact](../src/main/java/com/chatcrmlite/backend/models/Contact.java) and [LeadEnquiry](../src/main/java/com/chatcrmlite/backend/models/LeadEnquiry.java).
+- **Bookings, appointments, support and orders.** Contact and scheduling details, configured form answers, meeting links, ticket description, support conversation and status, and order or payment references where applicable. Free-text and configurable fields can contain health or other sensitive information supplied by customers. Assess health and children's data before enabling relevant tenant flows. Evidence: [Appointment](../src/main/java/com/chatcrmlite/backend/models/Appointment.java), [Booking](../src/main/java/com/chatcrmlite/backend/models/Booking.java), [Ticket](../src/main/java/com/chatcrmlite/backend/models/Ticket.java) and [CommerceOrder](../src/main/java/com/chatcrmlite/backend/models/CommerceOrder.java).
+- **Communications.** Website chat messages, sender details and session timestamps. Enabled channels can also receive WhatsApp, Telegram, email or SMS message data and delivery metadata. Telegram payloads can contain Telegram ID, first and last name, username and language. Supported media can accompany conversations. Staff may handle chats handed off by the bot. Evidence: [WebChatMessage](../src/main/java/com/chatcrmlite/backend/models/WebChatMessage.java), [WebChatSession](../src/main/java/com/chatcrmlite/backend/models/WebChatSession.java), [Telegram user payload](../src/main/java/com/chatcrmlite/backend/dto/telegram/TelegramUserDTO.java) and [SMS model](../src/main/java/com/chatcrmlite/backend/models/sms/SmsMessage.java).
+- **Voice, AI and knowledge base.** When enabled, the widget can request microphone access and voice services can process call audio, call identifiers, call timing and transcripts. WhatsApp recording support can store recording metadata and a reference to a Cloudinary asset. AI workflows can use conversation content and tenant-provided knowledge material to generate replies. Verify active vendors, inputs, recording defaults and retention per workflow. Evidence: [widget voice](../src/main/resources/static/widget/voice-engine.js), [call model](../src/main/java/com/chatcrmlite/backend/models/whatsapp/WhatsAppCallSession.java), [recording schema](../src/main/resources/db/migration/V11045__Add_WhatsApp_Call_Recording_Metadata.sql) and [vector storage architecture](architecture/VECTOR_STORAGE.md).
+- **Campaigns and interactions.** Channel preferences and consent activity, delivery and campaign events, email opens and link clicks, WhatsApp tracked link clicks and Meta conversion events when configured. Review the actual Meta event fields, account settings, and optional tracking controls before publishing. Evidence: [consent service](../src/main/java/com/chatcrmlite/backend/services/ContactConsentService.java), [email tracking](../src/main/java/com/chatcrmlite/backend/controllers/EmailTrackingController.java), [WhatsApp tracking](../src/main/java/com/chatcrmlite/backend/controllers/WhatsAppTrackingController.java) and [Meta conversion service](../src/main/java/com/chatcrmlite/backend/services/meta/MetaConversionService.java).
+- **Browser storage.** The bundled widget uses local storage for a session identifier, up to 50 recent chat messages, theme, local consent, live chat state and visit state. Review cookies and third-party tags on the actual frontend separately. Evidence: [widget storage](../src/main/resources/static/widget/storage.js).
+
+### Connected accounts and data recipients
+
+- **Google.** Connected account identifier, granted scopes, token expiry and encrypted OAuth token fields are modeled. Depending on permissions granted, the integration can manage Calendar events, send Gmail messages, read Contacts, manage Tasks, work with Drive files opened or created by the app, or access Sheets for the enabled workflow. Evidence: [scope mapping](../src/main/java/com/chatcrmlite/backend/models/google/GoogleIntegrationType.java) and [connection model](../src/main/java/com/chatcrmlite/backend/models/google/GoogleConnection.java).
+- **Messaging and storage.** Code supports Meta/WhatsApp, Telegram, optional email/SMS and telephony integrations, Cloudinary and AI/speech integrations. Credentials are supplied by workspace administrators or through provider authorization. List the actual enabled providers, exact data sent, purpose, retention and regions in the published notice or linked subprocessor list. A dependency or provider class does not establish production use.
+- **Source and roles.** Platform account data comes from users, workspace administrators, authentication and billing services. Tenant customer information can come from the person, the business or connected channels and imports. Determine legal roles by purpose. A business generally decides why it manages its own customer records. The platform may process those records on its instructions and act independently for its own account, billing, fraud prevention and service administration.
+
+### Integration data flows verified in source
+
+**Google sign-in and authorization.** Sign-in reads the verified ID token's Google subject ID, email and name. The account flow uses the subject or email to identify or link the CRM account. Workspace integrations separately use access and refresh tokens, granted scopes, expiry and revocation records. Google API audit records can include tenant, user and connection IDs, operation, API, request ID, outcome, latency, errors, retries and time. [Sign-in handler](../src/main/java/com/chatcrmlite/backend/controllers/AuthController.java) · [Token refresh](../src/main/java/com/chatcrmlite/backend/services/google/GoogleTokenService.java) · [Audit fields](../src/main/java/com/chatcrmlite/backend/models/google/GoogleApiAuditLog.java)
+
+- **Calendar and Meet.** Sends appointment title, date, time, duration and attendee email to create a calendar event and meeting link. The service can delete an event using its Google event ID. [Calendar service](../src/main/java/com/chatcrmlite/backend/services/GoogleCalendarService.java)
+- **Gmail.** Sends a message from the connected account using recipient, optional CC/BCC, subject and HTML body. The service accepts an optional CRM resource ID to associate the operation with CRM activity. The integration requests the send scope. [Gmail service](../src/main/java/com/chatcrmlite/backend/services/google/GmailService.java)
+- **Contacts.** Reads People API connections for import. The importer extracts the Google person resource ID and first available display name, email and phone. These records can concern people who have never signed in to CRMLite. [Contacts importer](../src/main/java/com/chatcrmlite/backend/services/google/GoogleContactsService.java)
+- **Tasks.** Creates and lists tasks in the connected account's default list and can mark a task complete. Operations use task IDs, titles, notes, due dates and completion status. [Tasks service](../src/main/java/com/chatcrmlite/backend/services/google/GoogleTasksService.java)
+- **Drive.** Uploads file content and metadata, creates folders and lists files within the granted Drive file scope. Results can include file ID, name, type, view/download links, size and creation time. [Drive service](../src/main/java/com/chatcrmlite/backend/services/google/GoogleDriveService.java)
+- **Sheets.** The export reads the signed-in owner's leads and writes lead reference, contact name, WhatsApp/mobile number, email, status, source and creation date to a new spreadsheet. Import reads cells from the specified spreadsheet ID and range. Exports create a separate copy in Google. [Sheets service](../src/main/java/com/chatcrmlite/backend/services/google/GoogleSheetsService.java)
+
+**Meta and WhatsApp.** Three flows involve different people and recipients.
+
+1. **Business onboarding.** An administrator supplies an authorization code, which the service exchanges for an access token. It looks up business ownership, owned or client WhatsApp Business Accounts, phone-number IDs, display numbers, verified names and quality ratings, subscribes the app to webhooks and can look up a dataset. Connection records and credentials enable subsequent Graph API calls. [Meta onboarding](../src/main/java/com/chatcrmlite/backend/services/whatsapp/MetaOnboardingService.java)
+2. **Customer communications.** Inbound webhooks carry message and account data into the CRM. Depending on the feature this includes customer WhatsApp identifiers, message content and IDs, delivery or interaction events, media, call participants, timing and recording references. Outbound conversations disclose the recipient identifier and selected message or order content to WhatsApp. Meta deauthorization and deletion callbacks use a Meta user ID to handle the connected account. Their credential-removal workflow has a narrower scope than erasing a customer's CRM history. [Webhook controller](../src/main/java/com/chatcrmlite/backend/controllers/WhatsAppWebhookController.java) · [Call model](../src/main/java/com/chatcrmlite/backend/models/whatsapp/WhatsAppCallSession.java) · [Meta deletion](../src/main/java/com/chatcrmlite/backend/services/whatsapp/MetaComplianceService.java)
+3. **Advertising measurement.** The conversion service constructs a Meta dataset event containing event name, ID, send time, WhatsApp business account ID, messaging channel and a click-to-WhatsApp click identifier. The worker records delivery attempts, outcome and provider diagnostics. The implementation includes a fixed fallback click ID and a test event code. Confirm production behavior before claiming every conversion is tied to an actual customer click. [Conversion payload](../src/main/java/com/chatcrmlite/backend/services/meta/MetaConversionService.java) · [Delivery worker](../src/main/java/com/chatcrmlite/backend/services/meta/MetaConversionWorker.java)
+
+**Payments.** Platform subscriptions and a workspace's customer orders have different payers. For subscriptions, billing records include plan, amount, currency, billing cycle, gateway reference, status and invoice-delivery state. Customer orders can include WhatsApp ID, customer name, order and item references, quantities, prices, taxes, discounts, shipping and total. Transactions track provider IDs, checkout URL, amount, currency, status, failure details and payment time. Refund records include reason, amount, status and provider reference. Merchant configuration includes gateway keys and webhook secrets. [Billing](../src/main/java/com/chatcrmlite/backend/models/BillingTransaction.java) · [Payment entities](../src/main/java/com/chatcrmlite/backend/models/payments)
+
+- **Razorpay.** Direct payment links send amount, currency, order reference and description, plus customer name and WhatsApp contact when present. A refund can send amount and reason. The separate payment service also handles receipt, notes and payment verification identifiers/signature. [Payment links](../src/main/java/com/chatcrmlite/backend/services/payments/providers/RazorpayDirectPaymentProvider.java) · [Order verification](../src/main/java/com/chatcrmlite/backend/services/payment/RazorpayPaymentService.java)
+- **Stripe.** The direct checkout request sends the order reference, currency, amount, item description, return URL and an idempotency key to prevent duplicate requests. [Stripe checkout](../src/main/java/com/chatcrmlite/backend/services/payments/providers/StripeDirectPaymentProvider.java)
+- **PayU.** The implementation builds a checkout URL containing transaction ID, amount, order description, customer name and WhatsApp phone when available. It supplies a fixed placeholder email. Name and phone in the URL may also enter browser history or request logs. [PayU checkout](../src/main/java/com/chatcrmlite/backend/services/payments/providers/PayUDirectPaymentProvider.java)
+- **WhatsApp native payments.** The order starts in a WhatsApp order-details message. The adapter associates provider updates with the order reference. Native refunds are routed via the connected merchant gateway. [Meta payment adapter](../src/main/java/com/chatcrmlite/backend/services/payments/providers/MetaWhatsAppPaymentProvider.java)
+- **Provider callbacks.** The payment webhook processor persists the raw event payload when supplied, along with event metadata. This can retain additional provider-supplied payer or payment-method details beyond the structured transaction fields. Exact fields depend on the event and gateway. Verify sanitized production event schemas, redaction, retention and access before describing the full extent of payment data storage. [Webhook persistence](../src/main/java/com/chatcrmlite/backend/services/payments/PaymentWebhookProcessor.java)
+
+## 2. Public page draft — Privacy Policy
+
+**Publication work.** Replace every bracketed field with approved facts. Review optional features against production and have the legal owner approve the text before publishing.
+
+### Who we are
+
+CRMLite is operated by [legal entity and address]. This policy explains how we handle personal information when you visit [website], use a CRMLite workspace, or interact with a business using CRMLite. For questions or grievances, contact [privacy or grievance contact].
+
+Businesses use CRMLite to manage customer enquiries, communications, bookings and support. When we process customer information on a business's instructions, the business's privacy notice explains its purposes and choices. We use information for our own account administration, billing, support and security as described below.
+
+### Information we collect and how we use it
+
+- We collect account, business profile and membership information to create and administer workspaces, authenticate users and manage access. We use session, device, IP address and security event information to maintain and protect the service.
+- We collect subscription details, invoice information and payment references to administer plans, account for payments and handle billing queries. Payment services operate under their own applicable notices.
+- When you contact a business using CRMLite, the business may collect your contact details, communications, attachments and the answers you provide in forms. The information requested depends on the business and service. Examples include scheduling preferences, an address, budget, age or information about the service you are requesting. Businesses use this information to respond, manage bookings, handle support and administer orders.
+- Where voice or AI features are enabled, we use messages, audio or transcripts as needed to provide those features. [Describe actual voice and AI providers, when recording occurs, purposes and choices, retention and whether any provider uses data to train models.]
+- Where enabled, campaign tools can record delivery, opens, link clicks or conversion events. [Describe actual optional tracking, recipients and opt-out or consent controls.] You can manage marketing preferences through [verified controls].
+- The web chat widget uses browser storage to maintain your chat session, recent messages, preferences and consent state. [Add verified website cookie and tracking disclosures and a link to settings where applicable.]
+
+### Connected services and disclosures
+
+If you connect a third-party service, we handle the data needed to perform the functions you enable. Google permissions may include Calendar events, Gmail sending, reading Contacts, Tasks, selected Drive files and Sheets, depending on the permission you grant. We store connection information and authorization tokens to operate connected features. To disconnect Google, [verified steps]. [Describe actual Google data storage, access, disclosures and deletion. Insert the applicable Limited Use statement after verifying production practices.]
+
+Information may be accessible to the business and its authorized staff, and to [verified hosting, messaging, file storage, voice, AI, support and analytics providers] where needed to provide enabled features. We also disclose information when required by applicable law. [Link to verified vendor or subprocessor list where available.]
+
+### Details of optional connected features
+
+**Google.** If you use Google sign-in, we receive your Google account identifier, email and name to identify your account. If you enable a Workspace integration, we use the permissions you grant for that feature. Calendar can receive appointment details and attendee email to create an event and Meet link. Gmail can send your message content, subject and recipient addresses, including copies. Contacts import can bring names, emails and phone numbers from your Google contacts into the CRM. Tasks can show, create and complete tasks. Drive can receive uploaded files and return their names, metadata and links. Sheets can receive exported lead details, including contact information, or provide rows for a CRM import.
+
+**Meta and WhatsApp.** When a business connects WhatsApp, we process its account and phone identifiers, business profile information and authorization credentials. For conversations we process the contact's WhatsApp identifier, messages, interaction and delivery records, and media used in that conversation. When a business enables conversion measurement, event identifiers, event type and time, business account ID and click attribution information may be sent to Meta. Call processing and recording depend on the voice features used.
+
+**Payments.** We use billing information for platform subscriptions. When a business takes payment for an order, we and its configured payment provider process information needed for checkout and reconciliation. This can include the payer's name and phone, items ordered, amounts, currency, order and payment references, payment status and refund details. Providers send us transaction updates. We may retain the contents of these notifications to reconcile transactions and investigate payment issues. [Identify the gateways actually available to each audience and link their notices.]
+
+### Lawful grounds and international processing
+
+[Identify the grounds actually relied on for each purpose where law requires disclosure. Review performance of a contract for account services where applicable, legal obligations for relevant billing records, documented legitimate interests for appropriate security processing under GDPR, and consent for activities where consent is required. Where consent applies, state how to withdraw it.]
+
+[Identify actual processing countries and applicable transfer safeguards, plus how people can obtain information about those safeguards.]
+
+### Retention and deletion
+
+We retain information for [periods or criteria by category] to provide services, resolve requests and meet applicable obligations. [Describe workspace closure, export and deletion, backup expiry, statutory records and exceptions.] Clearing a widget conversation affects the selected browser or chat session as described in the widget. For other records, send a request using the contact below.
+
+### Your rights and choices
+
+Contact [privacy address and request page] for access, correction, deletion, consent withdrawal or a grievance. Include the workspace or business name if the request relates to a tenant. We may verify identity. Depending on applicable law and the processing involved, you may also have rights to object, restrict processing, obtain a portable copy, nominate a person to exercise rights, or complain to a relevant authority. [Provide the applicable authority and complaint route.]
+
+### Children, security and changes
+
+[State the verified audience and children's data policy. Explain any parent or guardian process and the route for reporting a concern.]
+
+We protect personal information using [verified safeguards]. We publish updates here and communicate material changes as required. Effective date [date].
+
+## 3. Public page draft — Terms of Service
+
+### Agreement and accounts
+
+These Terms govern use of CRMLite, provided by [legal entity and address]. By accepting these Terms and creating or using a workspace, you agree to them. If you accept on behalf of a business, you confirm that you have authority to bind it. Workspace administrators manage membership and access. Keep your credentials secure and notify [support contact] of suspected unauthorized access.
+
+### Service and acceptable use
+
+CRMLite provides customer relationship, messaging, scheduling, support and related automation tools. Available features depend on your plan and enabled integrations. Use the service lawfully and within your permissions. Do not send spam, use unlawfully obtained contact lists, impersonate others, upload malicious content, or access another workspace without authorization. Businesses using campaigns or recordings are responsible for providing required notices and obtaining permissions where applicable.
+
+### Customer data and integrations
+
+You retain your rights in content you submit and authorize us to process it as required to provide the service, under our agreement and applicable data processing terms. You are responsible for having the necessary rights and instructions for any customer information you provide. The Privacy Policy explains how we handle personal data. [Link to a data processing agreement where applicable.]
+
+Third-party integrations depend on provider availability, permissions and terms. Review AI-generated replies and other automated outputs before relying on them for important decisions or sending them to customers. The workspace business is responsible for its own products, services and communications with its customers.
+
+### Plans, payment, cancellation and refunds
+
+[State the verified prices or pricing page, taxes, billing cycle, renewal behavior by plan, how to cancel, when cancellation takes effect, and refund rules. Include customer support and checkout disclosures. Preserve rights under applicable law.]
+
+### Suspension, termination and export
+
+[Specify when access may be suspended or terminated, required notice and exceptions, how customers can export data, and what happens to records and backups after closure.]
+
+### Intellectual property, liability and disputes
+
+CRMLite and its software are owned by [rights holder] or its licensors. Your subscription grants the right to use the service under these Terms. [Insert approved warranty, liability, governing law and dispute language, preserving mandatory statutory rights.]
+
+### Changes and contact
+
+[Describe notice for material changes and any new acceptance required.] Contact [support email and postal address]. Effective date [date].
+
+## 4. Pages mein kaise add karein
+
+1. Publish approved platform content at public HTTPS routes such as `/privacy` and `/terms`. Link both from the website footer and signup or onboarding. Put Terms acceptance beside the signup action. Show a separate optional marketing choice where used.
+2. Each tenant should use its own customer-facing privacy notice where it controls collection. The existing widget reads `privacyPolicyUrl`, `termsUrl` and `grievanceEmail` from its theme configuration. Set and verify the actual three values for each tenant. Check the widget footer, menu and final form screen. Existing branches can fall back to different hard-coded platform domains. Standardize published destinations and check mobile and anonymous access. [Theme DTO](../src/main/java/com/chatcrmlite/backend/dto/ThemeConfigDTO.java) · [Theme service](../src/main/java/com/chatcrmlite/backend/services/NicheThemeService.java) · [Widget UI](../src/main/resources/static/widget/ui.js)
+3. At the point of collection, add a short purpose-specific notice before form submission, recording or activating optional tracking. Example for an enquiry: “We use the details you provide to respond to your enquiry. See [Business Privacy Policy].” Keep marketing an optional, unchecked choice. Confirm a simple way to withdraw it on each channel.
+4. Track Terms acceptance, privacy notice version and purpose-specific consent as separate server-side events where relevant. Onboarding currently stores a consent timestamp. Some widget paths set consent based on a name or email or send a hard-coded version. Capture the actual choice, version, purpose, time and channel and test withdrawal and enforcement. [Onboarding](../src/main/java/com/chatcrmlite/backend/controllers/OnboardingController.java) · [Widget flow engine](../src/main/resources/static/widget/flow-engine.js)
+5. Verify erasure before writing retention promises. The WebChat service deletes messages and their selected chat session. Lead, contact, support, archive, vendor and backup data require their own checks. The existing database job archives selected records after 90 days. Remove the widget's broad “DPDP Compliant” badge and align erasure copy with the verified behavior before release. [WebChat service](../src/main/java/com/chatcrmlite/backend/services/WebChatService.java) · [Retention job](../src/main/java/com/chatcrmlite/backend/services/DatabaseRetentionService.java)
+6. Set the verified Privacy Policy URL in the Google OAuth configuration if the app is public. Verify each scope's use and Google's Limited Use requirements before publishing the corresponding statement. [Google API Services User Data Policy](https://developers.google.com/terms/api-services-user-data-policy) · [Google Workspace user data policy](https://developers.google.com/workspace/workspace-api-user-data-developer-policy)
+7. Before publishing, confirm legal entity, privacy and grievance contacts, real production vendors and regions, actual retention schedule, Google data practices, subscription and refund rules, and the frontend cookie inventory. Test the final links and the privacy request workflow end to end.
+
+## Reference points
+
+- India DPDP core obligations are subject to the notified phase-in. Review the current enforcement timeline and rules before publishing. [MeitY commencement notification](https://www.meity.gov.in/static/uploads/2025/11/c56ceae6c383460ca69577428d36828b.pdf)
+- For applicable GDPR processing, review territorial scope, transparency, lawful grounds, rights, processor terms and international transfers. [Official GDPR text](https://eur-lex.europa.eu/eli/reg/2016/679)

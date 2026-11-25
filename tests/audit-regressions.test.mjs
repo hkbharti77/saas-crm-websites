@@ -667,6 +667,115 @@ test('Global CSS isolates resets/primitives in Tailwind v4 layers and prevents c
   assert.deepEqual(collisions, [], 'Production CSS bundle must have zero unscoped cross-file class collisions');
 });
 
+test('Legal & Trust Center (/privacy and /terms) enforces Gyan VaniAi branding, active gateways, verified inventory, and section search', async () => {
+  const {
+    LEGAL_META,
+    PRIVACY_SECTIONS,
+    TERMS_SECTIONS,
+    INTEGRATION_FLOW_TABS,
+    PLATFORM_DATA_INVENTORY,
+    RETENTION_SCHEDULES,
+    filterLegalSections,
+  } = await import('../src/config/legalDocumentsConfig.js');
+
+  assert.equal(LEGAL_META.brandName, 'Gyan VaniAi');
+  assert.equal(LEGAL_META.legalEntity, 'Gyan VaniAi Technologies');
+  assert.equal(LEGAL_META.effectiveDate, 'June 14, 2026');
+  assert.deepEqual(LEGAL_META.activePaymentGateways, [
+    'Razorpay',
+    'Stripe',
+    'WhatsApp Native Payments',
+  ]);
+  assert.equal(LEGAL_META.grievanceOfficer.name, 'Himanshu Bharti');
+  assert.equal(LEGAL_META.grievanceOfficer.email, 'contact@gyanvaniai.com');
+
+  assert.equal(filterLegalSections(PRIVACY_SECTIONS, '').length, PRIVACY_SECTIONS.length);
+  const googleMatches = filterLegalSections(PRIVACY_SECTIONS, 'google limited use');
+  assert.equal(googleMatches.length, 1);
+  assert.equal(googleMatches[0].id, 'integrations');
+
+  const paymentMatches = filterLegalSections(TERMS_SECTIONS, 'razorpay stripe');
+  assert.equal(paymentMatches.length, 1);
+  assert.equal(paymentMatches[0].id, 'billing-refunds');
+
+  assert.equal(filterLegalSections(PRIVACY_SECTIONS, 'nonexistent-clause-xyz').length, 0);
+
+  assert.deepEqual(
+    INTEGRATION_FLOW_TABS.map((t) => t.id),
+    ['google', 'meta', 'payments', 'widget']
+  );
+  assert.equal(PLATFORM_DATA_INVENTORY.length, 2);
+  assert.ok(RETENTION_SCHEDULES.some((r) => /7 days/i.test(r.period)), 'Must include 7-day Live Demo retention');
+  assert.ok(RETENTION_SCHEDULES.some((r) => /90-day/i.test(r.period)), 'Must include 90-day database archival cycle');
+
+  const legalFiles = [
+    'src/config/legalDocumentsConfig.js',
+    'src/pages/PolicyPage.jsx',
+    'src/pages/TermsConditions.jsx',
+    'src/components/legal/PrivacyRequestForm.jsx',
+    'src/components/legal/IntegrationFlowExplorer.jsx',
+    'src/components/legal/TrustCenterShell.jsx',
+  ];
+
+  for (const rel of legalFiles) {
+    const content = fs.readFileSync(path.join(ROOT, rel), 'utf8');
+    assert.equal(/\bCRMLite\b/i.test(content), false, `${rel} must use Gyan VaniAi branding only (no CRMLite)`);
+    assert.equal(/\bPayU\b/i.test(content), false, `${rel} must not list inactive PayU gateway`);
+    assert.equal(/Dakbangla|Simri Bakhtiarpur|Operational Headquarters|Registered Office/i.test(content), false, `${rel} must reflect remote/virtual operations without physical office addresses`);
+    assert.equal(/\[legal entity|\[website\]|\[date\]|\[verified/i.test(content), false, `${rel} must not contain unreplaced draft placeholders`);
+    assert.equal(/\bwindow\.alert\s*\(|\bwindow\.open\s*\(/.test(content), false, `${rel} must not call window.alert or window.open`);
+  }
+
+  assert.match(LEGAL_META.operatingModel, /Remote-First.*Virtual/i);
+
+  const dsrSrc = fs.readFileSync(path.join(ROOT, 'src/components/legal/PrivacyRequestForm.jsx'), 'utf8');
+  assert.ok(dsrSrc.includes('/api/public/privacy-requests'), 'PrivacyRequestForm must preserve live DSR endpoint');
+  assert.ok(dsrSrc.includes('_hp_company'), 'PrivacyRequestForm must preserve honeypot protection');
+});
+
+test('Client-side legal PDF exporter generates valid multi-page PDF 1.4 binaries for /privacy and /terms', async () => {
+  const {
+    buildStructuredLegalBlocks,
+    generatePdfBytes,
+    getLegalPdfFilename,
+    sanitizePdfText,
+  } = await import('../src/utils/legalPdfExport.js');
+
+  assert.equal(getLegalPdfFilename('privacy'), 'Gyan-VaniAi-Privacy-Policy.pdf');
+  assert.equal(getLegalPdfFilename('terms'), 'Gyan-VaniAi-Terms-of-Service.pdf');
+  assert.equal(sanitizePdfText('DPDP §6 — ₹1,999 · “Test”'), 'DPDP Sec. 6 -- INR 1,999 | "Test"');
+
+  for (const docId of ['privacy', 'terms']) {
+    const blocks = buildStructuredLegalBlocks(docId);
+    assert.ok(blocks.length >= 10, `${docId} PDF should contain full structured legal blocks`);
+
+    const pdfBytes = generatePdfBytes({
+      title: docId === 'privacy' ? 'Privacy Policy' : 'Terms of Service',
+      subtitle: 'Gyan VaniAi Trust Center',
+      metaLine: 'Effective Date: June 14, 2026 | Gyan VaniAi Technologies',
+      blocks,
+    });
+
+    assert.ok(pdfBytes instanceof Uint8Array);
+    assert.ok(pdfBytes.length > 2500, `${docId} PDF binary should be non-trivial size`);
+
+    const text = new TextDecoder('latin1').decode(pdfBytes);
+    assert.ok(text.startsWith('%PDF-1.4\n'), `${docId} PDF must start with %PDF-1.4 header`);
+    assert.ok(text.includes('\nxref\n0 '), `${docId} PDF must contain valid xref table`);
+    assert.ok(text.includes('\nstartxref\n'), `${docId} PDF must include startxref offset`);
+    assert.ok(text.trimEnd().endsWith('%%EOF'), `${docId} PDF must end with %%EOF`);
+    assert.ok(text.includes('Himanshu Bharti'), `${docId} PDF must include Grievance Officer`);
+    assert.ok(text.includes('Remote-First / Virtual Operations'), `${docId} PDF must state remote/virtual operations`);
+
+    if (docId === 'privacy') {
+      assert.ok(text.includes('Google Sign-In'), 'Privacy PDF must include Google integration flows');
+      assert.ok(text.includes('Meta & WhatsApp'), 'Privacy PDF must include Meta & WhatsApp flows');
+      assert.ok(text.includes('Razorpay'), 'Privacy PDF must include Razorpay gateway disclosures');
+      assert.ok(text.includes('localStorage'), 'Privacy PDF must include widget storage disclosures');
+    }
+  }
+});
+
 
 
 

@@ -1,598 +1,717 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import SeoHead from '../components/SeoHead';
-import { API_BASE_URL } from '../config/apiConfig';
+import TrustCenterShell from '../components/legal/TrustCenterShell';
+import IntegrationFlowExplorer from '../components/legal/IntegrationFlowExplorer';
+import PrivacyRequestForm from '../components/legal/PrivacyRequestForm';
+import {
+  LEGAL_META,
+  PLATFORM_DATA_INVENTORY,
+  PRIVACY_SECTIONS,
+  PRIVACY_SUMMARY_STRIP,
+  RETENTION_SCHEDULES,
+  TELEMETRY_PROVIDERS,
+} from '../config/legalDocumentsConfig';
 
-function PrivacyRequestForm() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    requestType: 'Data Access Request',
-    description: '',
-  });
-  const [honeypot, setHoneypot] = useState('');
-  const [resultData, setResultData] = useState(null);
-  const [errorMessage, setErrorMessage] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
+const SECTION_BY_ID = Object.fromEntries(
+  PRIVACY_SECTIONS.map((section) => [section.id, section])
+);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsLoading(true);
-    setErrorMessage(null);
-    setResultData(null);
-    
-    try {
-      const response = await fetch(`${API_BASE_URL}/api/public/privacy-requests`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-        },
-        body: JSON.stringify({
-          name: formData.name.trim(),
-          email: formData.email.trim(),
-          phone: formData.phone.trim() || undefined,
-          requestType: formData.requestType,
-          description: formData.description.trim(),
-          _hp_company: honeypot,
-        }),
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        setResultData(data);
-        setFormData({ name: '', email: '', phone: '', requestType: 'Data Access Request', description: '' });
-      } else {
-        setErrorMessage(data.error || 'Failed to submit privacy request. Please retry or email our Grievance Officer.');
-      }
-    } catch (error) {
-      console.error('Privacy request submission error:', error);
-      setErrorMessage('Network connection error. Please verify your connection or email our Grievance Officer directly.');
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
+function SectionHeading({ id }) {
+  const meta = SECTION_BY_ID[id];
   return (
-    <form onSubmit={handleSubmit} style={{
-      background: 'rgba(255, 255, 255, 0.02)',
-      padding: '2rem',
-      borderRadius: '8px',
-      border: '1px solid var(--border-color)',
-      marginTop: '1rem',
-      display: 'flex',
-      flexDirection: 'column',
-      gap: '1.25rem'
-    }}>
-      {/* Anti-spam honeypot */}
-      <input
-        type="text"
-        name="_hp_company"
-        value={honeypot}
-        onChange={(e) => setHoneypot(e.target.value)}
-        style={{ display: 'none' }}
-        tabIndex={-1}
-        autoComplete="off"
-      />
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-        <label style={{ fontWeight: '500', fontSize: '0.95rem', color: 'var(--text-primary)' }}>Full Name *</label>
-        <input
-          type="text"
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-          required
-          placeholder="Your full name"
-          style={{
-            padding: '0.75rem',
-            border: '1px solid var(--border-color)',
-            borderRadius: '6px',
-            backgroundColor: 'rgba(255, 255, 255, 0.05)',
-            color: 'var(--text-primary)',
-            fontSize: '1rem',
-            fontFamily: 'inherit'
-          }}
-        />
-      </div>
-
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-        <label style={{ fontWeight: '500', fontSize: '0.95rem', color: 'var(--text-primary)' }}>Email Address *</label>
-        <input
-          type="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-          required
-          placeholder="your.email@example.com"
-          style={{
-            padding: '0.75rem',
-            border: '1px solid var(--border-color)',
-            borderRadius: '6px',
-            backgroundColor: 'rgba(255, 255, 255, 0.05)',
-            color: 'var(--text-primary)',
-            fontSize: '1rem',
-            fontFamily: 'inherit'
-          }}
-        />
-      </div>
-
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-        <label style={{ fontWeight: '500', fontSize: '0.95rem', color: 'var(--text-primary)' }}>Phone Number</label>
-        <input
-          type="tel"
-          name="phone"
-          value={formData.phone}
-          onChange={handleChange}
-          placeholder="+91 XXXXXXXXXX"
-          style={{
-            padding: '0.75rem',
-            border: '1px solid var(--border-color)',
-            borderRadius: '6px',
-            backgroundColor: 'rgba(255, 255, 255, 0.05)',
-            color: 'var(--text-primary)',
-            fontSize: '1rem',
-            fontFamily: 'inherit'
-          }}
-        />
-      </div>
-
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-        <label style={{ fontWeight: '500', fontSize: '0.95rem', color: 'var(--text-primary)' }}>Request Type *</label>
-        <select
-          name="requestType"
-          value={formData.requestType}
-          onChange={handleChange}
-          required
-          style={{
-            padding: '0.75rem',
-            border: '1px solid var(--border-color)',
-            borderRadius: '6px',
-            backgroundColor: 'rgba(255, 255, 255, 0.05)',
-            color: 'var(--text-primary)',
-            fontSize: '1rem',
-            fontFamily: 'inherit',
-            cursor: 'pointer'
-          }}
-        >
-          <option value="Data Access Request">Data Access Request</option>
-          <option value="Data Deletion Request">Data Deletion Request</option>
-          <option value="Data Correction Request">Data Correction Request</option>
-          <option value="Privacy Complaint">Privacy Complaint</option>
-          <option value="Other">Other</option>
-        </select>
-      </div>
-
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-        <label style={{ fontWeight: '500', fontSize: '0.95rem', color: 'var(--text-primary)' }}>Request Details *</label>
-        <textarea
-          name="description"
-          value={formData.description}
-          onChange={handleChange}
-          required
-          placeholder="Please provide details about your request..."
-          rows="6"
-          style={{
-            padding: '0.75rem',
-            border: '1px solid var(--border-color)',
-            borderRadius: '6px',
-            backgroundColor: 'rgba(255, 255, 255, 0.05)',
-            color: 'var(--text-primary)',
-            fontSize: '1rem',
-            fontFamily: 'inherit',
-            resize: 'vertical'
-          }}
-        />
-      </div>
-
-      <button
-        type="submit"
-        disabled={isLoading}
-        style={{
-          padding: '0.875rem 1.5rem',
-          backgroundColor: isLoading ? 'var(--border-color)' : 'var(--primary-color)',
-          color: '#fff',
-          border: 'none',
-          borderRadius: '6px',
-          fontSize: '1rem',
-          fontWeight: '600',
-          cursor: isLoading ? 'not-allowed' : 'pointer',
-          transition: 'all 0.2s ease',
-          opacity: isLoading ? 0.7 : 1
-        }}
-      >
-        {isLoading ? 'Submitting...' : 'Submit Request'}
-      </button>
-
-      {errorMessage && (
-        <div style={{
-          padding: '1rem',
-          backgroundColor: 'rgba(239, 68, 68, 0.1)',
-          border: '1px solid rgba(239, 68, 68, 0.3)',
-          borderRadius: '6px',
-          color: '#ef4444',
-          fontSize: '0.92rem'
-        }}>
-          ⚠️ {errorMessage}
-        </div>
-      )}
-
-      {resultData && (
-        <div style={{
-          padding: '1.25rem',
-          backgroundColor: 'rgba(16, 185, 129, 0.08)',
-          border: '1px solid rgba(16, 185, 129, 0.35)',
-          borderRadius: '8px',
-          color: '#10b981',
-          fontSize: '0.95rem',
-          lineHeight: '1.6'
-        }}>
-          <p style={{ fontWeight: '700', margin: '0 0 0.5rem 0', color: '#10b981', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            ✓ Statutory Privacy Request Registered (DPDP Act, 2023)
-          </p>
-          <p style={{ color: 'var(--text-primary)', margin: '0 0 0.5rem 0' }}>
-            <strong>Official Reference Ticket:</strong> <code style={{ background: 'rgba(0,0,0,0.3)', padding: '3px 8px', borderRadius: '4px', color: 'var(--primary-color)', fontWeight: 'bold' }}>{resultData.ticketId}</code>
-          </p>
-          <p style={{ color: 'var(--text-secondary)', margin: '0 0 0.5rem 0', fontSize: '0.88rem' }}>
-            {resultData.message}
-          </p>
-          {resultData.slaResolutionDueAt && (
-            <p style={{ color: 'var(--text-muted)', fontSize: '0.82rem', margin: 0 }}>
-              Statutory Resolution Due Date: <strong>{new Date(resultData.slaResolutionDueAt).toLocaleDateString('en-IN', { year: 'numeric', month: 'long', day: 'numeric' })}</strong> (within 15 business days). Please keep your ticket reference for all future communication.
-            </p>
-          )}
-        </div>
-      )}
-    </form>
+    <div className="trust-ed-section-header">
+      <span className="trust-ed-section-num">Chapter {meta.number}</span>
+      <h2 className="trust-ed-h2">{meta.title}</h2>
+    </div>
   );
 }
 
 export default function PolicyPage() {
-  const [activeSection, setActiveSection] = useState('data');
-  
-  useEffect(() => { 
-    window.scrollTo(0, 0); 
-  }, []);
-
-  const scrollTo = (id) => {
-    const element = document.getElementById(id);
-    if (element) {
-      const offset = 100;
-      const bodyRect = document.body.getBoundingClientRect().top;
-      const elementRect = element.getBoundingClientRect().top;
-      const elementPosition = elementRect - bodyRect;
-      const offsetPosition = elementPosition - offset;
-      
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-      setActiveSection(id);
-    }
-  };
-
   const privacyWebPageSchema = {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": "Privacy Policy | Gyan VaniAi",
-    "url": "https://www.gyanvaniai.com/privacy",
-    "description": "Privacy Policy and Data Handling practices for Gyan VaniAi.",
-    "publisher": {
-      "@id": "https://www.gyanvaniai.com/#organization"
-    }
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: 'Privacy Policy | Gyan VaniAi',
+    url: 'https://www.gyanvaniai.com/privacy',
+    dateModified: '2026-06-14',
+    description:
+      'Privacy Policy, platform data inventory, connected integration disclosures, and Data Subject Request portal for Gyan VaniAi Technologies.',
+    publisher: {
+      '@id': 'https://www.gyanvaniai.com/#organization',
+    },
   };
+
+  const officer = LEGAL_META.grievanceOfficer;
 
   return (
-    <div style={{ minHeight: '100vh' }}>
+    <>
       <SeoHead
         title="Privacy Policy | Gyan VaniAi"
-        description="Privacy Policy and Data Handling practices for Gyan VaniAi."
+        description="Privacy Policy, verified platform data inventory, Google Workspace & Meta WhatsApp disclosures, and live DPDP/GDPR privacy request portal for Gyan VaniAi."
         canonical="https://www.gyanvaniai.com/privacy"
-        preloadImage="/privacy_image.webp"
         schema={privacyWebPageSchema}
       />
-      <div className="legal-hero">
-        <div className="container legal-hero-content">
-          <img src="/privacy_image.webp" alt="" width="400" height="400" className="legal-hero-img" fetchPriority="high" decoding="sync" />
-          <div>
-            <h1 className="h1">Privacy Policy</h1>
-            <p className="text-lg text-muted" style={{ marginTop: '0.5rem' }}>Effective Date: June 14, 2026</p>
-          </div>
-        </div>
-      </div>
-      
-      <div className="legal-container">
-        <aside className="legal-sidebar">
-          <h4 className="h4" style={{ marginBottom: '1.5rem' }}>Table of Contents</h4>
-          <a href="#role" className={`legal-nav-link ${activeSection === 'role' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('role'); }}>1. Who We Are &amp; Our Role</a>
-          <a href="#data" className={`legal-nav-link ${activeSection === 'data' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('data'); }}>2. What We Collect &amp; AI Training</a>
-          <a href="#cookie-consent-data" className={`legal-nav-link ${activeSection === 'cookie-consent-data' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('cookie-consent-data'); }}>3. Cookies &amp; Consent Audit Records</a>
-          <a href="#consent" className={`legal-nav-link ${activeSection === 'consent' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('consent'); }}>4. Consent &amp; Withdrawal</a>
-          <a href="#whatsapp" className={`legal-nav-link ${activeSection === 'whatsapp' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('whatsapp'); }}>5. WhatsApp &amp; Communications</a>
-          <a href="#thirdparty" className={`legal-nav-link ${activeSection === 'thirdparty' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('thirdparty'); }}>6. Sub-Processors &amp; Cross-Border Transfers</a>
-          <a href="#retention" className={`legal-nav-link ${activeSection === 'retention' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('retention'); }}>7. Data Retention Schedules</a>
-          <a href="#security" className={`legal-nav-link ${activeSection === 'security' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('security'); }}>8. Security &amp; Breach Intimation</a>
-          <a href="#children" className={`legal-nav-link ${activeSection === 'children' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('children'); }}>9. Children's Data Protection (§9)</a>
-          <a href="#rights" className={`legal-nav-link ${activeSection === 'rights' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('rights'); }}>10. Your Data Principal Rights</a>
-          <a href="#privacy-contact" className={`legal-nav-link ${activeSection === 'privacy-contact' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('privacy-contact'); }}>11. Designated Grievance Officer</a>
-          <a href="#changes" className={`legal-nav-link ${activeSection === 'changes' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('changes'); }}>12. Policy Changes &amp; DSR Form</a>
-        </aside>
-        
-        <div className="legal-content glass-panel" style={{ padding: '3rem', borderRadius: 'var(--radius-lg)' }}>
-          
-          <div style={{ padding: '1rem 1.25rem', background: 'rgba(16, 185, 129, 0.08)', border: '1px solid rgba(16, 185, 129, 0.25)', borderRadius: '8px', marginBottom: '2rem' }}>
-            <p style={{ margin: 0, fontSize: '0.92rem', color: 'var(--text-primary)', lineHeight: '1.6' }}>
-              <strong>Statutory Compliance Statement:</strong> This Privacy Policy explains how Gyan VaniAi Technologies handles personal data under India's <strong>Digital Personal Data Protection Act, 2023 (DPDP Act)</strong>, the <strong>DPDP Rules, 2025</strong>, and the <strong>Information Technology Act, 2000</strong>. This notice is available in English and Hindi, and is accessible in any of the 22 languages specified in the Eighth Schedule of the Constitution of India upon written request to our Grievance Officer.
-            </p>
-          </div>
 
-          <section id="role" className="legal-section">
-            <h2 className="h2">1. Who We Are &amp; Our Dual Role</h2>
-            <p className="text-muted">Gyan VaniAi Technologies operates under two distinct legal capacities under the DPDP Act, 2023:</p>
-            <ul className="text-muted" style={{ paddingLeft: '1.5rem', margin: '1rem 0', display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
-              <li><strong>As a Data Fiduciary:</strong> For visitors accessing our public website, requesting demo consultations, interacting with our cookie preferences banner, and subscribing to our newsletters, we determine the purpose and means of data processing.</li>
-              <li><strong>As a Data Processor:</strong> When enterprise business clients utilize our CRM platform, WhatsApp chatbots, AI voice calling infrastructure, and live agent queues to interact with their own end-customers, the business client acts as the Data Fiduciary. Gyan VaniAi processes such data strictly upon verified fiduciary instructions. End-users of our business clients should direct data access, correction, or erasure requests to the respective business first; we assist our clients in routing and fulfilling verified requests under statutory timelines.</li>
-            </ul>
-          </section>
+      <TrustCenterShell
+        activeDocId="privacy"
+        kicker="Gyan VaniAi Trust Center · Legal & Data Governance"
+        title="Privacy Policy"
+        deck="How Gyan VaniAi Technologies collects, processes, protects, and deletes personal data across our website, enterprise AI CRM workspaces, omnichannel messaging, voice workflows, and connected third-party integrations."
+        summaryStrip={PRIVACY_SUMMARY_STRIP}
+        sections={PRIVACY_SECTIONS}
+        quickActions={[
+          {
+            label: 'Submit Privacy Request',
+            href: '#privacy-contact',
+            sectionId: 'grievance-dsr',
+          },
+          {
+            label: 'Read Terms of Service',
+            to: '/terms',
+          },
+        ]}
+      >
+        {({ matchedIds, hasActiveSearch, jumpTo }) => {
+          const isVisible = (id) => !hasActiveSearch || matchedIds.has(id);
 
-          <section id="data" className="legal-section">
-            <h2 className="h2">2. What We Collect, Purpose Specification &amp; AI Training</h2>
-            <div style={{ overflowX: 'auto', margin: '1rem 0' }}>
-              <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.9rem', textAlign: 'left' }}>
-                <thead>
-                  <tr style={{ borderBottom: '1px solid var(--border-color)', color: 'var(--text-primary)' }}>
-                    <th style={{ padding: '0.75rem 0.5rem' }}>Data Category</th>
-                    <th style={{ padding: '0.75rem 0.5rem' }}>Specified Purpose</th>
-                    <th style={{ padding: '0.75rem 0.5rem' }}>Lawful Basis</th>
-                  </tr>
-                </thead>
-                <tbody style={{ color: 'var(--text-muted)' }}>
-                  <tr style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.05)' }}>
-                    <td style={{ padding: '0.75rem 0.5rem' }}><strong>Contact &amp; Account Details:</strong> Name, work email, phone number, organization name.</td>
-                    <td style={{ padding: '0.75rem 0.5rem' }}>Evaluate requirements, schedule architectural demos, provision CRM accounts, and provide requested customer support.</td>
-                    <td style={{ padding: '0.75rem 0.5rem' }}>Verifiable Consent (DPDP Act §6)</td>
-                  </tr>
-                  <tr style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.05)' }}>
-                    <td style={{ padding: '0.75rem 0.5rem' }}><strong>Agent Interaction Logs:</strong> Messages and workflow inputs with our automated agents.</td>
-                    <td style={{ padding: '0.75rem 0.5rem' }}>Deliver conversational responses, route inquiries, and facilitate human agent handoffs.</td>
-                    <td style={{ padding: '0.75rem 0.5rem' }}>Verifiable Consent (DPDP Act §6)</td>
-                  </tr>
-                  <tr style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.05)' }}>
-                    <td style={{ padding: '0.75rem 0.5rem' }}><strong>Technical Metadata:</strong> IP address, response latency, HTTP status codes, browser headers.</td>
-                    <td style={{ padding: '0.75rem 0.5rem' }}>Protect platform security, prevent brute-force attacks, and maintain service stability.</td>
-                    <td style={{ padding: '0.75rem 0.5rem' }}>Legitimate Use &amp; Reasonable Security Safeguards (DPDP Act §7 / §8(5))</td>
-                  </tr>
-                  <tr style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.05)' }}>
-                    <td style={{ padding: '0.75rem 0.5rem' }}><strong>Consent Audit Records:</strong> Selected preferences, IP, timestamp, geolocation.</td>
-                    <td style={{ padding: '0.75rem 0.5rem' }}>Maintain legally verifiable audit evidence of consent actions.</td>
-                    <td style={{ padding: '0.75rem 0.5rem' }}>Statutory Obligation (DPDP Act §6 &amp; §8)</td>
-                  </tr>
-                  <tr>
-                    <td style={{ padding: '0.75rem 0.5rem' }}><strong>Marketing Preferences:</strong> WhatsApp and email newsletter opt-in flags.</td>
-                    <td style={{ padding: '0.75rem 0.5rem' }}>Send product updates and engineering playbooks only where explicitly requested.</td>
-                    <td style={{ padding: '0.75rem 0.5rem' }}>Separate Affirmative Consent</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+          return (
+            <>
+              <div className="trust-ed-notice-box">
+                <p className="trust-ed-notice-title">
+                  Statutory Compliance Notice
+                </p>
+                <p className="trust-ed-notice-text">
+                  This Privacy Policy explains how{' '}
+                  <strong>{LEGAL_META.legalEntity}</strong> handles personal
+                  information when you visit{' '}
+                  <strong>{LEGAL_META.websiteUrl}</strong>, operate a Gyan
+                  VaniAi workspace, or interact with a business using Gyan
+                  VaniAi. It aligns with India&apos;s{' '}
+                  <strong>
+                    Digital Personal Data Protection Act, 2023 (DPDP Act)
+                  </strong>{' '}
+                  (subject to notified statutory phase-in schedules), the{' '}
+                  <strong>DPDP Rules, 2025</strong>, the{' '}
+                  <strong>Information Technology Act, 2000</strong>, and
+                  applicable international privacy frameworks including the{' '}
+                  <strong>EU/UK GDPR</strong>. Upon written request to our
+                  Grievance Officer, this notice can be made available in Hindi
+                  or any of the 22 languages specified in the Eighth Schedule of
+                  the Constitution of India.
+                </p>
+              </div>
 
-            <div style={{ background: 'rgba(255, 255, 255, 0.03)', padding: '1.25rem', borderRadius: '8px', border: '1px solid var(--border-color)', marginTop: '1.25rem' }}>
-              <h3 className="h3" style={{ fontSize: '1.1rem', margin: '0 0 0.5rem 0', color: 'var(--text-primary)' }}>
-                🛡️ AI Models &amp; Training Commitment
-              </h3>
-              <p className="text-muted" style={{ margin: 0, fontSize: '0.92rem', lineHeight: '1.6' }}>
-                <strong>We do NOT use your personal data, confidential business workflows, or conversation logs to train, retrain, or fine-tune public foundation AI models (e.g. OpenAI, Claude, or Google Gemini).</strong> All AI agent integrations operate through zero-data-retention API endpoints or dedicated enterprise retrieval pipelines (RAG) that interrogate only your authorized organizational knowledge base.
-              </p>
-            </div>
-          </section>
+              {isVisible('role') && (
+                <section id="role" className="trust-ed-section">
+                  <SectionHeading id="role" />
+                  <p className="trust-ed-prose">
+                    <strong>{LEGAL_META.legalEntity}</strong> operates in{' '}
+                    <strong>{LEGAL_META.operatingModel}</strong>, serving
+                    businesses across India and globally without walk-in
+                    physical offices. All legal, privacy, and support
+                    correspondence is handled electronically. Because businesses
+                    deploy Gyan VaniAi to manage their own customer enquiries,
+                    bookings, conversations, and orders, our legal role depends
+                    on the processing context:
+                  </p>
 
-          <section id="cookie-consent-data" className="legal-section">
-            <h2 className="h2">3. Cookies &amp; Consent Audit Records</h2>
-            <p className="text-muted">When you interact with our cookie consent banner (Accept All, Reject All, Essential Only, or Manage Preferences), we automatically record an immutable audit log consisting of:</p>
-            <ul className="text-muted" style={{ paddingLeft: '1.5rem', margin: '1rem 0', display: 'flex', flexDirection: 'column', gap: '0.45rem' }}>
-              <li><strong>IP Address &amp; Approximate Location:</strong> Public IP and city/region/country derived at the moment of your consent decision.</li>
-              <li><strong>Browser &amp; Device Environment:</strong> Browser type, operating system, and language preferences.</li>
-              <li><strong>Consent Decisions:</strong> Explicit status (accepted, rejected, or customized category choices across functional, analytics, session replay, and marketing).</li>
-              <li><strong>Referrer URL &amp; Timestamp:</strong> The exact URL visited and the UTC timestamp of the consent decision.</li>
-            </ul>
-            <p className="text-muted"><strong>Purpose &amp; Non-Profiling:</strong> Consent audit logs are maintained solely to establish statutory compliance under Section 6 of the DPDP Act, 2023 and GDPR Article 7(1). This data is never used for advertising, behavioural profiling, or commercial resale.</p>
-            <p className="text-muted"><strong>Retention:</strong> Consent audit records are retained for exactly <strong>12 months</strong> (31,536,000 seconds) via automated database TTL index schedules, after which they are permanently expunged.</p>
+                  <div className="trust-ed-role-grid">
+                    <div className="trust-ed-surface-panel">
+                      <p className="trust-ed-panel-label">
+                        Platform &amp; Website Operations
+                      </p>
+                      <h3 className="trust-ed-panel-title">
+                        As a Data Fiduciary (Controller)
+                      </h3>
+                      <p className="trust-ed-panel-body">
+                        We determine the purpose and means of processing for
+                        visitors browsing <strong>gyanvaniai.com</strong>,
+                        demo enquiries, workspace account administration,
+                        subscription billing, platform security, fraud
+                        prevention, cookie preferences, and direct support
+                        tickets.
+                      </p>
+                    </div>
 
-            <h3 className="h3" style={{ fontSize: '1.15rem', marginTop: '1.75rem', marginBottom: '0.75rem' }}>3.1 Telemetry, Measurement &amp; Analytics Framework</h3>
-            <p className="text-muted">To maintain infrastructure reliability and understand technical performance without compromising individual privacy, our site uses the following tiered telemetry framework:</p>
+                    <div className="trust-ed-surface-panel">
+                      <p className="trust-ed-panel-label">
+                        Tenant Customer Records
+                      </p>
+                      <h3 className="trust-ed-panel-title">
+                        As a Data Processor
+                      </h3>
+                      <p className="trust-ed-panel-body">
+                        When a business workspace uses Gyan VaniAi CRM,
+                        WhatsApp, Telegram, web chat, voice agents, or commerce
+                        tools to serve its own end-customers, that business acts
+                        as the Data Fiduciary and its privacy notice governs its
+                        purposes and choices. We process those records strictly
+                        on documented business instructions and assist in
+                        routing verified end-user requests.
+                      </p>
+                    </div>
+                  </div>
+                </section>
+              )}
 
-            <div style={{ overflowX: 'auto', margin: '1rem 0' }}>
-              <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.88rem', textAlign: 'left' }}>
-                <thead>
-                  <tr style={{ borderBottom: '1px solid var(--border-color)', color: 'var(--text-primary)' }}>
-                    <th style={{ padding: '0.75rem 0.5rem' }}>Provider &amp; Tool</th>
-                    <th style={{ padding: '0.75rem 0.5rem' }}>Data Collected &amp; Flow</th>
-                    <th style={{ padding: '0.75rem 0.5rem' }}>ePrivacy / Device Storage</th>
-                    <th style={{ padding: '0.75rem 0.5rem' }}>Lawful Basis</th>
-                    <th style={{ padding: '0.75rem 0.5rem' }}>Consent &amp; Revocation</th>
-                  </tr>
-                </thead>
-                <tbody style={{ color: 'var(--text-muted)' }}>
-                  <tr style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.05)' }}>
-                    <td style={{ padding: '0.75rem 0.5rem' }}><strong>Vercel Web Analytics</strong></td>
-                    <td style={{ padding: '0.75rem 0.5rem' }}>Aggregate page paths, device operating system, browser family. Strict pathname-only URL sanitization (query parameters stripped).</td>
-                    <td style={{ padding: '0.75rem 0.5rem' }}>Cookieless; uses 24h rotating request-derived hash. No client-side storage.</td>
-                    <td style={{ padding: '0.75rem 0.5rem' }}>Legitimate Interest (Aggregate operational metrics).</td>
-                    <td style={{ padding: '0.75rem 0.5rem' }}>Operational telemetry; opt-out honored via browser privacy signals.</td>
-                  </tr>
-                  <tr style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.05)' }}>
-                    <td style={{ padding: '0.75rem 0.5rem' }}><strong>Cloudflare Web Analytics</strong></td>
-                    <td style={{ padding: '0.75rem 0.5rem' }}>Aggregate browser performance timings (LCP, FID/INP, CLS) and HTTP response telemetry.</td>
-                    <td style={{ padding: '0.75rem 0.5rem' }}>Cookieless beacon reading browser Performance APIs. Zero persistent identifiers.</td>
-                    <td style={{ padding: '0.75rem 0.5rem' }}>Legitimate Interest (Service availability &amp; latency monitoring).</td>
-                    <td style={{ padding: '0.75rem 0.5rem' }}>Non-profiling telemetry; honors Global Privacy Control (GPC).</td>
-                  </tr>
-                  <tr style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.05)' }}>
-                    <td style={{ padding: '0.75rem 0.5rem' }}><strong>Google Analytics 4 (GA4)</strong></td>
-                    <td style={{ padding: '0.75rem 0.5rem' }}>Page navigation metrics. In default state, transmits cookieless pings without cookies. Full session metrics only on consent.</td>
-                    <td style={{ padding: '0.75rem 0.5rem' }}>Default: Cookieless.<br />Consented: <code>_ga</code> cookies (up to 14 months).</td>
-                    <td style={{ padding: '0.75rem 0.5rem' }}>Google Consent Mode v2 (Default: Denied; Consented: Affirmative Opt-In).</td>
-                    <td style={{ padding: '0.75rem 0.5rem' }}>Dynamically managed via Cookie Preferences. Withdrawal updates state to <code>denied</code>.</td>
-                  </tr>
-                  <tr style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.05)' }}>
-                    <td style={{ padding: '0.75rem 0.5rem' }}><strong>Microsoft Clarity</strong></td>
-                    <td style={{ padding: '0.75rem 0.5rem' }}>Interaction trajectories, mouse movements, scroll depth, click heatmaps for UX debugging. Sensitive text inputs automatically masked.</td>
-                    <td style={{ padding: '0.75rem 0.5rem' }}>Device storage: <code>_clck</code> (1yr), <code>_clsk</code> (24h).</td>
-                    <td style={{ padding: '0.75rem 0.5rem' }}>Consent — GDPR Art.6(1)(a) &amp; ePrivacy Art.5(3).</td>
-                    <td style={{ padding: '0.75rem 0.5rem' }}>Strictly gated behind affirmative Session Replay consent. Revocation immediately dispatches <code>clarity("consent", false)</code>.</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </section>
+              {isVisible('inventory') && (
+                <section id="inventory" className="trust-ed-section">
+                  <SectionHeading id="inventory" />
+                  <p className="trust-ed-prose">
+                    Actual personal data collected depends on the forms
+                    submitted, workspace configuration, and enabled
+                    integrations. Below is the verified inventory of data
+                    categories supported by the Gyan VaniAi platform and bundled
+                    web chat widget:
+                  </p>
 
-          <section id="consent" className="legal-section">
-            <h2 className="h2">4. Consent &amp; Ease of Withdrawal (§6(4))</h2>
-            <p className="text-muted">Where processing relies on consent, consent is obtained through clear affirmative action (such as an unticked checkbox). Consent is never bundled with access to unrelated services.</p>
-            <p className="text-muted"><strong>Ease of Withdrawal:</strong> Under Section 6(4) of the DPDP Act, 2023, you hold the absolute right to withdraw consent as easily as it was given. You may revoke consent at any time by:</p>
-            <ul className="text-muted" style={{ paddingLeft: '1.5rem', margin: '0.75rem 0', display: 'flex', flexDirection: 'column', gap: '0.45rem' }}>
-              <li>Clicking the <strong>"Manage Cookies"</strong> link in our website footer.</li>
-              <li>Replying <strong>STOP</strong> or <strong>UNSUBSCRIBE</strong> to any WhatsApp or SMS message.</li>
-              <li>Submitting our interactive <a href="#privacy-contact" style={{ color: 'var(--primary-color)' }}>Data Subject Rights Form</a> below.</li>
-              <li>Directly emailing our Grievance Officer at <a href="mailto:contact@gyanvaniai.com" style={{ color: 'var(--primary-color)' }}>contact@gyanvaniai.com</a>.</li>
-            </ul>
-            <p className="text-muted">Upon receiving your withdrawal, we cease processing your personal data within <strong>7 business days</strong>, unless statutory retention is required under applicable law (such as tax records or active dispute resolution).</p>
-          </section>
+                  {PLATFORM_DATA_INVENTORY.map((group) => (
+                    <div key={group.group}>
+                      <h3 className="trust-ed-h3">{group.group}</h3>
+                      <div className="trust-ed-table-wrap">
+                        <table className="trust-ed-table">
+                          <thead>
+                            <tr>
+                              <th>Data Category</th>
+                              <th>Fields &amp; Scope</th>
+                              <th>Purpose &amp; Lawful Basis</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {group.rows.map((row) => (
+                              <tr key={row.category}>
+                                <td>
+                                  <strong>{row.category}</strong>
+                                </td>
+                                <td>{row.fields}</td>
+                                <td>
+                                  <div>{row.purpose}</div>
+                                  <div className="trust-ed-basis-line">
+                                    <strong>Basis:</strong> {row.basis}
+                                  </div>
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  ))}
 
-          <section id="whatsapp" className="legal-section">
-            <h2 className="h2">5. WhatsApp &amp; Communications Consent</h2>
-            <p className="text-muted">We maintain a strict zero-spam communications policy in adherence to Meta WhatsApp Business Messaging Policies and TRAI regulations (TCCCPR 2018):</p>
-            <ul className="text-muted" style={{ paddingLeft: '1.5rem', margin: '1rem 0', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-              <li><strong>Transactional Messages:</strong> Appointment reminders, demo links, and service confirmations requested by you are delivered to fulfill your explicit inquiry.</li>
-              <li><strong>Marketing &amp; Playbooks:</strong> Outbound educational or marketing updates are delivered ONLY where you have provided separate, affirmative opt-in consent. Simply submitting a phone number does not opt you into marketing.</li>
-              <li><strong>Instant Opt-Out:</strong> Any recipient can instantly terminate messaging by replying <code>STOP</code>, <code>CANCEL</code>, or <code>UNSUBSCRIBE</code>.</li>
-            </ul>
-          </section>
+                  <div className="trust-ed-surface-panel">
+                    <p className="trust-ed-panel-label">
+                      AI &amp; Model Training Commitment
+                    </p>
+                    <h3 className="trust-ed-panel-title">
+                      Zero Public Foundation Model Training on Customer Data
+                    </h3>
+                    <p className="trust-ed-panel-body">
+                      We do <strong>not</strong> use your personal information,
+                      business workflows, voice transcripts, or customer
+                      conversations to train, retrain, or fine-tune public
+                      foundation AI models. AI and retrieval-augmented
+                      generation (RAG) workflows operate strictly inside
+                      tenant-isolated vector indexes and enterprise API
+                      endpoints configured for your workspace.
+                    </p>
+                  </div>
+                </section>
+              )}
 
-          <section id="thirdparty" className="legal-section">
-            <h2 className="h2">6. Sub-Processors &amp; Cross-Border Data Transfers (§16)</h2>
-            <p className="text-muted">We never sell, rent, or trade personal data. Data is shared only with vetted sub-processors under binding contractual agreements ensuring equivalent technical security safeguards:</p>
-            <ul className="text-muted" style={{ paddingLeft: '1.5rem', margin: '1rem 0', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-              <li><strong>Meta Platforms, Inc.:</strong> Routes official WhatsApp Cloud API messages, subject to Meta Platform Policies.</li>
-              <li><strong>Amazon Web Services (AWS) &amp; Google Cloud:</strong> Secure cloud database hosting, serverless functions, and encrypted document storage.</li>
-              <li><strong>Cloudflare:</strong> CDN edge caching, DDoS mitigation, and SSL/TLS 1.3 encryption.</li>
-              <li><strong>ipapi.co:</strong> Anonymized IP-to-country geolocation verification for statutory consent auditing.</li>
-              <li><strong>Vercel Inc.:</strong> Serverless infrastructure hosting and cookieless aggregate web analytics.</li>
-              <li><strong>Google LLC:</strong> Web measurement via Google Analytics with Google Consent Mode v2.</li>
-              <li><strong>Microsoft Corporation:</strong> User experience and session replay diagnostics via Microsoft Clarity (only upon explicit affirmative consent).</li>
-            </ul>
-            <h3 className="h3" style={{ fontSize: '1.15rem', marginTop: '1.25rem', marginBottom: '0.5rem' }}>Cross-Border Transfers under DPDP Act §16</h3>
-            <p className="text-muted">Where data is transferred outside the territory of India for cloud computation, such transfer adheres strictly to Section 16 of the DPDP Act, 2023. Data is never transferred to any territory or nation restricted or blacklisted by the Central Government of India.</p>
-          </section>
+              {isVisible('integrations') && (
+                <section id="integrations" className="trust-ed-section">
+                  <SectionHeading id="integrations" />
+                  <p className="trust-ed-prose">
+                    Workspaces may connect optional third-party services to
+                    synchronize calendars, messaging, spreadsheets, or payment
+                    checkout flows. Select a category below to inspect exact
+                    data fields, permissions, reconciliation storage, and
+                    disconnection rights:
+                  </p>
 
-          <section id="retention" className="legal-section">
-            <h2 className="h2">7. Data Retention &amp; Purpose-Exhaustion Erasure (§8(7))</h2>
-            <p className="text-muted">In accordance with Section 8(7) of the DPDP Act, 2023, personal data is retained only for the duration necessary to satisfy the purpose for which it was collected:</p>
-            <div style={{ overflowX: 'auto', margin: '1rem 0' }}>
-              <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.9rem', textAlign: 'left' }}>
-                <thead>
-                  <tr style={{ borderBottom: '1px solid var(--border-color)', color: 'var(--text-primary)' }}>
-                    <th style={{ padding: '0.75rem 0.5rem' }}>Data Classification</th>
-                    <th style={{ padding: '0.75rem 0.5rem' }}>Retention Period</th>
-                    <th style={{ padding: '0.75rem 0.5rem' }}>Post-Retention Action</th>
-                  </tr>
-                </thead>
-                <tbody style={{ color: 'var(--text-muted)' }}>
-                  <tr style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.05)' }}>
-                    <td style={{ padding: '0.75rem 0.5rem' }}>Demo / Commercial Inquiries</td>
-                    <td style={{ padding: '0.75rem 0.5rem' }}>Maximum 24 months from last correspondence</td>
-                    <td style={{ padding: '0.75rem 0.5rem' }}>Cryptographically anonymized / erased</td>
-                  </tr>
-                  <tr style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.05)' }}>
-                    <td style={{ padding: '0.75rem 0.5rem' }}>Unconfirmed Newsletter Leads</td>
-                    <td style={{ padding: '0.75rem 0.5rem' }}>30 days from sign-up trigger</td>
-                    <td style={{ padding: '0.75rem 0.5rem' }}>Permanently deleted</td>
-                  </tr>
-                  <tr style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.05)' }}>
-                    <td style={{ padding: '0.75rem 0.5rem' }}>Cookie Consent Audit Logs</td>
-                    <td style={{ padding: '0.75rem 0.5rem' }}>12 months (365 days)</td>
-                    <td style={{ padding: '0.75rem 0.5rem' }}>Automated TTL database purge</td>
-                  </tr>
-                  <tr>
-                    <td style={{ padding: '0.75rem 0.5rem' }}>Security &amp; Forensic Audit Trails</td>
-                    <td style={{ padding: '0.75rem 0.5rem' }}>12 months minimum (CERT-In mandate)</td>
-                    <td style={{ padding: '0.75rem 0.5rem' }}>Immutable append-only storage</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </section>
+                  <IntegrationFlowExplorer />
+                </section>
+              )}
 
-          <section id="security" className="legal-section">
-            <h2 className="h2">8. Security Safeguards &amp; Incident Intimation (§8(5), §8(6))</h2>
-            <p className="text-muted">We enforce reasonable security safeguards in accordance with Section 8(5) of the DPDP Act, 2023:</p>
-            <ul className="text-muted" style={{ paddingLeft: '1.5rem', margin: '1rem 0', display: 'flex', flexDirection: 'column', gap: '0.45rem' }}>
-              <li><strong>Encryption:</strong> TLS 1.3 encryption for all data in transit; AES-256 / KMS encryption for sensitive credentials and tokens at rest.</li>
-              <li><strong>PII Masking &amp; Hashing:</strong> Passwords and API tokens are cryptographically salted and hashed. Sensitive personal credentials are automatically redacted from logs.</li>
-              <li><strong>Role-Based Access Control (RBAC):</strong> Strict principle-of-least-privilege access for administrative consoles, protected by multi-factor authentication.</li>
-              <li><strong>Tamper-Resistant Auditing:</strong> Security audit logs reject modification (HTTP 405 Method Not Allowed) to preserve forensic integrity.</li>
-            </ul>
-            <h3 className="h3" style={{ fontSize: '1.15rem', marginTop: '1.25rem', marginBottom: '0.5rem' }}>Breach Notification Protocol</h3>
-            <p className="text-muted">In the event of a verified personal data breach, Gyan VaniAi will intimate the Data Protection Board of India and each affected Data Principal in the form and manner prescribed under Section 8(6) of the DPDP Act. In addition, critical cybersecurity incidents are reported to CERT-In within 6 hours pursuant to CERT-In Directions (2022).</p>
-          </section>
+              {isVisible('cookies-telemetry') && (
+                <section id="cookies-telemetry" className="trust-ed-section">
+                  <span id="cookie-consent-data" aria-hidden="true" />
+                  <SectionHeading id="cookies-telemetry" />
+                  <p className="trust-ed-prose">
+                    When you interact with our website cookie banner (Accept
+                    All, Reject All, Essential Only, or Manage Preferences), we
+                    record an immutable consent audit log to establish statutory
+                    proof of consent under DPDP Act §6 and GDPR Article 7(1):
+                  </p>
+                  <ul className="trust-ed-list">
+                    <li>
+                      <strong>Network &amp; Approximate Geolocation:</strong>{' '}
+                      Public IP address and derived city, region, and country at
+                      the time of your selection.
+                    </li>
+                    <li>
+                      <strong>Browser Environment:</strong> Browser family,
+                      operating system, and language preference.
+                    </li>
+                    <li>
+                      <strong>Explicit Category Choices:</strong> Accepted,
+                      rejected, or customized selections across functional,
+                      analytics, session replay, and marketing categories,
+                      together with the page URL and UTC timestamp.
+                    </li>
+                    <li>
+                      <strong>Non-Profiling &amp; 12-Month TTL:</strong> Consent
+                      audit logs are never used for advertising or profiling and
+                      are automatically purged after{' '}
+                      <strong className="trust-ed-tabular">
+                        12 months (31,536,000 seconds)
+                      </strong>
+                      .
+                    </li>
+                  </ul>
 
-          <section id="children" className="legal-section">
-            <h2 className="h2">9. Children's Data Protection (DPDP Act §9)</h2>
-            <p className="text-muted">Our enterprise CRM, AI bots, and software engineering services are strictly designed for businesses and professionals aged 18 and older. In compliance with Section 9 of the DPDP Act, 2023:</p>
-            <ul className="text-muted" style={{ paddingLeft: '1.5rem', margin: '1rem 0', display: 'flex', flexDirection: 'column', gap: '0.45rem' }}>
-              <li>We do not knowingly solicit, collect, or process personal data of individuals under the age of 18 without verifiable parental consent.</li>
-              <li>We strictly prohibit and refrain from undertaking <strong>tracking or behavioural monitoring</strong> of children (§9(2)).</li>
-              <li>We strictly refrain from directing <strong>targeted advertising</strong> to children (§9(3)).</li>
-            </ul>
-            <p className="text-muted">If you believe that a minor has provided personal data through our website forms, please contact our Grievance Officer immediately for expedited erasure.</p>
-          </section>
+                  <h3 className="trust-ed-h3">
+                    Website Telemetry &amp; Measurement Framework
+                  </h3>
+                  <div className="trust-ed-table-wrap">
+                    <table className="trust-ed-table">
+                      <thead>
+                        <tr>
+                          <th>Provider</th>
+                          <th>Data Collected</th>
+                          <th>Device Storage</th>
+                          <th>Lawful Basis &amp; Revocation</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {TELEMETRY_PROVIDERS.map((item) => (
+                          <tr key={item.provider}>
+                            <td>
+                              <strong>{item.provider}</strong>
+                            </td>
+                            <td>{item.dataFlow}</td>
+                            <td>{item.storage}</td>
+                            <td>
+                              <div>{item.basis}</div>
+                              <div>{item.revocation}</div>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </section>
+              )}
 
-          <section id="rights" className="legal-section">
-            <h2 className="h2">10. Your Statutory Data Principal Rights (§11–§14)</h2>
-            <p className="text-muted">As a Data Principal under Chapter III of the DPDP Act, 2023, you hold the following statutory rights:</p>
-            <ul className="text-muted" style={{ paddingLeft: '1.5rem', margin: '1rem 0', display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
-              <li><strong>Right to Access Information (§11):</strong> Request a summary of your personal data processed, details of processing activities, and the identities of all third parties with whom your data was shared.</li>
-              <li><strong>Right to Correction &amp; Updating (§12):</strong> Request correction of inaccurate or misleading data and completion of incomplete data.</li>
-              <li><strong>Right to Erasure (§12):</strong> Demand complete erasure of personal data that is no longer necessary for the specified purpose or upon withdrawal of consent.</li>
-              <li><strong>Right of Grievance Redressal (§13):</strong> Access readily available grievance redressal mechanisms with our designated officer.</li>
-              <li><strong>Right to Nominate (§14):</strong> Nominate another individual who shall, in the event of death or incapacity, exercise your data rights.</li>
-            </ul>
-            <p className="text-muted"><strong>Procedural SLAs:</strong> Statutory requests are acknowledged within 24 hours of ticket generation. Identity verification is conducted within 7 business days, and complete resolution is executed within <strong>15 business days</strong> (our organizational SLA aligned with draft DPDP Rules and IT Rules 2021).</p>
-          </section>
+              {isVisible('lawful-consent') && (
+                <section id="lawful-consent" className="trust-ed-section">
+                  <SectionHeading id="lawful-consent" />
+                  <p className="trust-ed-prose">
+                    Where processing relies on consent, we obtain it through an
+                    explicit, unbundled affirmative action—never via pre-ticked
+                    boxes. For direct platform services, we rely on contract
+                    performance for workspace delivery, legal obligation for
+                    invoicing and statutory audit trails, documented legitimate
+                    interests (under GDPR) and reasonable security safeguards
+                    (under DPDP §7 / §8(5)) for fraud prevention and platform
+                    security, and affirmative opt-in consent for optional
+                    analytics or marketing updates.
+                  </p>
+                  <h3 className="trust-ed-h3">
+                    Frictionless Consent Withdrawal (DPDP §6(4))
+                  </h3>
+                  <p className="trust-ed-prose">
+                    You may withdraw consent at any time as easily as it was
+                    granted:
+                  </p>
+                  <ul className="trust-ed-list">
+                    <li>
+                      Use the <strong>Manage Cookies</strong> control in our
+                      website footer to revoke optional analytics or session
+                      replay immediately.
+                    </li>
+                    <li>
+                      Reply <code className="trust-ed-code">STOP</code>,{' '}
+                      <code className="trust-ed-code">CANCEL</code>, or{' '}
+                      <code className="trust-ed-code">UNSUBSCRIBE</code> to any
+                      WhatsApp or SMS message, or visit{' '}
+                      <Link to="/unsubscribe" className="trust-ed-link">
+                        gyanvaniai.com/unsubscribe
+                      </Link>
+                      .
+                    </li>
+                    <li>
+                      Disconnect third-party OAuth integrations directly from
+                      Workspace Settings → Integrations or your provider
+                      security console.
+                    </li>
+                    <li>
+                      Submit a request via our{' '}
+                      <a
+                        href="#privacy-contact"
+                        onClick={(e) => jumpTo(e, 'grievance-dsr')}
+                      >
+                        live Data Subject Request Portal
+                      </a>{' '}
+                      below or email{' '}
+                      <a href={`mailto:${officer.email}`}>{officer.email}</a>.
+                    </li>
+                  </ul>
+                  <p className="trust-ed-prose">
+                    Upon verified withdrawal, we cease non-essential processing
+                    within{' '}
+                    <strong className="trust-ed-tabular">
+                      7 business days
+                    </strong>
+                    , except where retention is required by law or active
+                    dispute resolution.
+                  </p>
+                </section>
+              )}
 
-          <section id="privacy-contact" className="legal-section">
-            <h2 className="h2">11. Designated Grievance Redressal Officer</h2>
-            <p className="text-muted">In compliance with Section 5(2), Section 8(9), and Section 13 of the Digital Personal Data Protection Act, 2023, Gyan VaniAi has designated a dedicated Grievance Redressal Officer:</p>
-            <div style={{ background: 'rgba(255, 255, 255, 0.04)', padding: '1.5rem', borderRadius: '8px', border: '1px solid var(--border-color)', margin: '1rem 0' }}>
-              <p style={{ margin: '0 0 0.5rem 0', fontWeight: 'bold', fontSize: '1rem', color: 'var(--text-primary)' }}>Designated Grievance Redressal Officer Dossier:</p>
-              <ul className="text-muted" style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.45rem', fontSize: '0.92rem' }}>
-                <li><strong>Designated Officer:</strong> Himanshu Bharti</li>
-                <li><strong>Designation:</strong> Lead Privacy Compliance Officer &amp; Grievance Redressal Officer</li>
-                <li><strong>Entity:</strong> Gyan VaniAi Technologies</li>
-                <li><strong>Official Address:</strong> Dakbangla Chowk, Simri Bakhtiarpur, Bihar 852127, India</li>
-                <li><strong>Statutory Grievance Email:</strong> <a href="mailto:contact@gyanvaniai.com" style={{ color: 'var(--primary-color)', fontWeight: '600' }}>contact@gyanvaniai.com</a></li>
-                <li><strong>Statutory Compliance Telephone:</strong> <a href="tel:+918700620913" style={{ color: 'var(--primary-color)', fontWeight: '600' }}>+91 87006 20913</a> (Mon–Fri, 10:00–18:00 IST)</li>
-                <li><strong>Statutory Acknowledgment:</strong> Within 24 hours of ticket creation</li>
-                <li><strong>Target Resolution SLA:</strong> 15 business days (Maximum 30 days for complex erasures)</li>
-              </ul>
-            </div>
-          </section>
+              {isVisible('subprocessors') && (
+                <section id="subprocessors" className="trust-ed-section">
+                  <SectionHeading id="subprocessors" />
+                  <p className="trust-ed-prose">
+                    Gyan VaniAi never sells, rents, or trades personal data. We
+                    disclose data only to authorized workspace staff, vetted
+                    infrastructure and feature providers bound by written data
+                    processing commitments, or authorities where compelled by
+                    applicable law:
+                  </p>
+                  <ul className="trust-ed-list">
+                    <li>
+                      <strong>Cloud Hosting &amp; Edge Security:</strong> Amazon
+                      Web Services (AWS), Google Cloud, Vercel Inc., and
+                      Cloudflare (hosting, serverless compute, CDN, DDoS
+                      protection, TLS 1.3 encryption).
+                    </li>
+                    <li>
+                      <strong>Messaging &amp; Media Storage:</strong> Meta
+                      Platforms, Inc. (WhatsApp Cloud API), enabled Telegram /
+                      SMS / telephony providers configured by the workspace, and
+                      Cloudinary (media assets and optional WhatsApp call
+                      recording references).
+                    </li>
+                    <li>
+                      <strong>Payment Processing:</strong> Razorpay, Stripe, and
+                      WhatsApp Native Payments (platform subscriptions and
+                      configured merchant order checkouts).
+                    </li>
+                    <li>
+                      <strong>
+                        Consent Auditing &amp; Consented Measurement:
+                      </strong>{' '}
+                      ipapi.co (approximate IP geolocation for consent audit
+                      logs), Google LLC (GA4 under Consent Mode v2), and
+                      Microsoft Corporation (Clarity strictly upon explicit
+                      session-replay consent).
+                    </li>
+                  </ul>
+                  <h3 className="trust-ed-h3">
+                    Cross-Border Data Transfers (DPDP §16 &amp; GDPR)
+                  </h3>
+                  <p className="trust-ed-prose">
+                    Where cloud infrastructure or enabled third-party APIs
+                    process data outside India or the EEA/UK, transfers are
+                    governed by Standard Contractual Clauses (SCCs), binding
+                    data processing agreements, and end-to-end encryption. We
+                    strictly adhere to Section 16 of the DPDP Act, 2023 and
+                    never transfer personal data to any jurisdiction restricted
+                    by the Central Government of India. Contact our Grievance
+                    Officer to obtain details of applicable transfer safeguards.
+                  </p>
+                </section>
+              )}
 
-          <section id="changes" className="legal-section">
-            <h2 className="h2">12. Policy Changes &amp; Interactive DSR Portal</h2>
-            <p className="text-muted">We will post any policy updates here with an updated version number and effective date. For material changes impacting your rights, we will provide <strong>15 days' advance notice</strong> via platform banners or email notices.</p>
-            <h3 className="h3" style={{ fontSize: '1.2rem', marginTop: '1.75rem', marginBottom: '1rem', color: 'var(--text-primary)' }}>
-              Submit a Data Subject Request (DSR) or Grievance
-            </h3>
-            <PrivacyRequestForm />
-          </section>
-        </div>
-      </div>
-    </div>
+              {isVisible('retention') && (
+                <section id="retention" className="trust-ed-section">
+                  <SectionHeading id="retention" />
+                  <p className="trust-ed-prose">
+                    We retain personal data only as long as required to deliver
+                    contracted services, honor workspace settings, resolve
+                    disputes, and satisfy statutory obligations:
+                  </p>
+
+                  <div className="trust-ed-table-wrap">
+                    <table className="trust-ed-table">
+                      <thead>
+                        <tr>
+                          <th>Data Classification</th>
+                          <th>Retention Period</th>
+                          <th>Post-Retention Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {RETENTION_SCHEDULES.map((row) => (
+                          <tr key={row.classification}>
+                            <td>
+                              <strong>{row.classification}</strong>
+                            </td>
+                            <td className="trust-ed-tabular">{row.period}</td>
+                            <td>{row.action}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <p className="trust-ed-prose">
+                    <strong>Accurate Erasure Scope:</strong> Clearing a
+                    conversation inside the web chat widget removes the selected
+                    browser session and web-chat messages only. Lead records,
+                    CRM contacts, support tickets, invoices, connected vendor
+                    copies (such as exported Google Sheets), and encrypted
+                    disaster-recovery backups follow their own retention
+                    lifecycles; submit a verified erasure request below or
+                    contact the relevant business workspace for complete
+                    deletion. Encrypted backups expire automatically on rolling
+                    security schedules.
+                  </p>
+                </section>
+              )}
+
+              {isVisible('security') && (
+                <section id="security" className="trust-ed-section">
+                  <SectionHeading id="security" />
+                  <p className="trust-ed-prose">
+                    We maintain technical and organizational safeguards aligned
+                    with DPDP Act §8(5) and modern enterprise cloud security
+                    standards (see also our{' '}
+                    <Link to="/security" className="trust-ed-link">
+                      Security Architecture
+                    </Link>{' '}
+                    page):
+                  </p>
+                  <ul className="trust-ed-list">
+                    <li>
+                      <strong>Encryption:</strong> TLS 1.3 for data in transit
+                      and AES-256 / KMS encryption for sensitive credentials,
+                      OAuth tokens, and merchant webhook secrets at rest.
+                    </li>
+                    <li>
+                      <strong>Access &amp; Tenant Isolation:</strong> Logical
+                      multi-tenant workspace isolation, Role-Based Access
+                      Control (RBAC), workspace IP allowlists, login alerts, and
+                      salted cryptographic password hashing.
+                    </li>
+                    <li>
+                      <strong>Tamper-Resistant Audit Logs:</strong> Security and
+                      consent logs reject unauthorized modification to preserve
+                      forensic integrity.
+                    </li>
+                    <li>
+                      <strong>Breach Intimation Protocol:</strong> Verified
+                      personal data breaches are notified to the Data Protection
+                      Board of India and affected Data Principals under DPDP Act
+                      §8(6), and critical cybersecurity incidents are reported
+                      to CERT-In within{' '}
+                      <strong className="trust-ed-tabular">6 hours</strong>{' '}
+                      pursuant to CERT-In Directions (2022).
+                    </li>
+                  </ul>
+                </section>
+              )}
+
+              {isVisible('children') && (
+                <section id="children" className="trust-ed-section">
+                  <SectionHeading id="children" />
+                  <p className="trust-ed-prose">
+                    Gyan VaniAi is a B2B enterprise platform intended solely for
+                    businesses and professionals aged 18 and older. In
+                    compliance with Section 9 of the DPDP Act, 2023:
+                  </p>
+                  <ul className="trust-ed-list">
+                    <li>
+                      We do not knowingly solicit or process personal data of
+                      individuals under 18 without verifiable parental or
+                      guardian consent.
+                    </li>
+                    <li>
+                      We strictly prohibit behavioral tracking, monitoring, or
+                      targeted advertising directed at children.
+                    </li>
+                    <li>
+                      Business workspaces configuring custom booking, support,
+                      or enquiry forms must assess whether free-text fields may
+                      collect health, financial, or minors&apos; data and obtain
+                      all legally required consents before enabling those flows.
+                    </li>
+                  </ul>
+                  <p className="trust-ed-prose">
+                    Parents, guardians, or users who believe a minor&apos;s data
+                    was submitted in error should email{' '}
+                    <a href={`mailto:${officer.email}`}>{officer.email}</a> or
+                    use the DSR Portal below for expedited erasure.
+                  </p>
+                </section>
+              )}
+
+              {isVisible('rights') && (
+                <section id="rights" className="trust-ed-section">
+                  <SectionHeading id="rights" />
+                  <p className="trust-ed-prose">
+                    Depending on your jurisdiction and whether Gyan VaniAi acts
+                    as Data Fiduciary or Data Processor, you may exercise the
+                    following rights (subject to identity verification):
+                  </p>
+                  <ul className="trust-ed-list">
+                    <li>
+                      <strong>Access &amp; Transparency (DPDP §11):</strong>{' '}
+                      Request a summary of personal data processed, processing
+                      activities, and categories of recipients.
+                    </li>
+                    <li>
+                      <strong>Correction &amp; Completion (DPDP §12):</strong>{' '}
+                      Correct inaccurate or misleading information and complete
+                      incomplete records.
+                    </li>
+                    <li>
+                      <strong>Erasure &amp; Withdrawal (DPDP §12):</strong>{' '}
+                      Request deletion of personal data no longer needed for its
+                      purpose or upon consent withdrawal.
+                    </li>
+                    <li>
+                      <strong>
+                        Objection, Restriction &amp; Portability (GDPR):
+                      </strong>{' '}
+                      Where GDPR applies, object to legitimate-interest
+                      processing, request processing restriction, or obtain a
+                      structured portable copy of your data.
+                    </li>
+                    <li>
+                      <strong>Right to Nominate (DPDP §14):</strong> Nominate an
+                      individual to exercise your rights in the event of death
+                      or incapacity.
+                    </li>
+                    <li>
+                      <strong>Grievance &amp; Supervisory Escalation:</strong>{' '}
+                      Contact our Grievance Officer first; if unresolved, you
+                      may escalate to the{' '}
+                      <strong>Data Protection Board of India</strong> (once
+                      operationalized under the DPDP Act) or your local data
+                      protection supervisory authority.
+                    </li>
+                  </ul>
+                </section>
+              )}
+
+              {isVisible('grievance-dsr') && (
+                <section id="grievance-dsr" className="trust-ed-section">
+                  <SectionHeading id="grievance-dsr" />
+                  <p className="trust-ed-prose">
+                    We publish updates to this Privacy Policy on this page with
+                    an updated effective date. For material changes affecting
+                    your rights, we provide{' '}
+                    <strong className="trust-ed-tabular">
+                      15 days&apos; advance notice
+                    </strong>{' '}
+                    via platform notices or email.
+                  </p>
+
+                  <div id="privacy-contact" className="trust-ed-dossier">
+                    <p className="trust-ed-panel-label">
+                      Statutory Escalation Contact (DPDP §5(2), §8(9) &amp; §13)
+                    </p>
+                    <h3 className="trust-ed-panel-title">
+                      Designated Grievance Redressal Officer
+                    </h3>
+                    <div className="trust-ed-dossier-grid">
+                      <div className="trust-ed-dossier-item">
+                        <span className="trust-ed-dossier-label">
+                          Officer Name
+                        </span>
+                        <span className="trust-ed-dossier-value">
+                          {officer.name}
+                        </span>
+                      </div>
+                      <div className="trust-ed-dossier-item">
+                        <span className="trust-ed-dossier-label">
+                          Designation
+                        </span>
+                        <span className="trust-ed-dossier-value">
+                          {officer.designation}
+                        </span>
+                      </div>
+                      <div className="trust-ed-dossier-item">
+                        <span className="trust-ed-dossier-label">
+                          Grievance Email
+                        </span>
+                        <span className="trust-ed-dossier-value">
+                          <a
+                            href={`mailto:${officer.email}`}
+                            className="trust-ed-link"
+                          >
+                            {officer.email}
+                          </a>
+                        </span>
+                      </div>
+                      <div className="trust-ed-dossier-item">
+                        <span className="trust-ed-dossier-label">
+                          Compliance Telephone
+                        </span>
+                        <span className="trust-ed-dossier-value">
+                          <a
+                            href={officer.phoneHref}
+                            className="trust-ed-link"
+                          >
+                            {officer.phoneDisplay}
+                          </a>{' '}
+                          ({officer.hours})
+                        </span>
+                      </div>
+                      <div className="trust-ed-dossier-item">
+                        <span className="trust-ed-dossier-label">
+                          Operating Mode
+                        </span>
+                        <span className="trust-ed-dossier-value">
+                          {LEGAL_META.operatingModel}
+                        </span>
+                      </div>
+                      <div className="trust-ed-dossier-item">
+                        <span className="trust-ed-dossier-label">
+                          Official Correspondence
+                        </span>
+                        <span className="trust-ed-dossier-value">
+                          {LEGAL_META.correspondenceMode}
+                        </span>
+                      </div>
+                      <div className="trust-ed-dossier-item">
+                        <span className="trust-ed-dossier-label">
+                          Acknowledgment SLA
+                        </span>
+                        <span className="trust-ed-dossier-value">
+                          {officer.acknowledgmentSla}
+                        </span>
+                      </div>
+                      <div className="trust-ed-dossier-item">
+                        <span className="trust-ed-dossier-label">
+                          Resolution Target
+                        </span>
+                        <span className="trust-ed-dossier-value">
+                          {officer.resolutionSla}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <h3 className="trust-ed-h3">
+                    Submit a Data Subject Request (DSR) or Grievance
+                  </h3>
+                  <p className="trust-ed-prose">
+                    Use this form to submit a verifiable access, correction,
+                    erasure, nomination, consent withdrawal, or grievance
+                    request. If your request relates to a business that uses
+                    Gyan VaniAi, include that business&apos;s name so we can
+                    route your ticket accurately.
+                  </p>
+                  <PrivacyRequestForm />
+                </section>
+              )}
+            </>
+          );
+        }}
+      </TrustCenterShell>
+    </>
   );
 }

@@ -1,162 +1,558 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import SeoHead from '../components/SeoHead';
+import TrustCenterShell from '../components/legal/TrustCenterShell';
+import {
+  LEGAL_META,
+  TERMS_SECTIONS,
+  TERMS_SUMMARY_STRIP,
+} from '../config/legalDocumentsConfig';
+
+const SECTION_BY_ID = Object.fromEntries(
+  TERMS_SECTIONS.map((section) => [section.id, section])
+);
+
+function SectionHeading({ id }) {
+  const meta = SECTION_BY_ID[id];
+  return (
+    <div className="trust-ed-section-header">
+      <span className="trust-ed-section-num">Chapter {meta.number}</span>
+      <h2 className="trust-ed-h2">{meta.title}</h2>
+    </div>
+  );
+}
 
 export default function TermsConditions() {
-  const [activeSection, setActiveSection] = useState('agreement');
-  
-  useEffect(() => { 
-    window.scrollTo(0, 0); 
-  }, []);
-
-  const scrollTo = (id) => {
-    const element = document.getElementById(id);
-    if (element) {
-      const offset = 100;
-      const bodyRect = document.body.getBoundingClientRect().top;
-      const elementRect = element.getBoundingClientRect().top;
-      const elementPosition = elementRect - bodyRect;
-      const offsetPosition = elementPosition - offset;
-      
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-      setActiveSection(id);
-    }
-  };
-
   const termsWebPageSchema = {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": "Terms & Conditions | Gyan VaniAi",
-    "url": "https://www.gyanvaniai.com/terms",
-    "description": "Terms of Service and API usage guidelines for Gyan VaniAi platforms.",
-    "publisher": {
-      "@id": "https://www.gyanvaniai.com/#organization"
-    }
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: 'Terms & Conditions | Gyan VaniAi',
+    url: 'https://www.gyanvaniai.com/terms',
+    dateModified: '2026-06-14',
+    description:
+      'Terms of Service, acceptable use, AI output governance, billing, and fair-dealing guidelines for Gyan VaniAi platforms.',
+    publisher: {
+      '@id': 'https://www.gyanvaniai.com/#organization',
+    },
   };
+
+  const officer = LEGAL_META.grievanceOfficer;
 
   return (
-    <div style={{ minHeight: '100vh' }}>
+    <>
       <SeoHead
         title="Terms & Conditions | Gyan VaniAi"
-        description="Terms of Service and API usage guidelines for Gyan VaniAi platforms."
+        description="Terms of Service, acceptable use, AI output review obligations, Razorpay/Stripe/WhatsApp Native billing, and CCPA fair-dealing guidelines for Gyan VaniAi."
         canonical="https://www.gyanvaniai.com/terms"
-        preloadImage="/terms_image.webp"
         schema={termsWebPageSchema}
       />
-      <div className="legal-hero">
-        <div className="container legal-hero-content">
-          <img src="/terms_image.webp" alt="" width="400" height="400" className="legal-hero-img" fetchPriority="high" decoding="sync" />
-          <div>
-            <h1 className="h1">Terms and Conditions</h1>
-            <p className="text-lg text-muted" style={{ marginTop: '0.5rem' }}>Effective Date: June 14, 2026</p>
-          </div>
-        </div>
-      </div>
-      
-      <div className="legal-container">
-        <aside className="legal-sidebar">
-          <h4 className="h4" style={{ marginBottom: '1.5rem' }}>Table of Contents</h4>
-          <a href="#agreement" className={`legal-nav-link ${activeSection === 'agreement' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('agreement'); }}>1. Agreement to Terms</a>
-          <a href="#messaging" className={`legal-nav-link ${activeSection === 'messaging' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('messaging'); }}>2. Messaging Opt-in &amp; Compliance</a>
-          <a href="#cookie-processing" className={`legal-nav-link ${activeSection === 'cookie-processing' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('cookie-processing'); }}>3. Cookie Consent Data Processing</a>
-          <a href="#usage" className={`legal-nav-link ${activeSection === 'usage' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('usage'); }}>4. Platform Usage &amp; Intellectual Property</a>
-          <a href="#liability" className={`legal-nav-link ${activeSection === 'liability' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('liability'); }}>5. Limitation of Liability</a>
-          <a href="#demo-policy" className={`legal-nav-link ${activeSection === 'demo-policy' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('demo-policy'); }}>6. Live Demo &amp; 7-Day Retention</a>
-          <a href="#deletion" className={`legal-nav-link ${activeSection === 'deletion' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('deletion'); }}>7. User Data Deletion &amp; Rights</a>
-          <a href="#governing-law" className={`legal-nav-link ${activeSection === 'governing-law' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('governing-law'); }}>8. Governing Law &amp; Jurisdiction</a>
-          <a href="#dark-patterns" className={`legal-nav-link ${activeSection === 'dark-patterns' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('dark-patterns'); }}>9. Prohibition of Dark Patterns</a>
-          <a href="#grievance" className={`legal-nav-link ${activeSection === 'grievance' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); scrollTo('grievance'); }}>10. Grievance Redressal Mechanism</a>
-        </aside>
-        
-        <div className="legal-content glass-panel" style={{ padding: '3rem', borderRadius: 'var(--radius-lg)' }}>
-          <section id="agreement" className="legal-section">
-            <h2 className="h2">1. Agreement to Terms</h2>
-            <p className="text-muted">By accessing our website and utilizing our AI platforms (including CRMLite, AI Stock Kundli, and custom workflow automations), you agree to be bound by these Terms and Conditions. If you disagree with any part of these terms, please discontinue use of our platforms immediately.</p>
-          </section>
 
-          <section id="messaging" className="legal-section">
-            <h2 className="h2">2. Messaging Opt-in &amp; Compliance</h2>
-            <p className="text-muted">Gyan VaniAi utilizes WhatsApp Business Cloud API and SMS automation to deliver core communications, appointment confirmations, and workflow notifications. By providing your phone number on our website forms, you grant affirmative consent to receive transactional and relevant service updates.</p>
-            <p className="text-muted">You acknowledge that you are the authorized subscriber of the phone number provided. We enforce zero tolerance for spam: if you utilize our CRM tools or WhatsApp bots to communicate with your own clients, you warrant that you have obtained prior verifiable opt-in consent from your end-users in strict adherence to Meta WhatsApp Business Messaging Policies, TRAI regulations (TCCCPR 2018), and the Digital Personal Data Protection Act, 2023.</p>
-            <p className="text-muted"><strong>1-Click Opt-Out:</strong> Any recipient may withdraw consent and immediately terminate messaging by replying <code>STOP</code>, <code>UNSUBSCRIBE</code>, or <code>CANCEL</code> to any WhatsApp message, or via our public <a href="/privacy" style={{ color: 'var(--primary-color)' }}>Privacy Rights Portal</a>.</p>
-          </section>
+      <TrustCenterShell
+        activeDocId="terms"
+        kicker="Gyan VaniAi Trust Center · Platform Service Agreement"
+        title="Terms of Service"
+        deck="Commercial terms, acceptable use standards, AI governance responsibilities, subscription billing rules, and statutory consumer protections governing access to Gyan VaniAi."
+        summaryStrip={TERMS_SUMMARY_STRIP}
+        sections={TERMS_SECTIONS}
+        quickActions={[
+          {
+            label: 'Read Privacy Policy',
+            to: '/privacy',
+          },
+          {
+            label: 'View Pricing Plans',
+            to: '/pricing',
+          },
+        ]}
+      >
+        {({ matchedIds, hasActiveSearch }) => {
+          const isVisible = (id) => !hasActiveSearch || matchedIds.has(id);
 
-          <section id="cookie-processing" className="legal-section">
-            <h2 className="h2">3. Cookie Consent Data Processing</h2>
-            <p className="text-muted">By using this website and interacting with our cookie consent banner, you acknowledge and agree to the following:</p>
-            <ul className="text-muted" style={{ paddingLeft: '1.5rem', margin: '1rem 0', display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
-              <li><strong>Consent Audit Logging:</strong> When you click any option on the cookie consent banner (Accept All, Reject All, Essential Only, or Save Preferences), we record your decision alongside your public IP address, approximate geographic location (city, region, country), browser type, language, the page URL, and a timestamp. This is strictly for statutory compliance verification.</li>
-              <li><strong>Legal Grounds:</strong> Consent audit logging is maintained pursuant to our statutory compliance obligations under India DPDP Act 2023 Section 6 (Verifiable Consent) and Section 8 (Reasonable Security Safeguards &amp; Auditability), as well as GDPR Article 6(1)(c) and Article 7(1).</li>
-              <li><strong>No Profiling:</strong> The IP address and location data recorded during consent logging is never used for behavioural profiling, advertising targeting, or sold to any third party. It is stored in an access-controlled, encrypted database visible only to authorised compliance administrators.</li>
-              <li><strong>Retention TTL:</strong> In compliance with Section 8(7) of the DPDP Act 2023, consent audit records are retained for a maximum of 12 months (31,536,000 seconds) via automated database TTL indexes and then permanently expunged.</li>
-              <li><strong>Your Statutory Rights:</strong> You may request access to, correction of, or complete erasure of your consent record at any time through our interactive <a href="/privacy#privacy-contact" style={{ color: 'var(--primary-color)' }}>Data Subject Rights Portal</a>.</li>
-            </ul>
-          </section>
+          return (
+            <>
+              <div className="trust-ed-notice-box">
+                <p className="trust-ed-notice-title">
+                  Binding Platform Agreement
+                </p>
+                <p className="trust-ed-notice-text">
+                  These Terms of Service govern your use of the{' '}
+                  <strong>{LEGAL_META.brandName}</strong> website, enterprise AI
+                  CRM workspaces, omnichannel messaging, voice automation, and
+                  related software services operated by{' '}
+                  <strong>{LEGAL_META.legalEntity}</strong>. By creating a
+                  workspace, accepting these Terms during onboarding, or using
+                  the service, you agree to be bound by them.
+                </p>
+              </div>
 
-          <section id="usage" className="legal-section">
-            <h2 className="h2">4. Platform Usage &amp; Intellectual Property</h2>
-            <p className="text-muted">Our Enterprise AI, WhatsApp automation, and custom CRM services must be used for lawful purposes only. You are strictly prohibited from utilizing our API endpoints or RAG pipelines to generate or distribute illicit, defamatory, sexually explicit, fraudulent, or harassing content.</p>
-            <p className="text-muted">All software code, user interface designs, AI agent architectures, algorithms, trademarks, and documentation developed by Gyan VaniAi remain the exclusive intellectual property of Gyan VaniAi Technologies unless transferred under a separate executed Master Services Agreement (MSA).</p>
-          </section>
+              {isVisible('agreement') && (
+                <section id="agreement" className="trust-ed-section">
+                  <SectionHeading id="agreement" />
+                  <p className="trust-ed-prose">
+                    These Terms form a legal agreement between you (or the
+                    organization you represent) and{' '}
+                    <strong>{LEGAL_META.legalEntity}</strong> (
+                    {LEGAL_META.operatingModel}; all official notices handled
+                    electronically).
+                  </p>
+                  <ul className="trust-ed-list">
+                    <li>
+                      <strong>Business Authority:</strong> If you accept these
+                      Terms on behalf of a company or organization, you confirm
+                      that you have legal authority to bind that entity.
+                    </li>
+                    <li>
+                      <strong>Workspace Administration:</strong> Workspace
+                      administrators control team invitations, role permissions,
+                      IP allowlists, and connected third-party integrations and
+                      are responsible for activity under their workspace
+                      accounts.
+                    </li>
+                    <li>
+                      <strong>Credential Security:</strong> Keep login
+                      credentials, API keys, and webhook secrets confidential
+                      and notify{' '}
+                      <a href={`mailto:${officer.email}`}>{officer.email}</a>{' '}
+                      promptly upon suspecting unauthorized account access.
+                    </li>
+                  </ul>
+                </section>
+              )}
 
-          <section id="liability" className="legal-section">
-            <h2 className="h2">5. Limitation of Liability</h2>
-            <p className="text-muted">While our AI agents and CRM platforms undergo rigorous unit, integration, and security testing, Gyan VaniAi does not warrant 100% uninterrupted uptime or completely hallucination-free generative AI outputs. To the maximum extent permitted by applicable Indian law, Gyan VaniAi shall not be liable for indirect, incidental, punitive, or consequential commercial damages, loss of business revenue, or third-party service provider outages (e.g. Meta Cloud API, AWS, or telecom network latency).</p>
-          </section>
+              {isVisible('acceptable-use') && (
+                <section id="acceptable-use" className="trust-ed-section">
+                  <SectionHeading id="acceptable-use" />
+                  <p className="trust-ed-prose">
+                    Gyan VaniAi provides customer relationship management,
+                    WhatsApp Business Cloud API &amp; Coexistence, Telegram, web
+                    chat, email/SMS workflows, appointment scheduling, support
+                    ticketing, commerce order management, voice AI, and RAG
+                    automation tools. Available features depend on your
+                    subscribed plan and enabled integrations.
+                  </p>
+                  <ul className="trust-ed-list">
+                    <li>
+                      <strong>Lawful Use &amp; Zero Spam:</strong> You must use
+                      the service lawfully and strictly within your permissions.
+                      You must not send unsolicited bulk messages (spam), upload
+                      unlawfully obtained contact lists, impersonate third
+                      parties, upload malicious payloads, or attempt
+                      unauthorized access to another workspace.
+                    </li>
+                    <li>
+                      <strong>Messaging Opt-In &amp; TRAI / Meta Rules:</strong>{' '}
+                      When communicating with end-customers over WhatsApp, SMS,
+                      or email, you warrant that you hold verifiable prior
+                      opt-in consent in compliance with Meta WhatsApp Business
+                      Messaging Policies, TRAI regulations (TCCCPR 2018), and
+                      the DPDP Act, 2023. Recipients may opt out instantly by
+                      replying <code className="trust-ed-code">STOP</code>,{' '}
+                      <code className="trust-ed-code">UNSUBSCRIBE</code>, or{' '}
+                      <code className="trust-ed-code">CANCEL</code>.
+                    </li>
+                    <li>
+                      <strong>
+                        Campaign, Tracking &amp; Call-Recording Notices:
+                      </strong>{' '}
+                      Businesses enabling outbound campaigns, conversion
+                      tracking, microphone capture, or WhatsApp/voice call
+                      recording are solely responsible for displaying clear
+                      point-of-collection privacy notices and obtaining all
+                      legally required permissions and recording consents from
+                      participants.
+                    </li>
+                  </ul>
+                </section>
+              )}
 
-          <section id="demo-policy" className="legal-section">
-            <h2 className="h2">6. Live Demo Platform &amp; 7-Day Data Retention Policy</h2>
-            <p className="text-muted">Gyan VaniAi provides access to an interactive software demo environment hosted at <a href="https://connect.gyanvaniai.online/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--primary-color)' }}>https://connect.gyanvaniai.online/</a>. By creating a demo account or utilizing this sandbox, you agree to the following Demo Data Retention Policy:</p>
-            <ul className="text-muted" style={{ paddingLeft: '1.5rem', margin: '1rem 0', display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
-              <li><strong>7-Day Evaluation Period:</strong> Demo accounts are provisioned exclusively for non-production evaluation and architectural testing.</li>
-              <li><strong>Automatic Purpose-Exhaustion Purge:</strong> Unless upgraded to an active enterprise subscription before the evaluation period concludes, demo records, mock leads, conversation threads, and configurations are permanently expunged in accordance with our automated purpose-exhaustion retention schedules.</li>
-              <li><strong>Your Responsibility:</strong> You must not upload live unredacted customer PII or production financial credentials into public demo sandbox accounts. Please export any test datasets you wish to preserve prior to evaluation expiry.</li>
-            </ul>
-          </section>
+              {isVisible('customer-data-ai') && (
+                <section id="customer-data-ai" className="trust-ed-section">
+                  <SectionHeading id="customer-data-ai" />
+                  <p className="trust-ed-prose">
+                    You retain all ownership rights in customer data, knowledge
+                    documents, and content you submit to your workspace. You
+                    grant {LEGAL_META.legalEntity} a limited right to host,
+                    process, and transmit that content solely to provide,
+                    secure, and support the service in accordance with our{' '}
+                    <Link to="/privacy" className="trust-ed-link">
+                      Privacy Policy
+                    </Link>{' '}
+                    and any executed Data Processing Agreement (DPA).
+                  </p>
+                  <ul className="trust-ed-list">
+                    <li>
+                      <strong>Customer Lawful Basis:</strong> You are
+                      responsible for maintaining accurate customer privacy
+                      notices (including configuring your own Privacy Policy
+                      URL, Terms URL, and grievance email on embedded web
+                      widgets) and holding lawful instructions for all customer
+                      records imported or processed.
+                    </li>
+                    <li>
+                      <strong>Third-Party Integrations:</strong> Optional
+                      integrations—including Google Workspace (Calendar, Meet,
+                      Gmail, Contacts, Tasks, Drive, Sheets), Meta/WhatsApp,
+                      Cloudinary, and payment gateways—depend on third-party
+                      provider uptime, API permissions, and terms.
+                    </li>
+                    <li>
+                      <strong>Mandatory Human Review of AI Outputs:</strong>{' '}
+                      Generative AI responses, voice transcriptions, and
+                      automated workflow outputs may occasionally contain
+                      inaccuracies. You must configure appropriate guardrails
+                      and review AI-generated replies before relying on them for
+                      legal, financial, medical, or binding customer
+                      commitments. Each workspace business remains solely
+                      responsible for its own products, services, and
+                      communications with its customers.
+                    </li>
+                  </ul>
+                </section>
+              )}
 
-          <section id="deletion" className="legal-section">
-            <h2 className="h2">7. User Data Deletion &amp; Statutory Rights</h2>
-            <p className="text-muted">In accordance with Section 12 of the Digital Personal Data Protection Act, 2023, you hold the statutory right to request complete erasure of your personal data when the specified purpose of processing is fulfilled. Detailed data deletion workflows and automated ticket generation are available on our <a href="/privacy" style={{ color: 'var(--primary-color)' }}>Privacy Policy page</a>.</p>
-          </section>
+              {isVisible('billing-refunds') && (
+                <section id="billing-refunds" className="trust-ed-section">
+                  <SectionHeading id="billing-refunds" />
+                  <p className="trust-ed-prose">
+                    Current subscription tiers, Transparent Engineering
+                    Partnership milestones, and applicable add-ons are published
+                    on our{' '}
+                    <Link to="/pricing" className="trust-ed-link">
+                      Pricing page
+                    </Link>
+                    . Prices exclude applicable taxes (such as GST) unless
+                    expressly stated at checkout.
+                  </p>
+                  <ul className="trust-ed-list">
+                    <li>
+                      <strong>Active Payment Gateways:</strong> Platform
+                      subscriptions and supported merchant checkouts operate via{' '}
+                      <strong>
+                        Razorpay, Stripe, and WhatsApp Native Payments
+                      </strong>
+                      . Checkout disclosures, receipts, and tax invoices are
+                      issued electronically.
+                    </li>
+                    <li>
+                      <strong>Billing Cycles &amp; Renewal:</strong> Monthly or
+                      annual SaaS subscriptions bill in advance for each billing
+                      cycle. Renewal terms and upcoming billing dates are
+                      clearly surfaced in your workspace billing panel prior to
+                      renewal.
+                    </li>
+                    <li>
+                      <strong>Frictionless Cancellation:</strong> You may cancel
+                      a SaaS subscription at any time from workspace billing
+                      settings or by emailing{' '}
+                      <a href={`mailto:${officer.email}`}>{officer.email}</a>{' '}
+                      before the next billing cycle. Cancellation takes effect
+                      at the end of your current paid period with no dark-pattern
+                      obstacles.
+                    </li>
+                    <li>
+                      <strong>Refund Policy:</strong> Fees paid for completed
+                      billing cycles, consumed third-party messaging/telephony
+                      usage, or delivered custom engineering sprint milestones
+                      are non-refundable except in cases of duplicate billing,
+                      material non-delivery attributable to Gyan VaniAi, or
+                      where mandatory consumer protection law requires a refund.
+                    </li>
+                  </ul>
+                </section>
+              )}
 
-          <section id="governing-law" className="legal-section">
-            <h2 className="h2">8. Governing Law &amp; Dispute Resolution</h2>
-            <p className="text-muted">These Terms and Conditions shall be governed by, construed, and enforced in accordance with the laws of the Republic of India, including the Information Technology Act, 2000, the Digital Personal Data Protection Act, 2023, the Consumer Protection Act, 2019, and the Indian Contract Act, 1872.</p>
-            <p className="text-muted">Any legal dispute, controversy, or claim arising out of or relating to these Terms or the breach, termination, or invalidity thereof, shall be subject to the exclusive jurisdiction of the competent courts located in <strong>New Delhi, Republic of India</strong>.</p>
-          </section>
+              {isVisible('demo-sandbox') && (
+                <section id="demo-sandbox" className="trust-ed-section">
+                  <SectionHeading id="demo-sandbox" />
+                  <p className="trust-ed-prose">
+                    Gyan VaniAi offers a public evaluation sandbox hosted at{' '}
+                    <a
+                      href={LEGAL_META.demoPortalUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {LEGAL_META.demoPortalUrl}
+                    </a>
+                    . By using the Live Demo environment, you agree that:
+                  </p>
+                  <ul className="trust-ed-list">
+                    <li>
+                      <strong>7-Day Evaluation Lifecycle:</strong> Demo
+                      workspaces are provisioned strictly for non-production
+                      evaluation and architectural testing without commercial
+                      SLA guarantees.
+                    </li>
+                    <li>
+                      <strong>Automatic Purpose-Exhaustion Purge:</strong>{' '}
+                      Unless upgraded to an active subscription before expiry,
+                      demo records, mock leads, chat threads, and configurations
+                      are permanently purged after{' '}
+                      <strong className="trust-ed-tabular">7 days</strong>.
+                    </li>
+                    <li>
+                      <strong>No Live PII in Public Sandboxes:</strong> You must
+                      not upload unredacted production customer PII, health
+                      data, or live payment credentials into public demo
+                      accounts. Export any test data you wish to retain prior to
+                      expiry.
+                    </li>
+                  </ul>
+                </section>
+              )}
 
-          <section id="dark-patterns" className="legal-section">
-            <h2 className="h2">9. Prohibition of Dark Patterns &amp; Fair Dealing</h2>
-            <p className="text-muted">In strict accordance with the <em>Guidelines for Prevention and Regulation of Dark Patterns, 2023</em> issued by the Central Consumer Protection Authority (CCPA) under Section 18 of the Consumer Protection Act, 2019, Gyan VaniAi affirms:</p>
-            <ul className="text-muted" style={{ paddingLeft: '1.5rem', margin: '1rem 0', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-              <li><strong>No False Urgency:</strong> We do not fabricate artificial scarcity or countdown timers to induce purchases.</li>
-              <li><strong>No Basket Sneaking or Hidden Fees:</strong> Pricing displayed across our platforms is clear, itemized, and transparent.</li>
-              <li><strong>No Confirm Shaming:</strong> Opt-out and rejection choices on cookie banners and newsletter subscriptions are neutral and free of guilt-inducing language.</li>
-              <li><strong>No Forced Action:</strong> Visitors are not forced to consent to unnecessary marketing or analytics tracking as a condition of accessing public marketing content.</li>
-              <li><strong>Easy Cancellation:</strong> Subscription cancellations and consent withdrawals are as easy to complete as initial signups, with zero deceptive obstacle courses.</li>
-            </ul>
-          </section>
+              {isVisible('suspension-export') && (
+                <section id="suspension-export" className="trust-ed-section">
+                  <SectionHeading id="suspension-export" />
+                  <p className="trust-ed-prose">
+                    We aim to give advance written notice before restricting
+                    workspace access, except where immediate intervention is
+                    necessary to protect platform security, prevent spam or
+                    abuse, or comply with legal orders.
+                  </p>
+                  <ul className="trust-ed-list">
+                    <li>
+                      <strong>Grounds for Suspension or Termination:</strong>{' '}
+                      Overdue invoices following a grace notice, verified spam
+                      or acceptable-use violations, compromised credentials,
+                      unauthorized cross-tenant probing, or binding regulatory
+                      directives.
+                    </li>
+                    <li>
+                      <strong>Customer Data Export:</strong> Active workspaces
+                      can export contacts, leads, and operational reports (for
+                      example via CSV or connected Google Sheets) at any time.
+                      Upon standard subscription termination, we provide a
+                      reasonable export window of{' '}
+                      <strong className="trust-ed-tabular">30 days</strong>{' '}
+                      before scheduled workspace deletion.
+                    </li>
+                    <li>
+                      <strong>Post-Closure Records &amp; Backups:</strong> After
+                      the export window closes, active workspace records are
+                      deleted or anonymized in accordance with our{' '}
+                      <Link to="/privacy" className="trust-ed-link">
+                        Privacy Policy retention schedule
+                      </Link>
+                      . Encrypted disaster-recovery backups expire automatically
+                      on rolling security cycles, and statutory tax invoices are
+                      retained strictly as required by law.
+                    </li>
+                  </ul>
+                </section>
+              )}
 
-          <section id="grievance" className="legal-section">
-            <h2 className="h2">10. Grievance Redressal Mechanism</h2>
-            <p className="text-muted">In compliance with Section 13 of the Digital Personal Data Protection Act, 2023 read with Rule 11 of the DPDP Rules, 2025, any consumer or Data Principal grievance regarding these Terms, privacy practices, or data handling will be resolved by our designated Grievance Redressal Officer:</p>
-            <div style={{ background: 'rgba(255, 255, 255, 0.04)', padding: '1.25rem 1.5rem', borderRadius: '8px', border: '1px solid var(--border-color)', margin: '1rem 0' }}>
-              <p style={{ margin: '0 0 0.5rem 0', fontWeight: 'bold', color: 'var(--text-primary)' }}>Grievance Redressal Officer Contact Dossier:</p>
-              <ul className="text-muted" style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.35rem', fontSize: '0.92rem' }}>
-                <li><strong>Officer Name:</strong> Himanshu Bharti</li>
-                <li><strong>Designation:</strong> Lead Privacy Compliance Officer &amp; Grievance Redressal Officer</li>
-                <li><strong>Entity:</strong> Gyan VaniAi Technologies</li>
-                <li><strong>Address:</strong> Dakbangla Chowk, Simri Bakhtiarpur, Bihar 852127, India</li>
-                <li><strong>Direct Email:</strong> <a href="mailto:contact@gyanvaniai.com" style={{ color: 'var(--primary-color)', fontWeight: '600' }}>contact@gyanvaniai.com</a></li>
-                <li><strong>Acknowledgment:</strong> Within 24 hours</li>
-                <li><strong>Statutory Resolution Deadline:</strong> Maximum 15 business days (Rule 11)</li>
-              </ul>
-            </div>
-          </section>
-        </div>
-      </div>
-    </div>
+              {isVisible('ip-license') && (
+                <section id="ip-license" className="trust-ed-section">
+                  <SectionHeading id="ip-license" />
+                  <p className="trust-ed-prose">
+                    All Gyan VaniAi platform software, user interface designs,
+                    AI orchestration frameworks, trademarks, and documentation
+                    are owned exclusively by{' '}
+                    <strong>{LEGAL_META.legalEntity}</strong> or its licensors.
+                  </p>
+                  <ul className="trust-ed-list">
+                    <li>
+                      <strong>SaaS License:</strong> Your active subscription
+                      grants a non-exclusive, non-transferable, revocable right
+                      to access and use Gyan VaniAi for your internal business
+                      operations during the subscription term. You may not
+                      reverse-engineer, sublicense, or resell access without
+                      written authorization.
+                    </li>
+                    <li>
+                      <strong>Custom Engineering Partnerships (MSA):</strong>{' '}
+                      Where you engage Gyan VaniAi under a separate executed
+                      Master Services Agreement or Transparent Engineering
+                      Partnership statement of work, intellectual property
+                      ownership of bespoke deliverables transfers as specified
+                      in that signed agreement upon full payment.
+                    </li>
+                  </ul>
+                </section>
+              )}
+
+              {isVisible('liability-dark-patterns') && (
+                <section
+                  id="liability-dark-patterns"
+                  className="trust-ed-section"
+                >
+                  <SectionHeading id="liability-dark-patterns" />
+                  <p className="trust-ed-prose">
+                    Except as expressly warranted in a signed SLA or preserved
+                    by mandatory statute, Gyan VaniAi is provided on an
+                    &ldquo;as-is&rdquo; and &ldquo;as-available&rdquo; basis. We
+                    do not warrant uninterrupted third-party network delivery
+                    (such as Meta Cloud API, telecom carriers, or upstream cloud
+                    outages) or error-free generative AI outputs.
+                  </p>
+                  <p className="trust-ed-prose">
+                    <strong>Limitation of Liability:</strong> To the maximum
+                    extent permitted by applicable law, neither party shall be
+                    liable for indirect, incidental, punitive, or consequential
+                    damages, and Gyan VaniAi&apos;s aggregate liability arising
+                    out of these Terms shall not exceed the total service fees
+                    paid by you to Gyan VaniAi in the{' '}
+                    <strong className="trust-ed-tabular">12 months</strong>{' '}
+                    preceding the event giving rise to the claim. Nothing in
+                    these Terms excludes or limits any liability that cannot be
+                    excluded under applicable statutory law.
+                  </p>
+
+                  <h3 className="trust-ed-h3">
+                    Prohibition of Dark Patterns &amp; Fair Dealing (CCPA 2023)
+                  </h3>
+                  <p className="trust-ed-prose">
+                    In adherence to the Central Consumer Protection
+                    Authority&apos;s{' '}
+                    <em>
+                      Guidelines for Prevention and Regulation of Dark Patterns,
+                      2023
+                    </em>
+                    , Gyan VaniAi maintains:
+                  </p>
+                  <ul className="trust-ed-list">
+                    <li>
+                      <strong>No False Urgency or Basket Sneaking:</strong> No
+                      fabricated scarcity countdowns or hidden checkout add-ons.
+                    </li>
+                    <li>
+                      <strong>No Confirm Shaming or Forced Action:</strong>{' '}
+                      Cookie banner and marketing opt-out options use neutral
+                      language, and public site content is never gated behind
+                      unnecessary tracking consent.
+                    </li>
+                    <li>
+                      <strong>Verifiable Consent Audit Logging:</strong> Cookie
+                      banner choices are logged solely for DPDP §6 / GDPR Art.
+                      7(1) statutory proof, retained for{' '}
+                      <strong className="trust-ed-tabular">12 months</strong>,
+                      and never used for advertising profiling.
+                    </li>
+                    <li>
+                      <strong>Easy Cancellation:</strong> Cancelling a plan or
+                      withdrawing consent is as straightforward as signing up.
+                    </li>
+                  </ul>
+                </section>
+              )}
+
+              {isVisible('governing-grievance') && (
+                <section id="governing-grievance" className="trust-ed-section">
+                  <SectionHeading id="governing-grievance" />
+                  <p className="trust-ed-prose">
+                    <strong>Governing Law &amp; Disputes:</strong> These Terms
+                    are governed by the laws of the Republic of India, including
+                    the Information Technology Act, 2000, the Digital Personal
+                    Data Protection Act, 2023, the Consumer Protection Act,
+                    2019, and the Indian Contract Act, 1872. Subject to
+                    mandatory statutory rights, disputes shall be subject to the
+                    exclusive jurisdiction of competent courts in{' '}
+                    <strong>New Delhi, India</strong>.
+                  </p>
+                  <p className="trust-ed-prose">
+                    <strong>Changes to These Terms:</strong> We may update these
+                    Terms to reflect new features, regulatory developments, or
+                    security practices. For material changes, we will provide at
+                    least{' '}
+                    <strong className="trust-ed-tabular">
+                      15 days&apos; advance notice
+                    </strong>{' '}
+                    via email or an in-product notice before the updated Terms
+                    take effect. Continued use after the effective date
+                    constitutes acceptance of the updated Terms.
+                  </p>
+
+                  <div className="trust-ed-dossier">
+                    <p className="trust-ed-panel-label">
+                      Legal Desk &amp; Grievance Redressal (DPDP §13 / Rule 11)
+                    </p>
+                    <h3 className="trust-ed-panel-title">
+                      Grievance Redressal Officer Contact Dossier
+                    </h3>
+                    <div className="trust-ed-dossier-grid">
+                      <div className="trust-ed-dossier-item">
+                        <span className="trust-ed-dossier-label">
+                          Officer Name
+                        </span>
+                        <span className="trust-ed-dossier-value">
+                          {officer.name}
+                        </span>
+                      </div>
+                      <div className="trust-ed-dossier-item">
+                        <span className="trust-ed-dossier-label">
+                          Designation
+                        </span>
+                        <span className="trust-ed-dossier-value">
+                          {officer.designation}
+                        </span>
+                      </div>
+                      <div className="trust-ed-dossier-item">
+                        <span className="trust-ed-dossier-label">
+                          Support &amp; Legal Email
+                        </span>
+                        <span className="trust-ed-dossier-value">
+                          <a
+                            href={`mailto:${officer.email}`}
+                            className="trust-ed-link"
+                          >
+                            {officer.email}
+                          </a>
+                        </span>
+                      </div>
+                      <div className="trust-ed-dossier-item">
+                        <span className="trust-ed-dossier-label">
+                          Telephone
+                        </span>
+                        <span className="trust-ed-dossier-value">
+                          <a
+                            href={officer.phoneHref}
+                            className="trust-ed-link"
+                          >
+                            {officer.phoneDisplay}
+                          </a>{' '}
+                          ({officer.hours})
+                        </span>
+                      </div>
+                      <div className="trust-ed-dossier-item">
+                        <span className="trust-ed-dossier-label">
+                          Operating Mode
+                        </span>
+                        <span className="trust-ed-dossier-value">
+                          {LEGAL_META.operatingModel}
+                        </span>
+                      </div>
+                      <div className="trust-ed-dossier-item">
+                        <span className="trust-ed-dossier-label">
+                          Official Correspondence
+                        </span>
+                        <span className="trust-ed-dossier-value">
+                          {LEGAL_META.correspondenceMode}
+                        </span>
+                      </div>
+                      <div className="trust-ed-dossier-item">
+                        <span className="trust-ed-dossier-label">
+                          Acknowledgment
+                        </span>
+                        <span className="trust-ed-dossier-value">
+                          {officer.acknowledgmentSla}
+                        </span>
+                      </div>
+                      <div className="trust-ed-dossier-item">
+                        <span className="trust-ed-dossier-label">
+                          Statutory Resolution
+                        </span>
+                        <span className="trust-ed-dossier-value">
+                          {officer.resolutionSla}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              )}
+            </>
+          );
+        }}
+      </TrustCenterShell>
+    </>
   );
 }
